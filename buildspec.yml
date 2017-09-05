@@ -1,0 +1,14 @@
+#buildspec.yml
+
+version: 0.2
+
+phases:
+  build:
+    commands:
+       - date
+#      - zip -r zipfile.zip appspec.yml scripts 
+
+artifacts:
+  files:
+    - appspec.yml  
+  discard-paths: yes

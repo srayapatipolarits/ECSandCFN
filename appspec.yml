@@ -1,0 +1,7 @@
+#appspec.yml
+
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /opt/tomcat/webapps/
