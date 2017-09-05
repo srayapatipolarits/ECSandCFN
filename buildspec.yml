@@ -5,8 +5,8 @@ version: 0.2
 phases:
   build:
     commands:
-        - docker build -d Dockerfile -t 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:}' .
-#       - 'docker build -f infrastrtucture/Dockerfile -t 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:latest .'
+#        - docker build -d Dockerfile -t 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:}' .
+       - 'docker build -f infrastrtucture/Dockerfile -t 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:latest .'
   post_build:
     commands:
 #       - 'eval $(aws ecr get-login) && docker push 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:}'
