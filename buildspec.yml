@@ -9,13 +9,13 @@ phases:
   post_build:
     commands:
        - 'eval $(aws ecr get-login) && docker push 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:}'
-       - 'echo "974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:}" > infrastructure/image.txt'
-       - 'echo "{\"image\": \"974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:}\"}" > infrastructure/image.json'
+       - 'echo "974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:}" > image.txt'
+       - 'echo "{\"image\": \"974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:}\"}" > image.json'
 
 
 artifacts:
   files:
-    - infrastructure/image.json
-    - infrastructure/image.txt
+    - image.json
+    - image.txt
   discard-paths: yes
 
