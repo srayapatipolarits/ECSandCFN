@@ -5,10 +5,17 @@ version: 0.2
 phases:
   build:
     commands:
-       - date
-#      - zip -r zipfile.zip appspec.yml scripts 
+       - 'docker build -f infrastrtucture/Dockerfile -t 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:} .'
+  post_build:
+    commands:
+       - 'eval $(aws ecr get-login) && docker push 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:}'
+       - 'echo "974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:}" > infrastructure/image.txt'
+       - 'echo "{\"image\": \"974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:}\"}" > infrastructure/image.json'
+
 
 artifacts:
   files:
-    - appspec.yml  
+    - infrastructure/image.json
+    - infrastructure/image.txt
   discard-paths: yes
+
