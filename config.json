@@ -1,6 +1,6 @@
 {
   "Parameters": {
-    "Image": {"Fn::GetParam": ["Image", "infrastructure/image.json", "image"]},
+    "Image": {"Fn::GetParam": ["Image", "image.json", "image"]},
     "DesiredCount": "2",
     "MaxCapacity": "2",
     "MinCapacity": "1"
