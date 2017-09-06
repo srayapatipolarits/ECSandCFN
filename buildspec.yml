@@ -17,7 +17,7 @@ phases:
 #       - 'echo "{\"image\": \"974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:}\"}" > image.json'
        - 'docker push 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${time}'
        - 'echo "974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${time}" > image.txt'
-       - 'echo "image": "974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${time}" > image.json'
+       - 'echo { \"image\": \"974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:\" } > image.json'
 
 
 artifacts:
