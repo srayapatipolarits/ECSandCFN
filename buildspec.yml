@@ -8,15 +8,15 @@ phases:
 #        - docker build -d Dockerfile -t 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:}' .
        - $(aws ecr get-login --region us-east-1)
        - 'docker ps' 
-       - 'docker build -f Dockerfile -t 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${CODEBUILD_BUILD_ID*:} .'
+       - 'docker build -f Dockerfile -t 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:} .'
   post_build:
     commands:
 #       - 'eval $(aws ecr get-login) && docker push 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:}'
 #       - 'echo "974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:}" > image.txt'
 #       - 'echo "{\"image\": \"974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:}\"}" > image.json'
-       - 'docker push 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${CODEBUILD_BUILD_ID*:}'
-       - 'echo "974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${CODEBUILD_BUILD_ID*:}" > image.txt'
-       - 'echo "{\"image\": \"974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${CODEBUILD_BUILD_ID*:}" > image.json'
+       - 'docker push 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:}'
+       - 'echo "974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:}" > image.txt'
+       - 'echo "{\"image\": \"974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:}" > image.json'
 
 
 artifacts:
