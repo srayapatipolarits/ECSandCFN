@@ -1,9 +1,8 @@
 {
   "Parameters": {
-    "Image": {"Fn::GetParam": ["MyAppBuild", "image.json", "image"]},
     "EcsAmiId": {"Fn::GetParam": ["MyAppBuild", "image.json", "image"]},
-    "DesiredCount": "2",
-    "MaxCapacity": "2",
-    "MinCapacity": "1"
+    "DesiredCapacity": "2",
+    "MaxSize": "2",
+    "MinSize": "1"
   }
 }
