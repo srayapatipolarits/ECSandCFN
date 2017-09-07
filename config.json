@@ -1,5 +1,5 @@
 {
   "Parameters": {
-    "EcsAmiId": {"Fn::GetParam": ["MyAppBuild", "image.json", "image"]}
+    "Tomcat": {"Fn::GetParam": ["MyAppBuild", "image.json", "image"]}
   }
 }
