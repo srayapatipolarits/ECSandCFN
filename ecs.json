@@ -264,13 +264,26 @@
             "Type": "AWS::AutoScaling::LaunchConfiguration",
             "Properties": {
                 "ImageId": "ami-9eb4b1e5",
-                "InstanceType": "t2.micro",
+                "InstanceType": "t2.medium",
                 "KeyName": "sp-jumpbox",
                 "SecurityGroups": [
                     {
                         "Ref": "ec2sg"
                     }
-                ]
+                ],
+                "IamInstanceProfile": {
+                    "Ref": "IAM"
+                },
+                "UserData": {
+                    "Fn::Base64": {
+                        "Fn::Join": [
+                            "",
+                            [
+                                "#!/bin/bash\necho ECS_CLUSTER=${EcsClusterName} >> /etc/ecs/ecs.config\n"
+                            ]
+                        ]
+                    }
+                }
             },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
@@ -318,7 +331,7 @@
                         "Essential": true,
                         "PortMappings": [
                             {
-                                "HostPort": "5432",
+                                "HostPort": "22",
                                 "ContainerPort": "80",
                                 "Protocol": "tcp"
                             }
@@ -516,6 +529,11 @@
             "Type": "String",
             "Description": "Specifies the ECS Cluster Name with which the resources would be associated\n",
             "Default": "spnonprodecs"
+        },
+        "IAM": {
+            "Type": "String",
+            "Description": "IAM Instance profile for LC",
+            "Default": "ecsInstanceRole"
         },
         "VPCID": {
             "Type": "AWS::EC2::VPC::Id",
