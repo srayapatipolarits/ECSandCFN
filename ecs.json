@@ -282,7 +282,7 @@
                         "Fn::Join": [
                             "",
                             [
-                                "#!/bin/bash\necho ECS_CLUSTER=${EcsClusterName} >> /etc/ecs/ecs.config\n"
+                                "#!/bin/bash -xe\n", "echo ECS_CLUSTER=",{ "Ref":"EcsClusterName" }, " >> /etc/ecs/ecs.config\n"
                             ]
                         ]
                     }
