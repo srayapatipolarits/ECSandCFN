@@ -235,6 +235,9 @@
                 },
                 "TaskDefinition": {
                     "Ref": "ECStaskdefinition"
+                },"DeploymentConfiguration": {
+                    "MaximumPercent": "100",
+                    "MinimumHealthyPercent": "50"
                 },
                 "DesiredCount": "2",
                 "LoadBalancers": [
@@ -331,7 +334,7 @@
                         "Essential": true,
                         "PortMappings": [
                             {
-                                "HostPort": "22",
+                                "HostPort": "5432",
                                 "ContainerPort": "80",
                                 "Protocol": "tcp"
                             }
