@@ -504,7 +504,7 @@
                 "LoadBalancerName": "ecs",
                 "Listeners": [
                     {
-                        "InstancePort": "22",
+                        "InstancePort": "5432",
                         "InstanceProtocol": "TCP",
                         "LoadBalancerPort": "80",
                         "Protocol": "TCP"
