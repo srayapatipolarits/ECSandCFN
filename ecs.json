@@ -252,7 +252,7 @@
                         "Field": "attribute:ecs.availability-zone"
                     }
                 ],
-                "Role": "ecsServiceRole"
+                "Role": "ecsInstanceRole"
             },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
@@ -481,14 +481,14 @@
                 "HealthCheck": {
                     "HealthyThreshold": "4",
                     "Interval": "20",
-                    "Target": "TCP:5432",
+                    "Target": "TCP:22",
                     "Timeout": "5",
                     "UnhealthyThreshold": "2"
                 },
                 "LoadBalancerName": "ecs",
                 "Listeners": [
                     {
-                        "InstancePort": "5432",
+                        "InstancePort": "22",
                         "InstanceProtocol": "TCP",
                         "LoadBalancerPort": "80",
                         "Protocol": "TCP"
