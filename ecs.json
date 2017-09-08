@@ -497,7 +497,7 @@
                 "HealthCheck": {
                     "HealthyThreshold": "4",
                     "Interval": "20",
-                    "Target": "TCP:22",
+                    "Target": "TCP:5432",
                     "Timeout": "5",
                     "UnhealthyThreshold": "2"
                 },
@@ -511,7 +511,7 @@
                     }
                 ],
                 "Subnets": {
-                    "Ref": "PrivateSubnets"
+                    "Ref": "PublicSubnets"
                 },
                 "Tags": [
                     {
