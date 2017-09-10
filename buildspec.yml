@@ -8,15 +8,18 @@ phases:
 #        - docker build -d Dockerfile -t 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:}' .
        - $(aws ecr get-login --region us-east-1)
        - 'docker ps' 
-       - 'time=$(date +"%d%m%Y-%H%M%S")'
-       - 'docker build -f Dockerfile -t 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${time} .'
+#       - 'time=$(date +"%d%m%Y-%H%M%S")'
+#      - 'docker build -f Dockerfile -t 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${time} .'
+       - 'docker build -f Dockerfile -t 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:100917-134454 .'
   post_build:
     commands:
 #       - 'eval $(aws ecr get-login) && docker push 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:}'
-       - 'docker push 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${time}'
-       - 'echo "974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${time}" > image.txt'
-       - 'echo "{ \"image\": \"974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${time}\"}" > image.json'
-
+#       - 'docker push 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${time}'
+#       - 'echo "974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${time}" > image.txt'
+#       - 'echo "{ \"image\": \"974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${time}\"}" > image.json'
+       - 'docker push 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:100917-134454' 
+       - 'echo "{ \"image\": \"974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:100917-134454\"}" > image.json'
+       - 'echo "974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:100917-134454" > image.txt'
 
 artifacts:
   files:
