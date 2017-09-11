@@ -10,15 +10,15 @@ phases:
        - 'docker ps' 
 #       - 'time=$(date +"%d%m%Y-%H%M%S")'
 #      - 'docker build -f Dockerfile -t 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${time} .'
-       - 'docker build -f Dockerfile -t 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:test .'
+       - 'docker build -f Dockerfile -t 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:tomcat .'
   post_build:
     commands:
 #       - 'eval $(aws ecr get-login) && docker push 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${!CODEBUILD_BUILD_ID#*:}'
 #       - 'docker push 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${time}'
 #       - 'echo "974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${time}" > image.txt'
 #       - 'echo "{ \"image\": \"974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${time}\"}" > image.json'
-       - 'docker push 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:test' 
-       - 'echo "{ \"image\": \"974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:test\"}" > image.json'
+       - 'docker push 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:tomcat' 
+       - 'echo "{ \"image\": \"974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:tomcat\"}" > image.json'
 #       - 'echo "974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:tomcat" > image.txt'
 
 artifacts:
