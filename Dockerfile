@@ -8,7 +8,7 @@ ENV JAVA_HOME /opt/java
 ENV PATH $PATH:/opt/java/bin
 
 ADD calendar.war /opt/tomcat/webapps/
-ADD sample.war /opt/tomcat/webapps/
+#ADD sample.war /opt/tomcat/webapps/
 
 # Start tomcat
 CMD ["/opt/tomcat/scripts/tomcat.sh"]
