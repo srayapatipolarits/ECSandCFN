@@ -1,14 +1,14 @@
-FROM 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:tomcat
+FROM 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:apache
 
-# Expose 8080 to host
-EXPOSE 8080
+# Expose 80 to host
+EXPOSE 80
 
 #Env Variables
-ENV JAVA_HOME /opt/java
-ENV PATH $PATH:/opt/java/bin
+#ENV JAVA_HOME /opt/java
+#ENV PATH $PATH:/opt/java/bin
 
-ADD calendar.war /opt/tomcat/webapps/
-ADD sample.war /opt/tomcat/webapps/
+#ADD calendar.war /opt/tomcat/webapps/
+
 
 # Start tomcat
-CMD ["/opt/tomcat/scripts/tomcat.sh"]
+CMD ["/usr/sbin/httpd -D FOREGROUND"]
