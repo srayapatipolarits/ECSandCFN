@@ -1,4 +1,4 @@
-FROM 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:tomcat
+FROM 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:sp
 
 # Expose 8080 to host
 EXPOSE 8080
