@@ -10,9 +10,10 @@ phases:
        - 'docker ps' 
        - 'time=$(date +"%d%m%Y-%H%M%S")'
 #       - var=$(aws ecr list-images --repository-name nonprod | head -5  | awk 'NR==4 {print $2}' | sed 's/\"//g' | sed 's/\,//g')
-       - var=$(aws ecr list-images --repository-name nonprod | grep -i tomcat | awk 'NR==1 {print $2}' | sed 's/\"//g' | sed 's/\,//g')
-       - echo $var
-       - sed -i "s/974293703167.dkr.ecr.us-east-1.amazonaws.com\/nonprod:sp/974293703167.dkr.ecr.us-east-1.amazonaws.com\/nonprod:${var}/g" Dockerfile
+#       - var=$(aws ecr list-images --repository-name nonprod | grep -i tomcat | awk 'NR==1 {print $2}' | sed 's/\"//g' | sed 's/\,//g')
+#       - echo $var
+#       - sed -i "s/974293703167.dkr.ecr.us-east-1.amazonaws.com\/nonprod:sp/974293703167.dkr.ecr.us-east-1.amazonaws.com\/nonprod:${var}/g" Dockerfile
+ 
        - 'docker build -f Dockerfile -t 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:${time} .'
 #       - 'docker build -f Dockerfile -t 974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:tomcat .'
   post_build:
