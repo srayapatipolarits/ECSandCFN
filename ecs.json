@@ -1,0 +1,562 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "873c2347-1f0b-4163-b715-0fcd19b8e519": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 210,
+                    "y": 190
+                },
+                "z": 0,
+                "embeds": []
+            },
+            "dfe87d01-0136-4182-a35c-66e70c861183": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 340,
+                    "y": 190
+                },
+                "z": 0,
+                "embeds": [],
+                "references": [
+                    "873c2347-1f0b-4163-b715-0fcd19b8e519",
+                    "cb2ba791-9ac1-425a-94f9-82c038c6b433"
+                ],
+                "isrelatedto": [
+                    "241b10ab-2e46-4760-9603-29b56c7d8160"
+                ]
+            },
+            "d0b1315f-2ff0-4184-9ecd-f24773f3219a": {
+                "source": {
+                    "id": "dfe87d01-0136-4182-a35c-66e70c861183"
+                },
+                "target": {
+                    "id": "873c2347-1f0b-4163-b715-0fcd19b8e519"
+                },
+                "z": 1
+            },
+            "cb2ba791-9ac1-425a-94f9-82c038c6b433": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 580,
+                    "y": 190
+                },
+                "z": 0,
+                "embeds": []
+            },
+            "e03a18f8-a422-480c-bc2e-55c5dc314f91": {
+                "source": {
+                    "id": "dfe87d01-0136-4182-a35c-66e70c861183"
+                },
+                "target": {
+                    "id": "cb2ba791-9ac1-425a-94f9-82c038c6b433"
+                },
+                "z": 11
+            },
+            "241b10ab-2e46-4760-9603-29b56c7d8160": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 340,
+                    "y": 320
+                },
+                "z": 0,
+                "embeds": [],
+                "isassociatedwith": [
+                    "e9a6cfa7-91ba-40cb-8c3a-2336989e5c49",
+                    "e02bede5-88fd-450b-9f88-9bd6ae179dfa",
+                    "6581eb6d-5d0f-4cab-a652-9780b6308cd5"
+                ]
+            },
+            "aa2db7fc-f46a-4c50-957c-8b59e418eaff": {
+                "source": {
+                    "id": "dfe87d01-0136-4182-a35c-66e70c861183"
+                },
+                "target": {
+                    "id": "241b10ab-2e46-4760-9603-29b56c7d8160"
+                },
+                "z": 12
+            },
+            "e1a67051-63d9-4315-9b6f-6d6872a0f5de": {
+                "source": {
+                    "id": "241b10ab-2e46-4760-9603-29b56c7d8160"
+                },
+                "target": {
+                    "id": "e9a6cfa7-91ba-40cb-8c3a-2336989e5c49"
+                },
+                "z": 11
+            },
+            "68585c7a-1d24-466b-ae65-52df44a1d288": {
+                "source": {
+                    "id": "241b10ab-2e46-4760-9603-29b56c7d8160"
+                },
+                "target": {
+                    "id": "e02bede5-88fd-450b-9f88-9bd6ae179dfa"
+                },
+                "z": 11
+            },
+            "eaa940a9-ed89-42d2-9ce9-81b0d76e2820": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 510,
+                    "y": 260
+                },
+                "z": 0,
+                "embeds": [],
+                "isassociatedwith": [
+                    "241b10ab-2e46-4760-9603-29b56c7d8160",
+                    "df68d016-4f7b-4637-abde-3e49e1a8515d",
+                    "d28ae2c6-e83c-4d3b-ae32-4ebd92fb610e"
+                ]
+            },
+            "df68d016-4f7b-4637-abde-3e49e1a8515d": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 438.96363639831543,
+                    "y": 368.30909729003906
+                },
+                "z": 0,
+                "embeds": [],
+                "isassociatedwith": [
+                    "ea3bf7a8-17c0-4098-b59d-c9d23fcdc29e"
+                ]
+            },
+            "3c58bbe0-4de3-4f80-a577-e65242aee0f1": {
+                "source": {
+                    "id": "eaa940a9-ed89-42d2-9ce9-81b0d76e2820"
+                },
+                "target": {
+                    "id": "241b10ab-2e46-4760-9603-29b56c7d8160"
+                },
+                "z": 11
+            },
+            "05ac7de7-72b5-4f88-bd9d-587e317d4254": {
+                "source": {
+                    "id": "eaa940a9-ed89-42d2-9ce9-81b0d76e2820"
+                },
+                "target": {
+                    "id": "df68d016-4f7b-4637-abde-3e49e1a8515d"
+                },
+                "z": 12
+            },
+            "383816fa-800a-43d9-8cb4-3bb6ac5bd1d3": {
+                "source": {
+                    "id": "eaa940a9-ed89-42d2-9ce9-81b0d76e2820"
+                },
+                "target": {
+                    "id": "d28ae2c6-e83c-4d3b-ae32-4ebd92fb610e"
+                },
+                "z": 13
+            },
+            "6581eb6d-5d0f-4cab-a652-9780b6308cd5": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 202.66742157550263,
+                    "y": 333.0825138679516
+                },
+                "z": 0,
+                "embeds": []
+            },
+            "ea3bf7a8-17c0-4098-b59d-c9d23fcdc29e": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 97.02318965846653,
+                    "y": 298.7707120487433
+                },
+                "z": 0,
+                "embeds": [],
+                "isrelatedto": [
+                    "6581eb6d-5d0f-4cab-a652-9780b6308cd5"
+                ]
+            },
+            "65c476f0-3ac9-4c6d-8c39-ad2d0212d881": {
+                "source": {
+                    "id": "241b10ab-2e46-4760-9603-29b56c7d8160"
+                },
+                "target": {
+                    "id": "6581eb6d-5d0f-4cab-a652-9780b6308cd5"
+                },
+                "z": 11
+            },
+            "2cbe4ae3-81c2-4525-9892-09c93007290f": {
+                "source": {
+                    "id": "df68d016-4f7b-4637-abde-3e49e1a8515d"
+                },
+                "target": {
+                    "id": "ea3bf7a8-17c0-4098-b59d-c9d23fcdc29e"
+                },
+                "z": 11
+            }
+        }
+    },
+    "Resources": {
+        "Cluster": {
+            "Type": "AWS::ECS::Cluster",
+            "Properties": {
+                "ClusterName": {
+                    "Ref": "EcsClusterName"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "873c2347-1f0b-4163-b715-0fcd19b8e519"
+                }
+            }
+        },
+        "ECSservice": {
+            "Type": "AWS::ECS::Service",
+            "Properties": {
+                "Cluster": {
+                    "Ref": "Cluster"
+                },
+                "TaskDefinition": {
+                    "Ref": "ECStaskdefinition"
+                },"DeploymentConfiguration": {
+                    "MaximumPercent": "100",
+                    "MinimumHealthyPercent": "50"
+                },
+                "DesiredCount": "2",
+                "LoadBalancers": [
+                    {
+                        "ContainerName": "Apache",
+                        "ContainerPort": "80",
+                        "LoadBalancerName": {
+                            "Ref": "ecs"
+                        }
+                    }
+                ],
+                "PlacementStrategies": [
+                    {
+                        "Type": "spread",
+                        "Field": "attribute:ecs.availability-zone"
+                    }
+                ],
+                "Role": "ecsServiceRole"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dfe87d01-0136-4182-a35c-66e70c861183"
+                }
+            }
+        },
+        "LC": {
+            "Type": "AWS::AutoScaling::LaunchConfiguration",
+            "Properties": {
+                "ImageId": "ami-9eb4b1e5",
+                "InstanceType": "t2.medium",
+                "KeyName": "sp-jumpbox",
+                "SecurityGroups": [
+                    {
+                        "Ref": "ec2sg"
+                    }
+                ],
+                "IamInstanceProfile": {
+                    "Ref": "IAM"
+                },
+                "UserData": {
+                    "Fn::Base64": {
+                        "Fn::Join": [
+                            "",
+                            [
+                                "#!/bin/bash -xe\n", "echo ECS_CLUSTER=",{ "Ref":"EcsClusterName" }, " >> /etc/ecs/ecs.config\n"
+                            ]
+                        ]
+                    }
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "df68d016-4f7b-4637-abde-3e49e1a8515d"
+                }
+            }
+        },
+        "ECSASG": {
+            "Type": "AWS::AutoScaling::AutoScalingGroup",
+            "Properties": {
+                "Cooldown": "300",
+                "DesiredCapacity": "2",
+                "HealthCheckGracePeriod": "100",
+                "HealthCheckType": "ELB",
+                "LoadBalancerNames": [
+                    {
+                        "Ref": "ecs"
+                    }
+                ],
+                "LaunchConfigurationName": {
+                    "Ref": "LC"
+                },
+                "MaxSize": "2",
+                "MinSize": "1",
+                "VPCZoneIdentifier": {
+                    "Ref": "PrivateSubnets"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "eaa940a9-ed89-42d2-9ce9-81b0d76e2820"
+                }
+            }
+        },
+        "ECStaskdefinition": {
+            "Type": "AWS::ECS::TaskDefinition",
+            "Properties": {
+                "ContainerDefinitions": [
+                    {
+                        "Name": "Apache",
+                        "Image": "974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:spapache",
+                        "Memory": "1024",
+                        "MemoryReservation": "128",
+                        "Cpu": "1024",
+                        "Essential": true,
+                        "PortMappings": [
+                            {
+                                "HostPort": "5432",
+                                "ContainerPort": "80",
+                                "Protocol": "tcp"
+                            }
+                        ],
+                        "Links": [
+                            "Tomcat:Tomcat"
+                        ],
+                        "Hostname": "apache",
+                        "User": "root",
+                        "Privileged": true,
+                        "DockerLabels": {
+                            "web": "apache"
+                        }
+                    },
+                    {
+                        "Name": "Tomcat",
+                        "Image": {
+                            "Ref": "Tomcat"
+                        },
+                        "Memory": "1024",
+                        "MemoryReservation": "128",
+                        "Cpu": "1024",
+                        "Essential": true,
+                        "PortMappings": [
+                            {
+                                "HostPort": "4321",
+                                "ContainerPort": "8080",
+                                "Protocol": "tcp"
+                            }
+                        ],
+                        "Hostname": "tomcat",
+                        "User": "root",
+                        "Privileged": true,
+                        "DockerLabels": {
+                            "app": "tomcat"
+                        }
+                    }
+                ],
+                "NetworkMode": "bridge",
+                "Family": "nonprodtask",
+                "TaskRoleArn": "arn:aws:iam::974293703167:role/ecstaskrole"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "cb2ba791-9ac1-425a-94f9-82c038c6b433"
+                }
+            }
+        },
+        "elbsg": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "VPCID"
+                },
+                "GroupDescription": "sg for elb",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": "80",
+                        "ToPort": "80",
+                        "CidrIp": "0.0.0.0/0"
+                    },
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": "0",
+                        "ToPort": "65535",
+                        "CidrIp": "106.51.254.158/32"
+                    },
+                    {
+                        "IpProtocol": "udp",
+                        "FromPort": "0",
+                        "ToPort": "65535",
+                        "CidrIp": "106.51.254.158/32"
+                    }
+                ],
+                "Tags": [
+                    {
+                        "Value": "sgforelb",
+                        "Key": "Name"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "6581eb6d-5d0f-4cab-a652-9780b6308cd5"
+                }
+            }
+        },
+        "ec2sg": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "VPCID"
+                },
+                "GroupDescription": "sg for elb",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": "22",
+                        "ToPort": "22",
+                        "CidrIp": "10.0.1.0/24"
+                    },
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": "22",
+                        "ToPort": "22",
+                        "CidrIp": "10.0.2.0/24"
+                    },
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": "0",
+                        "ToPort": "65535",
+                        "CidrIp": "106.51.254.158/32"
+                    },
+                    {
+                        "IpProtocol": "udp",
+                        "FromPort": "0",
+                        "ToPort": "65535",
+                        "CidrIp": "106.51.254.158/32"
+                    },
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": "0",
+                        "ToPort": "65535",
+                        "SourceSecurityGroupId": {
+                            "Ref": "elbsg"
+                        }
+                    },
+                    {
+                        "IpProtocol": "udp",
+                        "FromPort": "0",
+                        "ToPort": "65535",
+                        "SourceSecurityGroupId": {
+                            "Ref": "elbsg"
+                        }
+                    }
+                ],
+                "Tags": [
+                    {
+                        "Value": "sgforec2",
+                        "Key": "Name"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "ea3bf7a8-17c0-4098-b59d-c9d23fcdc29e"
+                }
+            }
+        },
+        "ecs": {
+            "Type": "AWS::ElasticLoadBalancing::LoadBalancer",
+            "Properties": {
+                "CrossZone": "true",
+                "SecurityGroups": [
+                    {
+                        "Ref": "elbsg"
+                    }
+                ],
+                "HealthCheck": {
+                    "HealthyThreshold": "4",
+                    "Interval": "20",
+                    "Target": "TCP:5432",
+                    "Timeout": "5",
+                    "UnhealthyThreshold": "2"
+                },
+                "LoadBalancerName": "ecs",
+                "Listeners": [
+                    {
+                        "InstancePort": "5432",
+                        "InstanceProtocol": "TCP",
+                        "LoadBalancerPort": "80",
+                        "Protocol": "TCP"
+                    }
+                ],
+                "Subnets": {
+                    "Ref": "PublicSubnets"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "ecs"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "241b10ab-2e46-4760-9603-29b56c7d8160"
+                }
+            }
+        }
+    },
+    "Parameters": {
+        "EcsClusterName": {
+            "Type": "String",
+            "Description": "Specifies the ECS Cluster Name with which the resources would be associated\n",
+            "Default": "spnonprodecs"
+        },
+        "IAM": {
+            "Type": "String",
+            "Description": "IAM Instance profile for LC",
+            "Default": "ecsInstanceRole"
+        },
+        "VPCID": {
+            "Type": "AWS::EC2::VPC::Id",
+            "Description": "VPCID",
+            "Default": "vpc-279aa35e"
+        },
+        "PublicSubnets": {
+            "Type": "List<AWS::EC2::Subnet::Id>",
+            "Description": "Specifies the public subnets",
+            "Default": "subnet-6bc99631,subnet-b127f4d5"
+        },
+        "Tomcat": {
+            "Type": "String",
+            "Description": "Update the docker image of Tomcat in ECR",
+            "Default": "974293703167.dkr.ecr.us-east-1.amazonaws.com/nonprod:tomcat"
+        },
+        "PrivateSubnets": {
+            "Type": "List<AWS::EC2::Subnet::Id>",
+            "Description": "Specifies the private subnets",
+            "Default": "subnet-cc26f5a8,subnet-3dcf9067"
+        }
+    }
+}
