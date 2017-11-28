@@ -235,8 +235,7 @@
                 },
                 "TaskDefinition": {
                     "Ref": "ECStaskdefinition"
-                },
-                "DeploymentConfiguration": {
+                },"DeploymentConfiguration": {
                     "MaximumPercent": "100",
                     "MinimumHealthyPercent": "50"
                 },
@@ -283,12 +282,7 @@
                         "Fn::Join": [
                             "",
                             [
-                                "#!/bin/bash -xe\n",
-                                "echo ECS_CLUSTER=",
-                                {
-                                    "Ref": "EcsClusterName"
-                                },
-                                " >> /etc/ecs/ecs.config\n"
+                                "#!/bin/bash -xe\n", "echo ECS_CLUSTER=",{ "Ref":"EcsClusterName" }, " >> /etc/ecs/ecs.config\n"
                             ]
                         ]
                     }
@@ -345,14 +339,6 @@
                                 "Protocol": "tcp"
                             }
                         ],
-                        "volumes": [
-                            {
-                                "name": "apacherootdirvol",
-                                "host": {
-                                    "sourcePath": "/etc/httpd/"
-                                }
-                            }
-                        ],
                         "Links": [
                             "Tomcat:Tomcat"
                         ],
@@ -377,14 +363,6 @@
                                 "HostPort": "4321",
                                 "ContainerPort": "8080",
                                 "Protocol": "tcp"
-                            }
-                        ],
-                        "volumes": [
-                            {
-                                "name": "tomcatrootdirvolume",
-                                "host": {
-                                    "sourcePath": "/opt/tomcat/"
-                                }
                             }
                         ],
                         "Hostname": "tomcat",
