@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="page" templateExpression="/WEB-INF/layouts/standard/page.jsp">
+		<put-attribute name="header"
+			expression="/WEB-INF/layouts/standard/header.jsp" />
+		<put-attribute name="footer"
+			expression="/WEB-INF/layouts/standard/footer.jsp" />
+		<put-attribute name="adminHeader" value="" cascade="true" />
+	</definition>
+
+	<definition name="pdfPreview"
+		templateExpression="/WEB-INF/layouts/standard/pdfPreviewLayout.jsp">
+	</definition>
+
+	<definition name="pageNotLoggedIn" templateExpression="/WEB-INF/layouts/standard/page.jsp">
+		<put-attribute name="header"
+			expression="/WEB-INF/layouts/standard/nonLoggedheader.jsp" />
+		<put-attribute name="footer"
+			expression="/WEB-INF/layouts/standard/footer.jsp" />
+		<put-attribute name="adminHeader" value="" cascade="true" />
+	</definition>
+
+
+	<definition name="angular" templateExpression="/WEB-INF/layouts/angular/page.jsp">
+		<put-attribute name="header"
+			expression="/WEB-INF/layouts/standard/header.jsp" />
+		<put-attribute name="footer"
+			expression="/WEB-INF/layouts/standard/footer.jsp" />
+		<put-attribute name="adminHeader" value="" cascade="true" />
+	</definition>
+
+	<definition name="nonLoggedAngular" templateExpression="/WEB-INF/layouts/angular/page.jsp">
+		<put-attribute name="header"
+			expression="/WEB-INF/layouts/standard/nonLoggedheader.jsp" />
+		<put-attribute name="footer"
+			expression="/WEB-INF/layouts/standard/footer.jsp" />
+		<put-attribute name="adminHeader" value="" cascade="true" />
+	</definition>
+
+
+	<definition name="angular-noroute" templateExpression="/WEB-INF/layouts/angular-noroute/page.jsp">
+		<put-attribute name="header"
+			expression="/WEB-INF/layouts/standard/header.jsp" />
+		<put-attribute name="footer"
+			expression="/WEB-INF/layouts/standard/footer.jsp" />
+		<put-attribute name="adminHeader" value="" cascade="true" />
+	</definition>
+
+	<definition name="angularAssessment" templateExpression="/WEB-INF/layouts/angular/page.jsp">
+		<put-attribute name="header"
+			expression="/WEB-INF/layouts/standard/header.jsp" />
+		<put-attribute name="footer"
+			expression="/WEB-INF/layouts/standard/footer.jsp" />
+		<put-attribute name="adminHeader" value="" cascade="true" />
+	</definition>
+
+	<definition name="popup" templateExpression="/WEB-INF/layouts/popup/page.jsp">
+
+	</definition>
+
+	<definition name="angularDashboard" templateExpression="/WEB-INF/layouts/angular/page.jsp">
+		<put-attribute name="header"
+			expression="/WEB-INF/layouts/standard/header.jsp" />
+		<put-attribute name="footer"
+			expression="/WEB-INF/layouts/standard/footer.jsp" />
+		<put-attribute name="adminHeader"
+			expression="/WEB-INF/layouts/standard/admindashboardHeader.jsp" />
+	</definition>
+
+	<definition name="pageAssessment" templateExpression="/WEB-INF/layouts/standard/page.jsp">
+		<put-attribute name="header"
+			expression="/WEB-INF/layouts/standard/assessmentHeader.jsp" />
+		<put-attribute name="footer"
+			expression="/WEB-INF/layouts/standard/footer.jsp" />
+	</definition>
+	
+	<definition name="publicAssessment" templateExpression="/WEB-INF/layouts/standard/printLayoutPublic.jsp"></definition>	
+
+	<definition name="pageDashboard" templateExpression="/WEB-INF/layouts/standard/page.jsp">
+		<put-attribute name="header"
+			expression="/WEB-INF/layouts/standard/header.jsp" />
+		<put-attribute name="footer"
+			expression="/WEB-INF/layouts/standard/footer.jsp" />
+		<put-attribute name="adminHeader" value="" cascade="true" />
+	</definition>
+
+
+	<definition name="dashboardAngular-noroute"
+		templateExpression="/WEB-INF/layouts/standard/page.jsp">
+		<put-attribute name="header"
+			expression="/WEB-INF/layouts/standard/header.jsp" />
+		<put-attribute name="footer"
+			expression="/WEB-INF/layouts/standard/footer.jsp" />
+		<put-attribute name="adminHeader" value="" cascade="true" />
+	</definition>
+	
+	<definition name="printLayoutPublic" templateExpression="/WEB-INF/layouts/standard/printLayoutPublic.jsp">
+		<put-attribute name="header"
+			expression="/WEB-INF/layouts/standard/header.jsp" />
+		<put-attribute name="footer"
+			expression="/WEB-INF/layouts/standard/footer.jsp" />
+		<put-attribute name="adminHeader" value="" cascade="true" />
+	</definition>	
+
+</tiles-definitions>

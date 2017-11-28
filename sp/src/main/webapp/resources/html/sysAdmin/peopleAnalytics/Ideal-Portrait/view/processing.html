@@ -1,0 +1,84 @@
+<section class="keyMatch">
+    <article class="match-holder">
+        <h3 class="match-holder-heading weight-500" data-ng-bind="::pullInterNationalization('spectrum.trait.Processing')"></h3>
+        <article class="range-data-section">
+            <div class='data-content-two-way'>
+                <!-- Internal And External -->
+                <div class="tick-selection clearfix">
+                    <input type="checkbox" class="filterCheckBox" id="External" data-ng-model="portraitMatch.categoryDataMap.Processing.External.enabled" data-ng-true-value="true" data-ng-false-value="false" data-ng-change="includeCheck('External',filterSelected.Processing)">
+                    <label for="External" class="filterCheckBox-label">
+                    	<span class="checkedTick pull-left bpPopFix icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                        <span class="font_14_300 pull-left" data-ng-bind="::pullInterNationalization('spectrum.trait.type.External')+' '+pullInterNationalization('idealPortrait.portrait.processing.vs')+' '+pullInterNationalization('spectrum.trait.type.Internal')"></span>
+                    </label>
+                    <range-drag data-steps="21" data-label1="pullInterNationalization('spectrum.trait.type.External')" data-label2="pullInterNationalization('spectrum.trait.type.Internal')" drag-range="portraitMatch.categoryDataMap.Processing.External.matchCriterias[0].matchPercent" checkbox-fn="includeCheck('External',filterSelected.Processing)" range-data1="portraitMatch.categoryDataMap.Processing.External.matchCriterias[0].matchPercent" editable="portraitMatch.categoryDataMap.Processing.External.enabled"></range-drag>
+                    <!-- <div class="labels clearfix">
+                        <span class="pull-left font_14_300 sp-spectrum-label-color" data-ng-bind="portraitMatch.categoryDataMap.Processing.External.matchCriterias[0].matchPercent+'% '+pullInterNationalization('spectrum.trait.type.External')"></span>
+                        <span class="pull-right font_14_300 sp-spectrum-label-color" data-ng-bind="(100-portraitMatch.categoryDataMap.Processing.External.matchCriterias[0].matchPercent)+'% '+pullInterNationalization('spectrum.trait.type.Internal')"></span>
+                    </div>-->
+                </div>
+            </div>
+            <div class='data-content-two-way'>
+                <!-- Concrete and Intuitive -->
+                <div class="tick-selection clearfix">
+                    <input type="checkbox" class="filterCheckBox" id="Concrete" data-ng-model="portraitMatch.categoryDataMap.Processing.Concrete.enabled" data-ng-true-value="true" data-ng-false-value="false" data-ng-change="includeCheck('Concrete',filterSelected.Processing)">
+                    <label for="Concrete" class="filterCheckBox-label">
+                    	<span class="checkedTick pull-left bpPopFix icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                        <span class="font_14_300 pull-left" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Concrete')+' '+pullInterNationalization('idealPortrait.portrait.processing.vs')+' '+pullInterNationalization('spectrum.trait.type.Intuitive')"></span>
+                    </label>
+                    <range-drag data-steps="21" data-label1="pullInterNationalization('spectrum.trait.type.Concrete')" data-label2="pullInterNationalization('spectrum.trait.type.Intuitive')" drag-range="portraitMatch.categoryDataMap.Processing.Concrete.matchCriterias[0].matchPercent" checkbox-fn="includeCheck('Concrete',filterSelected.Processing)" range-data1="portraitMatch.categoryDataMap.Processing.Concrete.matchCriterias[0].matchPercent" editable="portraitMatch.categoryDataMap.Processing.Concrete.enabled"></range-drag>
+                    <!-- <div class="labels clearfix">
+                        <span class="pull-left font_14_300 sp-spectrum-label-color" data-ng-bind="portraitMatch.categoryDataMap.Processing.Concrete.matchCriterias[0].matchPercent+'% '+pullInterNationalization('spectrum.trait.type.Concrete')"></span>
+                        <span class="pull-right font_14_300 sp-spectrum-label-color" data-ng-bind="(100 - portraitMatch.categoryDataMap.Processing.Concrete.matchCriterias[0].matchPercent)+'% '+pullInterNationalization('spectrum.trait.type.Intuitive')"></span>
+                    </div>-->
+                </div>
+            </div>
+            <div class='data-content-two-way'>
+                 <!-- Cognitive and Affective -->
+                <div class="tick-selection clearfix">
+                    <input type="checkbox" class="filterCheckBox" id="Cognitive" data-ng-model="portraitMatch.categoryDataMap.Processing.Cognitive.enabled" data-ng-true-value="true" data-ng-false-value="false" data-ng-change="includeCheck('Cognitive',filterSelected.Processing)">
+                    <label for="Cognitive" class="filterCheckBox-label">
+                    	<span class="checkedTick pull-left bpPopFix icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                        <span class="font_14_300 pull-left" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Cognitive')+' '+pullInterNationalization('idealPortrait.portrait.processing.vs')+' '+pullInterNationalization('spectrum.trait.type.Affective')"></span>
+                    </label>
+                    <range-drag  data-steps="21" data-label1="pullInterNationalization('spectrum.trait.type.Cognitive')" data-label2="pullInterNationalization('spectrum.trait.type.Affective')"  drag-range="portraitMatch.categoryDataMap.Processing.Cognitive.matchCriterias[0].matchPercent" checkbox-fn="includeCheck('Cognitive',filterSelected.Processing)" range-data1="portraitMatch.categoryDataMap.Processing.Cognitive.matchCriterias[0].matchPercent" editable="portraitMatch.categoryDataMap.Processing.Cognitive.enabled"></range-drag>
+                    <!-- <div class="labels clearfix">
+                        <span class="pull-left font_14_300 sp-spectrum-label-color" data-ng-bind="portraitMatch.categoryDataMap.Processing.Cognitive.matchCriterias[0].matchPercent+'% '+pullInterNationalization('spectrum.trait.type.Cognitive')"></span>
+                        <span class="pull-right font_14_300 sp-spectrum-label-color" data-ng-bind="(100 - portraitMatch.categoryDataMap.Processing.Cognitive.matchCriterias[0].matchPercent)+'% '+pullInterNationalization('spectrum.trait.type.Affective')"></span>
+                    </div>-->
+                </div>
+            </div>
+            <div class='data-content-two-way'>
+                <!-- Orderly and Spontaneous -->
+                <div class="tick-selection clearfix">
+                    <input type="checkbox" class="filterCheckBox" id="Orderly" data-ng-model="portraitMatch.categoryDataMap.Processing.Orderly.enabled" data-ng-true-value="true" data-ng-false-value="false" data-ng-change="includeCheck('Orderly',filterSelected.Processing)">
+                    <label for="Orderly" class="filterCheckBox-label">
+                    	<span class="checkedTick pull-left bpPopFix icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                        <span class="font_14_300 pull-left" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Orderly')+' '+pullInterNationalization('idealPortrait.portrait.processing.vs')+' '+pullInterNationalization('spectrum.trait.type.Spontaneous')"></span>
+                    </label>
+                    <range-drag data-steps="21" data-label1="pullInterNationalization('spectrum.trait.type.Orderly')" data-label2="pullInterNationalization('spectrum.trait.type.Spontaneous')" drag-range="portraitMatch.categoryDataMap.Processing.Orderly.matchCriterias[0].matchPercent" checkbox-fn="includeCheck('Orderly',filterSelected.Processing)" range-data1="portraitMatch.categoryDataMap.Processing.Orderly.matchCriterias[0].matchPercent" editable="portraitMatch.categoryDataMap.Processing.Orderly.enabled"></range-drag>
+                    <!--<div class="labels clearfix">
+                        <span class="pull-left font_14_300 sp-spectrum-label-color" data-ng-bind="portraitMatch.categoryDataMap.Processing.Orderly.matchCriterias[0].matchPercent+'% '+pullInterNationalization('spectrum.trait.type.Orderly')"></span>
+                        <span class="pull-right font_14_300 sp-spectrum-label-color" data-ng-bind="(100 - portraitMatch.categoryDataMap.Processing.Orderly.matchCriterias[0].matchPercent)+'% '+pullInterNationalization('spectrum.trait.type.Spontaneous')"></span>
+                    </div>-->
+                </div>
+            </div>
+        </article>
+         <!-- Concrete and Intuitive -->
+          <!-- Cognitive and Affective -->
+          <!-- Orderly and Spontaneous -->
+        <div class="trait-list-description">
+              <div class="trait-listing processing">
+                <p data-ng-bind="::pullInterNationalization('idealPortrait.portrait.Processing.external')"></p>
+            </div>
+            <div class="trait-listing processing">
+                <p data-ng-bind="::pullInterNationalization('idealPortrait.portrait.Processing.concrete')"></p>
+            </div>
+              <div class="trait-listing processing">
+                <p data-ng-bind="::pullInterNationalization('idealPortrait.portrait.Processing.cognitive')"></p>
+            </div>
+            <div class="trait-listing processing">
+                <p data-ng-bind="::pullInterNationalization('idealPortrait.portrait.Processing.orderly')"></p>
+            </div>
+             </div>
+    </article>
+</section>

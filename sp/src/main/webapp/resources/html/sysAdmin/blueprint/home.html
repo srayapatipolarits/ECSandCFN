@@ -1,0 +1,92 @@
+<section data-ng-controller="blueprintAdminController as ctrl" data-ng-init="ctrl.getAllCompaniesWithBlueprintSettings()" data-ng-cloak>
+    <div class="x-container members hiring-candidates affiliate-listing blueprint-home">
+        <div class="container minimumHeight" >
+        <section class="blueprint-home-section sp-panel-accent">
+            <div class="custom-cols left results-content">
+                <div class="blueprint-home-column">
+                    
+                    <div class="results-wrapper">
+                        
+                        <div class="rel-content top">
+                            <div class="global-title" data-ng-bind="::pullInterNationalization('admin.blueprint.defaultText')"></div>
+                            <span data-ng-bind="::pullInterNationalization('admin.blueprint.defaultDesc')"></span>
+                        </div>
+                        <a href="/sp/sysAdmin/blueprint/update" class="subscribeBtn btn-block btn-15px sp-btn-color" data-ng-bind="::pullInterNationalization('admin.blueprint.update')"></a>
+                        
+                    </div>
+                </div>
+            </div>
+            </section>
+            <div class="bgWhiteBord clearfix">
+                <div class="toolbar clearfix">
+                    <div class="title">
+                        <a href="#" role="button" data-ng-click="ctrl.resetResults()">{{::pullInterNationalization('admin.blueprint.allAccounts')}}<span class="blackcolor">({{ctrl.companyList.length}})</span></a>
+                    </div>
+                    <div class="controls clearfix">
+                        <div class="hiring-list-wrapper">
+                            <p>
+                                <a href="#" data-ng-click="ctrl.selectCompany('new','default')" data-ng-bind="::pullInterNationalization('admin.blueprint.createNew')"></a>
+                            </p>
+                        </div>
+                        <div class="controlwrap search">
+                            <input type="text" class="form-control" maxlength="28" data-ng-model="ctrl.searchText" placeholder="{{::pullInterNationalization('sysAdmin.organization.search')}}" >
+                            <button class="sp-icon-color" data-ng-class="ctrl.searchText.length>2? 'icon-icon_remove':'icon-icon_search'" data-ng-click="ctrl.searchText =''"></button>
+                        </div>
+                    </div>
+                </div>
+              
+                <article class="memberHolder">
+                    <div class="heading row">
+                       
+                        <div class="col-md-4 col-sm-4 tog activeFilter" data-ng-click="ctrl.active($event,{'predicate':'name', 'reverse':reverse=!reverse})" data-predicate='name'>
+                            <h4 class="on code" data-ng-bind="::pullInterNationalization('admin.blueprint.sortCompany.header')"></h4>
+                        </div>
+                         <div class="col-md-4 col-sm-4 t-name tog" data-ng-click="ctrl.active($event,{'predicate':'address.city', 'reverse':reverse=!reverse})" data-predicate='address'>
+                            <h4 data-ng-bind="::pullInterNationalization('admin.blueprint.sortAddress.header')"></h4>
+                        </div>
+                       
+                        <div class="col-md-1 col-sm-1"></div>
+                    </div>
+                     <div class="complete-profile animation_1" data-ng-class="{active:show}" id='{{$index}}' data-ng-repeat="list in recordField = (ctrl.companyList|filter:ctrl.searchText) track by list.id">
+                            <div class="table-row clearfix">
+                               
+                                <div class="col-md-4 col-sm-4">
+                                    <p class="code">
+                                        <a href="/sp/sysAdmin/blueprint/update?id={{list.id}}" class="border-link">
+                                            <span class="mock-link" data-ng-bind="list.name"></span>
+                                        </a>
+                                    </p>
+                                </div>
+                                
+                               <div class="col-md-4 col-sm-4">
+								<div style="padding:2px 0px;"> <span data-ng-bind="list.address.city"></span>  <span data-ng-bind="list.address.state"></span> , <span data-ng-bind="list.address.country"></span></div>
+							</div>
+                               
+                                <div class="col-md-4 col-sm-4 btnGroupSp" data-ng-click="show=!show">
+                                    <button class="fullView btn-plus icon-icon_expand sp-icon-color noSpace" type="button"></button><button class="fullView btn-minus icon-icon_collapse-fill sp-icon-color noSpace" type="button"></button>
+                                </div>
+                            </div>
+                            <div class="editable-section clearfix" data-ng-class="{hidden:!show}">
+                                <div class="col-md-1 col-sm-1 custom_1"></div>
+                                <div class="col-md-11 col-sm-11 custom_2">
+                                    <ul class="clearfix" data-ng-show="!advance">
+                                       <li>
+                                            <a href="/sp/sysAdmin/blueprint/update?id={{list.id}}" role="button" class="buttoncss" data-ng-bind="::pullInterNationalization('admin.blueprint.viewDetailsLink')"></a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" role="button" class="buttoncss" data-ng-click="ctrl.selectCompany('clone',list.id)" data-ng-bind="::pullInterNationalization('admin.blueprint.cloneLink')"></a>
+                                        </li>
+                                        <li class='deletePos'>
+                                            <a href="javascript:void(0)" role="button" class="buttoncss" data-ng-click="ctrl.deleteBlueprintModal(list.id)" data-ng-bind="::pullInterNationalization('admin.blueprint.deleteLink')"></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    <p data-ng-show="!recordField.length && ctrl.responseAvailable" class="noMatchFound ng-hide" data-ng-bind="::pullInterNationalization('admin.blueprint.noRecord')"></p>
+			        <p data-ng-show="!recordField.length && !ctrl.responseAvailable" class="noMatchFound ng-hide" data-ng-bind="::pullInterNationalization('practiceArea.loading')"></p>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>

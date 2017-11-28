@@ -1,0 +1,98 @@
+<section class="listing-action-plan" data-ng-init="ctrl.getAll('SurePeople')">
+			<article data-ng-if="ctrl.type==='SurePeople'">
+                        <div class="members-filters">
+                            <div class="search-filter">
+                                <p>
+                                    <input type="text" maxlength="28" data-ng-model="ctrl.pageSetting.textSearching" placeholder="{{::pullInterNationalization('sysadmin.organization.search')}}" data-ng-model-options="{ debounce: { 'default': 300, 'blur': 0 } }" data-ng-change="ctrl.pageSetting.pageSize=ctrl.originalPageSetting.pageSize;" data-ng-minlength="3">
+                                    <button data-ng-class="{'icon-icon_remove':ctrl.pageSetting.textSearching.length, 'icon-icon_search': !ctrl.pageSetting.textSearching.length}" class="sp-icon-color" data-ng-click="ctrl.pageSetting.textSearching='';ctrl.pageSetting.pageSize=ctrl.originalPageSetting.pageSize;"></button>
+                                </p>
+                            </div>
+                            <p class="group-add-btn alignwithsearch">
+                                <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('sysadmin.organization.createProgram')" data-ng-click="ctrl.createProgram({'id':ctrl.getUserInfo.company.id,'name':ctrl.getUserInfo.company.name,'mode':'SuperAdmin',type:'SurePeople'})"></a>
+                            </p>
+                        </div>
+                        <section class="account-organization">
+                            <div class="custom-row row-header row">
+                                <div class="col-md-6 col-sm-6">
+                                	<h4 class="sort-filter on" data-ng-click="ctrl.active($event,{'predicate':'name', 'reverse':reverse=!reverse})" data-predicate='name'>
+			                            <span class="sort-text" data-ng-bind="::pullInterNationalization('sysadmin.organization.learningProgram')"></span>
+			                            <span class="sort-icon icon-icon_sort sp-icon-color sort-down"></span>
+			                            <span class="sort-icon icon-icon_sort default-color sort-down"></span>
+			                            <span class="sort-icon icon-icon_sort-up sp-icon-color sort-up"></span>
+			                        </h4>
+                                </h4>
+                                </div>
+                                <div class="col-md-2 col-sm-2 ">
+                                    <h4 class="sort-filter">
+		                            <span class="sort-text" data-ng-bind="::pullInterNationalization('sysadmin.organization.permission')"></span>
+		                        </h4>
+                                </div>
+                                <div class="col-md-2 col-sm-2 ">
+                                    <h4 class="sort-filter">
+		                            <span class="sort-text" data-ng-bind="::pullInterNationalization('sysadmin.organization.status')"></span>
+		                        </h4>
+                                </div>
+                            </div>
+                            <div infinite-scroll="ctrl.infinteScroll(ctrl.pageSetting.pageSize+ctrl.pageSetting.pageSize)" infinite-scroll-immediate-check="false">
+                                <div class="complete-profile" data-ng-repeat="learningProgram in recordField = ((ctrl.actionPlan|filter:{'name':ctrl.pageSetting.textSearching}).slice(0,ctrl.pageSetting.pageSize)) track by learningProgram.id">
+                                    <div class="table-row clearfix">
+                                        <div class="col-md-6 col-sm-6 learning-program-information">
+                                            <div class="name-image">
+                                                <div class="image">
+                                                    <img data-ng-src="{{learningProgram.imageUrl||'/sp/resources/css/css-min/images/learning-program_default.png'}}"></img>
+                                                </div>
+                                                <div class="name-description mar70">
+                                                    <div class="title wordWrap pointer" data-ng-bind="learningProgram.name" data-ng-click="ctrl.updateProgram({'id':ctrl.getUserInfo.company.id,'name':ctrl.getUserInfo.company.name,'mode':'SuperAdmin',type:'SurePeople','actionPlan':learningProgram.id})"></div>
+                                                    <div class="description wordWrap" data-ng-bind="learningProgram.description | addEllipsis:200"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 permission-block">
+                                            <div data-ng-if="learningProgram.active">
+                                                <div class="font-12"><span data-ng-bind="::pullInterNationalization('sysadmin.organization.allcomp')"></span> <span class="weight-500" data-ng-bind="pullInterNationalization('sysadmin.organization.turn.'+learningProgram.allCompanies)"></span></div>
+                                                <a href="javascript:void(0)" class="font-12" data-ng-click="ctrl.allCompanies({'id':learningProgram.id,'active':!learningProgram.allCompanies})" data-ng-bind="pullInterNationalization('sysadmin.organization.turned.'+!learningProgram.allCompanies)"></a>
+                                                <div class="m10 font-12"><span data-ng-bind="::pullInterNationalization('sysadmin.organization.allmem')"></span> <span class="weight-500" data-ng-bind="pullInterNationalization('sysadmin.organization.turn.'+learningProgram.allMembers)"></span></div>
+                                                <a href="javascript:void(0)" class="font-12" data-ng-click="ctrl.allMembers({'id':learningProgram.id,'active':!learningProgram.allMembers,'companyId':null,'learningProgram':learningProgram})" data-ng-bind="pullInterNationalization('sysadmin.organization.turned.'+!learningProgram.allMembers)"></a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 ">
+                                            <a href="javascript:void(0)" data-ng-if="!learningProgram.active" class="border-link weight-500 font-12" data-ng-click="ctrl.publishMortal(learningProgram)">
+                                            	<span class="mock-link" data-ng-bind="::pullInterNationalization('sysadmin.organization.publish.'+learningProgram.active)"></span>
+                                            </a>
+                                            <a href="javascript:void(0)" data-ng-if="learningProgram.active" class="border-link font-12">
+                                            	<span class="icon-style-position icon-icon_dev_strategy_check sp-icon-color"></span>
+                                            	<span class="mock-noAct" data-ng-bind="::pullInterNationalization('sysadmin.organization.publish.'+learningProgram.active)"></span>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2">
+                                        	<div class="button-links">
+                                        		<div class="buttons">
+	                                            	<a href="javascript:void(0)" class="btn-square-12px sp-background-color fixedWidth left" data-ng-click="ctrl.getDetail(learningProgram.id)" data-ng-bind="::pullInterNationalization('sysadmin.organization.prev')"></a>
+	                                            	<a href="javascript:void(0)" class="btn-square-12px sp-background-color fixedWidth left" data-ng-click="ctrl.updateProgram({'id':ctrl.getUserInfo.company.id,'name':ctrl.getUserInfo.company.name,'mode':'SuperAdmin',type:'SurePeople','actionPlan':learningProgram.id})" data-ng-bind="::pullInterNationalization('sysadmin.organization.edit')"></a>
+	                                            </div>
+	                                            <div class="buttons m20">
+		                                            <a href="javascript:void(0)" class="fixedWidthText left p7" data-ng-click="ctrl.updateProgram({'id':ctrl.accountProgramDetail.company.id,'name':ctrl.accountProgramDetail.company.name,'idAdmin':ctrl.getUserInfo.company.id,'nameAdmin':ctrl.getUserInfo.company.name,'mode':'SuperAdmin','actionPlan':learningProgram.id,'type':'Company','modal':'SurePeople'},'clone')">
+			                                            <span class="icon-style-position16 icon-learning-programs_clone sp-icon-color"></span>
+			                                            <span class="action-text" data-ng-bind="::pullInterNationalization('sysadmin.organization.clone')"></span>
+			                                        </a>
+		                                            <a href="javascript:void(0)" class="fixedWidthText left" data-ng-click="ctrl.deleteOrgPlanModal({'actionPlanId':learningProgram.id,'practiceAreaId':'','mode':'SuperAdmin','type':'SurePeople','name':learningProgram.name})">
+			                                            <span class="icon-style-position20 icon-icon_trashbin sp-icon-color"></span>
+			                                            <span class="action-text" data-ng-bind="::pullInterNationalization('sysadmin.organization.delete')"></span>
+			                                        </a>
+	                                            </div>
+                                        	</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <div class="custom-row-5 clearfix" data-ng-if="!recordField.length">
+                            <div class="custom-new-cols s100" data-ng-if="ctrl.actionPlan.userList.length">
+                                <p class="no-data-msgs" data-ng-bind="::pullInterNationalization('sysadmin.organization.nomatch')"></p>
+                            </div>
+                            <div class="custom-new-cols" data-ng-if="!ctrl.actionPlan.userList.length">
+                                <p class="no-data-msgs" data-ng-bind="::pullInterNationalization('sysadmin.organization.noPlan')"></p>
+                            </div>
+                        </div>
+                        </article>
+                    </section>

@@ -1,0 +1,184 @@
+<div class="row x-container">
+
+  <div class="wrap-outer container" data-ng-controller="emailManagerController as ctrl"  data-ng-init="ctrl.getEmailData('AccountAdmin')" data-ng-cloak>
+
+        <div class="wrap-inner" data-ng-if="inviteReady && profileReady" data-ng-class="inviteReady?'':'hide'">
+   
+       <div class="lnd-full-box sp-panel-accent lnd-spacer admin-theming-section business-account-details theming-section email-manager-section">
+                   		<div class="actionPlanHeader" data-ng-class="ctrl.selectedCompanyId === 'default'? 'added-margin-bottom':'less-margin-bottom'">
+		           			<h3 class="companyName orange">EMAIL SETTINGS</h3>
+		           			 <div class="returnLink clearfix admin-theming-links">
+		           			    <a href="#" data-ng-click="ctrl.selectEmailTemplate();" class="mock-link cloneLink pull-left">Choose an Email Template</a>
+		           			    <a href="/sp/admin/account/business" class="mock-link pull-left" data-ng-bind="pullInterNationalization('admin.account.business.returnLink')"></a>
+		           			</div>
+		           			
+                          	
+		           		</div>
+                   </div>
+                   <div class="lnd-full-box sp-panel-accent lnd-spacer email-manager-section" data-ng-if="ctrl.emailData.content === null">
+                   		<div class="actionPlanHeader">
+		           			<p align="center" class="noresults-message" >Choose an Email Template and start customizing it. </p>
+                        </div>
+                   </div>
+      
+      <div class="admin-theming-section sp-panel-accent email-manager-section" data-ng-if="ctrl.emailData.content !== null">
+      <div class="view-preview" data-ng-if="ctrl.viewMode === 'preview'">
+       <div class="actionPlanHeader">
+                   		    <h3 class="companyName sp-header-title-color">PREVIEW</h3>
+		           			<div class="returnLink clearfix">
+		           				 <input type="submit" value="SAVE" class="subscribeBtn btn-block btn-15px sp-btn-color"  data-ng-click="ctrl.updateEmailCustomization('AccountAdmin')" />
+		           				<input type="button" value="Cancel" class="cancelBtn btn-block btn-15px btn-grey-dark" data-ng-click="ctrl.switchView()" />
+		           			</div>
+		           		</div>
+        <hr/>
+   <!-- Grey Box / Header -->
+    <table bgcolor="#ffffff" style="margin: 0px 0 0;padding: 0;font-family: Arial;width: 100%;" cellpadding="0" cellspacing="0" border="0">
+        <tr style="margin: 0; padding: 0;">
+            <td style="margin: 0; padding: 0; display: block!important; clear: both!important;">
+                <div class="content" style="padding: 0;margin: 0 auto;font-family: Arial;display: block;">
+                    <table bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%;" cellpadding="0" cellspacing="0" border="0">
+                        <tr style="margin: 0; padding: 0;">
+                            <td style="margin: 0;padding: 15px 40px; background: #ff6633;">
+                                <p style="margin: 0;padding: 0;font-family: Arial; font-size: 14px; color: #fff; line-height: 18px;">
+                                    {{ctrl.selectedEmailContent.emailHeader}}
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <!-- /Grey Box / Header -->    
+    <!-- Grey Content -->
+    <table bgcolor="#ffffff" style="margin: 20px 0 0;padding: 0;font-family: Arial;width: 100%;" cellpadding="0" cellspacing="0" border="0">
+        <tr style="margin: 0; padding: 0;">
+            <td style="margin: 0; padding: 0; display: block!important; max-width: 612px!important; clear: both!important;">
+                <div class="content" style="padding: 0;margin: 0 auto;font-family: Arial;max-width: 612px;display: block;">
+                    <table bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%;" cellpadding="0" cellspacing="0" border="0">
+                        <tr style="margin: 0; padding: 0;">
+                            <td style="margin: 0;padding: 0 40px;">
+                                <p style="margin: 0;padding: 0;font-family: Arial; font-size: 14px; color: #676767; line-height: 18px;" data-ng-bind-html="ctrl.selectedEmailContent.emailBody">
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <!-- /Grey Content -->
+    <!-- Orange Content -->
+    <table bgcolor="#ffffff" style="margin: 30px 0 0;padding: 0;font-family: Arial;width: 100%;" cellpadding="0" cellspacing="0" border="0">
+        <tr style="margin: 0; padding: 0;">
+            <td style="margin: 0; padding: 0; display: block!important; max-width: 612px!important; clear: both!important;">
+                <div class="content" style="padding: 0;margin: 0 auto;font-family: Arial;max-width: 612px;display: block;">
+                    <table bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%;" cellpadding="0" cellspacing="0" border="0">
+                        <tr style="margin: 0; padding: 0;">
+                            <td style="margin: 0;padding: 0 40px;">
+                                <p style="margin: 0;padding: 0;font-family: Arial; font-size: 16px; color: #ff6633; line-height: 20px;">
+                                    <a href="{{ctrl.selectedEmailContent.linkUrl}}" target="_blank" class="sp-link-color" title="{{ctrl.selectedEmailContent.linkText}}" style="margin:0;padding:0;display:block;text-decoration:none;border:none;">
+                                       {{ctrl.selectedEmailContent.linkText}}
+                                    </a>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <!-- /Orange Content -->
+    <!-- Footer Content -->
+    <table bgcolor="#ffffff" style="margin: 40px 0 0;padding: 0;font-family: Arial;width: 100%;" cellpadding="0" cellspacing="0" border="0">
+        <tr style="margin: 0; padding: 0;">
+            <td style="margin: 0; padding: 0; display: block!important; max-width: 612px!important; clear: both!important;">
+                <div class="content" style="padding: 0;margin: 0 auto;font-family: Arial;max-width: 612px;display: block;">
+                    <table bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%;" cellpadding="0" cellspacing="0" border="0">
+                        <tr style="margin: 0; padding: 0;">
+                            <td style="margin: 0;padding: 0 40px;">
+                                <p style="margin: 0;padding: 15px 1px 0;font-family: Arial; font-size: 12px; color: #676767; line-height: 16px; border-top: 2px solid #e6e6e6">
+                                    <em>This email was sent by the SurePeople team</em>
+                                </p>
+                                <p style="margin: 0;padding: 0 1px 0;font-family: Arial; font-size: 12px; line-height: 16px; color: #676767;">
+                                    <em>If you have any questions, please contact us at <a href="mailto:support@surepeople.com" style="margin:0;padding:0;display:inline;color: #ff6633;text-decoration:none;border:none;">support@surepeople.com</a></em>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <!-- /Footer Content -->
+    </div>
+     <div class="view-normal" data-ng-if="ctrl.viewMode === 'normal'">
+        <nav class="nav-support-content">
+        
+            <ul class="nav-support-link-list"> 
+                <li class="complete-profile animation_1 row nav-technical" data-ng-repeat="list in record=(ctrl.selectedEmailKeyNamesList | orderBy: 'name') track by $index">
+                <a data-ng-class="{active: list.type === ctrl.selectedEmailKey}" data-ng-click="ctrl.displayEmailInfo(list)" href="javascript:void(0)" data-list="1"><span class="nav-sidebar-text" data-ng-bind="list.name"></span></a>
+                </li>
+            </ul>
+        </nav>
+
+
+    <div class="main-support-content">
+    
+    <article class="support-article support-customer local-hide local-show" data-tab = "1">
+         <span class="delete-email icon-icon_trashbin sp-icon-color fixPos" data-ng-click="ctrl.deleteEmailsModal({'id':'','deleteAll':false,'mode':'AccountAdmin',emailTemplate:ctrl.selectedEmailKey})" title="Delete Email Template"></span>
+         <span class="icon-icon_preview sp-icon-color" data-ng-click="ctrl.switchView();" title="Preview Email Template"></span>
+        <header class="support-article-header">
+            <h2 class="support-article-title sp-header-title-color" data-ng-bind="ctrl.selectedEmailDisplayName"></h2>   
+        </header>
+       <hr/>
+       <form id="help" class="js_help_form" name="ctrl.emailForm">
+       <span class="validate-error email-manager-error" data-ng-if="!ctrl.emailForm.$valid && ctrl.emailForm.submitted">Please correct the errors below</span>
+      <ol class="help">
+        <li>
+          <label for="message_type">Subject</label>
+        </li>
+        <li class="add-bottom-margin">
+          <input type="text" class="themeName" name="subject" placeholder="Email Subject" maxlength="100" data-ng-model="ctrl.selectedEmailContent.subject" data-ng-required="true"/>
+          <span class="err-msg validate-error ng-hide" data-ng-show="ctrl.emailForm.submitted && ctrl.emailForm.subject.$error.required" data-ng-bind="pullInterNationalization('admin.blueprint.required.error')"></span>
+        </li> 
+        <li>
+          <label for="message_type">Email Header</label>
+        </li>
+        <li class="add-bottom-margin">
+          <input type="text" class="themeName" name="emailHeader" placeholder="Email Header" maxlength="200" data-ng-model="ctrl.selectedEmailContent.emailHeader" data-ng-required="true"/>
+          <span class="err-msg validate-error ng-hide" data-ng-show="ctrl.emailForm.submitted && ctrl.emailForm.emailHeader.$error.required" data-ng-bind="pullInterNationalization('admin.blueprint.required.error')"></span>
+        </li> 
+        <li>
+          <label for="message_type">Email Body</label>
+        </li>
+        <li class="add-bottom-margin">
+          <textarea data-ui-tinymce class="text-input js_textarea themeName" data-ng-model="ctrl.selectedEmailContent.emailBody"  name="emailBody" rows="4" data-ng-attr-placeholder="Message" data-ng-required="true"></textarea>
+          <span class="err-msg validate-error ng-hide" data-ng-show="ctrl.emailForm.submitted && ctrl.emailForm.emailBody.$error.required" data-ng-bind="pullInterNationalization('admin.blueprint.required.error')"></span>
+        </li>         
+        <li>
+          <label for="message_type">Link Text</label>
+        </li>
+        <li class="add-bottom-margin">
+          <input type="text" class="themeName" name="linkText" placeholder="Get Started" maxlength="100" data-ng-model="ctrl.selectedEmailContent.linkText" data-ng-required="true"/>
+          <span class="err-msg validate-error ng-hide" data-ng-show="ctrl.emailForm.submitted && ctrl.emailForm.linkText.$error.required" data-ng-bind="pullInterNationalization('admin.blueprint.required.error')"></span>
+        </li>
+        <li>
+          <label for="message_type">Link URL</label>
+        </li>
+        <li class="add-bottom-margin">
+          <input type="text" class="themeName" name="linkUrl" placeholder="URL" maxlength="150" data-ng-model="ctrl.selectedEmailContent.linkUrl" data-ng-required="true"/>
+          <span class="err-msg validate-error ng-hide" data-ng-show="ctrl.emailForm.submitted && ctrl.emailForm.linkUrl.$error.required" data-ng-bind="pullInterNationalization('admin.blueprint.required.error')"></span>
+        </li>
+      </ol>
+    </form>
+      
+</article>
+
+</div>
+<div class="faux-col-shim"></div>
+</div>     
+      </div>
+    </div>
+  </div>
+</div>

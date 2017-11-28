@@ -1,0 +1,151 @@
+<link type="text/css" rel="stylesheet" href="/resources/css/css-min/prism-lens.min.css" />
+<div class="col-content-wrapper mh700">
+    <div class="members-content-wrapper">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind-html="::pullInterNationalization('manageHiringContent.refText')"></h2>
+        </div>
+    </div>
+    <div class="prism-lens-wrapper">
+        <p class="f14w300lh18" data-ng-if="!recordField.length" data-ng-bind-html="::pullInterNationalization('candidate.noReference.available')"></p>
+        <section class="features-section" data-ng-repeat="member in recordField = ( feedbackTeamList | filter:{ userStatus:'VALID'} | orderBy: ['-userStatus', '-createdOnStr']) track by $index">
+            <header class="fs-header-wrap cursorDefault" data-ng-class="{'on':featuresSectionSelected === member.id, 'disabled':member.userStatus!=='VALID'}">
+                <div class="split-cols-wrapper">
+                    <div class="split-col scol1">
+                        <div class="member-pic">
+                            <img data-ng-src="{{member.smallProfileImage}}" alt="{{member.userInitials}}" data-ng-if="member.smallProfileImage">
+                            <div class="imgReplacement" data-ng-if="!member.smallProfileImage" data-ng-bind="member.userInitials"></div>
+                        </div>
+                        <div class="member-details">
+                            <p class="member-name">
+                            	<span class="margin-right" data-ng-bind="member.firstName +' '+ member.lastName"></span>
+                            </p>
+                            <p class="member-title" data-ng-if="member.referenceType" data-ng-bind="::pullInterNationalization('hiring.reference.'+member.referenceType)"></p>
+                            <p class="member-email" data-ng-if="member.email" data-ng-bind="member.email"></p>
+                            <p class="member-title" data-ng-if="member.phoneNumber" data-ng-bind="member.phoneNumber"></p>
+                            
+	                        <div class="status-details-responsive">
+		                        <p data-ng-if="member.userStatus==='VALID'">
+		                        <span data-ng-bind="::pullInterNationalization('manageAccountContent.completed')"></span>
+                            <span class="dbl" data-ng-bind="member.completedOn  | spLocaleDate" data-ng-if="member.completedOn"></span>
+                        </p>
+                        <p data-ng-if="member.userStatus!=='VALID'&&member.userStatus!=='INVITATION_NOT_SENT'">
+                            <span class="dbl" data-ng-if="member.createdOn" data-ng-bind="pullInterNationalization('prismLens.pending')+(member.createdOn | spLocaleDate)"></span>
+                            <span class="dbl" data-ng-if="!member.createdOn" data-ng-bind="::pullInterNationalization('manageAccountContent.pending')"></span>
+                      		<br/>
+                      	    <span class="dBlock font-12 color_aaa" data-ng-bind-html="member.lastRemindedOn | spLocaleDate"></span>
+                      	    <br/>
+                        </p>                       
+	                        </div>                            
+                        </div>
+                    </div>
+                    <div class="split-col scol2">
+                        <p data-ng-if="member.userStatus==='VALID'">
+                            <span data-ng-bind="::pullInterNationalization('manageAccountContent.completed')"></span>
+                            <span class="dbl" data-ng-bind="member.completedOn  | spLocaleDate" data-ng-if="member.completedOn"></span>
+                        </p>
+                        <p data-ng-if="member.userStatus!=='VALID'&&member.userStatus!=='INVITATION_NOT_SENT'">
+                            <span class="dbl" data-ng-if="member.createdOn" data-ng-bind="pullInterNationalization('prismLens.pending')+' '+(member.createdOn | spLocaleDate)"></span>
+                            <span class="dbl" data-ng-if="!member.createdOn" data-ng-bind="::pullInterNationalization('manageAccountContent.pending')"></span>
+                            
+                            <span class="dBlock font-12 color_aaa" data-ng-bind-html="member.lastRemindedOn | spLocaleDate"></span>
+                            <br/><br/>
+                        </p>
+                    </div>
+                </div>
+                <div class="icon-toggle" data-ng-click="member.userStatus==='VALID'?toggleView(member):''">
+	                <div class="close-it icon-icon_collapse sp-icon-color"></div>
+	                <div class="open-it icon-icon_expand sp-icon-color"></div>
+                </div>
+            </header>
+            <div class="fs-content hide" data-ng-class="featuresSectionSelected === member.id?'show':'hide'">
+                <div class="inviteMemberView feedback-overrides">
+                    <div class="contentArea teamView" data-ng-show="feedbackEnable">
+                        <div class="feedback_Additional_comments">
+                            <div class="feedbackCommentSection">
+                                <div class="title" data-ng-bind-html="pullInterNationalization('feedback.additional.title')"></div>
+                                <div class="description" data-ng-bind-html="getInviteMemberDetail.profileStatment"></div>
+                            </div>
+                            <div class="feedbackCommentSection">
+                                <div class="title" data-ng-bind-html="getInviteMemberDetail['notablechar.text']"></div>
+                                <div class="description" data-ng-bind-html="getInviteMemberDetail['notablechar.desc']"></div>
+                            </div>
+                            <div class="feedbackCommentSection mar40">
+                                <div class="title" data-ng-bind-html="getInviteMemberDetail['workEnviornment.text']"></div>
+                                <div class="description" data-ng-bind-html="getInviteMemberDetail['workEnviornment.desc']"></div>
+                            </div>
+                        </div>
+                        <div data-ng-repeat="(key,value) in getInviteMemberDetail.feedbackGoals track by $index" class="clearfix separatePad">
+                            <div class="headTitle noTopAddBottom" data-ng-bind="pullInterNationalization('feedback.feedbackListing.'+key)"></div>
+                            <div class="col-sm-12 col-md-12 clearfix row equalsSize clearfix">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-6 equalHeight clearfix" data-ng-repeat="area in value track by $index">
+                                        <div class="orangeBarBorder">
+                                            <div class="title" data-ng-bind="area.goal.name"></div>
+                                            <div class="desc" dd-text-collapse dd-text-collapse-max-length="pullInterNationalization('feedback.feedbackListing.count')" dd-text-collapse-text="{{area.goal.description}}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swot-analysis-wrapper" data-ng-show="feedbackEnable">
+                        <h2 data-ng-bind="pullInterNationalization('personality.swotAnalysis')"></h2>
+                        <p class="lens-desc" data-ng-bind-html="pullInterNationalization('personality.swotAnalysisDescPA')"></p>
+                        <div class="swot-details">
+                            <div class="swot-top hide">
+                                <p>&#160;</p>
+                                <!--p data-ng-bind="pullInterNationalization('personality.internal')"></p-->
+                            </div>
+                            <div class="swot-mid">
+                                <table class="swot-data expand">
+                                    <tr class="top-swot">
+                                        <td class="swot-left-label hide" rowspan="2">
+                                            <!--p class="nowrap-text" label-adjust swot-mid="{{swotMemId}}" data-ng-bind="pullInterNationalization('personality.helpful')"></p-->
+                                        </td>
+                                        <td class="b-r b-b">
+                                            <h3 data-ng-bind="pullInterNationalization('personality.opportunities')"></h3>
+                                            <p class="swot-labelDesc" data-ng-bind="pullInterNationalization('prismLens.swotDD3')"></p>
+                                            <ul>
+                                                <li data-ng-repeat="strength in swotanalysis.Opportunities" data-ng-bind="strength"></li>
+                                            </ul>
+                                        </td>
+                                        <td class="b-b b-r-w">
+                                            <h3 data-ng-bind="pullInterNationalization('personality.threats')"></h3>
+                                            <p class="swot-labelDesc" data-ng-bind="pullInterNationalization('prismLens.swotDD4')"></p>
+                                            <ul>
+                                                <li data-ng-repeat="weakness in swotanalysis.Threats" data-ng-bind="weakness"></li>
+                                            </ul>
+                                        </td>
+                                        <td class="swot-right-label hide" rowspan="2">
+                                            <!--p class="nowrap-text" label-adjust swot-mid="{{swotMemId}}" data-ng-bind="pullInterNationalization('persoanlity.harmful')"></p-->
+                                        </td>
+                                    </tr>
+                                    <tr class="bottom-swot">
+                                        <td class="b-r">
+                                            <h3 data-ng-bind="pullInterNationalization('personality.weakness')"></h3>
+                                            <p class="swot-labelDesc" data-ng-bind="pullInterNationalization('prismLens.swotDD2')"></p>
+                                            <ul>
+                                                <li data-ng-repeat="oppurtunity in swotanalysis.Weakness" data-ng-bind="oppurtunity"></li>
+                                            </ul>
+                                        </td>
+                                        <td class="b-r-w">
+                                            <h3 data-ng-bind="pullInterNationalization('personality.strengths')"></h3>
+                                            <p class="swot-labelDesc" data-ng-bind="pullInterNationalization('prismLens.swotDD1')"></p>
+                                            <ul>
+                                                <li data-ng-repeat="threats in swotanalysis.Strengths" data-ng-bind="threats"></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="swot-bottom hide">
+                                <p>&#160;</p>
+                                <!--p data-ng-bind="pullInterNationalization('personality.external')"></p-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

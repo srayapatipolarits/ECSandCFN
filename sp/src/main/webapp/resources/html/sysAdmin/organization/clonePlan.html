@@ -1,0 +1,87 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color adj0" data-ng-click="ctrl.redirectToListing()"></div>
+                </div>
+                <div class="new-modals-wrapper">
+                    <!-- Top Message Starts -->
+                    <p class="dialog-message-16px" data-ng-bind="::pullInterNationalization('sysadmin.organization.cloneOrg')"></p>
+                    <!-- Top Message Ends -->
+                    <!-- Email List Starts  -->
+                    <div class="multiple-emails-block">
+                        <div class="table-content">
+                        	<div class="display-cont">
+                            	<p data-ng-bind="::pullInterNationalization('sysadmin.organization.publish.shortDesc')"></p>
+                            </div>
+                            <div class="display-cont right">
+                            	<p data-ng-bind="::ctrl.clonePlanName"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Email List Ends  -->
+                    <div class="content-description">
+                    	<ol class="form-list-c form-list-d messageBlock mem-font" style="padding-bottom:10px">
+			                    <li class="type-and-number planStatus noMarBottom">
+				                  	<ul class="style_radioList style_1 font18">
+				                  		<li class="sp-radio">
+				                         	<input id="oGroup" data-ng-value="'AP'" data-ng-model="ctrl.pageSetting.searchMode" type="radio"/>
+				                      		<label for="oGroup" data-ng-click="ctrl.cloneSelection('AP')">
+				                        		  <span class="title" data-ng-bind="::pullInterNationalization('sysadmin.organization.accountprogram')"></span> 
+				                        	  	</label>
+				                         </li>
+				                    	<li class="sp-radio">
+				                             <input id="oMember" data-ng-value="'SP'" data-ng-model="ctrl.pageSetting.searchMode" type="radio"/>
+				                      		<label for="oMember" data-ng-click="ctrl.cloneSelection('SP')">
+				                        		  <span class="title" data-ng-bind="::pullInterNationalization('sysadmin.organization.spprogram')"></span> 
+				                        	</label>
+				                         </li>
+				                   	</ul>
+			                   	</li>
+		            		</ol>
+		            		
+                        <div class="list-area-modal" data-ng-if="ctrl.pageSetting.searchMode==='AP'">
+                      		<h4 class="clone-title-company" data-ng-bind="::pullInterNationalization('sysadmin.organization.selectCompany')"></h4>
+	                      	<div class="controlwrap style_search">
+	                            <input type="text" class="form-control" maxlength="20" data-ng-model="ctrl.pageSetting.companyText" placeholder="{{::pullInterNationalization('sysAdmin.organization.search')}}" data-ng-model-options="{ debounce: { 'default': 500, 'blur': 0 } }">
+	                           	<button class="sp-icon-color" data-ng-class="ctrl.pageSetting.companyText.length>2? 'icon-icon_remove':'icon-icon_search'" data-ng-click="ctrl.pageSetting.companyText =''"></button>
+	                      	</div>
+	                      	<div class="totalRecord">
+	                      		<span data-ng-if="ctrl.list.id!==null"><span class="number weight-300" data-ng-bind="'1'"></span> <span class="text" data-ng-bind="::pullInterNationalization('sysadmin.organization.companySelected')"></span></span>
+						   	</div>
+	                  		<div class="list">
+                      			<div class="clone-heading heading clearfix">
+                      				<div class="w9">
+			                            <h4 class="hideHandIcon" data-ng-bind="::pullInterNationalization('sysadmin.organization.name')"></h4>
+			                        </div>
+			                    </div>
+			                    <div class="complete-profile animation_1" data-ng-repeat="list in record=(ctrl.clonecompanies|filter:ctrl.pageSetting.companyText) track by list.id">
+			                    	<div class="table_row clearfix">
+			                    	  	<div class="w9">
+				                            <div class="clone-name" data-ng-bind="::list.name"></div>
+				                           <span class="clone-address" data-ng-bind="list.address.city+' , '+list.address.country"></span>
+				                        </div>
+				                        <div class="w3">
+				                           <a href="javascript:void(0)" role="button" class="buttoncss pull-right"  data-ng-if="ctrl.list.id===null" data-ng-bind="::pullInterNationalization('sysAdmin.organization.selectcap')" data-ng-click="ctrl.selectCompanyForClone(list.name,list.id);"></a>
+				                           <a href="javascript:void(0)" role="button" class="buttoncss pull-right disable{{list.id!==ctrl.list.id}}"  data-ng-if="ctrl.list.id!==null" data-ng-bind="list.id!==ctrl.list.id ? pullInterNationalization('sysAdmin.organization.selectcap'):pullInterNationalization('sysAdmin.organization.unselectcap')" data-ng-click="list.id===ctrl.list.id && ctrl.selectCompanyForClone(null,null);"></a>
+				                        </div>
+			                    	</div>
+			                    	
+			                    </div>
+			                    <div data-ng-if="!record.length && ctrl.companiesAjax"><div class="mock-link" data-ng-bind="::pullInterNationalization('dashboard.no.noresult')"></div></div>
+                      	    	<div data-ng-if="!record.length && !ctrl.companiesAjax"><div class="mock-link" data-ng-bind="::pullInterNationalization('practiceArea.loading')"></div></div>
+                           </div>
+                       </div>
+                    </div>
+                    <!-- Buttons Starts -->
+                    <div class="dialog-btns-wrapper">
+                        <input type="button" value="{{::pullInterNationalization('sysadmin.organization.clone')}}" class="btn-block btn-14px sp-btn-color" data-ng-class="ctrl.pageSetting.searchMode==='AP'&&ctrl.list.id===null?'btn-grey-dark':''" data-ng-click="ctrl.startCloning();">
+                        <input type="button" value="{{::pullInterNationalization('sysadmin.organization.cancel')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="ctrl.redirectToListing()">
+                    </div>
+                    <!-- Buttons Ends -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

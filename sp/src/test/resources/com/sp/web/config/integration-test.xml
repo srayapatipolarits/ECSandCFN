@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/integration/mongodb http://www.springframework.org/schema/integration/mongodb/spring-integration-mongodb-4.1.xsd
+		http://www.springframework.org/schema/integration/mail http://www.springframework.org/schema/integration/mail/spring-integration-mail.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+    xmlns:int="http://www.springframework.org/schema/integration"
+    xmlns:int-mail="http://www.springframework.org/schema/integration/mail"
+    xmlns:int-mongodb="http://www.springframework.org/schema/integration/mongodb"
+    xmlns:util="http://www.springframework.org/schema/util">
+
+    <int:channel id="outboundMailChannel" />
+
+    <!-- Log Gateway common configuration -->
+
+    <bean id="logTransformer" class="com.sp.web.service.log.LogTransformer" />
+    <bean id="errorLogger" class="com.sp.web.service.log.ErrorLogger" />
+
+    <int:channel id="errorChannel">
+        <!-- int:queue capacity="500" / -->
+    </int:channel>
+    
+    <int:service-activator input-channel="errorChannel" ref="errorLogger" method="log"/>
+
+    <!-- Log Gateway common configuration -->
+
+    <!-- Gateway that processes the activity messages -->
+    
+    
+    <int:gateway id="activityLog" service-interface="com.sp.web.service.log.LogGateway"
+        default-request-channel="inputActivityLogChannel" />
+
+    <int:channel id="inputActivityLogChannel">
+        <int:dispatcher task-executor="taskExecutor" />
+    </int:channel>
+
+    <int:transformer input-channel="inputActivityLogChannel"
+        output-channel="outboundMongoActivityLogChannel" ref="logTransformer"
+        method="transformActivityLogRequest">
+    </int:transformer>
+    <int-mongodb:outbound-channel-adapter
+        id="outboundMongoActivityLogChannel" collection-name="activityLogMessage"
+        mongo-template="mongoTemplate">
+    </int-mongodb:outbound-channel-adapter>
+    
+    <!-- Gateway that processes the notification messages -->
+
+    <!-- Gateway that processes the notification messages -->
+
+
+    <int:gateway id="notificationLog" service-interface="com.sp.web.service.log.LogGateway"
+        default-request-channel="inputNotificationLogChannel"  error-channel="errorChannel"/>
+
+    <int:channel id="inputNotificationLogChannel">
+        <int:dispatcher task-executor="taskExecutor" />
+    </int:channel>
+
+    <int:transformer input-channel="inputNotificationLogChannel"
+        output-channel="outboundMongoNotificationLogChannel" ref="logTransformer"
+        method="transformNotificationLogRequest">
+    </int:transformer>
+
+    <int-mongodb:outbound-channel-adapter
+        id="outboundMongoNotificationLogChannel" collection-name="notificationLogMessage"
+        mongo-template="mongoTemplate">
+    </int-mongodb:outbound-channel-adapter>
+ 
+    <!-- Gateway that processes the notification messages -->
+
+    <!-- Gateway that publishes signed up messages -->
+    <int:gateway id="gateway"
+        service-interface="com.sp.web.service.email.CommunicationGateway"
+        default-request-channel="inputMailChannel" error-channel="errorChannel"/>
+
+    <!-- Asynchronously dispatches welcome mails -->
+    <int:channel id="inputMailChannel">
+        <int:dispatcher task-executor="taskExecutor" />
+    </int:channel>
+
+    <!-- Transforms a new Account to a welcome SimpleMailMessage -->
+    <int:transformer input-channel="inputMailChannel"
+        output-channel="outboundMailChannel">
+        <bean id="mailTranformer"
+            class="com.sp.web.service.email.transform.EmailTransformer"></bean>
+    </int:transformer>
+
+    <!-- Sends the welcome SimpleMailMessage -->
+    <int-mail:outbound-channel-adapter
+        id="outboundMailChannel" mail-sender="mailSender" />
+        
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="127.0.0.1" />
+        <property name="port" value="3025" />
+        <property name="username" value="test" />
+        <property name="password" value="xxx" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">false</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">true</prop>
+            </props>
+        </property>
+    </bean>
+
+ <!--         
+  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <property name="host" value="smtp.sendgrid.net" />
+    <property name="port" value="587" />
+    <property name="username" value="dax@surepeople.com" />
+    <property name="password" value="SurePeopleIndia" />
+    <property name="javaMailProperties">
+      <props>
+        <prop key="mail.transport.protocol">smtp</prop>
+        <prop key="mail.smtp.auth">true</prop>
+        <prop key="mail.smtp.starttls.enable">true</prop>
+        <prop key="mail.debug">true</prop>
+      </props>
+    </property>
+  </bean>
+-->
+ 
+    <bean id="taskExecutor"
+        class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="5" />
+        <property name="maxPoolSize" value="10" />
+        <property name="queueCapacity" value="5000" />
+    </bean>
+    
+    <!-- 
+    <util:properties id="javaMailProperties">
+        <prop key="mail.store.protocol">imap</prop>
+        <prop key="mail.debug">false</prop>
+        <prop key="mail.imap.ssl.enable">true</prop>
+        <prop key="mail.imap.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>        
+    </util:properties>
+    
+	<int-mail:inbound-channel-adapter id="imapAdapter" should-delete-messages="false"
+    	store-uri="imap://127.0.0.1:993/INBOX"
+		channel="receiveEmailChannel" java-mail-properties="javaMailProperties"
+		auto-startup="true" search-term-strategy="searchTermStrategy">	
+		<int:poller fixed-delay="10" time-unit="SECONDS" max-messages-per-poll="10" >
+			<int:transactional transaction-manager="transactionManager" synchronization-factory="syncFactory"/>
+		</int:poller>
+	</int-mail:inbound-channel-adapter>
+	
+	<int:transaction-synchronization-factory id="syncFactory">
+    	<int:after-commit expression="@emailReceiverService.deleteMessage(payload)"/>
+	</int:transaction-synchronization-factory>
+    
+	<int:service-activator input-channel="receiveEmailChannel" ref="emailReceiverService" method="processEmail" />
+    
+    <bean id="emailReceiverService" class="com.sp.web.service.email.EmailReceiverService">
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.integration.transaction.PseudoTransactionManager">
+    </bean>
+    <bean id="searchTermStrategy" class="com.sp.web.service.email.AcceptAllSearchTermStrategy">
+  	</bean> 
+     -->
+</beans>

@@ -1,0 +1,55 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color adj0"></div>
+                </div>
+                <div class="new-modals-wrapper">
+                    <!-- Top Message Starts -->
+                    <p class="dialog-message-16px" data-ng-bind="::pullInterNationalization('sysadmin.organization.publishMortal')"></p>
+                    <!-- Top Message Ends -->
+                    <!-- Email List Starts  -->
+                    <div class="multiple-emails-block">
+                        <div class="table-content">
+                            <div class="display-cont">
+                            	<p data-ng-bind="::pullInterNationalization('sysadmin.organization.publish.shortDesc')"></p>
+                            </div>
+                            <div class="display-cont right">
+                            	<p class="weight-700" data-ng-bind="::ctrl.publishId.name"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Email List Ends  -->
+                    <div class="content-description">
+                        <div class="all-company-member row clearfix">
+                            <div class="col-md-6">
+                                <div class="title weight-700" data-ng-bind="::pullInterNationalization('sysadmin.organization.publishPermission')"></div>
+                                <div class="messageBlock mortal-adjust">
+                                    <p class="pCheckBox top7" data-ng-init="member=false">
+                                        <input type="checkbox" name="toggleAll" data-ng-model="member" id="allMEMBER" class="iCheckBox">
+                                        <label for="allMEMBER" class="lCheckBox">
+                                            <span class="checkedTick top3 icon-icon_dev_strategy_check sp-icon-color"></span>
+                                        </label>
+                                        <span class="label-name-padding weight-300" data-ng-bind="::pullInterNationalization('sysadmin.organization.allMember')"></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="type-description font-12">
+                                    <span class="label-name weight-500" data-ng-bind="::pullInterNationalization('sysadmin.organization.allMember')"></span> <span data-ng-bind="::pullInterNationalization('sysadmin.organization.allMember.descriptionacc')"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Buttons Starts -->
+                    <div class="dialog-btns-wrapper">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.publish')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="ctrl.publish({'company':false,'member':member,'id':ctrl.publishId.id,'type':ctrl.publishId.type})">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.cancel')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="closeThisDialog();">
+                    </div>
+                    <!-- Buttons Ends -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

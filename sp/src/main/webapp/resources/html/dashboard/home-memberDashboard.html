@@ -1,0 +1,15 @@
+<link type="text/css" rel="stylesheet" href="/resources/css/css-min/tooltip-theme-arrows.css" />
+<div data-ng-if="inviteReady && profileReady" class="hide" data-ng-class="inviteReady?'show':'hide'" data-ng-controller="groupDashboardCtrl as ctrl" data-ng-init="ctrl.resetAll()">
+    <div class="x-container oVisible" >
+        <div class="col-container">
+            <div class="icons-col hide">
+                <div class="col-content-wrapper mh700 sp-panel-accent">
+                	<a href="javascript:void(0)" class="icon-icon_accounts_all-members link-icons active"></a>                	
+                </div>
+            </div>
+            <div class="other-cols">
+				<div class="table-col-layout" ui-view></div>
+            </div>
+        </div>
+    </div>
+</div>

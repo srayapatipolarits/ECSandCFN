@@ -1,0 +1,644 @@
+
+<div class="mobile-report-modal charts" style="height:{{ctrl.winScreenHeight}}">
+    <div class="report-header fix-position sp-background-color">
+        <div class="rm-title">
+            <p data-ng-bind="pullInterNationalization('prism.relationship-advisor.btn2')"></p>
+        </div>
+        <div class="ngdialog-close close-btn-icon icon-icon_remove"></div>
+    </div>
+    <div class="tabs-wrapper">
+        <ul class="db-tab-pager">
+            <li data-ng-click="ctrl.switchToUser1=true;ctrl.labelsReset();ctrl.prismLabelContent1=false;ctrl.prismLabelContent=false;" class="sp-link-color" data-ng-class="ctrl.switchToUser1?'active-no-arrow':''">
+                <span>{{ctrl.selectedMemberDetails.left.firstName}} {{ctrl.selectedMemberDetails.left.lastName}}</span>
+            </li>
+            <li data-ng-click="ctrl.switchToUser1=false;ctrl.labelsReset();ctrl.prismLabelContent1=false;ctrl.prismLabelContent=false;" class="sp-link-color" data-ng-class="!ctrl.switchToUser1?'active-no-arrow':''">
+                <span>{{ctrl.selectedMemberDetails.right.firstName}} {{ctrl.selectedMemberDetails.right.lastName}}</span>
+            </li>
+        </ul>
+    </div>
+    <div class="report-content-wrapper full-width">
+        <div class="admin-view candidate-pages compare-candidates relationship-advisor">
+            <div>
+                <div class="custom-cols full">
+                    <div class="graph-data-wrapper hide" data-ng-if="ctrl.dataAvailablity" data-ng-class="ctrl.dataAvailablity?'show':'hide'">
+                        <div class="graph-seperators">
+                            <!--
+                        <p class="left">Personality profile 
+                            <span data-ng-if="matchPercent.primary" data-ng-bind="matchPercentageData.primaryPersonality+'%'"></span>
+                            <span data-ng-if="!matchPercent.primary" data-ng-bind="matchPercentageData.underPressurePersonality+'%'"></span>
+                        </p>
+                        <p class="right">
+                            <span class="link" data-ng-class="!matchPercent.primary?'on':''" data-ng-click="matchPercent.primary=false;"><span class="ic"><span></span></span><span class="txt">PERSONALITY UNDER PRESSURE</span></span>
+                            <span class="link" data-ng-class="matchPercent.primary?'on':''" data-ng-click="matchPercent.primary=true;"><span class="ic"><span></span></span><span class="txt">PRIMARY PERSONALITY</span></span>
+                        </p>
+                        -->
+                            <p class="left" data-ng-if="ctrl.switchToUser1" data-ng-bind-html="pullInterNationalization('tools.hiring.compare.chartTitle1') | replaceName:(ctrl.selectedMemberDetails.left.firstName)"></p>
+                            <p class="right" data-ng-if="!ctrl.switchToUser1" data-ng-bind-html="pullInterNationalization('tools.hiring.compare.chartTitle1') | replaceName:(ctrl.selectedMemberDetails.right.firstName)"></p>
+                        </div>
+                        <div class="graph-wrapper">
+                            <div class="graph left" data-ng-if="ctrl.switchToUser1">
+                                <div class="content-wrapper">
+                                    <div class="text fleft">
+                                        <p class="content m-top">
+                                            <span class="desc"><span></span>{{pullInterNationalization('tools.hiring.compare.chartTitle2')}}</span>
+                                            <span class="type">{{ctrl.personalityFormatted.candidate.primary}}</span>
+                                        </p>
+                                        <p class="content m-top">
+                                            <span class="desc"><span class="rblock"></span>{{pullInterNationalization('tools.hiring.compare.chartTitle3')}}</span>
+                                            <span class="type">{{ctrl.personalityFormatted.candidate.pressure}}</span>
+                                        </p>
+                                    </div>
+                                    <div class="svg-graph fright">
+                                        <div class="personality-graph">
+                                            <div class="outer-labels">
+                                            <p class="left" prism-label-desc data-lno="1" data-label="ctrl.prismPersonality.powerful" data-ng-bind-html="pullInterNationalization('prismPersonality.powerful')" data-rm="true"></p>
+                                            <p class="right" prism-label-desc data-lno="2" data-label="ctrl.prismPersonality.versatile" data-ng-bind-html="pullInterNationalization('prismPersonality.versatile')" data-rm="true"></p>
+                                            </div>
+                                            <div class="graph-outer">
+                                                <div class="graph" personality-info-graph id="personalityChart1" personality-score="ctrl.candidateProfileDetails.personality"></div>
+                                            <div class="graph-labels">
+                                                <div class="label-descriptions sp-background-color slide-right" data-ng-if="ctrl.prismLabelContent">
+                                                    <div class="label-desc-wrapper">
+                                                        <p class="label-desc-title" data-ng-if="ctrl.label === 1" data-ng-bind-html="pullInterNationalization('prismPersonality.powerful')"></p>
+                                                        <p class="label-desc-text" data-ng-if="ctrl.label === 1" data-ng-bind-html="pullInterNationalization('prismPersonality.powerfulDesc')"></p>
+                                                        <p class="label-desc-title" data-ng-if="ctrl.label === 2" data-ng-bind-html="pullInterNationalization('prismPersonality.versatile')"></p>
+                                                        <p class="label-desc-text" data-ng-if="ctrl.label === 2" data-ng-bind-html="pullInterNationalization('prismPersonality.versatileDesc')"></p>
+                                                        <p class="label-desc-title" data-ng-if="ctrl.label === 3" data-ng-bind-html="pullInterNationalization('prismPersonality.precise')"></p>
+                                                        <p class="label-desc-text" data-ng-if="ctrl.label === 3" data-ng-bind-html="pullInterNationalization('prismPersonality.preciseDesc')"></p>
+                                                        <p class="label-desc-title" data-ng-if="ctrl.label === 4" data-ng-bind-html="pullInterNationalization('prismPersonality.adaptable')"></p>
+                                                        <p class="label-desc-text" data-ng-if="ctrl.label === 4" data-ng-bind-html="pullInterNationalization('prismPersonality.adaptableDesc')"></p>
+                                                    </div>
+                                                </div>
+                                                <div class="label-row">
+                                                    <p class="top"><span data-ng-bind-html="pullInterNationalization('prismPersonality.bigpic')"></span></p>
+                                                    <div>
+                                                        <p class="left">
+                                                            <span data-ng-bind-html="pullInterNationalization('prismPersonality.mission')"></span>
+                                                        </p>
+                                                        <p class="right"><span data-ng-bind-html="pullInterNationalization('prismPersonality.relationo')"></span>
+                                                        </p>
+                                                    </div>
+                                                    <p class="bottom"><span data-ng-bind-html="pullInterNationalization('prismPersonality.detailo')"></span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="outer-labels">
+                                            <p class="left" prism-label-desc data-lno="3" data-label="ctrl.prismPersonality.precise" data-ng-bind-html="pullInterNationalization('prismPersonality.precise')" data-rm="true"></p>
+                                            <p class="right" prism-label-desc data-lno="4" data-label="ctrl.prismPersonality.adaptable" data-ng-bind-html="pullInterNationalization('prismPersonality.adaptable')" data-rm="true"></p>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="graph right" data-ng-if="!ctrl.switchToUser1">
+                                <div class="content-wrapper">
+                                    <div class="text fleft">
+                                        <p class="content m-top">
+                                            <span class="desc"><span></span>{{pullInterNationalization('tools.hiring.compare.chartTitle2')}}</span>
+                                            <span class="type">{{ctrl.personalityFormatted.member.primary}}</span>
+                                        </p>
+                                        <p class="content m-top">
+                                            <span class="desc"><span class="rblock"></span>{{pullInterNationalization('tools.hiring.compare.chartTitle3')}}</span>
+                                            <span class="type">{{ctrl.personalityFormatted.member.pressure}}</span>
+                                        </p>
+                                    </div>
+                                    <div class="svg-graph fright">
+                                        <div class="personality-graph">
+                                            <div class="outer-labels">
+                                            <p class="left" prism-label-desc data-lno="1" data-label="prismPersonality.powerful" data-ng-bind-html="pullInterNationalization('prismPersonality.powerful')" data-rm="true" data-mem="1"></p>
+                                            <p class="right" prism-label-desc data-lno="2" data-label="prismPersonality.versatile" data-ng-bind-html="pullInterNationalization('prismPersonality.versatile')" data-rm="true" data-mem="1"></p>
+                                            </div>
+                                            <div class="graph-outer">
+                                                <div class="graph" personality-info-graph id="personalityChart2" personality-score="ctrl.memberProfileDetails.personality"></div>
+                                            <div class="graph-labels">
+                                                <div class="label-descriptions sp-background-color slide-right" data-ng-if="ctrl.prismLabelContent1">
+                                                    <div class="label-desc-wrapper">
+                                                        <p class="label-desc-title" data-ng-if="ctrl.label === 1" data-ng-bind-html="pullInterNationalization('prismPersonality.powerful')"></p>
+                                                        <p class="label-desc-text" data-ng-if="ctrl.label === 1" data-ng-bind-html="pullInterNationalization('prismPersonality.powerfulDesc')"></p>
+                                                        <p class="label-desc-title" data-ng-if="ctrl.label === 2" data-ng-bind-html="pullInterNationalization('prismPersonality.versatile')"></p>
+                                                        <p class="label-desc-text" data-ng-if="ctrl.label === 2" data-ng-bind-html="pullInterNationalization('prismPersonality.versatileDesc')"></p>
+                                                        <p class="label-desc-title" data-ng-if="ctrl.label === 3" data-ng-bind-html="pullInterNationalization('prismPersonality.precise')"></p>
+                                                        <p class="label-desc-text" data-ng-if="ctrl.label === 3" data-ng-bind-html="pullInterNationalization('prismPersonality.preciseDesc')"></p>
+                                                        <p class="label-desc-title" data-ng-if="ctrl.label === 4" data-ng-bind-html="pullInterNationalization('prismPersonality.adaptable')"></p>
+                                                        <p class="label-desc-text" data-ng-if="ctrl.label === 4" data-ng-bind-html="pullInterNationalization('prismPersonality.adaptableDesc')"></p>
+                                                    </div>
+                                                </div>
+                                                <div class="label-row">
+                                                    <p class="top"><span data-ng-bind-html="pullInterNationalization('prismPersonality.bigpic')"></span></p>
+                                                    <div>
+                                                        <p class="left">
+                                                            <span data-ng-bind-html="pullInterNationalization('prismPersonality.mission')"></span>
+                                                        </p>
+                                                        <p class="right"><span data-ng-bind-html="pullInterNationalization('prismPersonality.relationo')"></span>
+                                                        </p>
+                                                    </div>
+                                                    <p class="bottom"><span data-ng-bind-html="pullInterNationalization('prismPersonality.detailo')"></span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="outer-labels">
+                                            <p class="left" prism-label-desc data-lno="3" data-label="prismPersonality.precise" data-ng-bind-html="pullInterNationalization('prismPersonality.precise')" data-rm="true" data-mem="1"></p>
+                                            <p class="right" prism-label-desc data-lno="4" data-label="prismPersonality.adaptable" data-ng-bind-html="pullInterNationalization('prismPersonality.adaptable')" data-rm="true" data-mem="1"></p>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="graph-seperators">
+                            <!--p class="left">Processing blueprint <span data-ng-bind="matchPercentageData.processingBluePrint+'%'"></span></p>
+                        <p class="right"></p-->
+                            <p class="left" data-ng-if="ctrl.switchToUser1" data-ng-bind-html="pullInterNationalization('tools.hiring.compare.chartTitle4') | replaceName:(ctrl.selectedMemberDetails.left.firstName)"></p>
+                            <p class="right" data-ng-if="!ctrl.switchToUser1" data-ng-bind-html="pullInterNationalization('tools.hiring.compare.chartTitle4') | replaceName:(ctrl.selectedMemberDetails.right.firstName)"></p>
+                        </div>
+                        <div class="graph-wrapper">
+                            <div class="graph left" data-ng-if="ctrl.switchToUser1">
+                                <div class="content-wrapper">
+                                    <div class="svg-graph-wrapper processing-blueprint">
+                                        <div class="labels axis left">
+                                            <p class="top" data-ng-bind="pullInterNationalization('prismProfile.label14')"></p>
+                                            <p class="mid" data-ng-bind="pullInterNationalization('prismProfile.label15')"></p>
+                                            <p class="bottom" data-ng-bind="pullInterNationalization('prismProfile.label14')"></p>
+                                        </div>
+                                        <div class="labels">
+                                            <p class="top">
+                                                <span class="percentage" data-ng-bind="ctrl.candidateProfileDetails.processing.External+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label6')"></span>
+                                            </p>
+                                            <div class="bar-graphs">
+                                                <div class="top" bar-info-graph id="pChartExternal1" bar-data="ctrl.candidateProfileDetails.processing" bar-config='{"name":"External","type":"Vertical","dir":"Top"}'></div>
+                                                <div class="bottom" bar-info-graph id="pChartInternal1" bar-data="ctrl.candidateProfileDetails.processing" bar-config='{"name":"Internal","type":"Vertical","dir":"Bottom"}'></div>
+                                            </div>
+                                            <p class="bottom">
+                                                <span class="percentage" data-ng-bind="ctrl.candidateProfileDetails.processing.Internal+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label7')"></span>
+                                            </p>
+                                        </div>
+                                        <div class="labels">
+                                            <p class="top">
+                                                <span class="percentage" data-ng-bind="ctrl.candidateProfileDetails.processing.Concrete+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label8')"></span>
+                                            </p>
+                                            <div class="bar-graphs">
+                                                <div class="top" bar-info-graph id="pChartConcrete1" bar-data="ctrl.candidateProfileDetails.processing" bar-config='{"name":"Concrete","type":"Vertical","dir":"Top"}'></div>
+                                                <div class="bottom" bar-info-graph id="pChartIntuitive1" bar-data="ctrl.candidateProfileDetails.processing" bar-config='{"name":"Intuitive","type":"Vertical","dir":"Bottom"}'></div>
+                                            </div>
+                                            <p class="bottom">
+                                                <span class="percentage" data-ng-bind="ctrl.candidateProfileDetails.processing.Intuitive+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label9')"></span>
+                                            </p>
+                                        </div>
+                                        <div class="labels">
+                                            <p class="top">
+                                                <span class="percentage" data-ng-bind="ctrl.candidateProfileDetails.processing.Cognitive+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label11')"></span>
+                                            </p>
+                                            <div class="bar-graphs">
+                                                <div class="top" bar-info-graph id="pChartCognitive1" bar-data="ctrl.candidateProfileDetails.processing" bar-config='{"name":"Cognitive","type":"Vertical","dir":"Top"}'></div>
+                                                <div class="bottom" bar-info-graph id="pChartAffective1" bar-data="ctrl.candidateProfileDetails.processing" bar-config='{"name":"Affective","type":"Vertical","dir":"Bottom"}'></div>
+                                            </div>
+                                            <p class="bottom">
+                                                <span class="percentage" data-ng-bind="ctrl.candidateProfileDetails.processing.Affective+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label12')"></span>
+                                            </p>
+                                        </div>
+                                        <div class="labels no-margin">
+                                            <p class="top">
+                                                <span class="percentage" data-ng-bind="ctrl.candidateProfileDetails.processing.Orderly+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label10')"></span>
+                                            </p>
+                                            <div class="bar-graphs">
+                                                <div class="top" bar-info-graph id="pChartOrderly1" bar-data="ctrl.candidateProfileDetails.processing" bar-config='{"name":"Orderly","type":"Vertical","dir":"Top"}'></div>
+                                                <div class="bottom" bar-info-graph id="pChartSpontaneous1" bar-data="ctrl.candidateProfileDetails.processing" bar-config='{"name":"Spontaneous","type":"Vertical","dir":"Bottom"}'></div>
+                                            </div>
+                                            <p class="bottom">
+                                                <span class="percentage" data-ng-bind="ctrl.candidateProfileDetails.processing.Spontaneous+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label13')"></span>
+                                            </p>
+                                        </div>
+                                        <div class="labels axis right">
+                                        	<p class="top" data-ng-bind="pullInterNationalization('prismProfile.label14')"></p>
+                                            <p class="mid" data-ng-bind="pullInterNationalization('prismProfile.label15')"></p>
+                                            <p class="bottom" data-ng-bind="pullInterNationalization('prismProfile.label14')"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="graph right" data-ng-if="!ctrl.switchToUser1">
+                                <div class="content-wrapper">
+                                    <div class="svg-graph-wrapper processing-blueprint">
+                                        <div class="labels axis left">
+                                        	<p class="top" data-ng-bind="pullInterNationalization('prismProfile.label14')"></p>
+                                            <p class="mid" data-ng-bind="pullInterNationalization('prismProfile.label15')"></p>
+                                            <p class="bottom" data-ng-bind="pullInterNationalization('prismProfile.label14')"></p>
+                                        </div>
+                                        <div class="labels">
+                                            <p class="top">
+                                                <span class="percentage" data-ng-bind="ctrl.memberProfileDetails.processing.External+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label6')"></span>
+                                            </p>
+                                            <div class="bar-graphs">
+                                                <div class="top" bar-info-graph id="pChartExternal2" bar-data="ctrl.memberProfileDetails.processing" bar-config='{"name":"External","type":"Vertical","dir":"Top"}'></div>
+                                                <div class="bottom" bar-info-graph id="pChartInternal2" bar-data="ctrl.memberProfileDetails.processing" bar-config='{"name":"Internal","type":"Vertical","dir":"Bottom"}'></div>
+                                            </div>
+                                            <p class="bottom">
+                                                <span class="percentage" data-ng-bind="ctrl.memberProfileDetails.processing.Internal+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label7')"></span>
+                                            </p>
+                                        </div>
+                                        <div class="labels">
+                                            <p class="top">
+                                                <span class="percentage" data-ng-bind="ctrl.memberProfileDetails.processing.Concrete+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label8')"></span>
+                                            </p>
+                                            <div class="bar-graphs">
+                                                <div class="top" bar-info-graph id="pChartConcrete2" bar-data="ctrl.memberProfileDetails.processing" bar-config='{"name":"Concrete","type":"Vertical","dir":"Top"}'></div>
+                                                <div class="bottom" bar-info-graph id="pChartIntuitive2" bar-data="ctrl.memberProfileDetails.processing" bar-config='{"name":"Intuitive","type":"Vertical","dir":"Bottom"}'></div>
+                                            </div>
+                                            <p class="bottom">
+                                                <span class="percentage" data-ng-bind="ctrl.memberProfileDetails.processing.Intuitive+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label9')"></span>
+                                            </p>
+                                        </div>
+                                        <div class="labels">
+                                            <p class="top">
+                                                <span class="percentage" data-ng-bind="ctrl.memberProfileDetails.processing.Cognitive+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label11')"></span>
+                                            </p>
+                                            <div class="bar-graphs">
+                                                <div class="top" bar-info-graph id="pChartCognitive2" bar-data="ctrl.memberProfileDetails.processing" bar-config='{"name":"Cognitive","type":"Vertical","dir":"Top"}'></div>
+                                                <div class="bottom" bar-info-graph id="pChartAffective2" bar-data="ctrl.memberProfileDetails.processing" bar-config='{"name":"Affective","type":"Vertical","dir":"Bottom"}'></div>
+                                            </div>
+                                            <p class="bottom">
+                                                <span class="percentage" data-ng-bind="ctrl.memberProfileDetails.processing.Affective+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label12')"></span>
+                                            </p>
+                                        </div>
+                                        <div class="labels no-margin">
+                                            <p class="top">
+                                                <span class="percentage" data-ng-bind="ctrl.memberProfileDetails.processing.Orderly+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label10')"></span>
+                                            </p>
+                                            <div class="bar-graphs">
+                                                <div class="top" bar-info-graph id="pChartOrderly2" bar-data="ctrl.memberProfileDetails.processing" bar-config='{"name":"Orderly","type":"Vertical","dir":"Top"}'></div>
+                                                <div class="bottom" bar-info-graph id="pChartSpontaneous2" bar-data="ctrl.memberProfileDetails.processing" bar-config='{"name":"Spontaneous","type":"Vertical","dir":"Bottom"}'></div>
+                                            </div>
+                                            <p class="bottom">
+                                                <span class="percentage" data-ng-bind="ctrl.memberProfileDetails.processing.Spontaneous+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label13')"></span>
+                                            </p>
+                                        </div>
+                                        <div class="labels axis right">
+                                            <p class="top" data-ng-bind="pullInterNationalization('prismProfile.label14')"></p>
+                                            <p class="mid" data-ng-bind="pullInterNationalization('prismProfile.label15')"></p>
+                                            <p class="bottom" data-ng-bind="pullInterNationalization('prismProfile.label14')"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="graph-seperators">
+                            <p class="left" data-ng-if="ctrl.switchToUser1" data-ng-bind-html="pullInterNationalization('tools.hiring.compare.chartTitle5') | replaceName:(ctrl.selectedMemberDetails.left.firstName)"></p>
+                            <p class="right" data-ng-if="!ctrl.switchToUser1" data-ng-bind-html="pullInterNationalization('tools.hiring.compare.chartTitle5') | replaceName:(ctrl.selectedMemberDetails.right.firstName)"></p>
+                        </div>
+                        <div class="graph-wrapper">
+                            <div class="graph left" data-ng-if="ctrl.switchToUser1">
+                                <div class="content-wrapper motivation-wrapper">
+                                    <h3 class="sp-header-title-color" data-ng-bind="pullInterNationalization('profile.motivation.why')+' '+pullInterNationalization('prismProfile.is')+' '+ctrl.selectedMemberDetails.left.firstName+' '+pullInterNationalization('prismProfile.motivated')"></h3>
+                                    <div class="svg-graph-wrapper">
+                                        <div class="labels">
+                                            <p class="left adj">
+                                                <span class="percentage" data-ng-bind="ctrl.candidateProfileDetails.motivationWhy.AttainmentOfGoals+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label17')"></span>
+                                            </p>
+                                            <p class="right">
+                                                <span class="percentage" data-ng-bind="ctrl.candidateProfileDetails.motivationWhy.RecognitionForEffort+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label18')"></span>
+                                            </p>
+                                            <div class="bar-graphs">
+                                                <div class="left" bar-info-graph id="pChartAttainmentOfGoals1" bar-data="ctrl.candidateProfileDetails.motivationWhy" bar-config='{"name":"AttainmentOfGoals","type":"Horizantal","dir":"Left"}'></div>
+                                                <div class="right" bar-info-graph id="pChartRecognitionForEffort1" bar-data="ctrl.candidateProfileDetails.motivationWhy" bar-config='{"name":"RecognitionForEffort","type":"Horizantal","dir":"Right"}'></div>
+                                            </div>
+                                        </div>
+                                        <div class="labels">
+                                            <p class="left">
+                                                <span class="percentage" data-ng-bind="ctrl.candidateProfileDetails.motivationWhy.Power+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label19')"></span>
+                                            </p>
+                                            <p class="right">
+                                                <span class="percentage" data-ng-bind="ctrl.candidateProfileDetails.motivationWhy.Compliance+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label20')"></span>
+                                            </p>
+                                            <div class="bar-graphs">
+                                                <div class="left" bar-info-graph id="pChartPower1" bar-data="ctrl.candidateProfileDetails.motivationWhy" bar-config='{"name":"Power","type":"Horizantal","dir":"Left"}'></div>
+                                                <div class="right" bar-info-graph id="pChartCompliance1" bar-data="ctrl.candidateProfileDetails.motivationWhy" bar-config='{"name":"Compliance","type":"Horizantal","dir":"Right"}'></div>
+                                            </div>
+                                        </div>
+                                        <div class="labels">
+                                            <p class="left">
+                                                <span class="percentage" data-ng-bind="ctrl.candidateProfileDetails.motivationWhy.Activity+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label21')"></span>
+                                            </p>
+                                            <p class="right">
+                                                <span class="percentage" data-ng-bind="ctrl.candidateProfileDetails.motivationWhy.Affiliation+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label22')"></span>
+                                            </p>
+                                            <div class="bar-graphs">
+                                                <div class="left" bar-info-graph id="pChartActivity1" bar-data="ctrl.candidateProfileDetails.motivationWhy" bar-config='{"name":"Activity","type":"Horizantal","dir":"Left"}'></div>
+                                                <div class="right" bar-info-graph id="pChartAffiliation1" bar-data="ctrl.candidateProfileDetails.motivationWhy" bar-config='{"name":"Affiliation","type":"Horizantal","dir":"Right"}'></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h3 class="sp-header-title-color" data-ng-bind="pullInterNationalization('profile.motivation.how')+' '+pullInterNationalization('prismProfile.is')+' '+ctrl.selectedMemberDetails.left.firstName+' '+pullInterNationalization('prismProfile.motivated')"></h3>
+                                    <div class="svg-graph-wrapper">
+                                        <div class="labels">
+                                            <p class="left">
+                                                <span class="percentage" data-ng-bind="ctrl.candidateProfileDetails.motivationHow.SelfAffirmed+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label23')"></span>
+                                            </p>
+                                            <p class="right">
+                                                <span class="percentage" data-ng-bind="ctrl.candidateProfileDetails.motivationHow.AffirmedByOthers+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label24')"></span>
+                                            </p>
+                                            <div class="bar-graphs">
+                                                <div class="left" bar-info-graph id="pChartSelfAffirmed1" bar-data="ctrl.candidateProfileDetails.motivationHow" bar-config='{"name":"SelfAffirmed","type":"Horizantal","dir":"Left"}'></div>
+                                                <div class="right" bar-info-graph id="pChartAffirmedByOthers1" bar-data="ctrl.candidateProfileDetails.motivationHow" bar-config='{"name":"AffirmedByOthers","type":"Horizantal","dir":"Right"}'></div>
+                                            </div>
+                                        </div>
+                                        <div class="labels">
+                                            <p class="left">
+                                                <span class="percentage" data-ng-bind="ctrl.candidateProfileDetails.motivationHow.ExchangeOfIdeas+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label25')"></span>
+                                            </p>
+                                            <p class="right">
+                                                <span class="percentage" data-ng-bind="ctrl.candidateProfileDetails.motivationHow.ReceiveDirection+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label26')"></span>
+                                            </p>
+                                            <div class="bar-graphs">
+                                                <div class="left" bar-info-graph id="pChartExchangeOfIdeas1" bar-data="ctrl.candidateProfileDetails.motivationHow" bar-config='{"name":"ExchangeOfIdeas","type":"Horizantal","dir":"Left"}'></div>
+                                                <div class="right" bar-info-graph id="pChartReceiveDirection1" bar-data="ctrl.candidateProfileDetails.motivationHow" bar-config='{"name":"ReceiveDirection","type":"Horizantal","dir":"Right"}'></div>
+                                            </div>
+                                        </div>
+                                        <div class="labels">
+                                            <p class="left">
+                                                <span class="percentage" data-ng-bind="ctrl.candidateProfileDetails.motivationHow.Freedom+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label27')"></span>
+                                            </p>
+                                            <p class="right">
+                                                <span class="percentage" data-ng-bind="ctrl.candidateProfileDetails.motivationHow.Consistency+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label28')"></span>
+                                            </p>
+                                            <div class="bar-graphs">
+                                                <div class="left" bar-info-graph id="pChartFreedom1" bar-data="ctrl.candidateProfileDetails.motivationHow" bar-config='{"name":"Freedom","type":"Horizantal","dir":"Left"}'></div>
+                                                <div class="right" bar-info-graph id="pChartConsistency1" bar-data="ctrl.candidateProfileDetails.motivationHow" bar-config='{"name":"Consistency","type":"Horizantal","dir":"Right"}'></div>
+                                            </div>
+                                        </div>
+                                        <div class="labels">
+                                            <p class="left">
+                                                <span class="percentage" data-ng-bind="ctrl.candidateProfileDetails.motivationHow.TaskCompletion+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label29')"></span>
+                                            </p>
+                                            <p class="right">
+                                                <span class="percentage" data-ng-bind="ctrl.candidateProfileDetails.motivationHow.PrefersProcess+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label30')"></span>
+                                            </p>
+                                            <div class="bar-graphs">
+                                                <div class="left" bar-info-graph id="pChartTaskCompletion1" bar-data="ctrl.candidateProfileDetails.motivationHow" bar-config='{"name":"TaskCompletion","type":"Horizantal","dir":"Left"}'></div>
+                                                <div class="right" bar-info-graph id="pChartPrefersProcess1" bar-data="ctrl.candidateProfileDetails.motivationHow" bar-config='{"name":"PrefersProcess","type":"Horizantal","dir":"Right"}'></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="graph right" data-ng-if="!ctrl.switchToUser1">
+                                <div class="content-wrapper motivation-wrapper">
+                                    <h3 class="sp-header-title-color" data-ng-bind="pullInterNationalization('profile.motivation.why')+' '+pullInterNationalization('prismProfile.is')+' '+ctrl.selectedMemberDetails.right.firstName+' '+pullInterNationalization('prismProfile.motivated')"></h3>
+                                    <div class="svg-graph-wrapper">
+                                        <div class="labels">
+                                            <p class="left adj">
+                                                <span class="percentage" data-ng-bind="ctrl.memberProfileDetails.motivationWhy.AttainmentOfGoals+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label17')"></span>
+                                            </p>
+                                            <p class="right">
+                                                <span class="percentage" data-ng-bind="ctrl.memberProfileDetails.motivationWhy.RecognitionForEffort+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label18')"></span>
+                                            </p>
+                                            <div class="bar-graphs">
+                                                <div class="left" bar-info-graph id="pChartAttainmentOfGoals2" bar-data="ctrl.memberProfileDetails.motivationWhy" bar-config='{"name":"AttainmentOfGoals","type":"Horizantal","dir":"Left"}'></div>
+                                                <div class="right" bar-info-graph id="pChartRecognitionForEffort2" bar-data="ctrl.memberProfileDetails.motivationWhy" bar-config='{"name":"RecognitionForEffort","type":"Horizantal","dir":"Right"}'></div>
+                                            </div>
+                                        </div>
+                                        <div class="labels">
+                                            <p class="left">
+                                                <span class="percentage" data-ng-bind="ctrl.memberProfileDetails.motivationWhy.Power+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label19')"></span>
+                                            </p>
+                                            <p class="right">
+                                                <span class="percentage" data-ng-bind="ctrl.memberProfileDetails.motivationWhy.Compliance+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label20')"></span>
+                                            </p>
+                                            <div class="bar-graphs">
+                                                <div class="left" bar-info-graph id="pChartPower2" bar-data="ctrl.memberProfileDetails.motivationWhy" bar-config='{"name":"Power","type":"Horizantal","dir":"Left"}'></div>
+                                                <div class="right" bar-info-graph id="pChartCompliance2" bar-data="ctrl.memberProfileDetails.motivationWhy" bar-config='{"name":"Compliance","type":"Horizantal","dir":"Right"}'></div>
+                                            </div>
+                                        </div>
+                                        <div class="labels">
+                                            <p class="left">
+                                                <span class="percentage" data-ng-bind="ctrl.memberProfileDetails.motivationWhy.Activity+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label21')"></span>
+                                            </p>
+                                            <p class="right">
+                                                <span class="percentage" data-ng-bind="ctrl.memberProfileDetails.motivationWhy.Affiliation+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label22')"></span>
+                                            </p>
+                                            <div class="bar-graphs">
+                                                <div class="left" bar-info-graph id="pChartActivity2" bar-data="ctrl.memberProfileDetails.motivationWhy" bar-config='{"name":"Activity","type":"Horizantal","dir":"Left"}'></div>
+                                                <div class="right" bar-info-graph id="pChartAffiliation2" bar-data="ctrl.memberProfileDetails.motivationWhy" bar-config='{"name":"Affiliation","type":"Horizantal","dir":"Right"}'></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h3 class="sp-header-title-color" data-ng-bind="pullInterNationalization('profile.motivation.how')+' '+pullInterNationalization('prismProfile.is')+' '+ctrl.selectedMemberDetails.right.firstName+' '+pullInterNationalization('prismProfile.motivated')"></h3>
+                                    <div class="svg-graph-wrapper">
+                                        <div class="labels">
+                                            <p class="left">
+                                                <span class="percentage" data-ng-bind="ctrl.memberProfileDetails.motivationHow.SelfAffirmed+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label23')"></span>
+                                            </p>
+                                            <p class="right">
+                                                <span class="percentage" data-ng-bind="ctrl.memberProfileDetails.motivationHow.AffirmedByOthers+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label24')"></span>
+                                            </p>
+                                            <div class="bar-graphs">
+                                                <div class="left" bar-info-graph id="pChartSelfAffirmed2" bar-data="ctrl.memberProfileDetails.motivationHow" bar-config='{"name":"SelfAffirmed","type":"Horizantal","dir":"Left"}'></div>
+                                                <div class="right" bar-info-graph id="pChartAffirmedByOthers2" bar-data="ctrl.memberProfileDetails.motivationHow" bar-config='{"name":"AffirmedByOthers","type":"Horizantal","dir":"Right"}'></div>
+                                            </div>
+                                        </div>
+                                        <div class="labels">
+                                            <p class="left">
+                                                <span class="percentage" data-ng-bind="ctrl.memberProfileDetails.motivationHow.ExchangeOfIdeas+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label25')"></span>
+                                            </p>
+                                            <p class="right">
+                                                <span class="percentage" data-ng-bind="ctrl.memberProfileDetails.motivationHow.ReceiveDirection+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label26')"></span>
+                                            </p>
+                                            <div class="bar-graphs">
+                                                <div class="left" bar-info-graph id="pChartExchangeOfIdeas2" bar-data="ctrl.memberProfileDetails.motivationHow" bar-config='{"name":"ExchangeOfIdeas","type":"Horizantal","dir":"Left"}'></div>
+                                                <div class="right" bar-info-graph id="pChartReceiveDirection2" bar-data="ctrl.memberProfileDetails.motivationHow" bar-config='{"name":"ReceiveDirection","type":"Horizantal","dir":"Right"}'></div>
+                                            </div>
+                                        </div>
+                                        <div class="labels">
+                                            <p class="left">
+                                                <span class="percentage" data-ng-bind="ctrl.memberProfileDetails.motivationHow.Freedom+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label27')"></span>
+                                            </p>
+                                            <p class="right">
+                                                <span class="percentage" data-ng-bind="ctrl.memberProfileDetails.motivationHow.Consistency+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label28')"></span>
+                                            </p>
+                                            <div class="bar-graphs">
+                                                <div class="left" bar-info-graph id="pChartFreedom2" bar-data="ctrl.memberProfileDetails.motivationHow" bar-config='{"name":"Freedom","type":"Horizantal","dir":"Left"}'></div>
+                                                <div class="right" bar-info-graph id="pChartConsistency2" bar-data="ctrl.memberProfileDetails.motivationHow" bar-config='{"name":"Consistency","type":"Horizantal","dir":"Right"}'></div>
+                                            </div>
+                                        </div>
+                                        <div class="labels">
+                                            <p class="left">
+                                                <span class="percentage" data-ng-bind="ctrl.memberProfileDetails.motivationHow.TaskCompletion+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label29')"></span>
+                                            </p>
+                                            <p class="right">
+                                                <span class="percentage" data-ng-bind="ctrl.memberProfileDetails.motivationHow.PrefersProcess+'%'"></span>
+                                                <span data-ng-bind="pullInterNationalization('prismProfile.label30')"></span>
+                                            </p>
+                                            <div class="bar-graphs">
+                                                <div class="left" bar-info-graph id="pChartTaskCompletion2" bar-data="ctrl.memberProfileDetails.motivationHow" bar-config='{"name":"TaskCompletion","type":"Horizantal","dir":"Left"}'></div>
+                                                <div class="right" bar-info-graph id="pChartPrefersProcess2" bar-data="ctrl.memberProfileDetails.motivationHow" bar-config='{"name":"PrefersProcess","type":"Horizantal","dir":"Right"}'></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="graph-seperators">
+                            <p class="left" data-ng-if="ctrl.switchToUser1" data-ng-bind-html="pullInterNationalization('tools.hiring.compare.chartTitle6') | replaceName:(ctrl.selectedMemberDetails.left.firstName)"></p>
+                            <p class="right" data-ng-if="!ctrl.switchToUser1" data-ng-bind-html="pullInterNationalization('tools.hiring.compare.chartTitle6') | replaceName:(ctrl.selectedMemberDetails.right.firstName)"></p>
+                        </div>
+                        <div class="graph-wrapper">
+                            <div class="graph left" data-ng-if="ctrl.switchToUser1">
+                                <div class="content-wrapper pie-charts">
+                                    <div class="svg-graph-wrapper">
+                                        <conflict-management-chart url-src="conflict-management-chart.html" class="conflict-management-chart" trait-info="ctrl.candidateProfileDetails.conflictManagement" trait-priorities="ctrl.candidateProfileDetails.traitPriorities.ConflictManagement"></conflict-management-chart>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="graph right" data-ng-if="!ctrl.switchToUser1">
+                                <div class="content-wrapper pie-charts">
+                                    <div class="svg-graph-wrapper">
+                                        <conflict-management-chart url-src="conflict-management-chart.html" class="conflict-management-chart" trait-info="ctrl.memberProfileDetails.conflictManagement" trait-priorities="ctrl.memberProfileDetails.traitPriorities.ConflictManagement"></conflict-management-chart>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="graph-seperators">
+                            <p class="left" data-ng-if="ctrl.switchToUser1" data-ng-bind-html="pullInterNationalization('tools.hiring.compare.chartTitle7') | replaceName:(ctrl.selectedMemberDetails.left.firstName)"></p>
+                            <p class="right" data-ng-if="!ctrl.switchToUser1" data-ng-bind-html="pullInterNationalization('tools.hiring.compare.chartTitle7') | replaceName:(ctrl.selectedMemberDetails.right.firstName)"></p>
+                        </div>
+                        <div class="graph-wrapper">
+                            <div class="graph left" data-ng-if="ctrl.switchToUser1">
+                                <div class="content-wrapper pie-charts">
+                                    <div class="svg-graph-wrapper">
+                                        <div class="svg-info-graph profile-pie-charts" id="pieFundamentalNeeds1" piechart-info-graph data-piename="fundamentalNeeds" pie-keys="ctrl.candidateProfileDetails.fundamentalNeeds"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="graph right" data-ng-if="!ctrl.switchToUser1">
+                                <div class="content-wrapper pie-charts">
+                                    <div class="svg-graph-wrapper">
+                                        <div class="svg-info-graph profile-pie-charts" id="pieFundamentalNeeds2" piechart-info-graph data-piename="fundamentalNeeds" pie-keys="ctrl.memberProfileDetails.fundamentalNeeds"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="graph-seperators">
+                            <p class="left" data-ng-if="ctrl.switchToUser1" data-ng-bind-html="pullInterNationalization('tools.hiring.compare.chartTitle8') | replaceName:(ctrl.selectedMemberDetails.left.firstName)"></p>
+                            <p class="right" data-ng-if="!ctrl.switchToUser1" data-ng-bind-html="pullInterNationalization('tools.hiring.compare.chartTitle8') | replaceName:(ctrl.selectedMemberDetails.right.firstName)"></p>
+                        </div>
+                        <div class="graph-wrapper">
+                            <div class="graph left" data-ng-if="ctrl.switchToUser1">
+                                <div class="content-wrapper">
+                                    <div class="svg-graph-wrapper decision-making">
+                                        <div class="svg-info-graph">
+                                            <div class="label top">
+                                                <p data-ng-bind="pullInterNationalization('prismProfile.label36')+' '+ctrl.candidateProfileDetails.decisionMaking.Outward+'%'"></p>
+                                            </div>
+                                            <div class="graph-outer">
+                                                <div class="label left">
+                                                    <p data-ng-bind-html="pullInterNationalization('prismProfile.label37')+'&#160;'+ctrl.candidateProfileDetails.decisionMaking.Careful+'%'"></p>
+                                                </div>
+                                                <div class="graph-inner" id="decisionMaking1" decision-info-graph dm-keys="ctrl.candidateProfileDetails.decisionMaking">
+                                                    <div class="on-graph-labels">
+                                                        <p class="top-label-set">
+                                                            <span data-ng-bind="pullInterNationalization('prismProfile.label41')"></span>
+                                                            <span data-ng-bind="pullInterNationalization('prismProfile.label42')"></span>
+                                                        </p>
+                                                        <p class="bottom-label-set">
+                                                            <span data-ng-bind="pullInterNationalization('prismProfile.label43')"></span>
+                                                            <span data-ng-bind="pullInterNationalization('prismProfile.label44')"></span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="label right">
+                                                    <p data-ng-bind-html="pullInterNationalization('prismProfile.label38')+'&#160;'+ctrl.candidateProfileDetails.decisionMaking.Rapid+'%'"></p>
+                                                </div>
+                                            </div>
+                                            <div class="label bottom">
+                                                <p data-ng-bind="pullInterNationalization('prismProfile.label39')+' '+ctrl.candidateProfileDetails.decisionMaking.Inward+'%'"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="graph right" data-ng-if="!ctrl.switchToUser1">
+                                <div class="content-wrapper">
+                                    <div class="svg-graph-wrapper decision-making">
+                                        <div class="svg-info-graph">
+                                            <div class="label top">
+                                                <p data-ng-bind="pullInterNationalization('prismProfile.label36')+' '+ctrl.memberProfileDetails.decisionMaking.Outward+'%'"></p>
+                                            </div>
+                                            <div class="graph-outer">
+                                                <div class="label left">
+                                                    <p data-ng-bind-html="pullInterNationalization('prismProfile.label37')+'&#160;'+ctrl.memberProfileDetails.decisionMaking.Careful+'%'"></p>
+                                                </div>
+                                                <div class="graph-inner" id="decisionMaking2" decision-info-graph dm-keys="ctrl.memberProfileDetails.decisionMaking">
+                                                    <div class="on-graph-labels">
+                                                        <p class="top-label-set">
+                                                            <span data-ng-bind="pullInterNationalization('prismProfile.label41')"></span>
+                                                            <span data-ng-bind="pullInterNationalization('prismProfile.label42')"></span>
+                                                        </p>
+                                                        <p class="bottom-label-set">
+                                                            <span data-ng-bind="pullInterNationalization('prismProfile.label43')"></span>
+                                                            <span data-ng-bind="pullInterNationalization('prismProfile.label44')"></span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="label right">
+                                                    <p data-ng-bind-html="pullInterNationalization('prismProfile.label38')+'&#160;'+ctrl.memberProfileDetails.decisionMaking.Rapid+'%'"></p>
+                                                </div>
+                                            </div>
+                                            <div class="label bottom">
+                                                <p data-ng-bind="pullInterNationalization('prismProfile.label39')+' '+ctrl.memberProfileDetails.decisionMaking.Inward+'%'"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

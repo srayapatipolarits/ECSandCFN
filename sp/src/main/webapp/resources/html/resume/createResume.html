@@ -1,0 +1,42 @@
+
+
+    <div class="container minimumHeight createResumePop" id="declineGrowthScreen" ng-controller="resumeController">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+<div>
+    	<section class="wrapper">
+	<div class="contentBody">
+		<div class="head">
+			<div class="wrap">
+				<div class="headerBar" data-ng-bind="pullInterNationalization('spResume.createResume')"></div>
+				<div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+			</div>
+		</div>
+		<div class="contentArea locatedSubNavRelative clearfix">
+			
+			<div class="createTitle" data-ng-bind-html="pullInterNationalization('spResume.provideName')"></div>
+			<form name="createResumeForm" method="POST" action="/sp/connect/linkedin" class="submitLinked" ng-Enter="createResumeDetail(createResumeForm)">
+				<input type="hidden" name="scope" value="r_basicprofile r_emailaddress r_network r_fullprofile rw_nus">
+				<div class="detailSection clearfix">
+					<div class="pull-left resumeName">
+						<label for="resume_name" data-ng-bind="pullInterNationalization('spResume.provideNameResume')"></label>
+						<input type="text" id="create_name" name="createResumeName" autocomplete="off" ng-model="createResumeName" required autoFocus/>
+						<span class="err-msg" ng-show="createFormError && createResumeForm.createResumeName.$error.required"><span class="icon">!</span><span data-ng-bind="pullInterNationalization('spResume.errName')"></span></span>
+					</div>
+					<div class="pull-left resumeRole">
+						<label for="resume_role" data-ng-bind="pullInterNationalization('spResume.provideNameRole')"></label>
+						<input type="text" id="create_role" ng-model="createResumeRole" autocomplete="off" required name="createResumeRole"/>
+						<span class="err-msg" ng-show="createFormError && createResumeForm.createResumeRole.$error.required"><span class="icon">!</span><span data-ng-bind="pullInterNationalization('spResume.errRole')"></span></span>
+					</div>
+				</div>
+				<div class="connectBtn">
+				  <a href="javascript:void(0)" class="buttoncss_2" alt="connect with linkedIN" ng-click="createResumeDetail(createResumeForm)"><span data-ng-bind="pullInterNationalization('spResume.connectWithLinked')"></span><span class="sty1" data-ng-bind="pullInterNationalization('spResume.in')"></span><sub class="nodecoration">&#174;</sub></a>
+				</div>
+			</form>
+		 	</div>
+	</div>
+
+	</section>
+</div></div>
+</div></div>
+

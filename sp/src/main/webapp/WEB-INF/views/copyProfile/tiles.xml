@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="verifyEmail" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/resources/html/copyProfile/verify-email.html" />
+		<put-attribute name="javascripts" value="resources/js-min/verifyEmailController.min.js" cascade="true" />
+	</definition>
+
+	<definition name="verifyEmailInvite" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/resources/html/copyProfile/email-success.html" />
+		<put-attribute name="javascripts" value="resources/js-min/verifyEmailController.min.js" cascade="true" />
+	</definition>	
+
+	<definition name="verifySuccess" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/resources/html/copyProfile/verify-success.html" />
+	</definition>
+
+	<definition name="verifyFailed" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/resources/html/copyProfile/verify-failed.html" />
+	</definition>
+	
+	<definition name="copyProfileAuthorize" extends="pageNotLoggedIn">
+		<put-attribute name="title" value="Copy SurePeople Prism Profile | SurePeople" />
+		<put-attribute name="content" value="/WEB-INF/views/copyProfile/copyProfile-authorize.jsp" />
+		<put-attribute name="javascripts" value="resources/js-min/verifyEmailController.min.js" cascade="true" />
+	</definition>
+
+</tiles-definitions>

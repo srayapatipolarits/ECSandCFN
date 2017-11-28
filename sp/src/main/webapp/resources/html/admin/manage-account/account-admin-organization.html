@@ -1,0 +1,264 @@
+<div class="new-cols filters-col account-admin-organization full-spanned" data-ng-init="ctrl.executeFunction()">
+    <div class="col-content-wrapper mh700 sp-panel-accent">
+        <h2 class="groups-heading spc-adj" data-ng-bind="::pullInterNationalization('manageAccountContent.headingorganization')"></h2>
+        <p data-ng-if="ctrl.actionPlanEnable">
+            <a href="javascript:void(0)" class="btn-square-12px sp-background-color new-group-btn" data-ng-bind="::pullInterNationalization('manageAccountContent.newCreate')" data-ng-click="ctrl.redirectTo('create')"></a>
+        </p>
+        <div class="search-filter s100 mb15 p20">
+            <p>
+                <input type="text" data-ng-model="ctrl.pageSetting.searchForOrgPlan" placeholder="{{::pullInterNationalization('tools.hiring.compare.title4')}}" data-ng-model-options="{ debounce: { 'default': 100, 'blur': 0 } }">
+                <button data-ng-class="{'icon-icon_remove':ctrl.pageSetting.searchForOrgPlan.length, 'icon-icon_search': !ctrl.pageSetting.searchForOrgPlan.length}" class="sp-icon-color pos-adj" data-ng-click="ctrl.pageSetting.searchForOrgPlan=''"></button>
+            </p>
+        </div>
+        <div class="internal-nav-links-wrapper">
+            <ul>
+                <li class="selected_{{ctrl.actionPlan.id===actionPlanList.id}} active_{{actionPlanList.active}}" data-ng-repeat="actionPlanList in recordCount = (ctrl.companyActionPlanList | filter:{name:ctrl.pageSetting.searchForOrgPlan}) track by actionPlanList.id">
+                    <a href="javascript:void(0)" data-ng-bind="::actionPlanList.name" class="{{actionPlanList.type}}" data-ng-click="ctrl.changeActionPlan(actionPlanList.id,true)"></a>
+                    <span data-ng-class="ctrl.actionPlan.id===actionPlanList.id?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                </li>
+            </ul>
+            <p class="generic-no-matches" data-ng-if="ctrl.response && ctrl.companyActionPlanList.length && !recordCount.length" data-ng-bind="::pullInterNationalization('manageAccountContent.noMatchesFound')"></p>
+            <p class="generic-no-matches" data-ng-if="ctrl.response && !ctrl.companyActionPlanList.length" data-ng-bind="::pullInterNationalization('manageAccountContent.noOrgFoundMsg')"></p>
+        </div>
+    </div>
+    <div class="filter-col-sham"></div>
+</div>
+<div class="new-cols content-col sp-panel-accent">
+
+	<!-- IF NO ORG Plans Starts -->
+	<div class="col-content-wrapper mh700 mh500" data-ng-if="ctrl.response && !ctrl.companyActionPlanList.length">
+	    <div class="members-content-wrapper noGroups">
+			<h2 data-ng-bind="::pullInterNationalization('manageAccountContent.noOrgHead0')"></h2>
+			<p data-ng-bind-html="::pullInterNationalization('manageAccountContent.noOrgDesc1')"></p>
+			
+			<h3 data-ng-bind="::pullInterNationalization('manageAccountContent.noOrgHead1')"></h3>
+			
+			<ul>
+				<li data-ng-bind="::pullInterNationalization('manageAccountContent.noOrgList1')"></li>
+				<li data-ng-bind="::pullInterNationalization('manageAccountContent.noOrgList2')"></li>
+				<li data-ng-bind="::pullInterNationalization('manageAccountContent.noOrgList3')"></li>
+				<li data-ng-bind="::pullInterNationalization('manageAccountContent.noOrgList4')"></li>
+				<li data-ng-bind="::pullInterNationalization('manageAccountContent.noOrgList5')"></li>
+				<li data-ng-bind="::pullInterNationalization('manageAccountContent.noOrgList6')"></li>
+				<li data-ng-bind="::pullInterNationalization('manageAccountContent.noOrgList7')"></li>
+			</ul>
+	    </div>
+	</div>
+	<!-- IF NO ORG Plans Ends -->
+
+    <div class="col-content-wrapper mh700 max_{{ctrl.actionPlan.preview}}" data-ng-if="ctrl.companyActionPlanList.length">
+        <div class="members-content-wrapper" data-ng-if="ctrl.response">
+            <div class="members-header clearfix" data-ng-if="!ctrl.companyActionPlanList.length">
+                <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('manageAccountContent.noPlanAssociated')"></h2>
+            </div>
+            <section data-ng-if="ctrl.companyActionPlanList.length">
+                <div class="members-header clearfix" data-ng-if="!ctrl.actionPlan.preview">
+                    <h2 class="sp-header-title-color leftSpace">{{ctrl.companyActionPlanDetail.name}}
+                    <span class="total-row-count" data-ng-bind="'('+(ctrl.companyActionPlanDetail.userList.length||0)+')'"></span>
+                </h2>
+                    <div class="status-label">
+                    	<a href="javascript:void(0)" data-ng-if="!ctrl.companyActionPlanDetail.active && ctrl.companyActionPlanDetail.editAllowed" class="border-link" data-ng-click="ctrl.publishAccountMortal(ctrl.companyActionPlanDetail)">
+                        	<span class="mock-link" data-ng-bind="::pullInterNationalization('manageAccountContent.'+ctrl.companyActionPlanDetail.active)"></span>
+                        </a>
+                        <a href="javascript:void(0)" data-ng-if="ctrl.companyActionPlanDetail.active" class="border-link">
+                        	<span class="icon-style-position2 icon-icon_dev_strategy_check sp-icon-color"></span>
+                        	<span class="mock-noAct weight-500 font-12" data-ng-bind="::pullInterNationalization('manageAccountContent.'+ctrl.companyActionPlanDetail.active)"></span>
+                        </a>
+                        <a href="javascript:void(0)" data-ng-if="ctrl.companyActionPlanDetail.active && ctrl.companyActionPlanDetail.onHold" class="border-link left10">
+                        	<span class="icon-style-position-pause mock-noAct icon-icon_pause-outline"></span>
+                        	<span class="mock-noAct weight-500 font-12" data-ng-bind="::pullInterNationalization('manageAccountContent.paused')"></span>
+                        </a>
+                       
+                    </div>
+                    <div class="actions-button">
+                        <p class="group-add-btn" data-ng-if="!ctrl.actionPlan.preview">
+                            <a href="javascript:void(0)" class="icon-icon_preview sp-icon-color" title="{{::pullInterNationalization('manageAccountContent.preview')}}" data-ng-click="ctrl.previewDetail()"></a>
+                        </p>
+                        <p class="group-add-btn alignWithPreview" data-ng-if="ctrl.actionPlanEnable && ctrl.companyActionPlanDetail.editAllowed && !ctrl.companyActionPlanDetail.readOnly">
+                            <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('manageAccountContent.editPlan')" data-ng-click="ctrl.redirectTo('edit')"></a>
+                        </p>
+                    </div>
+                </div>
+                <section class="slide-right" data-ng-if="ctrl.actionPlan.preview">
+                    <ng-include src="'/sp/resources/html/admin/manage-account/account-admin-organization-preview.html'"></ng-include>
+                </section>
+                <section data-ng-if="!ctrl.actionPlan.preview">
+                    <div class="members-filters posRel">
+                        <div class="search-filter">
+                            <p>
+                                <input type="text" maxlength="28" data-ng-model="ctrl.pageSetting.textSearching" data-ng-change="ctrl.returnUserList();ctrl.negative=false;" placeholder="{{pullInterNationalization('admin.member.search')}}" data-ng-model-options="{ debounce: { 'default': 100, 'blur': 0 } }" data-ng-minlength="3">
+                                <button data-ng-class="{'icon-icon_remove':ctrl.pageSetting.textSearching.length, 'icon-icon_search': !ctrl.pageSetting.textSearching.length}" class="sp-icon-color" data-ng-click="ctrl.pageSetting.textSearching='';ctrl.returnUserList()"></button>
+                            </p>
+                        </div>
+                        <p class="group-add-btn alignwithsearch">
+                            <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('manageAccountContent.AddMemberToGroup')" data-ng-class="{'disabled':!ctrl.companyActionPlanDetail.active||ctrl.companyActionPlanDetail.readOnly||ctrl.companyActionPlanDetail.onHold}" data-ng-click="ctrl.companyActionPlanDetail.active&&!ctrl.companyActionPlanDetail.readOnly&&!ctrl.companyActionPlanDetail.onHold?ctrl.addMembersModal():''"></a>
+                        </p>
+                    </div>
+                    
+                    <div class="call-to-action clearfix">
+                    	<div class="action-filter-container">
+                        <div class="actions-filter">
+                            <p class="pCheckBox top7">
+                                <input data-ng-disabled="!ctrl.companyActionPlanDetail.active || !ctrl.companyActionPlanDetail.userList.length || ctrl.companyActionPlanDetail.readOnly || ctrl.companyActionPlanDetail.onHold" type="checkbox" name="selectUser" id="selectAll" class="iCheckBox" data-ng-true-value="true" data-ng-false-value="false" data-ng-model="ctrl.negative">
+                                <label for="selectAll" class="lCheckBox" data-ng-click="ctrl.companyActionPlanDetail.active&&!ctrl.companyActionPlanDetail.readOnly&&!ctrl.companyActionPlanDetail.onHold?ctrl.checkAll():''">
+                                    <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                                </label>
+                            </p>
+                            <p class="actions-dropdown-filter">
+                                <a href="javascript:void(0)" data-ng-class="{'default-color':!ctrl.pageSetting.user.length}" sp-condition="ctrl.pageSetting.user.length" sp-click-outside="ctrl.allUsersMenu">{{pullInterNationalization('manageAccountContent.actions')}}
+	                            <span class="actions-icon icon-icon_dropdown-arrow sp-icon-color" data-ng-class="ctrl.pageSetting.user.length?'sp-icon-color':'default-color'"></span>
+	                        </a>
+                            </p>
+                        </div>
+                        <div class="actions-callout-wrappper pos3" data-ng-if="ctrl.allUsersMenu">
+                            <ul class="action-links">
+		                        <li>
+		                            <a href="javascript:void(0)" data-ng-click="notificationEmailPoP(ctrl.pageSetting.user,'GenericMessage', 'learningProgram', {'lpName':ctrl.companyActionPlanDetail.name});">
+		                                <span class="action-icon icon-icon_send-message sp-icon-color"></span>
+		                                <span class="action-text" data-ng-bind="::pullInterNationalization('manageAccountContent.sendMsg')"></span>
+		                            </a>
+		                        </li>
+								<li class="sep"><hr/></li>                                                    
+                                <li>
+                                    <a href="javascript:void(0)" data-ng-click="ctrl.removeAll()">
+                                        <span class="action-icon icon-icon_accounts_remove sp-icon-color"></span>
+                                        <span class="action-text" data-ng-bind="::pullInterNationalization('manageAccountContent.deleteMembers')"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="actions-filter border_{{ctrl.companyActionPlanDetail.active && ctrl.companyActionPlanDetail.type!=='SurePeople'}}">
+                        	<p class="actions-dropdown-filter margin10" data-ng-if="ctrl.companyActionPlanDetail.active && ctrl.companyActionPlanDetail.type!=='SurePeople'">
+                                <a href="javascript:void(0)" class="weight-300" data-ng-class="{'default-color':ctrl.companyActionPlanDetail.readOnly}" data-ng-click="!ctrl.companyActionPlanDetail.readOnly && ctrl.activateDeactivate(ctrl.companyActionPlanDetail,ctrl.getUserInfo.company.id)">
+                                	<span class="icon-style-position-pause_2 sp-icon-color" data-ng-class="ctrl.companyActionPlanDetail.onHold?'icon-icon_play-outline':'icon-icon_pause-outline'"></span>
+                                	<span data-ng-bind="ctrl.companyActionPlanDetail.onHold?pullInterNationalization('manageAccountContent.resume'):pullInterNationalization('manageAccountContent.pause')"></span>
+                                </a>
+                            </p>
+                        </div>
+                        </div>
+                        <div class="call-to-action-drop">
+                            <div class="filter-dropdown width_2 clearfix">
+                                <span class="naf-theme-icon_style1 icon-icon_dropdown-arrow sp-icon-color"></span>
+                                <select data-ng-disabled="!ctrl.companyActionPlanDetail.userList.length" data-ng-model="ctrl.pageSetting.sort" data-ng-change="ctrl.orderBy(ctrl.pageSetting.sort)">
+                                    <option value="nameplus" data-ng-bind="::pullInterNationalization('manageAccountContent.name.asc')">Name - A - Z</option>
+                                    <option value="nameminus" data-ng-bind="::pullInterNationalization('manageAccountContent.name.desc')"></option>
+                                    <option value="titleplus" data-ng-bind="::pullInterNationalization('manageAccountContent.title.asc')"></option>
+                                    <option value="titleminus" data-ng-bind="::pullInterNationalization('manageAccountContent.title.desc')"></option>
+                                    <option value="completedplus" data-ng-bind="::pullInterNationalization('manageAccountContent.completed.asc')"></option>
+                                    <option value="completedminus" data-ng-bind="::pullInterNationalization('manageAccountContent.completed.desc')"></option>
+                                </select>
+                            </div>
+                            <div class="filter-dropdown clearfix">
+                                <span class="naf-theme-icon_style1 icon-icon_dropdown-arrow sp-icon-color"></span>
+                                <select data-ng-disabled="!ctrl.companyActionPlanDetail.userList.length" data-ng-model="ctrl.pageSetting.filterGroup" data-ng-change="ctrl.returnUserList()" data-ng-options="list as list for list in ctrl.dropGroups">
+                                    <option value="" data-ng-bind="::pullInterNationalization('manageAccountContent.selectAllFilter')"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <section class="pause-error" data-ng-if="ctrl.companyActionPlanDetail.active && ctrl.companyActionPlanDetail.onHold">
+                    	<a href="javascript:void(0)" class="border-link">
+                        	<span class="mock-noAct weight-500" data-ng-bind="::pullInterNationalization('manageAccountContent.pausedMessage')"></span>
+                        </a>
+                    </section>
+                    <section class="manage-account-organization" data-ng-show="!ctrl.companyActionPlanDetail.onHold && ctrl.userList.length">
+                        <div class="custom-row row-header">
+                            <div class="col-md-5 col-sm-5 p40">
+                                <h4 class="sort-filter">
+	                            <span class="sort-text" data-ng-bind="::pullInterNationalization('manageAccountContent.name')"></span>
+	                        </h4>
+                            </div>
+                            <div class="col-md-3 col-sm-3 groups-info-col">
+                                <h4 class="sort-filter">
+	                            <span class="sort-text" data-ng-bind="::pullInterNationalization('manageAccountContent.group')"></span>
+	                        </h4>
+                            </div>
+                            <div class="col-md-4 col-sm-4 groups-info-col">
+                                <h4 class="sort-filter">
+	                            <span class="sort-text" data-ng-bind="::pullInterNationalization('manageAccountContent.status')"></span>
+	                        </h4>
+                            </div>
+                        </div>
+                        <div infinite-scroll="ctrl.infinteScroll(ctrl.pageSetting.pageSize+ctrl.pageSetting.pageSize)" infinite-scroll-immediate-check="false">
+                            <div class="complete-profile" ng-repeat="memberList in recordField = (ctrl.userList.slice(0,ctrl.pageSetting.pageSize)) track by memberList.id">
+                                <div class="table-row clearfix">
+                                    <div class="col-md-5 col-sm-5 details-col-reeponsive">
+                                        <p class="pCheckBox">
+                                            <input type="checkbox" name="selectUser" id="selectUser_{{$index}}" class="iCheckBox" data-ng-change="ctrl.checkCount(checked)" checklist-model="ctrl.pageSetting.user" checklist-value="{'userId':memberList.id, 'email':memberList.email, 'name' : memberList.name ,'title': memberList.title}" data-ng-disabled="!ctrl.companyActionPlanDetail.active || ctrl.companyActionPlanDetail.readOnly || ctrl.companyActionPlanDetail.onHold">
+                                            <label for="selectUser_{{$index}}" class="lCheckBox">
+                                                <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                                            </label>
+                                        </p>
+                                        <div class="member-info">
+                                            <div class="member-pic">
+                                                <img data-ng-src="{{::memberList.smallProfileImage}}" alt="{{::memberList.userInitials}}" data-ng-if="memberList.smallProfileImage">
+                                                <div class="imgReplacement" data-ng-if="!memberList.smallProfileImage" data-ng-bind="::memberList.userInitials"></div>
+                                            </div>
+                                            <div class="member-details" data-ng-class="memberList.name?'addSpace':''">
+                                                <a href="javascript:void(0)" data-ng-click="ctrl.viewMemberDetails(memberList.email)" class="member-name border-link" data-ng-if="memberList.name">
+                                                    <span class="mock-link" data-ng-bind-html="::memberList.name"></span>
+                                                    <span class="role-labels" data-ng-if="ctrl.displayRole(memberList)" data-ng-bind-html="ctrl.displayRole(memberList)"></span>
+                                                </a>
+                                                <span class="member-title" data-ng-bind="::memberList.title" data-ng-if="memberList.title"></span>
+                                                <span class="role-labels-responsive" data-ng-if="ctrl.displayRole(memberList)" data-ng-bind-html="ctrl.displayRole(memberList)"></span>
+                                                <a href="mailto:{{memberList.email}}" class="member-email border-link wrap-email">
+                                                    <span class="mock-link sp-inline-block-f" data-ng-bind-html="::memberList.email"></span>
+                                                </a>
+                                                <div class="group-info groups-responsive">
+                                                    <div data-ng-repeat="group in memberList.groupAssociationList track by $index">
+                                                        <div class="groupName" data-ng-bind="::group.name"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="group-info groups-responsive">
+                                                    <div class="completedAction" data-ng-if="ctrl.companyActionPlanDetail.active">
+                                                        <span class="calc" data-ng-bind="memberList.completedActionCount+'/'+ctrl.companyActionPlanDetail.actionCount"></span>
+                                                        <span class="completed" data-ng-bind="::pullInterNationalization('manageAccountContent.completed')"></span>
+                                                        <span class="perc" data-ng-bind="'('+ ctrl.percentCalc(ctrl.companyActionPlanDetail.actionCount,memberList.completedActionCount) +')'"></span>
+                                                    </div>
+                                                    <div class="completedAction" data-ng-if="!ctrl.companyActionPlanDetail.active">
+                                                        <span class="calc" data-ng-bind="::pullInterNationalization('spectrum.notavailable')"></span>
+                                                    </div>
+                                                    <a href="javascript:void(0)" class="lp-send-msg icon-icon_send-message sp-icon-color" data-ng-click="notificationEmailPoP([memberList],'GenericMessage', 'learningProgram', {'lpName':ctrl.companyActionPlanDetail.name});"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 groups-info-col">
+                                        <div class="group-info">
+                                            <div data-ng-repeat="group in memberList.groupAssociationList track by $index">
+                                                <div class="groupName" data-ng-bind="::group.name"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 groups-info-col">
+                                        <div class="completedAction" data-ng-if="ctrl.companyActionPlanDetail.active">
+                                            <span class="calc" data-ng-bind="memberList.completedActionCount+'/'+ctrl.companyActionPlanDetail.actionCount"></span>
+                                            <span class="completed" data-ng-bind="::pullInterNationalization('manageAccountContent.completed')"></span>
+                                            <span class="perc" data-ng-bind="'('+ ctrl.percentCalc(ctrl.companyActionPlanDetail.actionCount,memberList.completedActionCount) +')'"></span>
+                                        </div>
+                                        <div class="completedAction" data-ng-if="!ctrl.companyActionPlanDetail.active">
+                                            <span class="calc" data-ng-bind="::pullInterNationalization('spectrum.notavailable')"></span>
+                                        </div>
+                                        <a href="javascript:void(0)" class="lp-send-msg icon-icon_send-message sp-icon-color" data-ng-click="notificationEmailPoP([memberList],'GenericMessage', 'learningProgram', {'lpName':ctrl.companyActionPlanDetail.name});"></a>
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 closeIcon icon-icon_remove sp-custom-color" data-ng-class="{'light-grey':!ctrl.companyActionPlanDetail.active || ctrl.companyActionPlanDetail.readOnly || ctrl.companyActionPlanDetail.onHold}" data-ng-click="ctrl.companyActionPlanDetail.active&&!ctrl.companyActionPlanDetail.readOnly&&!ctrl.companyActionPlanDetail.onHold?ctrl.removeActionPlan(ctrl.actionPlan.id,memberList):''"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="custom-row-5" data-ng-if="!recordField.length">
+                        <div class="custom-new-cols s100" data-ng-if="ctrl.companyActionPlanDetail.userList.length && ctrl.contentLoaded">
+                            <p class="no-data-msgs" data-ng-bind="::pullInterNationalization('admin.member.nomatch')"></p>
+                        </div>
+                        <div class="custom-new-cols" data-ng-if="!ctrl.companyActionPlanDetail.userList.length && ctrl.contentLoaded">
+                            <p class="no-data-msgs" data-ng-bind="::pullInterNationalization('manageAccountContent.notassigned')"></p>
+                        </div>
+                        <div class="custom-new-cols" data-ng-if="!ctrl.contentLoaded">
+                            <p class="no-data-msgs" data-ng-bind="::pullInterNationalization('admin.member.informationLoading')"></p>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+</div>

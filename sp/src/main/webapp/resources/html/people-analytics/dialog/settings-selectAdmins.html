@@ -1,0 +1,61 @@
+<div class="container" id="declineGrowthScreen" data-ng-style="winWidth<768 && {'height':winHeight}">
+    <div class="row" data-ng-class="winWidth<768?'row-full-w':''">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8" data-ng-class="winWidth<768?'col-full-w':''">
+            <div>
+                <section class="wrapper">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar" data-ng-bind="::pullInterNationalization('manageAccountContent.addHiringAdmin')"></div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                            </div>
+                        </div>
+                        <div class="contentArea clearfix">
+                            <div class="messageBlock">
+                            	<div class="angucomplete-wrapper">
+                            		<p class="custom-search-wrapper">
+                            			<input type="text" data-ng-model="memberListSearch" class="custom-search" placeholder="{{::pullInterNationalization('manageAccountContent.searchGroupHead')}}"/>
+                            			<button data-ng-class="{'icon-icon_remove':memberListSearch.length, 'icon-icon_search': !memberListSearch.length}" class="sp-icon-color noLabel" data-ng-click="memberListSearch.length?memberListSearch='':''"></button>
+                            		</p>
+                            	</div>
+                            </div>
+                            <span class="validate-error" style="margin: 10px 30px" data-ng-show="adminSubscriptions <= 0" data-ng-bind="adminSubscriptions+' '+pullInterNationalization('manageHiringContent.err3a')"></span>
+                            <div class="messageBlock" style="padding-top:5px">
+                                <div class="selected-group-List-wrapper moreH">
+                                    <div class="group-row" data-ng-repeat="member in recordField = (selectMemberList | filter:memberListSearch)">
+                                    	<div class="group-col w80">
+			                                <div class="member-details-pic-wrapper">
+			                                    <div class="mem-pic-thumb regPic">
+			                                        <img data-ng-src="{{member.smallProfileImage}}" alt="{{member.userInitials}}" data-ng-if="member.smallProfileImage">
+			                                        <div class="imgReplacement spcTop" data-ng-if="!member.smallProfileImage" data-ng-bind="member.userInitials"></div>
+			                                    </div>
+			                                    <div class="mem-details-info ml">
+			                                        <p class="memNameOne" data-ng-if="member.firstName" >
+			                                        	<span class="sp-link-color" data-ng-bind="member.firstName+' '+member.lastName+', '"></span> 
+			                                        	<span data-ng-bind="member.title"></span>
+			                                        </p>
+			                                        <p class="memEmail lh16" data-ng-bind="member.email"></p>
+			                                    </div>
+			                                </div>                                    	
+                                    	</div>
+                                    	<div class="group-col-custom">
+                                    		<p>
+                                    			<a href="javascript:void(0)" data-ng-if="selectedAdminsList.indexOf(member.email) === -1" class="btn-square-12px sp-background-color" data-ng-class="(adminSubscriptions <= 0)?'btn-darker-grey':''" data-ng-click="(adminSubscriptions > 0)?addSelectedAdmin(member):''" data-ng-bind="::pullInterNationalization('manageAccountContent.select')"></a>
+                                    			<span class="org-selected" data-ng-if="selectedAdminsList.indexOf(member.email) !== -1" style="font-size:11px;font-weight:700;" data-ng-bind="::pullInterNationalization('manageAccountContent.recordSelected')"></span>
+                                    		</p>                                    		
+                                    	</div>
+                                    </div>
+                                    <p class="generic-no-matches" data-ng-if="!recordField.length && !memberListSearch.length" data-ng-bind="pullInterNationalization('peopleAnalytics.adminNotAvailable')"></p>
+                                    <p class="generic-no-matches" data-ng-if="!recordField.length && memberListSearch.length" data-ng-bind="pullInterNationalization('admin.member.nomatch')"></p>
+                                </div>                            
+                            </div>
+                            <div class="btns-wrapper-popup">
+                            	<input type="button" value="{{pullInterNationalization('manageAccountContent.done')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="closeThisDialog()">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

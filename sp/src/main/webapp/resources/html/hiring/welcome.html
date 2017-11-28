@@ -1,0 +1,37 @@
+<link type="text/css" rel="stylesheet" href="/resources/css/css-min/assessment-new.min.css" />
+<!--div class="x-container hide" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'">
+        <!-.- Extended Container -.->
+        <div class="container" >
+            <!-.- Bootstrap Container -.->
+            <div class="row">
+                <!-.- Bootstrap Row -.->
+                <div class="col-md-12 visitorContainer">
+                    <div class="return-visitor-wrapper remove-margin-space">
+                        <p class="welcome-msg"  data-ng-bind-html="::pullInterNationalization('manageHiringContent.welcome')"></p>
+                        <h2 class="sp-header-title-color" data-ng-bind-html="::pullInterNationalization('manageHiringContent.ready')"></h2>
+                        <p data-ng-bind-html="::pullInterNationalization('manageHiringContent.scientifically')"></p>
+                        <div class="sp-btn-wrapper sp-red btn-small">
+                            <div class="sp-btn">
+                                <p>
+                                    <a href="/sp/assessment" data-ng-bind-html="::pullInterNationalization('admin.member.completePrism')">
+                                </a>
+                                </p>
+                            </div>
+                        </div>
+	                    <p class="tnc"><span data-ng-bind-html="::pullInterNationalization('manageHiringContent.takenprism')"></span> <a href="/sp/profileCopy/verifyEmail" class="border-link"><span class="mock-link" data-ng-bind-html="::pullInterNationalization('manageHiringContent.linkportrait')"></span></a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div-->
+<div class="assessment-start-page-wrapper hide" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'">
+	<div class="assessment-start-cols">
+		<div class="start-left adj" fix-assessment-border>
+			<h2 data-ng-bind="pullInterNationalization('manageHiringContent.welcome')"></h2>
+			<p class="desc" data-ng-bind-html="pullInterNationalization('manageHiringContent.ready')"></p>
+			<p class="desc" data-ng-bind-html="pullInterNationalization('manageHiringContent.scientifically')"></p>
+			<a href="/sp/assessment" class="start-btn adj" data-ng-bind="pullInterNationalization('admin.member.completePrism')"></a>
+			<p class="link-acc"><span data-ng-bind-html="::pullInterNationalization('manageHiringContent.takenprism')"></span> <a href="/sp/profileCopy/verifyEmail" class="border-link"><span class="mock-link" data-ng-bind-html="::pullInterNationalization('manageHiringContent.linkportrait')"></span></a></p>
+		</div>
+	</div>
+</div>

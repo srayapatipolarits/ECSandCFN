@@ -1,0 +1,31 @@
+<article class="accordian-filter">
+	<ul>
+		<li data-ng-if="ctrl.competencyList.length">
+			<input type="checkbox" class="accordian-checkbox" data-ng-click="ctrl.closeRest($event)"/>
+			<span class='expand-collapse'></span>
+			<h3 data-ng-bind="::pullInterNationalization('spectrum.profile.competency')"></h3>
+			<span class="clearButon sp-spectrum-color lang-special" data-ng-if="ctrl.pageSetting.competencySelected.length" data-ng-click="ctrl.clear('.competencyCheckBox','competencySelected')" data-ng-bind="::pullInterNationalization('spectrum.clear')"></span>
+			<div class='header-related-content' id="competency">
+				<div class="header-related-drop">
+			        <div class="filter-dropdown clearfix">
+	                	<span class="naf-theme-icon_style1 icon-icon_dropdown-arrow sp-icon-color"></span>
+	                	<!-- data-ng-change="ctrl.changeCompetency()" -->
+	        	 		 <select data-ng-model="ctrl.pageSetting.competencyProfile" data-ng-change="ctrl.changeCompetency()" data-ng-options="item as item.name for item in ctrl.competencyList track by item.id">
+	                     </select>
+	                </div>
+                </div>
+			
+             	<div class="tick-selection clearfix" repeat-done="ctrl.calculateHeight('competency')" data-ng-repeat="spectrumField in recordField = ctrl.competencyEvaluationList">
+            		<input type="checkbox" data-ng-checked="ctrl.pageSetting.competencySelected.indexOf(spectrumField)!==-1" class="filterCheckBox competencyCheckBox" id="group_{{$index}}" data-ng-click="ctrl.includeCheck(spectrumField,ctrl.pageSetting.competencySelected)">
+	                <label for="group_{{$index}}" class="filterCheckBox-label pull-left">
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+	                <label for="group_{{$index}}">
+	                	<span class="floLeft font_14_300 sp-spectrum-color right-adjust" data-ng-bind="spectrumField"></span>
+	                </label>
+                </div>
+            </div>
+		</li>
+  </ul>
+	
+</article>

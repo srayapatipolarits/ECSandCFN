@@ -1,0 +1,159 @@
+<section class="keyMatch">
+    <article class="match-holder">
+        <h3 class="match-holder-heading weight-500" data-ng-bind="::pullInterNationalization('spectrum.trait.Motivation')"></h3>
+        <article class="range-data-section">
+        	<div class='data-content-two-way'>
+		    	<h4 class="header-motivation" data-ng-bind="::pullInterNationalization('spectrum.trait.Motivation.why')"></h4>
+                <!-- RecognitionForEffort And AttainmentOfGoals -->
+                <div class="tick-selection clearfix">
+                    <input type="checkbox" class="filterCheckBox" id="AttainmentOfGoals" data-ng-model="portraitMatch.categoryDataMap.Motivation.AttainmentOfGoals.enabled" data-ng-true-value="true" data-ng-false-value="false" data-ng-change="includeCheck('AttainmentOfGoals',filterSelected.Motivation)">
+                    <label for="AttainmentOfGoals" class="filterCheckBox-label">
+                        <span class="checkedTick pull-left bpPopFix icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                        <span class="font_14_300 pull-left" data-ng-bind="::pullInterNationalization('spectrum.trait.type.AttainmentOfGoals')+' '+pullInterNationalization('idealPortrait.portrait.processing.vs')+' '+pullInterNationalization('spectrum.trait.type.RecognitionForEffort')"></span>
+                    </label>
+                    <range-drag data-steps="21" data-label1="pullInterNationalization('spectrum.trait.type.AttainmentOfGoals')" data-label2="pullInterNationalization('spectrum.trait.type.RecognitionForEffort')" drag-range="portraitMatch.categoryDataMap.Motivation.AttainmentOfGoals.matchCriterias[0].matchPercent" checkbox-fn="includeCheck('AttainmentOfGoals',filterSelected.Motivation)" range-data1="portraitMatch.categoryDataMap.Motivation.AttainmentOfGoals.matchCriterias[0].matchPercent" editable="portraitMatch.categoryDataMap.Motivation.AttainmentOfGoals.enabled"></range-drag>
+                    <!-- <div class="labels clearfix">
+                        <span class="pull-left font_14_300 sp-spectrum-label-color" data-ng-bind="portraitMatch.categoryDataMap.Motivation.AttainmentOfGoals.matchCriterias[0].matchPercent+'% '+pullInterNationalization('spectrum.trait.type.AttainmentOfGoals')"></span>
+                        <span class="pull-right font_14_300 sp-spectrum-label-color" data-ng-bind="(100 - portraitMatch.categoryDataMap.Motivation.AttainmentOfGoals.matchCriterias[0].matchPercent)+'% '+pullInterNationalization('spectrum.trait.type.RecognitionForEffort')"></span>
+                    </div>-->
+                </div>
+            </div>
+            <div class='data-content-two-way'>
+                <!-- Power And Compliance -->
+                <div class="tick-selection clearfix">
+                    <input type="checkbox" class="filterCheckBox" id="Power" data-ng-model="portraitMatch.categoryDataMap.Motivation.Power.enabled" data-ng-true-value="true" data-ng-false-value="false" data-ng-change="includeCheck('Power',filterSelected.Motivation)">
+                    <label for="Power" class="filterCheckBox-label">
+            		    <span class="checkedTick pull-left bpPopFix icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                        <span class="font_14_300 pull-left" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Power')+' '+pullInterNationalization('idealPortrait.portrait.processing.vs')+' '+pullInterNationalization('spectrum.trait.type.Compliance')"></span>
+                    </label>
+                    <range-drag data-steps="21" data-label1="pullInterNationalization('spectrum.trait.type.Power')" data-label2="pullInterNationalization('spectrum.trait.type.Compliance')" drag-range="portraitMatch.categoryDataMap.Motivation.Power.matchCriterias[0].matchPercent" checkbox-fn="includeCheck('Power',filterSelected.Motivation)" range-data1="portraitMatch.categoryDataMap.Motivation.Power.matchCriterias[0].matchPercent" editable="portraitMatch.categoryDataMap.Motivation.Power.enabled"></range-drag>
+                    <!-- <div class="labels clearfix">
+                        <span class="pull-left font_14_300 sp-spectrum-label-color" data-ng-bind="portraitMatch.categoryDataMap.Motivation.Power.matchCriterias[0].matchPercent+'% '+pullInterNationalization('spectrum.trait.type.Power')"></span>
+                        <span class="pull-right font_14_300 sp-spectrum-label-color" data-ng-bind="(100 - portraitMatch.categoryDataMap.Motivation.Power.matchCriterias[0].matchPercent)+'% '+pullInterNationalization('spectrum.trait.type.Compliance')"></span>
+                    </div>-->
+                </div>
+            </div>
+            <div class='data-content-two-way'>
+                 <!-- Activity and Affiliation -->
+                <div class="tick-selection clearfix">
+                    <input type="checkbox" class="filterCheckBox" id="Activity" data-ng-model="portraitMatch.categoryDataMap.Motivation.Activity.enabled" data-ng-true-value="true" data-ng-false-value="false" data-ng-change="includeCheck('Activity',filterSelected.Motivation)">
+                    <label for="Activity" class="filterCheckBox-label">
+                        <span class="checkedTick pull-left bpPopFix icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                        <span class="font_14_300 pull-left" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Activity')+' '+pullInterNationalization('idealPortrait.portrait.processing.vs')+' '+pullInterNationalization('spectrum.trait.type.Affiliation')"></span>
+                    </label>
+                    <range-drag data-steps="21" data-label1="pullInterNationalization('spectrum.trait.type.Activity')" data-label2="pullInterNationalization('spectrum.trait.type.Affiliation')" drag-range="portraitMatch.categoryDataMap.Motivation.Activity.matchCriterias[0].matchPercent" checkbox-fn="includeCheck('Activity',filterSelected.Motivation)" range-data1="portraitMatch.categoryDataMap.Motivation.Activity.matchCriterias[0].matchPercent" editable="portraitMatch.categoryDataMap.Motivation.Activity.enabled"></range-drag>
+                    <!-- <div class="labels clearfix">
+                        <span class="pull-left font_14_300 sp-spectrum-label-color" data-ng-bind="portraitMatch.categoryDataMap.Motivation.Activity.matchCriterias[0].matchPercent+'% '+pullInterNationalization('spectrum.trait.type.Activity')"></span>
+                        <span class="pull-right font_14_300 sp-spectrum-label-color" data-ng-bind="(100 - portraitMatch.categoryDataMap.Motivation.Activity.matchCriterias[0].matchPercent)+'% '+pullInterNationalization('spectrum.trait.type.Affiliation')"></span>
+                    </div>-->
+                </div>
+            </div>
+            
+            <div class='data-content-two-way'>
+                <h4 class="header-motivation" data-ng-bind="::pullInterNationalization('spectrum.trait.Motivation.how')"></h4>
+                <!-- SelfAffirmed And AffirmedByOthers -->
+                <div class="tick-selection clearfix">
+                    <input type="checkbox" class="filterCheckBox" id="SelfAffirmed" data-ng-model="portraitMatch.categoryDataMap.Motivation.SelfAffirmed.enabled" data-ng-true-value="true" data-ng-false-value="false" data-ng-change="includeCheck('SelfAffirmed',filterSelected.Motivation)">
+                    <label for="SelfAffirmed" class="filterCheckBox-label">
+                        <span class="checkedTick pull-left bpPopFix icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                        <span class="font_14_300 pull-left" data-ng-bind="::pullInterNationalization('spectrum.trait.type.SelfAffirmed')+' '+pullInterNationalization('idealPortrait.portrait.processing.vs')+' '+pullInterNationalization('spectrum.trait.type.AffirmedByOthers')"></span>
+                    </label>
+                    <range-drag data-steps="21" data-label1="pullInterNationalization('spectrum.trait.type.SelfAffirmed')" data-label2="pullInterNationalization('spectrum.trait.type.AffirmedByOthers')" drag-range="portraitMatch.categoryDataMap.Motivation.SelfAffirmed.matchCriterias[0].matchPercent" checkbox-fn="includeCheck('SelfAffirmed',filterSelected.Motivation)" range-data1="portraitMatch.categoryDataMap.Motivation.SelfAffirmed.matchCriterias[0].matchPercent" editable="portraitMatch.categoryDataMap.Motivation.SelfAffirmed.enabled"></range-drag>
+                    <!-- <div class="labels clearfix">
+                        <span class="pull-left font_14_300 sp-spectrum-label-color" data-ng-bind="portraitMatch.categoryDataMap.Motivation.SelfAffirmed.matchCriterias[0].matchPercent+'% '+pullInterNationalization('spectrum.trait.type.SelfAffirmed')"></span>
+                        <span class="pull-right font_14_300 sp-spectrum-label-color" data-ng-bind="(100 - portraitMatch.categoryDataMap.Motivation.SelfAffirmed.matchCriterias[0].matchPercent)+'% '+pullInterNationalization('spectrum.trait.type.AffirmedByOthers')"></span>
+                    </div>-->
+                </div>
+            </div>
+            <div class='data-content-two-way'>
+                <!-- ExchangeOfIdeas And ReceiveDirection -->
+                <div class="tick-selection clearfix">
+                    <input type="checkbox" class="filterCheckBox" id="ExchangeOfIdeas" data-ng-model="portraitMatch.categoryDataMap.Motivation.ExchangeOfIdeas.enabled" data-ng-true-value="true" data-ng-false-value="false" data-ng-change="includeCheck('ExchangeOfIdeas',filterSelected.Motivation)">
+                    <label for="ExchangeOfIdeas" class="filterCheckBox-label">
+                        <span class="checkedTick pull-left bpPopFix icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                        <span class="font_14_300 pull-left" data-ng-bind="::pullInterNationalization('spectrum.trait.type.ExchangeOfIdeas')+' '+pullInterNationalization('idealPortrait.portrait.processing.vs')+' '+pullInterNationalization('spectrum.trait.type.ReceiveDirection')"></span>
+                    </label>
+                    <range-drag data-steps="21" data-label1="pullInterNationalization('spectrum.trait.type.ExchangeOfIdeas')" data-label2="pullInterNationalization('spectrum.trait.type.ReceiveDirection')" drag-range="portraitMatch.categoryDataMap.Motivation.ExchangeOfIdeas.matchCriterias[0].matchPercent" checkbox-fn="includeCheck('ExchangeOfIdeas',filterSelected.Motivation)" range-data1="portraitMatch.categoryDataMap.Motivation.ExchangeOfIdeas.matchCriterias[0].matchPercent" editable="portraitMatch.categoryDataMap.Motivation.ExchangeOfIdeas.enabled"></range-drag>
+                    <!-- <div class="labels clearfix">
+                        <span class="pull-left font_14_300 sp-spectrum-label-color" data-ng-bind="portraitMatch.categoryDataMap.Motivation.ExchangeOfIdeas.matchCriterias[0].matchPercent+'% '+pullInterNationalization('spectrum.trait.type.ExchangeOfIdeas')"></span>
+                        <span class="pull-right font_14_300 sp-spectrum-label-color" data-ng-bind="(100 - portraitMatch.categoryDataMap.Motivation.ExchangeOfIdeas.matchCriterias[0].matchPercent)+'% '+pullInterNationalization('spectrum.trait.type.ReceiveDirection')"></span>
+                    </div>-->
+                </div>
+            </div>
+            <div class='data-content-two-way'>
+                <!-- Freedom and Consistency -->
+                <div class="tick-selection clearfix">
+                    <input type="checkbox" class="filterCheckBox" id="Freedom" data-ng-model="portraitMatch.categoryDataMap.Motivation.Freedom.enabled" data-ng-true-value="true" data-ng-false-value="false" data-ng-change="includeCheck('Freedom',filterSelected.Motivation)">
+                    <label for="Freedom" class="filterCheckBox-label">
+                        <span class="checkedTick pull-left bpPopFix icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                        <span class="font_14_300 pull-left" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Freedom')+' '+pullInterNationalization('idealPortrait.portrait.processing.vs')+' '+pullInterNationalization('spectrum.trait.type.Consistency')"></span>
+                    </label>
+                    <range-drag data-steps="21" data-label1="pullInterNationalization('spectrum.trait.type.Freedom')" data-label2="pullInterNationalization('spectrum.trait.type.Consistency')" drag-range="portraitMatch.categoryDataMap.Motivation.Freedom.matchCriterias[0].matchPercent" checkbox-fn="includeCheck('Freedom',filterSelected.Motivation)" range-data1="portraitMatch.categoryDataMap.Motivation.Freedom.matchCriterias[0].matchPercent" editable="portraitMatch.categoryDataMap.Motivation.Freedom.enabled"></range-drag>
+                    <!-- <div class="labels clearfix">
+                        <span class="pull-left font_14_300 sp-spectrum-label-color" data-ng-bind="portraitMatch.categoryDataMap.Motivation.Freedom.matchCriterias[0].matchPercent+'% '+pullInterNationalization('spectrum.trait.type.Freedom')"></span>
+                        <span class="pull-right font_14_300 sp-spectrum-label-color" data-ng-bind="(100 - portraitMatch.categoryDataMap.Motivation.Freedom.matchCriterias[0].matchPercent)+'% '+pullInterNationalization('spectrum.trait.type.Consistency')"></span>
+                    </div>-->
+                </div>
+            </div>
+            <div class='data-content-two-way'>
+                 <!-- TaskCompletion And PrefersProcess -->
+                <div class="tick-selection clearfix">
+                    <input type="checkbox" class="filterCheckBox" id="TaskCompletion" data-ng-model="portraitMatch.categoryDataMap.Motivation.TaskCompletion.enabled" data-ng-true-value="true" data-ng-false-value="false" data-ng-change="includeCheck('TaskCompletion',filterSelected.Motivation)">
+                    <label for="TaskCompletion" class="filterCheckBox-label">
+                        <span class="checkedTick pull-left bpPopFix icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                        <span class="font_14_300 pull-left" data-ng-bind="::pullInterNationalization('spectrum.trait.type.TaskCompletion')+' '+pullInterNationalization('idealPortrait.portrait.processing.vs')+' '+pullInterNationalization('spectrum.trait.type.PrefersProcess')"></span>
+                    </label>
+                    <range-drag data-steps="21" data-label1="pullInterNationalization('spectrum.trait.type.TaskCompletion')" data-label2="pullInterNationalization('spectrum.trait.type.PrefersProcess')" drag-range="portraitMatch.categoryDataMap.Motivation.TaskCompletion.matchCriterias[0].matchPercent" checkbox-fn="includeCheck('TaskCompletion',filterSelected.Motivation)" range-data1="portraitMatch.categoryDataMap.Motivation.TaskCompletion.matchCriterias[0].matchPercent" editable="portraitMatch.categoryDataMap.Motivation.TaskCompletion.enabled"></range-drag>
+                    <!-- <div class="labels clearfix">
+                        <span class="pull-left font_14_300 sp-spectrum-label-color" data-ng-bind="portraitMatch.categoryDataMap.Motivation.TaskCompletion.matchCriterias[0].matchPercent+'% '+pullInterNationalization('spectrum.trait.type.TaskCompletion')"></span>
+                        <span class="pull-right font_14_300 sp-spectrum-label-color" data-ng-bind="(100 - portraitMatch.categoryDataMap.Motivation.TaskCompletion.matchCriterias[0].matchPercent)+'% '+pullInterNationalization('spectrum.trait.type.PrefersProcess')"></span>
+                    </div>-->
+                </div>
+            </div>
+            <div class='data-content-two-way'>
+            	<h4 class="header-motivation" data-ng-bind="::pullInterNationalization('spectrum.trait.Motivation.what')"></h4>
+                <!-- Hygiene and Accomplishment -->
+                <div class="tick-selection clearfix">
+                    <input type="checkbox" class="filterCheckBox" id="Hygiene" data-ng-model="portraitMatch.categoryDataMap.Motivation.Hygiene.enabled" data-ng-true-value="true" data-ng-false-value="false" data-ng-change="includeCheck('Hygiene',filterSelected.Motivation)">
+                    <label for="Hygiene" class="filterCheckBox-label">
+                        <span class="checkedTick pull-left bpPopFix icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                        <span class="font_14_300 pull-left" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Hygiene')+' '+pullInterNationalization('idealPortrait.portrait.processing.vs')+' '+pullInterNationalization('spectrum.trait.type.Accomplishment')"></span>
+                    </label>
+                    <range-drag data-steps="21" data-label1="pullInterNationalization('spectrum.trait.type.Hygiene')" data-label2="pullInterNationalization('spectrum.trait.type.Accomplishment')" drag-range="portraitMatch.categoryDataMap.Motivation.Hygiene.matchCriterias[0].matchPercent" checkbox-fn="includeCheck('Hygiene',filterSelected.Motivation)" range-data1="portraitMatch.categoryDataMap.Motivation.Hygiene.matchCriterias[0].matchPercent" editable="portraitMatch.categoryDataMap.Motivation.Hygiene.enabled"></range-drag>
+                    <!--<div class="labels clearfix">
+                        <span class="pull-left font_14_300 sp-spectrum-label-color" data-ng-bind="portraitMatch.categoryDataMap.Motivation.Hygiene.matchCriterias[0].matchPercent+'% '+pullInterNationalization('spectrum.trait.type.Hygiene')"></span>
+                        <span class="pull-right font_14_300 sp-spectrum-label-color" data-ng-bind="(100 - portraitMatch.categoryDataMap.Motivation.Hygiene.matchCriterias[0].matchPercent)+'% '+pullInterNationalization('spectrum.trait.type.Accomplishment')"></span>
+                    </div>-->
+                </div>
+            </div>
+        </article>
+        <div class="trait-list-description">
+              <div class="trait-listing processing">
+                <p data-ng-bind="::pullInterNationalization('idealPortrait.portrait.Motivation.AttainmentOfGoals')"></p>
+            </div>
+            <div class="trait-listing processing">
+                <p data-ng-bind="::pullInterNationalization('idealPortrait.portrait.Motivation.Power')"></p>
+            </div>
+              <div class="trait-listing processing">
+                <p data-ng-bind="::pullInterNationalization('idealPortrait.portrait.Motivation.Activity')"></p>
+            </div>
+            <div class="trait-listing processing">
+                <p data-ng-bind="::pullInterNationalization('idealPortrait.portrait.Motivation.SelfAffirmed')"></p>
+            </div>
+             <div class="trait-listing processing">
+                <p data-ng-bind="::pullInterNationalization('idealPortrait.portrait.Motivation.ExchangeOfIdeas')"></p>
+            </div>
+            <div class="trait-listing processing">
+                <p data-ng-bind="::pullInterNationalization('idealPortrait.portrait.Motivation.Freedom')"></p>
+            </div>
+            <div class="trait-listing processing">
+                <p data-ng-bind="::pullInterNationalization('idealPortrait.portrait.Motivation.TaskCompletion')"></p>
+            </div>
+            <div class="trait-listing processing">
+                <p data-ng-bind="::pullInterNationalization('idealPortrait.portrait.Motivation.Hygiene')"></p>
+            </div>
+            
+            
+             </div>
+    </article>
+</section>

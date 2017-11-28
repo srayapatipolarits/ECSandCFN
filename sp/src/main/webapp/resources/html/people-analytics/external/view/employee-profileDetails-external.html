@@ -1,0 +1,65 @@
+<div class="col-content-wrapper mh700">
+    <div class="members-content-wrapper members-experience-resume" data-ng-if="profileDetail.type === 'HiringCandidate' && profileDetail.profileUrls.length">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('tools.hiring.profile.details.title4')"></h2>
+        </div>
+        <div class="all-content-wrapper mt20 linked-to">
+        	<div class="linkedInUrl" data-ng-if="profileDetail.profileUrls.length">
+        		<div class="head weight-300" data-ng-bind-html="::pullInterNationalization('candidates.addLinkUrExt')"></div>
+        			<article class="link-update-section">
+	        			<div class="form-list-c" data-ng-repeat="profileUrl in profileDetail.profileUrls">
+	        				<div class="form-styles-override floatLeft noMargin mx600">
+	        					<ol class="form-list-c">
+				                    <li class="noMarBottom">
+		                            	<a data-ng-href="{{profileUrl.url}}" class="linkedInUrlLinkExternal border-link" target="_blank">
+		                            		<span class="icon-external-link document-icon sp-icon-color"></span><span class="mock-link" data-ng-bind="profileUrl.url"></span>
+		                            	</a>
+						             </li>
+					            </ol>
+					            </div>
+	        			</div>
+        			</article>
+        	</div>
+        	<div class="linkedInUrl" data-ng-if="profileDetail.urls.length">
+        		<div class="head weight-300" data-ng-bind="::pullInterNationalization('candidates.addDocumentExt')"></div>
+        		<div class="uploaded-document" data-ng-repeat="profile in profileDetail.urls">
+        			<div class="inline-block">
+	        			<div class="document-ext">
+	        				<span class="icon-icon_{{profile.mediaType}} document-icon isSafari-{{isSafari}} sp-icon-color"></span><span class="document-name" data-ng-bind="profile.name"></span><a data-ng-href="{{profile.url}}" download target="_blank" class="icon-download adjustIcon-ext isSafari-{{isSafari}} border-link"></a>
+	        			</div>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+    </div>
+    <div class="members-content-wrapper">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="profileDetail.type !== 'HiringCandidate'?pullInterNationalization('admin.account.profile.details.title1'):pullInterNationalization('candidate.profile.details')"></h2>
+        </div>
+    </div>
+    <div class="mem-personal-details profile-display">
+        <br/>
+        <p class="mem-name">
+            <span data-ng-bind="profileDetail.firstName +' '+ profileDetail.lastName" data-ng-if="profileDetail.firstName"></span>
+            <span data-ng-if="userPermissions.isAccountAdministrator">
+                    <span class="thin mt4" data-ng-bind="::pullInterNationalization('dashboard.groups.admin')"></span>
+            </span>
+            <span data-ng-if="userPermissions.isHiringToolAllowed">
+                    <span class="thin mt4" data-ng-bind="::pullInterNationalization('dashboard.groups.hiring')"></span>
+            </span>
+        </p>
+        <p class="mem-title" data-ng-bind="profileDetail.title" data-ng-if="profileDetail.title"></p>
+        <h3 class="mem-label" data-ng-bind="::pullInterNationalization('paHiring.contact.details')"></h3>
+        <p class="mem-email">
+            <a href="mailto:{{profileDetail.email}}" class="border-link">
+                <span class="mock-link" data-ng-bind="profileDetail.email"></span>
+            </a>
+        </p>
+        <p class="mem-title" data-ng-bind="profileDetail.phoneNumber" data-ng-if="profileDetail.phoneNumber"></p>
+        <br/>
+        <h3 class="mem-label" data-ng-bind="::pullInterNationalization('paHiring.contact.address')"></h3>
+        <p class="mem-address mem-phone modeCand" data-ng-bind="profileDetail.address.addressLine1" data-ng-if="profileDetail.address.addressLine1"></p>
+        <p class="mem-phone modeCand" data-ng-bind="profileDetail.address.addressLine2" data-ng-if="profileDetail.address.addressLine2"></p>
+        <p class="mem-phone modeCand">{{profileDetail.address.city}} {{profileDetail.address.state}} {{profileDetail.address.zipCode}}</p>
+    </div>
+</div>

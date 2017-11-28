@@ -1,0 +1,1313 @@
+<html>
+   <head>
+       <link type="text/css" rel="stylesheet" href="/sp/resources/css/css-min/bootstrap.min.css">
+           <link type="text/css" rel="stylesheet" href="/sp/resources/css/css-min/spResume.css">
+               <script src="//use.typekit.net/ofk8xcu.js"></script>
+               <script> try {Typekit.load();} catch (e) {}</script>
+   </head>
+    <body class="sp-resume sp-resume-print-preview">
+        <div class="container">
+            <article class="resume-content">
+            	<div class="frontPage">
+					<div class="upper">
+						<div class="date"><span data-ng-bind="pullInterNationalization('connect.linkedin.full.'+fullmonth)" class="ng-binding">April</span> <span data-ng-bind="fullyear" class="ng-binding">2015</span></div>
+						<div class="title ng-binding" data-ng-bind="pullInterNationalization('connect.linkedin.applicationfor')">Application for</div>
+						<div class="title2">
+							<div class="ng-binding">bring</div>
+							<!-- <div>{{pullInterNationalization('connect.linkedin.openPosition')}}</div> -->
+						</div>
+					</div>
+					<div class="bottom">
+
+						<div class="applicant ng-binding" data-ng-bind="pullInterNationalization('connect.linkedin.applicant')">Applicant</div>
+						<!-- ngIf: firstName --><div class="name ng-binding ng-scope" ng-if="firstName">Kunal
+							Vashist</div><!-- end ngIf: firstName -->
+						<!-- ngIf: address1 --><div class="location ng-scope" ng-if="address1">
+							<div class="add1 ng-binding">AS,</div>
+							<div class="add2 ng-binding"></div>
+						</div><!-- end ngIf: address1 -->
+						<!-- ngIf: phone --><div class="phoneNumber ng-binding ng-scope" ng-if="phone">12122121</div><!-- end ngIf: phone -->
+						<!-- ngIf: email --><div class="emailId ng-binding ng-scope" ng-if="email">kunal@surepeople.com</div><!-- end ngIf: email -->
+					</div>
+				</div>
+				<div class="coverLetterPDF">
+					<div class="sub ng-binding" data-ng-bind="pullInterNationalization('connect.linkedin.hiringManager')">DEAR HIRING MANAGER</div>
+					<div class="messageContainer">
+						<div class="messageContent ng-binding" data-ng-bind-html="coverlettertext">Thank you for the opportunity and privilege of applying for a summer internship role.<br>
+							<br>
+							I've been looking forward to starting my investment banking career since 2011 when my high school economics teacher introduced me to the industry.<br>
+							It was then that I made the decision to major in Economics and set myself the goal of one day earning a fulltime position with a market-leading company.As the first step towards my career goal, I'd be honored to prove my value and long-term commitment during a summer internship. I'm confident that my core values and strong work ethic will be an asset to any team I work with.Should you have any questions, <br>
+							<br>
+							 I sincerely appreciate your consideration and hope to become part of your team. </div>
+						<div class="kindRegards">
+							<div class="regards ng-binding" data-ng-bind="pullInterNationalization('connect.linkedin.regards')">VERY KIND REGARDS,</div>
+							<div class="name ng-binding">Kunal Vashist</div>
+						</div>
+					</div>
+					
+					<div class="ps">
+						<div class="head ng-binding" data-ng-bind="pullInterNationalization('connect.linkedin.pstitle')">PS</div>
+						<div class="content ng-binding" data-ng-bind="pullInterNationalization('connect.linkedin.psCopy')">Given that people can be both your biggest asset and your biggest risk, I've attached with my application the results of my SurePeople PRISM&lt;sup&gt;&amp;#8482;&lt;/sup&gt; assessment. This SurePeople profile gives you insight into my Emotional, Relational and Team Intelligence&lt;sup&gt;&amp;#8482;&lt;/sup&gt; and how I might be a good fit for your company.</div>
+					</div>
+
+					</div>
+					<div>
+						<div class="htmlMidSection">
+							<!-- Personal Details -->
+								<section class="resume-section personal-toolbox technical-skills">
+									<h1 class="resume-section-title personal">
+										<div data-ng-bind="firstName" class="ng-binding">Kunal</div> <div data-ng-bind="lastName" class="ng-binding">Vashist</div>
+									</h1>
+									<div class="toolbox-description">
+										<div class="ng-binding" data-ng-bind="phone|tel">12122121</div>
+										<div class="ng-binding" data-ng-bind="email">kunal@surepeople.com</div>
+									</div>
+								</section>
+								<!-- Personal Details -->
+							<!-- ngRepeat: contentToDisplay in profileContent | orderBy:'id':false --><section ng-repeat="contentToDisplay in profileContent | orderBy:'id':false" tabindex="0" class="hide ng-scope show" ng-class="contentToDisplay.status?'show':'hide'">
+								<!-- Technical Skills ,Title and Summary Starts-->
+								<!-- ngIf: contentToDisplay.type=='skills'||contentToDisplay.type=='headline'||contentToDisplay.type=='summary'||contentToDisplay.type=='interests' --><section class="resume-section personal-toolbox technical-skills ng-scope" ng-if="contentToDisplay.type=='skills'||contentToDisplay.type=='headline'||contentToDisplay.type=='summary'||contentToDisplay.type=='interests'">
+									<h1 class="resume-section-title ng-binding" data-ng-bind="pullInterNationalization('connect.linkedin.summary')">Summary</h1>
+									<!-- ngIf: contentToDisplay.content --><div class="toolbox-description ng-scope" ng-if="contentToDisplay.content">
+										<p data-ng-bind-html="contentToDisplay.content" class="ng-binding">To take a challenging and high performance oriented role in the field of Computer engineering and implement the expertise and experience gained in this field to deliver results with efficiency and quality.</p>
+									</div><!-- end ngIf: contentToDisplay.content -->
+								</section><!-- end ngIf: contentToDisplay.type=='skills'||contentToDisplay.type=='headline'||contentToDisplay.type=='summary'||contentToDisplay.type=='interests' -->
+								<!--  Technical Skills, Title and Summary Ends -->
+								<!-- Education Starts -->
+								<!-- ngIf: contentToDisplay.type =='educations' -->
+								<!-- Education Ends -->
+								<!-- Emplyment Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='positions' -->
+
+								<!-- employement ends-->
+								<!-- Languages Starts -->
+								<!-- ngIf: contentToDisplay.type=='languages' -->
+								<!--  Languages ends -->
+
+								<!-- Patent starts -->
+								<!-- ngIf: contentToDisplay.type=='patents' -->
+								<!-- Patent Ends -->
+								<!-- Honors Starts-->
+								<!-- ngIf: contentToDisplay.type=='honorsawards' -->
+								<!--  Honors Ends -->
+
+								<!-- Courses Starts -->
+								<!-- ngIf: contentToDisplay.type=='courses' || contentToDisplay.type=='certifications' || contentToDisplay.type == 'testscores' -->
+								<!-- Courses Ends -->
+								<!-- Volunteer starts volunteerExperiences-->
+								<!-- ngIf: contentToDisplay.type =='volunteer' -->
+								<!-- Volunteer Ends -->
+								<!-- Publication starts -->
+								<!-- ngIf: contentToDisplay.type=='publications' -->
+								<!-- Publication ends -->
+
+								<!-- Projects Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='projects' -->
+								<!-- Projects Ends -->
+								
+							</section><!-- end ngRepeat: contentToDisplay in profileContent | orderBy:'id':false --><section ng-repeat="contentToDisplay in profileContent | orderBy:'id':false" tabindex="1" class="hide ng-scope show" ng-class="contentToDisplay.status?'show':'hide'">
+								<!-- Technical Skills ,Title and Summary Starts-->
+								<!-- ngIf: contentToDisplay.type=='skills'||contentToDisplay.type=='headline'||contentToDisplay.type=='summary'||contentToDisplay.type=='interests' -->
+								<!--  Technical Skills, Title and Summary Ends -->
+								<!-- Education Starts -->
+								<!-- ngIf: contentToDisplay.type =='educations' -->
+								<!-- Education Ends -->
+								<!-- Emplyment Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='positions' -->
+
+								<!-- employement ends-->
+								<!-- Languages Starts -->
+								<!-- ngIf: contentToDisplay.type=='languages' -->
+								<!--  Languages ends -->
+
+								<!-- Patent starts -->
+								<!-- ngIf: contentToDisplay.type=='patents' -->
+								<!-- Patent Ends -->
+								<!-- Honors Starts-->
+								<!-- ngIf: contentToDisplay.type=='honorsawards' -->
+								<!--  Honors Ends -->
+
+								<!-- Courses Starts -->
+								<!-- ngIf: contentToDisplay.type=='courses' || contentToDisplay.type=='certifications' || contentToDisplay.type == 'testscores' -->
+								<!-- Courses Ends -->
+								<!-- Volunteer starts volunteerExperiences-->
+								<!-- ngIf: contentToDisplay.type =='volunteer' -->
+								<!-- Volunteer Ends -->
+								<!-- Publication starts -->
+								<!-- ngIf: contentToDisplay.type=='publications' -->
+								<!-- Publication ends -->
+
+								<!-- Projects Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='projects' --><section class="resume-section institution employment ng-scope" ng-if="contentToDisplay.type =='projects'">
+									<h1 class="resume-section-title ng-binding" data-ng-bind-html="pullInterNationalization('connect.linkedin.projects')">Projects</h1>
+
+									<!-- ngRepeat: subContent in contentToDisplay.content.values --><section class="institution-detail employment ng-scope" ng-repeat="subContent in contentToDisplay.content.values">
+
+										<header class="institution-header">
+											<h2 class="institution-name ng-binding" data-ng-bind-html="subContent.name">Lord Abbett</h2>
+										</header>
+
+										<div class="institution-highlights">
+											<section class="org-grouping">
+												<h2 class="org-title ng-binding" data-ng-bind-html="subContent.name">Lord Abbett</h2>
+												<!-- ngIf: subContent.description --><ul class="highlight-list no-bullets ng-scope" ng-if="subContent.description">
+													<li class="">
+														<div data-ng-bind-html="subContent.description" class="ng-binding">Working on demonstration of complex data to form meaningful charts and interactive user flows.</div>
+														<div>
+															<a href="http://www.lordabbett.com/" data-ng-bind-html="subContent.url" class="ng-binding">http://www.lordabbett.com/</a>
+														</div>
+													</li>
+												</ul><!-- end ngIf: subContent.description -->
+											</section>
+										</div>
+									</section><!-- end ngRepeat: subContent in contentToDisplay.content.values --><section class="institution-detail employment ng-scope" ng-repeat="subContent in contentToDisplay.content.values">
+
+										<header class="institution-header">
+											<h2 class="institution-name ng-binding" data-ng-bind-html="subContent.name">Capella Education</h2>
+										</header>
+
+										<div class="institution-highlights">
+											<section class="org-grouping">
+												<h2 class="org-title ng-binding" data-ng-bind-html="subContent.name">Capella Education</h2>
+												<!-- ngIf: subContent.description --><ul class="highlight-list no-bullets ng-scope" ng-if="subContent.description">
+													<li class="">
+														<div data-ng-bind-html="subContent.description" class="ng-binding">Worked on revamping the complete Interface on the website for Mobile ,Tablets and computer.</div>
+														<div>
+															<a href="http://www.capella.edu/" data-ng-bind-html="subContent.url" class="ng-binding">http://www.capella.edu/</a>
+														</div>
+													</li>
+												</ul><!-- end ngIf: subContent.description -->
+											</section>
+										</div>
+									</section><!-- end ngRepeat: subContent in contentToDisplay.content.values -->
+								</section><!-- end ngIf: contentToDisplay.type =='projects' -->
+								<!-- Projects Ends -->
+								
+							</section><!-- end ngRepeat: contentToDisplay in profileContent | orderBy:'id':false --><section ng-repeat="contentToDisplay in profileContent | orderBy:'id':false" tabindex="2" class="hide ng-scope show" ng-class="contentToDisplay.status?'show':'hide'">
+								<!-- Technical Skills ,Title and Summary Starts-->
+								<!-- ngIf: contentToDisplay.type=='skills'||contentToDisplay.type=='headline'||contentToDisplay.type=='summary'||contentToDisplay.type=='interests' -->
+								<!--  Technical Skills, Title and Summary Ends -->
+								<!-- Education Starts -->
+								<!-- ngIf: contentToDisplay.type =='educations' -->
+								<!-- Education Ends -->
+								<!-- Emplyment Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='positions' --><section class="resume-section institution employment ng-scope" ng-if="contentToDisplay.type =='positions'">
+									<h1 class="resume-section-title ng-binding" data-ng-bind-html="pullInterNationalization('connect.linkedin.positions')">Work Experience</h1>
+
+									<!-- ngRepeat: subContent in contentToDisplay.content --><section class="institution-detail employment ng-scope" ng-repeat="subContent in contentToDisplay.content">
+
+										<header class="institution-header">
+											<!-- ngIf: subContent.company.name --><h2 class="institution-name ng-scope ng-binding" ng-if="subContent.company.name" data-ng-bind-html="subContent.company.name">SapientNitro</h2><!-- end ngIf: subContent.company.name -->
+											<!-- ngIf: subContent.company.locations -->
+											<!-- ngIf: subContent.isCurrent --><p class="date-span ng-scope" ng-if="subContent.isCurrent">
+												<span data-ng-bind-html="pullInterNationalization('connect.linkedin.3')" class="ng-binding">Apr</span>
+												<span data-ng-bind-html="subContent.startDate.year" class="ng-binding">2013</span> <span data-ng-bind-html="pullInterNationalization('connect.linkedin.present')" class="ng-binding">- Present</span>
+											</p><!-- end ngIf: subContent.isCurrent -->
+											<!-- ngIf: !subContent.isCurrent -->
+										</header>
+
+										<div class="institution-highlights">
+											<section class="org-grouping">
+												<!-- ngIf: subContent.title --><h2 class="org-title ng-scope ng-binding" ng-if="subContent.title" data-ng-bind-html="subContent.title">Interactive Develeper</h2><!-- end ngIf: subContent.title -->
+												<!-- ngIf: subContent.summary --><ul class="highlight-list no-bullets ng-scope" ng-if="subContent.summary">
+													<li class="ng-binding" data-ng-bind-html="subContent.summary">Worked on many complex projects like lordabbett, capella</li>
+												</ul><!-- end ngIf: subContent.summary -->
+											</section>
+										</div>
+									</section><!-- end ngRepeat: subContent in contentToDisplay.content --><section class="institution-detail employment ng-scope" ng-repeat="subContent in contentToDisplay.content">
+
+										<header class="institution-header">
+											<!-- ngIf: subContent.company.name --><h2 class="institution-name ng-scope ng-binding" ng-if="subContent.company.name" data-ng-bind-html="subContent.company.name">Mphasis an Hp Company</h2><!-- end ngIf: subContent.company.name -->
+											<!-- ngIf: subContent.company.locations -->
+											<!-- ngIf: subContent.isCurrent -->
+											<!-- ngIf: !subContent.isCurrent --><p class="date-span ng-scope" ng-if="!subContent.isCurrent">
+												<span data-ng-bind-html="pullInterNationalization('connect.linkedin.1')" class="ng-binding">Feb</span>
+												<span data-ng-bind-html="subContent.startDate.year" class="ng-binding">2010</span> - <span data-ng-bind-html="pullInterNationalization('connect.linkedin.3')" class="ng-binding">Apr</span>
+												<span data-ng-bind-html="subContent.endDate.year" class="ng-binding">2013</span>
+											</p><!-- end ngIf: !subContent.isCurrent -->
+										</header>
+
+										<div class="institution-highlights">
+											<section class="org-grouping">
+												<!-- ngIf: subContent.title --><h2 class="org-title ng-scope ng-binding" ng-if="subContent.title" data-ng-bind-html="subContent.title">Software Engineer</h2><!-- end ngIf: subContent.title -->
+												<!-- ngIf: subContent.summary --><ul class="highlight-list no-bullets ng-scope" ng-if="subContent.summary">
+													<li class="ng-binding" data-ng-bind-html="subContent.summary">Development of Components and Templates using Livesite.<br>	Designed and developed data capture templates. Some of them consisting of in-line callouts,cgi-callouts scripts.<br>	Developed several reusable data capture template components so that they can be used in various datatypes.<br>	Developed workflows which creates content and publishes content using wfm. <br>	Customized the email sent to users through the workflow as per the user specifications.<br>	Configured OpenDeploy for file based deployments<br>	Used various Interwoven Command Line Tools (CLTs) provided by interwoven in custom scripts, template debugging, workflow debugging and for other purpose.<br>	Responsible for creating websites and large scale-web applications.<br>	Handled the responsibilities overall layout of the company website.<br>	Created conceptual wire frames based on client requirement and user flow diagrams.<br>	Designed interactive web pages.<br>	Creating Approach Document.<br>	Graphical user interface (GUI) design using HTML/XHTML/CSS/JAVASCRIPT/JQUERY/AJAX/JQUERY MOBILE<br>	 Web standards compliance and basic accessibility issues</li>
+												</ul><!-- end ngIf: subContent.summary -->
+											</section>
+										</div>
+									</section><!-- end ngRepeat: subContent in contentToDisplay.content -->
+								</section><!-- end ngIf: contentToDisplay.type =='positions' -->
+
+								<!-- employement ends-->
+								<!-- Languages Starts -->
+								<!-- ngIf: contentToDisplay.type=='languages' -->
+								<!--  Languages ends -->
+
+								<!-- Patent starts -->
+								<!-- ngIf: contentToDisplay.type=='patents' -->
+								<!-- Patent Ends -->
+								<!-- Honors Starts-->
+								<!-- ngIf: contentToDisplay.type=='honorsawards' -->
+								<!--  Honors Ends -->
+
+								<!-- Courses Starts -->
+								<!-- ngIf: contentToDisplay.type=='courses' || contentToDisplay.type=='certifications' || contentToDisplay.type == 'testscores' -->
+								<!-- Courses Ends -->
+								<!-- Volunteer starts volunteerExperiences-->
+								<!-- ngIf: contentToDisplay.type =='volunteer' -->
+								<!-- Volunteer Ends -->
+								<!-- Publication starts -->
+								<!-- ngIf: contentToDisplay.type=='publications' -->
+								<!-- Publication ends -->
+
+								<!-- Projects Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='projects' -->
+								<!-- Projects Ends -->
+								
+							</section><!-- end ngRepeat: contentToDisplay in profileContent | orderBy:'id':false --><section ng-repeat="contentToDisplay in profileContent | orderBy:'id':false" tabindex="3" class="hide ng-scope show" ng-class="contentToDisplay.status?'show':'hide'">
+								<!-- Technical Skills ,Title and Summary Starts-->
+								<!-- ngIf: contentToDisplay.type=='skills'||contentToDisplay.type=='headline'||contentToDisplay.type=='summary'||contentToDisplay.type=='interests' -->
+								<!--  Technical Skills, Title and Summary Ends -->
+								<!-- Education Starts -->
+								<!-- ngIf: contentToDisplay.type =='educations' -->
+								<!-- Education Ends -->
+								<!-- Emplyment Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='positions' -->
+
+								<!-- employement ends-->
+								<!-- Languages Starts -->
+								<!-- ngIf: contentToDisplay.type=='languages' -->
+								<!--  Languages ends -->
+
+								<!-- Patent starts -->
+								<!-- ngIf: contentToDisplay.type=='patents' -->
+								<!-- Patent Ends -->
+								<!-- Honors Starts-->
+								<!-- ngIf: contentToDisplay.type=='honorsawards' -->
+								<!--  Honors Ends -->
+
+								<!-- Courses Starts -->
+								<!-- ngIf: contentToDisplay.type=='courses' || contentToDisplay.type=='certifications' || contentToDisplay.type == 'testscores' --><section class="resume-section personal-toolbox patents empty ng-scope" ng-if="contentToDisplay.type=='courses' || contentToDisplay.type=='certifications' || contentToDisplay.type == 'testscores'">
+									<h1 class="resume-section-title ng-binding" data-ng-bind-html="pullInterNationalization('connect.linkedin.testscores')">Test Scores</h1>
+									<div class="toolbox-description">
+										<!-- ngRepeat: pat in contentToDisplay.content.values --><p ng-repeat="pat in contentToDisplay.content.values" class="ng-scope">
+											<span data-ng-bind-html="pat.name" class="ng-binding">NIIT Aptitude Test</span> <!-- ngIf: pat.number --><!-- ngIf: pat.score --><span ng-if="pat.score" class="ng-binding ng-scope">(96)</span><!-- end ngIf: pat.score -->
+										</p><!-- end ngRepeat: pat in contentToDisplay.content.values -->
+									</div>
+								</section><!-- end ngIf: contentToDisplay.type=='courses' || contentToDisplay.type=='certifications' || contentToDisplay.type == 'testscores' -->
+								<!-- Courses Ends -->
+								<!-- Volunteer starts volunteerExperiences-->
+								<!-- ngIf: contentToDisplay.type =='volunteer' -->
+								<!-- Volunteer Ends -->
+								<!-- Publication starts -->
+								<!-- ngIf: contentToDisplay.type=='publications' -->
+								<!-- Publication ends -->
+
+								<!-- Projects Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='projects' -->
+								<!-- Projects Ends -->
+								
+							</section><!-- end ngRepeat: contentToDisplay in profileContent | orderBy:'id':false --><section ng-repeat="contentToDisplay in profileContent | orderBy:'id':false" tabindex="4" class="hide ng-scope show" ng-class="contentToDisplay.status?'show':'hide'">
+								<!-- Technical Skills ,Title and Summary Starts-->
+								<!-- ngIf: contentToDisplay.type=='skills'||contentToDisplay.type=='headline'||contentToDisplay.type=='summary'||contentToDisplay.type=='interests' -->
+								<!--  Technical Skills, Title and Summary Ends -->
+								<!-- Education Starts -->
+								<!-- ngIf: contentToDisplay.type =='educations' --><section class="resume-section institution education ng-scope" ng-if="contentToDisplay.type =='educations'">
+									<h1 class="resume-section-title ng-binding" data-ng-bind="pullInterNationalization('connect.linkedin.educations')">Education</h1>
+
+									<!-- ngRepeat: subContent in contentToDisplay.content --><section class="institution-detail education ng-scope" ng-repeat="subContent in contentToDisplay.content">
+
+										<header class="institution-header">
+											<!-- ngIf: subContent.schoolName --><h2 class="institution-name ng-scope ng-binding" ng-if="subContent.schoolName" data-ng-bind-html="subContent.schoolName">Baba Hira Singh Bhattal Institute of Engineering and Technology</h2><!-- end ngIf: subContent.schoolName -->
+											<!-- <p class="location" data-ng-bind="">Evanston, Illinois</p>-->
+											<!-- ngIf: subContent.endDate --><p class="date-span ng-scope" ng-if="subContent.endDate">
+												<span data-ng-bind-html="subContent.startDate.year" class="ng-binding">2005</span> - <span data-ng-bind-html="subContent.endDate.year" class="ng-binding">2009</span>
+											</p><!-- end ngIf: subContent.endDate -->
+											<!-- ngIf: subContent.endDate==null -->
+
+										</header>
+
+										<div class="institution-highlights">
+											<section class="org-grouping">
+												<!-- ngIf: subContent.degree --><h2 class="org-title degree ng-scope ng-binding" ng-if="subContent.degree" data-ng-bind-html="subContent.degree">Bachelor of Technology (BTech)</h2><!-- end ngIf: subContent.degree -->
+												<!-- ngIf: subContent.schoolName --><h3 class="org-sub-title ng-scope ng-binding" ng-if="subContent.schoolName" data-ng-bind-html="subContent.schoolName">Baba Hira Singh Bhattal Institute of Engineering and Technology</h3><!-- end ngIf: subContent.schoolName -->
+												<!-- <p class="gpa-misc-info">Cumulative GPA: 3.1/4.00 | Major GPA: 3.0/4.0 | ACT: 33</p>-->
+
+												<!-- ngIf: subContent.activities --><ul class="highlight-list no-bullets ng-scope" ng-if="subContent.activities">
+													<!-- ngRepeat: extra in subContent.activities.split(',') --><li class="ng-scope ng-binding" data-ng-repeat="extra in subContent.activities.split(',')" data-ng-bind-html="extra">Gaming Team</li><!-- end ngRepeat: extra in subContent.activities.split(',') --><li class="ng-scope ng-binding" data-ng-repeat="extra in subContent.activities.split(',')" data-ng-bind-html="extra"> Fun Club</li><!-- end ngRepeat: extra in subContent.activities.split(',') -->
+												</ul><!-- end ngIf: subContent.activities -->
+											</section>
+										</div>
+									</section><!-- end ngRepeat: subContent in contentToDisplay.content --><section class="institution-detail education ng-scope" ng-repeat="subContent in contentToDisplay.content">
+
+										<header class="institution-header">
+											<!-- ngIf: subContent.schoolName --><h2 class="institution-name ng-scope ng-binding" ng-if="subContent.schoolName" data-ng-bind-html="subContent.schoolName">St. Froebel Sr. Secondary School</h2><!-- end ngIf: subContent.schoolName -->
+											<!-- <p class="location" data-ng-bind="">Evanston, Illinois</p>-->
+											<!-- ngIf: subContent.endDate --><p class="date-span ng-scope" ng-if="subContent.endDate">
+												<span data-ng-bind-html="subContent.startDate.year" class="ng-binding">2003</span> - <span data-ng-bind-html="subContent.endDate.year" class="ng-binding">2005</span>
+											</p><!-- end ngIf: subContent.endDate -->
+											<!-- ngIf: subContent.endDate==null -->
+
+										</header>
+
+										<div class="institution-highlights">
+											<section class="org-grouping">
+												<!-- ngIf: subContent.degree --><h2 class="org-title degree ng-scope ng-binding" ng-if="subContent.degree" data-ng-bind-html="subContent.degree">12th</h2><!-- end ngIf: subContent.degree -->
+												<!-- ngIf: subContent.schoolName --><h3 class="org-sub-title ng-scope ng-binding" ng-if="subContent.schoolName" data-ng-bind-html="subContent.schoolName">St. Froebel Sr. Secondary School</h3><!-- end ngIf: subContent.schoolName -->
+												<!-- <p class="gpa-misc-info">Cumulative GPA: 3.1/4.00 | Major GPA: 3.0/4.0 | ACT: 33</p>-->
+
+												<!-- ngIf: subContent.activities --><ul class="highlight-list no-bullets ng-scope" ng-if="subContent.activities">
+													<!-- ngRepeat: extra in subContent.activities.split(',') --><li class="ng-scope ng-binding" data-ng-repeat="extra in subContent.activities.split(',')" data-ng-bind-html="extra">Cricket Team</li><!-- end ngRepeat: extra in subContent.activities.split(',') -->
+												</ul><!-- end ngIf: subContent.activities -->
+											</section>
+										</div>
+									</section><!-- end ngRepeat: subContent in contentToDisplay.content -->
+								</section><!-- end ngIf: contentToDisplay.type =='educations' -->
+								<!-- Education Ends -->
+								<!-- Emplyment Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='positions' -->
+
+								<!-- employement ends-->
+								<!-- Languages Starts -->
+								<!-- ngIf: contentToDisplay.type=='languages' -->
+								<!--  Languages ends -->
+
+								<!-- Patent starts -->
+								<!-- ngIf: contentToDisplay.type=='patents' -->
+								<!-- Patent Ends -->
+								<!-- Honors Starts-->
+								<!-- ngIf: contentToDisplay.type=='honorsawards' -->
+								<!--  Honors Ends -->
+
+								<!-- Courses Starts -->
+								<!-- ngIf: contentToDisplay.type=='courses' || contentToDisplay.type=='certifications' || contentToDisplay.type == 'testscores' -->
+								<!-- Courses Ends -->
+								<!-- Volunteer starts volunteerExperiences-->
+								<!-- ngIf: contentToDisplay.type =='volunteer' -->
+								<!-- Volunteer Ends -->
+								<!-- Publication starts -->
+								<!-- ngIf: contentToDisplay.type=='publications' -->
+								<!-- Publication ends -->
+
+								<!-- Projects Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='projects' -->
+								<!-- Projects Ends -->
+								
+							</section><!-- end ngRepeat: contentToDisplay in profileContent | orderBy:'id':false --><section ng-repeat="contentToDisplay in profileContent | orderBy:'id':false" tabindex="5" class="hide ng-scope show" ng-class="contentToDisplay.status?'show':'hide'">
+								<!-- Technical Skills ,Title and Summary Starts-->
+								<!-- ngIf: contentToDisplay.type=='skills'||contentToDisplay.type=='headline'||contentToDisplay.type=='summary'||contentToDisplay.type=='interests' -->
+								<!--  Technical Skills, Title and Summary Ends -->
+								<!-- Education Starts -->
+								<!-- ngIf: contentToDisplay.type =='educations' -->
+								<!-- Education Ends -->
+								<!-- Emplyment Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='positions' -->
+
+								<!-- employement ends-->
+								<!-- Languages Starts -->
+								<!-- ngIf: contentToDisplay.type=='languages' -->
+								<!--  Languages ends -->
+
+								<!-- Patent starts -->
+								<!-- ngIf: contentToDisplay.type=='patents' -->
+								<!-- Patent Ends -->
+								<!-- Honors Starts-->
+								<!-- ngIf: contentToDisplay.type=='honorsawards' -->
+								<!--  Honors Ends -->
+
+								<!-- Courses Starts -->
+								<!-- ngIf: contentToDisplay.type=='courses' || contentToDisplay.type=='certifications' || contentToDisplay.type == 'testscores' --><section class="resume-section personal-toolbox patents empty ng-scope" ng-if="contentToDisplay.type=='courses' || contentToDisplay.type=='certifications' || contentToDisplay.type == 'testscores'">
+									<h1 class="resume-section-title ng-binding" data-ng-bind-html="pullInterNationalization('connect.linkedin.certifications')">Certifications</h1>
+									<div class="toolbox-description">
+										<!-- ngRepeat: pat in contentToDisplay.content.values --><p ng-repeat="pat in contentToDisplay.content.values" class="ng-scope">
+											<span data-ng-bind-html="pat.name" class="ng-binding">Core Java</span> <!-- ngIf: pat.number --><!-- ngIf: pat.score -->
+										</p><!-- end ngRepeat: pat in contentToDisplay.content.values -->
+									</div>
+								</section><!-- end ngIf: contentToDisplay.type=='courses' || contentToDisplay.type=='certifications' || contentToDisplay.type == 'testscores' -->
+								<!-- Courses Ends -->
+								<!-- Volunteer starts volunteerExperiences-->
+								<!-- ngIf: contentToDisplay.type =='volunteer' -->
+								<!-- Volunteer Ends -->
+								<!-- Publication starts -->
+								<!-- ngIf: contentToDisplay.type=='publications' -->
+								<!-- Publication ends -->
+
+								<!-- Projects Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='projects' -->
+								<!-- Projects Ends -->
+								
+							</section><!-- end ngRepeat: contentToDisplay in profileContent | orderBy:'id':false --><section ng-repeat="contentToDisplay in profileContent | orderBy:'id':false" tabindex="6" class="hide ng-scope show" ng-class="contentToDisplay.status?'show':'hide'">
+								<!-- Technical Skills ,Title and Summary Starts-->
+								<!-- ngIf: contentToDisplay.type=='skills'||contentToDisplay.type=='headline'||contentToDisplay.type=='summary'||contentToDisplay.type=='interests' -->
+								<!--  Technical Skills, Title and Summary Ends -->
+								<!-- Education Starts -->
+								<!-- ngIf: contentToDisplay.type =='educations' -->
+								<!-- Education Ends -->
+								<!-- Emplyment Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='positions' -->
+
+								<!-- employement ends-->
+								<!-- Languages Starts -->
+								<!-- ngIf: contentToDisplay.type=='languages' -->
+								<!--  Languages ends -->
+
+								<!-- Patent starts -->
+								<!-- ngIf: contentToDisplay.type=='patents' -->
+								<!-- Patent Ends -->
+								<!-- Honors Starts-->
+								<!-- ngIf: contentToDisplay.type=='honorsawards' -->
+								<!--  Honors Ends -->
+
+								<!-- Courses Starts -->
+								<!-- ngIf: contentToDisplay.type=='courses' || contentToDisplay.type=='certifications' || contentToDisplay.type == 'testscores' --><section class="resume-section personal-toolbox patents empty ng-scope" ng-if="contentToDisplay.type=='courses' || contentToDisplay.type=='certifications' || contentToDisplay.type == 'testscores'">
+									<h1 class="resume-section-title ng-binding" data-ng-bind-html="pullInterNationalization('connect.linkedin.courses')">COURSES</h1>
+									<div class="toolbox-description">
+										<!-- ngRepeat: pat in contentToDisplay.content.values --><p ng-repeat="pat in contentToDisplay.content.values" class="ng-scope">
+											<span data-ng-bind-html="pat.name" class="ng-binding">Core Java</span> <!-- ngIf: pat.number --><!-- ngIf: pat.score -->
+										</p><!-- end ngRepeat: pat in contentToDisplay.content.values --><p ng-repeat="pat in contentToDisplay.content.values" class="ng-scope">
+											<span data-ng-bind-html="pat.name" class="ng-binding">Front End Technology</span> <!-- ngIf: pat.number --><!-- ngIf: pat.score -->
+										</p><!-- end ngRepeat: pat in contentToDisplay.content.values -->
+									</div>
+								</section><!-- end ngIf: contentToDisplay.type=='courses' || contentToDisplay.type=='certifications' || contentToDisplay.type == 'testscores' -->
+								<!-- Courses Ends -->
+								<!-- Volunteer starts volunteerExperiences-->
+								<!-- ngIf: contentToDisplay.type =='volunteer' -->
+								<!-- Volunteer Ends -->
+								<!-- Publication starts -->
+								<!-- ngIf: contentToDisplay.type=='publications' -->
+								<!-- Publication ends -->
+
+								<!-- Projects Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='projects' -->
+								<!-- Projects Ends -->
+								
+							</section><!-- end ngRepeat: contentToDisplay in profileContent | orderBy:'id':false --><section ng-repeat="contentToDisplay in profileContent | orderBy:'id':false" tabindex="7" class="hide ng-scope show" ng-class="contentToDisplay.status?'show':'hide'">
+								<!-- Technical Skills ,Title and Summary Starts-->
+								<!-- ngIf: contentToDisplay.type=='skills'||contentToDisplay.type=='headline'||contentToDisplay.type=='summary'||contentToDisplay.type=='interests' --><section class="resume-section personal-toolbox technical-skills ng-scope" ng-if="contentToDisplay.type=='skills'||contentToDisplay.type=='headline'||contentToDisplay.type=='summary'||contentToDisplay.type=='interests'">
+									<h1 class="resume-section-title ng-binding" data-ng-bind="pullInterNationalization('connect.linkedin.interests')">PERSONAL INTERESTS</h1>
+									<!-- ngIf: contentToDisplay.content --><div class="toolbox-description ng-scope" ng-if="contentToDisplay.content">
+										<p data-ng-bind-html="contentToDisplay.content" class="ng-binding">Video Game,Cricket,Trecking</p>
+									</div><!-- end ngIf: contentToDisplay.content -->
+								</section><!-- end ngIf: contentToDisplay.type=='skills'||contentToDisplay.type=='headline'||contentToDisplay.type=='summary'||contentToDisplay.type=='interests' -->
+								<!--  Technical Skills, Title and Summary Ends -->
+								<!-- Education Starts -->
+								<!-- ngIf: contentToDisplay.type =='educations' -->
+								<!-- Education Ends -->
+								<!-- Emplyment Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='positions' -->
+
+								<!-- employement ends-->
+								<!-- Languages Starts -->
+								<!-- ngIf: contentToDisplay.type=='languages' -->
+								<!--  Languages ends -->
+
+								<!-- Patent starts -->
+								<!-- ngIf: contentToDisplay.type=='patents' -->
+								<!-- Patent Ends -->
+								<!-- Honors Starts-->
+								<!-- ngIf: contentToDisplay.type=='honorsawards' -->
+								<!--  Honors Ends -->
+
+								<!-- Courses Starts -->
+								<!-- ngIf: contentToDisplay.type=='courses' || contentToDisplay.type=='certifications' || contentToDisplay.type == 'testscores' -->
+								<!-- Courses Ends -->
+								<!-- Volunteer starts volunteerExperiences-->
+								<!-- ngIf: contentToDisplay.type =='volunteer' -->
+								<!-- Volunteer Ends -->
+								<!-- Publication starts -->
+								<!-- ngIf: contentToDisplay.type=='publications' -->
+								<!-- Publication ends -->
+
+								<!-- Projects Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='projects' -->
+								<!-- Projects Ends -->
+								
+							</section><!-- end ngRepeat: contentToDisplay in profileContent | orderBy:'id':false --><section ng-repeat="contentToDisplay in profileContent | orderBy:'id':false" tabindex="8" class="hide ng-scope show" ng-class="contentToDisplay.status?'show':'hide'">
+								<!-- Technical Skills ,Title and Summary Starts-->
+								<!-- ngIf: contentToDisplay.type=='skills'||contentToDisplay.type=='headline'||contentToDisplay.type=='summary'||contentToDisplay.type=='interests' --><section class="resume-section personal-toolbox technical-skills ng-scope" ng-if="contentToDisplay.type=='skills'||contentToDisplay.type=='headline'||contentToDisplay.type=='summary'||contentToDisplay.type=='interests'">
+									<h1 class="resume-section-title ng-binding" data-ng-bind="pullInterNationalization('connect.linkedin.skills')">Technical Skills</h1>
+									<!-- ngIf: contentToDisplay.content --><div class="toolbox-description ng-scope" ng-if="contentToDisplay.content">
+										<p data-ng-bind-html="contentToDisplay.content" class="ng-binding">AngularJS,jQuery,JavaScript,HTML,CSS3,CSS,SASS,JSON,XML,HTML 5,Web Services,jQuery Mobile,LESS,JSP</p>
+									</div><!-- end ngIf: contentToDisplay.content -->
+								</section><!-- end ngIf: contentToDisplay.type=='skills'||contentToDisplay.type=='headline'||contentToDisplay.type=='summary'||contentToDisplay.type=='interests' -->
+								<!--  Technical Skills, Title and Summary Ends -->
+								<!-- Education Starts -->
+								<!-- ngIf: contentToDisplay.type =='educations' -->
+								<!-- Education Ends -->
+								<!-- Emplyment Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='positions' -->
+
+								<!-- employement ends-->
+								<!-- Languages Starts -->
+								<!-- ngIf: contentToDisplay.type=='languages' -->
+								<!--  Languages ends -->
+
+								<!-- Patent starts -->
+								<!-- ngIf: contentToDisplay.type=='patents' -->
+								<!-- Patent Ends -->
+								<!-- Honors Starts-->
+								<!-- ngIf: contentToDisplay.type=='honorsawards' -->
+								<!--  Honors Ends -->
+
+								<!-- Courses Starts -->
+								<!-- ngIf: contentToDisplay.type=='courses' || contentToDisplay.type=='certifications' || contentToDisplay.type == 'testscores' -->
+								<!-- Courses Ends -->
+								<!-- Volunteer starts volunteerExperiences-->
+								<!-- ngIf: contentToDisplay.type =='volunteer' -->
+								<!-- Volunteer Ends -->
+								<!-- Publication starts -->
+								<!-- ngIf: contentToDisplay.type=='publications' -->
+								<!-- Publication ends -->
+
+								<!-- Projects Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='projects' -->
+								<!-- Projects Ends -->
+								
+							</section><!-- end ngRepeat: contentToDisplay in profileContent | orderBy:'id':false --><section ng-repeat="contentToDisplay in profileContent | orderBy:'id':false" tabindex="9" class="hide ng-scope show" ng-class="contentToDisplay.status?'show':'hide'">
+								<!-- Technical Skills ,Title and Summary Starts-->
+								<!-- ngIf: contentToDisplay.type=='skills'||contentToDisplay.type=='headline'||contentToDisplay.type=='summary'||contentToDisplay.type=='interests' -->
+								<!--  Technical Skills, Title and Summary Ends -->
+								<!-- Education Starts -->
+								<!-- ngIf: contentToDisplay.type =='educations' -->
+								<!-- Education Ends -->
+								<!-- Emplyment Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='positions' -->
+
+								<!-- employement ends-->
+								<!-- Languages Starts -->
+								<!-- ngIf: contentToDisplay.type=='languages' --><section class="resume-section personal-toolbox technical-skills ng-scope" ng-if="contentToDisplay.type=='languages'">
+									<h1 class="resume-section-title ng-binding" data-ng-bind-html="pullInterNationalization('connect.linkedin.languages')">Languages</h1>
+									<div class="toolbox-description">
+										<!-- ngRepeat: lang in contentToDisplay.content.values --><p ng-repeat="lang in contentToDisplay.content.values" data-ng-bind-html="lang.language.name" class="ng-scope ng-binding">English</p><!-- end ngRepeat: lang in contentToDisplay.content.values --><p ng-repeat="lang in contentToDisplay.content.values" data-ng-bind-html="lang.language.name" class="ng-scope ng-binding">Hindi</p><!-- end ngRepeat: lang in contentToDisplay.content.values -->
+									</div>
+								</section><!-- end ngIf: contentToDisplay.type=='languages' -->
+								<!--  Languages ends -->
+
+								<!-- Patent starts -->
+								<!-- ngIf: contentToDisplay.type=='patents' -->
+								<!-- Patent Ends -->
+								<!-- Honors Starts-->
+								<!-- ngIf: contentToDisplay.type=='honorsawards' -->
+								<!--  Honors Ends -->
+
+								<!-- Courses Starts -->
+								<!-- ngIf: contentToDisplay.type=='courses' || contentToDisplay.type=='certifications' || contentToDisplay.type == 'testscores' -->
+								<!-- Courses Ends -->
+								<!-- Volunteer starts volunteerExperiences-->
+								<!-- ngIf: contentToDisplay.type =='volunteer' -->
+								<!-- Volunteer Ends -->
+								<!-- Publication starts -->
+								<!-- ngIf: contentToDisplay.type=='publications' -->
+								<!-- Publication ends -->
+
+								<!-- Projects Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='projects' -->
+								<!-- Projects Ends -->
+								
+							</section><!-- end ngRepeat: contentToDisplay in profileContent | orderBy:'id':false --><section ng-repeat="contentToDisplay in profileContent | orderBy:'id':false" tabindex="10" class="hide ng-scope show" ng-class="contentToDisplay.status?'show':'hide'">
+								<!-- Technical Skills ,Title and Summary Starts-->
+								<!-- ngIf: contentToDisplay.type=='skills'||contentToDisplay.type=='headline'||contentToDisplay.type=='summary'||contentToDisplay.type=='interests' -->
+								<!--  Technical Skills, Title and Summary Ends -->
+								<!-- Education Starts -->
+								<!-- ngIf: contentToDisplay.type =='educations' -->
+								<!-- Education Ends -->
+								<!-- Emplyment Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='positions' -->
+
+								<!-- employement ends-->
+								<!-- Languages Starts -->
+								<!-- ngIf: contentToDisplay.type=='languages' -->
+								<!--  Languages ends -->
+
+								<!-- Patent starts -->
+								<!-- ngIf: contentToDisplay.type=='patents' -->
+								<!-- Patent Ends -->
+								<!-- Honors Starts-->
+								<!-- ngIf: contentToDisplay.type=='honorsawards' -->
+								<!--  Honors Ends -->
+
+								<!-- Courses Starts -->
+								<!-- ngIf: contentToDisplay.type=='courses' || contentToDisplay.type=='certifications' || contentToDisplay.type == 'testscores' -->
+								<!-- Courses Ends -->
+								<!-- Volunteer starts volunteerExperiences-->
+								<!-- ngIf: contentToDisplay.type =='volunteer' --><section class="resume-section institution employment ng-scope" ng-if="contentToDisplay.type =='volunteer'">
+									<h1 class="resume-section-title ng-binding" data-ng-bind-html="pullInterNationalization('connect.linkedin.volunteer')">Volunteer</h1>
+
+									<!-- ngRepeat: subContent in contentToDisplay.content.volunteerExperiences.values --><section class="institution-detail employment ng-scope" ng-repeat="subContent in contentToDisplay.content.volunteerExperiences.values">
+
+										<header class="institution-header">
+											<h2 class="institution-name ng-binding" data-ng-bind-html="subContent.organization.name">TCMS</h2>
+										</header>
+
+										<div class="institution-highlights">
+											<section class="org-grouping">
+												<h2 class="org-title ng-binding" data-ng-bind-html="subContent.role">PHP DEVELOPER</h2>
+											</section>
+										</div>
+
+									</section><!-- end ngRepeat: subContent in contentToDisplay.content.volunteerExperiences.values --><section class="institution-detail employment ng-scope" ng-repeat="subContent in contentToDisplay.content.volunteerExperiences.values">
+
+										<header class="institution-header">
+											<h2 class="institution-name ng-binding" data-ng-bind-html="subContent.organization.name">Commonwealth Games Delhi 2010</h2>
+										</header>
+
+										<div class="institution-highlights">
+											<section class="org-grouping">
+												<h2 class="org-title ng-binding" data-ng-bind-html="subContent.role">Organizer</h2>
+											</section>
+										</div>
+
+									</section><!-- end ngRepeat: subContent in contentToDisplay.content.volunteerExperiences.values -->
+									<!-- ngIf: contentToDisplay.content.supportedOrganizations --><section class="institution-detail employment ng-scope" ng-if="contentToDisplay.content.supportedOrganizations">
+
+										<header class="institution-header">
+											<h2 class="institution-name">Supported Organization</h2>
+										</header>
+
+										<!-- ngRepeat: subContent in contentToDisplay.content.supportedOrganizations.values --><div class="institution-highlights ng-scope" ng-repeat="subContent in contentToDisplay.content.supportedOrganizations.values">
+											<section class="org-grouping">
+												<h2 class="org-title ng-binding" data-ng-bind-html="subContent.name">Xbrainz</h2>
+											</section>
+										</div><!-- end ngRepeat: subContent in contentToDisplay.content.supportedOrganizations.values -->
+
+									</section><!-- end ngIf: contentToDisplay.content.supportedOrganizations -->
+								</section><!-- end ngIf: contentToDisplay.type =='volunteer' -->
+								<!-- Volunteer Ends -->
+								<!-- Publication starts -->
+								<!-- ngIf: contentToDisplay.type=='publications' -->
+								<!-- Publication ends -->
+
+								<!-- Projects Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='projects' -->
+								<!-- Projects Ends -->
+								
+							</section><!-- end ngRepeat: contentToDisplay in profileContent | orderBy:'id':false --><section ng-repeat="contentToDisplay in profileContent | orderBy:'id':false" tabindex="11" class="hide ng-scope show" ng-class="contentToDisplay.status?'show':'hide'">
+								<!-- Technical Skills ,Title and Summary Starts-->
+								<!-- ngIf: contentToDisplay.type=='skills'||contentToDisplay.type=='headline'||contentToDisplay.type=='summary'||contentToDisplay.type=='interests' -->
+								<!--  Technical Skills, Title and Summary Ends -->
+								<!-- Education Starts -->
+								<!-- ngIf: contentToDisplay.type =='educations' -->
+								<!-- Education Ends -->
+								<!-- Emplyment Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='positions' -->
+
+								<!-- employement ends-->
+								<!-- Languages Starts -->
+								<!-- ngIf: contentToDisplay.type=='languages' -->
+								<!--  Languages ends -->
+
+								<!-- Patent starts -->
+								<!-- ngIf: contentToDisplay.type=='patents' -->
+								<!-- Patent Ends -->
+								<!-- Honors Starts-->
+								<!-- ngIf: contentToDisplay.type=='honorsawards' --><section class="resume-section personal-toolbox technical-skills ng-scope" ng-if="contentToDisplay.type=='honorsawards'">
+									<h1 class="resume-section-title ng-binding" data-ng-bind-html="pullInterNationalization('connect.linkedin.honorsawards')">HONORS</h1>
+									<div class="toolbox-description">
+										<!-- ngRepeat: subContent in contentToDisplay.content.values --><div ng-repeat="subContent in contentToDisplay.content.values" class="ng-scope">
+											    <span class="strongTitle ng-binding" data-ng-bind-html="subContent.name">Game</span> from <span data-ng-bind-html="subContent.issuer" class="ng-binding">Baba Hira Singh Bhattal Institute of Engineerring and tech</span>
+										</div><!-- end ngRepeat: subContent in contentToDisplay.content.values --><div ng-repeat="subContent in contentToDisplay.content.values" class="ng-scope">
+											    <span class="strongTitle ng-binding" data-ng-bind-html="subContent.name">Monthly Submit Award</span> from <span data-ng-bind-html="subContent.issuer" class="ng-binding">Mphasis An Hp Company</span>
+										</div><!-- end ngRepeat: subContent in contentToDisplay.content.values -->
+									</div>
+								</section><!-- end ngIf: contentToDisplay.type=='honorsawards' -->
+								<!--  Honors Ends -->
+
+								<!-- Courses Starts -->
+								<!-- ngIf: contentToDisplay.type=='courses' || contentToDisplay.type=='certifications' || contentToDisplay.type == 'testscores' -->
+								<!-- Courses Ends -->
+								<!-- Volunteer starts volunteerExperiences-->
+								<!-- ngIf: contentToDisplay.type =='volunteer' -->
+								<!-- Volunteer Ends -->
+								<!-- Publication starts -->
+								<!-- ngIf: contentToDisplay.type=='publications' -->
+								<!-- Publication ends -->
+
+								<!-- Projects Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='projects' -->
+								<!-- Projects Ends -->
+								
+							</section><!-- end ngRepeat: contentToDisplay in profileContent | orderBy:'id':false --><section ng-repeat="contentToDisplay in profileContent | orderBy:'id':false" tabindex="12" class="hide ng-scope show" ng-class="contentToDisplay.status?'show':'hide'">
+								<!-- Technical Skills ,Title and Summary Starts-->
+								<!-- ngIf: contentToDisplay.type=='skills'||contentToDisplay.type=='headline'||contentToDisplay.type=='summary'||contentToDisplay.type=='interests' -->
+								<!--  Technical Skills, Title and Summary Ends -->
+								<!-- Education Starts -->
+								<!-- ngIf: contentToDisplay.type =='educations' -->
+								<!-- Education Ends -->
+								<!-- Emplyment Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='positions' -->
+
+								<!-- employement ends-->
+								<!-- Languages Starts -->
+								<!-- ngIf: contentToDisplay.type=='languages' -->
+								<!--  Languages ends -->
+
+								<!-- Patent starts -->
+								<!-- ngIf: contentToDisplay.type=='patents' -->
+								<!-- Patent Ends -->
+								<!-- Honors Starts-->
+								<!-- ngIf: contentToDisplay.type=='honorsawards' -->
+								<!--  Honors Ends -->
+
+								<!-- Courses Starts -->
+								<!-- ngIf: contentToDisplay.type=='courses' || contentToDisplay.type=='certifications' || contentToDisplay.type == 'testscores' -->
+								<!-- Courses Ends -->
+								<!-- Volunteer starts volunteerExperiences-->
+								<!-- ngIf: contentToDisplay.type =='volunteer' -->
+								<!-- Volunteer Ends -->
+								<!-- Publication starts -->
+								<!-- ngIf: contentToDisplay.type=='publications' --><section class="resume-section personal-toolbox patents empty ng-scope" ng-if="contentToDisplay.type=='publications'">
+									<h1 class="resume-section-title ng-binding" data-ng-bind-html="pullInterNationalization('connect.linkedin.publications')">Publications</h1>
+									<div class="toolbox-description">
+										<!-- ngRepeat: pat in contentToDisplay.content.values --><p ng-repeat="pat in contentToDisplay.content.values" class="ng-scope">
+											<span data-ng-bind-html="pat.title" class="ng-binding">Accesibility</span> (<span data-ng-bind-html="pat.date.day" class="ng-binding">2</span> <span data-ng-bind-html="pullInterNationalization('connect.linkedin.1')" class="ng-binding">Feb</span>
+											<span data-ng-bind-html="pat.date.year" class="ng-binding">2010</span>)
+										</p><!-- end ngRepeat: pat in contentToDisplay.content.values -->
+
+									</div>
+								</section><!-- end ngIf: contentToDisplay.type=='publications' -->
+								<!-- Publication ends -->
+
+								<!-- Projects Starts -->
+
+								<!-- ngIf: contentToDisplay.type =='projects' -->
+								<!-- Projects Ends -->
+								
+							</section><!-- end ngRepeat: contentToDisplay in profileContent | orderBy:'id':false -->
+							</div>
+							<div class="graphStyle">
+								<div class="oneSeparatePage" style="height:700px">
+								<div class="styleArea">
+									<div class="surepeopleProfile clearfix">
+										<div class="col-sm-12 col-md-12 col-xs-12 nopad">
+											<div>
+												<img alt="SurePeople"
+													src="/resources/images/sp_logo.png" />
+													</div>
+										</div>
+										<div class="col-sm-12 col-md-12 col-xs-12 spProfileContent nopad">
+											<div class="title borderSeparator">SUREPEOPLE PROFILE</div>
+											<div class="description">The SurePeople PRISM is the
+												industry's most comprehensive assessment capable of
+												measuring an individual's emotional intelligence, relational
+												intelligence and team intelligence by analyzing more than 50
+												unique traits and attributes.</div>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="traits clearfix">
+										<h2 class="titleHead ng-binding">SUREPEOPLE'S RECOMMENDATION ON Kunal Vashist</h2>
+										<div class="col-xs-12 nopad">
+											<div class="col-sm-8 col-md-8 col-xs-8 workCharacter nopad ng-binding" data-ng-bind="linkedIn.profileStatement">Kunal is a precise, systematic worker and thinker who tends to follow procedures both at work and in his personal life. He has a soft side that shows his modesty and willingness to accommodate others. He is conscientious and thorough when performing work that requires attention to detail and accuracy. In fact, Kunal is exceptionally detail-oriented, discovering information that others have a tendency to overlook. He also tends to prefer a predictable environment with specifics on what is expected, how much time is involved and on what basis the work is likely to be evaluated. When it comes to decision-making, he is known to be an objective and informed thinker, taking time to gather and analyze data instead of jumping to conclusions. He takes calculated risks based on the facts and is inclined to maintain high standards in his work environment. </div>
+										</div>
+								</div>
+								<div class="personality-outer-wrapper chart-border-bottom clearfix" style="height:400px">
+
+									<!-- InfoBox Code Ends -->
+									<div class="personality-profile-wrapper">
+
+										<div class="info-graph clearfix">
+											<div class="col-sm-7 col-md-7 col-xs-7 nopad">
+												<h2 class="titleHead">Personality</h2>
+
+												<div class="graph-text">
+													<div class="sec">
+														<p class="title_1 primary">
+															<span class="box"></span><span> Primary
+																personality</span>
+														</p>
+														<div class="adjust">
+															<h3 ng-bind-html="profileContentGraphs['profile.analysis.mapped.Primary.personalityType']" class="ng-binding">Architect</h3>
+															<p class="cont">The SurePeople Primary Personality
+																Profile describes how we present ourselves to others, as
+																well as how others perceive us, in non-stressful
+																situations.</p>
+														</div>
+													</div>
+													<div class="sec">
+														<p class="title_1 secondary">
+															<span class="box"></span><span> Personality under
+																pressure</span>
+														</p>
+														<div class="adjust">
+															<h3 ng-bind-html="profileContentGraphs['profile.analysis.mapped.UnderPressure.personalityType']" class="ng-binding">Architect</h3>
+															<p class="cont">The SurePeople Primary Personality
+																Profile describes how we present ourselves to others, as
+																well as how others perceive us, in non-stressful
+																situations.</p>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-5 col-md-5 col-xs-5 graphsSection nopad">
+												<div class="svg-graph-wrapper personality">
+													<div class="outer-labels">
+														<p class="left">Powerful</p>
+														<p class="right">Versatile</p>
+													</div>
+													<div class="graph-outer mob" style="position: relative">
+														<div class="graph" data-resume="true" personality-info-graph=""><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="180" height="180"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="39" y="39" width="103" height="103" fill="#d3d3d3"></rect><path fill="#E8C80F" d="M 52 52 L 142 39 L 155 155 L 13 168 L 52 52" fill-opacity="0.6"></path><path fill="none" d="M 0 180 L 180 0 M 0 0 L 180 180" stroke="#fefdf8" stroke-width="1"></path><path fill="none" d="M 65 65 L 129 52 L 168 168 L 1 180 L 65 65" stroke="#df4825" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+														<div class="graph-labels">
+															<div>
+																<p class="top">
+																	<span>Big<br>Picture
+																	</span>
+																</p>
+																<div>
+																	<p class="left">
+																		<span>Mission<br>Oriented
+																		</span>
+																	</p>
+																	<p class="right">
+																		<span>Relation<br>Oriented
+																		</span>
+																	</p>
+																</div>
+																<p class="bottom">
+																	<span>Detail<br>Oriented
+																	</span>
+																</p>
+															</div>
+														</div>
+													</div>
+													<div class="outer-labels">
+														<p class="left">Precise</p>
+														<p class="right">Adaptable</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								
+								</div>
+								
+									<div class="processing-blueprint-wrapper oneSeparatePage chart-border-bottom nopadNoBorder" data-section="c5">
+										<div class="generic-content-bg clearfix">
+											<div class="col-sm-7 col-md-7 col-xs-7 nopad">
+												<h2 class="titleHead">Processing Blueprint</h2>
+												<div class="chartDesc" data-box="chartpbp">
+													<div>
+														<p>How do we approach the people, activities, thoughts
+															and causes that impact our lives? What energizes us? How
+															do we process real and perceived stimuli? Are we guided by
+															our hearts or our heads?</p>
+														<p>The SurePeople PRISM addresses internal processes,
+															often difficult to ascertain without the proper context.
+															The resulting measurements offer a precise view of an
+															individual's approach to processing internal and external
+															stimuli, information that is especially constructive in
+															team environments.</p>
+													</div>
+												</div>
+												<!-- InfoBox Code Ends -->
+											</div>
+											<div class="col-sm-5 col-md-5 col-xs-5 nopad graphsSection">
+												<div class="svg-graph-wrapper processing-blueprint">
+													<div class="labels axis left">
+														<p class="top">100%</p>
+														<p class="mid">0</p>
+														<p class="bottom">100%</p>
+													</div>
+													<div class="labels">
+														<p class="top">
+															<span class="percentage ng-binding">50%</span>
+															<span>External</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="top" data-resume="true" bar-info-graph="" data-bar="processing,V,T,External"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="25" height="64"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="0" y="32" width="25" height="32" fill="#69519d"></rect><rect x="0" y="0" width="25" height="1" fill="#fff"></rect><rect x="0" y="6.4" width="25" height="1" fill="#fff"></rect><rect x="0" y="12.8" width="25" height="1" fill="#fff"></rect><rect x="0" y="19.200000000000003" width="25" height="1" fill="#fff"></rect><rect x="0" y="25.6" width="25" height="1" fill="#fff"></rect><rect x="0" y="32" width="25" height="1" fill="#fff"></rect><rect x="0" y="38.400000000000006" width="25" height="1" fill="#fff"></rect><rect x="0" y="44.800000000000004" width="25" height="1" fill="#fff"></rect><rect x="0" y="51.2" width="25" height="1" fill="#fff"></rect><rect x="0" y="57.6" width="25" height="1" fill="#fff"></rect></svg></div>
+															<div class="bottom" data-resume="true" bar-info-graph="" data-bar="processing,V,B,Internal"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="25" height="64"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="0" y="0" width="25" height="32" fill="#69519d"></rect><rect x="0" y="0" width="25" height="1" fill="#fff"></rect><rect x="0" y="6.4" width="25" height="1" fill="#fff"></rect><rect x="0" y="12.8" width="25" height="1" fill="#fff"></rect><rect x="0" y="19.200000000000003" width="25" height="1" fill="#fff"></rect><rect x="0" y="25.6" width="25" height="1" fill="#fff"></rect><rect x="0" y="32" width="25" height="1" fill="#fff"></rect><rect x="0" y="38.400000000000006" width="25" height="1" fill="#fff"></rect><rect x="0" y="44.800000000000004" width="25" height="1" fill="#fff"></rect><rect x="0" y="51.2" width="25" height="1" fill="#fff"></rect><rect x="0" y="57.6" width="25" height="1" fill="#fff"></rect></svg></div>
+														</div>
+														<p class="bottom">
+															<span class="percentage ng-binding">50%</span>
+															<span>Internal</span>
+														</p>
+													</div>
+													<div class="labels">
+														<p class="top">
+															<span class="percentage ng-binding">35%</span>
+															<span>Concrete</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="top" data-resume="true" bar-info-graph="" data-bar="processing,V,T,Concrete"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="25" height="64"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="0" y="41.6" width="25" height="22.4" fill="#bbb1e5"></rect><rect x="0" y="0" width="25" height="1" fill="#fff"></rect><rect x="0" y="6.4" width="25" height="1" fill="#fff"></rect><rect x="0" y="12.8" width="25" height="1" fill="#fff"></rect><rect x="0" y="19.200000000000003" width="25" height="1" fill="#fff"></rect><rect x="0" y="25.6" width="25" height="1" fill="#fff"></rect><rect x="0" y="32" width="25" height="1" fill="#fff"></rect><rect x="0" y="38.400000000000006" width="25" height="1" fill="#fff"></rect><rect x="0" y="44.800000000000004" width="25" height="1" fill="#fff"></rect><rect x="0" y="51.2" width="25" height="1" fill="#fff"></rect><rect x="0" y="57.6" width="25" height="1" fill="#fff"></rect></svg></div>
+															<div class="bottom" data-resume="true" bar-info-graph="" data-bar="processing,V,B,Intuitive"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="25" height="64"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="0" y="0" width="25" height="41.6" fill="#69519d"></rect><rect x="0" y="0" width="25" height="1" fill="#fff"></rect><rect x="0" y="6.4" width="25" height="1" fill="#fff"></rect><rect x="0" y="12.8" width="25" height="1" fill="#fff"></rect><rect x="0" y="19.200000000000003" width="25" height="1" fill="#fff"></rect><rect x="0" y="25.6" width="25" height="1" fill="#fff"></rect><rect x="0" y="32" width="25" height="1" fill="#fff"></rect><rect x="0" y="38.400000000000006" width="25" height="1" fill="#fff"></rect><rect x="0" y="44.800000000000004" width="25" height="1" fill="#fff"></rect><rect x="0" y="51.2" width="25" height="1" fill="#fff"></rect><rect x="0" y="57.6" width="25" height="1" fill="#fff"></rect></svg></div>
+														</div>
+														<p class="bottom">
+															<span class="percentage ng-binding">65%</span>
+															<span>Intuitive</span>
+														</p>
+													</div>
+													<div class="labels">
+														<p class="top">
+															<span class="percentage ng-binding">15%</span>
+															<span>Head</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="top" data-resume="true" bar-info-graph="" data-bar="processing,V,T,Cognitive"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="25" height="64"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="0" y="54.4" width="25" height="9.6" fill="#bbb1e5"></rect><rect x="0" y="0" width="25" height="1" fill="#fff"></rect><rect x="0" y="6.4" width="25" height="1" fill="#fff"></rect><rect x="0" y="12.8" width="25" height="1" fill="#fff"></rect><rect x="0" y="19.200000000000003" width="25" height="1" fill="#fff"></rect><rect x="0" y="25.6" width="25" height="1" fill="#fff"></rect><rect x="0" y="32" width="25" height="1" fill="#fff"></rect><rect x="0" y="38.400000000000006" width="25" height="1" fill="#fff"></rect><rect x="0" y="44.800000000000004" width="25" height="1" fill="#fff"></rect><rect x="0" y="51.2" width="25" height="1" fill="#fff"></rect><rect x="0" y="57.6" width="25" height="1" fill="#fff"></rect></svg></div>
+															<div class="bottom" data-resume="true" bar-info-graph="" data-bar="processing,V,B,Affective"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="25" height="64"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="0" y="0" width="25" height="54.4" fill="#69519d"></rect><rect x="0" y="0" width="25" height="1" fill="#fff"></rect><rect x="0" y="6.4" width="25" height="1" fill="#fff"></rect><rect x="0" y="12.8" width="25" height="1" fill="#fff"></rect><rect x="0" y="19.200000000000003" width="25" height="1" fill="#fff"></rect><rect x="0" y="25.6" width="25" height="1" fill="#fff"></rect><rect x="0" y="32" width="25" height="1" fill="#fff"></rect><rect x="0" y="38.400000000000006" width="25" height="1" fill="#fff"></rect><rect x="0" y="44.800000000000004" width="25" height="1" fill="#fff"></rect><rect x="0" y="51.2" width="25" height="1" fill="#fff"></rect><rect x="0" y="57.6" width="25" height="1" fill="#fff"></rect></svg></div>
+														</div>
+														<p class="bottom">
+															<span class="percentage ng-binding">85%</span>
+															<span>Heart</span>
+														</p>
+													</div>
+													<div class="labels no-margin">
+														<p class="top">
+															<span class="percentage ng-binding">58%</span>
+															<span>Orderly</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="top" data-resume="true" bar-info-graph="" data-bar="processing,V,T,Orderly"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="25" height="64"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="0" y="26.880000000000003" width="25" height="37.12" fill="#69519d"></rect><rect x="0" y="0" width="25" height="1" fill="#fff"></rect><rect x="0" y="6.4" width="25" height="1" fill="#fff"></rect><rect x="0" y="12.8" width="25" height="1" fill="#fff"></rect><rect x="0" y="19.200000000000003" width="25" height="1" fill="#fff"></rect><rect x="0" y="25.6" width="25" height="1" fill="#fff"></rect><rect x="0" y="32" width="25" height="1" fill="#fff"></rect><rect x="0" y="38.400000000000006" width="25" height="1" fill="#fff"></rect><rect x="0" y="44.800000000000004" width="25" height="1" fill="#fff"></rect><rect x="0" y="51.2" width="25" height="1" fill="#fff"></rect><rect x="0" y="57.6" width="25" height="1" fill="#fff"></rect></svg></div>
+															<div class="bottom" data-resume="true" bar-info-graph="" data-bar="processing,V,B,Spontaneous"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="25" height="64"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="0" y="0" width="25" height="26.88" fill="#bbb1e5"></rect><rect x="0" y="0" width="25" height="1" fill="#fff"></rect><rect x="0" y="6.4" width="25" height="1" fill="#fff"></rect><rect x="0" y="12.8" width="25" height="1" fill="#fff"></rect><rect x="0" y="19.200000000000003" width="25" height="1" fill="#fff"></rect><rect x="0" y="25.6" width="25" height="1" fill="#fff"></rect><rect x="0" y="32" width="25" height="1" fill="#fff"></rect><rect x="0" y="38.400000000000006" width="25" height="1" fill="#fff"></rect><rect x="0" y="44.800000000000004" width="25" height="1" fill="#fff"></rect><rect x="0" y="51.2" width="25" height="1" fill="#fff"></rect><rect x="0" y="57.6" width="25" height="1" fill="#fff"></rect></svg></div>
+														</div>
+														<p class="bottom">
+															<span class="percentage ng-binding">42%</span>
+															<span>SPONTANEOUS</span>
+														</p>
+													</div>
+													<div class="labels axis right">
+														<p class="top">100%</p>
+														<p class="mid">0</p>
+														<p class="bottom">100%</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="conflict-management-wrapper oneSeparatePage chart-border-bottom" data-section="c1">
+										<div class="generic-content-bg clearfix">
+											<div class="col-sm-7 col-md-7 col-xs-7 nopad">
+												<h2 class="titleHead">Conflict Management</h2>
+												<div class="chartDesc" data-box="chartcm">
+													<div>
+														<p>Embracing the knowledge that we, as well as those
+															with whom we interact, deal with conflict in different
+															ways allows for more productive and harmonious work
+															relationships. The SurePeople PRISM measures distinct
+															conflict management styles, knowing that, while no two
+															people are alike, we all operate on spectrum that
+															incorporates many ways of managing conflict based on
+															specific situations.</p>
+													</div>
+												</div>
+												<!-- InfoBox Code Ends -->
+											</div>
+											<div class="col-sm-5 col-md-5 col-xs-5">
+	
+												<div class="svg-graph-wrapper">
+													<div class="svg-info-graph" data-resume="true" piechart-info-graph="" data-pie="conflictManagement" data-highcharts-chart="3"><div class="highcharts-container" id="highcharts-6" style="position: relative; overflow: hidden; width: 270px; height: 165px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="270" height="165"><desc>Created with Highcharts 4.0.4</desc><defs><clipPath id="highcharts-7"><rect x="0" y="0" width="310" height="215"></rect></clipPath></defs><rect x="0" y="0" width="270" height="165" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(-40,-50) scale(1 1)" style=""><path fill="#eb5a2c" d="M 154.99083470583372 63.00000093336242 A 45 45 0 0 1 199.7180549115437 102.97053035319216 L 155 108 A 0 0 0 0 0 155 108 Z" stroke-linejoin="round" transform="translate(0,0)"></path><path fill="#eb7b21" d="M 199.72306202132668 103.01525091538531 A 45 45 0 0 1 164.94309625225262 151.88775269842876 L 155 108 A 0 0 0 0 0 155 108 Z" stroke-linejoin="round" transform="translate(0,0)"></path><path fill="#f59f13" d="M 164.8992035353211 151.8976738491493 A 45 45 0 0 1 112.495513060255 122.77729982063866 L 155 108 A 0 0 0 0 0 155 108 Z" stroke-linejoin="round" transform="translate(0,0)"></path><path fill="#ffe299" d="M 112.48075701513895 122.7347879521337 A 45 45 0 0 1 121.9029690939696 77.51087824804938 L 155 108 A 0 0 0 0 0 155 108 Z" stroke-linejoin="round" transform="translate(0,0)"></path><path fill="#ffffd1" d="M 121.93347475915411 77.47779646721912 A 45 45 0 0 1 154.93749590278676 63.000043408489475 L 155 108 A 0 0 0 0 0 155 108 Z" stroke-linejoin="round" transform="translate(0,0)"></path></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(-40,-50) scale(1 1)"></g></g><g class="highcharts-data-labels highcharts-tracker" visibility="visible" zIndex="6" transform="translate(-40,-50) scale(1 1)" opacity="1" style=""><g zIndex="1" style="cursor:default;" transform="translate(185,64)"></g><g zIndex="1" style="cursor:default;" transform="translate(192,124)"></g><g zIndex="1" style="cursor:default;" transform="translate(86,137)"></g><g zIndex="1" style="cursor:default;" transform="translate(52,88)"></g><g zIndex="1" style="cursor:default;" transform="translate(58,56)"></g></g><g class="highcharts-legend" zIndex="7"><g zIndex="1"><g></g></g></g></svg><div class="highcharts-data-labels" style="position: absolute; left: -40px; top: -50px; visibility: visible;"><div class="null" style="position: absolute; left: 185px; top: 64px; visibility: visible;"><span style="position: absolute; white-space: nowrap; font-family: 'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif; font-size: 11px; color: rgb(96, 96, 96); margin-left: 0px; margin-top: 0px; left: 0px; top: 0px;" zindex="1"><span class="pie-label-0">Accommodating<br>23%</span></span></div><div class="null" style="position: absolute; left: 192px; top: 124px; visibility: visible;"><span style="position: absolute; white-space: nowrap; font-family: 'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif; font-size: 11px; color: rgb(96, 96, 96); margin-left: 0px; margin-top: 0px; left: 0px; top: 0px;" zindex="1"><span class="pie-label-1">Collaborating<br>23%</span></span></div><div class="null" style="position: absolute; left: 86px; top: 137px; visibility: visible;"><span style="position: absolute; white-space: nowrap; font-family: 'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif; font-size: 11px; color: rgb(96, 96, 96); margin-left: 0px; margin-top: 0px; left: 0px; top: 0px;" zindex="1"><span class="pie-label-2">Avoiding<br>23%</span></span></div><div class="null" style="position: absolute; left: 52px; top: 88px; visibility: visible;"><span style="position: absolute; white-space: nowrap; font-family: 'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif; font-size: 11px; color: rgb(96, 96, 96); margin-left: 0px; margin-top: 0px; left: 0px; top: 0px;" zindex="1"><span class="pie-label-3">Competing<br>17%</span></span></div><div class="null" style="position: absolute; left: 58px; top: 56px; visibility: visible;"><span style="position: absolute; white-space: nowrap; font-family: 'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif; font-size: 11px; color: rgb(96, 96, 96); margin-left: 0px; margin-top: 0px; left: 0px; top: 0px;" zindex="1"><span class="pie-label-4">Compromising<br>13%</span></span></div></div></div></div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="fundamental-needs-wrapper  oneSeparatePage chart-border-bottom" data-section="c2">
+										<div class="generic-content-bg clearfix">
+											<div class="col-sm-7 col-md-7 col-xs-7 nopad">
+												<h2 class="titleHead">Fundamental Needs</h2>
+	
+												<!-- InfoBox Code Starts -->
+												<div class="chartDesc" data-box="chartfm">
+													<div>
+														<p>As human beings, we constantly make decisions and
+															take actions to fulfill our fundamental needs. Although we
+															may not be fully aware of or able to articulate them, our
+															fundamental needs deeply influence our behavior.</p>
+	
+														<p>The SurePeople PRISM measures fundamental needs
+															separate from other facets of the SurePeople Prism, giving
+															more comprehensive insight into what defines and drives us
+															as individuals. The information helps us better appreciate
+															and respond to those with whom we interact in the
+															workplace and beyond.</p>
+													</div>
+												</div>
+												<!-- InfoBox Code Ends -->
+											</div>
+											<div class="col-sm-5 col-md-5 col-xs-5 nopad">
+	
+												<div class="svg-graph-wrapper fundamental-needs">
+													<div data-resume="true" piechart-info-graph="" data-pie="fundamentalNeeds" data-highcharts-chart="4"><div class="highcharts-container" id="highcharts-8" style="position: relative; overflow: hidden; width: 270px; height: 165px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="270" height="165"><desc>Created with Highcharts 4.0.4</desc><defs><clipPath id="highcharts-9"><rect x="0" y="0" width="310" height="215"></rect></clipPath></defs><rect x="0" y="0" width="270" height="165" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(-40,-50) scale(1 1)" style=""><path fill="#eeaaf2" d="M 154.99083470583372 63.00000093336242 A 45 45 0 1 1 112.86237491469998 123.79305392160411 L 155 108 A 0 0 0 1 0 155 108 Z" stroke-linejoin="round" transform="translate(0,0)"></path><path fill="#ce75d3" d="M 112.84660293222134 123.75090840701544 A 45 45 0 0 1 146.6167600187985 63.78776993390195 L 155 108 A 0 0 0 0 0 155 108 Z" stroke-linejoin="round" transform="translate(0,0)"></path><path fill="#ac3caf" d="M 146.66097643311554 63.779408801431146 A 45 45 0 0 1 154.93749590278676 63.000043408489475 L 155 108 A 0 0 0 0 0 155 108 Z" stroke-linejoin="round" transform="translate(0,0)"></path></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(-40,-50) scale(1 1)"></g></g><g class="highcharts-data-labels highcharts-tracker" visibility="visible" zIndex="6" transform="translate(-40,-50) scale(1 1)" opacity="1" style=""><g zIndex="1" style="cursor:default;" transform="translate(192,123)"></g><g zIndex="1" style="cursor:default;" transform="translate(76,75)"></g><g zIndex="1" style="cursor:default;" transform="translate(109,53)"></g></g><g class="highcharts-legend" zIndex="7"><g zIndex="1"><g></g></g></g></svg><div class="highcharts-data-labels" style="position: absolute; left: -40px; top: -50px; visibility: visible;"><div class="null" style="position: absolute; left: 192px; top: 123px; visibility: visible;"><span style="position: absolute; white-space: nowrap; font-family: 'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif; font-size: 11px; color: rgb(96, 96, 96); margin-left: 0px; margin-top: 0px; left: 0px; top: 0px;" zindex="1"><span class="pie-label-0">Significance<br>69%</span></span></div><div class="null" style="position: absolute; left: 76px; top: 75px; visibility: visible;"><span style="position: absolute; white-space: nowrap; font-family: 'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif; font-size: 11px; color: rgb(96, 96, 96); margin-left: 0px; margin-top: 0px; left: 0px; top: 0px;" zindex="1"><span class="pie-label-1">Control<br>28%</span></span></div><div class="null" style="position: absolute; left: 109px; top: 53px; visibility: visible;"><span style="position: absolute; white-space: nowrap; font-family: 'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif; font-size: 11px; color: rgb(96, 96, 96); margin-left: 0px; margin-top: 0px; left: 0px; top: 0px;" zindex="1"><span class="pie-label-2">Security<br>3%</span></span></div></div></div></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								
+								
+									<div class="learning-wrapper" data-section="c4"> <!--  oneSeparatePage nopadNoBorder -->
+										<div class="generic-content-bg clearfix">
+											<div class="col-sm-7 col-md-7 col-xs-7 nopad">
+												<h2 class="titleHead">Learning Style</h2>
+	
+												<div class="chartDesc" data-box="chartls">
+													<div>
+														<p>While others press forward undaunted, others are
+															more deliberate and concerned with protocol. The
+															measurement of learning styles speaks to personal
+															process-are we more engaged by big ideas or details,
+															risk-taking or analysis? The SurePeople PRISM measures how
+															individuals process concepts and details to reveal
+															learning styles which is an important influence on
+															compatibility in work relationships.</p>
+													</div>
+												</div>
+												<!-- InfoBox Code Ends -->
+											</div>
+											<div class="col-sm-5 col-md-5 col-xs-5 nopad">
+	
+												<div class="svg-graph-wrapper learning">
+													<div data-resume="true" piechart-info-graph="" data-pie="learningStyle" data-highcharts-chart="5"><div class="highcharts-container" id="highcharts-10" style="position: relative; overflow: hidden; width: 270px; height: 165px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="270" height="165"><desc>Created with Highcharts 4.0.4</desc><defs><clipPath id="highcharts-11"><rect x="0" y="0" width="310" height="215"></rect></clipPath></defs><rect x="0" y="0" width="270" height="165" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(-40,-50) scale(1 1)" style=""><path fill="#dd66b3" d="M 154.99083470583372 63.00000093336242 A 45 45 0 1 1 146.6249530063434 152.2137827815495 L 155 108 A 0 0 0 1 0 155 108 Z" stroke-linejoin="round" transform="translate(0,0)"></path><path fill="#b21b6e" d="M 146.58074341845395 152.20538562906214 A 45 45 0 0 1 154.93749590278676 63.000043408489475 L 155 108 A 0 0 0 0 0 155 108 Z" stroke-linejoin="round" transform="translate(0,0)"></path></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(-40,-50) scale(1 1)"></g></g><g class="highcharts-data-labels highcharts-tracker" visibility="visible" zIndex="6" transform="translate(-40,-50) scale(1 1)" opacity="1" style=""><g zIndex="1" style="cursor:default;" transform="translate(200,102)"></g><g zIndex="1" style="cursor:default;" transform="translate(76,93)"></g></g><g class="highcharts-legend" zIndex="7"><g zIndex="1"><g></g></g></g></svg><div class="highcharts-data-labels" style="position: absolute; left: -40px; top: -50px; visibility: visible;"><div class="null" style="position: absolute; left: 200px; top: 102px; visibility: visible;"><span style="position: absolute; white-space: nowrap; font-family: 'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif; font-size: 11px; color: rgb(96, 96, 96); margin-left: 0px; margin-top: 0px; left: 0px; top: 0px;" zindex="1"><span class="pie-label-0">Analytical<br>53%</span></span></div><div class="null" style="position: absolute; left: 76px; top: 93px; visibility: visible;"><span style="position: absolute; white-space: nowrap; font-family: 'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif; font-size: 11px; color: rgb(96, 96, 96); margin-left: 0px; margin-top: 0px; left: 0px; top: 0px;" zindex="1"><span class="pie-label-1">Global<br>47%</span></span></div></div></div></div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="motivation-wrapper oneSeparatePage chart-border-bottom nopadNoBorder" data-section="c6"> <!--  -->
+										<div class="generic-content-bg clearfix">
+											<div class="col-sm-7 col-md-7 col-xs-7 nopad">
+												<h2 class="titleHead">Motivation</h2>
+												<div class="chartDesc" data-box="chartmot">
+													<div>
+														<p>Understanding our motivations-how and why we take
+															certain actions-is critical to success in our personal and
+															professional lives. In the workplace, understanding the
+															motivations of individuals can help us manage others well
+															and work more productively on a team or with a supervisor.
+															The SurePeople PRISM presents separate measurements that
+															uncover our motivations with a telling and comprehensive
+															analysis.</p>
+													</div>
+												</div>
+												<!-- InfoBox Code Ends -->
+											</div>
+											<div class="col-sm-5 col-md-5 col-xs-5 nopad graphsSection">
+	
+	<div class="motivation-graph-wrapper">
+												<h3>Why</h3>
+												<div class="svg-graph-wrapper">
+													<div class="labels">
+														<p class="left">
+															<span class="percentage ng-binding">80%</span>
+															<span>ATTAINMENT OF GOALS</span>
+														</p>
+														<p class="right">
+															<span class="percentage ng-binding">20%</span>
+															<span>RECOGNITION FOR EFFORTS</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="left" data-resume="true" bar-info-graph="" data-bar="motivationWhy,H,L,AttainmentOfGoals"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="64" height="20"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="12.799999999999997" y="0" width="51.2" height="20" fill="#26a6c3"></rect><rect x="0" y="0" width="1" height="20" fill="#fff"></rect><rect x="6.4" y="0" width="1" height="20" fill="#fff"></rect><rect x="12.8" y="0" width="1" height="20" fill="#fff"></rect><rect x="19.200000000000003" y="0" width="1" height="20" fill="#fff"></rect><rect x="25.6" y="0" width="1" height="20" fill="#fff"></rect><rect x="32" y="0" width="1" height="20" fill="#fff"></rect><rect x="38.400000000000006" y="0" width="1" height="20" fill="#fff"></rect><rect x="44.800000000000004" y="0" width="1" height="20" fill="#fff"></rect><rect x="51.2" y="0" width="1" height="20" fill="#fff"></rect><rect x="57.6" y="0" width="1" height="20" fill="#fff"></rect></svg></div>
+															<div class="right" data-resume="true" bar-info-graph="" data-bar="motivationWhy,H,R,RecognitionForEffort"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="64" height="20"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="0" y="0" width="12.8" height="20" fill="#aae3e8"></rect><rect x="0" y="0" width="1" height="20" fill="#fff"></rect><rect x="6.4" y="0" width="1" height="20" fill="#fff"></rect><rect x="12.8" y="0" width="1" height="20" fill="#fff"></rect><rect x="19.200000000000003" y="0" width="1" height="20" fill="#fff"></rect><rect x="25.6" y="0" width="1" height="20" fill="#fff"></rect><rect x="32" y="0" width="1" height="20" fill="#fff"></rect><rect x="38.400000000000006" y="0" width="1" height="20" fill="#fff"></rect><rect x="44.800000000000004" y="0" width="1" height="20" fill="#fff"></rect><rect x="51.2" y="0" width="1" height="20" fill="#fff"></rect><rect x="57.6" y="0" width="1" height="20" fill="#fff"></rect></svg></div>
+														</div>
+													</div>
+													<div class="labels">
+														<p class="left">
+															<span class="percentage ng-binding">80%</span>
+															<span>Power</span>
+														</p>
+														<p class="right">
+															<span class="percentage ng-binding">20%</span>
+															<span>COMPLIANCE</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="left" data-resume="true" bar-info-graph="" data-bar="motivationWhy,H,L,Power"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="64" height="20"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="12.799999999999997" y="0" width="51.2" height="20" fill="#26a6c3"></rect><rect x="0" y="0" width="1" height="20" fill="#fff"></rect><rect x="6.4" y="0" width="1" height="20" fill="#fff"></rect><rect x="12.8" y="0" width="1" height="20" fill="#fff"></rect><rect x="19.200000000000003" y="0" width="1" height="20" fill="#fff"></rect><rect x="25.6" y="0" width="1" height="20" fill="#fff"></rect><rect x="32" y="0" width="1" height="20" fill="#fff"></rect><rect x="38.400000000000006" y="0" width="1" height="20" fill="#fff"></rect><rect x="44.800000000000004" y="0" width="1" height="20" fill="#fff"></rect><rect x="51.2" y="0" width="1" height="20" fill="#fff"></rect><rect x="57.6" y="0" width="1" height="20" fill="#fff"></rect></svg></div>
+															<div class="right" data-resume="true" bar-info-graph="" data-bar="motivationWhy,H,R,Compliance"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="64" height="20"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="0" y="0" width="12.8" height="20" fill="#aae3e8"></rect><rect x="0" y="0" width="1" height="20" fill="#fff"></rect><rect x="6.4" y="0" width="1" height="20" fill="#fff"></rect><rect x="12.8" y="0" width="1" height="20" fill="#fff"></rect><rect x="19.200000000000003" y="0" width="1" height="20" fill="#fff"></rect><rect x="25.6" y="0" width="1" height="20" fill="#fff"></rect><rect x="32" y="0" width="1" height="20" fill="#fff"></rect><rect x="38.400000000000006" y="0" width="1" height="20" fill="#fff"></rect><rect x="44.800000000000004" y="0" width="1" height="20" fill="#fff"></rect><rect x="51.2" y="0" width="1" height="20" fill="#fff"></rect><rect x="57.6" y="0" width="1" height="20" fill="#fff"></rect></svg></div>
+														</div>
+													</div>
+													<div class="labels">
+														<p class="left">
+															<span class="percentage ng-binding">30%</span>
+															<span>ACTIVITY</span>
+														</p>
+														<p class="right">
+															<span class="percentage ng-binding">70%</span>
+															<span>AFFILIATION</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="left" data-resume="true" bar-info-graph="" data-bar="motivationWhy,H,L,Activity"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="64" height="20"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="44.8" y="0" width="19.2" height="20" fill="#aae3e8"></rect><rect x="0" y="0" width="1" height="20" fill="#fff"></rect><rect x="6.4" y="0" width="1" height="20" fill="#fff"></rect><rect x="12.8" y="0" width="1" height="20" fill="#fff"></rect><rect x="19.200000000000003" y="0" width="1" height="20" fill="#fff"></rect><rect x="25.6" y="0" width="1" height="20" fill="#fff"></rect><rect x="32" y="0" width="1" height="20" fill="#fff"></rect><rect x="38.400000000000006" y="0" width="1" height="20" fill="#fff"></rect><rect x="44.800000000000004" y="0" width="1" height="20" fill="#fff"></rect><rect x="51.2" y="0" width="1" height="20" fill="#fff"></rect><rect x="57.6" y="0" width="1" height="20" fill="#fff"></rect></svg></div>
+															<div class="right" data-resume="true" bar-info-graph="" data-bar="motivationWhy,H,R,Affiliation"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="64" height="20"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="0" y="0" width="44.8" height="20" fill="#26a6c3"></rect><rect x="0" y="0" width="1" height="20" fill="#fff"></rect><rect x="6.4" y="0" width="1" height="20" fill="#fff"></rect><rect x="12.8" y="0" width="1" height="20" fill="#fff"></rect><rect x="19.200000000000003" y="0" width="1" height="20" fill="#fff"></rect><rect x="25.6" y="0" width="1" height="20" fill="#fff"></rect><rect x="32" y="0" width="1" height="20" fill="#fff"></rect><rect x="38.400000000000006" y="0" width="1" height="20" fill="#fff"></rect><rect x="44.800000000000004" y="0" width="1" height="20" fill="#fff"></rect><rect x="51.2" y="0" width="1" height="20" fill="#fff"></rect><rect x="57.6" y="0" width="1" height="20" fill="#fff"></rect></svg></div>
+														</div>
+													</div>
+												</div>
+	
+	
+	
+												<h3>How</h3>
+	
+												<div class="svg-graph-wrapper">
+													<div class="labels">
+														<p class="left">
+															<span class="percentage ng-binding">38%</span>
+															<span>SELF-AFFIRMED</span>
+														</p>
+														<p class="right">
+															<span class="percentage ng-binding">63%</span>
+															<span>AFFIRMED BY OTHERS</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="left" data-resume="true" bar-info-graph="" data-bar="motivationHow,H,L,SelfAffirmed"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="64" height="20"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="39.68" y="0" width="24.32" height="20" fill="#aae3e8"></rect><rect x="0" y="0" width="1" height="20" fill="#fff"></rect><rect x="6.4" y="0" width="1" height="20" fill="#fff"></rect><rect x="12.8" y="0" width="1" height="20" fill="#fff"></rect><rect x="19.200000000000003" y="0" width="1" height="20" fill="#fff"></rect><rect x="25.6" y="0" width="1" height="20" fill="#fff"></rect><rect x="32" y="0" width="1" height="20" fill="#fff"></rect><rect x="38.400000000000006" y="0" width="1" height="20" fill="#fff"></rect><rect x="44.800000000000004" y="0" width="1" height="20" fill="#fff"></rect><rect x="51.2" y="0" width="1" height="20" fill="#fff"></rect><rect x="57.6" y="0" width="1" height="20" fill="#fff"></rect></svg></div>
+															<div class="right" data-resume="true" bar-info-graph="" data-bar="motivationHow,H,R,AffirmedByOthers"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="64" height="20"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="0" y="0" width="40.32" height="20" fill="#26a6c3"></rect><rect x="0" y="0" width="1" height="20" fill="#fff"></rect><rect x="6.4" y="0" width="1" height="20" fill="#fff"></rect><rect x="12.8" y="0" width="1" height="20" fill="#fff"></rect><rect x="19.200000000000003" y="0" width="1" height="20" fill="#fff"></rect><rect x="25.6" y="0" width="1" height="20" fill="#fff"></rect><rect x="32" y="0" width="1" height="20" fill="#fff"></rect><rect x="38.400000000000006" y="0" width="1" height="20" fill="#fff"></rect><rect x="44.800000000000004" y="0" width="1" height="20" fill="#fff"></rect><rect x="51.2" y="0" width="1" height="20" fill="#fff"></rect><rect x="57.6" y="0" width="1" height="20" fill="#fff"></rect></svg></div>
+														</div>
+													</div>
+													<div class="labels">
+														<p class="left">
+															<span class="percentage ng-binding">71%</span>
+															<span>EXCHANGE OF IDEAS</span>
+														</p>
+														<p class="right">
+															<span class="percentage ng-binding">29%</span>
+															<span>RECEIVE DIRECTION</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="left" data-resume="true" bar-info-graph="" data-bar="motivationHow,H,L,ExchangeOfIdeas"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="64" height="20"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="18.560000000000002" y="0" width="45.44" height="20" fill="#26a6c3"></rect><rect x="0" y="0" width="1" height="20" fill="#fff"></rect><rect x="6.4" y="0" width="1" height="20" fill="#fff"></rect><rect x="12.8" y="0" width="1" height="20" fill="#fff"></rect><rect x="19.200000000000003" y="0" width="1" height="20" fill="#fff"></rect><rect x="25.6" y="0" width="1" height="20" fill="#fff"></rect><rect x="32" y="0" width="1" height="20" fill="#fff"></rect><rect x="38.400000000000006" y="0" width="1" height="20" fill="#fff"></rect><rect x="44.800000000000004" y="0" width="1" height="20" fill="#fff"></rect><rect x="51.2" y="0" width="1" height="20" fill="#fff"></rect><rect x="57.6" y="0" width="1" height="20" fill="#fff"></rect></svg></div>
+															<div class="right" data-resume="true" bar-info-graph="" data-bar="motivationHow,H,R,ReceiveDirection"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="64" height="20"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="0" y="0" width="18.56" height="20" fill="#aae3e8"></rect><rect x="0" y="0" width="1" height="20" fill="#fff"></rect><rect x="6.4" y="0" width="1" height="20" fill="#fff"></rect><rect x="12.8" y="0" width="1" height="20" fill="#fff"></rect><rect x="19.200000000000003" y="0" width="1" height="20" fill="#fff"></rect><rect x="25.6" y="0" width="1" height="20" fill="#fff"></rect><rect x="32" y="0" width="1" height="20" fill="#fff"></rect><rect x="38.400000000000006" y="0" width="1" height="20" fill="#fff"></rect><rect x="44.800000000000004" y="0" width="1" height="20" fill="#fff"></rect><rect x="51.2" y="0" width="1" height="20" fill="#fff"></rect><rect x="57.6" y="0" width="1" height="20" fill="#fff"></rect></svg></div>
+														</div>
+													</div>
+													<div class="labels">
+														<p class="left">
+															<span class="percentage ng-binding">88%</span>
+															<span>FREEDOM</span>
+														</p>
+														<p class="right">
+															<span class="percentage ng-binding">12%</span>
+															<span>CONSISTENCY</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="left" data-resume="true" bar-info-graph="" data-bar="motivationHow,H,L,Freedom"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="64" height="20"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="7.68" y="0" width="56.32" height="20" fill="#26a6c3"></rect><rect x="0" y="0" width="1" height="20" fill="#fff"></rect><rect x="6.4" y="0" width="1" height="20" fill="#fff"></rect><rect x="12.8" y="0" width="1" height="20" fill="#fff"></rect><rect x="19.200000000000003" y="0" width="1" height="20" fill="#fff"></rect><rect x="25.6" y="0" width="1" height="20" fill="#fff"></rect><rect x="32" y="0" width="1" height="20" fill="#fff"></rect><rect x="38.400000000000006" y="0" width="1" height="20" fill="#fff"></rect><rect x="44.800000000000004" y="0" width="1" height="20" fill="#fff"></rect><rect x="51.2" y="0" width="1" height="20" fill="#fff"></rect><rect x="57.6" y="0" width="1" height="20" fill="#fff"></rect></svg></div>
+															<div class="right" data-resume="true" bar-info-graph="" data-bar="motivationHow,H,R,Consistency"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="64" height="20"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="0" y="0" width="7.68" height="20" fill="#aae3e8"></rect><rect x="0" y="0" width="1" height="20" fill="#fff"></rect><rect x="6.4" y="0" width="1" height="20" fill="#fff"></rect><rect x="12.8" y="0" width="1" height="20" fill="#fff"></rect><rect x="19.200000000000003" y="0" width="1" height="20" fill="#fff"></rect><rect x="25.6" y="0" width="1" height="20" fill="#fff"></rect><rect x="32" y="0" width="1" height="20" fill="#fff"></rect><rect x="38.400000000000006" y="0" width="1" height="20" fill="#fff"></rect><rect x="44.800000000000004" y="0" width="1" height="20" fill="#fff"></rect><rect x="51.2" y="0" width="1" height="20" fill="#fff"></rect><rect x="57.6" y="0" width="1" height="20" fill="#fff"></rect></svg></div>
+														</div>
+													</div>
+													<div class="labels">
+														<p class="left">
+															<span class="percentage ng-binding">54%</span>
+															<span>TASK COMPLETION</span>
+														</p>
+														<p class="right">
+															<span class="percentage ng-binding">46%</span>
+															<span>PREFERS PROCESS</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="left" data-resume="true" bar-info-graph="" data-bar="motivationHow,H,L,TaskCompletion"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="64" height="20"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="29.439999999999998" y="0" width="34.56" height="20" fill="#26a6c3"></rect><rect x="0" y="0" width="1" height="20" fill="#fff"></rect><rect x="6.4" y="0" width="1" height="20" fill="#fff"></rect><rect x="12.8" y="0" width="1" height="20" fill="#fff"></rect><rect x="19.200000000000003" y="0" width="1" height="20" fill="#fff"></rect><rect x="25.6" y="0" width="1" height="20" fill="#fff"></rect><rect x="32" y="0" width="1" height="20" fill="#fff"></rect><rect x="38.400000000000006" y="0" width="1" height="20" fill="#fff"></rect><rect x="44.800000000000004" y="0" width="1" height="20" fill="#fff"></rect><rect x="51.2" y="0" width="1" height="20" fill="#fff"></rect><rect x="57.6" y="0" width="1" height="20" fill="#fff"></rect></svg></div>
+															<div class="right" data-resume="true" bar-info-graph="" data-bar="motivationHow,H,R,PrefersProcess"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="64" height="20"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="0" y="0" width="29.44" height="20" fill="#aae3e8"></rect><rect x="0" y="0" width="1" height="20" fill="#fff"></rect><rect x="6.4" y="0" width="1" height="20" fill="#fff"></rect><rect x="12.8" y="0" width="1" height="20" fill="#fff"></rect><rect x="19.200000000000003" y="0" width="1" height="20" fill="#fff"></rect><rect x="25.6" y="0" width="1" height="20" fill="#fff"></rect><rect x="32" y="0" width="1" height="20" fill="#fff"></rect><rect x="38.400000000000006" y="0" width="1" height="20" fill="#fff"></rect><rect x="44.800000000000004" y="0" width="1" height="20" fill="#fff"></rect><rect x="51.2" y="0" width="1" height="20" fill="#fff"></rect><rect x="57.6" y="0" width="1" height="20" fill="#fff"></rect></svg></div>
+														</div>
+													</div>
+												</div>
+	
+	
+												<h3>What</h3>
+												<div class="svg-graph-wrapper">
+													<div class="labels">
+														<p class="left">
+															<span class="percentage ng-binding">33%</span>
+															<span>WORK CONDITIONS</span>
+														</p>
+														<p class="right">
+															<span class="percentage ng-binding">67%</span>
+															<span>WORK FUNCTION</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="left" data-resume="true" bar-info-graph="" data-bar="motivationWhat,H,L,Hygiene"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="64" height="20"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="42.879999999999995" y="0" width="21.12" height="20" fill="#aae3e8"></rect><rect x="0" y="0" width="1" height="20" fill="#fff"></rect><rect x="6.4" y="0" width="1" height="20" fill="#fff"></rect><rect x="12.8" y="0" width="1" height="20" fill="#fff"></rect><rect x="19.200000000000003" y="0" width="1" height="20" fill="#fff"></rect><rect x="25.6" y="0" width="1" height="20" fill="#fff"></rect><rect x="32" y="0" width="1" height="20" fill="#fff"></rect><rect x="38.400000000000006" y="0" width="1" height="20" fill="#fff"></rect><rect x="44.800000000000004" y="0" width="1" height="20" fill="#fff"></rect><rect x="51.2" y="0" width="1" height="20" fill="#fff"></rect><rect x="57.6" y="0" width="1" height="20" fill="#fff"></rect></svg></div>
+															<div class="right" data-resume="true" bar-info-graph="" data-bar="motivationWhat,H,R,Accomplishment"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="64" height="20"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="0" y="0" width="42.88" height="20" fill="#26a6c3"></rect><rect x="0" y="0" width="1" height="20" fill="#fff"></rect><rect x="6.4" y="0" width="1" height="20" fill="#fff"></rect><rect x="12.8" y="0" width="1" height="20" fill="#fff"></rect><rect x="19.200000000000003" y="0" width="1" height="20" fill="#fff"></rect><rect x="25.6" y="0" width="1" height="20" fill="#fff"></rect><rect x="32" y="0" width="1" height="20" fill="#fff"></rect><rect x="38.400000000000006" y="0" width="1" height="20" fill="#fff"></rect><rect x="44.800000000000004" y="0" width="1" height="20" fill="#fff"></rect><rect x="51.2" y="0" width="1" height="20" fill="#fff"></rect><rect x="57.6" y="0" width="1" height="20" fill="#fff"></rect></svg></div>
+														</div>
+													</div>
+												</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- Motivation Ends -->
+									<div class="decision-making-wrapper oneSeparatePage" data-section="c3">
+										<div class="generic-content-bg">
+											<div class="col-sm-7 col-md-7 col-xs-7 nopad">
+												<h2 class="titleHead">Decision Making</h2>
+	
+												<div class="chartDesc" data-box="chartdms">
+													<div>
+														<p>Understanding our decision making styles and the
+															styles of those with whom we interact, minimizes conflict
+															opportunities. The SurePeople PRISM measures decision
+															making style on four distinct but related scales. Where we
+															fall within each scale offers insight into our thought
+															processes and personal expectations.</p>
+													</div>
+												</div>
+												<!-- InfoBox Code Ends -->
+											</div>
+											<div class="col-sm-5 col-md-5 col-xs-5 nopad graphsSection">
+	
+												<div class="svg-graph-wrapper decision-making">
+													<div class="svg-info-graph">
+														<div class="label top">
+															<p class="ng-binding">OUTWARD
+																50%</p>
+														</div>
+														<div class="graph-outer">
+															<div class="label left">
+																<p class="ng-binding">CAREFUL<br>
+																	42%</p>
+																
+															</div>
+															<div class="graph-inner" data-resume="true" decision-info-graph="">
+																<div class="on-graph-labels">
+																	<p class="top-label-set">
+																		<span>Indecisive</span> <span>Impulsive</span>
+																	</p>
+																	<p class="bottom-label-set">
+																		<span>Evasive</span> <span>Subversive</span>
+																	</p>
+																</div>
+															<svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="145" height="145"><desc>Created with Highcharts 4.0.4</desc><defs></defs><rect x="0" y="0" width="145" height="145" fill="#E8E8E8"></rect><rect x="42.05" y="36.25" width="72" height="72" fill="#57ae52"></rect><path fill="none" d="M 0 72 L 145 72 M 72 145 L 72 0" stroke="#fff" stroke-width="1"></path><rect x="67.5" y="7.25" width="10" height="1" fill="#fff"></rect><rect x="67.5" y="14.5" width="10" height="1" fill="#fff"></rect><rect x="67.5" y="21.75" width="10" height="1" fill="#fff"></rect><rect x="67.5" y="29" width="10" height="1" fill="#fff"></rect><rect x="67.5" y="36.25" width="10" height="1" fill="#fff"></rect><rect x="67.5" y="43.5" width="10" height="1" fill="#fff"></rect><rect x="67.5" y="50.75" width="10" height="1" fill="#fff"></rect><rect x="67.5" y="58" width="10" height="1" fill="#fff"></rect><rect x="67.5" y="65.25" width="10" height="1" fill="#fff"></rect><rect x="67.5" y="79.75" width="10" height="1" fill="#fff"></rect><rect x="67.5" y="87" width="10" height="1" fill="#fff"></rect><rect x="67.5" y="94.25" width="10" height="1" fill="#fff"></rect><rect x="67.5" y="101.5" width="10" height="1" fill="#fff"></rect><rect x="67.5" y="108.75" width="10" height="1" fill="#fff"></rect><rect x="67.5" y="116" width="10" height="1" fill="#fff"></rect><rect x="67.5" y="123.25" width="10" height="1" fill="#fff"></rect><rect x="67.5" y="130.5" width="10" height="1" fill="#fff"></rect><rect x="67.5" y="137.75" width="10" height="1" fill="#fff"></rect><rect x="7.25" y="67.5" width="1" height="10" fill="#fff"></rect><rect x="14.5" y="67.5" width="1" height="10" fill="#fff"></rect><rect x="21.75" y="67.5" width="1" height="10" fill="#fff"></rect><rect x="29" y="67.5" width="1" height="10" fill="#fff"></rect><rect x="36.25" y="67.5" width="1" height="10" fill="#fff"></rect><rect x="43.5" y="67.5" width="1" height="10" fill="#fff"></rect><rect x="50.75" y="67.5" width="1" height="10" fill="#fff"></rect><rect x="58" y="67.5" width="1" height="10" fill="#fff"></rect><rect x="65.25" y="67.5" width="1" height="10" fill="#fff"></rect><rect x="79.75" y="67.5" width="1" height="10" fill="#fff"></rect><rect x="87" y="67.5" width="1" height="10" fill="#fff"></rect><rect x="94.25" y="67.5" width="1" height="10" fill="#fff"></rect><rect x="101.5" y="67.5" width="1" height="10" fill="#fff"></rect><rect x="108.75" y="67.5" width="1" height="10" fill="#fff"></rect><rect x="116" y="67.5" width="1" height="10" fill="#fff"></rect><rect x="123.25" y="67.5" width="1" height="10" fill="#fff"></rect><rect x="130.5" y="67.5" width="1" height="10" fill="#fff"></rect><rect x="137.75" y="67.5" width="1" height="10" fill="#fff"></rect></svg></div>
+															<div class="label right">
+																<p class="ng-binding">RAPID<br>
+																	58%</p>
+															</div>
+														</div>
+														<div class="label bottom">
+															<p class="ng-binding">INWARD 50%</p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- Decision Graphs ends -->
+								
+								<div class="footerSection">
+									<div class="fullProfile">
+										<span class="ng-binding">For access to the full SurePeople PRISM report, please contact Kunal Vashist via email, kunal@surepeople.com</span>
+									</div>
+									<div class="bottom clearfix">
+										<span class="pull-left url"><a href="http://uat.surepeople.com">www.surepeople.com</a></span> <span class="pull-right copy">Copyright @2015 SurePeople,
+											LLC All rights reserved</span>
+									</div>
+								</div>
+							</div>
+					</div>
+            </article>
+        </div>
+    </body>
+ </html>

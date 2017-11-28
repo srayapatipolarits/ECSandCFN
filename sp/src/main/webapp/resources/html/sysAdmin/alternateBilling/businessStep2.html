@@ -1,0 +1,91 @@
+<div id="content-container hide" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'">
+    <div class="x-container sign-up-wrapper subscribe-wrapper alternate-billing" data-ng-controller="spBillingCtrl as ctrl" data-ng-init="ctrl.initStep2();">
+        <div class="container minimumHeight">
+            <div class="row">
+                <form name="ctrl.billingStep2" data-ng-submit="!ctrl.submitDisable?ctrl.processBillingStep2():''" novalidate autocomplete="off" id="spBillingStep2">
+                    <!-- Header Starts  -->
+                    <div class="section-custon-header bgWhite">
+                        <a data-ng-if="ctrl.step2Mode === 'edit'" href="/sp/sysAdmin/alternateBilling/viewDetailAccount?accountId={{ctrl.accountDetails.id}}" class="border-link accv-link"> <span class="mock-link" data-ng-bind="pullInterNationalization('pricing.desc6')"></span></a>
+                        <h2 class="sign-in-title" data-ng-bind-html="ctrl.step2Mode === 'edit'?pullInterNationalization('pricing.create.heading0'):pullInterNationalization('pricing.create.heading1')"></h2>
+                        <div class="company-details-wrapper mb15" data-ng-if="ctrl.step2Mode === 'edit'">
+                            <p>
+                                <span class="b-300" data-ng-bind="::pullInterNationalization('pricing.create.desc3')"></span>
+                                <span class="fw900" data-ng-bind="ctrl.companyDetails.name"></span>
+                            </p>
+                            <p>
+                                <span class="b-500" data-ng-bind="::pullInterNationalization('pricing.create.desc2')"></span>
+                                <span class="fw900" data-ng-bind="ctrl.accountDetails.accountNumber"></span>
+                            </p>
+                        </div>
+                        <div class="company-details-wrapper">
+                            <ol class="form-list-billing">
+                                <li class="ele-left r45">
+                                    <label class="label-text" data-ng-bind="::pullInterNationalization('pricing.create.label1')"></label>
+                                    <input type="text" name="planForms_F0_name" data-ng-model="ctrl.billingStep2Details.name" data-ng-required="true" />
+                                    <span class="validate-error" data-ng-if="ctrl.step2Submited && ctrl.billingStep2.planForms_F0_name.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                                </li>
+                                <li class="ele-left securityAdj wAuto">
+                                    <p class="cb-custom fl">
+                                        <input id="securityAddon" type="checkbox" name="enhancedPassword" data-ng-model="ctrl.billingStep2Details.enhancedPasswordSecurity" class="serialize-ignore">
+                                        <label for="securityAddon">
+                                            <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                                            <span class="checkText" data-ng-bind="::pullInterNationalization('pricing.create.pwdH')"></span>
+                                        </label>
+                                    </p>
+                                    <a href="javascript:void(0)" class="icon-icon_help_i sp-icon-color rules-ico" data-ng-click="ctrl.securityRules();"></a>
+                                    <input type="text" name="enhancedPasswordSecurity" class="hideField" value="{{ctrl.billingStep2Details.enhancedPasswordSecurity?true:false}}" />
+                                </li>
+                                <li class="ele-right wAuto">
+                                    <ul class="sub-list">
+                                        <li class="ele-right wAuto">
+                                            <input type="submit" value="{{::pullInterNationalization('admin.member.submit')}}" class="btn-block btn-15px sp-btn-color" data-ng-class="{'disable': ctrl.submitDisable}"/>
+                                        </li>                                    
+                                        <li class="ele-right r15 wAuto">
+                                            <input type="button" value="{{::pullInterNationalization('admin.member.cancel')}}" class="btn-block btn-grey-dark btn-15px" data-ng-click="ctrl.pageRedirect()"/>
+                                        </li>
+                                    </ul>
+                                    <span class="validate-error" data-ng-if="ctrl.serverErrors" data-ng-bind="ctrl.step2Errors.replace('com.sp.web.exception.PaymentGatewayException:', '')"></span>
+                                    <span class="validate-error" data-ng-if="ctrl.step2Submited" data-ng-bind="::pullInterNationalization('pricing.formErrors')"></span>
+                                    
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!-- Header Ends  -->
+                    
+                    <!-- Billing Tabs Starts -->
+                    <div class="sp-billing-tabs">
+                        <ol class="form-list-billing liPosAbs">
+                            <li class="ele-left tab-style wAuto" data-ng-class="{'activeTab': ctrl.viewForm === 'Primary'}" data-ng-click="ctrl.primaryPlanActive?ctrl.updateFormView('Primary'):''">
+                                <p class="cb-custom fl">
+                                    <input class="serialize-ignore" id="Primary" type="checkbox" name="Primary" data-ng-model="ctrl.billingStep2Details.Primary" data-ng-disabled="ctrl.disableErtiOpt" data-ng-change="ctrl.changeTabs('Primary')">
+                                    <label for="Primary" data-ng-class="{'greyIcon':ctrl.disableErtiOpt}">
+                                        <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                                        <span class="checkText" data-ng-bind="::pullInterNationalization('pricing.ertiPlan')"></span>
+                                    </label>
+                                </p>
+                            </li>
+                            <li class="ele-left tab-style brRt wAuto" data-ng-class="{'activeTab': ctrl.viewForm === 'IntelligentHiring'}" data-ng-click="ctrl.hiringPlanActive?ctrl.updateFormView('IntelligentHiring'):''">
+                                <p class="cb-custom fl">
+                                    <input class="serialize-ignore" id="IntelligentHiring" type="checkbox" name="IntelligentHiring" data-ng-model="ctrl.billingStep2Details.IntelligentHiring" data-ng-disabled="ctrl.disableHiringOpt" data-ng-change="ctrl.changeTabs('IntelligentHiring')">
+                                    <label for="IntelligentHiring" data-ng-class="{'greyIcon':ctrl.disableHiringOpt}">
+                                        <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                                        <span class="checkText" data-ng-bind="::pullInterNationalization('pricing.paPlan')"></span>
+                                    </label>
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                    <!-- Billing Tabs Ends -->
+                    
+                    <!-- Billing Section Starts -->                    
+                    <div class="sp-billing-wrapper">
+                    	<ng-include src="'/sp/resources/html/sysAdmin/alternateBilling/step2Primary.html'" data-ng-show="ctrl.viewForm==='Primary'"></ng-include>
+                    	<ng-include src="'/sp/resources/html/sysAdmin/alternateBilling/step2IntelligentHiring.html'" data-ng-show="ctrl.viewForm==='IntelligentHiring'"></ng-include>
+                    </div>                    
+                    <!-- Billing Section Ends -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

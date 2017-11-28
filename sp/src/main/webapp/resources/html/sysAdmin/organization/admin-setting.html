@@ -1,0 +1,28 @@
+<div class="add-setting">
+    <!-- Setting Column-->
+    <div class="practice-area-detail organization-area-detail lnd-right-box sp-panel-accent">
+        <div class="title-with-icons">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('sysadmin.organization.programSettings')"></h2>
+        </div>
+        	<form name="ctrl.actionPlanSetting" class="actionPlanForm clearfix w500">
+        	    <ol class="form-list-c form-list-d">
+	                <li class="type-and-number planTitle">
+	                    <input autoFocus type="text" class="themeName bolder_input" name="actionPlanName" maxlength="200" placeholder="{{::pullInterNationalization('sysadmin.organization.actionPlanTitle')}}" data-ng-model="ctrl.actionPlan.name" required/>
+	                    <span class="validate-error" data-ng-if="ctrl.submitted && ctrl.actionPlanSetting.actionPlanName.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+	                </li>
+	                <li class="type-and-number planTitle_1">
+	                    <textarea class="themeName h60" name="actionPlanDescription" data-ng-model="ctrl.actionPlan.description" data-ng-attr-placeholder="{{::pullInterNationalization('sysadmin.organization.actionPlanEditDescription')}}" required></textarea>
+	                    <span class="validate-error" data-ng-if="ctrl.submitted && ctrl.actionPlanSetting.actionPlanDescription.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+	                </li>
+	                <li class="crop-it-image">
+	                    <div class="img-wrapper-admin">
+	                        <img data-ng-src="{{ctrl.actionPlan.imageUrl}}" alt="" data-ng-if="ctrl.actionPlan.imageUrl" class="org-admin-image-preview" />
+	                        <div class="admin-section-pic" data-ng-if="!ctrl.actionPlan.imageUrl" data-ng-bind="::pullInterNationalization('sysadmin.organization.uploadImage')"></div>
+	                        <span class="upload-icon icon-icon_camera sp-icon-color" data-ng-click="ctrl.selectThumbImage(ctrl.actionPlan,'introImage');"></span>
+	                        <span class="upload-icon remove-icon icon-icon_accounts_remove sp-icon-color" data-ng-if="ctrl.actionPlan.imageUrl" data-ng-click="ctrl.actionPlan.imageUrl=''"></span>
+	                    </div>
+	                </li>
+	            </ol>
+            </form>
+    </div>
+</div>

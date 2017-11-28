@@ -1,0 +1,90 @@
+<div class="manage-posts-wrapper">
+    <a href="javascript:void(0)" class="border-link back-link" data-ng-click="ctrl.setOptions(true,false,false)">
+        <span class="mock-link" data-ng-bind="::pullInterNationalization('dashboardAdmin.returnPosts')"></span>
+    </a>
+    <div class="post-message-wrapper">
+        <div class="post-form-wrap">
+        	<p class="mock-head" data-ng-bind="::pullInterNationalization('dashboardAdmin.authorTitle')" data-ng-if="ctrl.saveMode"></p>
+            <div class="share-update">
+                <form name="ctrl.postMessageForm">
+                    <div class="select-wrapper" data-ng-if="ctrl.saveMode">
+                        <span class="select-dd-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                        <select name="selectedAuthor" data-ng-model="ctrl.postMessageObject.selectedAuthor" data-ng-options="author.id as author.firstName for author in ctrl.authorsList track by author.id" data-ng-change="ctrl.displayAuthor(ctrl.postMessageObject.selectedAuthor)" data-ng-required="ctrl.saveMode && !ctrl.selectedAuthorInfo">
+                            <option value="" data-ng-bind="::pullInterNationalization('dashboardAdmin.selectAuthor')"></option>
+                        </select>
+                    </div>
+                    <span class="validate-error err-pos1" data-ng-bind="::pullInterNationalization('signup.required.error')" data-ng-if="ctrl.saveMode && ctrl.postMessageSubmit && ctrl.postMessageForm.selectedAuthor.$error.required"></span>
+                    <div class="author-log-edit-box" data-ng-if="ctrl.selectedAuthorInfo">
+                        <div class="author-info" data-ng-if="ctrl.selectedAuthorInfo" data-ng-class="{'brdOn':!ctrl.saveMode || ctrl.newPost}">
+                            <div class="auth-pic">
+                                <img data-ng-src="{{ctrl.selectedAuthorInfo.smallProfileImage}}" />
+                            </div>
+                            <p>
+                                <span class="aName" data-ng-bind="ctrl.selectedAuthorInfo.firstName"></span>
+                                <span class="aTitle" data-ng-bind="ctrl.selectedAuthorInfo.title"></span>
+                            </p>
+                        </div>
+                        <div class="post-log-detail" data-ng-if="!ctrl.saveMode || ctrl.newPost">
+                            <p>
+                                <span class="log-txt" data-ng-bind="::pullInterNationalization('dashboardAdmin.lastEdit')"></span>
+                                <span class="log-user">{{ctrl.getTimeStamp(ctrl.newPost.updatedOn)}} {{::pullInterNationalization('manageAccountContent.by')}} {{ctrl.newPost.updatedBy.firstName}}</span>
+                            </p>
+                        </div>
+                        <a href="javascript:void(0)" data-ng-if="!ctrl.saveMode" class="btn-square-12px sp-background-color post-edit-btn" data-ng-bind="::pullInterNationalization('manageAccountContent.edit')" data-ng-click="ctrl.saveMode=true;ctrl.editMode=true;"></a>
+                    </div>
+                    <article class="closed-textarea" data-ng-class="{'topBrd':!ctrl.saveMode && !ctrl.editMode}">
+                        <textarea data-ng-class="{'hide':!ctrl.saveMode && !ctrl.editMode}" name="comment" og-directive reference="ctrl.postMessageObject.comment.contentReference" height="75" data-ng-model="ctrl.postMessageObject.comment.comment" clear-url="ctrl.postMessageObject.comment.comment" data-ng-required="ctrl.saveMode&&!ctrl.postMessageObject.comment.contentReference.title" data-ng-disabled="!ctrl.saveMode"></textarea>
+                        <p class="tx-content hide" data-ng-class="{'show':!ctrl.saveMode && !ctrl.editMode}" data-ng-bind="ctrl.postMessageObject.comment.comment"></p>
+                        <div class="contentReference clearfix" data-ng-if="ctrl.postMessageObject.comment.contentReference.title">
+                            <div class="left-reference" data-ng-if="ctrl.postMessageObject.comment.contentReference.imageUrl">
+                                <div class="image-video {{ctrl.postMessageObject.comment.contentReference.media[0].mediaType}}">
+                                    <a href="javascript:void(0)" data-ng-click="ctrl.videoPopUp(ctrl.postMessageObject.comment.contentReference.media[0].url,ctrl.postMessageObject.comment.contentReference.media[0].mediaType)">
+                                        <img data-ng-src="{{ctrl.postMessageObject.comment.contentReference.imageUrl}}">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="right-reference web{{ctrl.postMessageObject.comment.contentReference.imageUrl}}">
+                                <a data-ng-href="{{ctrl.postMessageObject.comment.contentReference.media[0].url}}" class="title" target="_blank" data-ng-bind="ctrl.postMessageObject.comment.contentReference.title"></a>
+                                <div class="description" data-ng-bind-html="ctrl.postMessageObject.comment.contentReference.description | addEllipsis:140"></div>
+                            </div>
+                            <a class="icon-icon_remove close-view" href="javascript:void(0)" data-ng-click="ctrl.removeReference(ctrl.postMessageObject.comment.contentReference)" data-ng-if="ctrl.saveMode"></a>
+                        </div>
+                    </article>
+                    <span class="validate-error" data-ng-if="ctrl.saveMode && ctrl.postMessageSubmit && ctrl.postMessageForm.comment.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                    <div class="post-form-btns" data-ng-if="ctrl.saveMode">
+                        <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('manageAccountContent.save')" data-ng-click="ctrl.savePost()"></a>
+                        <a href="javascript:void(0)" class="btn-square-12px btn-darker-grey" data-ng-bind="::pullInterNationalization('manageAccountContent.cancel')" data-ng-click="ctrl.setOptions(true,false,false)"></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="post-status-wrap">
+        	<p class="publish-details">
+        		<span data-ng-bind="::pullInterNationalization('dashboardAdmin.publishDetails')"></span>
+        		<a href="javascript:void(0)" data-ng-if="!ctrl.saveMode && ctrl.publishMode" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('dashboardAdmin.publishBtn')" data-ng-click="ctrl.getCompanies()"></a>
+        	</p>
+        	<p class="publish-status" data-ng-if="!ctrl.newPublishedPost" data-ng-bind="::pullInterNationalization('dashboardAdmin.notPublished')"></p>
+        	<div class="published-details" data-ng-if="ctrl.newPublishedPost">
+        		<p class="published-timestamp">
+        			<span data-ng-bind="ctrl.getTimeStamp(ctrl.newPublishedPost.publishedOn)"></span>
+        			<span class="f12"><span data-ng-bind="::pullInterNationalization('dashboardAdmin.publishedBy')"> </span> {{ctrl.newPublishedPost.publishedBy.firstName}}</span>
+        		</p>
+        		
+        		<div class="published-timestamp comp-info">
+                    <div class="selcted-hover-list" overflow-hover-list data-list="ctrl.publishCompanyList" data-length="6" data-mlength="6">
+                        <p class="dl"></p>
+                        <div class="more-list-wrapper hide"></div>
+                    </div>        			
+        			<span class="f12" data-ng-if="ctrl.newPublishedPost.userRoles.length"><span data-ng-bind="::pullInterNationalization('dashboardAdmin.publishedTo')"></span><span data-ng-repeat="role in ctrl.newPublishedPost.userRoles" data-ng-bind="::pullInterNationalization('dashboardAdmin.'+role)+($last?'':',')"></span></span>
+        			<span class="f12" data-ng-if="ctrl.newPublishedPost.allMember"><span data-ng-bind="::pullInterNationalization('dashboardAdmin.publishedTo')"></span>{{::pullInterNationalization('dashboardAdmin.allMems')}}</span>
+        		</div>
+        	</div>
+        </div>
+        <div class="clear-wrap" data-ng-if="ctrl.newPublishedPost">
+	        <hr class="activity-sep" />
+	        <h2 class="post-head">{{::pullInterNationalization('dashboardAdmin.postHead')}}<a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-if="ctrl.viewPostActivity" data-ng-click="ctrl.viewPostActivity=false;" data-ng-bind="::pullInterNationalization('dashboardAdmin.done')"></a></h2>
+	        <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-if="!ctrl.viewPostActivity && ctrl.newPublishedPost" data-ng-click="ctrl.viewPostActivity=true;ctrl.getPostActivity(ctrl.newPublishedPost.id)" data-ng-bind="::pullInterNationalization('dashboardAdmin.postView')"></a>
+	        <ng-include src="'/sp/resources/html/sysAdmin/dashboard/home-postActivity.html'" data-ng-if="ctrl.viewPostActivity && ctrl.newPublishedPost"></ng-include>
+        </div>
+    </div>
+</div>

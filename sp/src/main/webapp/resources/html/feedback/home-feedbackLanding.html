@@ -1,0 +1,27 @@
+<div class="learning-development hide prism-lens-home" ng-if="inviteReady && profileReady" ng-class="inviteReady?'show':'hide'">
+    <!-- FeedbackData Header Starts -->
+    <div class="x-container">
+        <div class="container">
+            <div class="header-info-container">
+                <div class="header-info-content">
+                    <div class="header-icon-wrap adj0">
+                        <p class="hinfo-wrap">
+                            <span class="hinfo-icons icon-icon_feedback2 sp-icon-color"></span>
+                        </p>
+                    </div>
+                    <div class="header-content-wrap mobAdj">
+                        <p class="hinfo-wrap">
+                            <span class="info-txt ml0 mb8" data-ng-bind="::pullInterNationalization('dashboard.feedback')"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <!-- FeedbackData Header Ends -->
+    <div class="x-container">
+        <div class="container" >
+            <feedback-requests url-src="feedback/feedbackLanding-allFeedbacks.html" class="dashboard-feedback feedback-panel-overrides" parent-page="dashboard"></feedback-requests>
+        </div>
+    </div>
+</div>

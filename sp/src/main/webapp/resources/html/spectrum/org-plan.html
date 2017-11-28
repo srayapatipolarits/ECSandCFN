@@ -1,0 +1,290 @@
+<section id="org-profile-balance" class="spectrum-section bleuprint-graph-section" data-ng-if="ctrl.chartDataReady">
+	  <header class="spectrum-header clearfix">
+	    <h1 class="spectrum-section-title sp-header-title-color" data-ng-bind="::pullInterNationalization('spectrum.organization.orgPlan')"></h1>
+	    <div class="completedProfile"><span data-ng-bind="::pullInterNationalization('spectrum.matches')+': '"></span> <span class="number" data-ng-bind="(ctrl.profileBalanceDetail.total ||0)+' of '+ (ctrl.orgPlan.totalOrgPlan)"></span></div>
+	  </header>
+	  
+	  <article class="filter-selection">
+	  	 <div class="filter-gender-age">
+	  		<div class="filter-gender">
+	  		<h4 data-ng-bind="::pullInterNationalization('spectrum.too')+': '"></h4>
+	  		<span class="bold" data-ng-bind='ctrl.orgPlan.totalOrgPlan'></span>
+	  		</div>
+	  		
+	  		<div class="filter-age">
+	  		<h4 data-ng-bind="::pullInterNationalization('spectrum.pc')+': '"></h4>
+	  		<span class="bold" data-ng-bind="ctrl.pageSetting.totalOrgPerc+' %'"></span>
+	  		</div>
+	  	</div>
+	    <div class="filter-group" data-ng-if="ctrl.orgPlan.spectrumFilter.filters.organizationPlan.length">
+	  		<h4 data-ng-bind="::pullInterNationalization('spectrum.profile.organizationPlan')+':'"></h4>
+	  		<div class="style-filter-group">
+	  			<ellipsis el-message="pullInterNationalization('spectrum.organization.all')" el-total="ctrl.orgPlan.spectrumFilter.filters.organizationPlan.length" el-data='ctrl.pageSetting.orgSelected.length ? ctrl.pageSetting.orgSelected:ctrl.orgPlan.spectrumFilter.filters.organizationPlan' el-length="'.filter-selection'" el-fontsize='14'></ellipsis>
+	  		</div>
+	  	</div>
+	   </article>
+	  <div class="blueprint-analytics-graph" data-ng-if="ctrl.chartDataReady">
+	  		<div class="blueprint-sort version_2">
+	  			<div class="posRelative" data-ng-if="ctrl.userScreen">
+	  			   <div class="title_1" data-ng-bind="ctrl.screenInfo.planName"></div>
+				   <div class="closeIcon icon-icon_remove" title="{{::pullInterNationalization('spectrum.close')}}" data-ng-click="ctrl.pageSetting.allSteps='';ctrl.stepChanged(ctrl.screenInfo);ctrl.userScreen=false;"></div>
+			    </div>            	
+	  			<div class="sort-area clearfix" data-ng-if="ctrl.userScreen">
+	  				<!-- <h5 data-ng-bind="::pullInterNationalization('spectrum.view')"></h5>-->
+	  				<div class="left-filter-drop">
+	  					<div class="filter-dropdown width_2">
+		        	 		<span class="naf-theme-icon_style1 icon-icon_dropdown-arrow sp-icon-color"></span>
+		        	 		<select data-ng-model="ctrl.pageSetting.allSteps" data-ng-change="ctrl.stepChanged(ctrl.screenInfo)" data-ng-options="key as list.stepName for (key,list) in ctrl.screenInfo.orgPlanSteps">
+		        	 			<option value="" data-ng-bind="::pullInterNationalization('spectrum.allSteps')"></option>
+	                    	</select>
+		                </div>
+	  				</div>
+	  			</div>
+	  			
+	  			<div class="sort-area clearfix floatRight" data-ng-if="ctrl.userScreen && ctrl.pageSetting.viewType === 'i'">
+	  				<!-- <h5 data-ng-bind="::pullInterNationalization('spectrum.view')"></h5>-->
+	  				<div class="left-filter-drop">
+	  					<div class="filter-dropdown">
+		        	 		<span class="naf-theme-icon_style1 icon-icon_dropdown-arrow sp-icon-color"></span>
+		        	 		<select data-ng-change="ctrl.filterOrgDataByGroups()" data-ng-model="ctrl.pageSetting.selectedOrgGroup" data-ng-options="o as o for o in ctrl.orgAvailableGroups">
+		                     </select>
+		                </div>
+	  				</div>
+	  			</div>
+	  			
+	  			<div class="sort-area clearfix" data-ng-if="!ctrl.userScreen">
+	  				<!-- <h5 data-ng-bind="::pullInterNationalization('spectrum.view')"></h5>-->
+	  				<div class="left-filter-drop">
+	  					<div class="filter-dropdown">
+		        	 		<span class="naf-theme-icon_style1 icon-icon_dropdown-arrow sp-icon-color"></span>
+		        	 		<select data-ng-model="ctrl.pageSetting.viewType" data-ng-options="v.value as pullInterNationalization('spectrum.view.'+v.name) for (k,v) in [{'name':'indi','value':'i'},{'name':'group','value':'g'}]">
+		                     </select>
+		                </div>
+	  				</div>
+	  			</div>
+	  			
+	  			<div class="sort-area_1 clearfix">
+	  				<!-- <h5 data-ng-bind="::pullInterNationalization('spectrum.sort')"></h5>-->
+	  				<div class="left-filter-drop">
+	  					<div class="filter-dropdown">
+		        	 		<span class="naf-theme-icon_style1 icon-icon_dropdown-arrow sp-icon-color"></span>
+		        	 		<select data-ng-model="ctrl.pageSetting.sort" data-ng-change="ctrl.orgOrderBy(ctrl.pageSetting.sort)" data-ng-options="v.value as pullInterNationalization('spectrum.sort.'+v.name) for (k,v) in [{'name':'asc','value':'plus'},{'name':'desc','value':'minus'}]">
+		                     </select>
+		                </div>
+	  				</div>
+	  			</div>
+	  		</div>
+	  		<div class="insightProfileSection clearfix" data-ng-if="!ctrl.userScreen">
+	  			<article data-ng-repeat="userDetail in (ctrl.recordFieldData = ctrl.orgPlanGraphData) track by $index" class="trait-information-block">
+	  				<header class="personlity-trait-detail">
+	  					<h4 class="personlity-trait-name" data-ng-bind="userDetail.planName | addEllipsis:(ctrl.ipad?10:30)"></h4>
+	  					<a class="personlity-trait-view" href="javascript:void(0)" data-ng-bind="::pullInterNationalization('spectrum.viewAll')" data-ng-click="ctrl.screenInfo = userDetail;ctrl.stepChanged(ctrl.screenInfo);ctrl.userScreen=true;"></a>
+	  				</header>
+	  				<div class="starrer-bottom-top" data-ng-if="ctrl.pageSetting.viewType==='i'">
+	  					<div class="image-top-bottom">
+	  						
+                       </div>
+	  					<div class="name-top-bottom org-individual-list floatnone{{!recordField.length}}">
+	  						<ul>
+	  							<li data-ng-repeat="list in recordField = (userDetail.userActivities | limitTo : 5) track by $index">
+	  								<div class="positionLeft" data-ng-if="$first">
+	  									<div class="image-top-bottom">
+	  										<img data-ng-src="{{$parent.list.smallProfileImage}}" alt="{{$parent.list.userInitials}}" data-ng-if="$parent.list.smallProfileImage">
+                            				<div class="imgReplacementBig" data-ng-if="!$parent.list.smallProfileImage" data-ng-bind="$parent.list.userInitials"></div>
+                            			</div>
+                            			<div class="name" data-ng-bind="ctrl.returnClampName($parent.list.name,30)"></div>
+	  								</div>
+	  								<div class="list-name"><span class="number" data-ng-bind="$index+1"></span><span class="name" data-ng-bind="list.name"></span></div>
+	  								<div class="list-percent" data-ng-bind="ctrl.percentCalc(userDetail.totalKpi,list.completedLKpi)"></div>
+	  							</li>
+	  						</ul>
+	  						<div class="no-name-class noMatchFound" data-ng-if="!recordField.length && !userDetail.onHold" data-ng-bind="pullInterNationalization('spectrum.nouser')"></div>
+	  						<div class="no-name-class noMatchFound" data-ng-if="!recordField.length && userDetail.onHold" data-ng-bind="pullInterNationalization('spectrum.learningpaused')"></div>
+	  					</div>
+	  				</div>
+	  				<div class="starrer-bottom-top" data-ng-if="ctrl.pageSetting.viewType==='g'">
+	  					<div class="name-full-span">
+	  						<ul>
+	  							<li data-ng-repeat="list in groupField = (userDetail.orgPlanGroupActivities | limitTo : 5) track by $index">
+	  								<div class="list-name"><span class="number" data-ng-bind="$index+1"></span>
+	  								<a href="javascript:void(0)" data-ng-click="ctrl.openUserGroupActivitiesModal(userDetail, list.groupName)"><span class="name" data-ng-bind="list.groupName +' (' +list.totalMembers+')'"></span></a>
+	  								</div>
+	  								<div class="list-percent" data-ng-bind="ctrl.percentCalc(userDetail.totalKpi*list.totalMembers,list.completdKpi)"></div>
+	  							</li>
+	  						</ul>
+	  						<div class="no-name-class noMatchFound" data-ng-if="!groupField.length && !userDetail.onHold" data-ng-bind="pullInterNationalization('spectrum.nogroup')"></div>
+	  						<div class="no-name-class noMatchFound" data-ng-if="!groupField.length && userDetail.onHold" data-ng-bind="pullInterNationalization('spectrum.learningpaused')"></div>
+	  					</div>
+	  				</div>
+	  				<div class="radial-section">
+	  						<div class="numberOfUser">
+		  						<div class="radial-progress" data-progress="{{userDetail.userActivities.length}}">
+									<div class="circle">
+										<div class="mask full">
+											<div class="fill"></div>
+										</div>
+										<div class="mask half">
+											<div class="fill"></div>
+											<div class="fill fix"></div>
+										</div>
+										<div class="shadow"></div>
+									</div>
+									<div class="inset">
+										<div class="percentage">
+											<div class="numbers"><span>-</span><span>0</span><span data-ng-repeat="number in userDetail.userActivities track by $index" data-ng-bind="$index+1"></span></div>
+										</div>
+									</div>
+								</div>
+								<div class="numbersOfUserText" data-ng-bind="::pullInterNationalization('spectrum.noofuser')"></div>
+								<div class="numbersOfUserText" data-ng-bind="::pullInterNationalization('spectrum.noofuser1')"></div>
+	  						</div>
+	  						<div class="percent-group">
+		  						<div class="radial-progress" data-progress="{{userDetail.completedKpiPercent}}">
+									<div class="circle">
+										<div class="mask full">
+											<div class="fill"></div>
+										</div>
+										<div class="mask half">
+											<div class="fill"></div>
+											<div class="fill fix"></div>
+										</div>
+										<div class="shadow"></div>
+									</div>
+									<div class="inset">
+										<div class="percentage">
+											<div class="numbers"><span>-</span><span>0%</span><span>1%</span><span>2%</span><span>3%</span><span>4%</span><span>5%</span><span>6%</span><span>7%</span><span>8%</span><span>9%</span><span>10%</span><span>11%</span><span>12%</span><span>13%</span><span>14%</span><span>15%</span><span>16%</span><span>17%</span><span>18%</span><span>19%</span><span>20%</span><span>21%</span><span>22%</span><span>23%</span><span>24%</span><span>25%</span><span>26%</span><span>27%</span><span>28%</span><span>29%</span><span>30%</span><span>31%</span><span>32%</span><span>33%</span><span>34%</span><span>35%</span><span>36%</span><span>37%</span><span>38%</span><span>39%</span><span>40%</span><span>41%</span><span>42%</span><span>43%</span><span>44%</span><span>45%</span><span>46%</span><span>47%</span><span>48%</span><span>49%</span><span>50%</span><span>51%</span><span>52%</span><span>53%</span><span>54%</span><span>55%</span><span>56%</span><span>57%</span><span>58%</span><span>59%</span><span>60%</span><span>61%</span><span>62%</span><span>63%</span><span>64%</span><span>65%</span><span>66%</span><span>67%</span><span>68%</span><span>69%</span><span>70%</span><span>71%</span><span>72%</span><span>73%</span><span>74%</span><span>75%</span><span>76%</span><span>77%</span><span>78%</span><span>79%</span><span>80%</span><span>81%</span><span>82%</span><span>83%</span><span>84%</span><span>85%</span><span>86%</span><span>87%</span><span>88%</span><span>89%</span><span>90%</span><span>91%</span><span>92%</span><span>93%</span><span>94%</span><span>95%</span><span>96%</span><span>97%</span><span>98%</span><span>99%</span><span>100%</span></div>
+										</div>
+									</div>
+								</div>
+								<div class="numbersOfUserText" data-ng-bind="::pullInterNationalization('spectrum.percentComp')"></div>
+								<div class="numbersOfUserText" data-ng-bind="::pullInterNationalization('spectrum.percentComp1')"></div>
+	  						</div>
+	  				</div>
+	  			</article>
+	  		<p data-ng-if="!ctrl.recordFieldData.length" class="noMatchFound" data-ng-bind="::pullInterNationalization('spectrum.nouser')"></p>
+	  		</div>
+	  		
+	  		<div class="insightProfileUser" data-ng-if="ctrl.userScreen">
+	  			<div class="list-view-content profile-balance-list-view">
+			        <!-- this holds list of profiles -->
+			        <div class="category-hr-expand row">
+			     	   <div class="category-hr-list clearfix marginLeft5">
+				     	   <div class="col-sm-12 col-md-12 profile">
+					          		<div class="radial-section">
+				  						<div class="numberOfUser clearfix">
+					  						<div class="radial-progress" data-progress="{{ctrl.screenInfo.userActivities.length}}">
+												<div class="circle">
+													<div class="mask full">
+														<div class="fill"></div>
+													</div>
+													<div class="mask half">
+														<div class="fill"></div>
+														<div class="fill fix"></div>
+													</div>
+													<div class="shadow"></div>
+												</div>
+												<div class="inset">
+													<div class="percentage">
+														<div class="numbers"><span>-</span><span>0</span><span data-ng-repeat="number in ctrl.screenInfo.userActivities track by $index" data-ng-bind="$index+1"></span></div>
+													</div>
+												</div>
+											</div>
+											<div class="textual">
+												<div class="numbersOfUserText" data-ng-bind="::pullInterNationalization('spectrum.noofuser2')"></div>
+												<div class="numbersOfUserText" data-ng-bind="::pullInterNationalization('spectrum.noofuser3')"></div>
+											</div>
+										</div>
+				  						<div class="percent-group">
+					  						<div class="radial-progress" data-progress="{{ctrl.pageSetting.completedKpiPercent}}">
+												<div class="circle">
+													<div class="mask full">
+														<div class="fill"></div>
+													</div>
+													<div class="mask half">
+														<div class="fill"></div>
+														<div class="fill fix"></div>
+													</div>
+													<div class="shadow"></div>
+												</div>
+												<div class="inset">
+													<div class="percentage">
+														<div class="numbers"><span>-</span><span>0%</span><span>1%</span><span>2%</span><span>3%</span><span>4%</span><span>5%</span><span>6%</span><span>7%</span><span>8%</span><span>9%</span><span>10%</span><span>11%</span><span>12%</span><span>13%</span><span>14%</span><span>15%</span><span>16%</span><span>17%</span><span>18%</span><span>19%</span><span>20%</span><span>21%</span><span>22%</span><span>23%</span><span>24%</span><span>25%</span><span>26%</span><span>27%</span><span>28%</span><span>29%</span><span>30%</span><span>31%</span><span>32%</span><span>33%</span><span>34%</span><span>35%</span><span>36%</span><span>37%</span><span>38%</span><span>39%</span><span>40%</span><span>41%</span><span>42%</span><span>43%</span><span>44%</span><span>45%</span><span>46%</span><span>47%</span><span>48%</span><span>49%</span><span>50%</span><span>51%</span><span>52%</span><span>53%</span><span>54%</span><span>55%</span><span>56%</span><span>57%</span><span>58%</span><span>59%</span><span>60%</span><span>61%</span><span>62%</span><span>63%</span><span>64%</span><span>65%</span><span>66%</span><span>67%</span><span>68%</span><span>69%</span><span>70%</span><span>71%</span><span>72%</span><span>73%</span><span>74%</span><span>75%</span><span>76%</span><span>77%</span><span>78%</span><span>79%</span><span>80%</span><span>81%</span><span>82%</span><span>83%</span><span>84%</span><span>85%</span><span>86%</span><span>87%</span><span>88%</span><span>89%</span><span>90%</span><span>91%</span><span>92%</span><span>93%</span><span>94%</span><span>95%</span><span>96%</span><span>97%</span><span>98%</span><span>99%</span><span>100%</span></div>
+													</div>
+												</div>
+											</div>
+											<div class="textual">
+												<div class="numbersOfUserText" data-ng-bind="::pullInterNationalization('spectrum.percentComp')"></div>
+												<div class="numbersOfUserText" data-ng-bind="::pullInterNationalization('spectrum.percentComp1')"></div>
+											</div>
+				  						</div>
+				  						<!--<div class="task-completed">
+				  							<div class="clearfix">
+					  							<div class="total-completed" data-ng-bind="ctrl.pageSetting.totalCompletedKpi"></div>
+					  							<div class="detail-completed">
+					  								<div class="firstpara" data-ng-bind="::pullInterNationalization('spectrum.of') +' '+ctrl.pageSetting.totalKpi+' '+::pullInterNationalization('spectrum.task')"></div>
+					  								<div class="firstpara" data-ng-bind="::pullInterNationalization('spectrum.completed')"></div>
+					  							</div>
+				  							</div>
+				  						</div>-->
+				  				</div>
+				  				<div data-ng-if="!ctrl.screenInfo.userActivities.length && !ctrl.screenInfo.onHold && ctrl.pageSetting.viewType==='i'" class="noMatchFound" data-ng-bind="pullInterNationalization('spectrum.nouser')"></div>
+					          	<div data-ng-if="!ctrl.screenInfo.orgPlanGroupActivities.length && !ctrl.screenInfo.onHold && ctrl.pageSetting.viewType==='g'" class="noMatchFound" data-ng-bind="pullInterNationalization('spectrum.nogroup')"></div>
+					          	<div data-ng-if="!ctrl.screenInfo.userActivities.length && ctrl.screenInfo.onHold && ctrl.pageSetting.viewType==='i'" class="noMatchFound" data-ng-bind="pullInterNationalization('spectrum.learningpaused')"></div>
+					          	<div data-ng-if="!ctrl.screenInfo.orgPlanGroupActivities.length && ctrl.screenInfo.onHold && ctrl.pageSetting.viewType==='g'" class="noMatchFound" data-ng-bind="pullInterNationalization('spectrum.learningpaused')"></div>
+					        </div>
+					        <ol class="category-individual-list" data-ng-if="ctrl.screenInfo.userActivities.length && ctrl.pageSetting.viewType==='i'">
+					        	<li data-ng-repeat="member in ctrl.screenInfo.userActivities track by $index" data-ng-if="ctrl.pageSetting.selectedOrgGroup === 'All Groups' || member.groups.indexOf(ctrl.pageSetting.selectedOrgGroup) !== -1">
+					        	  <div class="wrapper clearfix">
+					        	  	  <div class="number"data-ng-bind="$index+1">
+					        	  	  </div>
+					        	  	  <div class="left-member-detail">
+					        	  	  		<img data-ng-src="{{member.smallProfileImage}}" alt="{{member.userInitials}}" data-ng-if="member.smallProfileImage">
+                            				<div class="imgReplacement pad10" data-ng-if="!member.smallProfileImage" data-ng-bind="member.userInitials"></div>
+						        	  </div>
+						        	  <div class="right-member-detail">
+						        	  	<div class="hr-title">
+						        	  		<a class="category-hr-name" href="javascript:void(0)" title="{{member.name}}" data-ng-bind="member.name"></a>
+						             	 	<a class="category-hr-title" href="javascript:void(0)" title="{{member.title}}" data-ng-bind="member.title"></a>
+						             	 	<a class="category-hr-task" href="javascript:void(0)"><span class="bold" data-ng-bind="member.totalCompletedKpi"></span><span data-ng-bind="' '+pullInterNationalization('spectrum.of')+' '"></span><span class="bold" data-ng-bind="member.totalKpi"></span><span data-ng-bind="' '+pullInterNationalization('spectrum.taskcompelted')"></span></a>
+						              	</div>
+						              	<div class="hr-percent">
+						              		<a class="category-hr-percent" href="javascript:void(0)" data-ng-bind="ctrl.percentCalc(member.totalKpi,member.totalCompletedKpi)+'%'"></a>
+						              	</div>
+						        	  </div>
+					        	   </div>
+					            </li>
+					        </ol>
+					        
+					        <ol class="category-org-list" data-ng-if="ctrl.screenInfo.orgPlanGroupActivities.length && ctrl.pageSetting.viewType==='g'">
+					          <li data-ng-repeat="groupName in ctrl.screenInfo.orgPlanGroupActivities track by $index">
+					        	  	<div class="wrapper">
+					        	  		<div class="clearfix">
+						        	  	  <div class="number"data-ng-bind="$index+1">
+						        	  	  </div>
+						        	  	  <div class="left-detail">
+						        	  	  	<a class="category-hr-name link-cursor" data-ng-click="ctrl.openUserGroupActivitiesModal(ctrl.screenInfo, groupName.groupName)" href="javascript:void(0)" title="{{groupName.groupName}}" data-ng-bind="groupName.groupName +' (' +groupName.totalMembers+')'"></a>
+						             	  </div>
+						             	  <div class="right-detail">
+						             	  	 <a class="category-hr-percent" href="javascript:void(0)" title="{{groupName.percent}}" data-ng-bind="ctrl.percentCalc(ctrl.screenInfo.totalKpi*groupName.totalMembers,groupName.totalCompletedKpi)+'%'"></a>
+						             	  </div>
+						             	  </div>
+					             	 <!--  <div class="task-detail">
+					             	  	<a class="category-hr-task" href="javascript:void(0)"><span class="bold" data-ng-bind="groupName.totalCompletedKpi"></span><span data-ng-bind="' '+pullInterNationalization('spectrum.of')+' '"></span><span class="bold" data-ng-bind="ctrl.screenInfo.totalKpi*groupName.totalMembers"></span><span data-ng-bind="' '+pullInterNationalization('spectrum.taskcompelted')"></span></a>
+					             	  </div>-->
+					        	  	 </div>
+					            </li>
+					        </ol>
+				      </div>
+			        </div>
+			      </div>
+	  		</div>
+	  </div>
+</section>
+<section class="spectrum-section bleuprint-graph-section" data-ng-if="ctrl.noData">
+	  <header class="spectrum-header clearfix pad16b">
+	    <h1 class="spectrum-section-title sp-header-title-color" data-ng-bind="::pullInterNationalization('spectrum.organization.orgPlan')"></h1>
+	  </header>
+	<section class="noActivityFound">
+		<div class="noMatchFound" data-ng-bind="::pullInterNationalization('spectrum.noInfo')"></div>
+	</section>
+</section>

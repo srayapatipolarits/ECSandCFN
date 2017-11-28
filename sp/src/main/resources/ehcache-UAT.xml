@@ -1,0 +1,875 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="ehcache.xsd" updateCheck="true"
+  monitoring="autodetect" dynamicConfig="true">
+
+  <diskStore path="java.io.tmpdir" />
+
+  <cacheManagerPeerProviderFactory
+    class="net.sf.ehcache.distribution.jms.JMSCacheManagerPeerProviderFactory"
+    properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+          providerURL=tcp://10.0.6.217:61616, replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+          replicationTopicBindingName=ehcache, getQueueConnectionFactoryBindingName=queueConnectionFactory,
+          getQueueBindingName=ehcacheGetQueue, topicConnectionFactoryBindingName=topicConnectionFactory,
+          topicBindingName=ehcache"
+    propertySeparator="," />
+
+  <cache name="goals" maxEntriesLocalHeap="100"
+    maxEntriesLocalDisk="1000" eternal="false" diskSpoolBufferSizeMB="20"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LRU" transactionalMode="off"
+    diskPersistent="false">
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+
+  <cache name="userGoals" maxEntriesLocalHeap="4000"
+    maxEntriesLocalDisk="1000" eternal="false" diskSpoolBufferSizeMB="20"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LRU" transactionalMode="off"
+    diskPersistent="false" overflowToDisk="true">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+
+  <cache name="article" maxEntriesLocalHeap="3000"
+    maxEntriesLocalDisk="1000" eternal="false" diskSpoolBufferSizeMB="20"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LRU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+
+  <cache name="linkedInProfile" maxEntriesLocalHeap="100"
+    maxEntriesLocalDisk="1000" eternal="false" diskSpoolBufferSizeMB="20"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LRU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+  
+  <cache name="i18nMessages" maxEntriesLocalHeap="5000"
+    maxEntriesLocalDisk="1000" eternal="false" diskSpoolBufferSizeMB="20"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+  
+  <cache name="libraryHome" maxEntriesLocalHeap="5000"
+    maxEntriesLocalDisk="1000" eternal="false" diskSpoolBufferSizeMB="20"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+
+  <cache name="navigation" maxEntriesLocalHeap="20"
+    maxEntriesLocalDisk="100" eternal="false" diskSpoolBufferSizeMB="20"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+  
+  <cache name="developmentStrategy" maxEntriesLocalHeap="400"
+    maxEntriesLocalDisk="100" eternal="false" diskSpoolBufferSizeMB="20"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+
+  <cache name="personalityPracticeArea" maxEntriesLocalHeap="30"
+    maxEntriesLocalDisk="100" eternal="false" diskSpoolBufferSizeMB="20"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+  
+  <cache name="actionPlan" maxEntriesLocalHeap="100"
+    maxEntriesLocalDisk="1000" eternal="false" diskSpoolBufferSizeMB="20"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+
+  <cache name="company" maxEntriesLocalHeap="100"
+    maxEntriesLocalDisk="10000" eternal="false" diskSpoolBufferSizeMB="20"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+
+  <cache name="blueprint" maxEntriesLocalHeap="1000"
+    maxEntriesLocalDisk="100000" eternal="false" diskSpoolBufferSizeMB="20"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+
+  <cache name="blueprintSettings" maxEntriesLocalHeap="40"
+    maxEntriesLocalDisk="1000" eternal="false" diskSpoolBufferSizeMB="20"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+  
+  <cache name="themeCache" maxEntriesLocalHeap="100"
+    maxEntriesLocalDisk="1000" eternal="false" diskSpoolBufferSizeMB="20"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+
+  <cache name="emailManagement" maxEntriesLocalHeap="100"
+    maxEntriesLocalDisk="100" eternal="false" diskSpoolBufferSizeMB="20"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+
+    <cache name="organizationPlanActivities" maxEntriesLocalHeap="100"
+    maxEntriesLocalDisk="100" eternal="false" diskSpoolBufferSizeMB="20"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+  
+  <cache name="ertiAnalytics" maxEntriesLocalHeap="100"
+    maxEntriesLocalDisk="100" eternal="false" diskSpoolBufferSizeMB="20"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+  
+  <cache name="competencyProfile" maxEntriesLocalHeap="1000"
+    maxEntriesLocalDisk="100" eternal="false" diskSpoolBufferSizeMB="20"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+
+  <cache name="competencyEvaluation" maxEntriesLocalHeap="100"
+    maxEntriesLocalDisk="100" eternal="false" diskSpoolBufferSizeMB="20"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+
+  <cache name="competencyInsights" maxEntriesLocalHeap="100"
+    maxEntriesLocalDisk="100" eternal="false" diskSpoolBufferSizeMB="20"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+
+  <cache name="masterPassword" maxEntriesLocalHeap="1"
+    maxEntriesLocalDisk="1" eternal="false" diskSpoolBufferSizeMB="1"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+  
+  <cache name="groupDiscussion" maxEntriesLocalHeap="1000"
+    maxEntriesLocalDisk="10000" eternal="false" diskSpoolBufferSizeMB="50"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+  
+  <cache name="notes" maxEntriesLocalHeap="1000"
+    maxEntriesLocalDisk="10000" eternal="false" diskSpoolBufferSizeMB="50"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+  
+  <cache name="newsFeed" maxEntriesLocalHeap="1000"
+    maxEntriesLocalDisk="10000" eternal="false" diskSpoolBufferSizeMB="50"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+
+  <cache name="dashboardMessage" maxEntriesLocalHeap="1000"
+    maxEntriesLocalDisk="10000" eternal="false" diskSpoolBufferSizeMB="50"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+  <cache name="publicChannel" maxEntriesLocalHeap="1000"
+    maxEntriesLocalDisk="10000" eternal="false" diskSpoolBufferSizeMB="50"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+  
+  <cache name="sPTutorial" maxEntriesLocalHeap="10"
+    maxEntriesLocalDisk="10" eternal="false" diskSpoolBufferSizeMB="50"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>  
+  <cache name="badge" maxEntriesLocalHeap="1000"
+    maxEntriesLocalDisk="10" eternal="false" diskSpoolBufferSizeMB="50"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+  <cache name="portrait" maxEntriesLocalHeap="1000"
+    maxEntriesLocalDisk="10" eternal="false" diskSpoolBufferSizeMB="50"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+   <cache name="profileBalance" maxEntriesLocalHeap="100"
+    maxEntriesLocalDisk="100" eternal="false" diskSpoolBufferSizeMB="20"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+  
+  
+   <cache name="blueprintAnalytics" maxEntriesLocalHeap="100"
+    maxEntriesLocalDisk="100" eternal="false" diskSpoolBufferSizeMB="20"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>
+  
+  <cache name="ertiInsights" maxEntriesLocalHeap="100"
+    maxEntriesLocalDisk="100" eternal="false" diskSpoolBufferSizeMB="20"
+    timeToIdleSeconds="0" timeToLiveSeconds="0"
+    memoryStoreEvictionPolicy="LFU" transactionalMode="off"
+    diskPersistent="false">
+
+    <cacheEventListenerFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheReplicatorFactory"
+      properties="replicateAsynchronously=true,
+      replicatePuts=true,
+      replicateUpdates=true,
+      replicateUpdatesViaCopy=true,
+      replicateRemovals=true,
+      asynchronousReplicationIntervalMillis=1000"
+      propertySeparator="," />
+
+    <cacheLoaderFactory
+      class="net.sf.ehcache.distribution.jms.JMSCacheLoaderFactory"
+      properties="initialContextFactoryName=com.sp.web.config.SPActiveMQInitialContextFactory,
+      providerURL=tcp://10.0.6.217:61616,
+      replicationTopicConnectionFactoryBindingName=topicConnectionFactory,
+      getQueueConnectionFactoryBindingName=queueConnectionFactory,
+      replicationTopicBindingName=ehcache,
+      getQueueBindingName=ehcacheGetQueue,
+      timeoutMillis=10000" />
+  </cache>    
+</ehcache>

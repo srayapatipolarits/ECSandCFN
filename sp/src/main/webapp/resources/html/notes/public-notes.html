@@ -1,0 +1,167 @@
+<div class="note-entry-content public-channel panel-fadeIn max-height" data-ng-init="notesCtrl.init()">
+    <div class="note-entry-form" data-ng-class="{'added-padding':!notesCtrl.contentReference.includeRef, 'no-brd':!notesCtrl.pubChannelObj}">
+        <div class="public-follow-option" data-ng-if="notesCtrl.pubChannelObj">
+            <span class="action-link icon-icon_sort sp-icon-color" data-ng-if="notesCtrl.pubChannelObj.follow" sp-condition="true" sp-click-outside="notesCtrl.showFollowOption"></span>
+            <span class="follow-text" data-ng-if="notesCtrl.pubChannelObj.follow" sp-condition="true" sp-click-outside="notesCtrl.showFollowOption">{{::pullInterNationalization('notes.pc.following.label')}}</span>
+            <a href="javascript:void(0)"><span class="follow-text" data-ng-if="!notesCtrl.pubChannelObj.follow" data-ng-click="notesCtrl.followPublicChannel(true)">{{::pullInterNationalization('notes.pc.follow.label')}}</span></a>
+        </div>
+        <span class="box-header public-title-small follow-topic" data-ng-class="{'reduce-top': !notesCtrl.pubChannelObj}" data-ng-bind="::pullInterNationalization('notes.pc.topic.label')"></span>
+        <p class="box-header public-title-bold" data-ng-class="{'reduce-top': !notesCtrl.pubChannelObj}" data-ng-bind-html="notesCtrl.publicChannelTitle | secureHtml"></p>
+        <p class="box-header public-title-small" data-ng-bind-html="notesCtrl.publicChannelDesc | secureHtml"></p>
+        <!-- <p data-ng-if="notesCtrl.contentReference.overviewText !==null && (notesCtrl.contentReference.spFeature === 'Prism' || notesCtrl.contentReference.spFeature === 'Erti' || notesCtrl.contentReference.spFeature === 'OrganizationPlan' || notesCtrl.contentReference.spFeature === 'Competency')" class="box-header public-title-small" data-ng-bind-html="notesCtrl.contentReference.overviewText | secureHtml"></p> -->
+        <div class="ta-rel-wrap">
+            <p class="mbot0" data-ng-class="{'added-padding-top':notesCtrl.publicChannelDesc === ''}">
+                <textarea og-directive reference="notesCtrl.ogReference" clear-url="notesCtrl.newEntry" og-processing="notesCtrl.processOG" placeholder="{{::pullInterNationalization('notes.privateNotes.addNote.placeholder')}}" class="notes-ta" data-ng-class="{'include-ref':notesCtrl.contentRefChecked, 'adjPos1': notesCtrl.contentReference.includeRef}" data-ng-model="notesCtrl.newEntry" name="publicChannel" id="publicChannel"></textarea>
+            </p>
+            <p class="pCheckBox adjPos1" data-ng-class="{'bot0':notesCtrl.contentRefChecked}" data-ng-if="notesCtrl.contentReference.includeRef">
+                <input type="checkbox" name="includeRefCheck" id="includeRefCheck" class="iCheckBox" data-ng-click="notesCtrl.ogReference.title = notesCtrl.ogReference.title === null? 'test': null" data-ng-model="notesCtrl.contentRefChecked" data-ng-disabled="notesCtrl.fileStackEnabled" data-ng-disabled="notesCtrl.fileStackEnabled || notesCtrl.ogReference.valid" />
+                <label for="includeRefCheck" class="lCheckBox">
+                    <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                    <span class="lCheckBoxText sp-icon-color" data-ng-class="{'disabled-state':notesCtrl.fileStackEnabled || notesCtrl.ogReference.valid}" data-ng-bind="::pullInterNationalization('notes.includeReference.label')"></span>
+                </label>
+            </p>
+        </div>
+        <p class="comment-desc box-cont hide animation_1" data-ng-class="{'show include-ref no-corners':notesCtrl.contentRefChecked}">
+            <span data-ng-bind-html="notesCtrl.contentReference.subTitle | secureHtml"></span>
+            <span class="box-header disp-block wrap-ellipsis" data-ng-bind-html="notesCtrl.contentReference.title | secureHtml"></span>
+            <span class="disp-block heightAdj" data-ng-bind-html="notesCtrl.contentReference.description | secureHtml"></span>
+            <a data-ng-click="notesCtrl.previewMedia(list.url,list.mediaType)" href="javascript:void(0)" class="border-link" data-ng-repeat="list in notesCtrl.contentReference.media track by $index" data-ng-class="$index !== 0?'added-left-margin':''">
+                <span class="note-user-pic list-thumb" data-ng-if="notesCtrl.contentReference.spFeature !== 'OrganizationPlan'">
+                            <img width="60" height="40" title="" alt="" data-ng-src="{{notesCtrl.contentReference.imageUrl}}">
+                            </span>
+                <span class="icon-icon_{{list.mediaType}}" data-ng-if="notesCtrl.contentReference.spFeature === 'OrganizationPlan'"></span>
+                <span class="media-text" data-ng-if="notesCtrl.contentReference.spFeature === 'OrganizationPlan'" data-ng-bind="list.linkText"></span>
+            </a>
+        </p>
+        <div class="contentReference clearfix" data-ng-if="notesCtrl.fileStackEnabled">
+            <div class="left-reference" data-ng-class="{'adjust-width':notesCtrl.fileStackMimeType !== 'IMAGE'}">
+                <div class="image-video">
+                    <a data-ng-if="notesCtrl.fileStackMimeType !== 'IMAGE'" class="border-link">
+                        <span class="icon-icon_{{notesCtrl.fileStackMimeType}} preview-icon sp-icon-color"></span>
+                    </a>
+                    <a data-ng-if="notesCtrl.fileStackMimeType === 'IMAGE'" data-ng-click="notesCtrl.imagePop(notesCtrl.contentReference.imageUrl,notesCtrl.contentReference.title)" href="javascript:void(0)" class="border-link">
+                        <span class="note-user-pic">
+                            <img class="preview-image" title="" alt="{{notesCtrl.contentReference.title}}" data-ng-src="{{notesCtrl.contentReference.imageUrl}}">
+                            </span>
+                    </a>
+                </div>
+            </div>
+            <div class="right-reference" data-ng-class="{'adjust-padding':notesCtrl.fileStackMimeType !== 'IMAGE'}">
+                <a data-ng-if="notesCtrl.fileStackMimeType !== 'IMAGE'" data-ng-click="notesCtrl.previewMedia(notesCtrl.contentReference.url,notesCtrl.fileStackMimeType)" href="javascript:void(0)" class="border-link">
+                    <span class="title" data-ng-bind="notesCtrl.contentReference.title"></span>
+                </a>
+            </div>
+            <a class="icon-icon_remove close-view" href="javascript:void(0)" data-ng-click="notesCtrl.removeFileStackData()"></a>
+        </div>
+        <!-- OG  -->
+        <div class="contentReference clearfix" data-ng-if="!notesCtrl.fileStackEnabled && notesCtrl.ogReference.valid">
+            <div class="left-reference" data-ng-if="notesCtrl.ogReference.imageUrl" data-ng-init="imageLoop = notesCtrl.imageUrl(notesCtrl.ogReference)">
+                <div class="image-video" data-ng-repeat="media in imageLoop">
+                    <a href="javascript:void(0)" class="{{media.mediaType}}" data-ng-click="notesCtrl.ogPopup(media.url||notesCtrl.ogReference.url,media.mediaType,notesCtrl.ogReference.newTab)">
+                        <img data-lazy-img="{{notesCtrl.ogReference.imageUrl}}">
+                    </a>
+                </div>
+            </div>
+            <div class="right-reference adjust-padding web{{notesCtrl.ogReference.imageUrl}}">
+                <a data-ng-href="{{notesCtrl.ogReference.url}}" class="wrap-ellipsis title href_{{notesCtrl.ogReference.url}}" data-ng-attr-target="{{notesCtrl.ogReference.newTab ? '_blank' : '_self'}}" data-ng-bind-html="notesCtrl.ogReference.title"></a>
+                <div class="article" data-ng-if="notesCtrl.ogReference.authorSource" data-ng-bind-html="'By '+notesCtrl.ogReference.authorSource"></div>
+                <div class="description two-line-display" data-ng-bind-html="notesCtrl.ogReference.description | addEllipsis:100"></div>
+                <div class="media-links">
+                    <a href="javascript:void(0)" class="link-action" data-ng-click="ctrl.videoPopUp(media.url,media.mediaType)" data-ng-repeat="media in comment.media track by $index" data-ng-if="media.linkText">
+                        <span class="icon-icon_{{media.mediaType|lowercase}} sp-icon-color"></span>
+                        <span class="mock-link" data-ng-bind="::media.linkText"></span>
+                    </a>
+                </div>
+            </div>
+            <a class="icon-icon_remove close-view" href="javascript:void(0)" data-ng-click="notesCtrl.removeOGReference()"></a>
+        </div>
+        <div class="actions-callout-wrappper notes-module lnd-public-follow" data-ng-if="notesCtrl.showFollowOption">
+            <ul class="action-links notes-links">
+                <li>
+                    <a href="javascript:void(0)" data-ng-click="notesCtrl.followPublicChannel(false)">
+                        <span class="action-text" data-ng-bind="::pullInterNationalization('notes.pc.unfollow.label')"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <span class="err-msg validate-error" data-ng-if="notesCtrl.inputRequired" data-ng-bind="::pullInterNationalization('practiceArea.required.error')"></span>
+        <div class="ta-options public-options adjPos1">
+            <span class="file-attach icon-file_select sp-icon-color panel-select-icon" data-ng-class="{'disabled-state':notesCtrl.contentRefChecked || notesCtrl.ogReference.valid}" data-ng-click="handleFileStack(!notesCtrl.contentRefChecked && !notesCtrl.ogReference.valid);"></span>
+            <a href="javascript:void(0)" data-ng-click="notesCtrl.savePublicChannel()" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('notes.postNote.title')"></a>
+        </div>
+    </div>
+    <div class="note-comments-updates" data-ng-repeat="record in notesCtrl.pubChannelObj.comments | limitTo:notesCtrl.displayLength track by record.cid">
+        <p class="comment-dt">
+            <span class="time-display" data-ng-bind="record.createdOn | spTimeUpdate"></span>
+        </p>
+        <p class="pic-details spaceAdj1">
+            <span class="imgReplacement public-channel" data-ng-if="!record.user.smallProfileImage" data-ng-bind="record.user.userInitials"></span>
+            <span class="note-user-pic s28" data-ng-if="record.user.smallProfileImage"><img width="28" height="28" title="" alt="" data-ng-src="{{record.user.smallProfileImage}}"></span>
+            <span class="note-user">
+                    <a href="javascript:void(0)" public-channel-pop data-desc={{record.user}}><span class="nu-name" data-ng-bind="record.user.name"></span></a>
+            </span>
+        </p>
+        <div class="notes-comments public-channel-text">
+            <input type="checkbox" class="read-more-state" id="readMoreToggle_{{record.cid}}" />
+            <div class="read-more-wrap-horizontal" data-ng-init="btn=true">
+                <span class="comment-desc preserve-line-break" data-ng-bind-html="btn?record.text.substr(0, 200):record.text | convertToLink" data-ng-class="{'moreellipses':record.text.length>200&&btn}"></span>
+            </div>
+            <label for="readMoreToggle_{{record.cid}}" data-readMore="{{::pullInterNationalization('spectrum.more')}}" data-readLess="{{::pullInterNationalization('label.readless')}}" data-ng-click="$parent.btn=!$parent.btn" class="read-more-trigger-horizontal sp-link-color" data-ng-if="record.text.length>200"></label>
+        </div>
+        <p class="comment-desc box-cont public-channel-reference" data-ng-if="record.contentReference && record.contentReference.title && !record.contentReference.fileStack && !record.contentReference.ogRef">
+            <span data-ng-bind="record.contentReference.subTitle"></span>
+            <span data-ng-click="redirectReferenceUrl(record.contentReference.url)" class="box-header disp-block wrap-ellipsis sp-link-color mock-ref-link" data-ng-bind-html="record.contentReference.title | secureHtml"></span>
+            <input type="checkbox" class="read-more-state" id="readMoreToggleCont_{{record.cid}}" />
+            <span class="read-more-wrap-horizontal" data-ng-init="btnCont=true">
+                              <span class="disp-block preserve-line-break" data-ng-bind-html="btnCont?record.contentReference.description.substr(0, 150):record.contentReference.description | secureHtml" data-ng-class="{'moreellipses':record.contentReference.description.length>150&&btnCont}"></span>
+            </span>
+            <label for="readMoreToggleCont_{{record.cid}}" data-readMore="{{::pullInterNationalization('spectrum.more')}}" data-readLess="{{::pullInterNationalization('label.readless')}}" data-ng-click="$parent.btnCont=!$parent.btnCont" class="read-more-trigger-horizontal sp-link-color" data-ng-if="record.contentReference.description.length>150"></label>
+            <a data-ng-click="notesCtrl.previewMedia(list.url,list.mediaType)" href="javascript:void(0)" class="border-link" data-ng-repeat="list in record.contentReference.media track by $index" data-ng-class="$index !== 0?'added-left-margin':''">
+                <span class="note-user-pic list-thumb" data-ng-if="record.contentReference.spFeature !== 'OrganizationPlan'">
+                            <img width="60" height="40" title="" alt="" data-ng-src="{{record.contentReference.imageUrl}}">
+                            </span>
+                <span class="icon-icon_{{list.mediaType}}" data-ng-if="record.contentReference.spFeature === 'OrganizationPlan'"></span>
+                <span class="media-text" data-ng-if="record.contentReference.spFeature === 'OrganizationPlan'" data-ng-bind="list.linkText"></span>
+            </a>
+        </p>
+        <p class="comment-desc add-margin-bottom" data-ng-if="record.contentReference && record.contentReference.title && record.contentReference.fileStack && !record.contentReference.ogRef">
+            <span data-ng-if="list.mediaType !== 'IMAGE'" class="align-asset icon-icon_{{list.mediaType}} preview-icon sp-icon-color" data-ng-repeat="list in record.contentReference.media track by $index" data-ng-class="$index !== 0?'added-left-margin':''"></span>
+            <a data-ng-if="list.mediaType !== 'IMAGE'" data-ng-click="notesCtrl.previewMedia(record.contentReference.url,list.mediaType)" href="javascript:void(0)" class="media-link-text border-link" data-ng-repeat="list in record.contentReference.media track by $index" data-ng-class="$index !== 0?'added-left-margin':''">
+                <span class="title" data-ng-bind="record.contentReference.title"></span>
+            </a>
+            <a data-ng-if="list.mediaType === 'IMAGE'" data-ng-click="notesCtrl.imagePop(record.contentReference.imageUrl,record.contentReference.title)" href="javascript:void(0)" class="border-link" data-ng-repeat="list in record.contentReference.media track by $index" data-ng-class="$index !== 0?'added-left-margin':''">
+                <span class="note-user-pic">
+                            <img class="adjust-max-width align-asset" title="" alt="{{record.contentReference.title}}" data-ng-src="{{record.contentReference.imageUrl}}">
+                            </span>
+            </a>
+        </p>
+        <div class="contentReference clearfix" data-ng-if="!record.contentReference.fileStack && record.contentReference.ogRef">
+            <div class="left-reference" data-ng-if="record.contentReference.imageUrl" data-ng-init="imageLoop = notesCtrl.imageUrl(record.contentReference)">
+                <div class="image-video" data-ng-repeat="media in imageLoop">
+                    <a href="javascript:void(0)" class="{{media.mediaType}}" data-ng-click="notesCtrl.ogPopup(media.url||record.contentReference.url,media.mediaType,record.contentReference.newTab)">
+                        <img data-ng-src="{{record.contentReference.imageUrl}}">
+                    </a>
+                </div>
+            </div>
+            <div class="right-reference adjust-padding web{{record.contentReference.imageUrl}}">
+                <a data-ng-href="{{record.contentReference.url}}" class="wrap-ellipsis title href_{{record.contentReference.url}}" data-ng-attr-target="{{record.contentReference.newTab ? '_blank' : '_self'}}" data-ng-bind-html="record.contentReference.title"></a>
+                <div class="article" data-ng-if="record.contentReference.authorSource" data-ng-bind-html="'By '+record.contentReference.authorSource"></div>
+                <div class="description two-line-display" data-ng-bind-html="record.contentReference.description | addEllipsis:100"></div>
+                <div class="media-links">
+                    <a href="javascript:void(0)" class="link-action" data-ng-click="ctrl.videoPopUp(media.url,media.mediaType)" data-ng-repeat="media in comment.media track by $index" data-ng-if="media.linkText">
+                        <span class="icon-icon_{{media.mediaType|lowercase}} sp-icon-color"></span>
+                        <span class="mock-link" data-ng-bind="::media.linkText"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-ng-show="!notesCtrl.pubChannelObj.comments.length && notesCtrl.responseAvailable" class="ng-hide">
+        <p class="default-notes-txt" data-ng-bind="::pullInterNationalization('notes.pc.defaultText1')"></p>
+        <p class="default-notes-txt" data-ng-bind="::pullInterNationalization('notes.pc.defaultText2')"></p>
+    </div>
+    <p align="center" data-ng-show="!notesCtrl.pubChannelObj.comments.length && !notesCtrl.responseAvailable" class="loading-notes-txt ng-hide" data-ng-bind="::pullInterNationalization('practiceArea.loading')"></p>
+    <p class="view-more" data-ng-if="!notesCtrl.allComments && notesCtrl.pubChannelObj.comments.length > 5">
+        <a href="javascript:void(0)" data-ng-click="notesCtrl.getAllComments()">{{::pullInterNationalization('notes.pc.showAllComments.label')}}</a>
+    </p>
+</div>

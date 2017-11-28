@@ -1,0 +1,84 @@
+<section ng-controller="alternateBilling" ng-init="getAllArchived()" ng-if="inviteReady" ng-class="inviteReady?'show':'hide'" class="hide">
+    <div class="x-container members hiring-candidates affiliate-listing pulse-listing ">
+        <div class="container minimumHeight" >
+            <div class="bgWhiteBord clearfix">
+                <div class="toolbar clearfix">
+                    <div class="title">
+                        <a href="#" role="button" ng-click="searchTextArc=''">All Accounts<span class="blackcolor">({{abMasterList.length}})</span></a>
+                    </div>
+                    <div class="controls clearfix">
+                    <div class="hiring-list-wrapper">
+                            <p class='iea'>
+                                <a href="/sp/sysAdmin/alternateBilling/business">Return to Accounts</a>
+                            </p>
+                     </div>
+                     <div class="controlwrap search">
+                            <input type="text" class="form-control" maxlength="28" ng-model="searchTextArc" placeholder="Search">
+                            <button class="sp-icon-color" ng-class="searchTextArc.length? 'icon-icon_remove':'icon-icon_search'" ng-click="searchTextArc=''"></button>
+                      </div>
+                    </div>
+                </div>
+                <div class="filters"></div>
+                <article class="memberHolder">
+                    <div class="heading row">
+                        <div class="col-md-2 col-sm-2 tog activeFilter" ng-click="reverse=!reverse;order('companyName', reverse);active($event)" data-predicate='companyName'>
+                            <h4 class="on code" data-ng-bind="'Company Name'"></h4>
+                        </div>
+                        <div class="col-md-2 col-sm-2 tog col-fix-1">
+                            <h4 class="no-arrow" data-ng-bind="'City & Country'"></h4>
+                        </div>
+                        <div class="col-md-2 col-sm-2 tog col-fix-2" ng-click="reverse=!reverse;order('terms', reverse);active($event)" data-predicate='terms'>
+                            <h4 data-ng-bind="'Terms'"></h4>
+                        </div>
+                        <div class="col-md-2 col-sm-2 tog col-fix-2" ng-click="reverse=!reverse;order('accountType', reverse);active($event)" data-predicate='accountType'>
+                            <h4 data-ng-bind="'Type'"></h4>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-fix-3" ng-click="reverse=!reverse;order('endDate', reverse);active($event)" data-predicate='endDate'>
+                            <h4 data-ng-bind="'End Date'"></h4>
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-fix-2" ng-click="reverse=!reverse;order('accountStatus', reverse);active($event)" data-predicate='status'>
+                            <h4 data-ng-bind="'Status'"></h4>
+                        </div>
+                        <div class="col-md-1 col-sm-1"></div>
+                    </div>
+                    
+                    <div infinite-scroll="returnMemberList(pageSize+pageSize)" infinite-scroll-immediate-check="false" infinite-scroll-disabled="disabledInfinite">
+                        <div class="complete-profile animation_1" ng-class="{active:show}" id='{{$index}}' ng-repeat="abList in recordField = ((abList | filter:searchTextArc).slice(0,pageSize)) track by abList.id">
+                            <div class="table-row clearfix">
+                                <div class="col-md-2 col-sm-2">
+                                <p class="code">
+                                    <a href="#" class="border-link">
+                                         <span class="mock-link wordWrap" data-ng-bind="abList.companyName"></span>
+                                     </a>
+                                     </p>
+                                </div>
+                                <div class="col-md-2 col-sm-2 row_title">
+                                    <p class="role_title"><span data-ng-bind="abList.city"></span></p>
+                                    <p class="role_title"><span data-ng-bind="abList.country"></span></p>
+                                </div>
+                                <div class="col-md-2 col-sm-2 row_title">
+                                    <p class="role_title" data-ng-bind="abList.terms"></p>
+                                </div>
+                                <div class="col-md-2 col-sm-2 row_title">
+                                    <p class="role_title" data-ng-bind="abList.accountType"></p>
+                                </div>
+                                <div class="col-md-2 col-sm-2 row_title">
+                                    <p class="role_title" data-ng-bind="abList.endDate"></p>
+                                </div>
+                                <div class="col-md-1 col-sm-1 row_title col-fix-3">
+                                    <p class="role_title status-text" data-ng-bind="abList.deactivated?'Inactive':'Active'"></p>
+                                </div>
+                                <div class="col-md-1 col-sm-1 btnGroupSp">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p ng-show="!recordField.length" class="noMatchFound ng-hide" data-ng-bind="'No Record Found'"></p>
+                    <!-- <div class="more">
+                    <a href="javascript:void(0)" class="ng-hide" role="button" ng-click="returnaffiliateCodeList(pageSize+pageSize)" ng-hide="alldisplay || recordField.length < intialPageSize" data-ng-bind="pullInterNationalization('tools.hiring.load')"></a>
+                     </div>-->
+                </article>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- Do not delete. -->
+<meta name="viewport" content="width=device-width">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>SurePeople</title>
+</head>
+<body bgcolor="#FFFFFF"
+  style="margin: 0; padding: 0; font-family: Arial; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; height: 100%; width: 100% !important;">
+  
+  <!-- Header Box -->
+  <table bgcolor="#ffffff"
+    style="margin: 0px 0 0; padding: 0; font-family: Arial; width: 100%;"
+    cellpadding="0" cellspacing="0" border="0">
+    <tr style="margin: 0; padding: 0;">
+      <td
+        style="margin: 0; padding: 0; display: block !important; clear: both !important;">
+        <div class="content"
+          style="padding: 0; margin: 0 auto; font-family: Arial; display: block;">
+          <table bgcolor="#ffffff"
+            style="margin: 0; padding: 0; font-family: Arial; width: 100%;"
+            cellpadding="0" cellspacing="0" border="0">
+            <tr style="margin: 0; padding: 0;">
+              <td
+                style="margin: 0; padding: 15px 40px; background: $company.companyTheme.stylesMap.spLinkColor$;">
+                <p
+                  style="margin: 0; padding: 0; font-family: Arial; font-size: 14px; color: #fff; line-height: 18px;">
+                  <strong>$organgeBar$ </strong>
+                </p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <!-- /Header Box -->
+
+  <!-- Body Description Content -->
+  <table bgcolor="#ffffff"
+    style="margin: 20px 0 0; padding: 0; font-family: Arial; width: 100%;"
+    cellpadding="0" cellspacing="0" border="0">
+    <tr style="margin: 0; padding: 0;">
+      <td
+        style="margin: 0; padding: 0; display: block !important; max-width: 612px !important; clear: both !important;">
+        <div class="content"
+          style="padding: 0; margin: 0 auto; font-family: Arial; max-width: 612px; display: block;">
+          <table bgcolor="#ffffff"
+            style="margin: 0; padding: 0; font-family: Arial; width: 100%;"
+            cellpadding="0" cellspacing="0" border="0">
+            <tr style="margin: 0; padding: 0;">
+              <td style="margin: 0; padding: 0 40px;">
+              <p
+                  style="margin: 0; padding: 0; font-family: Arial; font-size: 14px; color: #676767; line-height: 18px;">
+                  <strong>$heading$ </strong>
+                </p>
+              <p
+                  style="margin: 20px 0 0; padding: 0; font-family: Arial; font-size: 14px; color: #676767; line-height: 18px;">
+                  <strong>$goal.name$ </strong>
+                </p>
+                $devFeedbacks:{feedback|
+                <p
+                  style="margin: 20px 0 0; padding: 0; font-family: Arial; font-size: 14px; color: #676767; line-height: 18px;">
+                  $feedback.updatedOn;format="competency"$
+                  <br /> <strong>$feedback.feedbackUser.fullNameOrEmail$ </strong> <br />
+                  $feedback.feedbackUser.title$
+                  </p>
+                  <p
+                  style="margin: 20px 0 0; padding: 0; font-family: Arial; font-size: 14px; color: #676767; line-height: 18px;">
+                  REQUEST <br />
+                  $feedback.comment$     
+                  </p>
+                  <p
+                  style="margin: 20px 0 0; padding: 0; font-family: Arial; font-size: 14px; color: #676767; line-height: 18px;">
+                  $if(feedback.response)$
+				                  
+				              $if(feedback.completed)$
+                  					FEEDBACK <strong> $feedback.requestStatus$ </strong><br />
+                  				$endif$
+                  $feedback.response$
+                  
+                  $else$
+                  FEEDBACK <strong> $feedback.formattedRequestStatus$ </strong>
+                  $endif$
+                  </p>
+                  <p
+                  style="margin: 20px 0 0; padding: 0; font-family: Arial; font-size: 14px; color: #676767; line-height: 18px; border-top: 2px solid #e6e6e6"">
+                  </p>
+                  }$ 
+              </td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <!-- /Body Description Content -->
+
+  <!-- Footer Content -->
+  <table bgcolor="#ffffff"
+    style="margin: 40px 0 0; padding: 0; font-family: Arial; width: 100%;"
+    cellpadding="0" cellspacing="0" border="0">
+    <tr style="margin: 0; padding: 0;">
+      <td
+        style="margin: 0; padding: 0; display: block !important; max-width: 612px !important; clear: both !important;">
+        <div class="content"
+          style="padding: 0; margin: 0 auto; font-family: Arial; max-width: 612px; display: block;">
+          <table bgcolor="#ffffff"
+            style="margin: 0; padding: 0; font-family: Arial; width: 100%;"
+            cellpadding="0" cellspacing="0" border="0">
+            <tr style="margin: 0; padding: 0;">
+              <td style="margin: 0; padding: 0 40px;">
+                <p
+                  style="margin: 0; padding: 15px 1px 0; font-family: Arial; font-size: 12px; color: #676767; line-height: 16px;">
+                  <em>This is an email sent from the SurePeople
+                    Team</em>
+                </p>
+                <p
+                  style="margin: 0; padding: 0 1px 0; font-family: Arial; font-size: 12px; line-height: 16px; color: #676767;">
+                  <em>If you have any questions, contact us via
+                    email at <a href="mailto:support@surepeople.com"
+                    style="margin: 0; padding: 0; display: inline; color: $company.companyTheme.stylesMap.spLinkColor$; text-decoration: none; border: none;">support@surepeople.com</a>
+                  </em>
+                </p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <!-- /Footer Content -->
+</body>
+</html>

@@ -1,0 +1,87 @@
+<div class="container" id="declineGrowthScreen" data-ng-style="ctrl.winWidth<768 && {'height':ctrl.winHeight}">
+    <div class="row" data-ng-class="ctrl.winWidth<768?'row-full-w':''">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10" data-ng-class="ctrl.winWidth<768?'col-full-w':''">
+            <section class="wrapper bp-popups" data-ng-style="ctrl.winWidth<768 && {'width':(ctrl.winWidth+'px')}">
+                <div class="contentBody">
+                    <div class="head">
+                        <div class="wrap">
+                            <div data-ng-if="ctrl.initiateRequestType !== 'peerEvaluation' && ctrl.initiateRequestType !== 'adminInitiate'" class="headerBar" data-ng-bind="::pullInterNationalization('competency.actions.initiate')"></div>
+                            <div data-ng-if="ctrl.initiateRequestType === 'adminInitiate'" class="headerBar" data-ng-bind="::pullInterNationalization('competency.actions.add.manager')"></div>
+                            <div data-ng-if="ctrl.initiateRequestType === 'peerEvaluation'" class="headerBar" data-ng-bind="::pullInterNationalization('competency.actions.requestPeer')"></div>
+                            <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color" data-ng-click="closeThisDialog()"></div>
+                        </div>
+                    </div>
+                    <div class="contentArea clearfix change-manager">
+                        <form name="ctrl.initiateEvaluationForm" class="sendReminder">
+                            <div class="messageBlock pb0 p20">
+                                <div class="cm-rating-popup noPads" data-ng-if="ctrl.userToProcess !== 'SELF'" style="margin-bottom:10px">
+                                    <div>
+                                        <div class="cmr-mem-details clearfix fle split-left">
+                                            <div class="cm-pic-details s50">
+                                                <span data-ng-if="ctrl.userToProcess.smallProfileImage ===null" class="imgReplacement img50" data-ng-bind="ctrl.userToProcess.userInitials"></span>
+                                                <img data-ng-if="ctrl.userToProcess.smallProfileImage !==null" width="42" height="42" title="" alt="" data-ng-src="{{ctrl.userToProcess.smallProfileImage}}">
+                                            </div>
+                                            <div class="cmm-details">
+                                                <p class="tWeight700 sp-link-color" data-ng-bind="ctrl.userToProcess.fullNameOrEmail"></p>
+                                                <p data-ng-bind="ctrl.userToProcess.title"></p>
+                                            </div>
+                                        </div>
+                                        <div class="cmr-mem-details clearfix manager-details flr top40 split-right">
+                                            <div class="cmm-details">
+                                                <p class="tWeight500" data-ng-bind="ctrl.competencyProfileMap[ctrl.userToProcess.competencyProfileId].name"></p>
+                                                <p data-ng-bind="ctrl.competencyEvaluation.startDate"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-ng-if="ctrl.userToProcess === 'SELF'" class="approval-content mbt15px" data-ng-bind="::pullInterNationalization('competency.actions.selfInitiate.desc')"></div>
+                                <div data-ng-if="ctrl.userToProcess !== 'SELF' && ctrl.initiateRequestType === 'peerEvaluation'" class="approval-content mbt15px" data-ng-bind="::pullInterNationalization('competency.actions.peerInitiate.desc')"></div>
+                                <div data-ng-if="ctrl.userToProcess !== 'SELF' && ctrl.initiateRequestType !== 'peerEvaluation' && ctrl.initiateRequestType !== 'adminInitiate'" class="approval-content mbt15px" data-ng-bind="::pullInterNationalization('competency.actions.managerInitiate.desc')"></div>
+                                <div data-ng-if="ctrl.userToProcess !== 'SELF' && ctrl.initiateRequestType === 'adminInitiate'" class="approval-content mbt15px" data-ng-bind="::pullInterNationalization('competency.actions.managerInitiate.manager.desc')"></div>
+                                <div data-ng-if="ctrl.initiateRequestType !== 'peerEvaluation'" class="tagsManagerInput" style="padding-bottom: 0px;">
+                                    <tags-input ng-model="tags" display-name="email" display-property="name" key-property="email" max-tags="1" placeholder="{{::pullInterNationalization('competency.actions.error.manageremailname')}}" allowed-tags-pattern="^[A-Za-z0-9._-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$" replace-spaces-with-dashes="false" on-tag-removed="ctrl.tagRemovedManager($tag)" on-tag-added="ctrl.tagAddedManager($tag)">
+                                        <auto-complete min-length="1" load-on-focus="false" load-on-empty="false" max-results-to-show="10" source="ctrl.loadTags($query)" class="ng-tags-pos-fix"></auto-complete>
+                                    </tags-input>
+                                </div>
+                                <span data-ng-if="ctrl.initiateRequestType !== 'peerEvaluation' && ctrl.inputRequired" class="validate-error" data-ng-bind="::pullInterNationalization('trainingLibrary.required.error')"></span>
+                                <span data-ng-if="ctrl.initiateRequestType !== 'peerEvaluation' && ctrl.multipleManager" class="validate-error" data-ng-bind="::pullInterNationalization('competency.actions.error.multipleManagerRequest')"></span>
+                                <span data-ng-if="ctrl.initiateRequestType !== 'peerEvaluation' && ctrl.repeatedRequests" class="validate-error" data-ng-bind="::pullInterNationalization('competency.actions.error.repeatedRequests')"></span>
+                                
+                                <div class="external-member clearfix marTop20 animation_1" data-ng-if="ctrl.initiateRequestType !== 'peerEvaluation' && ctrl.searchTagEmail.length && !(!!(ctrl.searchTagEmail[0].id))">
+                                    <div class="name row">
+                                        <div class="textarea heightBottom min42 col-md-6 col-sm-6">
+                                            <input id="firstName" focus-if class="style_1" data-ng-model="ctrl.managerFirstName" placeholder="{{::pullInterNationalization('blueprint.firstName')}}" name="firstName" required></input> 
+                                            <span class="validate-error" data-ng-if="ctrl.initiateEvaluation.submitted && ctrl.initiateEvaluationForm.firstName.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                                        </div>
+                                        <div class="textarea heightBottom min42 col-md-6 col-sm-6">
+                                            <input id="lastName" class="style_1" data-ng-model="ctrl.managerLastName" placeholder="{{::pullInterNationalization('blueprint.lastName')}}" name="lastName" required></input> 
+                                            <span class="validate-error" data-ng-if="ctrl.initiateEvaluation.submitted && ctrl.initiateEvaluationForm.lastName.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="messageBlock" data-ng-if="ctrl.showPeerRating && ctrl.initiateRequestType !== 'adminInitiate'" style="padding-top:0!important;">
+                                <div class="tagsPeerInput" style="padding-bottom:0px;">
+                                <tags-input ng-model="tags1" display-name="email" display-property="name" key-property="email" placeholder="{{::pullInterNationalization('competency.actions.error.peeremailname')}}" allowed-tags-pattern="^[A-Za-z0-9._-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$" replace-spaces-with-dashes="false" on-tag-removed="ctrl.tagRemovedPeer($tag)" on-tag-added="ctrl.tagAddedPeer($tag)">
+                                 <auto-complete min-length="1" load-on-focus="false" load-on-empty="false" max-results-to-show="10" source="ctrl.loadTags($query)" class="ng-tags-pos-fix"></auto-complete>
+                                </tags-input>
+                             </div>
+                            </div>
+                           
+                            <div class="messageBlock" data-ng-if="ctrl.existingReviewer || ctrl.assignToSelf">
+                             <span data-ng-if="ctrl.existingReviewer" class="validate-error" data-ng-bind="::pullInterNationalization('competency.actions.error.reviewAlreadySent')"></span>
+                             <span data-ng-if="ctrl.assignToSelf" class="validate-error" data-ng-bind="::pullInterNationalization('competency.actions.error.selfReviewer')"></span>
+                            </div>
+                            <div class="floatLeft inviteBtn pl20">
+                                <input data-ng-if="ctrl.initiateRequestType !== 'peerEvaluation'" type="button" value="{{::pullInterNationalization('competency.rating.submit')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="ctrl.initiateEvaluation()">
+                                <input data-ng-if="ctrl.initiateRequestType === 'peerEvaluation'" type="button" value="{{::pullInterNationalization('competency.rating.submit')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="ctrl.initiatePeerEvaluation()" data-ng-disabled="!ctrl.searchTagPeer.length">
+                                <input type="button" value="{{::pullInterNationalization('trainingLibrary.share.cancel')}}" class="btn-block btn-14px btn-grey-dark" ng-click="closeThisDialog()">
+                            </div>
+                            <div class="messageBlock"></div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

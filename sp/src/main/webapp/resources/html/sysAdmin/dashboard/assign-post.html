@@ -1,0 +1,100 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                    <h2 data-ng-bind="::pullInterNationalization('dashboardAdmin.publishBtn')"></h2>
+                </div>
+                <div class="new-modals-wrapper">
+                    <!-- Form Elements -->
+                    <div class="form-elements">
+                    	<div class="checkbox-wrap">
+                    		<p data-ng-bind="::pullInterNationalization('dashboardAdmin.publishto')"> </p>
+                    		<ul id="postCheckBx">
+					            <li class="pCheckBox">
+					                <input type="checkbox" name="toggleAll" id="alltoggle" class="iCheckBox" data-ng-model="ctrl.selectAllMembers" data-ng-click="ctrl.selectAll(ctrl.selectAllMembers)"/>
+					                <label for="alltoggle" class="lCheckBox">
+					                    <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+					                    <span class="lCheckBoxText" data-ng-bind="::pullInterNationalization('dashboardAdmin.selectAll')"></span>
+					                </label>
+					            </li>                 
+				                <li class="pCheckBox">
+				                    <input type="checkbox" name="selectAdmins" id="selectUser0" class="iCheckBox pBx" data-ng-click="ctrl.includeRole('AccountAdministrator')">
+				                    <label for="selectUser0" class="lCheckBox">
+				                        <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+				                        <span class="lCheckBoxText" data-ng-bind="::pullInterNationalization('dashboardAdmin.admins')"></span>
+				                    </label>
+				                </li>
+				                <li class="pCheckBox">
+				                    <input type="checkbox" name="selectHiring" id="selectUser1" class="iCheckBox pBx" data-ng-click="ctrl.includeRole('Hiring')">
+				                    <label for="selectUser1" class="lCheckBox">
+				                        <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+				                        <span class="lCheckBoxText" data-ng-bind="::pullInterNationalization('dashboardAdmin.hiringAdmins')"></span>
+				                    </label>
+				                </li>
+				                <li class="pCheckBox">
+				                    <input type="checkbox" name="selectHiring" id="selectUser2" class="iCheckBox pBx" data-ng-click="ctrl.includeRole('GroupLead')">
+				                    <label for="selectUser2" class="lCheckBox">
+				                        <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+				                        <span class="lCheckBoxText" data-ng-bind="::pullInterNationalization('dashboardAdmin.leads')"></span>
+				                    </label>
+				                </li>				                
+			                </ul>
+			                <span class="validate-error" data-ng-bind="::pullInterNationalization('signup.required.error')" data-ng-if="ctrl.publishPostSubmit && !ctrl.selectAllMembers && !ctrl.selectedRoles.length"></span>			                			                				               		
+                    	</div>
+                        <div class="angucomplete-wrapper">
+                            <p class="custom-search-wrapper brd">
+                                <input type="text" data-ng-model="ctrl.companySearch" class="custom-search no-brd w76" placeholder="{{::pullInterNationalization('admin.import.searchdesc')}}" />
+                                <button data-ng-class="{'icon-icon_remove':ctrl.companySearch.length, 'icon-icon_search': !ctrl.companySearch.length}" class="sp-icon-color noLabel" data-ng-click="ctrl.companySearch.length?ctrl.companySearch='':''"></button>
+                            </p>
+                            <div class="totalRecord">
+                                <span data-ng-if="ctrl.selectedCompanies.length">
+						      		<span class="number" data-ng-bind="ctrl.selectedCompanies.length"></span><span class="text" data-ng-bind="ctrl.selectedCompanies.length > 1?pullInterNationalization('dashboardAdmin.companies'):pullInterNationalization('dashboardAdmin.company')"></span> <span class="text" data-ng-bind="::pullInterNationalization('manageAccountContent.recordSelected')"></span>
+                                </span>
+                            </div>
+			                <p class="pCheckBox allcomp">
+			                    <input type="checkbox" name="selectAllCompanies" id="selectAllCompanies" class="iCheckBox" data-ng-model="ctrl.selectAllCompanies" data-ng-click="ctrl.addAllCompanies(ctrl.selectAllCompanies)">
+			                    <label for="selectAllCompanies" class="lCheckBox">
+			                        <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+			                        <span class="lCheckBoxText" data-ng-bind="pullInterNationalization('dashboardAdmin.selectAll') + ' ('+ctrl.updatedCompaniesList.length+')'"></span>
+			                    </label>
+			                </p>	                                 
+                        </div>
+                    </div>
+                    <!-- Form Elements Ends -->
+                    <p data-ng-if="!recordField.length" class="no-mat" data-ng-bind="::pullInterNationalization('dashboardAdmin.noMatchAvailable')"></p>
+                    <!-- Selected Items List Start -->
+                    <div class="selected-group-List-wrapper">	                    
+                        <div class="group-row" data-ng-repeat="company in recordField = (ctrl.updatedCompaniesList | filter:ctrl.companySearch)">
+                            <div class="group-col w80">
+                                <div class="member-details-pic-wrapper">
+                                    <div class="mem-details-info">
+                                        <p class="memNameOne" data-ng-if="company.name">
+                                            <span class="sp-link-color" data-ng-bind="company.name"></span>
+                                        </p>
+                                        <p class="memEmail lh16" data-ng-bind="company.address.city+', '+company.address.state+', '+company.address.country"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="group-col-custom">
+                                <p data-ng-if="ctrl.selectedCompanies.indexOf(company.id) === -1">
+                                    <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-click="ctrl.updateSelectionList(company.id)" data-ng-bind="::pullInterNationalization('manageAccountContent.select')"></a>
+                                </p>
+                                <p class="added-msg" data-ng-if="ctrl.selectedCompanies.indexOf(company.id) !== -1" data-ng-bind="::pullInterNationalization('manageAccountContent.selected')"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="validate-error" data-ng-bind="::pullInterNationalization('dashboardAdmin.pleaseSelectCompany')" data-ng-if="ctrl.publishPostSubmit && !ctrl.selectedCompanies.length"></span>
+                    <!-- Selected Items List End -->
+                    <!-- Buttons Starts -->
+                    <div class="dialog-btns-wrapper">
+                        <input type="button" value="{{::pullInterNationalization('dashboardAdmin.publishBtn')}}" class="btn-block btn-14px sp-btn-color" class="btn-block btn-14px sp-btn-color" data-ng-click="ctrl.publishPost()">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.cancel')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="closeThisDialog();">
+                    </div>
+                    <!-- Buttons Ends -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

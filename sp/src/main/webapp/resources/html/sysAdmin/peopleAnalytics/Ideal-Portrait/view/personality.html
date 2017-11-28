@@ -1,0 +1,116 @@
+<section class="keyMatch">
+	<article class="match-holder">
+	    <div class="form-elements">
+	        <div class="clearfix tick-selection display-inline-block margin-right-inline disabled_checkbox_true">
+	            <input type="checkbox" class="filterCheckBox" id="primaryPersonality" checked data-ng-disabled="true" data-ng-true-value="true" data-ng-false-value="false">
+	            <label for="primaryPersonality" class="filterCheckBox-label">
+	            	<span class="checkedTick pull-left bpPopFix icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                <span class="font_14_300 pull-left label-text-style" data-ng-bind="::pullInterNationalization('spmatch.Personality')"></span>
+	            </label>
+	        </div>
+	        <span class="validate-error" data-ng-if="error.portraitSubmitted && filterSelected.Personality.indexOf('Primary')===-1" data-ng-bind="::pullInterNationalization('idealPortrait.portrait.error.traitPortrait')"></span>
+	    </div>
+	    <div class="selected-item">
+		    <ol class="sortable-pa-list new-style">
+	            <li class="single" data-ng-repeat="traits in portraitMatch.categoryDataMap.Personality.Primary.matchCriterias track by $index">
+	                <div class="new-pawrap">
+	                    <span data-ng-bind="pullInterNationalization('spectrum.'+traits.key)"></span>
+	              	    <span class="icon-close icon-icon_remove sp-icon-color" data-ng-click="removeTraits(portraitMatch.categoryDataMap.Personality.Primary,traits.key,'Primary');"></span>
+	                </div>
+	                <div class="list-drop-options index_{{$index}}">
+	                     <div class="selected-option-mock" sp-condition="$index!==0&&true" sp-click-outside="ulactive">
+		                    <span class="font-14" data-ng-bind="pullInterNationalization('idealPortrait.portrait.'+traits.matchPercent)"></span>
+		                    <span class="action-selected-option-mock icon-icon_dropdown-arrow sp-icon-color"></span>
+		                 </div>
+		                 <ul class="drop-down-ul-style active-{{ulactive}}">
+		                    <li data-ng-click="changeDisabledState(option.name,traits,'Primary',$parent.$index)" data-ng-repeat="option in matchDropDown.Primary track by $index">
+		                        <a href="javascript:void(0)" class="action-filters" data-ng-class="{'active':option.name==traits.matchPercent}" data-ng-bind="::pullInterNationalization('idealPortrait.portrait.'+option.name)"></a>
+		                    </li>
+		                 </ul>
+	                </div>
+	            </li>
+	        </ol>
+	        <ol class="sortable-pa-list new-style notop" data-ng-if="portraitMatch.categoryDataMap.Personality.Primary.matchCriterias.length < maximumTrait">
+	            <li class="normal">
+	                <div class="new-pawrap empties">
+	                    <span class="empty-msg" data-ng-bind="::pullInterNationalization('idealPortrait.portrait.choosetrait')"></span>
+	                </div>
+	            </li>
+	        </ol> 
+	    </div>
+	    <div class="selection-list row clearfix">
+	    	<ul class="mpa-pills col-md-12">
+	    		<li class="col-md-6 inactive-{{addedTraits.Primary.indexOf(traits)!==-1}}" data-ng-repeat="traits in record = personalityTraits track by $index">
+	                <span class="mpa-name sp-link-color" data-ng-bind="::pullInterNationalization('spectrum.'+traits)"></span>
+	                <span class="mpa-icon icon-erti_plus sp-icon-color" data-ng-if="addedTraits.Primary.indexOf(traits)===-1&&(portraitMatch.categoryDataMap.Personality.Primary.matchCriterias.length < maximumTrait)" data-ng-click="addTraits(portraitMatch.categoryDataMap.Personality.Primary,traits,'Primary')"></span>
+	                <span class="mpa-icon icon-erti_plus sp-icon-color inactive" data-ng-if="addedTraits.Primary.indexOf(traits)===-1&&(portraitMatch.categoryDataMap.Personality.Primary.matchCriterias.length >= maximumTrait)"></span>
+	                <!--<span class="mpa-icon icon-erti_minus sp-icon-color" data-ng-if="addedTraits.Primary.indexOf(traits)!==-1" data-ng-click="removeTraits(portraitMatch.categoryDataMap.Personality.Primary,traits,'Primary');"></span>-->
+	            </li>
+	        </ul>
+	    </div>
+	    <div class="trait-list-description">
+	    		<div class="trait-listing" data-ng-repeat="traitList in traitDescription track by $index">
+	    			<h3 class="weight-500" data-ng-bind="::pullInterNationalization('idealPortrait.portrait.'+traitList)"></h3>
+	    			<p data-ng-bind="::pullInterNationalization('idealPortrait.portrait.primary.'+traitList)"></p>
+	    		</div>
+	    </div>
+    </article>
+    
+    <article class="match-holder">
+    	<div class="form-elements">
+	        <div class="clearfix tick-selection display-inline-block margin-right-inline disabled_checkbox_{{!portraitMatch.categoryDataMap.Personality.UnderPressure.matchCriterias.length}}">
+	            <input type="checkbox" class="filterCheckBox" id="UnderPressure" data-ng-disabled="!portraitMatch.categoryDataMap.Personality.UnderPressure.matchCriterias.length" data-ng-true-value="true" data-ng-false-value="false" data-ng-model="portraitMatch.categoryDataMap.Personality.UnderPressure.enabled" data-ng-change="includeCheck('UnderPressure',filterSelected.Personality)">
+	            <label for="UnderPressure" class="filterCheckBox-label">
+	            	<span class="checkedTick pull-left bpPopFix icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                <span class="font_14_300 pull-left label-text-style" data-ng-bind="::pullInterNationalization('spmatch.UnderPresssure')"></span>
+	            </label>
+	        </div>
+	    </div>
+	    <div class="selected-item">
+		    <ol class="sortable-pa-list new-style">
+	            <li class="single" data-ng-repeat="traits in portraitMatch.categoryDataMap.Personality.UnderPressure.matchCriterias track by $index">
+	                <span class="new-pawrap">
+	                    <span data-ng-bind="pullInterNationalization('spectrum.'+traits.key)"></span>
+	              	    <span class="icon-close icon-icon_remove sp-icon-color" data-ng-click="removeTraits(portraitMatch.categoryDataMap.Personality.UnderPressure,traits.key,'UnderPressure');"></span>
+	                </span>
+	                 <div class="list-drop-options index_{{$index}}">
+	                     <div class="selected-option-mock" sp-condition="$index!==0&&true" sp-click-outside="ulactiveUnderPressure">
+		                    <span class="font-14" data-ng-bind="pullInterNationalization('idealPortrait.portrait.'+traits.matchPercent)"></span>
+		                    <span class="action-selected-option-mock icon-icon_dropdown-arrow sp-icon-color"></span>
+		                 </div>
+		                 <ul class="drop-down-ul-style active-{{ulactiveUnderPressure}}">
+		                    <li data-ng-click="changeDisabledState(option.name,traits,'UnderPressure',$parent.$index)" data-ng-repeat="option in matchDropDown.UnderPressure">
+		                        <a href="javascript:void(0)" class="action-filters" data-ng-class="{'active':option.name==traits.matchPercent}" data-ng-bind="::pullInterNationalization('idealPortrait.portrait.'+option.name)"></a>
+		                    </li>
+		                 </ul>
+	                </div>
+	            </li>
+	        </ol>
+	        <ol class="sortable-pa-list new-style notop" data-ng-if="portraitMatch.categoryDataMap.Personality.UnderPressure.matchCriterias.length < maximumTrait">
+	            <li class="normal">
+	                <span class="new-pawrap empties">
+	                    <span class="empty-msg" data-ng-bind="::pullInterNationalization('idealPortrait.portrait.choosetrait')"></span>
+	                </span>
+	            </li>
+	        </ol> 
+	    </div>
+	    <div class="selection-list row clearfix">
+	    	<ul class="mpa-pills col-md-12">
+	    		<li class="col-md-6 inactive-{{addedTraits.UnderPressure.indexOf(traits)!==-1}}" data-ng-repeat="traits in record = personalityTraits track by $index">
+	                <span class="mpa-name sp-link-color" data-ng-bind="::pullInterNationalization('spectrum.'+traits)"></span>
+	                <span class="mpa-icon icon-erti_plus sp-icon-color" data-ng-if="addedTraits.UnderPressure.indexOf(traits)===-1&&(portraitMatch.categoryDataMap.Personality.UnderPressure.matchCriterias.length < maximumTrait)" data-ng-click="addTraits(portraitMatch.categoryDataMap.Personality.UnderPressure,traits,'UnderPressure')"></span>
+	                <span class="mpa-icon icon-erti_plus sp-icon-color inactive" data-ng-if="addedTraits.UnderPressure.indexOf(traits)===-1&&(portraitMatch.categoryDataMap.Personality.UnderPressure.matchCriterias.length >= maximumTrait)"></span>
+	                <!-- <span class="mpa-icon icon-erti_minus sp-icon-color" data-ng-if="addedTraits.UnderPressure.indexOf(traits)!==-1" data-ng-click="removeTraits(portraitMatch.categoryDataMap.Personality.UnderPressure,traits,'UnderPressure');"></span>-->
+	            </li>
+	        </ul>
+	    </div>
+	    <div class="trait-list-description">
+	    		<div class="trait-listing" data-ng-repeat="traitList in traitDescription track by $index">
+	    			<h3 class="weight-500" data-ng-bind="::pullInterNationalization('idealPortrait.portrait.'+traitList)"></h3>
+	    			<p data-ng-bind="::pullInterNationalization('idealPortrait.portrait.underpressure.'+traitList)"></p>
+	    		</div>
+	    </div>
+    
+    </article>
+    
+</section>

@@ -1,0 +1,98 @@
+<section data-ng-controller="partnersAdmin as ctrl" data-ng-init="ctrl.getAllPartnerAccounts()" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'" class="hide">
+    <div class="x-container members hiring-candidates affiliate-listing pulse-listing oVisible sp-partners">
+        <div class="container minimumHeight">
+            <div class="bgWhiteBord clearfix">
+                <div class="toolbar clearfix">
+                    <div class="title">
+                        <a href="javascript:void(0)" role="button" data-ng-click="ctrl.resetfilter()">Partner Accounts<span class="blackcolor">({{ctrl.masterAccountsList.length}})</span></a>
+                    </div>
+                    <div class="controls clearfix">
+                        <div class="hiring-list-wrapper">
+                            <p class='iea' data-ng-click="ctrl.getAllCompanies()">
+                                <a href="javascript:void(0)">Enable Account</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="extras adj oVisible">
+                    <div class="controlwrap-search">
+                        <input type="text" class="form-control" maxlength="28" data-ng-model="ctrl.pageVariables.textSearching" placeholder="{{::pullInterNationalization('sysAdmin.organization.search')}}" >
+                            <button class="sp-icon-color" data-ng-class="ctrl.pageVariables.textSearching.length>2? 'icon-icon_remove':'icon-icon_search'" data-ng-click="ctrl.pageVariables.textSearching =''"></button>
+                    </div>                    
+                    <article class="memberHolder">
+                        <div class="heading row override-fixes">
+                            <div class="col-md-2 col-sm-2 tog activeFilter" data-ng-click="reverse=!reverse;order('companyName', reverse);active($event)" data-predicate='companyName'>
+                                <h4 class="on reset-spc" data-ng-bind="'Company Name'"></h4>
+                            </div>
+                            <div class="col-md-3 col-sm-3 tog">
+                                <h4 class="no-arrow reset-spc" data-ng-bind="'City & Country'"></h4>
+                            </div>
+                            <div class="col-md-3 col-sm-3 tog">
+                                <h4 class="reset-spc" data-ng-bind="'Partner ID'"></h4>
+                            </div>
+                           
+                            <div class="col-md-2 col-sm-2" data-ng-click="reverse=!reverse;order('accountStatus', reverse);active($event)" data-predicate='status'>
+                                <h4 class="reset-spc" data-ng-bind="'Status'"></h4>
+                            </div>
+                            <div class="col-md-1 col-sm-1"></div>
+                        </div>
+                        <div infinite-scroll="returnMemberList(pageSize+pageSize)" infinite-scroll-immediate-check="false" infinite-scroll-disabled="disabledInfinite">
+                            <div class="complete-profile animation_1" id='{{$index}}' data-ng-repeat="accounts in recordField = ((ctrl.accountsList | filter:ctrl.pageVariables.textSearching).slice(0,pageSize))">
+                                <div class="table-row clearfix override-fixes">
+                                    <div class="col-md-2 col-sm-2">
+                                        <p class="reset-spc" data-ng-bind="accounts.partnerAccount.companyDTO.name"></p>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3">
+                                        <p class="reset-spc"><span data-ng-bind="accounts.partnerAccount.companyDTO.address.city"></span></p>
+                                        <p class="reset-spc"><span data-ng-bind="accounts.partnerAccount.companyDTO.address.country"></span></p>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3">
+                                        <p class="reset-spc" data-ng-bind="accounts.partnerAccount.partnerId"></p>
+                                    </div>
+                                    <div class="col-md-2 col-sm-2  added-width">
+                                        <p class="reset-spc" data-ng-bind="accounts.partnerAccount.active?'Active':'Inactive'"></p>
+                                    </div>
+                                    <div class="col-md-1 col-sm-1">
+                                        <div class="member-actions-col">
+                                            <div class="actions-filter">
+                                                <p class="actions-dropdown-filter smallFilter">
+                                                    <a href="javascript:void(0)" sp-condition="true" sp-click-outside="show">{{pullInterNationalization('manageAccountContent.actions')}}
+                                                    <span class="actions-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                                                </a>
+                                                </p>
+                                            </div>
+				                            <div class="actions-callout-wrappper pos2Ha" data-ng-if="show" data-ng-class="{'posTop1':(abList.length-($index+1) < 2)}">
+				                                <ul class="action-links">
+				                                    <li>
+				                                        <a href="javascript:void(0)" data-ng-click="ctrl.resetPartnerId(accounts.partnerAccount.id, accounts.partnerAccount.companyDTO.id);">
+				                                            <span class="action-icon icon-icon_move sp-icon-color"></span>
+				                                            <span class="action-text">Reset Partner Id</span>
+				                                        </a>
+				                                    </li>                                    
+				                                    <li class="sep"><hr/></li>
+				                                    <li>
+				                                        <a href="javascript:void(0)" data-ng-click="ctrl.updateStatus(accounts.partnerAccount.id, accounts.partnerAccount.active?false:true, accounts.partnerAccount.companyDTO.id);">
+				                                            <span class="action-icon icon-icon_archive sp-icon-color"></span>
+				                                            <span class="action-text" data-ng-bind="accounts.partnerAccount.active?'Deactivate':'Activate'"></span>
+				                                        </a>
+				                                    </li>   
+				                                    <li>
+				                                        <a href="javascript:void(0)" data-ng-click="ctrl.deleteAccountModal(accounts.partnerAccount.id, accounts.partnerAccount.companyDTO.id);">
+				                                            <span class="action-icon icon-icon_trashbin sp-icon-color"></span>
+				                                            <span class="action-text">Delete</span>
+				                                        </a>
+				                                    </li>				                                       				                                                                                                             
+				                                </ul>
+				                            </div>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p data-ng-show="!recordField.length" class="noMatchFound data-ng-hide" data-ng-bind="'No Record Found'"></p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

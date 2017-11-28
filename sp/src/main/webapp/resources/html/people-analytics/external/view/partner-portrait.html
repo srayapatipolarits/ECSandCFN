@@ -1,0 +1,36 @@
+<div data-ng-controller="profileMainController as ctrl" data-ng-init="ctrl.setOptions('partnerAnalysis')" data-ng-if="inviteReady" class="hide" data-ng-class="inviteReady?'show':'hide'">
+    <!-- Standard / Chart Options Starts -->
+<!-- PRISM Portrait Header Starts -->
+<div class="x-container hide" data-ng-init="$parent.switchView = 'standard'" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'">
+    <div class="container">
+        <div class="header-info-container">
+            <div class="header-info-content">
+                <div class="header-icon-wrap">
+                    <p class="hinfo-wrap">
+                        <span class="hinfo-icons icon-logo-badge sp-icon-color"></span>
+                    </p>
+                </div>
+                <div class="header-content-wrap">
+                    <p class="hinfo-wrap">
+                        <span class="info-txt ml0 mb8 mt6" data-ng-bind-html="pullInterNationalization('prismProfile.heading1')"></span>
+                    </p>
+                    <p class="header-info-def" data-ng-bind-html="pullInterNationalization('prismProfile.description1')"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- PRISM Portrait Header Ends -->
+    <!-- Standard / Chart Options Starts -->
+    <div data-ng-switch on="switchView">
+        <div data-ng-switch-when="standard">
+            <ng-include src="'/sp/resources/html/profile/partner-standard.html'"></ng-include>
+        </div>
+        <div data-ng-switch-when="chart">
+            <ng-include src="'/sp/resources/html/profile/partner-charts.html'"></ng-include>
+        </div>
+        <div data-ng-switch-default>
+            <ng-include src="'/sp/resources/html/profile/partner-standard.html'"></ng-include>
+        </div>
+    </div>
+</div>

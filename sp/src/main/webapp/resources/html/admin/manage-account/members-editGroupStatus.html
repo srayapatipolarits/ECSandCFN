@@ -1,0 +1,87 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                    <h2 data-ng-bind="::pullInterNationalization('admin.member.groupstatus')"></h2>
+                </div>
+                <div class="new-modals-wrapper">
+                    <!-- Email List Starts  -->
+                    <div class="multiple-emails-block">
+                        <div class="table-content">
+                            <div class="left-cont">
+                                <p data-ng-bind="::pullInterNationalization('manageAccountContent.selectedMembers')"></p>
+                            </div>
+                            <div class="right-cont">
+                                <p class="email-list">
+                                    <span>
+                                    <span data-ng-if="ctrl.groupEditSection.name" data-ng-bind="ctrl.groupEditSection.name"></span>
+                                    <span data-ng-if="!ctrl.groupEditSection.name" data-ng-bind="ctrl.groupEditSection.email"></span>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Email List Ends  -->                    
+                                        
+
+                    <!-- Form Elements -->
+                    <div class="form-elements" data-ng-if="!ctrl.showCreateGroupSection">
+                        <div class="angucomplete-wrapper">
+                            <angucomplete id="gl1" placeholder="Search Group" pause="100" selectedobject="ctrl.selectedGroupName" localdata="ctrl.updatedGroupsListForMember" searchfields="name" titlefield="name" minlength="1" inputclass="form-control form-control-small" templatetype="default" update-fn="ctrl.addGroupToModule(callback.title)" />
+                        </div>
+                        
+                        <p class="create-group-link">
+                            <a href="javascript:void(0)" data-ng-click="ctrl.showCreateGroupSection=true;ctrl.addGroupSubmitDisabled=true;ctrl.emptyGroupName=false;ctrl.existingGroupName=false;;" class="border-link">
+                                <span class="mock-link" data-ng-bind="::pullInterNationalization('manageAccountContent.createNewGroup')"></span>
+                            </a>
+                        </p>              
+                        
+                        <span data-ng-if="ctrl.addGroupSubmit" class="err-msg validate-error" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                    </div>
+                    <!-- Form Elements Ends -->
+
+                    <!-- Create Group Starts -->
+                    <div class="create-group-wrapper" data-ng-if="ctrl.showCreateGroupSection">
+                        <p>
+                            <input type="text" data-ng-model="ctrl.newGroupName" placeholder="{{::pullInterNationalization('manageAccountContent.createGroupLabel')}}"/>
+                            <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-click="ctrl.createNewGroup(ctrl.newGroupName,true)" data-ng-bind="::pullInterNationalization('manageAccountContent.create')"></a>
+                            <a href="javascript:void(0)" class="btn-square-12px btn-darker-grey" data-ng-click="ctrl.emptyGroupName=false;ctrl.existingGroupName=false;ctrl.showCreateGroupSection = false;ctrl.addGroupSubmitDisabled=false;ctrl.newGroupName='';" data-ng-bind="::pullInterNationalization('manageAccountContent.cancel')"></a>
+                        </p>
+                        
+                        <span class="err-msg validate-error" data-ng-if="ctrl.emptyGroupName" data-ng-bind="::pullInterNationalization('admin.group.noname')"></span>
+                        <span class="err-msg validate-error" data-ng-if="ctrl.existingGroupName" data-ng-bind="::pullInterNationalization('admin.group.samename')"></span>
+                    </div>
+                    <!-- Create Group Ends -->
+                                        
+                    <!-- Selected Items List Start -->
+                    <div class="selected-group-List-wrapper">
+                        <p class="group-default-message" data-ng-if="!ctrl.groupEditSection.groupAssociationList.length" data-ng-bind="::pullInterNationalization('manageAccountContent.noGroups')"></p>
+                        <div class="group-row" data-ng-repeat="groupMode in ctrl.groupEditSection.groupAssociationList" data-ng-if="groupMode.name!==''">
+                            <p class="group-col selected-group-name" data-ng-bind="groupMode.name"></p>
+                            <p class="group-col pCheckBox" data-ng-if="groupMode.groupLead">
+                                <!--input type="checkbox" name="grouplead_{{$index}}" id="grouplead_{{$index}}" class="iCheckBox" data-ng-click="ctrl.enableLeadDialog(groupMode.groupLead,$index,groupMode.name)" data-ng-checked="!ctrl.isItEnabled(groupMode.name,$index)?groupMode.groupLead:false" data-ng-disabled="ctrl.isItEnabled(groupMode.name,$index)" /-->
+                                <input type="checkbox" name="grouplead_{{$index}}" id="grouplead_{{$index}}" class="iCheckBox" data-ng-checked="true" data-ng-disabled="true" />
+                                <label for="grouplead_{{$index}}" class="lCheckBox">
+                                    <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color noBg"></span><!--  data-ng-class="{'disabled': ctrl.isItEnabled(groupMode.name,$index)}" -->
+                                    <span class="lCheckBoxText" data-ng-bind="::pullInterNationalization('admin.member.teamlead')"></span>
+                                </label>
+                            </p>
+                            <p class="group-col group-remove-selection">
+                                <a href="javascript:void(0)" class="r-icon icon-icon_remove" data-ng-class="{'light-grey':ctrl.showCreateGroupSection}" data-ng-click="!ctrl.showCreateGroupSection?ctrl.removeGroupDialog($event,groupMode):''"></a>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Selected Items List End -->
+                    <!-- Buttons Starts -->
+                    <div class="dialog-btns-wrapper">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.submit')}}" data-ng-class="ctrl.addGroupSubmitDisabled?'submit-btn-disabled':''" class="btn-block btn-14px sp-btn-color" data-ng-click="!ctrl.addGroupSubmitDisabled?ctrl.saveGroupToModule(ctrl.memberGroup):''">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.cancel')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="closeThisDialog();">
+                    </div>
+                    <!-- Buttons Ends -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

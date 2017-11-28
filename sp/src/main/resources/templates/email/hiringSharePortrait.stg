@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- Do not delete. -->
+<meta name="viewport" content="width=device-width">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>SurePeople</title>
+</head>
+<body bgcolor="#FFFFFF"
+  style="margin: 0; padding: 0; font-family: Arial; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; height: 100%; width: 100% !important;">
+  
+  <!-- Header Box -->
+  <table bgcolor="#ffffff"
+    style="margin: 0px 0 0; padding: 0; font-family: Arial; width: 100%;"
+    cellpadding="0" cellspacing="0" border="0">
+    <tr style="margin: 0; padding: 0;">
+      <td
+        style="margin: 0; padding: 0; display: block !important; clear: both !important;">
+        <div class="content"
+          style="padding: 0; margin: 0 auto; font-family: Arial; display: block;">
+          <table bgcolor="#ffffff"
+            style="margin: 0; padding: 0; font-family: Arial; width: 100%;"
+            cellpadding="0" cellspacing="0" border="0">
+            <tr style="margin: 0; padding: 0;">
+              <td
+                style="margin: 0; padding: 15px 40px; background: $company.companyTheme.stylesMap.spLinkColor$;">
+                <p
+                  style="margin: 0; padding: 0; font-family: Arial; font-size: 14px; color: #fff; line-height: 18px;">
+                  $company.name$ shared your SurePeople Prism® Portrait.
+                </p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <!-- /Header Box -->
+
+  <!-- Body Description Content -->
+  <table bgcolor="#ffffff"
+    style="margin: 20px 0 0; padding: 0; font-family: Arial; width: 100%;"
+    cellpadding="0" cellspacing="0" border="0">
+    <tr style="margin: 0; padding: 0;">
+      <td
+        style="margin: 0; padding: 0; display: block !important; max-width: 612px !important; clear: both !important;">
+        <div class="content"
+          style="padding: 0; margin: 0 auto; font-family: Arial; max-width: 612px; display: block;">
+          <table bgcolor="#ffffff"
+            style="margin: 0; padding: 0; font-family: Arial; width: 100%;"
+            cellpadding="0" cellspacing="0" border="0">
+            <tr style="margin: 0; padding: 0;">
+              <td style="margin: 0; padding: 0 40px;">
+                <p
+                  style="margin: 0; padding: 0; font-family: Arial; font-size: 14px; color: #676767; line-height: 18px;">
+                  Hi $forUser.firstName$ $forUser.lastName$,
+                  <br/><br/>
+                </p>
+                $if(isCandidate)$
+                <p
+                  style="margin: 0; padding: 0; font-family: Arial; font-size: 14px; color: #676767; line-height: 18px;">
+                  As a token of appreciation for taking the Prism, $company.name$ has shared your Prism Portrait 
+                  with you.
+                  <br/><br/>
+                </p>
+                $endif$
+                <p
+                  style="margin: 0; padding: 0; font-family: Arial; font-size: 14px; color: #676767; line-height: 18px;">
+                  $introText$
+                  </p>
+                  <p
+                  style="margin: 20px 0 0; padding: 0; font-family: Arial; font-size: 14px; color: #676767; line-height: 18px;">
+                  The Prism also indicates that:
+                  <br/><br/>
+                  </p>
+                  <div
+                  style="margin: 0; padding: 0; font-family: Arial; font-size: 14px; color: #676767; line-height: 18px;">
+                  <ul style="margin: 0">
+                    <li>When you’re under pressure you $underPressureText$ $underPressurePersonality$.</li>
+                    <li>You process information $processingText$.</li>
+                    <li>You’re motivated by $motivationText$.</li>
+                    <li>And, you typically make decisions $decisionMakingCarefulText$ by taking time to think $decisionMakingOutwardText$.</li>
+                  </ul></div> 
+                  <p
+                  style="margin: 20px 0 0; padding: 0; font-family: Arial; font-size: 14px; color: #676767; line-height: 18px;">
+                  A lot of traits make you unique at work. Take some time to explore your Prism Portrait and 
+                  discover how your personal mix of emotional, relational and team intelligence (ERT-i) shows up 
+                  at work.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <!-- /Body Description Content -->
+
+  <!-- CTA Content -->
+  <table bgcolor="#ffffff"
+    style="margin: 30px 0 0; padding: 0; font-family: Arial; width: 100%;"
+    cellpadding="0" cellspacing="0" border="0">
+    <tr style="margin: 0; padding: 0;">
+      <td
+        style="margin: 0; padding: 0; display: block !important; max-width: 612px !important; clear: both !important;">
+        <div class="content"
+          style="padding: 0; margin: 0 auto; font-family: Arial; max-width: 612px; display: block;">
+          <table bgcolor="#ffffff"
+            style="margin: 0; padding: 0; font-family: Arial; width: 100%;"
+            cellpadding="0" cellspacing="0" border="0">
+            <tr style="margin: 0; padding: 0;">
+              <td style="margin: 0; padding: 0 40px;">
+                <p
+                  style="margin: 0; padding: 0; font-family: Arial; font-size: 16px; color: #ff6633; line-height: 20px;">
+                  <a href="$baseUrl$sp/profilePublic/$forUser.profileSettings.token$" title="VIEW YOUR PRISM PORTRAIT"
+                    style="margin: 0; padding: 0; display: block; color: $company.companyTheme.stylesMap.spLinkColor$; text-decoration: none; border: none;">
+                    <strong>VIEW YOUR PRISM PORTRAIT</strong>
+                  </a>
+                </p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <!-- /CTA Content -->
+  <!-- Footer Content -->
+  <table bgcolor="#ffffff"
+    style="margin: 40px 0 0; padding: 0; font-family: Arial; width: 100%;"
+    cellpadding="0" cellspacing="0" border="0">
+    <tr style="margin: 0; padding: 0;">
+      <td
+        style="margin: 0; padding: 0; display: block !important; max-width: 612px !important; clear: both !important;">
+        <div class="content"
+          style="padding: 0; margin: 0 auto; font-family: Arial; max-width: 612px; display: block;">
+          <table bgcolor="#ffffff"
+            style="margin: 0; padding: 0; font-family: Arial; width: 100%;"
+            cellpadding="0" cellspacing="0" border="0">
+            <tr style="margin: 0; padding: 0;">
+              <td style="margin: 0; padding: 0 40px;">
+                <p
+                  style="margin: 0; padding: 15px 1px 0; font-family: Arial; font-size: 12px; color: #676767; line-height: 16px; border-top: 2px solid #e6e6e6">
+                  <em>This email was sent by the SurePeople
+                    team</em>
+                </p>
+                <p
+                  style="margin: 0; padding: 0 1px 0; font-family: Arial; font-size: 12px; line-height: 16px; color: #676767;">
+                  <em>If you have any questions, please contact us
+                    at <a href="mailto:support@surepeople.com"
+                    style="margin: 0; padding: 0; display: inline; color: $company.companyTheme.stylesMap.spLinkColor$; text-decoration: none; border: none;">support@surepeople.com</a>
+                  </em>
+                </p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <!-- /Footer Content -->
+</body>
+</html>

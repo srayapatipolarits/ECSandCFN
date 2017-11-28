@@ -1,0 +1,31 @@
+<!-- <article data-ng-if="!comment.fileStack" class="holder-og">
+    <div class="left-reference">
+        <div class="image-video">
+            <a href="javascript:void(0)" class="{{comment.media[0].mediaType}}" data-ng-click="ctrl.videoPopUp(comment.media[0].url||comment.url,comment.media[0].mediaType,comment.newTab)">
+                <img data-lazy-img="{{comment.imageUrl}}">
+            </a>
+        </div>
+    </div>
+    <div class="right-reference web{{comment.imageUrl}}">
+        <a data-ng-href="{{comment.url}}" class="title href_{{comment.url}}" data-ng-attr-target="{{comment.newTab ? '_blank' : '_self'}}" data-ng-bind-html="comment.title"></a>
+        <div class="article" data-ng-if="comment.authorSource" data-ng-bind-html="'By '+comment.authorSource"></div>
+        <div class="description" data-ng-bind-html="comment.description | addEllipsis:140"></div>
+    </div>
+</article>-->
+<div class="badges-information clearfix">
+    			<div class="left">
+    				<span class="badge-icon sp-icon-color" 
+    				data-ng-class="{'icon-badge_ertiLevel1':comment.contentReference.spFeature === 'Erti' && comment.text === '1',
+    				                'icon-badge_ertiLevel2':comment.contentReference.spFeature === 'Erti' && comment.text === '2',
+    				                'icon-badge_ertiLevel3':comment.contentReference.spFeature === 'Erti' && comment.text === '3',
+    				                'icon-badge_ertiLevel4':comment.contentReference.spFeature === 'Erti' && comment.text === '4',
+    				                'icon-badge_ertiLevel5':comment.contentReference.spFeature === 'Erti' && comment.text === '5',
+    				                'icon-badge_learningprogram':comment.contentReference.spFeature === 'OrganizationPlan',
+    				                'icon-badge_tutorial':comment.contentReference.spFeature === 'SPTutorial'}"></span>
+    			</div>
+    			<div class="right">
+    				<h4 class="badge-name add-ellipsis" data-ng-bind="comment.contentReference.title"></h4>
+    				<h5 class="badge-description" data-ng-if="comment.contentReference.spFeature !== 'Erti'" data-ng-bind="comment.contentReference.spFeature | replaceGoalName"></h5>
+    				<h5 class="badge-description" data-ng-if="comment.contentReference.spFeature === 'Erti'" data-ng-bind="pullInterNationalization('manageAccountContent.erti') +' - '+ pullInterNationalization('badge.erti.level')+' ' +comment.text"></h5>
+    			</div>
+    		</div>

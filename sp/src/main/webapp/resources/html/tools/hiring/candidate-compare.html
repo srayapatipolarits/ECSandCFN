@@ -1,0 +1,781 @@
+<div ng-controller="candidateCompareController" ng-if="inviteReady" ng-class="inviteReady?'show':'hide'" class="hide">
+    <div class="x-container admin-view candidate-pages compare-candidates">
+        <div class="container adj-pos" fix-container>
+            <div class="custom-cols full compare-wrapper">
+                <div class="col-wrapper-compare">
+                    <p class="top-btns">
+                        <!--a href="#" class="reset" ng-click="compareToolReset()">Reset</a-->
+                        <a ng-click="returnBack()" href="#" class="reset" data-ng-bind="pullInterNationalization('tools.hiring.compare.link1')"></a>
+                        <a href="#" class="print hide" ng-click="printPage(memberSelected)" ng-class="memberSelected===true?'on':''" data-ng-bind="pullInterNationalization('tools.hiring.compare.link2')"></a>
+                    </p>
+                    <h2 data-ng-bind="pullInterNationalization('tools.hiring.compare.title1')"></h2>
+                    <p class="mtop" data-ng-bind="pullInterNationalization('tools.hiring.compare.desc1')"></p>
+                    <p class="resetBtn">
+                        <a href="#" class="reset" ng-click="compareToolReset()" data-ng-bind="pullInterNationalization('tools.hiring.compare.link3')"></a>
+                    </p>
+                </div>
+                <div class="col-wrapper-compare dd-wrapper">
+                    <div class="compare-dropdowns">
+                        <div class="left" ng-click="showDropdownWidget('left')">
+                            <div class="dd-cont">
+                                <p class="default" ng-if="candidateSelected === false">
+                                    <span class="wrapper" data-ng-bind="pullInterNationalization('tools.hiring.compare.title2')"></span>
+                                </p>
+                                <p class="selectedContent" ng-if="candidateSelected === true">
+                                    <img ng-src="{{selectedCandidate.profilePic}}" alt="{{selectedCandidate.userInitials}}" ng-if="selectedCandidate.profilePic">
+                                    <span class="imgReplacementBig" ng-if="!selectedCandidate.profilePic" ng-bind="selectedCandidate.userInitials"></span>
+                                    <span class="wrapper">
+                                        <span class="name" data-ng-bind="selectedCandidate.firstName+' '+selectedCandidate.lastName"></span>
+                                    <span class="role">{{pullInterNationalization('tools.hiring.compare.desc2')}} 
+                                            <span ng-repeat="r in selectedCandidate.hiringRoles">{{r}}</span>
+                                    </span>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="right" ng-click="showDropdownWidget('right')">
+                            <div class="dd-cont">
+                                <p class="default" ng-if="memberSelected === false">
+                                    <span class="wrapper" data-ng-bind="pullInterNationalization('tools.hiring.compare.title3')"></span>
+                                </p>
+                                <p class="selectedContent" ng-if="memberSelected === true">
+                                    <img ng-src="{{selectedMemberDetails.smallProfileImage}}" alt="{{selectedMemberDetails.userInitials}}" ng-if="selectedMemberDetails.smallProfileImage">
+                                    <span class="imgReplacementBig" ng-if="!selectedMemberDetails.smallProfileImage" ng-bind="selectedMemberDetails.userInitials"></span>
+                                    <span class="wrapper">
+                                        <span class="name">{{selectedMemberDetails.firstName}} {{selectedMemberDetails.lastName}}</span>
+                                    <span class="role">{{selectedMemberDetails.title}}</span>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="graph-data-wrapper" ng-if="memberSelected && dataAvailablity===true">
+                    <div class="graph-seperators sp-background-color">
+                        <p class="left">{{selectedCandidate.firstName}}{{pullInterNationalization('tools.hiring.compare.chartTitle1')}}
+                            <!--span>75%</span-->
+                        </p>
+                        <p class="right">{{selectedMemberDetails.firstName}}{{pullInterNationalization('tools.hiring.compare.chartTitle1')}}
+                            <!--span>75%</span-->
+                        </p>
+                    </div>
+                    <div class="graph-wrapper">
+                        <div class="graph left">
+                            <div class="content-wrapper">
+                                <div class="text fleft">
+                                    <p class="content m-top">
+                                        <span class="desc">{{pullInterNationalization('tools.hiring.compare.chartTitle2')}}</span>
+                                        <span class="type">{{personalityFormatted.candidate.primary}}</span>
+                                    </p>
+                                    <p class="content m-top">
+                                        <span class="desc">{{pullInterNationalization('tools.hiring.compare.chartTitle3')}}</span>
+                                        <span class="type">{{personalityFormatted.candidate.pressure}}</span>
+                                    </p>
+                                </div>
+                                <div class="svg-graph fright">
+                                    <div class="personality-graph">
+                                        <div class="outer-labels">
+                                            <p class="left" prism-label-desc data-label="prismPersonality.powerful" data-ng-bind-html="pullInterNationalization('prismPersonality.powerful')" data-rm="true"></p>
+                                            <p class="right" prism-label-desc data-label="prismPersonality.versatile" data-ng-bind-html="pullInterNationalization('prismPersonality.versatile')" data-rm="true"></p>
+                                        </div>
+                                        <div class="graph-outer">
+                                            <div class="graph" data-compare="enabled" ng-if="dataAvailablity===true" data-score1="{{candidateProfileDetails.personality.Primary.segmentScore}}" data-score2="{{candidateProfileDetails.personality.UnderPressure.segmentScore}}" personality-info-graph></div>
+                                            <div class="graph-labels">
+                                                <div class="label-descriptions slide-right" data-ng-if="prismLabelContent">
+                                                    <div class="label-desc-wrapper">
+                                                        <p class="label-desc-title" data-ng-if="label === 'powerful'" data-ng-bind-html="pullInterNationalization('prismPersonality.powerful')"></p>
+                                                        <p class="label-desc-text" data-ng-if="label === 'powerful'" data-ng-bind-html="pullInterNationalization('prismPersonality.powerfulDesc')"></p>
+                                                        <p class="label-desc-title" data-ng-if="label === 'versatile'" data-ng-bind-html="pullInterNationalization('prismPersonality.versatile')"></p>
+                                                        <p class="label-desc-text" data-ng-if="label === 'versatile'" data-ng-bind-html="pullInterNationalization('prismPersonality.versatileDesc')"></p>
+                                                        <p class="label-desc-title" data-ng-if="label === 'precise'" data-ng-bind-html="pullInterNationalization('prismPersonality.precise')"></p>
+                                                        <p class="label-desc-text" data-ng-if="label === 'precise'" data-ng-bind-html="pullInterNationalization('prismPersonality.preciseDesc')"></p>
+                                                        <p class="label-desc-title" data-ng-if="label === 'adaptable'" data-ng-bind-html="pullInterNationalization('prismPersonality.adaptable')"></p>
+                                                        <p class="label-desc-text" data-ng-if="label === 'adaptable'" data-ng-bind-html="pullInterNationalization('prismPersonality.adaptableDesc')"></p>
+                                                    </div>
+                                                </div>
+                                                <div class="label-row">
+                                                    <p class="top"><span data-ng-bind-html="pullInterNationalization('prismPersonality.bigpic')"></span></p>
+                                                    <div>
+                                                        <p class="left">
+                                                            <span data-ng-bind-html="pullInterNationalization('prismPersonality.mission')"></span>
+                                                        </p>
+                                                        <p class="right"><span data-ng-bind-html="pullInterNationalization('prismPersonality.relationo')"></span>
+                                                        </p>
+                                                    </div>
+                                                    <p class="bottom"><span data-ng-bind-html="pullInterNationalization('prismPersonality.detailo')"></span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="outer-labels">
+                                            <p class="left" prism-label-desc data-label="prismPersonality.precise" data-ng-bind-html="pullInterNationalization('prismPersonality.precise')" data-rm="true"></p>
+                                            <p class="right" prism-label-desc data-label="prismPersonality.adaptable" data-ng-bind-html="pullInterNationalization('prismPersonality.adaptable')" data-rm="true"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="graph right">
+                            <div class="content-wrapper">
+                                <div class="text fleft">
+                                    <p class="content m-top">
+                                        <span class="desc">{{pullInterNationalization('tools.hiring.compare.chartTitle2')}}</span>
+                                        <span class="type">{{personalityFormatted.member.primary}}</span>
+                                    </p>
+                                    <p class="content m-top">
+                                        <span class="desc">{{pullInterNationalization('tools.hiring.compare.chartTitle3')}}</span>
+                                        <span class="type">{{personalityFormatted.member.pressure}}</span>
+                                    </p>
+                                </div>
+                                <div class="svg-graph fright">
+                                    <div class="personality-graph">
+                                        <div class="outer-labels">
+                                            <p class="left" prism-label-desc data-label="prismPersonality.powerful" data-ng-bind-html="pullInterNationalization('prismPersonality.powerful')" data-rm="true" data-mem="1"></p>
+                                            <p class="right" prism-label-desc data-label="prismPersonality.versatile" data-ng-bind-html="pullInterNationalization('prismPersonality.versatile')" data-rm="true" data-mem="1"></p>
+                                        </div>
+                                        <div class="graph-outer">
+                                            <div class="graph" data-compare="enabled" ng-if="dataAvailablity===true" data-score1="{{memberProfileDetails.personality.Primary.segmentScore}}" data-score2="{{memberProfileDetails.personality.UnderPressure.segmentScore}}" personality-info-graph></div>
+                                            <div class="graph-labels">
+                                                <div class="label-descriptions slide-right" data-ng-if="prismLabelContent1">
+                                                    <div class="label-desc-wrapper">
+                                                        <p class="label-desc-title" data-ng-if="label === 'powerful'" data-ng-bind-html="pullInterNationalization('prismPersonality.powerful')"></p>
+                                                        <p class="label-desc-text" data-ng-if="label === 'powerful'" data-ng-bind-html="pullInterNationalization('prismPersonality.powerfulDesc')"></p>
+                                                        <p class="label-desc-title" data-ng-if="label === 'versatile'" data-ng-bind-html="pullInterNationalization('prismPersonality.versatile')"></p>
+                                                        <p class="label-desc-text" data-ng-if="label === 'versatile'" data-ng-bind-html="pullInterNationalization('prismPersonality.versatileDesc')"></p>
+                                                        <p class="label-desc-title" data-ng-if="label === 'precise'" data-ng-bind-html="pullInterNationalization('prismPersonality.precise')"></p>
+                                                        <p class="label-desc-text" data-ng-if="label === 'precise'" data-ng-bind-html="pullInterNationalization('prismPersonality.preciseDesc')"></p>
+                                                        <p class="label-desc-title" data-ng-if="label === 'adaptable'" data-ng-bind-html="pullInterNationalization('prismPersonality.adaptable')"></p>
+                                                        <p class="label-desc-text" data-ng-if="label === 'adaptable'" data-ng-bind-html="pullInterNationalization('prismPersonality.adaptableDesc')"></p>
+                                                    </div>
+                                                </div>
+                                                <div class="label-row">
+                                                    <p class="top"><span data-ng-bind-html="pullInterNationalization('prismPersonality.bigpic')"></span></p>
+                                                    <div>
+                                                        <p class="left">
+                                                            <span data-ng-bind-html="pullInterNationalization('prismPersonality.mission')"></span>
+                                                        </p>
+                                                        <p class="right"><span data-ng-bind-html="pullInterNationalization('prismPersonality.relationo')"></span>
+                                                        </p>
+                                                    </div>
+                                                    <p class="bottom"><span data-ng-bind-html="pullInterNationalization('prismPersonality.detailo')"></span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="outer-labels">
+                                            <p class="left" prism-label-desc data-label="prismPersonality.precise" data-ng-bind-html="pullInterNationalization('prismPersonality.precise')" data-rm="true" data-mem="1"></p>
+                                            <p class="right" prism-label-desc data-label="prismPersonality.adaptable" data-ng-bind-html="pullInterNationalization('prismPersonality.adaptable')" data-rm="true" data-mem="1"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="graph-seperators sp-background-color">
+                        <p class="left">{{selectedCandidate.firstName}}{{pullInterNationalization('tools.hiring.compare.chartTitle4')}}
+                            <!--span>75%</span-->
+                        </p>
+                        <p class="right">{{selectedMemberDetails.firstName}}{{pullInterNationalization('tools.hiring.compare.chartTitle4')}}
+                            <!--span>75%</span-->
+                        </p>
+                    </div>
+                    <div class="graph-wrapper">
+                        <div class="graph left">
+                            <div class="content-wrapper">
+                                <div class="svg-graph-wrapper processing-blueprint">
+                                    <div class="labels axis left">
+                                        <p class="top">100%</p>
+                                        <p class="mid">0</p>
+                                        <p class="bottom">100%</p>
+                                    </div>
+                                    <div class="labels">
+                                        <p class="top">
+                                            <span class="percentage">{{candidateProfileDetails.processing.External}}%</span>
+                                            <span>External</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="top" bar-info-graph ng-if="dataAvailablity===true" data-bar="processing,V,T,External,candidateAnalysis" data-score="{{candidateProfileDetails.processing.External}}"></div>
+                                            <div class="bottom" bar-info-graph ng-if="dataAvailablity===true" data-bar="processing,V,B,Internal,candidateAnalysis" data-score="{{candidateProfileDetails.processing.Internal}}"></div>
+                                        </div>
+                                        <p class="bottom">
+                                            <span class="percentage">{{candidateProfileDetails.processing.Internal}}%</span>
+                                            <span>Internal</span>
+                                        </p>
+                                    </div>
+                                    <div class="labels">
+                                        <p class="top">
+                                            <span class="percentage">{{candidateProfileDetails.processing.Concrete}}%</span>
+                                            <span>Concrete</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="top" bar-info-graph ng-if="dataAvailablity===true" data-bar="processing,V,T,Concrete,candidateAnalysis" data-score="{{candidateProfileDetails.processing.Concrete}}"></div>
+                                            <div class="bottom" bar-info-graph ng-if="dataAvailablity===true" data-bar="processing,V,B,Intuitive,candidateAnalysis" data-score="{{candidateProfileDetails.processing.Intuitive}}"></div>
+                                        </div>
+                                        <p class="bottom">
+                                            <span class="percentage">{{candidateProfileDetails.processing.Intuitive}}%</span>
+                                            <span>Intuitive</span>
+                                        </p>
+                                    </div>
+                                    <div class="labels">
+                                        <p class="top">
+                                            <span class="percentage">{{candidateProfileDetails.processing.Cognitive}}%</span>
+                                            <span>Head</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="top" bar-info-graph ng-if="dataAvailablity===true" data-bar="processing,V,T,Cognitive,candidateAnalysis" data-score="{{candidateProfileDetails.processing.Cognitive}}"></div>
+                                            <div class="bottom" bar-info-graph ng-if="dataAvailablity===true" data-bar="processing,V,B,Affective,candidateAnalysis" data-score="{{candidateProfileDetails.processing.Affective}}"></div>
+                                        </div>
+                                        <p class="bottom">
+                                            <span class="percentage">{{candidateProfileDetails.processing.Affective}}%</span>
+                                            <span>Heart</span>
+                                        </p>
+                                    </div>
+                                    <div class="labels no-margin">
+                                        <p class="top">
+                                            <span class="percentage">{{candidateProfileDetails.processing.Orderly}}%</span>
+                                            <span>Orderly</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="top" bar-info-graph ng-if="dataAvailablity===true" data-bar="processing,V,T,Orderly,candidateAnalysis" data-score="{{candidateProfileDetails.processing.Orderly}}"></div>
+                                            <div class="bottom" bar-info-graph ng-if="dataAvailablity===true" data-bar="processing,V,B,Spontaneous,candidateAnalysis" data-score="{{candidateProfileDetails.processing.Spontaneous}}"></div>
+                                        </div>
+                                        <p class="bottom">
+                                            <span class="percentage">{{candidateProfileDetails.processing.Spontaneous}}%</span>
+                                            <span>SPONTANEOUS</span>
+                                        </p>
+                                    </div>
+                                    <div class="labels axis right">
+                                        <p class="top">100%</p>
+                                        <p class="mid">0</p>
+                                        <p class="bottom">100%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="graph right">
+                            <div class="content-wrapper">
+                                <div class="svg-graph-wrapper processing-blueprint">
+                                    <div class="labels axis left">
+                                        <p class="top">100%</p>
+                                        <p class="mid">0</p>
+                                        <p class="bottom">100%</p>
+                                    </div>
+                                    <div class="labels">
+                                        <p class="top">
+                                            <span class="percentage">{{memberProfileDetails.processing.External}}%</span>
+                                            <span>External</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="top" bar-info-graph ng-if="dataAvailablity===true" data-bar="processing,V,T,External,memberAnalysis" data-score="{{memberProfileDetails.processing.External}}"></div>
+                                            <div class="bottom" bar-info-graph ng-if="dataAvailablity===true" data-bar="processing,V,B,Internal,memberAnalysis" data-score="{{memberProfileDetails.processing.Internal}}"></div>
+                                        </div>
+                                        <p class="bottom">
+                                            <span class="percentage">{{memberProfileDetails.processing.Internal}}%</span>
+                                            <span>Internal</span>
+                                        </p>
+                                    </div>
+                                    <div class="labels">
+                                        <p class="top">
+                                            <span class="percentage">{{memberProfileDetails.processing.Concrete}}%</span>
+                                            <span>Concrete</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="top" bar-info-graph ng-if="dataAvailablity===true" data-bar="processing,V,T,Concrete,memberAnalysis" data-score="{{memberProfileDetails.processing.Concrete}}"></div>
+                                            <div class="bottom" bar-info-graph ng-if="dataAvailablity===true" data-bar="processing,V,B,Intuitive,memberAnalysis" data-score="{{memberProfileDetails.processing.Intuitive}}"></div>
+                                        </div>
+                                        <p class="bottom">
+                                            <span class="percentage">{{memberProfileDetails.processing.Intuitive}}%</span>
+                                            <span>Intuitive</span>
+                                        </p>
+                                    </div>
+                                    <div class="labels">
+                                        <p class="top">
+                                            <span class="percentage">{{memberProfileDetails.processing.Cognitive}}%</span>
+                                            <span>Head</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="top" bar-info-graph ng-if="dataAvailablity===true" data-bar="processing,V,T,Cognitive,memberAnalysis" data-score="{{memberProfileDetails.processing.Cognitive}}"></div>
+                                            <div class="bottom" bar-info-graph ng-if="dataAvailablity===true" data-bar="processing,V,B,Affective,memberAnalysis" data-score="{{memberProfileDetails.processing.Affective}}"></div>
+                                        </div>
+                                        <p class="bottom">
+                                            <span class="percentage">{{memberProfileDetails.processing.Affective}}%</span>
+                                            <span>Heart</span>
+                                        </p>
+                                    </div>
+                                    <div class="labels no-margin">
+                                        <p class="top">
+                                            <span class="percentage">{{memberProfileDetails.processing.Orderly}}%</span>
+                                            <span>Orderly</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="top" bar-info-graph ng-if="dataAvailablity===true" data-bar="processing,V,T,Orderly,memberAnalysis" data-score="{{memberProfileDetails.processing.Orderly}}"></div>
+                                            <div class="bottom" bar-info-graph ng-if="dataAvailablity===true" data-bar="processing,V,B,Spontaneous,memberAnalysis" data-score="{{memberProfileDetails.processing.Spontaneous}}"></div>
+                                        </div>
+                                        <p class="bottom">
+                                            <span class="percentage">{{memberProfileDetails.processing.Spontaneous}}%</span>
+                                            <span>SPONTANEOUS</span>
+                                        </p>
+                                    </div>
+                                    <div class="labels axis right">
+                                        <p class="top">100%</p>
+                                        <p class="mid">0</p>
+                                        <p class="bottom">100%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="graph-seperators sp-background-color">
+                        <p class="left">{{selectedCandidate.firstName}}{{pullInterNationalization('tools.hiring.compare.chartTitle5')}}
+                            <!--span>75%</span-->
+                        </p>
+                        <p class="right">{{selectedMemberDetails.firstName}}{{pullInterNationalization('tools.hiring.compare.chartTitle5')}}
+                            <!--span>75%</span-->
+                        </p>
+                    </div>
+                    <div class="graph-wrapper">
+                        <div class="graph left">
+                            <div class="content-wrapper motivation-wrapper">
+                                <h3>Why is {{selectedCandidate.firstName}} motivated</h3>
+                                <div class="svg-graph-wrapper">
+                                    <div class="labels">
+                                        <p class="left adj">
+                                            <span class="percentage">{{candidateProfileDetails.motivationWhy.AttainmentOfGoals}}%</span>
+                                            <span>ATTAINMENT OF GOALS</span>
+                                        </p>
+                                        <p class="right">
+                                            <span class="percentage">{{candidateProfileDetails.motivationWhy.RecognitionForEffort}}%</span>
+                                            <span>RECOGNITION FOR EFFORTS</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="left" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationWhy,H,L,AttainmentOfGoals,candidateAnalysis" data-score="{{candidateProfileDetails.motivationWhy.AttainmentOfGoals}}"></div>
+                                            <div class="right" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationWhy,H,R,RecognitionForEffort,candidateAnalysis" data-score="{{candidateProfileDetails.motivationWhy.RecognitionForEffort}}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="labels">
+                                        <p class="left">
+                                            <span class="percentage">{{candidateProfileDetails.motivationWhy.Power}}%</span>
+                                            <span>Power</span>
+                                        </p>
+                                        <p class="right">
+                                            <span class="percentage">{{candidateProfileDetails.motivationWhy.Compliance}}%</span>
+                                            <span>COMPLIANCE</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="left" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationWhy,H,L,Power,candidateAnalysis" data-score="{{candidateProfileDetails.motivationWhy.Power}}"></div>
+                                            <div class="right" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationWhy,H,R,Compliance,candidateAnalysis" data-score="{{candidateProfileDetails.motivationWhy.Compliance}}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="labels">
+                                        <p class="left">
+                                            <span class="percentage">{{candidateProfileDetails.motivationWhy.Activity}}%</span>
+                                            <span>ACTIVITY</span>
+                                        </p>
+                                        <p class="right">
+                                            <span class="percentage">{{candidateProfileDetails.motivationWhy.Affiliation}}%</span>
+                                            <span>AFFILIATION</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="left" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationWhy,H,L,Activity,candidateAnalysis" data-score="{{candidateProfileDetails.motivationWhy.Activity}}"></div>
+                                            <div class="right" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationWhy,H,R,Affiliation,candidateAnalysis" data-score="{{candidateProfileDetails.motivationWhy.Affiliation}}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3>How is {{selectedCandidate.firstName}} motivated</h3>
+                                <div class="svg-graph-wrapper">
+                                    <div class="labels">
+                                        <p class="left">
+                                            <span class="percentage">{{candidateProfileDetails.motivationHow.SelfAffirmed}}%</span>
+                                            <span>SELF-AFFIRMED</span>
+                                        </p>
+                                        <p class="right">
+                                            <span class="percentage">{{candidateProfileDetails.motivationHow.AffirmedByOthers}}%</span>
+                                            <span>AFFIRMED BY OTHERS</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="left" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationHow,H,L,SelfAffirmed,candidateAnalysis" data-score="{{candidateProfileDetails.motivationHow.SelfAffirmed}}"></div>
+                                            <div class="right" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationHow,H,R,AffirmedByOthers,candidateAnalysis" data-score="{{candidateProfileDetails.motivationHow.AffirmedByOthers}}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="labels">
+                                        <p class="left">
+                                            <span class="percentage">{{candidateProfileDetails.motivationHow.ExchangeOfIdeas}}%</span>
+                                            <span>EXCHANGE OF IDEAS</span>
+                                        </p>
+                                        <p class="right">
+                                            <span class="percentage">{{candidateProfileDetails.motivationHow.ReceiveDirection}}%</span>
+                                            <span>RECEIVE DIRECTION</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="left" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationHow,H,L,ExchangeOfIdeas,candidateAnalysis" data-score="{{candidateProfileDetails.motivationHow.ExchangeOfIdeas}}"></div>
+                                            <div class="right" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationHow,H,R,ReceiveDirection,candidateAnalysis" data-score="{{candidateProfileDetails.motivationHow.ReceiveDirection}}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="labels">
+                                        <p class="left">
+                                            <span class="percentage">{{candidateProfileDetails.motivationHow.Freedom}}%</span>
+                                            <span>FREEDOM</span>
+                                        </p>
+                                        <p class="right">
+                                            <span class="percentage">{{candidateProfileDetails.motivationHow.Consistency}}%</span>
+                                            <span>CONSISTENCY</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="left" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationHow,H,L,Freedom,candidateAnalysis" data-score="{{candidateProfileDetails.motivationHow.Freedom}}"></div>
+                                            <div class="right" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationHow,H,R,Consistency,candidateAnalysis" data-score="{{candidateProfileDetails.motivationHow.Consistency}}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="labels">
+                                        <p class="left">
+                                            <span class="percentage">{{candidateProfileDetails.motivationHow.TaskCompletion}}%</span>
+                                            <span>TASK COMPLETION</span>
+                                        </p>
+                                        <p class="right">
+                                            <span class="percentage">{{candidateProfileDetails.motivationHow.PrefersProcess}}%</span>
+                                            <span>PREFERS PROCESS</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="left" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationHow,H,L,TaskCompletion,candidateAnalysis" data-score="{{candidateProfileDetails.motivationHow.TaskCompletion}}"></div>
+                                            <div class="right" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationHow,H,R,PrefersProcess,candidateAnalysis" data-score="{{candidateProfileDetails.motivationHow.PrefersProcess}}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3>What motivates {{selectedCandidate.firstName}}</h3>
+                                <div class="svg-graph-wrapper">
+                                    <div class="labels">
+                                        <p class="left">
+                                            <span class="percentage">{{candidateProfileDetails.motivationWhat.Hygiene}}%</span>
+                                            <span>WORK CONDITIONS</span>
+                                        </p>
+                                        <p class="right">
+                                            <span class="percentage">{{candidateProfileDetails.motivationWhat.Accomplishment}}%</span>
+                                            <span>WORK FUNCTION</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="left" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationWhat,H,L,Hygiene,candidateAnalysis" data-score="{{candidateProfileDetails.motivationWhat.Hygiene}}"></div>
+                                            <div class="right" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationWhat,H,R,Accomplishment,candidateAnalysis" data-score="{{candidateProfileDetails.motivationWhat.Accomplishment}}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="graph right">
+                            <div class="content-wrapper motivation-wrapper">
+                                <h3>Why is {{selectedMemberDetails.firstName}} motivated</h3>
+                                <div class="svg-graph-wrapper">
+                                    <div class="labels">
+                                        <p class="left adj">
+                                            <span class="percentage">{{memberProfileDetails.motivationWhy.AttainmentOfGoals}}%</span>
+                                            <span>ATTAINMENT OF GOALS</span>
+                                        </p>
+                                        <p class="right">
+                                            <span class="percentage">{{memberProfileDetails.motivationWhy.RecognitionForEffort}}%</span>
+                                            <span>RECOGNITION FOR EFFORTS</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="left" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationWhy,H,L,AttainmentOfGoals,memberAnalysis" data-score="{{memberProfileDetails.motivationWhy.AttainmentOfGoals}}"></div>
+                                            <div class="right" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationWhy,H,R,RecognitionForEffort,memberAnalysis" data-score="{{memberProfileDetails.motivationWhy.RecognitionForEffort}}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="labels">
+                                        <p class="left">
+                                            <span class="percentage">{{memberProfileDetails.motivationWhy.Power}}%</span>
+                                            <span>Power</span>
+                                        </p>
+                                        <p class="right">
+                                            <span class="percentage">{{memberProfileDetails.motivationWhy.Compliance}}%</span>
+                                            <span>COMPLIANCE</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="left" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationWhy,H,L,Power,memberAnalysis" data-score="{{memberProfileDetails.motivationWhy.Power}}"></div>
+                                            <div class="right" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationWhy,H,R,Compliance,memberAnalysis" data-score="{{memberProfileDetails.motivationWhy.Compliance}}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="labels">
+                                        <p class="left">
+                                            <span class="percentage">{{memberProfileDetails.motivationWhy.Activity}}%</span>
+                                            <span>ACTIVITY</span>
+                                        </p>
+                                        <p class="right">
+                                            <span class="percentage">{{memberProfileDetails.motivationWhy.Affiliation}}%</span>
+                                            <span>AFFILIATION</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="left" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationWhy,H,L,Activity,memberAnalysis" data-score="{{memberProfileDetails.motivationWhy.Activity}}"></div>
+                                            <div class="right" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationWhy,H,R,Affiliation,memberAnalysis" data-score="{{memberProfileDetails.motivationWhy.Affiliation}}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3>How is {{selectedMemberDetails.firstName}} motivated</h3>
+                                <div class="svg-graph-wrapper">
+                                    <div class="labels">
+                                        <p class="left">
+                                            <span class="percentage">{{memberProfileDetails.motivationHow.SelfAffirmed}}%</span>
+                                            <span>SELF-AFFIRMED</span>
+                                        </p>
+                                        <p class="right">
+                                            <span class="percentage">{{memberProfileDetails.motivationHow.AffirmedByOthers}}%</span>
+                                            <span>AFFIRMED BY OTHERS</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="left" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationHow,H,L,SelfAffirmed,memberAnalysis" data-score="{{memberProfileDetails.motivationHow.SelfAffirmed}}"></div>
+                                            <div class="right" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationHow,H,R,AffirmedByOthers,memberAnalysis" data-score="{{memberProfileDetails.motivationHow.AffirmedByOthers}}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="labels">
+                                        <p class="left">
+                                            <span class="percentage">{{memberProfileDetails.motivationHow.ExchangeOfIdeas}}%</span>
+                                            <span>EXCHANGE OF IDEAS</span>
+                                        </p>
+                                        <p class="right">
+                                            <span class="percentage">{{memberProfileDetails.motivationHow.ReceiveDirection}}%</span>
+                                            <span>RECEIVE DIRECTION</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="left" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationHow,H,L,ExchangeOfIdeas,memberAnalysis" data-score="{{memberProfileDetails.motivationHow.ExchangeOfIdeas}}"></div>
+                                            <div class="right" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationHow,H,R,ReceiveDirection,memberAnalysis" data-score="{{memberProfileDetails.motivationHow.ReceiveDirection}}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="labels">
+                                        <p class="left">
+                                            <span class="percentage">{{memberProfileDetails.motivationHow.Freedom}}%</span>
+                                            <span>FREEDOM</span>
+                                        </p>
+                                        <p class="right">
+                                            <span class="percentage">{{memberProfileDetails.motivationHow.Consistency}}%</span>
+                                            <span>CONSISTENCY</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="left" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationHow,H,L,Freedom,memberAnalysis" data-score="{{memberProfileDetails.motivationHow.Freedom}}"></div>
+                                            <div class="right" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationHow,H,R,Consistency,memberAnalysis" data-score="{{memberProfileDetails.motivationHow.Consistency}}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="labels">
+                                        <p class="left">
+                                            <span class="percentage">{{memberProfileDetails.motivationHow.TaskCompletion}}%</span>
+                                            <span>TASK COMPLETION</span>
+                                        </p>
+                                        <p class="right">
+                                            <span class="percentage">{{memberProfileDetails.motivationHow.PrefersProcess}}%</span>
+                                            <span>PREFERS PROCESS</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="left" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationHow,H,L,TaskCompletion,memberAnalysis" data-score="{{memberProfileDetails.motivationHow.TaskCompletion}}"></div>
+                                            <div class="right" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationHow,H,R,PrefersProcess,memberAnalysis" data-score="{{memberProfileDetails.motivationHow.PrefersProcess}}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3>What motivates {{selectedMemberDetails.firstName}}</h3>
+                                <div class="svg-graph-wrapper">
+                                    <div class="labels">
+                                        <p class="left">
+                                            <span class="percentage">{{candidateProfileDetails.motivationWhat.Hygiene}}%</span>
+                                            <span>WORK CONDITIONS</span>
+                                        </p>
+                                        <p class="right">
+                                            <span class="percentage">{{candidateProfileDetails.motivationWhat.Accomplishment}}%</span>
+                                            <span>WORK FUNCTION</span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="left" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationWhat,H,L,Hygiene,memberAnalysis" data-score="{{memberProfileDetails.motivationWhat.Hygiene}}"></div>
+                                            <div class="right" bar-info-graph ng-if="dataAvailablity===true" data-bar="motivationWhat,H,R,Accomplishment,memberAnalysis" data-score="{{memberProfileDetails.motivationWhat.Accomplishment}}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="graph-seperators sp-background-color">
+                        <p class="left">{{selectedCandidate.firstName}}{{pullInterNationalization('tools.hiring.compare.chartTitle6')}}
+                            <!--span>75%</span-->
+                        </p>
+                        <p class="right">{{selectedMemberDetails.firstName}}{{pullInterNationalization('tools.hiring.compare.chartTitle6')}}
+                            <!--span>75%</span-->
+                        </p>
+                    </div>
+                    <div class="graph-wrapper">
+                        <div class="graph left">
+                            <div class="content-wrapper pie-charts">
+                                <div class="svg-graph-wrapper">
+                                    <div class="svg-info-graph" ng-if="dataAvailablity===true" data-score="{{candidateProfileDetails.conflictManagement.Accommodate+candidateProfileDetails.conflictManagement.Avoid+candidateProfileDetails.conflictManagement.Collaborate}}" piechart-info-graph data-pie="conflictManagement" data-compare="candidate"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="graph right">
+                            <div class="content-wrapper pie-charts">
+                                <div class="svg-graph-wrapper">
+                                    <div class="svg-info-graph" ng-if="dataAvailablity===true" data-score="{{memberProfileDetails.conflictManagement.Accommodate+memberProfileDetails.conflictManagement.Avoid+memberProfileDetails.conflictManagement.Collaborate}}" piechart-info-graph data-pie="conflictManagement" data-compare="member"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="graph-seperators sp-background-color">
+                        <p class="left">{{selectedCandidate.firstName}}{{pullInterNationalization('tools.hiring.compare.chartTitle7')}}
+                            <!--span>75%</span-->
+                        </p>
+                        <p class="right">{{selectedMemberDetails.firstName}}{{pullInterNationalization('tools.hiring.compare.chartTitle7')}}
+                            <!--span>75%</span-->
+                        </p>
+                    </div>
+                    <div class="graph-wrapper">
+                        <div class="graph left">
+                            <div class="content-wrapper pie-charts">
+                                <div class="svg-graph-wrapper">
+                                    <div class="svg-info-graph" ng-if="dataAvailablity===true" data-score="{{candidateProfileDetails.fundamentalNeeds.Control+candidateProfileDetails.fundamentalNeeds.Significance}}" piechart-info-graph data-pie="fundamentalNeeds" data-compare="candidate"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="graph right">
+                            <div class="content-wrapper pie-charts">
+                                <div class="svg-graph-wrapper">
+                                    <div class="svg-info-graph" ng-if="dataAvailablity===true" data-score="{{memberProfileDetails.fundamentalNeeds.Control+memberProfileDetails.fundamentalNeeds.Significance}}" piechart-info-graph data-pie="fundamentalNeeds" data-compare="member"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="graph-seperators sp-background-color">
+                        <p class="left">{{selectedCandidate.firstName}}{{pullInterNationalization('tools.hiring.compare.chartTitle8')}}
+                            <!--span>75%</span-->
+                        </p>
+                        <p class="right">{{selectedMemberDetails.firstName}}{{pullInterNationalization('tools.hiring.compare.chartTitle8')}}
+                            <!--span>75%</span-->
+                        </p>
+                    </div>
+                    <div class="graph-wrapper">
+                        <div class="graph left">
+                            <div class="content-wrapper">
+                                <div class="svg-graph-wrapper decision-making">
+                                    <div class="svg-info-graph">
+                                        <div class="label top">
+                                            <p>OUTWARD {{candidateProfileDetails.decisionMaking.Outward}}%</p>
+                                        </div>
+                                        <div class="graph-outer">
+                                            <div class="label left">
+                                                <p class="mHide">CAREFUL {{candidateProfileDetails.decisionMaking.Careful}}%</p>
+                                                <p class="mShow">CAREFUL&#160;{{candidateProfileDetails.decisionMaking.Careful}}%</p>
+                                            </div>
+                                            <div class="graph-inner" ng-if="dataAvailablity===true" decision-info-graph data-compare="candidate" data-score="{{candidateProfileDetails.decisionMaking.Careful+candidateProfileDetails.decisionMaking.Inward+candidateProfileDetails.decisionMaking.Rapid}}">
+                                                <div class="on-graph-labels">
+                                                    <p class="top-label-set">
+                                                        <span>Indecisive</span>
+                                                        <span>Impulsive</span>
+                                                    </p>
+                                                    <p class="bottom-label-set">
+                                                        <span>Evasive</span>
+                                                        <span>Subversive</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="label right">
+                                                <p class="mHide">RAPID {{candidateProfileDetails.decisionMaking.Rapid}}%</p>
+                                                <p class="mShow">RAPID&#160;{{candidateProfileDetails.decisionMaking.Rapid}}%</p>
+                                            </div>
+                                        </div>
+                                        <div class="label bottom">
+                                            <p>INWARD {{candidateProfileDetails.decisionMaking.Inward}}%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="graph right">
+                            <div class="content-wrapper">
+                                <div class="svg-graph-wrapper decision-making">
+                                    <div class="svg-info-graph">
+                                        <div class="label top">
+                                            <p>OUTWARD {{memberProfileDetails.decisionMaking.Outward}}%</p>
+                                        </div>
+                                        <div class="graph-outer">
+                                            <div class="label left">
+                                                <p class="mHide">CAREFUL {{memberProfileDetails.decisionMaking.Careful}}%</p>
+                                                <p class="mShow">CAREFUL&#160;{{memberProfileDetails.decisionMaking.Careful}}%</p>
+                                            </div>
+                                            <div class="graph-inner" ng-if="dataAvailablity===true" decision-info-graph data-compare="member" data-score="{{memberProfileDetails.decisionMaking.Careful+memberProfileDetails.decisionMaking.Inward+memberProfileDetails.decisionMaking.Rapid}}">
+                                                <div class="on-graph-labels">
+                                                    <p class="top-label-set">
+                                                        <span>Indecisive</span>
+                                                        <span>Impulsive</span>
+                                                    </p>
+                                                    <p class="bottom-label-set">
+                                                        <span>Evasive</span>
+                                                        <span>Subversive</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="label right">
+                                                <p class="mHide">RAPID {{memberProfileDetails.decisionMaking.Rapid}}%</p>
+                                                <p class="mShow">RAPID&#160;{{memberProfileDetails.decisionMaking.Rapid}}%</p>
+                                            </div>
+                                        </div>
+                                        <div class="label bottom">
+                                            <p>INWARD {{memberProfileDetails.decisionMaking.Inward}}%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="graph-seperators sp-background-color">
+                        <p class="left">{{selectedCandidate.firstName}}{{pullInterNationalization('tools.hiring.compare.chartTitle9')}}
+                            <!--span>75%</span-->
+                        </p>
+                        <p class="right">{{selectedMemberDetails.firstName}}{{pullInterNationalization('tools.hiring.compare.chartTitle9')}}
+                            <!--span>75%</span-->
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="custom-cols left m-top-regular graph-dd search-wrapper" ng-if="showCandidateListingWidget" ng-class="candidateSelected && memberSelected===true?'change-position':''">
+                <div class="col-wrapper-compare no-space default-border">
+                    <div class="searchBox">
+                        <p>
+                            <label data-ng-bind="pullInterNationalization('tools.hiring.compare.title4')"></label>
+                            <input type="text" ng-model="searchBox1" name="searchBox1" placeholder="{{pullInterNationalization('tools.hiring.compare.title4')}}" />
+                            <button ng-click="searchBox1=null" ng-class="searchBox1!=null?'searching':''"></button>
+                        </p>
+                    </div>
+                    <div>
+                        <p class="no-candidates validate-error err-msg" ng-if="validCandidateList.length < 2">
+                            No available candidates with completed profile.
+                        </p>
+                    </div>
+                    <div class="memberListing">
+                        <div class="dd-cont border-enabled" ng-repeat="c in validCandidateList | filter:searchBox1" ng-click="updateCompareCandidate(c.email)" ng-if="c.selectedCandidateFromList === false">
+                            <p class="selectedContent">
+                                <img ng-src="{{c.smallProfileImage}}" alt="{{c.userInitials}}" ng-if="c.smallProfileImage">
+                                <span class="imgReplacementBig" ng-if="!c.smallProfileImage" ng-bind="c.userInitials"></span>
+                                <span class="wrapper">
+                                        <span class="name">{{c.firstName}} {{c.lastName}}</span>
+                                <span class="role">{{c.title}}</span>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="custom-cols right m-top-regular graph-dd search-wrapper" ng-if="showMemberListingWidget" ng-class="memberSelected===true?'change-position':''">
+                <div class="col-wrapper-compare no-space default-border">
+                    <div class="searchBox">
+                        <p>
+                            <label data-ng-bind="pullInterNationalization('tools.hiring.compare.title4')"></label>
+                            <input type="text" ng-model="searchBox" name="searchBox" placeholder="{{pullInterNationalization('tools.hiring.compare.title4')}}" />
+                            <button ng-click="searchBox=null" ng-class="searchBox!=null?'searching':''"></button>
+                        </p>
+                    </div>
+                    <div class="memberListing">
+                        <div class="dd-cont border-enabled" ng-repeat="vm in validMemberList | filter:searchBox" ng-click="updateCompareMember(vm.email)" ng-if="vm.selectedMember === false">
+                            <p class="selectedContent">
+                                <img ng-src="{{vm.smallProfileImage}}" alt="{{vm.userInitials}}" ng-if="vm.smallProfileImage">
+                                <span class="imgReplacementBig" ng-if="!vm.smallProfileImage" ng-bind="vm.userInitials"></span>
+                                <span class="wrapper">
+                                        <span class="name">{{vm.firstName}} {{vm.lastName}}</span>
+                                <span class="role">{{vm.title}}</span>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

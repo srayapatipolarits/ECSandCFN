@@ -1,0 +1,71 @@
+
+
+    <div class="container minimumHeight sharePdf" id="declineGrowthScreen">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10">
+<div>
+    	<section class="wrapper">
+	<div class="contentBody">
+		<div class="head">
+			<div class="wrap">
+				<div class="headerBar" data-ng-bind="pullInterNationalization('spResume.shareResume')"></div>
+				<div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+			</div>
+		</div>
+		<div class="contentArea clearfix">
+			<div class="detailSection locatedSubNavRelative_1 clearfix">
+				<div class="holderDetail">
+					<div class="pull-left">
+						<!--  <span class="name" data-ng-bind="displayName.fileName"></span> -->
+						<span class="role" data-ng-bind="displayName.userRole"></span>
+					</div>
+					<div class="pull-right">
+						<div class="pdfDetail">
+							<span class="pdf"></span>
+							<span class="name" data-ng-bind="displayName.fileName"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<form name="message" class="shareResume">	
+				<div class="messageBlockDetail detailSection locatedSubNavRelative_1">
+						<label for="to">To</label>
+						<div class="textarea">
+							<input type="text" autoFocus id="to" name="to" ng-model="to" required placeholder="Email Address" ng-pattern="emailRegex" />
+							<span class="err-msg"
+										ng-show="errpat && message.to.$error.required"><span
+										class="icon">!</span> Please enter email address</span>
+							<span class="err-msg"
+										ng-show="errpat && message.to.$error.pattern"><span
+										class="icon">!</span> {{pullInterNationalization('signup.invalid.email.msg')}}</span>
+						</div>
+				</div>
+				<div class="messageBlockDetail">
+					<div class="messageBlock">
+						<div class="textarea">
+							<input type="text" id="subBlock" name="subject" ng-model="messageSubject" placeholder="{{pullInterNationalization('spResume.subject')}}" />
+						</div>
+						<div class="textarea" style="padding-bottom:0px;">
+							<textarea id="commentBlock" name="body" ng-model="messageTextArea" placeholder="{{pullInterNationalization('spResume.text')}}"></textarea>
+						</div> 
+					</div>
+					<input type="hidden" name="resumeId" value="{{displayName.id}}"/>
+					<div class="sp-btn-wrapper sp-red btn-esmall floatLeft inviteBtn">
+						<div class="sp-btn">
+							<input type="button" value="{{pullInterNationalization('spResume.send')}}" class="btnStyle1" ng-click="messageItem(message)">
+						</div>
+					</div>
+					<div class="sp-btn-wrapper sp-grey btn-esmall floatLeft">
+						<div class="sp-btn">
+							<input type="button" value="{{pullInterNationalization('spResume.cancel')}}" class="btnStyle1" ng-click="closeThisDialog()">
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	</section>
+</div></div>
+</div></div>
+

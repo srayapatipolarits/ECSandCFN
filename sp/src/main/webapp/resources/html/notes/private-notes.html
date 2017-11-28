@@ -1,0 +1,299 @@
+<!-- Hack for safari browser. -->
+<style type="text/css">
+@media screen and (min-color-index:0) and(-webkit-min-device-pixel-ratio:0) {
+    @media {
+        .adjust-pos-safari {
+            top: -35px !important;
+        }
+    }
+}
+</style>
+<div data-ng-init="notesCtrl.init();">
+    <div class="notes-tabs additional-height sp-background-color">
+        <div class="notes-header-title">
+            <span class="icon-panel-top icon-icon_editnote"></span>
+            <div class="top-header-title ml6" data-ng-bind="::pullInterNationalization('notes.postNote.topLabel')"></div>
+            <a href="javascript:void(0)" data-ng-click="notesCtrl.newNoteFlow()" class="new-add-ico icon-erti_plus" title="{{::pullInterNationalization('sticky.createNote')}}"></a>
+        </div>
+    </div>
+    <section data-ng-if="!notesCtrl.isDashboardOrigin">
+        <div class="panel-fadeIn panel-notes-slide-1 panel-fixed-height-removed scrollOn padj0" data-ng-class="{'in':!notesCtrl.showNote,'forward':notesCtrl.showNote}">
+            <div class="notes-header">
+                <ul class="top-filters align-left" data-ng-class="{'no-border-bottom':!notesCtrl.notesListing.length}">
+                    <li class="search-filter">
+                        <form class="ng-pristine ng-valid">
+                            <input type="text" class="form-control ng-pristine ng-valid ng-touched" placeholder="{{::pullInterNationalization('notes.sidePanel.search')}}" data-ng-model="notesCtrl.searchText">
+                            <button class="search-icon sp-icon-color icon-icon_search" data-ng-class="notesCtrl.searchText.length>1? 'icon-icon_remove':'icon-icon_search'" data-ng-click="notesCtrl.searchText = ''"></button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            <div class="notes-list max-height">
+                <div class="private-notes-list" data-ng-repeat="list in recordField = (notesCtrl.notesListing | filter:notesCtrl.searchText) track by $index" data-ng-click="notesCtrl.getNoteDetail(list.nid)">
+                    <p class="note-list-dt">
+                        <span class="clock-display" data-ng-bind="list.updatedOn | spDateFormat"></span>
+                    </p>
+                    <p class="note-list-header sp-link-color" data-ng-bind-html="list.title | secureHtml"></p>
+                    <!-- <div class="read-more-wrap-horizontal" data-ng-init="show = list.comment.substr(0, 100);btn=true">
+                      <p class="note-list-desc preserve-line-break" data-ng-bind-html="btn?show:list.comment" data-ng-class="{'moreellipses':list.comment.length>100&&btn}"></p>
+                     </div> -->
+                    <p class="note-list-desc preserve-line-break two-line-display" data-ng-bind-html="list.comment"></p>
+                    <span class="icon-triangle-right sp-icon-color action-icon"></span>
+                </div>
+                <div class="noteBoxBg" data-ng-if="!recordField.length && notesCtrl.responseAvailable">
+                    <p class="default-notes-txt" data-ng-bind="::pullInterNationalization('notes.privateNotes.sidePanel.defaultText1')"></p>
+                    <p class="default-notes-txt" data-ng-bind="::pullInterNationalization('notes.privateNotes.sidePanel.defaultText2')"></p>
+                </div>
+                <p align="center" data-ng-show="!recordField.length && !notesCtrl.responseAvailable" class="loading-notes-txt ng-hide" data-ng-bind="::pullInterNationalization('practiceArea.loading')"></p>
+            </div>
+        </div>
+        <!-- note-entry-details Starts -->
+        <div class="note-entry-details panel-notes-slide-2 panel-fixed-height-removed" data-ng-class="{'in':notesCtrl.showNote,'out':!notesCtrl.showNote,'scrollOn':notesCtrl.fileStackEnabled || notesCtrl.contentRefChecked}">
+            <!-- header sec -->
+            <div class="note-entry-header sp-background-color">
+                <div class="notes-header-title adj">
+                    <span class="icon-back-link icon-triangle-left" data-ng-click="notesCtrl.goBackToListing();">
+             </span>
+                    <span class="icon-panel-top-back icon-Icon_editnote invisible" data-ng-click="notesCtrl.goBackToListing();"></span>
+                </div>
+                <!--div class="text-icons text-icon-margin">
+                    <p>
+                       
+                        <span data-ng-if="notesCtrl.mode === 'update'">
+                    <span class="entry-text" data-ng-bind="::pullInterNationalization('notes.lastEntry.label')"></span>
+                <span class="entry-dt" data-ng-bind="notesCtrl.noteObj.noteData[0].createdOn | spDateFormat"></span>
+                </span>
+                <span data-ng-if="notesCtrl.mode === 'create'">
+                    <span class="entry-text new-note-entry" data-ng-bind="::pullInterNationalization('notes.privateNotes.sidePanel.newTopic.label')"></span>
+                </span>
+                        <a href="javascript:void(0)" sp-condition="true" sp-click-outside="notesCtrl.showNotesOptions">
+                            <span class="top-options-icon icon-threesquares sp-icon-color adjust-pos-safari" data-ng-if="notesCtrl.activeNoteId !== ''"></span>
+                        </a>
+                    </p>
+                </div-->
+                <div class="entry-name">
+                    <p>
+                        <input type="text" data-ng-if="notesCtrl.mode === 'update'" data-ng-model="notesCtrl.noteObj.title" placeholder="{{::pullInterNationalization('notes.privateNotes.addNote.title.placeholder')}}" name="noteName" id="noteName" class="top-padding-adjust private-notes-title h32" />
+                        <input type="text" data-ng-if="notesCtrl.mode === 'create'" data-ng-model="notesCtrl.noteObj.title" placeholder="{{::pullInterNationalization('notes.privateNotes.addNote.title.placeholder')}}" name="noteName" id="noteName" class="top-padding-adjust h32" />
+                    </p>
+                </div>
+                <div class="gd-settings-ico-wrap">
+                    <p>
+                        <a href="javascript:void(0)" sp-condition="true" sp-click-outside="notesCtrl.showNotesOptions">
+                            <span class="top-options-icon icon-threesquares sp-icon-color adjust-pos-safari" data-ng-if="notesCtrl.activeNoteId !== ''"></span>
+                        </a>
+                    </p>
+                </div>
+                <div class="actions-callout-wrappper notes-module lnd-pos-pnotes" data-ng-if="notesCtrl.showNotesOptions">
+                    <ul class="action-links notes-links" data-ng-if="notesCtrl.activeNoteId !== ''">
+                        <li>
+                            <a href="javascript:void(0)" data-ng-click="notesCtrl.emailNotes()">
+                                <span class="action-icon icon-icon_send-message sp-icon-color"></span>
+                                <span class="action-text sp-inline-block" data-ng-bind="::pullInterNationalization('notes.privateNotes.actions.email')"></span>
+                            </a>
+                        </li>
+                        <li class="sep">
+                            <hr class="note-space" />
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" data-ng-click="notesCtrl.deleteModal(0)">
+                                <span class="action-icon icon-icon_trashbin sp-icon-color"></span>
+                                <span class="action-text sp-inline-block" data-ng-bind="::pullInterNationalization('notes.privateNotes.actions.delete')"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- content sec -->
+            <div class="note-entry-content added-padding  max-height">
+                <div class="notes-comments-list-wrapper" data-ng-if="notesCtrl.mode !== 'create'" data-ng-class="{'shrink0':notesCtrl.contentRefChecked, 'shrink1':(notesCtrl.fileStackEnabled || notesCtrl.ogReference.valid), 'heightAdj':(!notesCtrl.contentReference.title && !notesCtrl.ogReference.valid)}">
+                    <div class="note-comments-updates relative-pos added-bottom-padding" data-ng-repeat="record in notesCtrl.noteObj.noteData track by record.cid">
+                        <p class="comment-dt notes-date">
+                            <span class="clock-display notes-display-date" data-ng-bind="record.createdOn | spDateFormat"></span>
+                            <span class="icon-icon_sort sp-icon-color adj1 adj-sort" sp-condition="true" sp-click-outside="showOptions"></span>
+                        </p>
+                        <div class="actions-callout-wrappper notes-module panel-options" data-ng-if="showOptions">
+                            <ul class="action-links notes-links">
+                                <li>
+                                    <a href="javascript:void(0)" data-ng-click="notesCtrl.editMode(record.text,$index);">
+                                        <span class="action-icon icon-icon_accounts_edit sp-icon-color"></span>
+                                        <span class="action-text sp-inline-block" data-ng-bind="::pullInterNationalization('notes.privateNotes.actions.edit')"></span>
+                                    </a>
+                                </li>
+                                <li class="sep">
+                                    <hr class="note-space" />
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" data-ng-click="notesCtrl.shareComments(record.text,'gd');">
+                                        <span class="action-icon icon-icon_accounts_all-groups sp-icon-color"></span>
+                                        <span class="action-text sp-inline-block" data-ng-bind="::pullInterNationalization('notes.privateNotes.actions.shareInGD')"></span>
+                                    </a>
+                                </li>
+                                <!-- <li data-ng-if="notesCtrl.contentReference.spFeature !== null && notesCtrl.contentReference.spFeature !== 'KnowledgeCenter'">
+                                <a href="javascript:void(0)" data-ng-click="notesCtrl.shareComments(record.text,'public');">
+                                    <span class="action-icon icon-icon_dashboard-public-channel sp-icon-color"></span>
+                                    <span class="action-text sp-inline-block" data-ng-bind="::pullInterNationalization('notes.privateNotes.actions.shareInPC')"></span>
+                                </a>
+                            </li> -->
+                                <li class="sep">
+                                    <hr class="note-space" />
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" data-ng-click="notesCtrl.deleteModal(record.cid)">
+                                        <span class="action-icon icon-icon_trashbin sp-icon-color"></span>
+                                        <span class="action-text sp-inline-block" data-ng-bind="::pullInterNationalization('notes.privateNotes.actions.delete')"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="commentView_{{$index}}">
+                            <div class="notes-comments adjust-margins">
+                                <input type="checkbox" class="read-more-state" id="readMoreToggle_0_{{record.cid}}" />
+                                <div class="read-more-wrap-horizontal" data-ng-init="btn0=true">
+                                    <span class="comment-desc preserve-line-break" data-ng-bind-html="btn0?record.text.substr(0, 200):record.text | convertToLink" data-ng-class="{'moreellipses':record.text.length>200&&btn0}"></span>
+                                </div>
+                                <label for="readMoreToggle_0_{{record.cid}}" data-readMore="{{::pullInterNationalization('spectrum.more')}}" data-readLess="{{::pullInterNationalization('label.readless')}}" data-ng-click="$parent.btn0=!$parent.btn0" class="read-more-trigger-horizontal sp-link-color" data-ng-if="record.text.length>200"></label>
+                            </div>
+                            <p class="comment-desc box-cont add-margin-bottom" data-ng-if="record.contentReference && record.contentReference.title && !record.contentReference.fileStack && !record.contentReference.ogRef">
+                                <span data-ng-bind-html="record.contentReference.subTitle | secureHtml"></span>
+                                <span data-ng-click="redirectReferenceUrl(record.contentReference.url)" class="box-header disp-block wrap-ellipsis sp-link-color mock-ref-link" data-ng-bind-html="record.contentReference.title | secureHtml"></span>
+                                <input type="checkbox" class="read-more-state" id="readMoreToggleCont_0_{{record.cid}}" />
+                                <span class="read-more-wrap-horizontal" data-ng-init="btnCont0=true">
+                              <span class="disp-block preserve-line-break hide" data-ng-bind-html="btnCont0?record.contentReference.description.substr(0, 150):record.contentReference.description | secureHtml" data-ng-class="{'moreellipses':record.contentReference.description.length>150&&btnCont0}"></span>
+                                </span>
+                                <label for="readMoreToggleCont_0_{{record.cid}}" data-readMore="{{::pullInterNationalization('spectrum.more')}}" data-readLess="{{::pullInterNationalization('label.readless')}}" data-ng-click="$parent.btnCont0=!$parent.btnCont0" class="read-more-trigger-horizontal sp-link-color hide" data-ng-if="record.contentReference.description.length>150"></label>
+                                <a data-ng-click="notesCtrl.previewMedia(list.url,list.mediaType)" href="javascript:void(0)" class="border-link" data-ng-repeat="list in record.contentReference.media track by $index" data-ng-class="$index !== 0?'added-left-margin':''">
+                                    <span class="note-user-pic list-thumb" data-ng-if="record.contentReference.spFeature !== 'OrganizationPlan'">
+                            <img width="60" height="40" title="" alt="" data-ng-src="{{record.contentReference.imageUrl}}">
+                            </span>
+                                    <span class="icon-icon_{{list.mediaType}}" data-ng-if="record.contentReference.spFeature === 'OrganizationPlan'"></span>
+                                    <span class="media-text" data-ng-if="record.contentReference.spFeature === 'OrganizationPlan'" data-ng-bind="list.linkText"></span>
+                                </a>
+                            </p>
+                            <p class="comment-desc add-margin-bottom" data-ng-if="record.contentReference && record.contentReference.title && record.contentReference.fileStack && !record.contentReference.ogRef">
+                                <span data-ng-if="list.mediaType !== 'IMAGE'" class="icon-icon_{{list.mediaType}} preview-icon sp-icon-color" data-ng-repeat="list in record.contentReference.media track by $index" data-ng-class="$index !== 0?'added-left-margin':''"></span>
+                                <a data-ng-if="list.mediaType !== 'IMAGE'" data-ng-click="notesCtrl.previewMedia(record.contentReference.url,list.mediaType)" href="javascript:void(0)" class="media-link-text border-link" data-ng-repeat="list in record.contentReference.media track by $index" data-ng-class="$index !== 0?'added-left-margin':''">
+                                    <span class="title file-title-display" data-ng-bind="record.contentReference.title"></span>
+                                </a>
+                                <a data-ng-if="list.mediaType === 'IMAGE'" data-ng-click="notesCtrl.imagePop(record.contentReference.imageUrl,record.contentReference.title)" href="javascript:void(0)" class="border-link" data-ng-repeat="list in record.contentReference.media track by $index" data-ng-class="$index !== 0?'added-left-margin':''">
+                                    <span class="note-user-pic">
+                            <img class="post-image" title="" alt="{{record.contentReference.title}}" data-ng-src="{{record.contentReference.imageUrl}}">
+                            </span>
+                                </a>
+                            </p>
+                            <div class="contentReference clearfix" data-ng-if="!record.contentReference.fileStack && record.contentReference.ogRef">
+                                <div class="left-reference" data-ng-if="record.contentReference.imageUrl" data-ng-init="imageLoop = notesCtrl.imageUrl(record.contentReference)">
+                                    <div class="image-video" data-ng-repeat="media in imageLoop">
+                                        <a href="javascript:void(0)" class="{{media.mediaType}}" data-ng-click="notesCtrl.ogPopup(media.url||record.contentReference.url,media.mediaType,record.contentReference.newTab)">
+                                            <img data-ng-src="{{record.contentReference.imageUrl}}">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="right-reference adjust-padding web{{record.contentReference.imageUrl}}">
+                                    <a data-ng-href="{{record.contentReference.url}}" class="title adjust-title-height href_{{record.contentReference.url}}" data-ng-attr-target="{{record.contentReference.newTab ? '_blank' : '_self'}}" data-ng-bind-html="record.contentReference.title"></a>
+                                    <div class="article" data-ng-if="record.contentReference.authorSource" data-ng-bind-html="'By '+record.contentReference.authorSource"></div>
+                                    <div class="description two-line-display adjust-desc-height" data-ng-bind-html="record.contentReference.description | addEllipsis:100"></div>
+                                    <div class="media-links">
+                                        <a href="javascript:void(0)" class="link-action" data-ng-click="ctrl.videoPopUp(media.url,media.mediaType)" data-ng-repeat="media in comment.media track by $index" data-ng-if="media.linkText">
+                                            <span class="icon-icon_{{media.mediaType|lowercase}} sp-icon-color"></span>
+                                            <span class="mock-link" data-ng-bind="::media.linkText"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="commentEdit_{{$index}}" class="comment-edit-section">
+                            <p class="mbot0">
+                                <textarea placeholder="{{::pullInterNationalization('notes.privateNotes.addNote.placeholder')}}" class="notes-ta add-extra-margin" data-ng-class="{'include-ref':notesCtrl.contentRefChecked}" data-ng-model="notesCtrl.editedComment" name="postPrivateNote" id="postPrivateNote"></textarea>
+                            </p>
+                            <div class="ta-options comment-edit-btns" data-ng-class="notesCtrl.inputRequiredForComment?'remove-margin-bottom':''">
+                                <a href="javascript:void(0)" data-ng-click="notesCtrl.updateComment(record.cid,record.contentReference,$index)" class="btn-square-30px sp-background-color save-comment" data-ng-bind="::pullInterNationalization('notes.privateNotes.actions.save')"></a>
+                                <a href="javascript:void(0)" data-ng-click="notesCtrl.cancelEdit($index)" class="btn-square-30px sp-background-color cancel-comment" data-ng-bind="::pullInterNationalization('notes.privateNotes.actions.cancel')"></a>
+                                <span class="err-msg validate-error add-error-margin" data-ng-if="notesCtrl.inputRequiredForComment" data-ng-bind="::pullInterNationalization('practiceArea.required.error')"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="note-entry-form removed-padding" data-ng-class="notesCtrl.mode=== 'create'?'remove-border':''">
+                    <div class="ta-rel-wrap">
+                        <p class="mbot0">
+                            <textarea og-directive reference="notesCtrl.ogReference" clear-url="notesCtrl.noteEntry" og-processing="notesCtrl.processOG" placeholder="{{::pullInterNationalization('notes.privateNotes.addNote.placeholder')}}" class="notes-ta adjPos1" data-ng-class="{'include-ref':notesCtrl.contentRefChecked, 'big-ta': notesCtrl.mode === 'create', 'ta-mini':notesCtrl.mode !== 'create', 'shrink': notesCtrl.mode === 'create' && (notesCtrl.ogReference.valid || notesCtrl.fileStackEnabled), 'shrink0':notesCtrl.mode === 'create' && notesCtrl.contentRefChecked, 'heightAdj': (!notesCtrl.contentReference.title && !notesCtrl.ogReference.valid)}" data-ng-model="notesCtrl.noteEntry" name="postPrivateNote" id="postPrivateNote"></textarea>
+                        </p>
+                        <p class="pCheckBox adjPos1 adjPos2" data-ng-class="{'no-rnd':notesCtrl.contentRefChecked}" data-ng-if="!notesCtrl.fileStackEnabled && !notesCtrl.ogReference.valid && !notesCtrl.fileStackEnabled && notesCtrl.contentReference.title !==null && notesCtrl.contentReference.title !==undefined && !globalGDState">
+                            <input type="checkbox" name="includeRefCheck" id="includeRefCheck" class="iCheckBox" data-ng-click="notesCtrl.ogReference.title = notesCtrl.ogReference.title === null? 'test': null" data-ng-model="notesCtrl.contentRefChecked" data-ng-disabled="notesCtrl.fileStackEnabled || notesCtrl.ogReference.valid" />
+                            <label for="includeRefCheck" class="lCheckBox">
+                                <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                                <span class="lCheckBoxText sp-icon-color" data-ng-class="{'disabled-state':notesCtrl.fileStackEnabled || notesCtrl.ogReference.valid}" data-ng-bind="::pullInterNationalization('notes.includeReference.label')"></span>
+                            </label>
+                        </p>
+                    </div>
+                    <p class="comment-desc box-cont hide animation_1" data-ng-class="{'show include-ref no-corners':notesCtrl.contentRefChecked}">
+                        <span class="comment-left-cont">
+                        <span data-ng-bind-html="notesCtrl.contentReference.subTitle | secureHtml"></span>
+                        <span class="box-header disp-block wrap-ellipsis" data-ng-bind-html="notesCtrl.contentReference.title | secureHtml"></span>
+                        <span class="disp-block heightAdj hide" data-ng-bind-html="notesCtrl.contentReference.description | secureHtml"></span>
+                        </span>
+                        <a data-ng-click="notesCtrl.previewMedia(list.url,list.mediaType)" href="javascript:void(0)" class="border-link comment-right-cont" data-ng-repeat="list in notesCtrl.contentReference.media track by $index" data-ng-class="$index !== 0?'added-left-margin':''">
+                            <span class="note-user-pic list-thumb" data-ng-if="notesCtrl.contentReference.spFeature !== 'OrganizationPlan'">
+                            <img width="60" height="40" title="" alt="" data-ng-src="{{notesCtrl.contentReference.imageUrl}}">
+                            </span>
+                            <span class="icon-icon_{{list.mediaType}}" data-ng-if="notesCtrl.contentReference.spFeature === 'OrganizationPlan'"></span>
+                            <span class="media-text" data-ng-if="notesCtrl.contentReference.spFeature === 'OrganizationPlan'" data-ng-bind="list.linkText"></span>
+                        </a>
+                    </p>
+                    <div class="contentReference clearfix" data-ng-if="notesCtrl.fileStackEnabled && !notesCtrl.isDashboardOrigin">
+                        <div class="left-reference" data-ng-class="{'adjust-width':notesCtrl.fileStackMimeType !== 'IMAGE'}">
+                            <div class="image-video">
+                                <a data-ng-if="notesCtrl.fileStackMimeType !== 'IMAGE'" class="border-link">
+                                    <span class="icon-icon_{{notesCtrl.fileStackMimeType}} preview-icon sp-icon-color"></span>
+                                </a>
+                                <!-- <a data-ng-if="notesCtrl.fileStackMimeType === 'IMAGE'" data-ng-click="notesCtrl.imagePop(notesCtrl.contentReference.imageUrl,notesCtrl.contentReference.title)" href="javascript:void(0)" class="border-link">
+                                    <span class="note-user-pic">
+                            <img class="preview-image" title="" alt="{{notesCtrl.contentReference.title}}" data-ng-src="{{notesCtrl.contentReference.imageUrl}}">
+                            </span>
+                                </a> -->
+                            </div>
+                        </div>
+                        <div class="right-reference" data-ng-class="{'adjust-padding':notesCtrl.fileStackMimeType !== 'IMAGE'}">
+                            <a data-ng-if="notesCtrl.fileStackMimeType !== 'IMAGE'" data-ng-click="notesCtrl.previewMedia(notesCtrl.contentReference.url,notesCtrl.fileStackMimeType)" href="javascript:void(0)" class="border-link">
+                                <span class="title wrap-ellipsis adjust-file-title-display" data-ng-bind="notesCtrl.contentReference.title"></span>
+                            </a>
+                            <a data-ng-if="notesCtrl.fileStackMimeType === 'IMAGE'" data-ng-click="notesCtrl.imagePop(notesCtrl.contentReference.imageUrl,notesCtrl.contentReference.title)" href="javascript:void(0)" class="border-link">
+                                <span class="title wrap-ellipsis" data-ng-bind="notesCtrl.contentReference.title"></span>
+                            </a>
+                        </div>
+                        <a class="icon-icon_remove close-view" href="javascript:void(0)" data-ng-click="notesCtrl.removeFileStackData()"></a>
+                    </div>
+                    <!-- OG  -->
+                    <div class="contentReference clearfix" data-ng-if="!notesCtrl.fileStackEnabled && notesCtrl.ogReference.valid">
+                        <div class="left-reference" data-ng-if="notesCtrl.ogReference.imageUrl" data-ng-init="imageLoop = notesCtrl.imageUrl(notesCtrl.ogReference)">
+                            <div class="image-video" data-ng-repeat="media in imageLoop">
+                                <a href="javascript:void(0)" class="{{media.mediaType}}" data-ng-click="notesCtrl.ogPopup(media.url||notesCtrl.ogReference.url,media.mediaType,notesCtrl.ogReference.newTab)">
+                                    <img data-lazy-img="{{notesCtrl.ogReference.imageUrl}}">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="right-reference adjust-padding web{{notesCtrl.ogReference.imageUrl}}">
+                            <a data-ng-href="{{notesCtrl.ogReference.url}}" class="title adjust-title-width href_{{notesCtrl.ogReference.url}}" data-ng-attr-target="{{notesCtrl.ogReference.newTab ? '_blank' : '_self'}}" data-ng-bind-html="notesCtrl.ogReference.title"></a>
+                            <div class="article" data-ng-if="notesCtrl.ogReference.authorSource" data-ng-bind-html="'By '+notesCtrl.ogReference.authorSource"></div>
+                            <div class="description two-line-display" data-ng-bind-html="notesCtrl.ogReference.description | addEllipsis:100"></div>
+                            <div class="media-links">
+                                <a href="javascript:void(0)" class="link-action" data-ng-click="ctrl.videoPopUp(media.url,media.mediaType)" data-ng-repeat="media in comment.media track by $index" data-ng-if="media.linkText">
+                                    <span class="icon-icon_{{media.mediaType|lowercase}} sp-icon-color"></span>
+                                    <span class="mock-link" data-ng-bind="::media.linkText"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <a class="icon-icon_remove close-view" href="javascript:void(0)" data-ng-click="notesCtrl.removeOGReference()"></a>
+                    </div>
+                    <span class="err-msg validate-error" data-ng-if="notesCtrl.inputRequired" data-ng-bind="::pullInterNationalization('practiceArea.required.error')"></span>
+                    <div class="ta-options adjPos1">
+                        <span class="file-attach icon-file_select sp-icon-color panel-select-icon" data-ng-class="{'disabled-state':notesCtrl.contentRefChecked || notesCtrl.ogReference.valid}" data-ng-click="handleFileStack(!notesCtrl.contentRefChecked && !notesCtrl.ogReference.valid);"></span>
+                        <a href="javascript:void(0)" data-ng-click="(notesCtrl.ogReference.valid || notesCtrl.fileStackEnabled || notesCtrl.noteEntry.length>1)?notesCtrl.saveNotes():''" class="btn-square-30px sp-background-color" data-ng-class="(notesCtrl.ogReference.valid || notesCtrl.fileStackEnabled || notesCtrl.noteEntry.length>1)?'sp-background-color':'btn-darker-grey'" data-ng-bind="::pullInterNationalization('notes.postNote.title')"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- note-entry-details Ends -->
+    </section>
+</div>

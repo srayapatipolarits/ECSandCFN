@@ -1,0 +1,166 @@
+<div class="x-container create-pulse" ng-controller="createThemeController" ng-if="inviteReady">
+    <div class="container" >
+        <div class="bg-wrapper">
+            <div class="space-box">
+                <p class="return-link">
+                    <a href="/sp/sysAdmin/goals/themeListings" class="border-link">
+                        <span class="mock-link">Return to Theme List</span>
+                    </a>
+                </p>
+                <h2>Create New Theme</h2>
+            </div>
+            <form name="newTheme" novalidate>
+                <ol class="form-list-c">
+                    <li class="type-and-number space-box">
+                        <label class="label des" for="name">Theme Name <span class="fRight">{{30-newThemeDetails.name.length}} Characters</span></label>
+                        <input autoFocus class="themeName" type="text" name="name" ng-pattern="/^[a-zA-Z0-9-,' ]+$/" ng-model="newThemeDetails.name" required maxlength="30" />
+                        <span class="validate-error" ng-show="newTheme.validationErrors && newTheme.name.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                        <span class="err-msg validate-error" ng-show="newTheme.validationErrors && newTheme.name.$error.pattern" data-ng-bind="pullInterNationalization('signup.emperr')"></span>
+                    </li>
+                    <li class="type-and-number space-box">
+                        <label class="label des" for="description">Description <span class="fRight">{{135-newThemeDetails.description.length}} Characters</span></label>
+                        <textarea type="text" name="description" ng-model="newThemeDetails.description" required maxlength="135"></textarea>
+                        <span class="validate-error" ng-show="newTheme.validationErrors && newTheme.description.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                    </li>
+                    <li class="type-and-number space-box">
+                        <label class="label" for="name">Theme Type</label>
+                        <ul class="radio-group-list">
+                            <li class="radio-btn">
+                                <input id="status1" type="radio" name="category" ng-model="newThemeDetails.category" value="Business" required/>
+                                <label for="status1">Business</label>
+                            </li>
+                            <li class="radio-btn">
+                                <input id="status2" type="radio" name="category" ng-model="newThemeDetails.category" value="Individual" ng-click="newThemeDetails.assignAccounts='All'" required/>
+                                <label for="status2">Individual</label>
+                            </li>
+                        </ul>
+                        <span class="validate-error" ng-show="newTheme.validationErrors && newTheme.category.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                    </li>
+                    <li class="type-and-number space-box">
+                        <label class="label" for="name">Theme Role</label>
+                        <ul class="radio-group-list">
+                            <li class="radio-btn">
+                                <input id="status3" type="radio" name="isMandatory" ng-model="newThemeDetails.isMandatory" value="true" required />
+                                <label for="status3">Mandatory</label>
+                            </li>
+                            <li class="radio-btn">
+                                <input id="status4" type="radio" name="isMandatory" ng-model="newThemeDetails.isMandatory" value="false" required />
+                                <label for="status4">Optional</label>
+                            </li>
+                        </ul>
+                        <span class="validate-error" ng-show="newTheme.validationErrors && newTheme.isMandatory.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                    </li>  
+                    <li class="type-and-number space-box">
+                        <label class="label" for="name">Theme Status</label>
+                        <ul class="radio-group-list">
+                            <li class="radio-btn">
+                                <input id="status5" type="radio" name="status" ng-model="newThemeDetails.status" value="ACTIVE" required />
+                                <label for="status5">Active</label>
+                            </li>
+                            <li class="radio-btn">
+                                <input id="status6" type="radio" name="status" ng-model="newThemeDetails.status" value="INACTIVE" required />
+                                <label for="status6">Inactive</label>
+                            </li>
+                        </ul>
+                        <span class="validate-error" ng-show="newTheme.validationErrors && newTheme.status.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                    </li>      
+                    <li class="type-and-number space-box-border">
+                        <label class="label">Assign to accounts</label>
+                        <ul class="radio-group-list">
+                            <li class="radio-btn">
+                                <input id="allAcc" type="radio" name="assignAccounts" ng-model="newThemeDetails.assignAccounts" value="All" required ng-disabled="newThemeDetails.category=='Individual'?true:false" />
+                                <label for="allAcc">All Accounts</label>
+                            </li>
+                            <li class="radio-btn">
+                                <input id="selectedAcc" type="radio" name="assignAccounts" ng-model="newThemeDetails.assignAccounts" value="Selected" required ng-disabled="newThemeDetails.category=='Individual'?true:false" />
+                                <label for="selectedAcc">Selected Accounts</label>
+                            </li>
+                        </ul>
+                        <span class="validate-error" ng-show="newTheme.validationErrors && newTheme.assignAccounts.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                    </li>
+                    <li class="space-box" ng-if="newThemeDetails.assignAccounts=='Selected'">
+                        <div class="searchWrapper">
+                            <input type="text" class="search-box" name="search" ng-model="accountList.search" placeholder="Search" />
+                            <button ng-click="accountList.search=null" ng-class="accountList.search.length>0?'searching':''"></button>
+                        </div>
+                        <span class="field-instructions">Search by account number/ Name / city / country</span>
+                        <div class="account-list-wrapper">
+                            <div class="f-left all-accounts-list">
+                                <div class="list-header">
+                                    <!--div class="acc-no"><p class="label">A/C#</p></div-->
+                                    <div class="acc-name">
+                                        <p class="label">Company Name</p>
+                                    </div>
+                                    <div class="acc-loc">
+                                        <p class="label">Location</p>
+                                    </div>
+                                    <div class="acc-actions"><a ng-if="accountList.search.length > 0 && filteredAccountListing.length > 0" class="border-link" ng-click="addFilteredAccounts()"><span class="mock-link">Select All</span></a></div>
+                                </div>
+                                <div class="list-details">
+                                    <div class="list-row" ng-show="filteredAccountListing.length===0">
+                                        <div class="list-msg">
+                                            <p class="no-result">No match found.</p>
+                                        </div>
+                                    </div>
+                                    <div class="list-row" ng-repeat="acc in (filteredAccountListing = (updatedAccountListing | filter:accountList.search))" ng-if="acc.accountSelectedStatus === false" ng-class="($index==filteredAccountListing.length-1)?'last-row':''">
+                                        <!--div class="acc-no"><p data-ng-bind="acc.id"></p></div-->
+                                        <div class="acc-name">
+                                            <p data-ng-bind="acc.name"></p>
+                                        </div>
+                                        <div class="acc-loc">
+                                            <p><span data-ng-bind="acc.address.city"></span>, <span class="country" data-ng-bind="acc.address.country"></span></p>
+                                        </div>
+                                        <div class="acc-actions"><a class="btn-square-12px sp-background-color" ng-click="addtoSelectedAccounts(acc.id)">ADD &#9656;</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="f-right all-accounts-list">
+                                <div class="list-header">
+                                    <div class="acc-msg" ng-class="selectedAccountsCount===0?'full':''">
+                                        <p class="label1">SELECTED ACCOUNTS ({{selectedAccountsCount}})</p>
+                                    </div>
+                                    <div class="acc-actions1"><a class="border-link" ng-if="selectedAccountsCount > 0" ng-click="removeAllSelectedAccounts()"><span class="mock-link">Remove All</span></a></div>
+                                </div>
+                                <div class="list-details" ng-if="selectedAccountsCount === 0">
+                                    <div class="list-row">
+                                        <div class="list-msg" ng-class="(newTheme.validationErrors && newTheme.assignAccounts.$error.required===false && accList.length === 0)?'err-space':''">
+                                            <p ng-show="newTheme.validationErrors !== true && selectedAccountsCount === 0">Please select one or more accounts from the left</p>
+                                            <span class="validate-error" ng-show="newTheme.validationErrors && newTheme.assignAccounts.$error.required===false && accList.length === 0">Please select one or more accounts from the left</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-details" ng-if="selectedAccountsCount > 0">
+                                    <div class="list-row" ng-repeat="acc in updatedAccountListing | orderBy:'updatedListingIndex':reverse" ng-if="acc.accountSelectedStatus===true">
+                                        <!--div class="acc-no"><p data-ng-bind="acc.id"></p></div-->
+                                        <div class="acc-name">
+                                            <p data-ng-bind="acc.name"></p>
+                                        </div>
+                                        <div class="acc-loc">
+                                            <p><span data-ng-bind="acc.address.city"></span>, <span class="country" data-ng-bind="acc.address.country"></span></p>
+                                        </div>
+                                        <div class="acc-actions">
+                                            <a class="removeBtn" ng-click="removeFromSelectedAccounts(acc.id)"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="space-box" ng-show="createNewThemeException">
+                    	<span class="validate-error" data-ng-bind="createNewThemeExceptionMsg"></span>
+                    </li>
+                    <li class="submit-cancel-btns space-box">
+                        <ul class="submit-cancel-list">
+                            <li class="submit-charge">
+                                <input type="submit" value="submit" class="subscribeBtn btn-block btn-15px sp-btn-color" ng-click="createNewTheme(newThemeDetails)" />
+                            </li>
+                            <li class="cancel-charge">
+                                <input type="button" value="cancel" class="cancelBtn btn-block btn-15px btn-grey-dark" ng-click="cancelRedirect()" />
+                            </li>
+                        </ul>
+                    </li>                                                      
+                </ol>
+            </form>
+        </div>
+    </div>
+</div>

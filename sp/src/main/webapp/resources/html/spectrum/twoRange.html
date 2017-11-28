@@ -1,0 +1,29 @@
+<article class="twoRange editable_{{editable}}">
+    <div class="detail clearfix">
+    		<div class="labels">
+          	  	<span class="minRange" data-ng-bind="100 - currentValue1"></span>
+          	  	<span class="midRange">|</span>
+          	  	<span class="maxRange" data-ng-bind="currentValue2"></span>
+           </div>
+    	   	<div class="bar">
+	               <div class="inputRange">
+	                   <div class="leftBar sp-range-wrapper">
+	                       <span class="sp-range-filler-wrap border-radius-none">
+	                         <span class="sp-range-filler start-right" data-ng-style="{ 'width': 100 - currentValue1 + '%' }"></span>
+	                         <span class="w5 dot"></span><span class="w10 dot"></span><span class="w15 dot"></span><span class="w20 dot"></span><span class="w25 dot"></span><span class="w30 dot"></span><span class="w35 dot"></span><span class="w40 dot"></span><span class="w45 dot"></span><span class="w50 dot"></span><span class="w55 dot"></span><span class="w60 dot"></span><span class="w65 dot"></span><span class="w70 dot"></span><span class="w75 dot"></span><span class="w80 dot"></span><span class="w85 dot"></span><span class="w90 dot"></span><span class="w95 dot"></span><span class="w100 dot"></span>
+	                       </span>
+	                       <input class="sp-range-slider no-slider" type="range" data-ng-min="{{minValue}}" data-ng-max="{{maxValue}}" value="{{currentValue1}}" data-ng-model='currentValue1' data-ng-change="which=0;" />
+	                       <span class="w5 dot"></span><span class="w10 dot"></span><span class="w15 dot"></span><span class="w20 dot"></span><span class="w25 dot"></span><span class="w30 dot"></span><span class="w35 dot"></span><span class="w40 dot"></span><span class="w45 dot"></span><span class="w50 dot"></span><span class="w55 dot"></span><span class="w60 dot"></span><span class="w65 dot"></span><span class="w70 dot"></span><span class="w75 dot"></span><span class="w80 dot"></span><span class="w85 dot"></span><span class="w90 dot"></span><span class="w95 dot"></span><span class="w100 dot"></span>
+	                   </div>
+	                   <div class="rightBar sp-range-wrapper">
+	                       <span class="sp-range-filler-wrap border-radius-none">
+	                       	 <span class="sp-range-filler start-left" data-ng-style="{ 'width': currentValue2 + '%' }"></span>
+	                       	 <span class="w5 dot"></span><span class="w10 dot"></span><span class="w15 dot"></span><span class="w20 dot"></span><span class="w25 dot"></span><span class="w30 dot"></span><span class="w35 dot"></span><span class="w40 dot"></span><span class="w45 dot"></span><span class="w50 dot"></span><span class="w55 dot"></span><span class="w60 dot"></span><span class="w65 dot"></span><span class="w70 dot"></span><span class="w75 dot"></span><span class="w80 dot"></span><span class="w85 dot"></span><span class="w90 dot"></span><span class="w95 dot"></span><span class="w100 dot"></span>
+	                       	</span>
+	                       <input class="sp-range-slider no-slider" type="range" data-ng-min="{{minValue}}" data-ng-max="{{maxValue}}" value="{{currentValue2}}" data-ng-model='currentValue2' data-ng-change="which=1;" />
+	                       <span class="w5 dot"></span><span class="w10 dot"></span><span class="w15 dot"></span><span class="w20 dot"></span><span class="w25 dot"></span><span class="w30 dot"></span><span class="w35 dot"></span><span class="w40 dot"></span><span class="w45 dot"></span><span class="w50 dot"></span><span class="w55 dot"></span><span class="w60 dot"></span><span class="w65 dot"></span><span class="w70 dot"></span><span class="w75 dot"></span><span class="w80 dot"></span><span class="w85 dot"></span><span class="w90 dot"></span><span class="w95 dot"></span><span class="w100 dot"></span>
+	                   </div>
+	               </div>
+	         </div>
+    </div>
+</article>

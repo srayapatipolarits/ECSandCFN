@@ -1,0 +1,102 @@
+<div class="x-container">
+    <div class="container">
+        <div class="table-flex-cols minH600">
+            <aside class="related-content table-col-hide full-spanned bg">
+                <section class="related-article-tools article-filter-tool noPad sp-panel-accent">
+                    <div class="kc-search-filters" data-ng-if="responseRecieved">
+                        <article class="spectrum-filter-toggle">
+                            <span class="filters-header-text" data-ng-bind="::pullInterNationalization('manageAccountContent.filter')"></span>
+                        </article>
+                        <article class="accordian-filter posRel">
+                            <ul>
+                                <li>
+                                    <input type="checkbox" class="accordian-checkbox" data-ng-click="$event.preventDefault();" />
+                                    <span class="clearButon sp-spectrum-color" data-ng-if="filterList.media.length" data-ng-bind="::pullInterNationalization('manageAccountContent.clear')" data-ng-click="clearFilters('media', '.mediaCheckBox')"></span>
+                                    <!--span class='expand-collapse'></span-->
+                                    <h3 data-ng-bind="::pullInterNationalization('kcContent.mType')"></h3>
+                                    <div class='header-related-content'>
+                                        <div class="tick-selection">
+                                            <input type="checkbox" data-ng-checked="filterList.media.indexOf('Article')!==-1" class="filterCheckBox mediaCheckBox" id="group_Article" data-ng-click="updateFilters('media', 'Article')">
+                                            <label for="group_Article" class="filterCheckBox-label pull-left">
+                                                <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                                            </label>
+                                            <label for="group_Article">
+                                                <span class="floLeft font_14_300 sp-spectrum-color right-adjust" data-ng-bind="::pullInterNationalization('kcContent.filterArticle')"></span>
+                                            </label>
+                                        </div>
+                                        <div class="tick-selection">
+                                            <input type="checkbox" data-ng-checked="filterList.media.indexOf('Video')!==-1" class="filterCheckBox mediaCheckBox" id="group_Video" data-ng-click="updateFilters('media', 'Video')">
+                                            <label for="group_Video" class="filterCheckBox-label pull-left">
+                                                <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                                            </label>
+                                            <label for="group_Video">
+                                                <span class="floLeft font_14_300 sp-spectrum-color right-adjust" data-ng-bind="::pullInterNationalization('kcContent.filterVid')"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="accordian-checkbox" data-ng-click="$event.preventDefault();" />
+                                    <span class="clearButon sp-spectrum-color" data-ng-if="filterList.pa.length" data-ng-bind="::pullInterNationalization('manageAccountContent.clear')" data-ng-click="clearFilters('pa', '.groupCheckBox')"></span>
+                                    <!--span class='expand-collapse'></span-->
+                                    <h3 data-ng-bind="::pullInterNationalization('kcContent.pas')"></h3>
+                                    <div class='header-related-content scroll-enable'>
+                                        <div class="controlwrap sp-search-button">
+                                            <input type="text" class="form-control" maxlength="28" data-ng-model="searchPaFilters" placeholder="{{pullInterNationalization('kcContent.ph')}}" data-ng-model-options="{ debounce: { 'default': 100, 'blur': 0 } }">
+                                            <button ng-class="{'icon-icon_remove':searchPaFilters.length, 'icon-icon_search': !searchPaFilters.length}" class="sp-icon-color" data-ng-click="searchPaFilters=''"></button>
+                                        </div>
+                                        <div class="tick-selection" data-ng-repeat="manageFilter in recordField = (paFilterList | filter:searchPaFilters) track by manageFilter.id">
+                                            <input type="checkbox" data-ng-checked="filterList.pa.indexOf(manageFilter.id)!==-1" class="filterCheckBox groupCheckBox" id="group_{{$index}}" data-ng-click="updateFilters('pa',manageFilter.id)">
+                                            <label for="group_{{$index}}" class="filterCheckBox-label pull-left">
+                                                <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                                            </label>
+                                            <label for="group_{{$index}}">
+                                                <span class="floLeft font_14_300 sp-spectrum-color right-adjust" data-ng-bind="::manageFilter.name"></span>
+                                            </label>
+                                        </div>
+                                        <p data-ng-if="!recordField.length" class="generic-no-matches" data-ng-bind="::pullInterNationalization('manageAccountContent.noMatchesFound')"></p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </article>
+                    </div>
+                </section>
+            </aside>
+            <div class="main-content search-results space-adj minH" data-ng-if="responseRecieved">
+                <header class="results-header adj">
+                    <h1 class="search-result-title">
+		                                        <span class="static">{{::pullInterNationalization('traininglibrary.article.showing')}} <span class="search-category sp-icon-color" data-ng-bind="currentArticleCount.length"></span> {{::pullInterNationalization('traininglibrary.article.resultFor')}} </span><span class="search-category sp-icon-color" data-ng-bind-html="searchKey"></span></h1>
+                    <div class="sort-controller adj"></div>
+                </header>
+                <div infinite-scroll="responseRecieved && loadMoreResults()" infinite-scroll-immediate-check="false" infinite-scroll-disabled="disabledInfinite">
+                    <section class="search-result" data-ng-repeat="a in currentArticleCount=(articleResults) track by a.articleLinkUrl" data-ng-if="responseRecieved && $index < pageSize">
+                        <!-- h2 class="theme-topic-title">PROFILE THEME TOPIC: {{a.articleType}}</h2-->
+                        <h3 class="content-of-theme-title">
+		                                        <a href="/sp/trainingLibrary/article?{{a.articleLinkUrl}}" class="border-link" id="event_title_category-results">
+		                                            <span data-ng-bind-html="a.articleLinkLabel"></span>
+		                                        </a>
+		                                    </h3>
+                        <p class="content-source-url" data-ng-if="a.goals.length > 0">
+                            <span data-ng-bind="pullInterNationalization('search.results.pa.title')"></span>
+                            <a href="javascript:void(0)" class="border-link" data-ng-click="updateFilters('pa',g.id)" data-ng-repeat="g in a.goals track by $index" data-ng-class="$last?'last':''" id="event_category_category-results">
+                                <span><span class="content-seperation" data-ng-class="$first?'hide':''">,&#160;</span><span class="mock-link" data-ng-bind="g.name"></span></span>
+                            </a>
+                        </p>
+                        <p class="publisher-info">
+                            <a class="border-link" href="javascript:void(0)" data-ng-if="formattedAuthor(a.author)" id="event_source_category-results">{{::pullInterNationalization('dashboard.by')}} <span class="mock-link" data-ng-bind="formattedAuthor(a.author)"></span></a>
+                            <!--span class="pub-date">{{a.formattedDate}}</span-->
+                            <!--a class="border-link" href="javascript:void(0)" data-ng-click="refreshSearch('Source', a.articleSourceTypes, false)"-->
+                            <span class="pub-date source" data-ng-class="formattedAuthor(a.author)?'':'adjustSpace'" data-ng-bind-html="a.articleSourceTypes"></span>
+                            <!-- </a>  -->
+                            <span class="pub-date shares" data-ng-if="a.recommendationCount > 0" data-ng-bind="a.recommendationCount+' '+pullInterNationalization('traininglibrary.article.Recommendations')"></span>
+                            <span class="pub-date completed" data-ng-if="a.canAddToUserGoals===false && a.userArticleStatus == 'COMPLETED'"><span
+		                                    class="article-done-icon icon-icon_dev_strategy_check sp-icon-color"></span><span data-ng-bind="::pullInterNationalization('kcContent.completed')"></span></span>
+                            <!-- <span class="pub-date" data-ng-if="a.canAddToUserGoals===false && a.userArticleStatus == 'NOT_STARTED'">Added to Plan</span>
+		                                        <a class="border-link sp-orange" data-ng-if="a.canAddToUserGoals===true" href="javascript:void(0)" data-ng-click="addtoGoals(a.articleLinkUrl, true);"><span class="mock-link">Add to Plan</span></a> -->
+                        </p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

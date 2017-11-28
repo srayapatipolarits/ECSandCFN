@@ -1,0 +1,88 @@
+<div class="container" id="declineGrowthScreen">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+            <div>
+                <section class="wrapper">
+                    <div class="contentBody add-member-evaluation">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar" data-ng-bind="::pullInterNationalization('manageAccountContent.addMembers')"></div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                            </div>
+                        </div>
+                        <div class="contentArea nobrr messageBlock desc-text" data-ng-bind="::pullInterNationalization('competency.admin.addMember.description')"></div>
+                        <div class="contentArea nobrr">
+	                       <ol class="form-list-c form-list-d messageBlock mem-font" style="padding-bottom:10px">
+			                    <li class="type-and-number planStatus noMarBottom">
+				                  	<ul class="style_radioList style_1 font18">
+				                    	<li class="sp-radio">
+				                             <input id="oMember" data-ng-change="ctrl.toggleActivateOption()" data-ng-model="ctrl.activateOption" value="users" type="radio"/>
+				                      		<label for="oMember">
+				                        		  <span class="title" data-ng-bind="::pullInterNationalization('manageAccountContent.member')"></span> 
+				                        	  	</label>
+				                         </li>
+				                         <li class="sp-radio added-left-padding">
+				                         	<input id="oGroup" data-ng-change="ctrl.toggleActivateOption()" data-ng-model="ctrl.activateOption" value="groups" type="radio"/>
+				                      		<label for="oGroup">
+				                        		  <span class="title" data-ng-bind="::pullInterNationalization('manageAccountContent.group')"></span> 
+				                        	  	</label>
+				                         </li>
+				                   	</ul>
+			                   	</li>
+		            		</ol>
+	            		</div>
+                        <div class="contentArea nobrr clearfix">
+      <div class="messageBlock">
+      	<div class="angucomplete-wrapper">
+      		 <angucomplete id="gl2" placeholder="{{::pullInterNationalization('competency.admin.viewByuserSearch.placeholder')}}" pause="100" selectedobject="selectedObj" localdata="ctrl.competencySearchList" searchfields="name" titlefield="name" minlength="2" inputclass="form-control form-control-small" templatetype="default" update-fn="ctrl.addToUserList(callback)" />                
+      	</div>
+      	<div class="totalRecord">
+	      	<span data-ng-if="ctrl.activateOption === 'groups' && ctrl.selectedSearchList.length">
+	      		<span class="text" data-ng-bind="'Selected Group: '"></span><span class="number" data-ng-bind="ctrl.selectedSearchList[0].name"></span>
+	      		<a href="javascript:void(0)" data-ng-click="ctrl.removeUserFromList(ctrl.selectedSearchList[0], 'left')" class="mem-clost-btn icon-icon_remove"></a> | 
+	      	</span>
+	      	<span data-ng-if="ctrl.selectedSearchList.length">
+	      		<span class="text" data-ng-bind="'Selected Members: '"></span><span class="number" data-ng-bind="ctrl.addedUserIds.length"></span>
+	      	</span>
+      	</div>
+      </div>
+      <div class="messageBlock" style="padding-top:0;margin-bottom:15px">
+          <div class="selected-group-List-wrapper">
+           
+               <div class="group-row" data-ng-repeat="member in record = (ctrl.competencyUsersList) track by member.id">
+              	<div class="group-col w80">
+             <div class="member-details-pic-wrapper">
+                 <div class="mem-pic-thumb regPic">
+                     <img data-ng-src="{{member.smallProfileImage}}" alt="{{member.userInitials}}" data-ng-if="member.smallProfileImage">
+                     <div class="imgReplacement spcTop" data-ng-if="!member.smallProfileImage" data-ng-bind="member.userInitials"></div>
+                 </div>
+                 <div class="mem-details-info ml">
+                     <p class="memNameOne" data-ng-if="::member.name" >
+                     	<span class="sp-link-color" data-ng-bind="::member.name+', '"></span> 
+                     	<span data-ng-bind="::member.title"></span>
+                     </p>
+                     <p class="memEmail lh16 util-word-wrap" data-ng-bind="::member.email"></p>
+                 </div>
+             </div>                                    	
+              	</div>
+              	<div class="group-col-custom">
+              		<p data-ng-if="ctrl.masterUserIdsList.indexOf(member.id) === -1">
+              			<a href="javascript:void(0)" data-ng-click="ctrl.removeUserFromList(member, 'right')" class="mem-clost-btn icon-icon_remove"></a>
+              		</p>
+              		<p class="added-msg" data-ng-if="ctrl.masterUserIdsList.indexOf(member.id) !== -1" data-ng-bind="::pullInterNationalization('competency.admin.addMember.already')"></p>                                    		
+              	</div>
+              </div>
+              
+          </div>                            
+      </div>
+      <div class="btns-wrapper-popup">
+      	<input type="button" data-ng-disabled="!ctrl.addedUserIds.length" data-ng-class="{'btn-grey-dark' :!ctrl.addedUserIds.length }" value="{{::pullInterNationalization('manageAccountContent.add')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="ctrl.addUserToEvaluation()">
+      	<input type="button" value="{{::pullInterNationalization('manageAccountContent.cancel')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="closeThisDialog();">
+      </div>
+</div>
+		             </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

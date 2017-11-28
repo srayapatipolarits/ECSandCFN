@@ -1,0 +1,81 @@
+<div class="col-content-wrapper mh700">
+    <div class="members-content-wrapper">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('manageHiringContent.roles')"></h2>
+            <p class="sec-desc" data-ng-bind="::pullInterNationalization('manageHiringContent.rolesDesc')"></p>
+        </div>
+    </div>
+    <div class="all-content-wrapper">
+        <form name="candidateRoles" novalidate class="form-styles-override floatLeft noMarginBot" autocomplete="off" data-ng-if="!ctrl.archivedUserProfile">
+            <ol class="form-list-c">
+                <li class="tagsEmailInput brdr0">
+                    <label for="candidateRoles" class="l-hide" data-ng-bind="::pullInterNationalization('manageHiringContent.roles')"></label>
+                    <tags-input name="candidateRoles" on-tag-added="ctrl.updateTag('roles')" data-ng-model="ctrl.candidateRoles" replace-spaces-with-dashes="false" placeholder="{{::pullInterNationalization('manageHiringContent.roles')}}" data-ng-required="false"></tags-input>
+                </li>
+            </ol>
+        </form>
+        <ul class="tags-listing">
+            <li data-ng-repeat="t in ctrl.candidateRolesList track by $index">
+                <span data-ng-bind="t" data-ng-class="{'brdRt': !ctrl.archivedUserProfile}"></span>
+                <a  data-ng-if="!ctrl.archivedUserProfile" href="javascript:void(0)" data-ng-click="ctrl.removeTag('roles', t)" class="icon-icon_accounts_remove"></a>
+            </li>
+        </ul>
+    </div>
+    <div class="members-content-wrapper mtop90">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('tools.hiring.profile.details.title4')"></h2>
+            <p class="sec-desc" data-ng-bind-html="::pullInterNationalization('tools.hiring.profile.details.title4desc')"></p>
+        </div>
+    </div>
+    <div class="all-content-wrapper mt20">
+        <p class="exp-cv-links" data-ng-if="!ctrl.linkEditing && (ctrl.memberProfileBackup.linkedInUrl || ctrl.memberProfileBackup.url)">
+            <a data-ng-if="ctrl.memberProfileBackup.linkedInUrl" href="{{ctrl.memberProfileBackup.linkedInUrl}}" title="{{ctrl.memberProfileBackup.linkedInUrl}}" target="_blank">
+                <span class="icon-linkedin lin-color link-icon"></span>
+                <span class="l-txt" data-ng-bind="ctrl.memberProfileBackup.linkedInUrl"></span>
+            </a>
+            <a data-ng-if="!ctrl.memberProfileBackup.linkedInUrl && ctrl.memberProfileBackup.url" href="{{ctrl.memberProfileBackup.url}}" title="{{ctrl.memberProfileBackup.url}}" target="_blank">
+                <span class="icon-link link-icon"></span>
+                <span class="l-txt" data-ng-bind="ctrl.memberProfileBackup.url"></span>
+            </a>
+            <a  data-ng-if="!ctrl.archivedUserProfile" href="javascript:void(0)" class="btn-square-12px sp-background-color ebtn" data-ng-click="ctrl.linkEditing=true;ctrl.webLink=(ctrl.memberProfileBackup.linkedInUrl || ctrl.memberProfileBackup.url)" data-ng-bind="::pullInterNationalization('manageAccountContent.edit')"></a>
+        </p>
+        <form name="ctrl.candidateExp" data-ng-if="!ctrl.archivedUserProfile && (!ctrl.memberProfileBackup.linkedInUrl && !ctrl.memberProfileBackup.url) || ctrl.linkEditing" novalidate class="form-styles-override floatLeft noMargin" autocomplete="off" data-ng-submit="ctrl.updateWebLink()">
+            <ol class="form-list-c">
+                <li>
+                    <ul class="split-85-15">
+                        <li>
+                            <input type="text" data-ng-model="ctrl.webLink" name="webLink" data-ng-required="true" />
+                            <!-- Error Messages -->
+                            <span class="validate-error" data-ng-if="ctrl.linkSubmitted && ctrl.candidateExp.webLink.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                        </li>
+                        <li>
+                        	<input type="submit" value="{{::pullInterNationalization('manageAccountContent.add')}}" class="btn-square-12px sp-background-color noboxShadow asBtn" />
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+        </form>
+    </div>
+    <div class="members-content-wrapper mtop90">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('manageAccountContent.tags')"></h2>
+            <p class="sec-desc" data-ng-bind="::pullInterNationalization('manageHiringContent.tagsDesc')"></p>
+        </div>
+    </div>
+    <div class="all-content-wrapper">
+        <form name="candidateRoles" novalidate class="form-styles-override floatLeft noMarginBot" autocomplete="off" data-ng-if="!ctrl.archivedUserProfile">
+            <ol class="form-list-c">
+                <li class="tagsEmailInput brdr0">
+                    <label for="candidateTags" class="l-hide" data-ng-bind="::pullInterNationalization('manageAccountContent.tags')"></label>
+                    <tags-input on-tag-added="ctrl.updateTag('tags')" name="candidateTags" data-ng-model="ctrl.candidateTags" replace-spaces-with-dashes="false" placeholder="{{::pullInterNationalization('manageAccountContent.tags')}}" data-ng-required="false"></tags-input>
+                </li>
+            </ol>
+        </form>
+        <ul class="tags-listing">
+            <li data-ng-repeat="t in ctrl.candidateTagsList track by $index">
+                <span data-ng-bind="t" data-ng-class="{'brdRt': !ctrl.archivedUserProfile}"></span>
+                <a  data-ng-if="!ctrl.archivedUserProfile" href="javascript:void(0)" data-ng-click="ctrl.removeTag('tags', t)" class="icon-icon_accounts_remove"></a>
+            </li>
+        </ul>
+    </div>
+</div>

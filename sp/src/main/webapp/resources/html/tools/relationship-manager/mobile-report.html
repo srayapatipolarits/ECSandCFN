@@ -1,0 +1,78 @@
+<div class="mobile-report-modal" style="height:{{ctrl.winScreenHeight}}">
+    <div class="report-header fix-position sp-background-color">
+        <div class="rm-title">
+            <p data-ng-bind="pullInterNationalization('prism.relationship-advisor.mHead')"></p>
+        </div>
+        <div class="ngdialog-close close-btn-icon icon-icon_remove"></div>
+    </div>
+    <div class="report-content-wrapper">
+        <div class="report-summary">
+        	<div class="report-names">
+        		<div class="left">
+        			<p class="rname sp-link-color">
+        				{{ctrl.selectedMemberDetails.left.firstName}} {{ctrl.selectedMemberDetails.left.lastName}}
+        			</p>
+        			<p class="rrole">
+        				{{ctrl.selectedMemberDetails.left.title}}
+        			</p>
+        		</div>
+        		<div class="right">
+        			<p class="rname sp-link-color">
+        				{{ctrl.selectedMemberDetails.right.firstName}} {{ctrl.selectedMemberDetails.right.lastName}}
+        			</p>
+        			<p class="rrole">
+        				{{ctrl.selectedMemberDetails.right.title}}
+        			</p>        			
+        		</div>        		
+        	</div>
+        	<div class="report-names report-ptype">
+        		<div class="left">
+        			<p class="rname sp-link-color" data-ng-if="ctrl.resultTabs.leftSelected===0">
+        				{{ctrl.candidateAdvise.personalityPrimary}}
+        			</p>
+        			<p class="rname sp-link-color" data-ng-if="ctrl.resultTabs.leftSelected===1">
+        				{{ctrl.candidateAdvise.personalityUnderPressure}}
+        			</p>        			
+        			<p class="rtype" data-ng-if="ctrl.resultTabs.leftSelected===0">
+        				{{pullInterNationalization('prism.relationship-advisor.subhead1')}}
+        			</p>
+        			<p class="rtype" data-ng-if="ctrl.resultTabs.leftSelected===1">
+        				{{pullInterNationalization('prism.relationship-advisor.subhead2')}}
+        			</p>        			        			
+        		</div>
+        		<div class="left">
+        			<p class="rname sp-link-color" data-ng-if="ctrl.resultTabs.rightSelected===0">
+        				{{ctrl.memberAdvise.personalityPrimary}}
+        			</p>
+        			<p class="rname sp-link-color" data-ng-if="ctrl.resultTabs.rightSelected===1">
+        				{{ctrl.memberAdvise.personalityUnderPressure}}
+        			</p>        			
+        			<p class="rtype" data-ng-if="ctrl.resultTabs.rightSelected===0">
+        				{{pullInterNationalization('prism.relationship-advisor.subhead1')}}
+        			</p>
+        			<p class="rtype" data-ng-if="ctrl.resultTabs.rightSelected===1">
+        				{{pullInterNationalization('prism.relationship-advisor.subhead2')}}
+        			</p>        			        			
+        		</div>        		
+        	</div>
+        </div>
+        <div class="report-details">
+            <div class="report-content user1">
+                <p class="insight sp-background-color">{{pullInterNationalization('prism.relationship-advisor.mDesc1')}} <strong>{{ctrl.selectedMemberDetails.left.firstName}}'s</strong> {{pullInterNationalization('prism.relationship-advisor.mDesc2')}} <strong>{{ctrl.selectedMemberDetails.right.firstName}}</strong></p>
+                    <p class="desc" data-ng-bind-html="ctrl.candidateAdvise.title"></p>
+                    <h3 class="sp-header-title-color">{{ctrl.selectedMemberDetails.left.firstName}} {{pullInterNationalization('prism.relationship-advisor.subhead4')}}</h3>
+                    <ul data-ng-bind-html="ctrl.formatList(ctrl.candidateAdvise.effort)"></ul>
+                    <h3 class="sp-header-title-color">{{ctrl.selectedMemberDetails.left.firstName}} {{pullInterNationalization('prism.relationship-advisor.subhead3')}}</h3>
+                    <ul data-ng-bind-html="ctrl.formatList(ctrl.candidateAdvise.avoid)"></ul>
+            </div>
+            <div class="report-content user2">
+                <p class="insight sp-background-color">{{pullInterNationalization('prism.relationship-advisor.mDesc1')}} <strong>{{ctrl.selectedMemberDetails.right.firstName}}'s</strong> {{pullInterNationalization('prism.relationship-advisor.mDesc2')}} <strong>{{ctrl.selectedMemberDetails.left.firstName}}</strong></p>
+                <p class="desc" data-ng-bind-html="ctrl.memberAdvise.title"></p>
+                <h3 class="sp-header-title-color">{{ctrl.selectedMemberDetails.right.firstName}} {{pullInterNationalization('prism.relationship-advisor.subhead4')}}</h3>
+                <ul data-ng-bind-html="ctrl.formatList(ctrl.memberAdvise.effort)"></ul>
+                <h3 class="sp-header-title-color">{{ctrl.selectedMemberDetails.right.firstName}} {{pullInterNationalization('prism.relationship-advisor.subhead3')}}</h3>
+                <ul data-ng-bind-html="ctrl.formatList(ctrl.memberAdvise.avoid)"></ul>
+            </div>
+        </div>
+    </div>
+</div>

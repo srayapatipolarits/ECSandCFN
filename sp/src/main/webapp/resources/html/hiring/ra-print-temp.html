@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="spApp">
+
+<head>
+    <title>SurePeople</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0" />
+    <meta name="description" content="SurePeople" />
+    <meta name="keywords" content="SurePeople" />
+    <!--[if lte IE 8]>
+    <script type="text/javascript">
+            //Redirecting if the Browser is LEss than IE8
+           window.location="/sp/resources/html/browser.html";       
+    </script>
+<![endif]-->
+    <link rel="icon" type="image/x-icon" href="/resources/css/images/sure_people.ico" />
+    <script type="text/javascript" src="/resources/js-min/vendor.min.cb318a68c817fa40cf4ee7be18743c55.js"></script>
+    <link type="text/css" rel="stylesheet" href="/resources/css/css-min/sp-profile-pdf.css">
+    <style type="text/css">
+    .pdfPrintVersion .ra-print-report-wrapper .ra-table-wrap {
+        width: 98%;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- Google Tag Manager -->
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-K7DMVG" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>
+    <script>
+    (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-K7DMVG');
+    </script>
+    <section data-ng-controller="candidateAdvisorController" data-ng-init="initTempPrint();" data-ng-cloak>
+        <div>
+            <div class="printVersion">
+                <div class="pdfPrintVersion">
+                    <div class="ra-print-report-wrapper">
+                        <img src="https://www.surepeople.com/sp/resources/images/sp-logo.svg" alt="SurePeople™" class="logo-img">
+                        <div class="ra-intro">
+                            <p class="ra-header" data-ng-bind-html="pullInterNationalization('prism.relationship-advisor.title')"></p>
+                            <p data-ng-bind-html="pullInterNationalization('prism.relationship-advisor.desc')"></p>
+                        </div>
+                        <div class="ra-table-wrap">
+                            <div class="ra-table-cols ra-col-left">
+                                <p class="ra-name" data-ng-bind="ca_selectedCandidate.firstName+' '+ca_selectedCandidate.lastName"></p>
+                                <p class="ra-title" data-ng-bind="ca_selectedCandidate.title"></p>
+                            </div>
+                            <div class="ra-table-cols ra-col-mid"></div>
+                            <div class="ra-table-cols ra-col-right">
+                                <p class="ra-name" data-ng-bind="ca_selectedMemberDetails.name"></p>
+                                <p class="ra-title" data-ng-bind="ca_selectedMemberDetails.title"></p>
+                            </div>
+                        </div>
+                        <!-- List Starts -->
+                        <div class="ra-table-wrap">
+                            <div class="ra-table-cols ra-col-left">
+                                <p class="rel-title" data-ng-bind-html="ca_candidateAdvise.title"></p>
+                                <h3 class="sp-header-title-color">{{ca_selectedCandidate.firstName}} {{pullInterNationalization('prism.relationship-advisor.subhead4')}}</h3>
+                                <ul data-ng-bind-html="formatList(ca_candidateAdvise.effort)"></ul>
+                                <h3 class="sp-header-title-color">{{ca_selectedCandidate.firstName}} {{pullInterNationalization('prism.relationship-advisor.subhead3')}}</h3>
+                                <ul data-ng-bind-html="formatList(ca_candidateAdvise.avoid)"></ul>
+                            </div>
+                            <div class="ra-table-cols ra-col-mid"></div>
+                            <div class="ra-table-cols ra-col-right">
+                                <p class="rel-title" data-ng-bind-html="ca_memberAdvise.title"></p>
+                                <h3 class="sp-header-title-color">{{ca_selectedMemberDetails.firstName}} {{pullInterNationalization('prism.relationship-advisor.subhead4')}}</h3>
+                                <ul data-ng-bind-html="formatList(ca_memberAdvise.effort)"></ul>
+                                <h3 class="sp-header-title-color">{{ca_selectedMemberDetails.firstName}} {{pullInterNationalization('prism.relationship-advisor.subhead3')}}</h3>
+                                <ul data-ng-bind-html="formatList(ca_memberAdvise.avoid)"></ul>
+                            </div>
+                        </div>
+                        <!-- List Ends -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript" src="/resources/js-min/common.min.5dd90cc0ea3d46b5d92b151e39476dce.js"></script>
+    <script type="text/javascript" src="/resources/js-min/candidateAdvisorController.min.js"></script>
+    <script type="text/javascript" src="/resources/js-min/peopleAnalyticsServices.min.js"></script>
+</body>
+</html>

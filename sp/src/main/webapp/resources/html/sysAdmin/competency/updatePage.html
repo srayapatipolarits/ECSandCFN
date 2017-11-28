@@ -1,0 +1,199 @@
+<section data-ng-controller="competencyAdminController as ctrl" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'" class="hide" data-ng-init="ctrl.initializeCompetency('update')">
+    <div class="x-container learning-development pm-admin org-admin competency-admin">
+        <div class="container minimumHeight organization-area-detail" >
+            <div class="table-flex-cols">
+                <!-- Left Box Starts -->
+                <div class="flex-cols-caption">
+                    <div class="lnd-full-box lnd-top-border lnd-spacer20 sp-panel-accent" data-ng-if="ctrl.actionPlan">
+                        <div class="actionPlanHeader">
+                            <h3 class="companyName orange">View/Edit Competencies</h3>
+                            <div class="returnLink clearfix">
+                                <a data-ng-if="ctrl.mode !== 'clone'" href="javascript:void(0)" class="mock-link cloneLink pull-left" data-ng-click="ctrl.deleteCompetencyModal()">Delete this Profile</a>
+                                <a href="javascript:void(0)" class="mock-link cloneLink pull-left" data-ng-click="ctrl.clonePlan()">Clone this Profile</a>
+                                <a href="javascript:void(0)" class="mock-link pull-left" data-ng-click="ctrl.redirectToListing()">Return to Competencies</a>
+                            </div>
+                            <div class="custom_column">
+                                <ol class="form-list-c form-list-d noMarBottom">
+                                    <li class="type-and-number planTitle noMarBottom">
+                                        <input type="hidden" value="{{ctrl.actionPlan.id}}" data-ng-model="ctrl.actionPlan.id" />
+                                        <label class="label label-spacing" for="name">Profile Name</label>
+                                        <input data-ng-disabled="ctrl.mode !== 'clone'" type="text" class="themeName bolder_input" name="name" placeholder="Competency Profile Name" data-ng-model="ctrl.actionPlan.name" />
+                                        <span class="validate-error" data-ng-if="ctrl.actionPlanForm.submitted && ctrl.actionPlanForm.actionPlanName.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                                    </li>
+                                    <li class="submit-cancel-btns space-box planAction">
+                                        <ul class="submit-cancel-list">
+                                            <li class="submit-charge">
+                                                <input data-ng-if="!ctrl.actionPlan.evaluationInProgress" type="submit" value="Publish" class="subscribeBtn btn-block btn-15px sp-btn-color" data-ng-disabled="ctrl.disabled" data-ng-click="ctrl.submitObject()" />
+                                                <input data-ng-if="ctrl.actionPlan.evaluationInProgress" type="button" value="Publish" class="cancelBtn btn-block btn-15px btn-grey-dark" data-ng-disabled="true" />
+                                            </li>
+                                            <li class="cancel-charge">
+                                                <input type="button" value="cancel" class="cancelBtn btn-block btn-15px btn-grey-dark" data-ng-click="ctrl.redirectToListing()" />
+                                            </li>
+                                        </ul>
+                                        <ul class="clear submit-cancel-error">
+                                            <!-- <li data-ng-if="ctrl.errorCat && !ctrl.result.length">
+                                                <span class="validate-error" data-ng-bind="pullInterNationalization('sysAdmin.organization.errre')"></span>
+                                            </li> -->
+                                            <li data-ng-if="ctrl.noActiveCompetency">
+                                                <span class="validate-error">Need atleast one active Competency..</span>
+                                            </li>
+                                            <li data-ng-if="ctrl.actionPlan.evaluationInProgress">
+                                                <span class="validate-error">An Evaluation is currently in Progress..</span>
+                                            </li>
+                                            <li>
+                                                <span class="validate-error" data-ng-if="ctrl.actionPlanForm.submitted" data-ng-bind="pullInterNationalization('sysAdmin.organization.errch')"></span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </div>
+                            <div class="compnay_name_detail">
+                                <span data-ng-bind="pullInterNationalization('sysadmin.organization.company')"></span> <span class="companyName_1" data-ng-bind="ctrl.company.name"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="category parent-cat category-overview profile-desc">
+                    <header class="header-position">
+                        <div class="header-style description-toggle" data-ng-click="ctrl.openCloseSiblingContent($event);">
+                            <h2 class="header-title">Profile Description</h2>
+                            <div class="icon-toggle">
+                                <div class="close-it">
+                                    <div class="hz"></div>
+                                </div>
+                                <div class="open-it">
+                                    <div class="hz"></div>
+                                    <div class="vl"></div>
+                                </div>
+                            </div>
+                            </div>
+                        </header>
+                        <div class="header-style-content">
+                            <div class="border-faq-content">
+                                <ol class="form-list-c form-list-d clearfix">
+                                    <li class="type-and-number tinyMceFont">
+                                        <label class="label label-spacing overview-label">Profile Description*</label>
+                                        <textarea class="themeTextArea" data-ui-tinymce name="competencyProfileDescription" data-ng-model="ctrl.actionPlan.description" placeholder="Profile Description" data-ng-required="true"></textarea>
+                                        <span class="validate-error" data-ng-if="ctrl.actionPlanForm.submitted && (ctrl.actionPlan.description === null || ctrl.actionPlan.description === undefined)" data-ng-bind="pullInterNationalization('admin.blueprint.required.error')"></span>
+                                    </li>
+                                </ol>
+                                <ol class="form-list-c form-list-d clearfix" data-ng-repeat="mediaData in ctrl.actionPlan.mediaList track by $index" data-ng-init="parentIndex = $parent.$index">
+                                    <li class="type-and-number">
+                                        <div class="deleteActionList">
+                                            <a class="mock-link" href="javascript:void(0)" data-ng-click="ctrl.deleteGenericModal({'list':ctrl.actionPlan.mediaList,'index':$index,'type':'mediaListing','id':null})">Delete Link</a>
+                                        </div>
+                                    </li>
+                                    <!-- Add Link -->
+                                    <li class="type-and-number">
+                                        <!--  -->
+                                        <ol class="form-list-c form-list-d clearfix">
+                                            <li class="type-and-number">
+                                                <label class="label-spacing small-label">Link (Optional)</label>
+                                            </li>
+                                            <li class="col_3">
+                                                <label class="label-spacing" data-ng-bind="pullInterNationalization('sysadmin.organization.actionLinkType')"></label>
+                                                <div class="select-wrapper select-border-color">
+                                                    <span class="org-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                                                    <select class="select-option-style" change-name="ctrl.actionPlan.mediaList[$index].type" data-ng-model="mediaData.type" data-ng-options="value.value as value.name for (key,value) in ctrl.linkType" data-ng-required="ctrl.actionPlan.competencyList[ctrl.currentActionPlan].status==='ACTIVE' && (mediaData.url||mediaData.linkText)">
+                                                        <option value="" data-ng-bind="pullInterNationalization('admin.account.select')"></option>
+                                                    </select>
+                                                </div> <span class="err-msg validate-error" data-ng-show="ctrl.actionPlanForm.submitted && ctrl.actionPlanForm['input[{{ctrl.currentActionPlan}}]_{{superIndex}}_{{parentIndex}}_linktype[{{$index}}]_{{actionList.type}}'].$error.required" data-ng-bind="pullInterNationalization('signup.emperr')"></span>
+                                            </li>
+                                            <li class="col_3">
+                                                <label class="label label-spacing" data-ng-bind="pullInterNationalization('sysadmin.organization.actionLinkText')"></label>
+                                                <input type="text" class="themeName" change-name="ctrl.actionPlan.mediaList[$index].linkText" placeholder="{{pullInterNationalization('sysadmin.organization.actionLinkText')}}" data-ng-disabled="mediaData.type === '' || mediaData.type === undefined || mediaData.type === null" data-ng-model="mediaData.linkText" data-ng-required="ctrl.actionPlan.competencyList[ctrl.currentActionPlan].status==='ACTIVE' && (mediaData.url||mediaData.type)" />
+                                                <span class="err-msg validate-error" data-ng-show="ctrl.actionPlanForm.submitted && ctrl.actionPlanForm['input[{{ctrl.currentActionPlan}}]_{{superIndex}}_{{parentIndex}}_linkText[{{$index}}]_{{actionList.type}}'].$error.required" data-ng-bind="pullInterNationalization('signup.emperr')"></span>
+                                            </li>
+                                            <li class="col_3 noright">
+                                                <label class="label label-spacing" data-ng-bind="pullInterNationalization('sysadmin.organization.actionLinkUrl')"></label>
+                                                <input type="text" class="themeName input-text-overflow" change-name="ctrl.actionPlan.mediaList[$index].url" data-ng-pattern="/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/" placeholder="{{pullInterNationalization('sysadmin.organization.actionLinkUrl')}}" data-ng-disabled="mediaData.type === '' || mediaData.type === undefined || mediaData.type === null" data-ng-model="mediaData.url" data-ng-required="ctrl.actionPlan.competencyList[ctrl.currentActionPlan].status==='ACTIVE' && (mediaData.type||mediaData.linkText)" />
+                                                <div data-ng-if="mediaData.type ==='PDF' || mediaData.type ==='PPT'" class="select-media-btn sp-background-color" data-ng-click="ctrl.selectThumbImage(mediaData,'linkAction')">+</div>
+                                                <span class="err-msg validate-error" data-ng-show="ctrl.actionPlanForm.submitted && ctrl.actionPlanForm['input[{{ctrl.currentActionPlan}}]_{{superIndex}}_{{parentIndex}}_linkurl[{{$index}}]_{{actionList.type}}'].$error.pattern" data-ng-bind="pullInterNationalization('signup.emperr')"></span>
+                                                <span class="err-msg validate-error" data-ng-show="ctrl.actionPlanForm.submitted && ctrl.actionPlanForm['input[{{ctrl.currentActionPlan}}]_{{superIndex}}_{{parentIndex}}_linkurl[{{$index}}]_{{actionList.type}}'].$error.required" data-ng-bind="pullInterNationalization('signup.emperr')"></span>
+                                                <a class="mock-link" href="javascript:void(0)" data-ng-if="(mediaData.type==='Video'||mediaData.type==='VideoTab') && mediaData.url" data-ng-click="ctrl.previewVideo(mediaData.type,mediaData.url)" data-ng-bind="pullInterNationalization('sysadmin.organization.preview')"></a>
+                                            </li>
+                                        </ol>
+                                        <ol class="form-list-c form-list-d clearfix">
+                                            <li class="col_3">
+                                                <label class="label label-spacing" data-ng-bind="pullInterNationalization('sysadmin.organization.actionThumbImg')"></label>
+                                                <input type="text" class="themeName input-text-overflow" change-name="ctrl.actionPlan.mediaList[$index].imageLink" data-ng-pattern="/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/" placeholder="{{pullInterNationalization('sysadmin.organization.actionThumbImg')}}" data-ng-disabled="mediaData.type === '' || mediaData.type === undefined  || mediaData.type === null || mediaData.type === 'PDF' || mediaData.type ==='PPT' || mediaData.type ==='Web'" data-ng-model="mediaData.imageLink" />
+                                                <div data-ng-if="mediaData.type ==='Video' || mediaData.type ==='VideoTab'" class="select-media-btn sp-background-color" data-ng-click="ctrl.selectThumbImage(mediaData,'linkAction')">+</div>
+                                                <span class="err-msg validate-error" data-ng-show="ctrl.actionPlanForm.submitted && ctrl.actionPlanForm['input[{{ctrl.currentActionPlan}}]_{{superIndex}}_{{parentIndex}}_linkthumb[{{$index}}]_{{actionList.type}}'].$error.pattern" data-ng-bind="pullInterNationalization('signup.emperr')"></span>
+                                            </li>
+                                            <li class="col_3">
+                                                <label class="label label-spacing" data-ng-bind="pullInterNationalization('sysadmin.organization.actionAltImgText')"></label>
+                                                <input type="text" class="themeName" name="keyTitle" change-name="ctrl.actionPlan.mediaList[$index].altText" placeholder="{{pullInterNationalization('sysadmin.organization.actionAltImgText')}}" data-ng-disabled="mediaData.type === '' || mediaData.type === undefined  || mediaData.type === null || mediaData.type === 'PDF' || mediaData.type ==='PPT' || mediaData.type ==='Web'" data-ng-model="mediaData.altText" />
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <!-- add link ends -->
+                                </ol>
+                                <ol class="form-list-c form-list-d clearfix">
+                                    <li class="type-and-number small-text col_widthAuto"><a href="javascript:void(0)" data-ng-click="ctrl.addLink()" class="mock-link-2">Add Link</a>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="category parent-cat category-overview profile-desc">
+                    <header class="header-position">
+                        <div class="header-style description-toggle" data-ng-click="ctrl.openCloseSiblingContent($event);">
+                            <h2 class="header-title">Rating Configuration</h2>
+                            <div class="icon-toggle">
+                                <div class="close-it">
+                                    <div class="hz"></div>
+                                </div>
+                                <div class="open-it">
+                                    <div class="hz"></div>
+                                    <div class="vl"></div>
+                                </div>
+                            </div>
+                            </div>
+                        </header>
+                        <div class="header-style-content">
+                              <ol class="form-list-c form-list-d clearfix" style="padding:15px;">
+                                            <li class="type-and-number" style="margin-bottom:10px">
+                                                <label class="label-spacing small-label">Max Numerical Scale</label>
+                                            </li>
+                                            <li class="col_3">
+                                                <label class="label-spacing">Numerical scale can range from 2 to 9</label>
+                                                <div class="select-wrapper select-border-color">
+                                                    <span class="org-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                                                    <select class="select-option-style" data-ng-model="ctrl.actionPlan.ratingConfiguration.size" data-ng-change="ctrl.openRatingWarnModal();"
+                                                        data-ng-options="value.value as value.name for (key,value) in ctrl.ratingScale">
+                                                    </select>
+                                                </div>
+                                            </li>
+                                   </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="lnd-left-sec sp-panel-accent">
+                    <div class="lnd-left-box lnd-top-border lnd-spacer">
+                        <h2>Competencies</h2>
+                        <ul id="sort-competency" class="sort-practice-area">
+                            <li data-ng-click="ctrl.changeCompetency($index)" class="word-wrap count_{{ctrl.actionPlan.competencyList.length}}" data-ng-repeat="section in ctrl.actionPlan.competencyList track by $index" data-ng-class="ctrl.currentActionPlan===$index?'on':''" repeat-done="ctrl.competencySort(ctrl.actionPlan.competencyList.length)">
+                                <span class="mock-link" data-ng-bind="section.name|| 'New Competency..'"></span>
+                                <span class="practiceHandle icon-icon_drag-drop sp-icon-color"></span>
+                            </li>
+                        </ul>
+                        <ul class="top-border">
+                            <li class="border-link create-action-plan">
+                                <a href="javascript:void(0)" class="buttoncss" data-ng-click="ctrl.createNewSection(ctrl.actionPlan.competencyList.length)">CREATE NEW COMPETENCY</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Left Box Ends -->
+                <!-- Right Box Starts -->
+                <div class="lnd-right-sec">
+                    <div class="holder">
+                        <div class="view-editCreate">
+                            <div ui-view="edit" class="" data-ng-class="{'hide':!ctrl.viewMode.editCreate}" data-ng-show="ctrl.viewMode.editCreate"></div>
+                            <div ui-view="preview" class="" data-ng-if="ctrl.viewMode.preview"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

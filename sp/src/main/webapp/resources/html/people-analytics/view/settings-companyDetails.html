@@ -1,0 +1,502 @@
+<div class="col-content-wrapper mh700">
+    <div class="members-content-wrapper">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('manageAccountContent.linkCompany')"></h2>
+            <p class="group-icons-wrapper" data-ng-show="!flags.editCompanyDetails">
+                <span class="group-action-icons icon-icon_accounts_edit sp-icon-color" data-ng-click="flags.editCompanyDetails=true;"></span>
+            </p>
+        </div>
+    </div>
+    <div class="company-details-new" data-ng-show="!flags.editCompanyDetails">
+        <p class=mtop30><strong class="font-18 weight-700" data-ng-bind="companyDetails.name"></strong></p>
+        <br>
+        <h3 class="mem-label" data-ng-bind="::pullInterNationalization('paHiring.contact.industry')"></h3>
+        <p class="mtop15">
+            <select name="industry" data-ng-model="companyDetails.industry" data-ng-disabled="true">
+                <option value="" data-ng-bind="pullInterNationalization('home.industry')"></option>
+                <option value="accounting" data-ng-bind="::pullInterNationalization('companyIndustry.Accounting')"></option>
+                <option value="airlines_aviation" data-ng-bind="::pullInterNationalization('companyIndustry.Airlines')"></option>
+                <option value="alternative_dispute_resolution" data-ng-bind="::pullInterNationalization('companyIndustry.Alternative0')"></option>
+                <option value="alternative_medicine" data-ng-bind="::pullInterNationalization('companyIndustry.Alternative1')"></option>
+                <option value="animation" data-ng-bind="::pullInterNationalization('companyIndustry.Animation')"></option>
+                <option value="apparel_fashion" data-ng-bind="::pullInterNationalization('companyIndustry.Apparel')"></option>
+                <option value="architecture_planning" data-ng-bind="::pullInterNationalization('companyIndustry.Architecture')"></option>
+                <option value="arts_and_crafts" data-ng-bind="::pullInterNationalization('companyIndustry.Arts')"></option>
+                <option value="automotive" data-ng-bind="::pullInterNationalization('companyIndustry.Automotive')"></option>
+                <option value="aviation_aerospace" data-ng-bind="::pullInterNationalization('companyIndustry.Aviation')"></option>
+                <option value="banking" data-ng-bind="::pullInterNationalization('companyIndustry.Banking')"></option>
+                <option value="biotechnology" data-ng-bind="::pullInterNationalization('companyIndustry.Biotechnology')"></option>
+                <option value="broadcast_media" data-ng-bind="::pullInterNationalization('companyIndustry.Broadcast')"></option>
+                <option value="building_materials" data-ng-bind="::pullInterNationalization('companyIndustry.Building')"></option>
+                <option value="business_supplies_and_equipment" data-ng-bind="::pullInterNationalization('companyIndustry.Business')"></option>
+                <option value="capital_markets" data-ng-bind="::pullInterNationalization('companyIndustry.Capital')"></option>
+                <option value="chemicals" data-ng-bind="::pullInterNationalization('companyIndustry.Chemicals')"></option>
+                <option value="civic_social_organization" data-ng-bind="::pullInterNationalization('companyIndustry.Civic')"></option>
+                <option value="civil_engineering" data-ng-bind="::pullInterNationalization('companyIndustry.Civil')"></option>
+                <option value="commercial_real_estate" data-ng-bind="::pullInterNationalization('companyIndustry.Commercial')"></option>
+                <option value="computer_network_security" data-ng-bind="::pullInterNationalization('companyIndustry.Computer0')"></option>
+                <option value="computer_games" data-ng-bind="::pullInterNationalization('companyIndustry.Computer1')"></option>
+                <option value="computer_hardware" data-ng-bind="::pullInterNationalization('companyIndustry.Computer2')"></option>
+                <option value="computer_networking" data-ng-bind="::pullInterNationalization('companyIndustry.Computer3')"></option>
+                <option value="computer_software" data-ng-bind="::pullInterNationalization('companyIndustry.Computer4')"></option>
+                <option value="construction" data-ng-bind="::pullInterNationalization('companyIndustry.Construction')"></option>
+                <option value="consumer_electronics" data-ng-bind="::pullInterNationalization('companyIndustry.Consumer0')"></option>
+                <option value="consumer_goods" data-ng-bind="::pullInterNationalization('companyIndustry.Consumer1')"></option>
+                <option value="consumer_services" data-ng-bind="::pullInterNationalization('companyIndustry.Consumer2')"></option>
+                <option value="cosmetics" data-ng-bind="::pullInterNationalization('companyIndustry.Cosmetics')"></option>
+                <option value="dairy" data-ng-bind="::pullInterNationalization('companyIndustry.Dairy')"></option>
+                <option value="defense_space" data-ng-bind="::pullInterNationalization('companyIndustry.Defense')"></option>
+                <option value="design" data-ng-bind="::pullInterNationalization('companyIndustry.Design')"></option>
+                <option value="education_management" data-ng-bind="::pullInterNationalization('companyIndustry.Education')"></option>
+                <option value="e_learning" data-ng-bind="::pullInterNationalization('companyIndustry.Learning')"></option>
+                <option value="electrical_electronic_manufacturing" data-ng-bind="::pullInterNationalization('companyIndustry.Electrical')"></option>
+                <option value="entertainment" data-ng-bind="::pullInterNationalization('companyIndustry.Entertainment')"></option>
+                <option value="environment_services" data-ng-bind="::pullInterNationalization('companyIndustry.Environment')"></option>
+                <option value="events_services" data-ng-bind="::pullInterNationalization('companyIndustry.Events')"></option>
+                <option value="executive_office" data-ng-bind="::pullInterNationalization('companyIndustry.Executive')"></option>
+                <option value="facilities_services" data-ng-bind="::pullInterNationalization('companyIndustry.Facilities')"></option>
+                <option value="farming" data-ng-bind="::pullInterNationalization('companyIndustry.Farming')"></option>
+                <option value="financial_services" data-ng-bind="::pullInterNationalization('companyIndustry.Financial')"></option>
+                <option value="fine_arts" data-ng-bind="::pullInterNationalization('companyIndustry.Fine')"></option>
+                <option value="fishery" data-ng-bind="::pullInterNationalization('companyIndustry.Fishery')"></option>
+                <option value="food_beverages" data-ng-bind="::pullInterNationalization('companyIndustry.Food0')"></option>
+                <option value="food_production" data-ng-bind="::pullInterNationalization('companyIndustry.Food1')"></option>
+                <option value="fund-raising" data-ng-bind="::pullInterNationalization('companyIndustry.Fund')"></option>
+                <option value="furniture" data-ng-bind="::pullInterNationalization('companyIndustry.Furniture')"></option>
+                <option value="gambling_casinos" data-ng-bind="::pullInterNationalization('companyIndustry.Gambling')"></option>
+                <option value="glass_ceramics_concrete" data-ng-bind="::pullInterNationalization('companyIndustry.Glass')"></option>
+                <option value="government_administration" data-ng-bind="::pullInterNationalization('companyIndustry.Government0')"></option>
+                <option value="government_relations" data-ng-bind="::pullInterNationalization('companyIndustry.Government1')"></option>
+                <option value="graphic_design" data-ng-bind="::pullInterNationalization('companyIndustry.Graphic')"></option>
+                <option value="health_wellness_and_fitness" data-ng-bind="::pullInterNationalization('companyIndustry.Health')"></option>
+                <option value="higher_education" data-ng-bind="::pullInterNationalization('companyIndustry.Higher')"></option>
+                <option value="hospital_health_care" data-ng-bind="::pullInterNationalization('companyIndustry.Hospital')"></option>
+                <option value="hospitality" data-ng-bind="::pullInterNationalization('companyIndustry.Hospitality')"></option>
+                <option value="human_resources" data-ng-bind="::pullInterNationalization('companyIndustry.Human')"></option>
+                <option value="import_and_export" data-ng-bind="::pullInterNationalization('companyIndustry.Import')"></option>
+                <option value="individual_family_services" data-ng-bind="::pullInterNationalization('companyIndustry.Individual')"></option>
+                <option value="industrial_automation" data-ng-bind="::pullInterNationalization('companyIndustry.Industrial')"></option>
+                <option value="information_services" data-ng-bind="::pullInterNationalization('companyIndustry.Information0')"></option>
+                <option value="information_technology_and_services" data-ng-bind="::pullInterNationalization('companyIndustry.Information1')"></option>
+                <option value="insurance" data-ng-bind="::pullInterNationalization('companyIndustry.Insurance0')"></option>
+                <option value="international_affairs" data-ng-bind="::pullInterNationalization('companyIndustry.International0')"></option>
+                <option value="international_trade_and_development" data-ng-bind="::pullInterNationalization('companyIndustry.International1')"></option>
+                <option value="internet" data-ng-bind="::pullInterNationalization('companyIndustry.Internet')"></option>
+                <option value="investment_banking" data-ng-bind="::pullInterNationalization('companyIndustry.Investment0')"></option>
+                <option value="investment_management" data-ng-bind="::pullInterNationalization('companyIndustry.Investment1')"></option>
+                <option value="judiciary" data-ng-bind="::pullInterNationalization('companyIndustry.Judiciary')"></option>
+                <option value="law_enforcement" data-ng-bind="::pullInterNationalization('companyIndustry.Law0')"></option>
+                <option value="law_practice" data-ng-bind="::pullInterNationalization('companyIndustry.Law1')"></option>
+                <option value="legal_services" data-ng-bind="::pullInterNationalization('companyIndustry.Legal')"></option>
+                <option value="legislative_office" data-ng-bind="::pullInterNationalization('companyIndustry.Legislative')"></option>
+                <option value="leisure_travel_tourism" data-ng-bind="::pullInterNationalization('companyIndustry.Leisure')"></option>
+                <option value="libraries" data-ng-bind="::pullInterNationalization('companyIndustry.Libraries')"></option>
+                <option value="logistics_and_supply_chain" data-ng-bind="::pullInterNationalization('companyIndustry.Logistics')"></option>
+                <option value="luxury_goods_jewelry" data-ng-bind="::pullInterNationalization('companyIndustry.Luxury')"></option>
+                <option value="machinery" data-ng-bind="::pullInterNationalization('companyIndustry.Machinery')"></option>
+                <option value="management_consulting" data-ng-bind="::pullInterNationalization('companyIndustry.Management0')"></option>
+                <option value="maritime" data-ng-bind="::pullInterNationalization('companyIndustry.Maritime')"></option>
+                <option value="marketing_and_advertising" data-ng-bind="::pullInterNationalization('companyIndustry.Marketing')"></option>
+                <option value="market_research" data-ng-bind="::pullInterNationalization('companyIndustry.Market')"></option>
+                <option value="mechanical_or_industrial_engineering" data-ng-bind="::pullInterNationalization('companyIndustry.Mechanical')"></option>
+                <option value="media_production" data-ng-bind="::pullInterNationalization('companyIndustry.Media')"></option>
+                <option value="medical_devices" data-ng-bind="::pullInterNationalization('companyIndustry.Medical0')"></option>
+                <option value="medical_practice" data-ng-bind="::pullInterNationalization('companyIndustry.Medical1')"></option>
+                <option value="mental_health_care" data-ng-bind="::pullInterNationalization('companyIndustry.Mental')"></option>
+                <option value="military" data-ng-bind="::pullInterNationalization('companyIndustry.Military')"></option>
+                <option value="mining_metals" data-ng-bind="::pullInterNationalization('companyIndustry.Mining')"></option>
+                <option value="motion_pictures_and_film" data-ng-bind="::pullInterNationalization('companyIndustry.Motion')"></option>
+                <option value="museums_and_institutions" data-ng-bind="::pullInterNationalization('companyIndustry.Museums')"></option>
+                <option value="music" data-ng-bind="::pullInterNationalization('companyIndustry.Music')"></option>
+                <option value="nanotechnology" data-ng-bind="::pullInterNationalization('companyIndustry.Nanotechnology')"></option>
+                <option value="newspaper" data-ng-bind="::pullInterNationalization('companyIndustry.Newspaper')"></option>
+                <option value="nonprofit_organization_management" data-ng-bind="::pullInterNationalization('companyIndustry.Nonprofit')"></option>
+                <option value="oil_energy" data-ng-bind="::pullInterNationalization('companyIndustry.Oil')"></option>
+                <option value="online_media" data-ng-bind="::pullInterNationalization('companyIndustry.Online')"></option>
+                <option value="outsourcing_offshoring" data-ng-bind="::pullInterNationalization('companyIndustry.Outsourcing')"></option>
+                <option value="package_freight_delivery" data-ng-bind="::pullInterNationalization('companyIndustry.Package0')"></option>
+                <option value="packaging_and_containers" data-ng-bind="::pullInterNationalization('companyIndustry.Package1')"></option>
+                <option value="paper_forest_products" data-ng-bind="::pullInterNationalization('companyIndustry.Paper')"></option>
+                <option value="performing_arts" data-ng-bind="::pullInterNationalization('companyIndustry.Performing')"></option>
+                <option value="pharmaceuticals" data-ng-bind="::pullInterNationalization('companyIndustry.Pharmaceuticals')"></option>
+                <option value="philanthropy" data-ng-bind="::pullInterNationalization('companyIndustry.Philanthropy')"></option>
+                <option value="photography" data-ng-bind="::pullInterNationalization('companyIndustry.Photography')"></option>
+                <option value="plastics" data-ng-bind="::pullInterNationalization('companyIndustry.Plastics')"></option>
+                <option value="political_organization" data-ng-bind="::pullInterNationalization('companyIndustry.Political')"></option>
+                <option value="primary_secondary_education" data-ng-bind="::pullInterNationalization('companyIndustry.Primary')"></option>
+                <option value="printing" data-ng-bind="::pullInterNationalization('companyIndustry.Printing')"></option>
+                <option value="professional_training_coaching" data-ng-bind="::pullInterNationalization('companyIndustry.Professional')"></option>
+                <option value="program_development" data-ng-bind="::pullInterNationalization('companyIndustry.Program')"></option>
+                <option value="public_policy" data-ng-bind="::pullInterNationalization('companyIndustry.Public0')"></option>
+                <option value="public_relations_and_communications" data-ng-bind="::pullInterNationalization('companyIndustry.Public1')"></option>
+                <option value="public_safety" data-ng-bind="::pullInterNationalization('companyIndustry.Public2')"></option>
+                <option value="publishing" data-ng-bind="::pullInterNationalization('companyIndustry.Publishing')"></option>
+                <option value="railroad_manufacture" data-ng-bind="::pullInterNationalization('companyIndustry.Railroad')"></option>
+                <option value="ranching" data-ng-bind="::pullInterNationalization('companyIndustry.Ranching')"></option>
+                <option value="real_estate" data-ng-bind="::pullInterNationalization('companyIndustry.Real0')"></option>
+                <option value="recreational_facilities_and_services" data-ng-bind="::pullInterNationalization('companyIndustry.Recreational')"></option>
+                <option value="religious_institutions" data-ng-bind="::pullInterNationalization('companyIndustry.Religious')"></option>
+                <option value="renewables_environment" data-ng-bind="::pullInterNationalization('companyIndustry.Renewables')"></option>
+                <option value="research" data-ng-bind="::pullInterNationalization('companyIndustry.Research')"></option>
+                <option value="restaurants" data-ng-bind="::pullInterNationalization('companyIndustry.Restaurants')"></option>
+                <option value="retail" data-ng-bind="::pullInterNationalization('companyIndustry.Retail')"></option>
+                <option value="security_and_investigations" data-ng-bind="::pullInterNationalization('companyIndustry.Security')"></option>
+                <option value="semiconductors" data-ng-bind="::pullInterNationalization('companyIndustry.Semiconductors')"></option>
+                <option value="shipbuilding" data-ng-bind="::pullInterNationalization('companyIndustry.Shipbuilding')"></option>
+                <option value="sporting_goods" data-ng-bind="::pullInterNationalization('companyIndustry.Sporting')"></option>
+                <option value="sports" data-ng-bind="::pullInterNationalization('companyIndustry.Sports')"></option>
+                <option value="staffing_and_recruiting" data-ng-bind="::pullInterNationalization('companyIndustry.Staffing')"></option>
+                <option value="supermarkets" data-ng-bind="::pullInterNationalization('companyIndustry.Supermarkets')"></option>
+                <option value="telecommunications" data-ng-bind="::pullInterNationalization('companyIndustry.Telecommunications')"></option>
+                <option value="textiles" data-ng-bind="::pullInterNationalization('companyIndustry.Textiles')"></option>
+                <option value="think_tanks" data-ng-bind="::pullInterNationalization('companyIndustry.Think')"></option>
+                <option value="tobacco" data-ng-bind="::pullInterNationalization('companyIndustry.Tobacco')"></option>
+                <option value="translation_and_localization" data-ng-bind="::pullInterNationalization('companyIndustry.Translation')"></option>
+                <option value="transportation_trucking_railroad" data-ng-bind="::pullInterNationalization('companyIndustry.Transportation')"></option>
+                <option value="utilities" data-ng-bind="::pullInterNationalization('companyIndustry.Utilities')"></option>
+                <option value="venture_capital_private_equity" data-ng-bind="::pullInterNationalization('companyIndustry.Venture')"></option>
+                <option value="veterinary" data-ng-bind="::pullInterNationalization('companyIndustry.Veterinary')"></option>
+                <option value="warehousing" data-ng-bind="::pullInterNationalization('companyIndustry.Warehousing')"></option>
+                <option value="wholesale" data-ng-bind="::pullInterNationalization('companyIndustry.Wholesale')"></option>
+                <option value="wine_and_spirits" data-ng-bind="::pullInterNationalization('companyIndustry.Wine')"></option>
+                <option value="wireless" data-ng-bind="::pullInterNationalization('companyIndustry.Wireless')"></option>
+                <option value="writing_and_editing" data-ng-bind="::pullInterNationalization('companyIndustry.Writing')"></option>
+            </select>
+        </p>
+        <p data-ng-bind="companyDetails.numberOfEmployees+' '+pullInterNationalization('manageAccountContent.employees')"></p>
+        <br>
+        <h3 class="mem-label" data-ng-bind="::pullInterNationalization('paHiring.contact.address')"></h3>
+        <p class="mtop15" data-ng-bind="companyDetails.address1+', '+companyDetails.address2"></p>
+        <p data-ng-bind="companyDetails.city"></p>
+        <p data-ng-bind="companyDetails.state+', '+companyDetails.country+', '+companyDetails.zip"></p>
+        <p class="mtop15" data-ng-bind="companyDetails.phoneNumber"></p>
+    </div>
+    <form data-ng-show="flags.editCompanyDetails" name="companyInfoForm" novalidate class="form-styles-override" data-ng-submit="updateCompanyDetails()">
+        <ol class="form-list-c">
+            <li>
+                <label for="name" data-ng-bind="::pullInterNationalization('sysAdmin.organization.companyName')"></label>
+                <input type="text" data-ng-model="companyDetails.name" name="name" placeholder="{{pullInterNationalization('sysAdmin.organization.companyName')}}" data-ng-required="flags.editCompanyDetails" />
+                <!-- Error Messages -->
+                <span class="validate-error" data-ng-if="flags.editCompanyDetails && formSubmitted && companyInfoForm.name.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+            </li>
+            <li>
+                <p class="label-text hide" data-ng-bind="::pullInterNationalization('home.industry')"></p>
+                <div class="select-wrapper">
+                    <span class="select-dd-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                    <label for="industry" data-ng-bind="::pullInterNationalization('home.industry')" class="hide"></label>
+                    <select name="industry" data-ng-model="companyDetails.industry" data-ng-required="flags.editCompanyDetails">
+                        <option value="" data-ng-bind="pullInterNationalization('home.industry')"></option>
+                        <option value="accounting" data-ng-bind="::pullInterNationalization('companyIndustry.Accounting')"></option>
+                        <option value="airlines_aviation" data-ng-bind="::pullInterNationalization('companyIndustry.Airlines')"></option>
+                        <option value="alternative_dispute_resolution" data-ng-bind="::pullInterNationalization('companyIndustry.Alternative0')"></option>
+                        <option value="alternative_medicine" data-ng-bind="::pullInterNationalization('companyIndustry.Alternative1')"></option>
+                        <option value="animation" data-ng-bind="::pullInterNationalization('companyIndustry.Animation')"></option>
+                        <option value="apparel_fashion" data-ng-bind="::pullInterNationalization('companyIndustry.Apparel')"></option>
+                        <option value="architecture_planning" data-ng-bind="::pullInterNationalization('companyIndustry.Architecture')"></option>
+                        <option value="arts_and_crafts" data-ng-bind="::pullInterNationalization('companyIndustry.Arts')"></option>
+                        <option value="automotive" data-ng-bind="::pullInterNationalization('companyIndustry.Automotive')"></option>
+                        <option value="aviation_aerospace" data-ng-bind="::pullInterNationalization('companyIndustry.Aviation')"></option>
+                        <option value="banking" data-ng-bind="::pullInterNationalization('companyIndustry.Banking')"></option>
+                        <option value="biotechnology" data-ng-bind="::pullInterNationalization('companyIndustry.Biotechnology')"></option>
+                        <option value="broadcast_media" data-ng-bind="::pullInterNationalization('companyIndustry.Broadcast')"></option>
+                        <option value="building_materials" data-ng-bind="::pullInterNationalization('companyIndustry.Building')"></option>
+                        <option value="business_supplies_and_equipment" data-ng-bind="::pullInterNationalization('companyIndustry.Business')"></option>
+                        <option value="capital_markets" data-ng-bind="::pullInterNationalization('companyIndustry.Capital')"></option>
+                        <option value="chemicals" data-ng-bind="::pullInterNationalization('companyIndustry.Chemicals')"></option>
+                        <option value="civic_social_organization" data-ng-bind="::pullInterNationalization('companyIndustry.Civic')"></option>
+                        <option value="civil_engineering" data-ng-bind="::pullInterNationalization('companyIndustry.Civil')"></option>
+                        <option value="commercial_real_estate" data-ng-bind="::pullInterNationalization('companyIndustry.Commercial')"></option>
+                        <option value="computer_network_security" data-ng-bind="::pullInterNationalization('companyIndustry.Computer0')"></option>
+                        <option value="computer_games" data-ng-bind="::pullInterNationalization('companyIndustry.Computer1')"></option>
+                        <option value="computer_hardware" data-ng-bind="::pullInterNationalization('companyIndustry.Computer2')"></option>
+                        <option value="computer_networking" data-ng-bind="::pullInterNationalization('companyIndustry.Computer3')"></option>
+                        <option value="computer_software" data-ng-bind="::pullInterNationalization('companyIndustry.Computer4')"></option>
+                        <option value="construction" data-ng-bind="::pullInterNationalization('companyIndustry.Construction')"></option>
+                        <option value="consumer_electronics" data-ng-bind="::pullInterNationalization('companyIndustry.Consumer0')"></option>
+                        <option value="consumer_goods" data-ng-bind="::pullInterNationalization('companyIndustry.Consumer1')"></option>
+                        <option value="consumer_services" data-ng-bind="::pullInterNationalization('companyIndustry.Consumer2')"></option>
+                        <option value="cosmetics" data-ng-bind="::pullInterNationalization('companyIndustry.Cosmetics')"></option>
+                        <option value="dairy" data-ng-bind="::pullInterNationalization('companyIndustry.Dairy')"></option>
+                        <option value="defense_space" data-ng-bind="::pullInterNationalization('companyIndustry.Defense')"></option>
+                        <option value="design" data-ng-bind="::pullInterNationalization('companyIndustry.Design')"></option>
+                        <option value="education_management" data-ng-bind="::pullInterNationalization('companyIndustry.Education')"></option>
+                        <option value="e_learning" data-ng-bind="::pullInterNationalization('companyIndustry.Learning')"></option>
+                        <option value="electrical_electronic_manufacturing" data-ng-bind="::pullInterNationalization('companyIndustry.Electrical')"></option>
+                        <option value="entertainment" data-ng-bind="::pullInterNationalization('companyIndustry.Entertainment')"></option>
+                        <option value="environment_services" data-ng-bind="::pullInterNationalization('companyIndustry.Environment')"></option>
+                        <option value="events_services" data-ng-bind="::pullInterNationalization('companyIndustry.Events')"></option>
+                        <option value="executive_office" data-ng-bind="::pullInterNationalization('companyIndustry.Executive')"></option>
+                        <option value="facilities_services" data-ng-bind="::pullInterNationalization('companyIndustry.Facilities')"></option>
+                        <option value="farming" data-ng-bind="::pullInterNationalization('companyIndustry.Farming')"></option>
+                        <option value="financial_services" data-ng-bind="::pullInterNationalization('companyIndustry.Financial')"></option>
+                        <option value="fine_arts" data-ng-bind="::pullInterNationalization('companyIndustry.Fine')"></option>
+                        <option value="fishery" data-ng-bind="::pullInterNationalization('companyIndustry.Fishery')"></option>
+                        <option value="food_beverages" data-ng-bind="::pullInterNationalization('companyIndustry.Food0')"></option>
+                        <option value="food_production" data-ng-bind="::pullInterNationalization('companyIndustry.Food1')"></option>
+                        <option value="fund-raising" data-ng-bind="::pullInterNationalization('companyIndustry.Fund')"></option>
+                        <option value="furniture" data-ng-bind="::pullInterNationalization('companyIndustry.Furniture')"></option>
+                        <option value="gambling_casinos" data-ng-bind="::pullInterNationalization('companyIndustry.Gambling')"></option>
+                        <option value="glass_ceramics_concrete" data-ng-bind="::pullInterNationalization('companyIndustry.Glass')"></option>
+                        <option value="government_administration" data-ng-bind="::pullInterNationalization('companyIndustry.Government0')"></option>
+                        <option value="government_relations" data-ng-bind="::pullInterNationalization('companyIndustry.Government1')"></option>
+                        <option value="graphic_design" data-ng-bind="::pullInterNationalization('companyIndustry.Graphic')"></option>
+                        <option value="health_wellness_and_fitness" data-ng-bind="::pullInterNationalization('companyIndustry.Health')"></option>
+                        <option value="higher_education" data-ng-bind="::pullInterNationalization('companyIndustry.Higher')"></option>
+                        <option value="hospital_health_care" data-ng-bind="::pullInterNationalization('companyIndustry.Hospital')"></option>
+                        <option value="hospitality" data-ng-bind="::pullInterNationalization('companyIndustry.Hospitality')"></option>
+                        <option value="human_resources" data-ng-bind="::pullInterNationalization('companyIndustry.Human')"></option>
+                        <option value="import_and_export" data-ng-bind="::pullInterNationalization('companyIndustry.Import')"></option>
+                        <option value="individual_family_services" data-ng-bind="::pullInterNationalization('companyIndustry.Individual')"></option>
+                        <option value="industrial_automation" data-ng-bind="::pullInterNationalization('companyIndustry.Industrial')"></option>
+                        <option value="information_services" data-ng-bind="::pullInterNationalization('companyIndustry.Information0')"></option>
+                        <option value="information_technology_and_services" data-ng-bind="::pullInterNationalization('companyIndustry.Information1')"></option>
+                        <option value="insurance" data-ng-bind="::pullInterNationalization('companyIndustry.Insurance0')"></option>
+                        <option value="international_affairs" data-ng-bind="::pullInterNationalization('companyIndustry.International0')"></option>
+                        <option value="international_trade_and_development" data-ng-bind="::pullInterNationalization('companyIndustry.International1')"></option>
+                        <option value="internet" data-ng-bind="::pullInterNationalization('companyIndustry.Internet')"></option>
+                        <option value="investment_banking" data-ng-bind="::pullInterNationalization('companyIndustry.Investment0')"></option>
+                        <option value="investment_management" data-ng-bind="::pullInterNationalization('companyIndustry.Investment1')"></option>
+                        <option value="judiciary" data-ng-bind="::pullInterNationalization('companyIndustry.Judiciary')"></option>
+                        <option value="law_enforcement" data-ng-bind="::pullInterNationalization('companyIndustry.Law0')"></option>
+                        <option value="law_practice" data-ng-bind="::pullInterNationalization('companyIndustry.Law1')"></option>
+                        <option value="legal_services" data-ng-bind="::pullInterNationalization('companyIndustry.Legal')"></option>
+                        <option value="legislative_office" data-ng-bind="::pullInterNationalization('companyIndustry.Legislative')"></option>
+                        <option value="leisure_travel_tourism" data-ng-bind="::pullInterNationalization('companyIndustry.Leisure')"></option>
+                        <option value="libraries" data-ng-bind="::pullInterNationalization('companyIndustry.Libraries')"></option>
+                        <option value="logistics_and_supply_chain" data-ng-bind="::pullInterNationalization('companyIndustry.Logistics')"></option>
+                        <option value="luxury_goods_jewelry" data-ng-bind="::pullInterNationalization('companyIndustry.Luxury')"></option>
+                        <option value="machinery" data-ng-bind="::pullInterNationalization('companyIndustry.Machinery')"></option>
+                        <option value="management_consulting" data-ng-bind="::pullInterNationalization('companyIndustry.Management0')"></option>
+                        <option value="maritime" data-ng-bind="::pullInterNationalization('companyIndustry.Maritime')"></option>
+                        <option value="marketing_and_advertising" data-ng-bind="::pullInterNationalization('companyIndustry.Marketing')"></option>
+                        <option value="market_research" data-ng-bind="::pullInterNationalization('companyIndustry.Market')"></option>
+                        <option value="mechanical_or_industrial_engineering" data-ng-bind="::pullInterNationalization('companyIndustry.Mechanical')"></option>
+                        <option value="media_production" data-ng-bind="::pullInterNationalization('companyIndustry.Media')"></option>
+                        <option value="medical_devices" data-ng-bind="::pullInterNationalization('companyIndustry.Medical0')"></option>
+                        <option value="medical_practice" data-ng-bind="::pullInterNationalization('companyIndustry.Medical1')"></option>
+                        <option value="mental_health_care" data-ng-bind="::pullInterNationalization('companyIndustry.Mental')"></option>
+                        <option value="military" data-ng-bind="::pullInterNationalization('companyIndustry.Military')"></option>
+                        <option value="mining_metals" data-ng-bind="::pullInterNationalization('companyIndustry.Mining')"></option>
+                        <option value="motion_pictures_and_film" data-ng-bind="::pullInterNationalization('companyIndustry.Motion')"></option>
+                        <option value="museums_and_institutions" data-ng-bind="::pullInterNationalization('companyIndustry.Museums')"></option>
+                        <option value="music" data-ng-bind="::pullInterNationalization('companyIndustry.Music')"></option>
+                        <option value="nanotechnology" data-ng-bind="::pullInterNationalization('companyIndustry.Nanotechnology')"></option>
+                        <option value="newspaper" data-ng-bind="::pullInterNationalization('companyIndustry.Newspaper')"></option>
+                        <option value="nonprofit_organization_management" data-ng-bind="::pullInterNationalization('companyIndustry.Nonprofit')"></option>
+                        <option value="oil_energy" data-ng-bind="::pullInterNationalization('companyIndustry.Oil')"></option>
+                        <option value="online_media" data-ng-bind="::pullInterNationalization('companyIndustry.Online')"></option>
+                        <option value="outsourcing_offshoring" data-ng-bind="::pullInterNationalization('companyIndustry.Outsourcing')"></option>
+                        <option value="package_freight_delivery" data-ng-bind="::pullInterNationalization('companyIndustry.Package0')"></option>
+                        <option value="packaging_and_containers" data-ng-bind="::pullInterNationalization('companyIndustry.Package1')"></option>
+                        <option value="paper_forest_products" data-ng-bind="::pullInterNationalization('companyIndustry.Paper')"></option>
+                        <option value="performing_arts" data-ng-bind="::pullInterNationalization('companyIndustry.Performing')"></option>
+                        <option value="pharmaceuticals" data-ng-bind="::pullInterNationalization('companyIndustry.Pharmaceuticals')"></option>
+                        <option value="philanthropy" data-ng-bind="::pullInterNationalization('companyIndustry.Philanthropy')"></option>
+                        <option value="photography" data-ng-bind="::pullInterNationalization('companyIndustry.Photography')"></option>
+                        <option value="plastics" data-ng-bind="::pullInterNationalization('companyIndustry.Plastics')"></option>
+                        <option value="political_organization" data-ng-bind="::pullInterNationalization('companyIndustry.Political')"></option>
+                        <option value="primary_secondary_education" data-ng-bind="::pullInterNationalization('companyIndustry.Primary')"></option>
+                        <option value="printing" data-ng-bind="::pullInterNationalization('companyIndustry.Printing')"></option>
+                        <option value="professional_training_coaching" data-ng-bind="::pullInterNationalization('companyIndustry.Professional')"></option>
+                        <option value="program_development" data-ng-bind="::pullInterNationalization('companyIndustry.Program')"></option>
+                        <option value="public_policy" data-ng-bind="::pullInterNationalization('companyIndustry.Public0')"></option>
+                        <option value="public_relations_and_communications" data-ng-bind="::pullInterNationalization('companyIndustry.Public1')"></option>
+                        <option value="public_safety" data-ng-bind="::pullInterNationalization('companyIndustry.Public2')"></option>
+                        <option value="publishing" data-ng-bind="::pullInterNationalization('companyIndustry.Publishing')"></option>
+                        <option value="railroad_manufacture" data-ng-bind="::pullInterNationalization('companyIndustry.Railroad')"></option>
+                        <option value="ranching" data-ng-bind="::pullInterNationalization('companyIndustry.Ranching')"></option>
+                        <option value="real_estate" data-ng-bind="::pullInterNationalization('companyIndustry.Real0')"></option>
+                        <option value="recreational_facilities_and_services" data-ng-bind="::pullInterNationalization('companyIndustry.Recreational')"></option>
+                        <option value="religious_institutions" data-ng-bind="::pullInterNationalization('companyIndustry.Religious')"></option>
+                        <option value="renewables_environment" data-ng-bind="::pullInterNationalization('companyIndustry.Renewables')"></option>
+                        <option value="research" data-ng-bind="::pullInterNationalization('companyIndustry.Research')"></option>
+                        <option value="restaurants" data-ng-bind="::pullInterNationalization('companyIndustry.Restaurants')"></option>
+                        <option value="retail" data-ng-bind="::pullInterNationalization('companyIndustry.Retail')"></option>
+                        <option value="security_and_investigations" data-ng-bind="::pullInterNationalization('companyIndustry.Security')"></option>
+                        <option value="semiconductors" data-ng-bind="::pullInterNationalization('companyIndustry.Semiconductors')"></option>
+                        <option value="shipbuilding" data-ng-bind="::pullInterNationalization('companyIndustry.Shipbuilding')"></option>
+                        <option value="sporting_goods" data-ng-bind="::pullInterNationalization('companyIndustry.Sporting')"></option>
+                        <option value="sports" data-ng-bind="::pullInterNationalization('companyIndustry.Sports')"></option>
+                        <option value="staffing_and_recruiting" data-ng-bind="::pullInterNationalization('companyIndustry.Staffing')"></option>
+                        <option value="supermarkets" data-ng-bind="::pullInterNationalization('companyIndustry.Supermarkets')"></option>
+                        <option value="telecommunications" data-ng-bind="::pullInterNationalization('companyIndustry.Telecommunications')"></option>
+                        <option value="textiles" data-ng-bind="::pullInterNationalization('companyIndustry.Textiles')"></option>
+                        <option value="think_tanks" data-ng-bind="::pullInterNationalization('companyIndustry.Think')"></option>
+                        <option value="tobacco" data-ng-bind="::pullInterNationalization('companyIndustry.Tobacco')"></option>
+                        <option value="translation_and_localization" data-ng-bind="::pullInterNationalization('companyIndustry.Translation')"></option>
+                        <option value="transportation_trucking_railroad" data-ng-bind="::pullInterNationalization('companyIndustry.Transportation')"></option>
+                        <option value="utilities" data-ng-bind="::pullInterNationalization('companyIndustry.Utilities')"></option>
+                        <option value="venture_capital_private_equity" data-ng-bind="::pullInterNationalization('companyIndustry.Venture')"></option>
+                        <option value="veterinary" data-ng-bind="::pullInterNationalization('companyIndustry.Veterinary')"></option>
+                        <option value="warehousing" data-ng-bind="::pullInterNationalization('companyIndustry.Warehousing')"></option>
+                        <option value="wholesale" data-ng-bind="::pullInterNationalization('companyIndustry.Wholesale')"></option>
+                        <option value="wine_and_spirits" data-ng-bind="::pullInterNationalization('companyIndustry.Wine')"></option>
+                        <option value="wireless" data-ng-bind="::pullInterNationalization('companyIndustry.Wireless')"></option>
+                        <option value="writing_and_editing" data-ng-bind="::pullInterNationalization('companyIndustry.Writing')"></option>
+                    </select>
+                </div>
+                <span class="validate-error" data-ng-if="flags.editCompanyDetails && formSubmitted && companyInfoForm.industry.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+            </li>
+            <li>
+                <label for="numberOfEmployees" data-ng-bind="::pullInterNationalization('admin.account.business.label.emp')"></label>
+                <input type="text" data-ng-model="companyDetails.numberOfEmployees" name="numberOfEmployees" placeholder="{{pullInterNationalization('admin.account.business.label.emp')}}" data-ng-required="flags.editCompanyDetails" maxlength="6" data-ng-pattern="/^[0-9\b]{1,6}$/" />
+                <span class="validate-error" data-ng-if="flags.editCompanyDetails && formSubmitted && companyInfoForm.numberOfEmployees.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                <span class="validate-error" data-ng-if="flags.editCompanyDetails && formSubmitted && companyInfoForm.numberOfEmployees.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+                <span class="validate-error" data-ng-if="flags.editCompanyDetails && formSubmitted && companyDetails.numberOfEmployees <= 0" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+            </li>
+            <li class="mTop45">
+                <p class="label-text hide" data-ng-bind="::pullInterNationalization('home.country')"></p>
+                <div class="select-wrapper">
+                    <span class="select-dd-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                    <label for="country" data-ng-bind="::pullInterNationalization('admin.account.individual.country')" class="hide"></label>
+                    <select name="country" data-ng-model="companyDetails.country" data-ng-required="flags.editCompanyDetails" data-ng-change="stateCheck(companyDetails.country);resetAddress();">
+                        <option value="" data-ng-bind="::pullInterNationalization('home.selectCountry')"></option>
+                        <option value="{{cList.code}}" data-ng-if="cList.code === 'US'" data-ng-repeat="cList in countries" data-ng-bind="cList.name"></option>
+                        <option value="{{cList.code}}" data-ng-if="cList.code === 'CA'" data-ng-repeat="cList in countries" data-ng-bind="cList.name"></option>
+                        <option value="">--------------------------------------------------</option>
+                        <option value="{{cList.code}}" data-ng-if="cList.code !== 'US' && cList.code !== 'CA'" data-ng-repeat="cList in countries" data-ng-bind="cList.name"></option>
+                    </select>
+                </div>
+                <span class="validate-error" data-ng-if="flags.editCompanyDetails && formSubmitted && companyInfoForm.country.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+            </li>
+            <li>
+                <ul class="cols-2">
+                    <li>
+                        <label for="address1" data-ng-bind="::pullInterNationalization('admin.account.member.details.address1')"></label>
+                        <input type="text" data-ng-model="companyDetails.address1" name="address1" placeholder="{{pullInterNationalization('admin.account.member.details.address1')}}" data-ng-required="flags.editCompanyDetails" />
+                        <!-- Error Messages -->
+                        <span class="validate-error" data-ng-if="flags.editCompanyDetails && formSubmitted && companyInfoForm.address1.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                    </li>
+                    <li>
+                        <label for="address2" data-ng-bind="::pullInterNationalization('admin.account.member.details.address2')"></label>
+                        <input type="text" data-ng-model="companyDetails.address2" name="address2" placeholder="{{pullInterNationalization('admin.account.member.details.address1')}}" data-ng-required="false" />
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <label for="city" data-ng-bind="::pullInterNationalization('signup.city')"></label>
+                <input type="text" data-ng-model="companyDetails.city" name="city" placeholder="{{pullInterNationalization('signup.city')}}" data-ng-required="flags.editCompanyDetails" />
+                <!-- Error Messages -->
+                <span class="validate-error" data-ng-if="flags.editCompanyDetails && formSubmitted && companyInfoForm.city.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+            </li>
+            <li>
+                <ul class="cols-2">
+                    <li data-ng-if="showStatesOthers">
+                        <label for="state" data-ng-bind="::pullInterNationalization('admin.account.member.details.region')"></label>
+                        <input type="text" data-ng-model="companyDetails.state" name="state" placeholder="{{pullInterNationalization('admin.account.member.details.region')}}" data-ng-required="flags.editCompanyDetails" />
+                        <!-- Error Messages -->
+                        <span class="validate-error" data-ng-if="flags.editCompanyDetails && formSubmitted && companyInfoForm.state.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                    </li>
+                    <li data-ng-if="showStatesCanada">
+                        <label for="state" data-ng-bind="::pullInterNationalization('admin.account.member.details.province')"></label>
+                        <input type="text" data-ng-model="companyDetails.state" name="state" placeholder="{{pullInterNationalization('admin.account.member.details.province')}}" data-ng-required="flags.editCompanyDetails" />
+                        <!-- Error Messages -->
+                        <span class="validate-error" data-ng-if="flags.editCompanyDetails && formSubmitted && companyInfoForm.state.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                    </li>
+                    <li data-ng-if="showStatesUS">
+                        <p class="label-text hide" data-ng-bind="::pullInterNationalization('admin.account.individual.state')"></p>
+                        <div class="select-wrapper">
+                            <span class="select-dd-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                            <label for="state" data-ng-bind="::pullInterNationalization('admin.account.individual.state')" class="hide"></label>
+                            <select name="state" data-ng-model="companyDetails.state" data-ng-required="flags.editCompanyDetails">
+                                <option value="" data-ng-bind="::pullInterNationalization('home.selectState')"></option>
+                                <option value="AL" label="Alabama"> Alabama</option>
+                                <option value="AK" label="Alaska">Alaska</option>
+                                <option value="AS" label="American Samoa">American Samoa</option>
+                                <option value="AZ" label="Arizona">Arizona</option>
+                                <option value="AR" label="Arkansas">Arkansas</option>
+                                <option value="AE" label="Armed Forces Middle East">Armed Forces Middle East</option>
+                                <option value="AA" label="Armed Forces Americas (not Canada)">Armed Forces Americas (not Canada)</option>
+                                <option value="AP" label="Armed Forces Pacific">Armed Forces Pacific</option>
+                                <option value="CA" label="California">California</option>
+                                <option value="CO" label="Colorado">Colorado</option>
+                                <option value="CT" label="Connecticut">Connecticut</option>
+                                <option value="DE" label="Delaware">Delaware</option>
+                                <option value="DC" label="District of Columbia">District of Columbia</option>
+                                <option value="FL" label="Florida">Florida</option>
+                                <option value="GA" label="Georgia">Georgia</option>
+                                <option value="GU" label="Guam">Guam</option>
+                                <option value="HI" label="Hawaii">Hawaii</option>
+                                <option value="ID" label="Idaho">Idaho</option>
+                                <option value="IL" label="Illinois">Illinois</option>
+                                <option value="IN" label="Indiana">Indiana</option>
+                                <option value="IA" label="Iowa">Iowa</option>
+                                <option value="KS" label="Kansas">Kansas</option>
+                                <option value="KY" label="Kentucky">Kentucky</option>
+                                <option value="LA" label="Louisiana">Louisiana</option>
+                                <option value="ME" label="Maine">Maine</option>
+                                <option value="MD" label="Maryland">Maryland</option>
+                                <option value="MA" label="Massachusetts">Massachusetts</option>
+                                <option value="MI" label="Michigan">Michigan</option>
+                                <option value="MN" label="Minnesota">Minnesota</option>
+                                <option value="MS" label="Mississippi">Mississippi</option>
+                                <option value="MO" label="Missouri">Missouri</option>
+                                <option value="MT" label="Montana">Montana</option>
+                                <option value="NE" label="Nebraska">Nebraska</option>
+                                <option value="NV" label="Nevada">Nevada</option>
+                                <option value="NH" label="New Hampshire">New Hampshire</option>
+                                <option value="NJ" label="New Jersey">New Jersey</option>
+                                <option value="NM" label="New Mexico">New Mexico</option>
+                                <option value="NY" label="New York">New York</option>
+                                <option value="NC" label="North Carolina">North Carolina</option>
+                                <option value="ND" label="North Dakota">North Dakota</option>
+                                <option value="MP" label="Northern Mariana Islands">Northern Mariana Islands</option>
+                                <option value="OH" label="Ohio">Ohio</option>
+                                <option value="OK" label="Oklahoma">Oklahoma</option>
+                                <option value="OR" label="Oregon">Oregon</option>
+                                <option value="PA" label="Pennsylvania">Pennsylvania</option>
+                                <option value="PR" label="Puerto Rico">Puerto Rico</option>
+                                <option value="RI" label="Rhode Island">Rhode Island</option>
+                                <option value="SC" label="South Carolina">South Carolina</option>
+                                <option value="SD" label="South Dakota">South Dakota</option>
+                                <option value="TN" label="Tennessee">Tennessee</option>
+                                <option value="TX" label="Texas">Texas</option>
+                                <option value="UT" label="Utah">Utah</option>
+                                <option value="VT" label="Vermont">Vermont</option>
+                                <option value="VI" label="Virgin Islands">Virgin Islands</option>
+                                <option value="VA" label="Virginia">Virginia</option>
+                                <option value="WA" label="Washington">Washington</option>
+                                <option value="WV" label="West Virginia">West Virginia</option>
+                                <option value="WI" label="Wisconsin">Wisconsin</option>
+                                <option value="WY" label="Wyoming">Wyoming</option>
+                            </select>
+                        </div>
+                        <span class="validate-error" data-ng-if="flags.editCompanyDetails && formSubmitted && companyInfoForm.state.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                    </li>
+                    <li data-ng-if="showStatesCanada || showStatesOthers">
+                        <label for="zip" data-ng-bind="::pullInterNationalization('admin.account.member.details.postal')"></label>
+                        <input type="text" data-ng-model="companyDetails.zip" name="zip" placeholder="{{pullInterNationalization('admin.account.member.details.postal')}}" data-ng-required="flags.editCompanyDetails" />
+                        <!-- Error Messages -->
+                        <span class="validate-error" data-ng-if="flags.editCompanyDetails && formSubmitted && companyInfoForm.zip.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                    </li>
+                    <li data-ng-if="showStatesUS">
+                        <label for="zip" data-ng-bind="::pullInterNationalization('admin.account.member.details.zipcode')"></label>
+                        <input type="text" data-ng-model="companyDetails.zip" name="zip" placeholder="{{pullInterNationalization('admin.account.member.details.zipcode')}}" data-ng-required="flags.editCompanyDetails" ng-pattern="/(^\d{5}$)|(^\d{5}-\d{4}$)/" />
+                        <!-- Error Messages -->
+                        <span class="validate-error" data-ng-if="flags.editCompanyDetails && formSubmitted && companyInfoForm.zip.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                        <span class="validate-error" data-ng-if="flags.editCompanyDetails && formSubmitted && companyInfoForm.zip.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <label for="phoneNumber" data-ng-bind="::pullInterNationalization('admin.account.member.details.phonenumber')"></label>
+                <input type="text" data-ng-model="companyDetails.phoneNumber" name="phoneNumber" placeholder="{{pullInterNationalization('admin.account.member.details.phonenumber')}}" data-ng-required="flags.editCompanyDetails" data-ng-pattern="/^\+?([-.\s\d]){10,16}$/" />
+                <!-- Error Messages -->
+                <span class="validate-error" data-ng-if="flags.editCompanyDetails && formSubmitted && companyInfoForm.phoneNumber.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                <span class="validate-error" data-ng-if="flags.editCompanyDetails && formSubmitted && companyInfoForm.phoneNumber.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+            </li>
+            <!-- Form Button Starts -->
+            <li class="submit-cancel-btns">
+                <ul class="submit-cancel-list">
+                    <li>
+                        <input type="submit" value="{{::pullInterNationalization('admin.member.submit')}}" class="btn-block btn-15px sp-btn-color" />
+                    </li>
+                    <li>
+                        <input type="button" value="{{::pullInterNationalization('admin.member.cancel')}}" class="btn-block btn-grey-dark btn-15px" data-ng-click="cancelCompanyUpdate();" />
+                    </li>
+                </ul>
+            </li>
+            <!-- Form Button Ends -->
+        </ol>
+    </form>
+</div>

@@ -1,0 +1,202 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 feedback-response-widget">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent feedback-heading-accent">
+                    <ul class="feedback-list-dialog">
+                        <li>
+                            <a href="javascript:void(0)" class="border-link" data-ng-class="{'active':feedbackView === 0}" data-ng-click="feedbackView !== 0 && openFeedback(0,false)">
+                                <span class="mock-link" data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead2')"></span>
+                            </a>
+                        </li>
+                        <li data-ng-if="masterList.length">
+                            <a href="javascript:void(0)" class="border-link" data-ng-class="{'active':feedbackView === 1}" data-ng-click="feedbackView !== 1 && openFeedback(1,false)">
+                                <span class="mock-link" data-ng-bind="::pullInterNationalization('feedback.response')+' ('+masterList.length+')'"></span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                    <div class="feedback-list-content">
+                        <div class="note-entry-header">
+                            <div class="text-icons">
+                                <div>
+                                    <span class="feedback-title-1" data-ng-bind="feedbackRefObj.parentName"></span>
+                                    <span class="feedback-title-2" data-ng-bind="feedbackRefObj.name"></span>
+                                    <!-- <div class="filter-right">
+	                                    <a class="comment-dt filter-text click-cursor" href="javascript:void(0)" data-ng-if="feedbackView === 1"  sp-condition="true" sp-click-outside="$parent.showFilter">
+			                            	<span data-ng-bind="statusFilterName"></span>
+			                                <span class="icon-icon_sort sp-icon-color filter-dropdown-icon click-cursor"></span>
+			                            </a>
+	                                    <a class="options-icon" href="javascript:void(0)" data-ng-if="feedbackView === 1 && masterList.length" sp-condition="true" sp-click-outside="$parent.showNotesOptions">
+	                                        <span class="icon-threesquares sp-icon-color" ></span>
+	                                    </a>
+                                    </div>-->
+                                </div>
+                            </div>
+                            <!-- <div class="actions-dropdown">
+                                <div class="actions-callout-wrappper_style1 pos8" data-ng-if="showNotesOptions && masterList.length && feedbackView === 1">
+                                    <ul class="action-links notes-links">
+                                        <li>
+                                            <a href="javascript:void(0)" data-ng-click="emailFeedback()">
+                                                <span class="action-icon icon-icon_send-message icon-icon_trashbin_style2 font-size-11 sp-icon-color"></span>
+                                                <span class="action-text" data-ng-bind="::pullInterNationalization('feedback.actions.email')"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" data-ng-click="deleteModal(null)">
+                                                <span class="action-icon icon-icon_trashbin icon-icon_trashbin_style2 sp-icon-color"></span>
+                                                <span class="action-text" data-ng-bind="::pullInterNationalization('feedback.actions.delete')"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div> -->
+                        </div>
+                        <!-- <div class="actions-dropdown">
+                            <div class="actions-callout-wrappper_style1 pos10" data-ng-if="showFilter && feedbackView === 1">
+                                <ul class="action-links notes-links full-width">
+                                    <li>
+                                        <a data-ng-class="selectedFilter === 'ALL'?'selected':''" href="javascript:void(0)" data-ng-click="filterData('ALL', pullInterNationalization('feedback.filters.status.viewAll.display'))">
+                                            <span class="action-text" data-ng-bind="::pullInterNationalization('feedback.filters.status.viewAll.label')"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a data-ng-class="selectedFilter === 'COMPLETED'?'selected':''" href="javascript:void(0)" data-ng-click="filterData('COMPLETED', pullInterNationalization('feedback.filters.status.received.display'))">
+                                            <span class="action-text" data-ng-bind="::pullInterNationalization('feedback.filters.status.received.label')"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a data-ng-class="selectedFilter === 'NOT_INITIATED'?'selected':''" href="javascript:void(0)" data-ng-click="filterData('NOT_INITIATED', pullInterNationalization('feedback.filters.status.pending.display'))">
+                                            <span class="action-text" data-ng-bind="::pullInterNationalization('feedback.filters.status.pending.label')"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a data-ng-class="selectedFilter === 'DECLINED'?'selected':''" href="javascript:void(0)" data-ng-click="filterData('DECLINED', pullInterNationalization('feedback.filters.status.declined.display'))">
+                                            <span class="action-text" data-ng-bind="::pullInterNationalization('feedback.filters.status.declined.label')"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="new-modals-wrapper feedback-modal-wrapper" style="height:{{(winWidth < 768?winHeight:'auto')}}" data-ng-class="{'addScroll':(winWidth < 768)}">
+                    <!-- Request Feedback Starts -->
+                    <div class="note-entry-content clearfix" data-ng-if="!feedbackView">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="note-entry-content tags-email-list">
+                                    <div class="note-entry-form clearfix">
+                                        <p class="mbot0">
+                                            <textarea data-ng-attr-placeholder="{{::pullInterNationalization('feedback.sidePanel.feedbackNote.placeholder')}}" class="notes-ta" data-ng-model="feedbackForm.comment" name="feedbackRequest" id="feedbackRequest"></textarea>
+                                        </p>
+                                        <span class="err-msg validate-error" data-ng-if="formSubmitted && (feedbackForm.comment==='' || feedbackForm.comment === undefined)" data-ng-bind="::pullInterNationalization('practiceArea.required.error')"></span>
+                                        <br/>
+                                        <div class="tagsEmailInput">
+                                            <tags-input ng-model="tagsAdded" self-email="true" display-property="name" placeholder="{{::pullInterNationalization('feedback.sidePanel.tags.placeholder')}}" display-name="email" allowed-tags-pattern="^[A-Za-z0-9._-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$" replace-spaces-with-dashes="false" on-tag-removed="tagRemoved($tag)" on-tag-added="tagAdded($tag)">
+                                                <auto-complete min-length="1" load-on-focus="true" load-on-empty="true" max-results-to-show="10" source="loadEmail($query)" class="ng-tags-pos-fix"></auto-complete>
+                                            </tags-input>
+                                        </div>
+                                        <span class="err-msg validate-error" data-ng-if="formSubmitted && !feedbackUsers.length" data-ng-bind="::pullInterNationalization('practiceArea.required.error')"></span>
+                                    </div>
+                                    <div class="ta-options comment-edit-btns">
+                                        <a href="javascript:void(0)" data-ng-click="submitFeedbackRequest()" class="btn-square-12px sp-background-color save-comment" data-ng-bind="::pullInterNationalization('feedback.sidePanel.actions.send')"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="feedback-info">
+                                    <p class="title" data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.label')"></p>
+                                    <p class="sub-title" data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead1')"></p>
+                                    <ul class="desc">
+                                        <li data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead1.subDesc1')"></li>
+                                        <li data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead1.subDesc2')"></li>
+                                        <li data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead1.subDesc3')"></li>
+                                    </ul>
+                                    <p class="sub-title" data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead2')"></p>
+                                    <ul class="desc">
+                                        <li data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead2.subDesc1')"></li>
+                                        <li data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead2.subDesc2')"></li>
+                                    </ul>
+                                    <p class="sub-title" data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead3')"></p>
+                                    <ul class="desc">
+                                        <li data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead3.subDesc1')"></li>
+                                        <li data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead3.subDesc2')"></li>
+                                        <li data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead3.subDesc3')"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Request Feedback List Starts-->
+                    <div class="note-entry-content feedback-entry-content clearfix" data-ng-if="feedbackView">
+                        <div class="feedback-box-wrapper relative-pos" data-ng-class="$index===0?'add-margin-top':''" data-ng-repeat="list in recordField = (feedbackRequestList) track by $index">
+                            <div class="comment-dt">
+                                <span class="clock-display" data-ng-bind="list.createdOn | spDateFormat"></span>
+                                <!-- <span class="icon-icon_sort sp-icon-color adj1" sp-condition="true" sp-click-outside="show"></span> -->
+                            </div>
+                            <div class="actions-dropdown">
+                                <!-- <div class="actions-callout-wrappper_style1 pos9" data-ng-if="show">
+                                    <ul class="action-links notes-links">
+                                        <li data-ng-if="list.requestStatus !== 'NOT_INITIATED'">
+                                            <a href="javascript:void(0)" data-ng-click="emailFeedback(list.id)">
+                                                <span class="action-icon icon-icon_send-message icon-icon_trashbin_style2 sp-icon-color"></span>
+                                                <span class="action-text" data-ng-bind="::pullInterNationalization('feedback.actions.email')"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" data-ng-click="deleteModal(list.id)">
+                                                <span class="action-icon icon-icon_trashbin icon-icon_trashbin_style2 sp-icon-color"></span>
+                                                <span class="action-text" data-ng-bind="::pullInterNationalization('feedback.actions.delete')"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div> -->
+                            </div>
+                            <article class="detail-information">
+                                <div class="pic-details">
+                                    <span class="imgReplacement" data-ng-if="!list.feedbackUserDto.smallProfileImage" data-ng-bind="list.feedbackUserDto.userInitials"></span>
+                                    <span class="note-user-pic" data-ng-if="list.feedbackUserDto.smallProfileImage"><img title="{{list.feedbackUserDto.name}}" alt="{{list.feedbackUserDto.userInitials}}" data-ng-src="{{list.feedbackUserDto.smallProfileImage}}">
+                                    </span>
+                                    <span class="note-user">
+                                        <span class="nu-name sp-link-color" data-ng-bind="list.feedbackUserDto.fullNameOrEmail"></span>
+                                    <span class="nu-Title" data-ng-bind="list.feedbackUserDto.title"></span>
+                                    </span>
+                                </div>
+                                <div class="feedback-request-status">
+                                    <div class="clearfix">
+                                        <div class="feedback-request">
+                                            <p class="fb-head fw700" data-ng-bind="::pullInterNationalization('feedback.entry.request.label')"></p>
+                                            <div class="feedback-request-text">
+                                                <input type="checkbox" class="read-more-state" id="readMoreToggle_0_{{$index}}" />
+                                                <div class="read-more-wrap-horizontal" data-ng-init="btn0=true">
+                                                    <span class="less-margin comment-desc preserve-line-break" data-ng-bind-html="btn0?list.comment.substr(0, 200):list.comment" data-ng-class="{'moreellipses':list.comment.length>200&&btn0}"></span>
+                                                </div>
+                                                <label for="readMoreToggle_0_{{$index}}" data-readMore="{{::pullInterNationalization('spectrum.more')}}" data-readLess="{{::pullInterNationalization('label.readless')}}" data-ng-click="$parent.btn0=!$parent.btn0" class="read-more-trigger-horizontal sp-link-color" data-ng-if="list.comment.length>200"></label>
+                                            </div>
+                                        </div>
+                                        <div class="feedback-status" data-ng-class="list.requestStatus === 'NOT_INITIATED'?'pending-feedback-wrapper':''">
+                                            <p class="fb-head fw700" data-ng-if="list.requestStatus === 'COMPLETED' && list.response !==null">{{::pullInterNationalization('feedback.entry.default.label')}}</p>
+                                            <p data-ng-if="list.requestStatus === 'NOT_INITIATED'">{{::pullInterNationalization('feedback.entry.default.label')}} <strong>{{::pullInterNationalization('feedback.entry.status.pending.label')}}</strong></p>
+                                            <p data-ng-if="list.requestStatus === 'DECLINED'">{{::pullInterNationalization('feedback.entry.default.label')}} <strong>{{::pullInterNationalization('feedback.entry.status.declined.label')}}</strong></p>
+                                            <div class="feedback-response-text">
+                                                <input type="checkbox" class="read-more-state" id="readMoreToggle_1_{{$index}}" />
+                                                <div class="read-more-wrap-horizontal" data-ng-init="btn1=true">
+                                                    <span data-ng-if="(list.requestStatus === 'COMPLETED' || list.requestStatus === 'DECLINED') && list.response !==null" class="preserve-line-break" data-ng-bind="btn1?list.response.substr(0, 200):list.response" data-ng-class="{'moreellipses':list.response.length>200&&btn1}"></span>
+                                                </div>
+                                                <label for="readMoreToggle_1_{{$index}}" data-readMore="{{::pullInterNationalization('spectrum.more')}}" data-readLess="{{::pullInterNationalization('label.readless')}}" data-ng-click="$parent.btn1=!$parent.btn1" class="read-more-trigger-horizontal sp-link-color" data-ng-if="list.response.length>200"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <p data-ng-show="!recordField.length && responseAvailable" class="noMatchFound ng-hide" data-ng-bind="::pullInterNationalization('feedback.results.empty')"></p>
+            			<p data-ng-show="!recordField.length && !responseAvailable" class="noMatchFound ng-hide" data-ng-bind="::pullInterNationalization('practiceArea.loading')"></p>               
+                    </div>
+                    <!-- Request Feedback List Ends -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

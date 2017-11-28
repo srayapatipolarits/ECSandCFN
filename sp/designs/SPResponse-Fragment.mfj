@@ -1,0 +1,51 @@
+{
+	"_type": "UMLClass",
+	"_id": "AAAAAAFJjgMbqMrKcyg=",
+	"_parent": {
+		"$ref": "AAAAAAFJjgKxScrGYwY="
+	},
+	"name": "SPResponse",
+	"visibility": "public",
+	"attributes": [
+		{
+			"_type": "UMLAttribute",
+			"_id": "AAAAAAFJjgVvM8s8InA=",
+			"_parent": {
+				"$ref": "AAAAAAFJjgMbqMrKcyg="
+			},
+			"name": "success",
+			"visibility": "private",
+			"isStatic": false,
+			"isLeaf": false,
+			"type": "Map",
+			"isReadOnly": false,
+			"isOrdered": false,
+			"isUnique": false,
+			"isDerived": false,
+			"aggregation": "none",
+			"isID": false
+		},
+		{
+			"_type": "UMLAttribute",
+			"_id": "AAAAAAFJjgWn7MtCoTo=",
+			"_parent": {
+				"$ref": "AAAAAAFJjgMbqMrKcyg="
+			},
+			"name": "error",
+			"visibility": "private",
+			"isStatic": false,
+			"isLeaf": false,
+			"type": "Map",
+			"isReadOnly": false,
+			"isOrdered": false,
+			"isUnique": false,
+			"isDerived": false,
+			"aggregation": "none",
+			"isID": false
+		}
+	],
+	"isAbstract": false,
+	"isFinalSpecification": false,
+	"isLeaf": false,
+	"isActive": false
+}

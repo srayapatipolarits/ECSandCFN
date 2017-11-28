@@ -1,0 +1,36 @@
+<div class="lnd-content-dialog">
+    <div class="x-container" style="height:{{ctrl.winHeight}}">
+        <div class="add-note">
+            <div class="dialog-header-closeBtn">
+                <h2 class="dialog-heading" data-ng-bind="::pullInterNationalization('practiceArea.postNote')"></h2>
+                <div class="ngdialog-close close-btn-icon icon-icon_remove"></div>
+            </div>
+            <div class="pa-details col-md-12 col-xs-12">
+                <div class="copy-suggestion"><span data-ng-bind-html="::pullInterNationalization('practiceArea.copyDetail')"></span></div>
+                <div class="description_holder top-margin">
+                    <form name="ctrl.postANoteForm" novalidate data-ng-submit="ctrl.addNote({'goalId':ctrl.activeProfile.id,'devStrategyId':ctrl.devStrategy.id,'contents':ctrl.noteTextArea})">
+                        <textarea id="comment" focus-if class="textArea" name="content" placeholder="{{::pullInterNationalization('practiceArea.postNote')}}" data-ng-model="ctrl.noteTextArea" required></textarea>
+                        <span class="err-msg validate-error" data-ng-if="ctrl.postANote.submitted && ctrl.postANoteForm.content.$error.required" data-ng-bind="::pullInterNationalization('practiceArea.required.error')"></span>
+                        <h3 class="pa-subHeading updatedHead" data-ng-if="ctrl.devStrategy.desc" data-ng-bind="::pullInterNationalization('practiceArea.developmentStrategy')"></h3>
+                        <div class="description updated-margin" data-ng-bind="ctrl.devStrategy.desc"></div>
+                        <div class="clearfix spacer">
+                            <input type="submit" value="{{::pullInterNationalization('practiceArea.save')}}" class="btn-block btn-14px sp-btn-color" data-ng-class="ctrl.submitDisabled()?'':'disabled'" />
+                            <input type="button" value="{{::pullInterNationalization('practiceArea.cancel')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="closeThisDialog();" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="pa-sp-details pa-border-top pa-extra-topspace col-md-12 col-xs-12" data-ng-if="ctrl.filteredViewDetailsList.length">
+                <h3 class="pa-headTitle bottom-margin newTitle" data-ng-bind-html="pullInterNationalization('practiceCtrl.type.NOTE')+' <span>('+ctrl.filteredViewDetailsList.length+')</span>'">Post a Note</h3>
+                <div class="pa-separater extraSpc" data-ng-repeat="list in ctrl.filteredViewDetailsList track by $index">
+                    <p class="date-subhead clearfix" data-ng-bind="list.formattedDate"></p>
+                    <p class="nf-new-subhead preserve-line-break" data-ng-bind="list.content"></p>
+                    <div data-ng-if="list.devStrategy && ctrl.devStrategy.id===''">
+                        <h3 class="pa-subHeading-strong grey-head top-m30" data-ng-if="list.devStrategy.dsDescription" data-ng-bind="::pullInterNationalization('practiceArea.devStrategy')"></h3>
+                        <p class="preserve-line-break nf-new-subhead" data-ng-bind="list.devStrategy.dsDescription"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

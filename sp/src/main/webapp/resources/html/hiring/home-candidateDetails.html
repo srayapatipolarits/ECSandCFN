@@ -1,0 +1,121 @@
+<div class="member-profile-wrapper ov" data-ng-init="ctrl.initCandidateProfile()">
+    <a href="javascript:void(0)" class="icon-icon_remove close-view" data-ng-click="ctrl.closeMemberSection();"></a>
+    <div class="member-details-wrap adj sp-panel-accent">
+        <div class="mem-profile-pic">
+            <img data-ng-src="{{ctrl.memberProfileBackup.smallProfileImage}}" alt="{{ctrl.memberProfileBackup.userInitials}}" data-ng-if="ctrl.memberProfileBackup.smallProfileImage">
+            <div class="imgReplacementBig topSpace" data-ng-if="!ctrl.memberProfileBackup.smallProfileImage" data-ng-bind="ctrl.memberProfileBackup.userInitials"></div>
+        </div>
+        <div class="mem-personal-details">
+            <p class="mem-name">
+                <span data-ng-bind="ctrl.memberProfileBackup.name" data-ng-if="ctrl.memberProfileBackup.name"></span>
+                <a data-ng-if="ctrl.memberProfileBackup.linkedInUrl" href="{{ctrl.memberProfileBackup.linkedInUrl}}" title="{{ctrl.memberProfileBackup.linkedInUrl}}" class="icon-linkedin fleft lin-color link-icon" target="_blank"></a>
+                <a data-ng-if="!ctrl.memberProfileBackup.linkedInUrl && ctrl.memberProfileBackup.url" href="{{ctrl.memberProfileBackup.url}}" title="{{ctrl.memberProfileBackup.url}}" class="icon-link sp-icon-color fleft link-icon" target="_blank"></a>
+                <span data-ng-if="ctrl.memberProfileBackup.spUserId && ctrl.memberProfileBackup.userStatus == 'VALID'" class="fleft access-icon icon-logo-badge" data-ng-class="ctrl.memberProfileBackup.profileSettings.hiringAccessAllowed?'spColor':'default-color'"></span>
+            </p>
+            <p class="mem-title" data-ng-bind="ctrl.memberProfileBackup.title" data-ng-if="ctrl.memberProfileBackup.title"></p>
+            <p class="mem-title" data-ng-bind="ctrl.memberProfileBackup.hiringRoles.join(', ')" data-ng-if="!ctrl.memberProfileBackup.title && ctrl.memberProfileBackup.hiringRoles.length"></p>
+            <p class="mem-email">
+                <a href="mailto:{{ctrl.memberProfileBackup.email}}" class="border-link">
+                    <span class="mock-link" data-ng-bind="ctrl.memberProfileBackup.email"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+    <div class="candidate-actions-dd">
+        <div class="actions-filter w100p">
+            <p class="actions-dropdown-filter smallFilter">
+                <a href="javascript:void(0)" sp-condition="true" sp-click-outside="show">
+                    {{pullInterNationalization('manageAccountContent.actions')}}
+                    <span class="actions-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                </a>
+            </p>
+        </div>
+        <div class="actions-callout-wrappper" data-ng-if="show" data-ng-class="{'posH2':!ctrl.archivedUserProfile, 'posH3':ctrl.archivedUserProfile}">
+            <ul class="action-links" data-ng-if="ctrl.archivedUserProfile">
+                <li data-ng-if="ctrl.memberProfileBackup.userStatus != 'HIRED'">
+                    <a href="javascript:void(0)" data-ng-click="ctrl.moveCandidate(ctrl.memberProfileBackup.email)">
+                        <span class="action-icon icon-icon_move sp-icon-color"></span>
+                        <span class="action-text" data-ng-bind="::pullInterNationalization('manageHiringContent.btnMove')"></span>
+                    </a>
+                </li>
+                <li class="sep" data-ng-if="ctrl.memberProfileBackup.userStatus != 'HIRED'">
+                    <hr/>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" data-ng-click="ctrl.hiringDialogs('delete', ctrl.memberProfileBackup)">
+                        <span class="action-icon icon-icon_trashbin sp-icon-color"></span>
+                        <span class="action-text" data-ng-bind="::pullInterNationalization('manageAccountContent.delete')"></span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="action-links" data-ng-if="!ctrl.archivedUserProfile">
+                <li data-ng-if="ctrl.memberProfileBackup.userStatus == 'VALID' || ctrl.memberProfileBackup.userStatus == 'HIRED'">
+                    <a href="javascript:void(0)" data-ng-click="ctrl.hiringDialogs('hire', ctrl.memberProfileBackup)">
+                        <span class="action-icon icon-icon_hire sp-icon-color"></span>
+                        <span class="action-text" data-ng-bind="::pullInterNationalization('manageHiringContent.btnHire')"></span>
+                    </a>
+                </li>
+                <li data-ng-if="ctrl.memberProfileBackup.userStatus == 'VALID' || ctrl.memberProfileBackup.userStatus == 'HIRED'">
+                    <a href="javascript:void(0)" data-ng-click="ctrl.hiringDialogs('archive', ctrl.memberProfileBackup)">
+                        <span class="action-icon icon-icon_move sp-icon-color"></span>
+                        <span class="action-text" data-ng-bind="::pullInterNationalization('manageHiringContent.btnArchive')"></span>
+                    </a>
+                </li>
+                <li data-ng-if="(!ctrl.memberProfileBackup.spUserId && ctrl.memberProfileBackup.userStatus == 'VALID') || (ctrl.memberProfileBackup.spUserId && ctrl.memberProfileBackup.userStatus == 'VALID' && ctrl.memberProfileBackup.profileSettings.hiringAccessAllowed)">
+                    <a href="javascript:void(0)" data-ng-click="ctrl.viewCompare(ctrl.memberProfileBackup.email, ctrl.memberProfileBackup.id)">
+                        <span class="action-icon icon-icon_compare2 sp-icon-color"></span>
+                        <span class="action-text" data-ng-bind="::pullInterNationalization('manageHiringContent.btnCompare')"></span>
+                    </a>
+                </li>
+                <li class="sep" data-ng-if="ctrl.memberProfileBackup.userStatus == 'VALID' || ctrl.memberProfileBackup.userStatus == 'HIRED'">
+                    <hr/>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" data-ng-click="ctrl.hiringDialogs('delete', ctrl.memberProfileBackup)">
+                        <span class="action-icon icon-icon_trashbin sp-icon-color"></span>
+                        <span class="action-text" data-ng-bind="::pullInterNationalization('manageAccountContent.delete')"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="new-cols filters-col full-spanned col-shrink-mob">
+    <div class="sp-panel-accent">
+        <div class="col-content-wrapper mh700 noTopSpace">
+            <div class="internal-nav-links-wrapper noMTop">
+                <ul>
+                    <li class="nobTop">
+                        <a href="javascript:void(0)" class="profile-links" data-ng-bind-html="::pullInterNationalization('manageAccountContent.linksProfile')" data-ng-click="ctrl.setCandidateDetailsView('Profile')" data-ng-class="ctrl.candidateNav==='Profile'?'on':''"></a>
+                        <span data-ng-class="ctrl.candidateNav==='Profile'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                    </li>
+                    <li data-ng-if="!ctrl.archivedUserProfile">
+                        <a href="javascript:void(0)" class="profile-links" data-ng-bind-html="::pullInterNationalization('manageAccountContent.linksPrism')" data-ng-click="(!ctrl.memberProfileBackup.spUserId && ctrl.memberProfileBackup.userStatus == 'VALID') || (ctrl.memberProfileBackup.spUserId && ctrl.memberProfileBackup.userStatus == 'VALID' && ctrl.memberProfileBackup.profileSettings.hiringAccessAllowed)?ctrl.setCandidateDetailsView('prismPortrait'):''" data-ng-class="{'on':ctrl.candidateNav==='prismPortrait','disabled':(!ctrl.memberProfileBackup.spUserId && ctrl.memberProfileBackup.userStatus != 'VALID') || (ctrl.memberProfileBackup.spUserId && ctrl.memberProfileBackup.userStatus == 'VALID' && !ctrl.memberProfileBackup.profileSettings.hiringAccessAllowed)}"></a>
+                        <span data-ng-class="ctrl.candidateNav==='prismPortrait'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="profile-links" data-ng-bind-html="::pullInterNationalization('manageHiringContent.btnExp')" data-ng-click="ctrl.setCandidateDetailsView('rolesTags')" data-ng-class="ctrl.candidateNav==='rolesTags'?'on':''"></a>
+                        <span data-ng-class="ctrl.candidateNav==='rolesTags'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="profile-links" data-ng-bind-html="::pullInterNationalization('manageHiringContent.refText')" data-ng-click="ctrl.memberProfileBackup.referencesDetails.length?ctrl.setCandidateDetailsView('refs'):''" data-ng-class="{'disabled':!ctrl.memberProfileBackup.referencesDetails.length, 'on':ctrl.candidateNav==='refs'}"></a>
+                        <span data-ng-class="ctrl.candidateNav==='refs'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="filter-col-sham"></div>
+</div>
+<div class="new-cols content-col sp-panel-accent" data-ng-if="ctrl.candidateNav==='Profile'">
+    <ng-include src="'/sp/resources/html/hiring/candidateDetails-profile.html'"></ng-include>
+</div>
+<div class="new-cols content-col sp-panel-accent" data-ng-if="ctrl.candidateNav==='rolesTags'">
+    <ng-include src="'/sp/resources/html/hiring/candidateDetails-rolesTags.html'"></ng-include>
+</div>
+<div class="new-cols content-col sp-panel-accent" data-ng-if="ctrl.candidateNav==='refs'">
+    <ng-include src="'/sp/resources/html/hiring/candidateDetails-refs.html'"></ng-include>
+</div>
+<div class="new-cols content-col sp-panel-accent noSpace" data-ng-if="ctrl.candidateNav==='prismPortrait'">
+    <ng-include src="'/sp/resources/html/hiring/candidateDetails-prismPortrait.html'"></ng-include>
+</div>

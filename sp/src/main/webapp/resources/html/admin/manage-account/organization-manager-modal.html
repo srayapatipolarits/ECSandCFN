@@ -1,0 +1,47 @@
+<div class="container" id="declineGrowthScreen" data-ng-style="ctrl.winWidth<768 && {'height':ctrl.winHeight}">
+    <div class="row" data-ng-class="ctrl.winWidth<768?'row-full-w':''">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8" data-ng-class="ctrl.winWidth<768?'col-full-w':''">
+            <div>
+                <section class="wrapper">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar" data-ng-bind="::pullInterNationalization('manageAccountContent.addMember.organization')"></div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                            </div>
+                        </div>
+                        <div class="contentArea nobrr">
+	                       <ol class="form-list-c form-list-d messageBlock mem-font" style="padding-bottom:10px">
+			                    <li class="type-and-number planStatus noMarBottom">
+				                  	<ul class="style_radioList style_1 font18">
+				                    	<li class="sp-radio">
+				                             <input id="oMember" data-ng-value="'M'" data-ng-model="ctrl.pageSetting.searchMode" type="radio"/>
+				                      		<label for="oMember" data-ng-click="ctrl.clearSelection();">
+				                        		  <span class="title" data-ng-bind="::pullInterNationalization('manageAccountContent.member')"></span> 
+				                        	  	</label>
+				                         </li>
+				                         <li class="sp-radio">
+				                         	<input id="oGroup" data-ng-value="'G'" data-ng-model="ctrl.pageSetting.searchMode" type="radio"/>
+				                      		<label for="oGroup" data-ng-click="ctrl.clearSelection();ctrl.getGroupData();">
+				                        		  <span class="title" data-ng-bind="::pullInterNationalization('manageAccountContent.group')"></span> 
+				                        	  	</label>
+				                         </li>
+				                   	</ul>
+			                   	</li>
+		            		</ol>
+	            		</div>
+                        <!-- Member -->
+		                <div data-ng-if="ctrl.pageSetting.searchMode==='M'">
+		                  <ng-include src="'/sp/resources/html/admin/manage-account/account-admin-organization-addmember.html'"></ng-include>
+		                </div>
+		                <!-- Group -->
+		                <div  data-ng-if="ctrl.pageSetting.searchMode==='G'">
+		                  <ng-include src="'/sp/resources/html/admin/manage-account/account-admin-organization-addgroup.html'"></ng-include>
+		                </div>
+                        
+                 	</div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

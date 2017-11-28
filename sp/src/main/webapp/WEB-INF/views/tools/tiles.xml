@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	
+	<definition name="getMembers" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/tools/relationship-manager/compare.html" />
+		<put-attribute name="adminHeader" value="/WEB-INF/layouts/standard/profileNavigationLinks.jsp" cascade="true" />
+		<put-list-attribute name="styles">
+			<add-attribute value="resources/css/css-min/sp-profile.min.css" />
+			<add-attribute value="resources/css/css-min/ra.min.css" />		
+		</put-list-attribute>		
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js/_d3-charts/d3/d3.min.js" />
+			<add-attribute value="resources/js-min/prismCharts.min.js" />	    	
+			<add-attribute value="resources/js-min/relationshipManagerController.min.js" /> 	
+	    </put-list-attribute>					
+	</definition>	
+
+</tiles-definitions>

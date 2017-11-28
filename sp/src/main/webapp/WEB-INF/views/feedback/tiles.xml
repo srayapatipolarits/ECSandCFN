@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="feedbackDataView" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/feedback/home-feedbackLanding.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/profileNavigationLinks.jsp" cascade="true" />
+			<put-attribute name="styles" value="resources/css/css-min/feedback-panel-overrides.min.css" cascade="true" />
+	</definition>
+	<definition name="feedbackListing" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/feedback/home-prismLens.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/profileNavigationLinks.jsp" cascade="true" />
+			<put-attribute name="styles" value="resources/css/css-min/prism-lens.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js/date-range-picker/date-range-picker.min.js" />
+	    	<add-attribute value="resources/js-min/prismLensCtrl.min.js" />
+	    </put-list-attribute>
+	</definition>	
+	<definition name="feedbackSubmitRequest" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/feedback/feedbackSubmitRequest.html" />
+	</definition>
+	<definition name="archiveFeedbackMemberScreen" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/feedback/archiveGrowthAssessment.html" />
+	</definition>
+	<definition name="reminderfeed" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/reminder/feedsendReminder.html" />
+	</definition>
+	<definition name="archiveListing" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/feedback/archiveListing.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/profileNavigationLinks.jsp" cascade="true" />
+			<put-attribute name="styles" value="resources/css/css-min/prism-lens.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/feedbackSection.min.js" cascade="true" />
+	</definition>
+	<definition name="archiveFeedbackDetail" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/feedback/archiveDetail.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/profileNavigationLinks.jsp" cascade="true" />
+			<put-attribute name="styles" value="resources/css/css-min/prism-lens.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/feedbackSection.min.js" cascade="true" />
+	</definition>
+	<definition name="themeDetail" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/feedback/themeDetail.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/profileNavigationLinks.jsp" cascade="true" />
+			<put-attribute name="styles" value="resources/css/css-min/prism-lens.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/feedbackSection.min.js" cascade="true" />
+	</definition>
+	<definition name="externalFeedbackThankYou" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/resources/html/assessment360/externalAssessmentThankyou.html" />
+			<put-attribute name="styles" value="resources/css/css-min/prism-lens.min.css" cascade="true" />
+	</definition>
+	<definition name="memberFeedbackThankYou" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/resources/html/assessment360/assessmentThankyou.html" />
+			<put-attribute name="styles" value="resources/css/css-min/prism-lens.min.css" cascade="true" />
+	</definition>
+	
+	<definition name="externalFeedbackExpiredThankYou" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/resources/html/feedback/externalExpDeactThankyou.html" />
+	</definition>
+
+	<definition name="feedbackLoggedInError" extends="pageNotLoggedIn">
+		<put-attribute name="content" value="/WEB-INF/views/error/feedbackLoggedInError.jsp" />
+		<put-attribute name="styles" value="resources/css/css-min/prism-lens.min.css" cascade="true" />
+	</definition>
+
+
+</tiles-definitions>

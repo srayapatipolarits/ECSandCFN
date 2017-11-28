@@ -1,0 +1,87 @@
+<div class="add-preview competency-preview" data-ng-init="ctrl.reloadSlider();">
+	<!-- Preview Column Starts-->
+		<div class="practive-area-view">
+						<div class="practice-area-detail lnd-right-box sp-panel-accent">
+							<div class="title-with-icons padding-right">
+			                  <h2 class="sp-header-title-color" data-ng-bind="ctrl.actionPlan.competencyList[ctrl.currentActionPlan].name||'Competency Name'"></h2>
+			             <ul>
+				          <li class="icon-close icon-icon_remove sp-icon-color" title="{{::pullInterNationalization('accessibility.labelClose')}}" data-ng-click="ctrl.viewMode.preview=false;ctrl.viewMode.editCreate=true;"></li>
+			            </ul>
+		                   </div>
+							<article class="slide-right clearfix">
+								<div class="practive-area-view">
+									<div class="pa-desc-wrapper">
+										<p class="pa-description-new fullw">
+											<span class="patxt" data-ng-bind-html="ctrl.actionPlan.competencyList[ctrl.currentActionPlan].description" data-ng-class="ctrl.actionPlan.competencyList[ctrl.currentActionPlan].introVideo.url?'':'fullWidth'">
+												</span> <a href="javascript:void(0)" class="thumb-video" data-ng-if="ctrl.actionPlan.competencyList[ctrl.currentActionPlan].introVideo.url"
+												data-ng-click="ctrl.previewIntroVideo(ctrl.actionPlan.competencyList[ctrl.currentActionPlan].introVideo.url)">
+												<!-- Setting width and height here. --> <img
+												data-ng-src="{{ctrl.actionPlan.competencyList[ctrl.currentActionPlan].introVideo.thumbnailURL}}"
+												width="150" height="85">
+											</a>
+										</p>
+									</div>
+									<div class="pa-details" data-ng-repeat="list in ctrl.actionPlan.competencyList[ctrl.currentActionPlan].devStrategyActionCategoryList">
+										<h3 class="pa-subhead top-margin2"
+											data-ng-bind="list.title"></h3>
+										<p class="learning-intro dev-desc"
+											data-ng-bind="list.helpText"></p>
+										<div class="development-strategy" data-ng-repeat="actionList in list.actionList">
+											<div class="ds-list">
+												<p class="list-no sp-link-color" data-ng-bind="$index+1"
+													ng-class="($index+1)>9?'big-no':''"></p>
+												<div class="list-content">
+													<p data-ng-bind="actionList.title"
+														data-ng-click="practiceCtrl.state()"></p>
+													<ul class="goal-topic-panel-tools" data-ng-if="actionList.permissions.Note">
+														<li><a href="javascript:void(0)"
+															class="border-link post-note">
+																<span class="theme-ico icon-icon_editnote sp-icon-color"></span>
+																<span class="mock-link"
+																data-ng-bind="pullInterNationalization('practiceArea.postNote')"></span>
+														</a></li>
+													</ul>
+												</div>
+												<p class="list-thumb" data-ng-if="actionList.actionData[0].url">
+													<a href="javascript:void(0)" class="Video" 
+														data-ng-click="ctrl.previewVideo(actionList.actionData[0].type,actionList.actionData[0].url)">
+														<!-- Setting width and height here. --> <img
+														data-ng-src="{{actionList.actionData[0].imageLink}}" width="150" height="85">
+													</a>
+												</p>
+												<hr class="new-seprator fullw" />
+											</div>
+										</div>
+										
+										<h3 class="pa-subhead top-margin1">Rating System</h3>
+										<div class="cmr-comp-content-wrap clearfix mpReset mgTop30 mb15">
+                        
+                        <div class="cmr-slider-rating clearfix mpReset mgTop30">
+                            <!--  Range Slider Starts -->
+                            <div class="competency-rating-wrap fWidth">
+                                <p class="competency-rating-slider">
+                                    <input type="range" min="1" max="{{ctrl.actionPlan.ratingConfiguration.size}}" step="1"  range-slider data-ng-model="competencyRangeSlider" data-ng-init="competencyRangeSlider=3">
+                                </p>
+                                <div class="competency-rating-desc">
+                                    <ul>
+                                        <li data-ng-style="{width:87/(ctrl.actionPlan.ratingConfiguration.size-1)+ '%'}" data-ng-class="{'active' : competencyRangeSlider==$index+1, 'auto-width-last': $last}" data-ng-repeat="rating in ctrl.actionPlan.competencyList[ctrl.currentActionPlan].rating.ratingList track by $index">
+                                            <span class="cm-rating-num" data-ng-bind="rating.score"></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--  Range Slider Ends -->
+                        </div>
+                        <div class="cmrc-desc-cont clearfix mpReset mgTop30">
+                           <h5 data-ng-bind="ctrl.actionPlan.competencyList[ctrl.currentActionPlan].rating.ratingList[competencyRangeSlider - 1].title"></h5>
+                            <span data-ng-if="ctrl.actionPlan.competencyList[ctrl.currentActionPlan].rating.ratingList[competencyRangeSlider - 1].title !==null && ctrl.actionPlan.competencyList[ctrl.currentActionPlan].rating.ratingList[competencyRangeSlider - 1].title !==''" data-ng-bind-html="ctrl.actionPlan.competencyList[ctrl.currentActionPlan].rating.ratingList[competencyRangeSlider - 1].description"></span>
+                        </div>
+                    </div>
+									</div>
+								</div>
+							</article>
+						</div>
+					</div>
+	
+	<!-- Preview Column ends -->
+	</div>

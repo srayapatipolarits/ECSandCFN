@@ -1,0 +1,100 @@
+<div class="practive-area-view blueprint-content organization-area-detail spcAdj3" data-ng-if="ctrl.createScreenReady">
+    <!-- MISSION STATEMENT INFO STARTS -->
+    <div class="publish-mission-statement">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="key-title" data-ng-bind="ctrl.dataMap.mission.title"></h3>
+                <p class="fixfont18" data-ng-bind="ctrl.blueprint.missionStatement.text"></p>
+            </div>
+        </div>
+    </div>
+    <!-- MISSION STATEMENT INFO ENDS -->
+    
+    
+    <!--  OBJECTIVES + KI + CSM ACCORDIAN STARTS  -->
+    <div class="bp-pub-obj-wrap-2">
+        <div class="obj-normal" data-ng-repeat="list in ctrl.blueprint.devStrategyActionCategoryList">
+            <section class="objectives-section">
+            
+            
+                <!-- Objective Header Starts -->
+                <header class="obj-header-wrap-mode sp-background-color">
+                    <h2 class="obj-header title" data-ng-bind="ctrl.dataMap.objective.title"></h2>
+                    <h3 class="obj-header" data-ng-bind="list.title"></h3>
+                </header>
+                <!-- Objective Header Ends -->
+                
+                
+                <!-- Objective KI and CSM Details Starts -->
+                <div class="obj-content">
+                    <div class="obj-ki-wrap" data-ng-repeat="actionList in list.actionList" data-ng-init="parentIndex=$parent.$index;currentIndex = $index">
+                    	<h3 class="key-title" data-ng-bind="ctrl.dataMap.initiatives.title"></h3>
+                    	<p class="obj-ki-info">
+                            <input type="checkbox" data-ng-model="actionList.completed" data-ng-disabled="!actionList.permissions.Completion" class="iCheckBox" id="devStrategyActionCategoryList_{{parentIndex}}_{{$index}}">
+                            <label data-ng-if="noSelf===''" for="devStrategyActionCategoryList_{{parentIndex}}_{{$index}}" class="lCheckBox" data-ng-class="ctrl.stateControl(actionList)?'block':'blockCHeck'">
+                            	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                            	<span class="black-txt-color font-weight100">
+                               		<span class="bp-nums f14" data-ng-bind="($index+1)+'. '"></span>
+                               		<span class="bp-txts" data-ng-bind="actionList.title"></span>                                      	
+                            	</span>
+                            </label>
+                            <label data-ng-if="noSelf!==''" class="lCheckBox" data-ng-class="ctrl.stateControl(actionList)?'block':'blockCHeck'">
+                            	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                            	<span class="black-txt-color font-weight100">
+                               		<span class="bp-nums f14" data-ng-bind="($index+1)+'. '"></span>
+                               		<span class="bp-txts" data-ng-bind="actionList.title"></span>                            	
+                            	</span>
+                            </label>	
+                        </p>
+                        <article class="critical_success_measure">
+                        	<ol class="obj-csm-list">
+                        		<li>
+                        			<h3 class="key-title" data-ng-bind="ctrl.dataMap.csm.title"></h3>
+                    			</li>
+                                <li data-ng-repeat="actionData in actionList.actionData" data-ng-init="childParIndex=$parent.$index">
+                                    <p>
+                                        <input type="checkbox" data-ng-model="actionData.completed" class="iCheckBox" id="groupActionCategoryList_{{$index}}_{{childParIndex}}_{{parentIndex}}" data-ng-click="ctrl.changeStatus({'completed':actionData.completed,'uid':actionData.uid},actionData)">
+                                        <label data-ng-if="noSelf===''" for="groupActionCategoryList_{{$index}}_{{childParIndex}}_{{parentIndex}}" class="lCheckBox mp" data-ng-class="{'block':!actionData.permissions.Completion,'cursorHand':noSelf!==''}">
+                                        	<span class="checkedTick topFix1 icon-icon_dev_strategy_check sp-icon-color pFix0"></span>
+                                        	<span class="black-txt-color">
+                                        		<span class="bp-nums" data-ng-bind="(childParIndex+1)+'.'+($index+1)+'. '"></span>
+                                        		<span class="bp-txts" data-ng-bind="actionData.title"></span>
+                                        	</span> 
+                                        </label>
+                                        <label data-ng-if="noSelf!==''" class="lCheckBox mp" data-ng-class="{'block':!actionData.permissions.Completion,'cursorHand':noSelf!==''}">
+                                        	<span class="checkedTick topFix1 icon-icon_dev_strategy_check sp-icon-color pFix0"></span>
+                                        	<span class="black-txt-color">
+                                        		<span class="bp-nums" data-ng-bind="(childParIndex+1)+'.'+($index+1)+'. '"></span>
+                                        		<span class="bp-txts" data-ng-bind="actionData.title"></span>
+                                        	</span>                                         	
+                                        </label>
+                                    </p>
+                                </li>
+                            </ol>
+                        </article>
+                         <article class="link-action clearfix" data-ng-if="noSelf===''">
+                            <ul class="obj-ki-links">
+                                <li data-ng-if="actionList.permissions.Note">
+                                    <a href="javascript:void(0)" class="border-link" notes-options url-src="notes/notes-options.html" styles="notes-bp-options" notes-callback="ctrl.setContentReference({'title':'Blueprint','description':actionList.title,'pubChannelDesc':ctrl.blueprint.missionStatement.text},'keyInitiative')">
+                                        <span class="icon-icon_editnote sp-icon-color"></span>
+                                        <span class="mock-link" data-ng-bind="::pullInterNationalization('practiceArea.postNote')"></span>
+                                    </a>
+                                </li>
+                               <!-- <li data-ng-if="actionList.permissions.Feedback">
+   									<a href="javascript:void(0)" class="border-link" data-ng-click="ctrl.openFeedbackPanel()">
+				                    <span class="icon-icon_feedback sp-icon-color"></span>
+				                    <span class="mock-link" data-ng-bind="::pullInterNationalization('practiceArea.requestFeedback')"></span></a>
+					           </li>-->
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+                <!-- Objective KI and CSM Details Ends -->
+                
+                
+            </section>
+        </div>
+    </div>
+    <!--  OBJECTIVES + KI + CSM ACCORDIAN STARTS  -->
+    
+</div>

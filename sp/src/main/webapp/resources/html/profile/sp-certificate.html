@@ -1,0 +1,79 @@
+<div ng-controller="profileMainController as ctrl"  ng-init="ctrl.setOptions('spCertificate')">
+    <!-- Box Starts -->
+    <article class="x-container x-certificate-profile">
+        <div class="container">
+            <div class="col-xs-12 col-md-12 bg-white">
+                <div class="profile-certification">
+                    <header class="row certificate-profile-header clearfix">
+                        <div class="certificate-sp-info">
+                            <h1 class="logo-sp-certification"><img src="/sp/resources/css/images/logo-surepeople-certification.png" alt="SurePeople Certificate"/></h1>
+                            <ul class="certificate-info-list">
+                                <li class="date-of-issue"><span class="date-of-issue-i" data-ng-bind-html="pullInterNationalization('prismProfile.label56')"></span> <span class="date-issue-dynamic" data-ng-bind="ctrl.userDetails.createdOn"></span>
+                                </li>
+                                <li class="date-experation"><span class="date-of-experation-i" data-ng-bind-html="pullInterNationalization('prismProfile.label57')"></span> <span class="date-expire-dynamic" data-ng-bind="ctrl.userDetails.expiresOn"></span>
+                                </li>
+                                <li class="certificate-number"><span class="certification-number-i" data-ng-bind-html="pullInterNationalization('prismProfile.label58')"></span> <span class="certification-number-dynamic" data-ng-bind="ctrl.userDetails.certificateNumber"></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="certificate-owner-info">
+                            <div class="nice-name-avatar">
+                                <img ng-src="{{ctrl.userDetails.smallProfileImage}}" alt="{{ctrl.userDetails.userInitials}}" ng-if="ctrl.userDetails.smallProfileImage" class="individual-pic" />
+                                <div class="imgReplacementBig individual-pic" ng-if="!ctrl.userDetails.smallProfileImage" ng-bind="ctrl.userDetails.userInitials"></div>
+                            </div>
+                            <div class="nice-name-info">
+                                <h1 class="nice-name" data-ng-bind="ctrl.userDetails.name"></h1>
+                                <p class="nice-name-title-sp" data-ng-bind="ctrl.userDetails.title"></p>
+                            </div>
+                        </div>
+                    </header>
+                    <div class="certificate-profile-body">
+                        <section class="certification-col">
+                            <h2 class="certificate-title-2" data-ng-bind-html="pullInterNationalization('prismSpCertificate.desc1')"></h2>
+                            <p data-ng-bind-html="pullInterNationalization('prismSpCertificate.desc2')"></p>
+                            <ul class="certification-tools" ng-if="ctrl.showSpProfile===true" ng-init="$parent.switchView = 'standard'">
+                                <li title="PRISM Portrait Overview" class="info-box-view" ng-click="$parent.switchView = 'standard';ctrl.updateTab(8, '')"></li>
+                                <li title="Standard View" class="prism-standard-view" ng-class="($parent.switchView == 'standard' && ctrl.selectedTab !== 8)?'on':''" ng-click="$parent.switchView = 'standard';ctrl.selectedTab = 0;$event.preventDefault()"></li>
+                                <li title="Graph View" class="prism-charts-view" ng-class="$parent.switchView == 'chart'?'on':''" ng-click="$parent.switchView = 'chart';$event.preventDefault()"></li>
+                            </ul>
+                        </section>
+                        <section class="certification-col">
+                            <h2 class="certificate-title-2" data-ng-bind-html="pullInterNationalization('prismSpCertificate.desc3')"></h2>
+                            <ul class="square-bullet-list italics">
+                                <li data-ng-bind-html="pullInterNationalization('prismProfile.label55')"></li>
+                                <li data-ng-bind-html="pullInterNationalization('prismProfile.label49')"></li>
+                                <li data-ng-bind-html="pullInterNationalization('prismProfile.label53')"></li>
+                                <li data-ng-bind-html="pullInterNationalization('prismProfile.label50')"></li>
+                                <li data-ng-bind-html="pullInterNationalization('prismProfile.label51')"></li>
+                                <li data-ng-bind-html="pullInterNationalization('prismProfile.label54')"></li>
+                                <li data-ng-bind-html="pullInterNationalization('prismProfile.label52')"></li>
+                            </ul>
+                            <p data-ng-bind-html="pullInterNationalization('prismSpCertificate.desc4')"></p>
+                            <div class="help-links" ng-if="ctrl.showSpProfile===true">
+                                <p class="help-link" ng-class="ctrl.selectedTab !== 8?'show':'hide'"><a href="#" ng-click="ctrl.updateTab(8, '', '', false, true, false);$event.preventDefault();" class="border-link"><span class="mock-link" data-ng-bind-html="ctrl.prismContent['profileKeys.intro.btnLearn']"></span></a></p>
+                                <p class="help-link" ng-class="ctrl.selectedTab === 8?'show':'hide'"><a href="#" ng-click="ctrl.updateTab(0, 'Personality Profile', 0, false, true, true);$event.preventDefault();" class="border-link"><span class="mock-link">View Profile</span></a></p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <!-- //col-md-12 bg-white -->
+            </div>
+            <!-- //container -->
+    </article>
+    <!-- //x-container x-copy-profile -->
+    <div ng-if="ctrl.showSpProfile===true">
+        <div ng-switch on="switchView">
+            <div ng-switch-when="standard">
+                <ng-include src="'/sp/resources/html/profile/sp-certificate-standard.html'"></ng-include>
+            </div>
+            <div ng-switch-when="chart">
+                <ng-include src="'/sp/resources/html/profile/sp-certificate-charts.html'"></ng-include>
+            </div>
+            <div ng-switch-default>
+                <ng-include src="'/sp/resources/html/profile/sp-certificate-standard.html'"></ng-include>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Box Ends -->
+    

@@ -1,0 +1,93 @@
+<link rel="stylesheet" href="/resources/css/css-min/competencies-new.min.css?ref=true">
+<div class="competency-manager hide" data-ng-controller="competencyManager as ctrl" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'" data-ng-init="ctrl.getEvaluationRequests();">
+    <div class="x-container">
+        <div class="container" >
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- Header/Desc Box Starts -->
+                    <div class="cm-header sp-panel-accent">
+                        <div class="cmh-desc full-width">
+                            <h2 class="sp-header-title-color" data-ng-bind="pullInterNationalization('competency.manager.evaluation.title')"></h2>
+                            <p data-ng-bind="pullInterNationalization('competency.manager.evaluation.desc1')"></p>
+                            <br/>
+                            <p data-ng-bind="pullInterNationalization('competency.manager.evaluation.desc2')"></p>
+                        </div>
+                    </div>
+                    <!-- Header/Desc Box Ends -->
+                    <div class="cm-listing-wrap sp-panel-accent" data-ng-class="{'cm-mobile-list':ctrl.isMobile}">
+                        <div class="cm-listing-content">
+                            <div class="cm-list-header offMob" data-ng-if="ctrl.competencyEvaluationRequests.length">
+                                <div class="cm-cols-evaluation cm-col1 col-name cm-col-header" data-ng-click="ctrl.sortManagerData($event,{'predicate':'user.lastName', 'reverse':reverse=!reverse})" data-predicate='user.lastName'>
+                                    <a href="javascript:void(0)" class="ch-text on">
+                                        <span class="cmh-txt" data-ng-bind="pullInterNationalization('competency.manager.name.title')"></span>
+                                        <span class="cmh-sort-icon icon-icon_sort sp-icon-color cm-sort-down"></span>
+                                        <span class="cmh-sort-icon icon-icon_sort default-color cm-sort-down"></span>
+                                        <span class="cmh-sort-icon icon-icon_sort-up sp-icon-color cm-sort-up"></span>
+                                    </a>
+                                </div>
+                                <div class="cm-cols-evaluation cm-col3 col-mrate cm-col-header" data-ng-if="!ctrl.peerOnlyEvaluation">
+                                    <a href="javascript:void(0)" class="ch-text">
+                                        <span class="cmh-txt" data-ng-bind="pullInterNationalization('competency.manager.managerEvaluation.title')"></span>
+                                    </a>
+                                </div>
+                                <div class="cm-cols-evaluation cm-col5 col-prate cm-col-header" data-ng-if="ctrl.showPeerRating">
+                                    <a href="javascript:void(0)" class="ch-text">
+                                        <span class="cmh-txt" data-ng-bind="pullInterNationalization('competency.manager.peerEvaluation.title')"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cm-list" data-ng-repeat="list in record=(ctrl.competencyEvaluationRequests) track by $index" data-ng-class="{'cm-active-bg' : (ctrl.isMobile && ctrl.activeRow==={{$index}})}">
+                                <div class="cm-cols-evaluation cm-col1 col-name mobPadTop0 cPosRel" data-ng-click="ctrl.isMobile?ctrl.toggleRowById($index):''" data-ng-class="{'mobPadBot0':(ctrl.activeRow!=={{$index}})}">                     
+                                    <div class="nice-name-avatar" data-ng-if="!list.user.smallProfileImage">
+                                        <span class="imgReplacement" data-ng-if="!list.user.smallProfileImage" data-ng-bind="list.user.userInitials"></span>
+                                    </div>
+                                    <div class="nice-name-avatar" data-ng-if="list.user.smallProfileImage">
+                                        <img data-ng-src="{{list.user.smallProfileImage}}" width="42" height="42">
+                                    </div>
+                                    <p class="cFweight" data-ng-if="list.user.name !== null && list.user.name !== ''" data-ng-bind="list.user.name"></p>
+                                	<p class="cFweight" data-ng-if="list.user.name === null || list.user.name === ''" data-ng-bind="list.user.email"></p>
+                                    <p data-ng-bind="list.user.title"></p>
+                                	<div class="cm-tog-btn-wrap onMob">
+                                    	<button class="btn-plus icon-icon_expand sp-icon-color" data-ng-class="ctrl.activeRow==={{$index}}?'hide':'show'" type="button"></button>
+                                    	<button class="btn-minus icon-icon_collapse-fill sp-icon-color hide" data-ng-class="ctrl.activeRow==={{$index}}?'show':'hide'" type="button"></button>
+                                    </div>                                               
+                                </div>
+                                <div class="cm-cols-evaluation cm-col3 col-mrate" data-ng-if="!ctrl.peerOnlyEvaluation" data-ng-class="{'hide': (ctrl.isMobile && ctrl.activeRow!=={{$index}}), 'show': (ctrl.isMobile && ctrl.activeRow==={{$index}})}">
+                                	<p class="onMob cm-mob-heading" data-ng-bind="pullInterNationalization('competency.manager.managerEvaluation.title')"></p>
+                                    <a data-ng-if="list.type === 'Manager'" href="javascript:void(0)" class="evaluate-button sp-background-color" data-ng-click="ctrl.startEvaluation(list.user.id)" data-ng-bind="pullInterNationalization('competency.manager.action.title')"></a>
+                                    <p data-ng-if="list.type === 'Peer'" class="cFweight fcGrey cPosRel">N/A</p>
+                                </div>
+                                <div class="cm-cols-evaluation cm-col5 col-prate mobPadBot0" data-ng-if="ctrl.peerOnlyEvaluation" data-ng-class="{'hide': (ctrl.isMobile && ctrl.activeRow!=={{$index}}), 'show': (ctrl.isMobile && ctrl.activeRow==={{$index}})}">
+                                	<p class="onMob cm-mob-heading" data-ng-bind="pullInterNationalization('competency.manager.peerEvaluation.title')"></p>
+                                    <a data-ng-if="list.type === 'Peer'" href="javascript:void(0)" class="evaluate-button sp-background-color" data-ng-click="ctrl.startEvaluation(list.user.id)" data-ng-bind="pullInterNationalization('competency.manager.action.title')"></a>
+                                </div>
+                                <div class="cm-cols cm-col5 col-prate mobPadBot0" data-ng-if="!ctrl.peerOnlyEvaluation && ctrl.showPeerRating"  data-ng-class="{'hide': (ctrl.isMobile && ctrl.activeRow!=={{$index}}), 'show': (ctrl.isMobile && ctrl.activeRow==={{$index}})}">
+                                	<p class="onMob cm-mob-heading" data-ng-bind="pullInterNationalization('competency.manager.peerEvaluation.title')"></p>
+                                    <a data-ng-if="list.type === 'Peer'" href="javascript:void(0)" class="evaluate-button sp-background-color" data-ng-click="ctrl.startEvaluation(list.user.id)" data-ng-bind="pullInterNationalization('competency.manager.action.title')"></a>
+                                    <div class="cFweight peer-evaluation peer-evaluation-request" data-ng-if="list.type === 'Manager'">
+                                     <a data-ng-if="list.peers === null && ctrl.competencyEvaluationInProgress" href="javascript:void(0)" data-ng-click="ctrl.initiateEvaluationModal('peerEvaluation',list.user, 'requests', ctrl.competencyEvaluationId)" class="ev-link border-link sp-link-color add-peer-link" data-ng-bind="::pullInterNationalization('competency.actions.add.peer')"></a>
+                                    <a data-ng-if="list.peers !== null && ctrl.competencyEvaluationInProgress && list.peers.count ===0" href="javascript:void(0)" data-ng-click="ctrl.initiateEvaluationModal('peerEvaluation',list.user, 'requests', ctrl.competencyEvaluationId)" class="ev-link border-link sp-link-color add-peer-link" data-ng-bind="::pullInterNationalization('competency.actions.add.peer')"></a>
+                                    <div class="ev-rating-cont-top mtop15">
+                                    <p class="default-val" data-ng-if="list.peers !== null && list.peers.score === 0 && list.peers.count !== 0" data-ng-bind="::pullInterNationalization('manageAccountContent.pending')"></p>
+                                    <p class="rating-val sp-link-color mb2" data-ng-if="list.peers !==null && list.peers.score !== 0" data-ng-bind="list.peers.score"></p>
+                                    <div class="ratings-hex" data-ng-if="list.peers !==null && list.peers.score !== 0">
+                                    <div class="empty-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(ctrl.competencyProfileMap[list.user.competencyProfileId].ratingConfiguration.size)}}"></div>
+                                    <div class="full-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(ctrl.competencyProfileMap[list.user.competencyProfileId].ratingConfiguration.size)}}" data-ng-style="{width:(list.peers.score/((ctrl.competencyProfileMap[list.user.competencyProfileId].ratingConfiguration.size)/10))*10+ '%'}"></div>
+                                    </div>
+                                    </div><br/>
+                                    <span class="ev-nm" data-ng-if="list.peers !== null && list.peers.count !==0" data-ng-bind="::pullInterNationalization('competency.admin.peer.average')"></span>
+                                    <a data-ng-click="ctrl.initiateEvaluationModal('peerEvaluation',list.user,'ratings', ctrl.competencyEvaluationId)" data-ng-if="list.peers !== null && list.peers.count !==0" href="javascript:void(0)" class="ev-link border-link">
+                                    <span class="mock-link">{{list.peers.completedCount}}/{{list.peers.count}} {{::pullInterNationalization('spectrum.evaluation')}}</span>
+                                </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <p data-ng-show="!record.length && ctrl.responseAvailable" class="noMatchFound ng-hide" data-ng-bind="pullInterNationalization('competency.manager.noPending.evaluations')"></p>
+                            <p data-ng-show="!record.length && !ctrl.responseAvailable" class="noMatchFound ng-hide" data-ng-bind="pullInterNationalization('practiceArea.loading')"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

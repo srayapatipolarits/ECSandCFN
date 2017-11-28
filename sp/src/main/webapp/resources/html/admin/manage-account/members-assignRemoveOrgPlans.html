@@ -1,0 +1,98 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                    <h2 data-ng-bind="::pullInterNationalization('manageAccountContent.addOrgPlan')"></h2>
+                </div>
+                <div class="new-modals-wrapper">
+                
+                    <!-- Email List Starts  -->
+                    <div class="multiple-emails-block" data-ng-if="ctrl.actionPlanSettings.isSingle">
+                        <div class="table-content">
+                            <div class="left-cont">
+                                <p data-ng-bind="::pullInterNationalization('manageAccountContent.selectedMembers')"></p>
+                            </div>
+                            <div class="right-cont">
+                                <p class="email-list">
+                                    <span>
+                                    <span data-ng-if="ctrl.actionPlanUserList[0].name" data-ng-bind="ctrl.actionPlanUserList[0].name"></span>
+                                    <span data-ng-if="!ctrl.actionPlanUserList[0].name" data-ng-bind="ctrl.actionPlanUserList[0].email"></span>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Email List Ends  -->                                                   
+                
+                    <!-- Email List Starts  -->
+                    <div class="multiple-emails-block" data-ng-if="!ctrl.actionPlanSettings.isSingle">
+                        <div class="table-content">
+                            <div class="left-cont">
+                                <p data-ng-bind="::pullInterNationalization('manageAccountContent.selectedMembers')"></p>
+                            </div>
+                            <div class="right-cont">
+                                <p class="email-list">
+                                    <span data-ng-repeat="userList in ctrl.actionPlanUserList">
+                                    <span data-ng-if="userList.name" data-ng-bind="userList.name+($last?'':',')"></span>
+                                    <span data-ng-if="!userList.name" data-ng-bind="userList.email+($last?'':',')"></span>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Email List Ends  -->
+                    <!-- Form Elements -->
+                    <div class="form-elements">
+                        <div class="angucomplete-wrapper">
+                            <!--angucomplete id="gl1" placeholder="Search Organisation Plan(s)" pause="100" selectedobject="ctrl.selectedOrgPlanName" localdata="ctrl.actionPlansListCopy" searchfields="name" titlefield="name" minlength="1" inputclass="form-control form-control-small" templatetype="default" update-fn="ctrl.trackactionActionPlans(callback)" /-->
+                            <p class="custom-search-wrapper">
+                                <input type="text" data-ng-model="ctrl.orgPlansSearch" class="custom-search" placeholder="{{::pullInterNationalization('manageAccountContent.searchLearningProgram')}}" />
+                                <button data-ng-class="{'icon-icon_remove':ctrl.orgPlansSearch.length, 'icon-icon_search': !ctrl.orgPlansSearch.length}" class="sp-icon-color noLabel" data-ng-click="ctrl.orgPlansSearch.length?ctrl.orgPlansSearch='':''"></button>
+                            </p>                            
+                        </div>
+                    </div>
+                    <!-- Form Elements Ends -->
+                    <!-- Selected Items List Start -->
+                    <div class="selected-group-List-wrapper" data-ng-if="ctrl.actionPlanSettings.isSingle">
+                        <div class="group-row" data-ng-repeat="actionPlanDetail in ctrl.actionPlansListCopy | filter:ctrl.orgPlansSearch" data-ng-if="!actionPlanDetail.readOnly && ctrl.actionPlansListCopy.length && (ctrl.activeOrgPlanIds.indexOf(actionPlanDetail.id) !== -1 || (ctrl.selectedActionPlanIds.indexOf(actionPlanDetail.id) !== -1 && ctrl.inactiveOrgPlanIds.indexOf(actionPlanDetail.id) !== -1))">
+                            <p class="group-col" data-ng-bind="actionPlanDetail.name"></p>
+                            <p class="group-col group-remove-selection">
+                                <span class="org-selected" data-ng-if="ctrl.selectedActionPlanIds.indexOf(actionPlanDetail.id) !== -1" data-ng-bind="::pullInterNationalization('manageAccountContent.assigned')"></span>
+                                <a data-ng-if="ctrl.selectedActionPlanIds.indexOf(actionPlanDetail.id) === -1 && ctrl.currentSelectedActionPlanIds.indexOf(actionPlanDetail.id) === -1" href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('manageAccountContent.add')" data-ng-click="ctrl.trackactionActionPlans(actionPlanDetail)"></a>
+                                <a data-ng-if="ctrl.selectedActionPlanIds.indexOf(actionPlanDetail.id) === -1 && ctrl.currentSelectedActionPlanIds.indexOf(actionPlanDetail.id) !== -1" href="javascript:void(0)" class="border-link" data-ng-click="ctrl.trackactionActionPlans(actionPlanDetail)">
+                                	<span class="mock-link" data-ng-bind="::pullInterNationalization('manageAccountContent.remove')"></span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Selected Items List End -->
+                    
+                    <!-- Selected Items List Start -->
+                    <div class="selected-group-List-wrapper" data-ng-if="!ctrl.actionPlanSettings.isSingle">
+                        <div class="group-row" data-ng-repeat="actionPlanDetail in ctrl.actionPlansListCopy | filter:ctrl.orgPlansSearch" data-ng-if="ctrl.actionPlansListCopy.length && ctrl.activeOrgPlanIds.indexOf(actionPlanDetail.id) !== -1">
+                            <p class="group-col" data-ng-bind="actionPlanDetail.name"></p>
+                            <p class="group-col group-remove-selection">
+                                <a data-ng-if="ctrl.currentSelectedActionPlanIds.indexOf(actionPlanDetail.id) === -1" href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('manageAccountContent.add')" data-ng-click="ctrl.trackactionActionPlans(actionPlanDetail)"></a>
+                                <a data-ng-if="ctrl.currentSelectedActionPlanIds.indexOf(actionPlanDetail.id) !== -1" href="javascript:void(0)" class="border-link" data-ng-click="ctrl.trackactionActionPlans(actionPlanDetail)">
+                                	<span class="mock-link" data-ng-bind="::pullInterNationalization('manageAccountContent.remove')"></span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Selected Items List End -->                    
+                    
+                    <span class="validate-error" data-ng-if="ctrl.noPlansSubmit" data-ng-bind="::pullInterNationalization('manageAccountContent.noPlans')"></span>
+                    
+                    <!-- Buttons Starts -->
+                    <div class="dialog-btns-wrapper">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.submit')}}" class="btn-block btn-14px sp-btn-color" class="btn-block btn-14px sp-btn-color" data-ng-click="ctrl.processActionPlan()">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.cancel')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="closeThisDialog();">
+                    </div>
+                    <!-- Buttons Ends -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

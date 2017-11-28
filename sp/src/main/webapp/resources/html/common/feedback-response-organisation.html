@@ -1,0 +1,24 @@
+<article class="feedback-response-widget">
+	<div class="response-widget-holder">
+		<div class="feedback-organisation">
+			<div class="icon-section">
+				  <span class="action-icon icon-icon_feedback2 sp-icon-color font-30"></span>
+            </div>
+			<div class="content-section">
+				<p class="feedback-description padMar" data-ng-bind-html="::pullInterNationalization('feedback.response.description.organisation')"></p>
+				<ul class="feedback-list">
+					<li data-ng-class="{'pipe-right':masterList.length}">
+			           <a href="javascript:void(0)" class="border-link" data-ng-click="openFeedback(0)">
+			               <span class="mock-link" data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead2')"></span>
+			           </a>
+			       </li>
+			       <li data-ng-if="masterList.length">
+			           <a href="javascript:void(0)" class="border-link" data-ng-click="openFeedback(1)">
+			               <span class="mock-link" data-ng-bind="pullInterNationalization('feedback.response')+' ('+masterList.length+')'"></span>
+			           </a>
+			       </li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</article>

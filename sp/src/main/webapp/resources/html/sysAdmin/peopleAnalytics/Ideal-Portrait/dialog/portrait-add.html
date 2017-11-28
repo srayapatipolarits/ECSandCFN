@@ -1,0 +1,36 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                    <h2 data-ng-bind="::pullInterNationalization('sysadmin.addPortrait1')"></h2>
+                </div>
+                <div class="new-modals-wrapper portrait-view-box">
+                	<div class="search-filter">
+	                    <p>
+			                <input type="text" maxlength="28" data-ng-model="searchPortrait" placeholder="{{::pullInterNationalization('sysadmin.organization.search')}}" data-ng-model-options="{ debounce: { 'default': 300, 'blur': 0 } }" data-ng-change="pageSetting.pageSize=originalPageSetting.pageSize;" data-ng-minlength="3">
+			                <button data-ng-class="{'icon-icon_remove':searchPortrait.length, 'icon-icon_search': !searchPortrait.length}" class="sp-icon-color" data-ng-click="searchPortrait='';pageSetting.pageSize=originalPageSetting.pageSize;"></button>                    	
+	                    </p>
+                    </div>
+                    <div class="portraits-popup-list">
+                    	<div class="portrait-list-row" data-ng-repeat="pList in recordField = ((companyAddList | filter:{name:searchPortrait})) track by pList.id">
+                    		<a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('personality.mapping.add')" data-ng-click="addPortraitConfirm(pList, selectedCompanyObj)"></a>
+                    		<p class="ppHead" data-ng-bind-html="pList.name"></p>
+	                        <p class="ppDesc">
+	                            <input type="checkbox" class="read-more-state" id="pListDesc_{{pList.id}}" />
+	                            <span class="read-more-wrap-horizontal" data-ng-init="btn=true;">
+									<span class="text" data-ng-bind-html="(btn?(pList.description | addEllipsis : 170):pList.description) | htmlLinky" data-ng-class="{'moreellipses':pList.description.length>170&&btn,'inline-block':!ctrl.whiteSpace(pList.description)}"></span>
+	                            </span>
+	                            <label for="pListDesc_{{pList.id}}" data-readMore="{{::pullInterNationalization('spectrum.more')}}" data-readLess="{{::pullInterNationalization('label.readless')}}" data-ng-click="btn=!btn" class="read-more-trigger-horizontal sp-link-color" data-ng-class="{'sp-label-option':!(pList.description.length>170)}"></label>
+	                        </p>                    		
+                    	</div>
+                    	<div class="portrait-list-row" data-ng-if="!recordField.length">
+                    		<p class="ppHead" data-ng-bind-html="::pullInterNationalization('admin.import.noMatch')"></p>
+                    	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

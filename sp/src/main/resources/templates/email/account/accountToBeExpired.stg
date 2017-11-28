@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <!-- If you delete this meta tag, Half Life 3 will never be released. -->
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>SurePeople</title>
+</head>
+
+<body bgcolor="#FFFFFF" style="margin: 0;padding: 0;font-family: Arial;-webkit-font-smoothing: antialiased;-webkit-text-size-adjust: none;height: 100%;width: 100%!important;">
+    <!-- HEADER -->
+    <table class="head-wrap" bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%;">
+        <tr>
+            <td></td>
+            <td class="header" style="margin: 0 auto!important;padding: 0;font-family: Arial;display: block!important;max-width: 600px!important;clear: both!important;">
+                <div class="content" style="padding: 15px 15px 15px 15px;margin: 0 auto;font-family: Arial;max-width: 600px;display: block;">
+                    <table bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%;">
+                        <tr>
+                            <td style="margin: 0;padding: 0;font-family: Arial; border-bottom: 1px solid #acacac">
+                                <h1 style="margin: 0 0 0 0;padding: 0 0 0 0;font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;line-height: 1.1;margin-bottom: 15px;color: #000000;font-weight: 200;font-size: 44px;">
+                                <a style="display: block;margin: 0 0 0 0;padding: 0 0 0 0;border: none;outline: none;font-family: Arial;color: #ff6633;" href="http://www.surepeople.com"><img style="display: block;border: none;outline: none;margin: 0;padding: 0;font-family: Arial;max-width: 100%;" src="$baseUrl$images/logo-sp-215-27.gif" alt="SurePeople&#8482;"></a>
+                            </h1>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <!-- /HEADER -->
+       
+    <!-- Content -->
+    <table class="head-wrap" bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%;">
+        <tbody>
+            <tr>
+                <td></td>
+                <td class="header" style="margin: 0 auto!important;padding: 0;font-family: Arial;display: block!important;max-width: 600px!important;clear: both!important;">
+                    <div class="content" style="padding: 0px 15px 15px 15px;margin: 0 auto;font-family: Arial;max-width: 600px;display: block;">
+                        <table bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%;">
+                            <tbody>
+                                <tr>
+                                    <td style="margin: 0;padding: 0;font-family: Arial;">
+                                         <p style="margin: 15px 0 0 0;padding: 0;font-family: Arial; font-size: 14px; color: #000; line-height: 16px;">
+                                            <span><strong>Name:</strong>$name$</span>
+                                        </p>
+
+                                        $if(company)$
+                                        <p style="margin: 5px 0 0 0;padding: 0;font-family: Arial; font-size: 14px; color: #000; line-height: 
+                                        16px;">
+                                            <span><strong>Address:</strong></span>
+                                            <span>
+                                                <br/> 
+                                                $company.address.addressLine1$ $company.address.addressLine2$<br/>
+                                                $company.address.city$ $company.address.state$<br />
+                                                $company.address.zipCode$<br />
+                                                $company.address.country$<br />
+                                            </span>
+                                        </p>
+                                        $endif$
+
+                                        <p style="margin: 5px 0 0 0;padding: 0;font-family: Arial; font-size: 14px; color: #000; line-height: 
+                                        16px;">
+                                            <span><strong>$plan.planType$ Plan Status:</strong> $plan.planStatus$</span>
+                                        </p>
+                                        <p style="margin: 15px 0 0 0;padding: 0;font-family: Arial; font-size: 14px; color: #000; line-height: 16px;">Account renewal failed. Insufficient balance, please add credit using account administration <br /> $daysLeft$ days remaining for company account to be deactivated. All members of the company will be blocked in $daysLeft$ days.</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- /Content -->
+    <!-- Content -->
+    <table class="head-wrap" bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%;">
+        <tr>
+            <td></td>
+            <td class="header" style="margin: 0 auto!important;padding: 0;font-family: Arial;display: block!important;max-width: 600px!important;clear: both!important;">
+                <div class="content" style="padding: 0px 15px 15px 15px;margin: 0 auto;font-family: Arial;max-width: 600px;display: block;">
+                    <table bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%;">
+                        <tr>
+                            <td style="margin: 0;padding: 0;font-family: Arial;">
+                                <a href="$baseUrl$sp/sysAdmin/alternateBilling/viewDetailAccount?accountId=$account.id$" style="margin:0;padding:3px 10px;text-decoration:none;color:#fff;background:#f63;text-align:center;font-weight:bolder;font-size: 14px;text-transform:uppercase;cursor:pointer">Add credit</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <!-- /Content -->
+    
+    <!-- FOOTER STARTS -->
+    <table style="margin: 30px 0 0; padding: 0; width: 100%;">
+        <tr>
+            <td></td>
+            <td bgcolor="#FFFFFF" style="margin: 0 auto !important; padding: 0; display: block !important; max-width: 600px !important; clear: both !important;">
+                <div style="padding: 0 15px 0 15px; margin: 0;">
+                    <div style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc; padding: 20px 0 20px 0; margin: 0 auto; max-width: 600px; display: block;">
+                        <table style="margin: 0; padding: 0; width: 100%;">
+                            <tr>
+                                <td style="margin: 0; padding: 0;">
+                                    <p style="font-size: 14px; line-height: 18px; margin: 0 0 0 0; padding: 0 0 0 0; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #000000; font-weight: 300;">
+                                        <span style="display: block; margin: 0; padding: 0;">Thank
+                      You,</span> <span style="display: block; font-weight: 500; margin: 0; padding: 0;">The
+                      SurePeople Team</span>
+                                    </p>
+                                    <p style="font-size: 12px; line-height: 18px; color: #999999; font-style: italic; padding: 0 0 0 0; margin: 20px 0 0 0; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight: 300;">
+                                        This is a system generated alert. We request that you not reply to this message.</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <table style="margin: 0; padding: 0; width: 100%; clear: both !important;">
+        <tr>
+            <td></td>
+            <td style="margin: 0 auto !important; padding: 0; display: block !important; max-width: 600px !important; clear: both !important;">
+                <div style="padding: 0 15px 0 15px; margin: 0;">
+                    <div style="padding: 0 0 30px 0; margin: 0 auto; max-width: 600px; display: block;">
+                        <table style="margin: 0; padding: 0; width: 100%;">
+                            <tr>
+                                <td style="margin: 0; padding: 0;">
+                                    <p style="margin: 0 0 12px 0; padding: 0; color: #ff6633; font-size: 14px; line-height: 18px; font-weight: 300; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">+1 855-755-SURE (7873)</p>
+                                    <p style="font-size: 12px; line-height: 18px; color: #999999; font-style: italic; padding: 0 0 0 0; margin: 0 0 0 0; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight: 300;">
+                                        Copyright &copy; 2017 SurePeople, LLC. All rights reserved.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <!-- /FOOTER ENDS -->
+</body>
+</html>

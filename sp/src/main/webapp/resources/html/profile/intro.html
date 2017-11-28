@@ -1,0 +1,67 @@
+<!-- Box Starts -->
+<article class="x-container x-copy-profile">
+    <div class="container" >
+        <div class="col-md-12 bg-white">
+            <a href="#" class="closeBtn" ng-click="ctrl.updateTab(0, 'Personality Profile', 0, true, true, true);$event.preventDefault();"></a>
+            <header class="row copy-profile-header clearfix feature-callout-header">
+                <h1 class="feature-callout-title-1" data-ng-bind-html="ctrl.prismContent['profileKeys.intro.overviewH']"></h1>
+                <div class="feature-callout-lede">
+                    <p data-ng-bind-html="ctrl.prismContent['profileKeys.intro.overviewDesc1']+' '+ctrl.userDetails.firstName+' '+ctrl.prismContent['profileKeys.intro.overviewDesc2']"></p>
+                </div>
+            </header>
+            <div class="row copy-profile-body clearfix">
+                <section class="col-sm-4 col-md-4 equalHeight feature-callout-block">
+                    <header class="feature-callout-block-header">
+                        <h2 class="callout-title-2" data-ng-bind-html="ctrl.prismContent['profileKeys.intro.personalityH']"></h2>
+                    </header>
+                    <p data-ng-bind-html="ctrl.prismContent['profileKeys.intro.personalityDesc1']"></p>
+                    <p data-ng-bind-html="ctrl.prismContent['profileKeys.intro.personalityDesc2']"></p>
+                </section>
+                <section class="col-sm-4 col-md-4 equalHeight feature-callout-block">
+                    <header class="feature-callout-block-header">
+                        <h2 class="callout-title-2" data-ng-bind-html="::pullInterNationalization('prismTab3')"></h2>
+                    </header>
+                    <p data-ng-bind-html="ctrl.prismContent['profileKeys.intro.processingBlueprintDesc']"></p>
+                </section>
+                <section class="col-sm-4 col-md-4 equalHeight feature-callout-block">
+                    <header class="feature-callout-block-header">
+                        <h2 class="callout-title-2" data-ng-bind-html="ctrl.prismContent['profileKeys.intro.motivationH']"></h2>
+                    </header>
+                    <p data-ng-bind-html="ctrl.prismContent['profileKeys.intro.motivationDesc']"></p>
+                </section>
+                <section class="col-sm-4 col-md-4 equalHeight feature-callout-block next">
+                    <header class="feature-callout-block-header">
+                        <h2 class="callout-title-2" data-ng-bind-html="ctrl.prismContent['profileKeys.intro.conflictManagementH']"></h2>
+                    </header>
+                    <p data-ng-bind-html="ctrl.prismContent['profileKeys.intro.conflictManagementDesc']"></p>
+                </section>
+                <section class="col-sm-4 col-md-4 equalHeight feature-callout-block">
+                    <header class="feature-callout-block-header">
+                        <h2 class="callout-title-2" data-ng-bind-html="ctrl.prismContent['profileKeys.intro.fundamentalNeedsH']"></h2>
+                    </header>
+                    <p data-ng-bind-html="ctrl.prismContent['profileKeys.intro.fundamentalNeedsDesc']"></p>
+                </section>
+                <section class="col-sm-4 col-md-4 equalHeight feature-callout-block">
+                    <header class="feature-callout-block-header">
+                        <h2 class="callout-title-2" data-ng-bind-html="ctrl.prismContent['profileKeys.intro.decisionMakingH']"></h2>
+                    </header>
+                    <p data-ng-bind-html="ctrl.prismContent['profileKeys.intro.decisionMakingDesc']"></p>
+                </section>
+                <section class="col-sm-4 col-md-4 equalHeight feature-callout-block next">
+                    <header class="feature-callout-block-header">
+                        <h2 class="callout-title-2" data-ng-bind-html="ctrl.prismContent['profileKeys.intro.learningStyleH']"></h2>
+                    </header>
+                    <p data-ng-bind-html="ctrl.prismContent['profileKeys.intro.learningStyleDesc']"></p>
+                </section>
+            </div>
+            <div class="more-links">
+                <a href="#" ng-click="ctrl.updateTab(0, 'Personality Profile', 0, true, true, true);$event.preventDefault();" class="btn-pill-12px btn-light-grey" data-ng-bind-html="ctrl.prismContent['profileKeys.intro.btnView']"></a>
+                <p data-ng-bind-html="ctrl.prismContent['profileKeys.intro.tnc']"></p>
+            </div>
+        </div>
+        <!-- //col-md-12 bg-white -->
+    </div>
+    <!-- //container -->
+</article>
+<!-- //x-container x-copy-profile -->
+<!-- Box Ends -->

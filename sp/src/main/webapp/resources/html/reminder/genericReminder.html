@@ -1,0 +1,65 @@
+
+
+    <div class="container" id="declineGrowthScreen">
+        <div class="row">
+            <div class="col-sm-offset-2 col-sm-6 col-md-offset-2 col-md-6">
+<div>
+    	<section class="wrapper">
+	<div class="contentBody">
+		<div class="head">
+			<div class="wrap">
+				<div class="headerBar" data-ng-bind="pullInterNationalization('notification.title')"></div>
+				<div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+			</div>
+		</div>
+		<div class="contentArea clearfix">
+		<form name="formSendNotification" class="sendReminder getNotificationForm">
+			<div class="messageBlock borderarea">
+					<div class="notificationInformationalBlock clearfix">
+					    <div class="name">
+					   		 <span class='to' data-ng-bind="pullInterNationalization('notification.to')"></span> <span class="namePart" ng-repeat="notification in notificationList">{{notification}}</span>
+					    </div>
+					    <div class="messageTitle" data-ng-bind="pullInterNationalization('notification.messageType')"></div>
+					    <div class="messageType">
+					    	<div class="rolesSelectWrapper">
+						    	<select class="form-control rolesSelect" name="logType" disabled ng-model="selectedNotification" ng-init="selectedNotification = Specific">
+							   	 <option ng-repeat="notificationList in notify" value="{{notificationList}}" data-ng-bind="notificationList"></option>
+								</select>
+							</div>
+					    </div>
+					</div>
+			</div>
+			<div class="messageBlock">
+				<div class="notificationInformationalBlock">
+					<div class="messageSubject" data-ng-bind="pullInterNationalization('notification.messageTitle')"></div>
+					<div class="textarea">
+						<input type="text" id="subBlock" name="subject" value="{{pullInterNationalization('notification.nosubject')}}" />
+						<input type="hidden" id="headerName" name="brandHeader" />
+						<input type="hidden" id="ctaLabel" name="ctaLabel" />
+						<input type="hidden" id="ctaUrl" name="ctaUrl" />
+						
+					</div>
+					<div class="messageTextArea" data-ng-bind="pullInterNationalization('notification.messageArea')"></div>
+					<div class="textarea" style="padding-bottom:0px;">
+						<textarea id="commentBlock" name="message" data-ng-bind="pullInterNationalization('notification.text')"></textarea>
+					</div> 
+				</div>
+			</div>
+			<div class="sp-btn-wrapper sp-red btn-esmall floatLeft inviteBtn">
+				<div class="sp-btn">
+					<input type="button" value="{{pullInterNationalization('notification.send')}}" class="btnStyle1" ng-click="sendNotification(formSendNotification,notificationList,'GenericMessage')">
+				</div>
+			</div>
+			<div class="sp-btn-wrapper sp-grey btn-esmall floatLeft">
+				<div class="sp-btn">
+					<input type="button" value="{{pullInterNationalization('notification.cancel')}}" class="btnStyle1" ng-click="closeThisDialog()">
+				</div>
+			</div>
+			</form>
+		 	</div>
+	</div>
+
+	</section>
+</div></div>
+</div></div>
+

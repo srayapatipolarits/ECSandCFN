@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="medixPrismRecuiter" extends="printLayoutPublic">
+		<put-attribute name="content" value="/resources/html/common/prism-profile-partner-pdf.html" />
+		<put-list-attribute name="styles">
+			<add-attribute value="resources/css/css-min/sp-profile.min.css" />
+			<add-attribute value="resources/css/css-min/partner-pdf.min.css" />
+		</put-list-attribute>		
+		<put-list-attribute name="javascripts">
+	    		<add-attribute value="resources/js-min/prismPrint.min.js" />
+	    		<add-attribute value="resources/js-min/profileMainControllerCharts.min.js" />			
+		</put-list-attribute>		
+	</definition>
+	
+	<definition name="medixPrismCandidate" extends="printLayoutPublic">
+		<put-attribute name="content" value="/resources/html/common/prism-profile-partner-pdf.html" />
+		<put-list-attribute name="styles">
+			<add-attribute value="resources/css/css-min/sp-profile.min.css" />
+			<add-attribute value="resources/css/css-min/partner-pdf.min.css" />
+		</put-list-attribute>		
+		<put-list-attribute name="javascripts">
+	    		<add-attribute value="resources/js-min/prismPrint.min.js" />
+	    		<add-attribute value="resources/js-min/profileMainControllerCharts.min.js" />			
+		</put-list-attribute>				
+	</definition>
+	
+	<definition name="surepeoplePrism" extends="printLayoutPublic">
+		<put-attribute name="content" value="/resources/html/common/prism-profile-partner-pdf.html" />
+		<put-list-attribute name="styles">
+			<add-attribute value="resources/css/css-min/sp-profile.min.css" />
+			<add-attribute value="resources/css/css-min/partner-pdf.min.css" />
+		</put-list-attribute>		
+		<put-list-attribute name="javascripts">
+	    		<add-attribute value="resources/js-min/prismPrint.min.js" />
+	    		<add-attribute value="resources/js-min/profileMainControllerCharts.min.js" />			
+		</put-list-attribute>		
+	</definition>		
+
+</tiles-definitions>

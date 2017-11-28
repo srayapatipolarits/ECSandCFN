@@ -1,0 +1,25 @@
+<div class="lnd-content-dialog">
+    <div class="x-container bg-white" style="height:{{ctrl.winHeight}}">
+        <div class="dialog-header-closeBtn">
+            <h2 class="dialog-heading" data-ng-bind="ctrl.viewGoalsObj.name"></h2>
+            <div class="ngdialog-close close-btn-icon icon-icon_remove"></div>
+        </div>
+    	<p class="devDesc" data-ng-bind="ctrl.viewGoalsObj.description"></p>
+    	<!--                     	
+    	<p class="devDescRec" data-ng-if="ctrl.sourceList.Prism || ctrl.sourceList.PrismLens">
+    		<span class="d-bl" data-ng-bind="::pullInterNationalization('practiceArea.suggestedBy')"></span>
+    		<span class="sp-link-color" data-eclass="managePaPop0" recommended-tool-tip data-desc="{{ctrl.prismList}}" data-ng-if="ctrl.sourceList.Prism" data-ng-bind="::pullInterNationalization('practiceArea.prism')"></span>
+    		<span class="sp-link-color" data-eclass="managePaPop1" recommended-tool-tip data-desc="{{ctrl.nameList}}" data-ng-if="ctrl.sourceList.PrismLens" data-ng-bind-html="', '+pullInterNationalization('practiceArea.prismLens')"></span>
+    	</p>
+    	-->
+        <ul class="viewDevelopmentStrategy">
+            <li class="title">
+                <div data-ng-bind="::pullInterNationalization('practiceArea.devStartegy')"></div>
+            </li>
+            <li class="tl" data-ng-repeat="goals in ctrl.viewStrategy track by $index">
+            	<span class="number" data-ng-bind="($index+1)+'. '"></span>
+                <span class="text" data-ng-bind="goals.dsDescription"></span>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,163 @@
+<div class="new-cols filters-col account-admin-organization full-spanned" data-ng-init="ctrl.executeFunction()">
+    <div class="col-content-wrapper mh700 sp-panel-accent">
+        <h2 class="groups-heading spc-adj" data-ng-bind="::pullInterNationalization('manageAccountContent.headingcompetency')"></h2>
+        
+        <div class="search-filter s100 mb15 p20">
+            <p>
+                <input type="text" data-ng-model="ctrl.pageSetting.searchForCompPlan" placeholder="{{::pullInterNationalization('tools.hiring.compare.title4')}}" data-ng-model-options="{ debounce: { 'default': 100, 'blur': 0 } }">
+                <button data-ng-class="{'icon-icon_remove':ctrl.pageSetting.searchForCompPlan.length, 'icon-icon_search': !ctrl.pageSetting.searchForCompPlan.length}" class="sp-icon-color pos-adj" data-ng-click="ctrl.pageSetting.searchForCompPlan=''"></button>
+            </p>
+        </div>
+        <div class="internal-nav-links-wrapper">
+            <ul>
+                <li class="selected_{{ctrl.competency.id===competenecyList.id}} active_{{competenecyList.active}}" data-ng-repeat="competenecyList in recordCount = (ctrl.competencyList | filter:{name:ctrl.pageSetting.searchForCompPlan}) track by competenecyList.id">
+                    <a href="javascript:void(0)" data-ng-bind="::competenecyList.name" data-ng-click="ctrl.changeCompetency(competenecyList)"></a>
+                    <span data-ng-class="ctrl.competency.id===competenecyList.id?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                </li>
+            </ul>
+            <p class="generic-no-matches" data-ng-if="ctrl.response && ctrl.competencyList.length && !recordCount.length" data-ng-bind="::pullInterNationalization('manageAccountContent.noMatchesFound')"></p>
+            <p class="generic-no-matches" data-ng-if="ctrl.response && !ctrl.competencyList.length" data-ng-bind="::pullInterNationalization('manageAccountContent.noCompeFoundMsg')"></p>
+        </div>
+    </div>
+    <div class="filter-col-sham"></div>
+</div>
+
+
+<div class="new-cols content-col sp-panel-accent">
+
+	<!-- IF NO Competencies Starts -->
+	<div class="col-content-wrapper mh700 mh500" data-ng-if="ctrl.response && !ctrl.competencyList.length">
+	    <div class="members-content-wrapper noGroups">
+			<h2 data-ng-bind="::pullInterNationalization('manageAccountContent.headingcompetency')"></h2>
+			<p data-ng-bind-html="::pullInterNationalization('manageAccountContent.noCompeDesc')"></p>
+	    </div>
+	</div>
+	<!-- IF NO Competencies Ends -->
+
+    <div class="col-content-wrapper mh700 max_{{ctrl.competency.preview}}" data-ng-if="ctrl.competencyList.length">
+        <div class="members-content-wrapper" data-ng-if="ctrl.response">
+        	<div class="members-header clearfix" data-ng-if="!ctrl.competencyList.length">
+                <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('manageAccountContent.noCompetency')"></h2>
+            </div>
+            <section data-ng-if="ctrl.competencyList.length">
+            <div class="members-header clearfix" data-ng-if="!ctrl.competency.preview">
+                <h2 class="sp-header-title-color leftSpace">{{ctrl.competency.name}}
+                    <span class="total-row-count" data-ng-bind="'('+(ctrl.competencyMapArray[ctrl.competency.id].length||0)+')'"></span>
+                </h2>
+               	
+               	<div class="actions-button">
+		            <p class="group-add-btn" data-ng-if="!ctrl.competency.preview">
+			            <a href="javascript:void(0)" class="icon-icon_preview sp-icon-color" title="{{::pullInterNationalization('manageAccountContent.preview')}}" data-ng-click="ctrl.previewDetail()"></a>
+			        </p>
+	             </div>            
+            </div>
+            <section class="slide-right" data-ng-if="ctrl.competency.preview">
+              <ng-include src="'/sp/resources/html/admin/manage-account/account-admin-competency-preview.html'"></ng-include>
+            </section>
+            <section data-ng-if="!ctrl.competency.preview">
+	            <div class="members-filters posRel">
+	               <div class="search-filter">
+	                    <p>
+	                        <input type="text" maxlength="28" data-ng-model="ctrl.pageSetting.textSearching" data-ng-change="ctrl.returnUserList();ctrl.negative=false;" placeholder="{{pullInterNationalization('admin.member.search')}}" data-ng-model-options="{ debounce: { 'default': 100, 'blur': 0 } }" data-ng-minlength="3">
+	                        <button data-ng-class="{'icon-icon_remove':ctrl.pageSetting.textSearching.length, 'icon-icon_search': !ctrl.pageSetting.textSearching.length}" class="sp-icon-color" data-ng-click="ctrl.pageSetting.textSearching='';ctrl.returnUserList()"></button>
+	                    </p>
+	                </div>
+	                
+	                <p class="group-add-btn">
+			            <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('manageAccountContent.AddMemberToGroup')" data-ng-click="ctrl.addMembersModal()"></a>
+			        </p>  
+	            </div>
+	            <div class="call-to-action clearfix">
+	            <div class="action-filter-container">
+		            <div class="actions-filter">
+		                    <p class="pCheckBox top7">
+			                     <input data-ng-disabled="!ctrl.competencyMapArray[ctrl.competency.id].length" type="checkbox" name="selectUser" id="selectAll" class="iCheckBox" data-ng-true-value="true" data-ng-false-value="false" data-ng-model="ctrl.negative">
+			                     <label for="selectAll" class="lCheckBox" data-ng-click="ctrl.checkAll()">
+			                         <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+			                     </label>
+			                </p>
+		                    
+		                    <p class="actions-dropdown-filter">
+		                        <a href="javascript:void(0)" data-ng-class="{'default-color':!ctrl.pageSetting.user.length}" sp-condition="ctrl.pageSetting.user.length" sp-click-outside="ctrl.allUsersMenu">{{pullInterNationalization('manageAccountContent.actions')}}
+		                            <span class="actions-icon icon-icon_dropdown-arrow sp-icon-color" data-ng-class="ctrl.pageSetting.user.length?'sp-icon-color':'default-color'"></span>
+		                        </a>
+		                    </p>
+		                </div>
+		                <div class="actions-callout-wrappper pos3" data-ng-if="ctrl.allUsersMenu">
+		                    <ul class="action-links">
+		                        <li>
+		                            <a href="javascript:void(0)" data-ng-click="ctrl.removeAll()">
+		                                <span class="action-icon icon-icon_accounts_remove sp-icon-color"></span>
+		                                <span class="action-text" data-ng-bind="::pullInterNationalization('manageAccountContent.deleteMembers')"></span>
+		                            </a>
+		                        </li>
+		                    </ul>
+		                </div>
+		                <div class="actions-filter border_false">
+                        </div>
+                        </div>
+	               <div class="call-to-action-drop">
+			           	<div class="filter-dropdown width_2 clearfix">
+			        	 		<span class="naf-theme-icon_style1 icon-icon_dropdown-arrow sp-icon-color"></span>
+			                    <select data-ng-disabled="!ctrl.competencyMapArray[ctrl.competency.id].length" data-ng-model="ctrl.pageSetting.sort" data-ng-change="ctrl.orderBy(ctrl.pageSetting.sort)">
+			                       <option value="nameplus" data-ng-bind="::pullInterNationalization('manageAccountContent.name.asc')">Name - A - Z</option>
+			                       <option value="nameminus" data-ng-bind="::pullInterNationalization('manageAccountContent.name.desc')"></option>
+			                       <option value="titleplus" data-ng-bind="::pullInterNationalization('manageAccountContent.title.asc')"></option>
+			                       <option value="titleminus" data-ng-bind="::pullInterNationalization('manageAccountContent.title.desc')"></option>
+			                     </select>
+				        </div>
+				        <div class="filter-dropdown clearfix">
+			                	<span class="naf-theme-icon_style1 icon-icon_dropdown-arrow sp-icon-color"></span>
+			        	 		 <select data-ng-disabled="!ctrl.competencyMapArray[ctrl.competency.id].length" data-ng-model="ctrl.pageSetting.filterTitle" data-ng-change="ctrl.returnUserList()" data-ng-options="list as list for list in ctrl.titles">
+			        	 		 	<option value="" data-ng-bind="::pullInterNationalization('manageAccountContent.selectAllTitle')"></option>
+			                     </select>
+			             </div>
+		             </div>
+			    </div>
+			   <div infinite-scroll="ctrl.infinteScroll(ctrl.pageSetting.pageSize+ctrl.pageSetting.pageSize)" infinite-scroll-immediate-check="false" class="manage-account-competency clearfix">
+		             <div class="complete-profile" ng-repeat="memberList in recordField = (ctrl.userList.slice(0,ctrl.pageSetting.pageSize)) track by memberList.id" data-ng-class="{'mLeft':$odd}">
+		                 <div class="table-row clearfix">
+		                     <div class="detail">
+		                     	<p class="pCheckBox">
+		                               <input type="checkbox" name="selectUser" id="selectUser_{{$index}}" class="iCheckBox" data-ng-change="ctrl.checkCount(checked)" checklist-model="ctrl.pageSetting.user" checklist-value="{'userId':memberList.id, 'email':memberList.email, 'name' : memberList.name ,'title': memberList.title}">
+		                               <label for="selectUser_{{$index}}" class="lCheckBox">
+		                                   <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+		                               </label>
+		                         </p>
+		                     	<div class="member-info">
+		                                <div class="member-pic">
+		                                    <img data-ng-src="{{::memberList.smallProfileImage}}" alt="{{::memberList.userInitials}}" data-ng-if="memberList.smallProfileImage">
+		                                    <div class="imgReplacement" data-ng-if="!memberList.smallProfileImage" data-ng-bind="::memberList.userInitials"></div>
+		                                </div>
+		                                <div class="member-details">
+		                                    <a href="javascript:void(0)" data-ng-click="ctrl.viewMemberDetails(memberList.email)" class="member-name border-link" data-ng-if="memberList.name">
+		                                        <span class="mock-link" data-ng-bind-html="::memberList.name" ></span>
+		                                        <span class="role-labels" data-ng-if="ctrl.displayRole(memberList)" data-ng-bind-html="ctrl.displayRole(memberList)"></span>
+		                                    </a>
+		                                    <span class="member-title" data-ng-bind="::memberList.title" data-ng-if="memberList.title"></span>
+		                                    <span class="role-labels-responsive" data-ng-if="ctrl.displayRole(memberList)" data-ng-bind-html="ctrl.displayRole(memberList)"></span>
+		                                    <a href="mailto:{{memberList.email}}" class="member-email border-link" data-ng-class="{'noMarg':!memberList.name}">
+		                                        <span class="mock-link sp-inline-block-f" data-ng-bind-html="::memberList.email"></span>
+		                                    </a>
+		                                </div>
+		                            </div>
+		                     </div>
+		                     <div class="closeIcon icon-icon_remove sp-custom-color" data-ng-click="ctrl.removeCompetencyModal(ctrl.competency.id,memberList)" data-ng-class="{'top0':!memberList.name}"></div>
+		                 </div>
+		             </div>
+	             </div>
+	             
+	             <div class="custom-row-5" data-ng-if="!recordField.length">
+	                  <div class="custom-new-cols s100" data-ng-if="ctrl.competencyMapArray[ctrl.competency.id].length">
+	                      <p class="no-data-msgs" data-ng-bind="::pullInterNationalization('admin.member.nomatch')"></p>
+	                  </div>
+	                  <div class="custom-new-cols" data-ng-if="!ctrl.competencyMapArray[ctrl.competency.id].length">
+	                      <p class="no-data-msgs" data-ng-bind="::pullInterNationalization('manageAccountContent.notassigned')"></p>
+	                  </div>
+	              </div>
+              </section>
+              </section>
+            
+        </div>
+    </div>
+</div>

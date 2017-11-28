@@ -1,0 +1,50 @@
+<div class="container" id="editGroup">
+    <div class="row">
+        <div class="col-xs-12 col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+            <div>
+                <section class="wrapper">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar" data-ng-bind="pullInterNationalization('pricing.create.desc20')"></div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                            </div>
+                        </div>
+                        <div class="contentArea">
+                            <div class="detail clearfix">
+                                <div class="remove-admin-wrapper">
+                                    <div class="ra-col-left">
+                                        <img class="imgReplacement" style="margin-right:12px;" data-ng-src="{{removeAdminMember.smallProfileImage}}" alt="{{removeAdminMember.userInitials}}" data-ng-if="removeAdminMember.smallProfileImage">
+                                        <div class="imgReplacement" style="padding-top:10px;margin-right:12px;" data-ng-if="!removeAdminMember.smallProfileImage" data-ng-bind="removeAdminMember.userInitials"></div>
+                                        <p>
+                                            <a href="javascript:void(0)" class="fname nodecoration" data-ng-bind="removeAdminMember.name"></a>
+                                            <span class="email" data-ng-bind="removeAdminMember.title"></span>
+                                        </p>
+                                    </div>
+                                    <div class="ra-col-right">
+                                        <p>
+                                            <a href="mailto:{{removeAdminMember.email}}" class="email" data-ng-bind="removeAdminMember.email"></a>
+                                            <span class="email" data-ng-bind="removeAdminMember.phoneNumber"></span>
+                                            <a href="#" class="closeIcon"></a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="conf-message-admin-remove" data-ng-bind="pullInterNationalization('pricing.create.desc19')"></div>
+                                <div class="sp-btn-wrapper sp-red btn-small floatLeft spacing">
+                                    <div class="sp-btn">
+                                        <input type="button" value="YES" class="btnStyle1 " ng-click="removeAdmin(removeAdminMember.email, removeAdminMember)">
+                                    </div>
+                                </div>
+                                <div class="sp-btn-wrapper sp-grey btn-small floatLeft spacing">
+                                    <div class="sp-btn">
+                                        <input type="button" value="NO" class="btnStyle1 " ng-click="closeThisDialog()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="container new-modals liked-user-theme">
+	<div class="row">
+		<div
+			class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+			<div class="modal-bg-wrap">
+				<div class="model-heading sp-panel-accent h2">
+					<div
+						class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+					<h2 class="like-user">
+						<span class="action-icon icon-dashboard_like sp-icon-color"></span>
+						<span class="action-text weight-700"
+							data-ng-bind="::ctrl.likedUsersList.length"></span>
+					</h2>
+				</div>
+				<div class="new-modals-wrapper withoutPadding">
+					<!-- Form Elements -->
+					<!-- Selected Items List Start -->
+					<div
+						class="selected-group-List-wrapper col-container action-container image-detail-part"
+						data-ng-init="number=10">
+						<div class="col-md-12 row style_1"
+							data-ng-repeat="user in ctrl.likedUsersList.slice(0,number) track by $index">
+							 <div class="member-pic channels">
+				                <img data-ng-src="{{user.smallProfileImage}}" alt="{{user.userInitials}}" data-ng-if="user.smallProfileImage">
+				                <div class="imgReplacement" data-ng-if="!user.smallProfileImage" data-ng-bind="user.userInitials"></div>
+				            </div>
+				           <div class="name-area">
+								<a data-ng-href="{{ctrl.userInfo.member.id===user.id?'':'/sp/dashboard/profile?userId='+user.id}}"
+									class="display-block lh12 default_{{ctrl.userInfo.member.id===user.id}}"> <span
+									class="mock-text weight-700" data-ng-bind="::user.name"></span>
+								</a>
+							</div>
+							<!--   <div class="title col-md-7">
+	                           		<a href="javascript:void(0)" class="border-link display-block">
+		                                <span class="mock-text weight-300" data-ng-bind="::user.title"></span>
+		                            </a>
+	                           </div> -->
+						</div>
+					</div>
+					<!-- Selected Items List End -->
+					<!-- Buttons Starts -->
+					<div class="dialog-btns-wrapper loadMorePadding">
+						<input type="button" data-ng-if="ctrl.likedUsersList.length>10 && number < ctrl.likedUsersList.length"
+							value="{{::pullInterNationalization('dashboard.loadMore')}}"
+							class="btn-block btn-14px sp-btn-color"
+							data-ng-click="$parent.number=$parent.number+10;">
+					</div>
+					<!-- Buttons Ends -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

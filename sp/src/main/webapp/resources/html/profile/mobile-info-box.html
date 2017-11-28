@@ -1,0 +1,220 @@
+<style>
+<!-- .videoWrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    background: #000;
+}
+
+.videoWrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+-->
+</style>
+<div class="mobile-infoBox-modal sp-background-color" data-ng-init="prepareVideo()" style="height:{{winScreenHeight}}">
+    <div class="ngdialog-close close-btn-icon icon-icon_remove"></div>
+    <!-- Personality Starts -->
+    <div class="infoBox" data-ng-if="infoBoxTab=='personality'" style="height:{{winScreenHeight}}">
+        <div class="info-content">
+            <h2 data-ng-bind-html="::ctrl.prismContent['profileKeys.intro.personalityH']"></h2>
+            <p data-ng-bind-html="::ctrl.prismContent['profileKeys.intro.personalityDesc1']"></p>
+            <p data-ng-bind-html="::ctrl.prismContent['profileKeys.intro.personalityDesc2']"></p>
+        </div>
+        <div class="info-video">
+            <div data-ng-if="videoType==='youtube'">
+                <iframe class="youtube-player" type="text/html" width="{{vWidth}}" height="{{vHeight}}" src="{{videoUrl}}" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div data-ng-if="videoType==='vimeo'">
+                <div id="vimeoPlayer_{{infoBoxTab}}"></div>
+                <!-- <iframe id="player1" src="{{videoUrl}}" width="{{vWidth}}" height="{{vHeight}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>  -->
+            </div>
+            <div data-ng-if="videoType==='html5'">
+                <div class="md-content">
+                    <div class="video-wrapper">
+                        <video controls width="100%" autoplay>
+                            <source src="{{videoUrl}}" type="video/mp4">Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+            <p data-ng-bind-html="::pullInterNationalization('prismProfile.label4')"></p>
+            <!-- <a href="#" data-ng-click="videoPlayBtn()" data-ng-bind-html="::pullInterNationalization('prismBtns3')"></a>  -->
+        </div>
+    </div>
+    <!-- Personality Ends -->
+    <!-- processing blueprint starts -->
+    <div class="infoBox sp-background-color" data-ng-if="infoBoxTab=='processing'">
+        <div class="info-content">
+            <h2 data-ng-bind-html="::::pullInterNationalization('prismTab3')"></h2>
+            <p data-ng-bind-html="::ctrl.prismContent['profileKeys.intro.processingBlueprintDesc']"></p>
+        </div>
+        <div class="info-video">
+            <div data-ng-if="videoType==='youtube'">
+                <iframe class="youtube-player" type="text/html" width="{{vWidth}}" height="{{vHeight}}" src="{{videoUrl}}" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div data-ng-if="videoType==='vimeo'">
+                <div id="vimeoPlayer_{{infoBoxTab}}"></div>
+                <!-- <iframe id="player1" src="{{videoUrl}}" width="{{vWidth}}" height="{{vHeight}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>  -->
+            </div>
+            <div data-ng-if="videoType==='html5'">
+                <div class="md-content">
+                    <div class="video-wrapper">
+                        <video controls width="100%" autoplay>
+                            <source src="{{videoUrl}}" type="video/mp4">Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+            <p data-ng-bind-html="::pullInterNationalization('prismProfile.label5')"></p>
+            <!-- <a href="#" data-ng-click="videoPlayBtn()" data-ng-bind-html="::pullInterNationalization('prismBtns3')"></a>  -->
+        </div>
+    </div>
+    <!-- processing blueprint Ends -->
+    <!-- motivation starts -->
+    <div class="infoBox sp-background-color" data-ng-if="infoBoxTab=='motivation'">
+        <div class="info-content">
+            <h2 data-ng-bind-html="::ctrl.prismContent['profileKeys.intro.motivationH']"></h2>
+            <p data-ng-bind-html="::ctrl.prismContent['profileKeys.intro.motivationDesc']"></p>
+        </div>
+        <div class="info-video">
+            <div data-ng-if="videoType==='youtube'">
+                <iframe class="youtube-player" type="text/html" width="{{vWidth}}" height="{{vHeight}}" src="{{videoUrl}}" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div data-ng-if="videoType==='vimeo'">
+                <div id="vimeoPlayer_{{infoBoxTab}}"></div>
+                <!-- <iframe id="player1" src="{{videoUrl}}" width="{{vWidth}}" height="{{vHeight}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>  -->
+            </div>
+            <div data-ng-if="videoType==='html5'">
+                <div class="md-content">
+                    <div class="video-wrapper">
+                        <video controls width="100%" autoplay>
+                            <source src="{{videoUrl}}" type="video/mp4">Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+            <p data-ng-bind-html="::pullInterNationalization('prismProfile.label16')"></p>
+            <!--  <a href="#" data-ng-click="videoPlayBtn()" data-ng-bind-html="::pullInterNationalization('prismBtns3')"></a>  -->
+        </div>
+    </div>
+    <!-- motivation ends -->
+    <!-- conflict starts -->
+    <div class="infoBox sp-background-color" data-ng-if="infoBoxTab=='conflict'">
+        <div class="info-content">
+            <h2 data-ng-bind-html="::ctrl.prismContent['profileKeys.intro.conflictManagementH']"></h2>
+            <p data-ng-bind-html="::ctrl.prismContent['profileKeys.intro.conflictManagementDesc']"></p>
+        </div>
+        <div class="info-video">
+            <div data-ng-if="videoType==='youtube'">
+                <iframe class="youtube-player" type="text/html" width="{{vWidth}}" height="{{vHeight}}" src="{{videoUrl}}" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div data-ng-if="videoType==='vimeo'">
+                <div id="vimeoPlayer_{{infoBoxTab}}"></div>
+                <!-- <iframe id="player1" src="{{videoUrl}}" width="{{vWidth}}" height="{{vHeight}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>  -->
+            </div>
+            <div data-ng-if="videoType==='html5'">
+                <div class="md-content">
+                    <div class="video-wrapper">
+                        <video controls width="100%" autoplay>
+                            <source src="{{videoUrl}}" type="video/mp4">Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+            <p data-ng-bind-html="::pullInterNationalization('prismProfile.label33')"></p>
+            <!--  <a href="#" data-ng-click="videoPlayBtn()" data-ng-bind-html="::pullInterNationalization('prismBtns3')"></a>  -->
+        </div>
+    </div>
+    <!-- conflict ends -->
+    <!-- fundamental needs starts -->
+    <div class="infoBox sp-background-color" data-ng-if="infoBoxTab=='fundamental'">
+        <div class="info-content">
+            <h2 data-ng-bind-html="::ctrl.prismContent['profileKeys.intro.fundamentalNeedsH']"></h2>
+            <p data-ng-bind-html="::ctrl.prismContent['profileKeys.intro.fundamentalNeedsDesc']"></p>
+        </div>
+        <div class="info-video">
+            <div data-ng-if="videoType==='youtube'">
+                <iframe class="youtube-player" type="text/html" width="{{vWidth}}" height="{{vHeight}}" src="{{videoUrl}}" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div data-ng-if="videoType==='vimeo'">
+                <div id="vimeoPlayer_{{infoBoxTab}}"></div>
+                <!-- <iframe id="player1" src="{{videoUrl}}" width="{{vWidth}}" height="{{vHeight}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>  -->
+            </div>
+            <div data-ng-if="videoType==='html5'">
+                <div class="md-content">
+                    <div class="video-wrapper">
+                        <video controls width="100%" autoplay>
+                            <source src="{{videoUrl}}" type="video/mp4">Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+            <p data-ng-bind-html="::pullInterNationalization('prismProfile.label34')"></p>
+            <!--  <a href="#" data-ng-click="videoPlayBtn()" data-ng-bind-html="::pullInterNationalization('prismBtns3')"></a>  -->
+        </div>
+    </div>
+    <!-- fundamental needs ends -->
+    <!-- decision starts -->
+    <div class="infoBox sp-background-color" data-ng-if="infoBoxTab=='decision'">
+        <div class="info-content">
+            <h2 data-ng-bind-html="::ctrl.prismContent['profileKeys.intro.decisionMakingH']"></h2>
+            <p data-ng-bind-html="::ctrl.prismContent['profileKeys.intro.decisionMakingDesc']"></p>
+        </div>
+        <div class="info-video">
+            <div data-ng-if="videoType==='youtube'">
+                <iframe class="youtube-player" type="text/html" width="{{vWidth}}" height="{{vHeight}}" src="{{videoUrl}}" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div data-ng-if="videoType==='vimeo'">
+                <div id="vimeoPlayer_{{infoBoxTab}}"></div>
+                <!-- <iframe id="player1" src="{{videoUrl}}" width="{{vWidth}}" height="{{vHeight}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>  -->
+            </div>
+            <div data-ng-if="videoType==='html5'">
+                <div class="md-content">
+                    <div class="video-wrapper">
+                        <video controls width="100%" autoplay>
+                            <source src="{{videoUrl}}" type="video/mp4">Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+            <p data-ng-bind-html="::pullInterNationalization('prismProfile.label35')"></p>
+            <!--  <a href="#" data-ng-click="videoPlayBtn()" data-ng-bind-html="::pullInterNationalization('prismBtns3')"></a>  -->
+        </div>
+    </div>
+    <!-- decision ends -->
+    <!-- learning starts -->
+    <div class="infoBox sp-background-color" data-ng-if="infoBoxTab=='learning'">
+        <div class="info-content">
+            <h2 data-ng-bind-html="::ctrl.prismContent['profileKeys.intro.learningStyleH']"></h2>
+            <p data-ng-bind-html="::ctrl.prismContent['profileKeys.intro.learningStyleDesc']"></p>
+        </div>
+        <div class="info-video">
+            <div data-ng-if="videoType==='youtube'">
+                <iframe class="youtube-player" type="text/html" width="{{vWidth}}" height="{{vHeight}}" src="{{videoUrl}}" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div data-ng-if="videoType==='vimeo'">
+                <div id="vimeoPlayer_{{infoBoxTab}}"></div>
+                <!-- <iframe id="player1" src="{{videoUrl}}" width="{{vWidth}}" height="{{vHeight}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>  -->
+            </div>
+            <div data-ng-if="videoType==='html5'">
+                <div class="md-content">
+                    <div class="video-wrapper">
+                        <video controls width="100%" autoplay>
+                            <source src="{{videoUrl}}" type="video/mp4">Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+            <p data-ng-bind-html="::pullInterNationalization('prismProfile.label45')"></p>
+            <!--  <a href="#" data-ng-click="videoPlayBtn()" data-ng-bind-html="::pullInterNationalization('prismBtns3')"></a>  -->
+        </div>
+    </div>
+    <!-- learning starts -->
+</div>

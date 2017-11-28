@@ -1,0 +1,128 @@
+<div class="learning-development hide" data-ng-controller="organizationAreasController as ctrl" ng-if="inviteReady && profileReady" ng-class="inviteReady?'show':'hide'" data-ng-init="!ctrl.urlFlag?ctrl.getSelectedActionPlanList('onLoad'):''">
+
+    <!-- Learning Programs New Header Starts -->
+    <div class="x-container">
+        <div class="container">
+            <div class="header-info-container page-orgplan">
+                <section class="features-section">
+                    <header class="fs-header-wrap" data-ng-class="{'pbAdj':ctrl.collapseBox, 'mobAdj':(!ctrl.actionPlanList.length || ctrl.actionPlanList.length<1)}">
+                        <div class="split-cols-wrapper">
+                            <div class="split-col scol1">
+                                <h2 class="hinfo-wrap">
+                                    <span class="hinfo-icons icon-LearningProgram_new sp-icon-color"></span>
+                                    <span class="info-txt mobAdj" data-ng-bind="::pullInterNationalization('practiceArea.learningProg')"></span>
+                                </h2>
+                            </div>
+                            <div class="split-col scol2" data-ng-if="ctrl.actionPlanList.length>1 && noSelf===''">
+                                <div class="rolesSelectWrapper">
+                                    <span class="mg-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                                    <label class="sp-label-option" for="actionPlanListGoals" data-ng-bind="::pullInterNationalization('learningProg.labelall')"></label>
+                                    <select id="actionPlanListGoals" data-ng-options="goal.id as goal.name for goal in ctrl.actionPlanList" class="form-control rolesSelect" data-ng-model="ctrl.selectedPlanId" data-ng-change="ctrl.selectActionPlans(ctrl.selectedPlanId)">
+                                        <option value="" data-ng-bind="::pullInterNationalization('learningProg.all')"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+                    <div class="fs-content" data-ng-if="ctrl.collapseBox">
+                        <p class="fs-def" data-ng-bind-html="::pullInterNationalization('practiceArea.allProgDef')"></p>
+                    </div>
+                    
+                    <!--
+                    <div class="generic-info-msgs" data-ng-if="ctrl.actionPlanMsgs.length">
+                        <a href="javascript:void(0)" data-ng-click="ctrl.clearMsgs(ctrl.actionPlanMsgs)" class="msg-close-btn icon-icon_remove sp-icon-color"></a>
+                        <p>
+                            <span data-ng-repeat="msg in ctrl.actionPlanMsgs" data-ng-bind="msg.content"></span>
+                        </p>
+                    </div>
+                    -->
+                </section>
+                <div class="content-carousel" data-ng-if="ctrl.collapseBox">
+                    <div class="cc-slide sp-panel-accent" data-ng-repeat="goal in ctrl.actionPlanList" repeat-done="ctrl.winWidth>767?ctrl.updateBoxHeights(ctrl.actionPlanList.length):''" data-ng-class="{'mb0':$last}">
+                        <div class="org-slide-wrapper">
+                            <div class="org-slide-cont">
+                                <p class="fw700 mbot15" data-ng-bind="goal.name"></p>
+                                <p class="mbot15" data-ng-bind="goal.description"></p>
+                                <a href="javascript:void(0)" class="btn-square-12px sp-background-color slide-selct-btn" data-ng-click="ctrl.selectActionPlans(goal.id, true)" data-ng-bind="::pullInterNationalization('dashboardAdmin.btnSelect')"></a>
+                            </div>
+                        </div>
+                        <div class="org-radial-wrapper">
+                        	<div data-ng-if="goal.completedKpi !== goal.totalKpi" class="lp-progress" progress-animation observe-param="{{goal.completedKpi}}" remaining-tasks="goal.completedKpi" total-tasks="goal.totalKpi" type="radial"></div>
+                        	<span data-ng-if="goal.completedKpi === goal.totalKpi" class="icon-badge_learningprogram sp-icon-color badge-icon adjust-pos"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Learning Programs New Header Ends -->
+    
+    <div class="x-container nooverflow" data-ng-if="!ctrl.collapseBox && ctrl.actionPlan" >
+        <div class="container">
+            <div class="table-flex-cols">
+                    <!-- Full Box Starts -->
+                    <!-- 
+                    <div class="lnd-full-sec sp-panel-accent" data-ng-if="!ctrl.hideFullSection">
+                        <h2 class="sp-header-title-color" data-ng-bind="ctrl.actionPlan.name"></h2>
+                        <p data-ng-bind-html="'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit'"></p>
+                    </div>
+                     -->
+                    <!-- Full Box Ends -->
+                    <!-- Left Box Starts -->
+                    <div class="lnd-left-sec" data-ng-class="ctrl.showRightCol?'hide':''">
+                        <!-- Box Starts -->
+                        <!--div class="lnd-left-box sp-panel-accent" data-ng-if="ctrl.actionPlan.imageUrl" data-ng-class="{'hide':ctrl.winWidth<768}">
+                            <div class="company_specific_logo"><img alt="{{ctrl.actionPlan.name}}" data-ng-src="{{ctrl.actionPlan.imageUrl}}" /></div>
+                        </div-->
+                        <div class="lnd-left-box sp-panel-accent posRelative"><!-- data-ng-class="(ctrl.actionPlan.imageUrl!==null && ctrl.winWidth>767)?'mTop':''" -->
+                            <h2 class="new-hStyle lpBoxArea no-border1"><span data-ng-bind="ctrl.actionPlan.name"></span><span class="drag_handle icon-icon_sections sp-icon-color hide" data-ng-if="ctrl.actionPlanList.length>1 && noSelf===''" data-ng-click="ctrl.openChangePlan()"></span></h2>
+                            <!-- main-header sp-header-title-color  -->
+                            <div data-ng-if="ctrl.actionPlan.completedCount !== ctrl.actionPlan.actionCount" class="lp-progress" progress-animation observe-param="{{ctrl.actionPlan.completedCount}}" remaining-tasks="ctrl.actionPlan.completedCount" total-tasks="ctrl.actionPlan.actionCount" type="radial" badge-progress url-src="common/badge-progress.html" styles="badge-options" badge-object="{{ctrl.badgeObject}}" module-name="LP"></div>
+                            <span data-ng-if="ctrl.actionPlan.completedCount === ctrl.actionPlan.actionCount" class="icon-badge_learningprogram sp-icon-color badge-icon"></span>
+                            <ul>
+                            	<li data-ng-if="ctrl.actionPlan.imageUrl">
+                            		<img alt="{{ctrl.actionPlan.name}}" data-ng-src="{{ctrl.actionPlan.imageUrl}}" />
+                            	</li>
+                                <li class="border-link" data-ng-click="ctrl.getActionPlansSectionDetail({'name':goal.name,'index':$index,'goalId':goal.id,'status':goal.status,'enabled':goal.enabled,'type':'click'})" data-ng-repeat="goal in (ctrl.actionPlan.practiceAreaList) track by goal.id" data-ng-class="{'on':ctrl.currentActive.index === $index,'inactive':ctrl.selectedStepType!=='All'?!goal.enabled:goal.status==='INACTIVE'}"><span class="mock-link_1 sp-link-color" data-ng-bind="::goal.name"></span></li>
+                                <!-- <li class="border-link cursorDefault" data-ng-if="practiceCtrl.currentActive.name===null"><span data-ng-bind="'No Active Plan(s)'"></span></li>-->
+                            </ul>
+                            <div class="lnd-left-style-box">
+                                <ul data-ng-if="ctrl.displayPlanList">
+                                    <li class="border-link" data-ng-click="ctrl.selectActionPlans(goal.id)" data-ng-repeat="goal in (ctrl.actionPlanList) track by $index" data-ng-class="ctrl.actionPlan.name === goal.name?'onActive':''"><span class="display" data-ng-bind-html="::pullInterNationalization('practiceArea.specialCharacter')"> </span><span class="mock-link_1" data-ng-bind="::goal.name"></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Left Box Ends -->
+                    <!-- Right Box Starts -->
+                    <div class="lnd-right-sec minHeightAdded" data-ng-class="ctrl.showRightCol?'show':''">
+                        <div class="practice-area-detail lnd-right-box sp-panel-accent">
+                            <div class="lnd-req-mobile practice-areas-dd">
+                                <a href="javascript:void(0)" data-ng-click="ctrl.showMobileDD=!ctrl.showMobileDD;" data-ng-bind="ctrl.ddSelectedText||'No Active Plan(s)'"></a>
+                                <ul data-ng-if="ctrl.showMobileDD">
+                                    <li class="border-link" data-ng-click="ctrl.getActionPlansSectionDetail({'name':goal.name,'index':$index,'goalId':goal.id,'status':goal.status,'enabled':goal.enabled,'type':'click'});" data-ng-repeat="goal in (ctrl.actionPlan.practiceAreaList) track by goal.id" data-ng-if="ctrl.ddSelectedText !==goal.name" data-ng-class="{'on':ctrl.currentActive.index === $index,'inactive':ctrl.selectedStepType!=='All'?!goal.enabled:goal.status==='INACTIVE'}"><span class="mock-link" data-ng-bind="goal.name"></span></li>
+                                    <li class="return-link-mobile border-link return-link" data-ng-click="ctrl.showMobileHomePage()" data-ng-bind="::pullInterNationalization('admin.returnorganization')"></li>
+                                </ul>
+                            </div>
+                            <div class="title-with-icons">
+                                <!-- <div class="logo" data-ng-if="practiceCtrl.companyLogo"><img data-ng-src="{{practiceCtrl.companyLogo}}"/></div>-->
+                                <h2 class="sp-header-title-color">
+                                    <span data-ng-bind="ctrl.currentActive.name||pullInterNationalization('practiceArea.noStepAvailable')"></span>
+                                </h2>
+                                <ul data-ng-if="ctrl.actionPlanSectionDetail">
+                                    <!-- <li class="iFeedback icon-icon_feedback sp-icon-color" data-ng-click="ctrl.openFeedbackPanel()" data-ng-if="noSelf===''" title="{{::pullInterNationalization('practiceArea.requestFeedback')}}"></li>-->
+                                    <li class="iNote icon-icon_editnote sp-icon-color no-margin-right hide" notes-options url-src="notes/notes-options.html" notes-callback="ctrl.setContentReference({'id':ctrl.currentActive.goalId,'title':ctrl.currentActive.name,'description':ctrl.actionPlan.name},'orgPlans')" data-ng-if="noSelf===''" title="{{::pullInterNationalization('practiceArea.postNote')}}"></li>
+                                    <li class="iNotification icon-icon_inbox_updated sp-icon-color hide" data-ng-click="ctrl.openState(3,'notification')" title="{{::pullInterNationalization('practiceArea.notesFeedback')}}"></li>
+                                </ul>
+                            </div>
+                            <article class="slide-right" ui-view></article>
+                        </div>
+                    </div>
+                    <!-- Right Box Ends -->
+            </div>
+        </div>
+    </div>
+    <div data-ng-if="!ctrl.actionPlanAvailable">
+        <article class="landing-page-organization" ui-view></article>
+    </div> 
+</div>

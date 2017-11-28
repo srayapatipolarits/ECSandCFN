@@ -1,0 +1,314 @@
+<div class="billing-cols-wrap">
+    <div class="billing-cols-tab">
+        <div class="billing-col lef">
+            <div class="bill-box">
+                <a data-ng-if="flags.companyEditing" href="javascript:void(0)" class="btn-square-12px sp-background-color rightTop" data-ng-bind="::pullInterNationalization('admin.account.business.btn.edit')" data-ng-click="$parent.flags.companyEditing=false"></a>
+                <h3 data-ng-bind="'Company Details'"></h3>
+                <form name="companyDetails" novalidate autocomplete="off">
+                    <ol class="form-list-billing">
+                        <li class="ele-left w44 b15">
+                            <label class="label-text" for=" name" data-ng-bind="pullInterNationalization('admin.account.business.label.name')"></label>
+                            <input type="text" name=" name" data-ng-model="companyDetail.name" required data-ng-disabled="flags.companyEditing" />
+                            <span class="validate-error" data-ng-if="formStatus.sumbit && companyDetails.name.$error.required"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.required')"></span></span>
+                        </li>
+                        <li class="ele-left w44 b45 clearb r30">
+                            <label class="label-text" for="industry" data-ng-bind="pullInterNationalization('home.industry')"></label>
+                            <div class="select-wrapper brdr" data-ng-class="{'disabled':flags.companyEditing}">
+                                <span class="ab-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                                <select class="select-option-style" name="industry" data-ng-model="companyDetail.industry" required data-ng-disabled="flags.companyEditing">
+                                    <option value="default" data-ng-bind="pullInterNationalization('home.industry')"></option>
+                                    <option value="accounting">Accounting</option>
+                                    <option value="airlines_aviation">Airlines/Aviation</option>
+                                    <option value="alternative_dispute_resolution">Alternative Dispute Resolution</option>
+                                    <option value="alternative_medicine">Alternative Medicine</option>
+                                    <option value="animation">Animation</option>
+                                    <option value="apparel_fashion">Apparel & Fashion</option>
+                                    <option value="architecture_planning">Architecture & Planning</option>
+                                    <option value="arts_and_crafts">Arts and Crafts</option>
+                                    <option value="automotive">Automotive</option>
+                                    <option value="aviation_aerospace">Aviation & Aerospace</option>
+                                    <option value="banking">Banking</option>
+                                    <option value="biotechnology">Biotechnology</option>
+                                    <option value="broadcast_media">Broadcast Media</option>
+                                    <option value="building_materials">Building Materials</option>
+                                    <option value="business_supplies_and_equipment">Business Supplies and Equipment</option>
+                                    <option value="capital_markets">Capital Markets</option>
+                                    <option value="chemicals">Chemicals</option>
+                                    <option value="civic_social_organization">Civic & Social Organization</option>
+                                    <option value="civil_engineering">Civil Engineering</option>
+                                    <option value="commercial_real_estate">Commercial Real Estate</option>
+                                    <option value="computer_network_security">Computer & Network Security</option>
+                                    <option value="computer_games">Computer Games</option>
+                                    <option value="computer_hardware">Computer Hardware</option>
+                                    <option value="computer_networking">Computer Networking</option>
+                                    <option value="computer_software">Computer Software</option>
+                                    <option value="construction">Construction</option>
+                                    <option value="consumer_electronics">Consumer Electronics</option>
+                                    <option value="consumer_goods">Consumer Goods</option>
+                                    <option value="consumer_services">Consumer Services</option>
+                                    <option value="cosmetics">Cosmetics</option>
+                                    <option value="dairy">Dairy</option>
+                                    <option value="defense_space">Defense & Space</option>
+                                    <option value="design">Design</option>
+                                    <option value="education_management">Education Management</option>
+                                    <option value="e_learning">E-Learning</option>
+                                    <option value="electrical_electronic_manufacturing">Electrical/Electronic Manufacturing</option>
+                                    <option value="entertainment">Entertainment</option>
+                                    <option value="environment_services">Environment Services</option>
+                                    <option value="events_services">Events Services</option>
+                                    <option value="executive_office">Executive Office</option>
+                                    <option value="facilities_services">Facilities Services</option>
+                                    <option value="farming">Farming</option>
+                                    <option value="financial_services">Financial Services</option>
+                                    <option value="fine_arts">Fine Arts</option>
+                                    <option value="fishery">Fishery</option>
+                                    <option value="food_beverages">Food & Beverages</option>
+                                    <option value="food_production">Food Production</option>
+                                    <option value="fund-raising">Fund-Raising</option>
+                                    <option value="furniture">Furniture</option>
+                                    <option value="gambling_casinos">Gambling & Casinos</option>
+                                    <option value="glass_ceramics_concrete">Glass, Ceramics & Concrete</option>
+                                    <option value="government_administration">Government Administration</option>
+                                    <option value="government_relations">Government Relations</option>
+                                    <option value="graphic_design">Graphic Design</option>
+                                    <option value="health_wellness_and_fitness">Health, Wellness and Fitness</option>
+                                    <option value="higher_education">Higher Education</option>
+                                    <option value="hospital_health_care">Hospital & Health Care</option>
+                                    <option value="hospitality">Hospitality</option>
+                                    <option value="human_resources">Human Resources</option>
+                                    <option value="import_and_export">Import and Export</option>
+                                    <option value="individual_family_services">Individual & Family Services</option>
+                                    <option value="industrial_automation">Industrial Automation</option>
+                                    <option value="information_services">Information Services</option>
+                                    <option value="information_technology_and_services">Information Technology and Services</option>
+                                    <option value="insurance">Insurance</option>
+                                    <option value="international_affairs">International Affairs</option>
+                                    <option value="international_trade_and_development">International Trade and Development</option>
+                                    <option value="internet">Internet</option>
+                                    <option value="investment_banking">Investment Banking</option>
+                                    <option value="investment_management">Investment Management</option>
+                                    <option value="judiciary">Judiciary </option>
+                                    <option value="law_enforcement">Law Enforcement</option>
+                                    <option value="law_practice">Law Practice</option>
+                                    <option value="legal_services">Legal Services</option>
+                                    <option value="legislative_office">Legislative Office</option>
+                                    <option value="leisure_travel_tourism">Leisure, Travel & Tourism</option>
+                                    <option value="libraries">Libraries</option>
+                                    <option value="logistics_and_supply_chain">Logistics and Supply Chain</option>
+                                    <option value="luxury_goods_jewelry">Luxury Goods & Jewelry</option>
+                                    <option value="machinery">Machinery</option>
+                                    <option value="management_consulting">Management Consulting</option>
+                                    <option value="maritime">Maritime</option>
+                                    <option value="marketing_and_advertising">Marketing and Advertising</option>
+                                    <option value="market_research">Market Research</option>
+                                    <option value="mechanical_or_industrial_engineering">Mechanical or Industrial Engineering</option>
+                                    <option value="media_production">Media Production</option>
+                                    <option value="medical_devices">Medical Devices</option>
+                                    <option value="medical_practice">Medical Practice</option>
+                                    <option value="mental_health_care">Mental Health Care</option>
+                                    <option value="military">Military</option>
+                                    <option value="mining_metals">Mining & Metals</option>
+                                    <option value="motion_pictures_and_film">Motion Pictures and Film</option>
+                                    <option value="museums_and_institutions">Museums and Institutions</option>
+                                    <option value="music">Music </option>
+                                    <option value="nanotechnology">Nanotechnology </option>
+                                    <option value="newspaper">Newspaper</option>
+                                    <option value="nonprofit_organization_management">Nonprofit Organization Management</option>
+                                    <option value="oil_energy">Oil & Energy</option>
+                                    <option value="online_media">Online Media</option>
+                                    <option value="outsourcing_offshoring">Outsourcing/Offshoring</option>
+                                    <option value="package_freight_delivery">Package/Freight Delivery</option>
+                                    <option value="packaging_and_containers">Packaging and Containers</option>
+                                    <option value="paper_forest_products">Paper & Forest Products</option>
+                                    <option value="performing_arts">Performing Arts</option>
+                                    <option value="pharmaceuticals">Pharmaceuticals</option>
+                                    <option value="philanthropy">Philanthropy</option>
+                                    <option value="photography">Photography</option>
+                                    <option value="plastics">Plastics</option>
+                                    <option value="political_organization">Political Organization</option>
+                                    <option value="primary_secondary_education">Primary/Secondary Education</option>
+                                    <option value="printing">Printing</option>
+                                    <option value="professional_training_coaching">Professional Training & Coaching</option>
+                                    <option value="program_development">Program Development</option>
+                                    <option value="public_policy">Public Policy</option>
+                                    <option value="public_relations_and_communications">Public Relations and Communications</option>
+                                    <option value="public_safety">Public Safety</option>
+                                    <option value="publishing">Publishing</option>
+                                    <option value="railroad_manufacture">Railroad Manufacture</option>
+                                    <option value="ranching">Ranching</option>
+                                    <option value="real_estate">Real Estate</option>
+                                    <option value="recreational_facilities_and_services">Recreational Facilities and Services</option>
+                                    <option value="religious_institutions">Religious Institutions</option>
+                                    <option value="renewables_environment">Renewables & Environment</option>
+                                    <option value="research">Research</option>
+                                    <option value="restaurants">Restaurants</option>
+                                    <option value="retail">Retail</option>
+                                    <option value="security_and_investigations">Security and Investigations</option>
+                                    <option value="semiconductors">Semiconductors </option>
+                                    <option value="shipbuilding">Shipbuilding </option>
+                                    <option value="sporting_goods">Sporting Goods</option>
+                                    <option value="sports">Sports</option>
+                                    <option value="staffing_and_recruiting">Staffing and Recruiting</option>
+                                    <option value="supermarkets">Supermarkets</option>
+                                    <option value="telecommunications">Telecommunications</option>
+                                    <option value="textiles">Textiles</option>
+                                    <option value="think_tanks">Think Tanks</option>
+                                    <option value="tobacco">Tobacco </option>
+                                    <option value="translation_and_localization">Translation and Localization</option>
+                                    <option value="transportation_trucking_railroad">Transportation/Trucking/Railroad</option>
+                                    <option value="utilities">Utilities </option>
+                                    <option value="venture_capital_private_equity">Venture Capital & Private Equityxt</option>
+                                    <option value="veterinary">Veterinary </option>
+                                    <option value="warehousing">Warehousing </option>
+                                    <option value="wholesale">Wholesale </option>
+                                    <option value="wine_and_spirits">Wine and Spirits</option>
+                                    <option value="wireless">Wireless </option>
+                                    <option value="writing_and_editing">Writing and Editing</option>
+                                </select>
+                            </div>
+                            <span class="validate-error" data-ng-if="formStatus.sumbit && companyDetails.industry.$modelValue == 'default'"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.required')"></span></span>
+                        </li>
+                        <li class="ele-left b45">
+                            <label class="label-text" for="numberOfEmployees" data-ng-bind="pullInterNationalization('admin.account.business.label.emp')"></label>
+                            <input type="text" name="numberOfEmployees" data-ng-model="companyDetail.numberOfEmployees" required data-ng-disabled="flags.companyEditing" maxlength="6" data-ng-pattern="/^[0-9\b]{1,6}$/" />
+                            <span class="validate-error" data-ng-if="formStatus.sumbit && (companyDetails.numberOfEmployees.$error.required || companyDetail.numberOfEmployees < 1)"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.required')"></span></span>
+                            <span class="validate-error" data-ng-if="formStatus.sumbit && companyDetails.numberOfEmployees.$error.pattern"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.number')"></span></span>
+                        </li>
+                        <li class="ele-left w44 b15 clearb r30">
+                            <label class="label-text" for="country" data-ng-bind="pullInterNationalization('admin.account.business.label.country')"></label>
+                            <div class="select-wrapper brdr" data-ng-class="{'disabled':flags.companyEditing}">
+                                <span class="ab-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                                <select class="select-option-style" name="country" data-ng-model="companyDetail.address.country" required data-ng-disabled="flags.companyEditing" data-ng-change="stateCheck.forSelectedCountry=companyDetail.address.country;addressFormReset('business')" data-ng-init="stateCheck.forSelectedCountry=companyDetail.address.country">
+                                    <option value="default" data-ng-bind="::pullInterNationalization('home.selectCountry')"></option>
+                                    <option value="{{cList.code}}" data-ng-if="cList.code === 'US'" data-ng-repeat="cList in countries" data-ng-bind="cList.name"></option>
+                                    <option value="{{cList.code}}" data-ng-if="cList.code === 'CA'" data-ng-repeat="cList in countries" data-ng-bind="cList.name"></option>
+                                    <option value="default1">--------------------------------------------------</option>
+                                    <option value="{{cList.code}}" data-ng-if="cList.code !== 'US' && cList.code !== 'CA'" data-ng-repeat="cList in countries" data-ng-bind="cList.name"></option>
+                                </select>
+                            </div>
+                            <span class="validate-error" data-ng-if="formStatus.sumbit && (companyDetail.address.country == 'default' || companyDetail.address.country == 'default1')"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.required')"></span></span>
+                        </li>
+                        <li class="ele-left w44 b15 clearb r15">
+                            <label class="label-text" for="address1" data-ng-bind="pullInterNationalization('admin.account.business.label.addressl1')"></label>
+                            <input type="text" name="address1" data-ng-model="companyDetail.address.address1" required data-ng-disabled="flags.companyEditing" />
+                            <span class="validate-error" data-ng-if="formStatus.sumbit && companyDetails.address1.$error.required"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.required')"></span></span>
+                        </li>
+                        <li class="ele-left w44 b15">
+                            <label class="label-text" for="address2" data-ng-bind="pullInterNationalization('admin.account.business.label.addressl2')"></label>
+                            <input type="text" name="address2" data-ng-model="companyDetail.address.address2" data-ng-disabled="flags.companyEditing" />
+                        </li>
+                        <li class="ele-left b15 clearb r15">
+                            <label class="label-text" for="city" data-ng-bind="pullInterNationalization('admin.account.business.label.city')"></label>
+                            <input type="text" name="city" data-ng-model="companyDetail.address.city" required data-ng-disabled="flags.companyEditing" />
+                            <span class="validate-error" data-ng-if="formStatus.sumbit && companyDetails.city.$error.required"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.required')"></span></span>
+                        </li>
+                        <li class="ele-left b15 r15" data-ng-if="stateCheck.forSelectedCountry!='US'  && stateCheck.forSelectedCountry!='CA'">
+                            <label class="label-text" for="state" data-ng-bind="pullInterNationalization('admin.account.business.label.region')"></label>
+                            <input type="text" name="state" data-ng-model="companyDetail.address.state" data-ng-disabled="flags.companyEditing" />
+                        </li>
+                        <li class="ele-left b15 r15" data-ng-if="stateCheck.forSelectedCountry!='US'  && stateCheck.forSelectedCountry=='CA'">
+                            <label class="label-text" for="state" data-ng-bind="pullInterNationalization('admin.account.business.label.province')"></label>
+                            <input type="text" name="state" data-ng-model="companyDetail.address.state" required data-ng-disabled="flags.companyEditing" />
+                            <span class="validate-error" data-ng-if="formStatus.sumbit && companyDetails.state.$error.required"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.req')"></span></span>
+                        </li>
+                        <li class="ele-left b15 r15" data-ng-if="stateCheck.forSelectedCountry=='US'">
+                            <label class="label-text" for="state" data-ng-bind="pullInterNationalization('admin.account.business.label.state')"></label>
+                            <div class="select-wrapper brdr" data-ng-class="{'disabled':flags.companyEditing}">
+                                <span class="ab-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                                <select class="select-option-style" name="state" data-ng-model="companyDetail.address.state" required data-ng-disabled="flags.companyEditing">
+                                    <option value="default" label="Please Select" data-ng-bind="pullInterNationalization('admin.account.business.label.state')"></option>
+                                    <option value="AL" label="Alabama">Alabama</option>
+                                    <option value="AK" label="Alaska">Alaska</option>
+                                    <option value="AS" label="American Samoa">American Samoa</option>
+                                    <option value="AZ" label="Arizona">Arizona</option>
+                                    <option value="AR" label="Arkansas">Arkansas</option>
+                                    <option value="AE" label="Armed Forces Middle East">Armed Forces Middle East</option>
+                                    <option value="AA" label="Armed Forces Americas (not Canada)">Armed Forces Americas (not Canada)</option>
+                                    <option value="AP" label="Armed Forces Pacific">Armed Forces Pacific</option>
+                                    <option value="CA" label="California">California</option>
+                                    <option value="CO" label="Colorado">Colorado</option>
+                                    <option value="CT" label="Connecticut">Connecticut</option>
+                                    <option value="DE" label="Delaware">Delaware</option>
+                                    <option value="DC" label="District of Columbia">District of Columbia</option>
+                                    <option value="FL" label="Florida">Florida</option>
+                                    <option value="GA" label="Georgia">Georgia</option>
+                                    <option value="GU" label="Guam">Guam</option>
+                                    <option value="HI" label="Hawaii">Hawaii</option>
+                                    <option value="ID" label="Idaho">Idaho</option>
+                                    <option value="IL" label="Illinois">Illinois</option>
+                                    <option value="IN" label="Indiana">Indiana</option>
+                                    <option value="IA" label="Iowa">Iowa</option>
+                                    <option value="KS" label="Kansas">Kansas</option>
+                                    <option value="KY" label="Kentucky">Kentucky</option>
+                                    <option value="LA" label="Louisiana">Louisiana</option>
+                                    <option value="ME" label="Maine">Maine</option>
+                                    <option value="MD" label="Maryland">Maryland</option>
+                                    <option value="MA" label="Massachusetts">Massachusetts</option>
+                                    <option value="MI" label="Michigan">Michigan</option>
+                                    <option value="MN" label="Minnesota">Minnesota</option>
+                                    <option value="MS" label="Mississippi">Mississippi</option>
+                                    <option value="MO" label="Missouri">Missouri</option>
+                                    <option value="MT" label="Montana">Montana</option>
+                                    <option value="NE" label="Nebraska">Nebraska</option>
+                                    <option value="NV" label="Nevada">Nevada</option>
+                                    <option value="NH" label="New Hampshire">New Hampshire</option>
+                                    <option value="NJ" label="New Jersey">New Jersey</option>
+                                    <option value="NM" label="New Mexico">New Mexico</option>
+                                    <option value="NY" label="New York">New York</option>
+                                    <option value="NC" label="North Carolina">North Carolina</option>
+                                    <option value="ND" label="North Dakota">North Dakota</option>
+                                    <option value="MP" label="Northern Mariana Islands">Northern Mariana Islands</option>
+                                    <option value="OH" label="Ohio">Ohio</option>
+                                    <option value="OK" label="Oklahoma">Oklahoma</option>
+                                    <option value="OR" label="Oregon">Oregon</option>
+                                    <option value="PA" label="Pennsylvania">Pennsylvania</option>
+                                    <option value="PR" label="Puerto Rico">Puerto Rico</option>
+                                    <option value="RI" label="Rhode Island">Rhode Island</option>
+                                    <option value="SC" label="South Carolina">South Carolina</option>
+                                    <option value="SD" label="South Dakota">South Dakota</option>
+                                    <option value="TN" label="Tennessee">Tennessee</option>
+                                    <option value="TX" label="Texas">Texas</option>
+                                    <option value="UT" label="Utah">Utah</option>
+                                    <option value="VT" label="Vermont">Vermont</option>
+                                    <option value="VI" label="Virgin Islands">Virgin Islands</option>
+                                    <option value="VA" label="Virginia">Virginia</option>
+                                    <option value="WA" label="Washington">Washington</option>
+                                    <option value="WV" label="West Virginia">West Virginia</option>
+                                    <option value="WI" label="Wisconsin">Wisconsin</option>
+                                    <option value="WY" label="Wyoming">Wyoming</option>
+                                </select>
+                            </div>
+                            <span class="validate-error" data-ng-if="formStatus.sumbit && companyDetail.address.state == 'default'"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.req')"></span></span>
+                        </li>
+                        <li class="ele-left b15">
+                            <label class="label-text" for="zip" data-ng-bind="pullInterNationalization('admin.account.business.label.zip')" data-ng-if="stateCheck.forSelectedCountry=='US'"></label>
+                            <label class="label-text" for="zip" data-ng-bind="pullInterNationalization('admin.account.business.label.postal')" data-ng-if="stateCheck.forSelectedCountry!='US'"></label>
+                            <input type="text" name="zip" data-ng-model="companyDetail.address.zip" required data-ng-disabled="flags.companyEditing" data-ng-pattern="/(^\d{5}$)|(^\d{5}-\d{4}$)/" data-ng-if="stateCheck.forSelectedCountry=='US'" />
+                            <input type="text" name="zip" data-ng-model="companyDetail.address.zip" required data-ng-disabled="flags.companyEditing" data-ng-if="stateCheck.forSelectedCountry!='US'" />
+                            <span class="validate-error" data-ng-if="formStatus.sumbit && companyDetails.zip.$error.required"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.req')"></span></span>
+                            <span class="validate-error" data-ng-if="formStatus.sumbit && companyDetails.zip.$error.pattern && companyDetails.zip.$error.required===false"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.inv')"></span></span>
+                        </li>
+                        <li class="ele-left b15 clearb w44">
+                            <label class="label-text" for="phoneNumber" data-ng-bind="pullInterNationalization('admin.account.business.label.ph')"></label>
+                            <input type="text" name="phoneNumber" data-ng-model="companyDetail.phoneNumber" required data-ng-disabled="flags.companyEditing" data-ng-pattern="/^\+?([-.\s\d]){10,16}$/" />
+                            <span class="validate-error" data-ng-if="formStatus.sumbit && companyDetails.phoneNumber.$error.required"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.required')"></span></span>
+                            <span class="validate-error" data-ng-if="formStatus.sumbit && companyDetails.phoneNumber.$error.pattern"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.zip')"></span></span>
+                        </li>
+                        <li class="ele-left wAuto clearb b15" data-ng-if="!flags.companyEditing">
+                            <ul class="sub-list">
+                                <li class="ele-left wAuto r15">
+                                    <input type="submit" value="{{::pullInterNationalization('admin.member.submit')}}" class="btn-block btn-15px sp-btn-color" data-ng-click="saveAndUpdate(companyDetail, 'companyDetails')" />
+                                </li>
+                                <li class="ele-left wAuto">
+                                    <input type="button" value="{{::pullInterNationalization('admin.member.cancel')}}" class="btn-block btn-grey-dark btn-15px" data-ng-click="disableEdit()" />
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                </form>
+            </div>
+        </div>
+        <div class="billing-col lef">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="spApp">
+
+<head>
+    <title>SurePeople</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0" />
+    <meta name="description" content="SurePeople" />
+    <meta name="keywords" content="SurePeople" />
+    <!--[if lte IE 8]>
+    <script type="text/javascript">
+            //Redirecting if the Browser is LEss than IE8
+           window.location="/sp/resources/html/browser.html";       
+    </script>
+<![endif]-->
+    <link rel="icon" type="image/x-icon" href="/resources/css/images/sure_people.ico" />
+    <link type="text/css" rel="stylesheet" href="/resources/css/css-min/vendor.min.css" />
+    <link type="text/css" rel="stylesheet" href="/resources/css/css-min/global.min.121a33343a920d88851affb705780627.css" />
+    <link type="text/css" rel="stylesheet" href="/resources/css/css-min/sp-profile-pdf.min.d6cfd53cdad8e92ade8b723c117c59e6.css">
+    <style type="text/css">
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        -webkit-print-color-adjust: exact; color-adjust: exact;
+    }
+    </style>
+</head>
+
+<body class="hide" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'">
+    <section data-ng-controller="relationshipManagerController as ctrl" data-ng-init="ctrl.initPrint();" data-ng-cloak>
+        <div class="pdfPrintVersion">
+            <div class="ra-print-report-wrapper">
+                <img src="https://www.surepeople.com/sp/resources/images/sp-logo.svg" alt="SurePeople™" class="logo-img">
+                <div class="ra-intro">
+                    <p class="ra-header" data-ng-bind-html="pullInterNationalization('prism.relationship-advisor.title')"></p>
+                    <p data-ng-bind-html="pullInterNationalization('prism.relationship-advisor.desc')"></p>
+                </div>
+                <div class="ra-table-wrap">
+                    <div class="ra-table-cols ra-col-left">
+                        <p class="ra-name" data-ng-bind="ctrl.selectedMemberDetails.left.name"></p>
+                        <p class="ra-title" data-ng-bind="ctrl.selectedMemberDetails.left.title"></p>
+                    </div>
+                    <div class="ra-table-cols ra-col-mid"></div>
+                    <div class="ra-table-cols ra-col-right">
+                        <p class="ra-name" data-ng-bind="ctrl.selectedMemberDetails.right.name"></p>
+                        <p class="ra-title" data-ng-bind="ctrl.selectedMemberDetails.right.title"></p>
+                    </div>
+                </div>
+                <!-- List Starts -->
+                <div class="ra-table-wrap">
+                    <div class="ra-table-cols ra-col-left">
+                        <p class="rel-title" data-ng-if="ctrl.resultTabs.leftSelected === 0">
+                            <span class="btn-txt">{{pullInterNationalization('prism.relationship-advisor.subhead1')}}</span>
+                            <span class="personality" style="text-transform:uppercase; color:#f63;">({{ctrl.candidateAdvise.personalityPrimary.trim()}})</span>
+                        </p>
+                        <p class="rel-title" data-ng-if="ctrl.resultTabs.leftSelected === 1">
+                            <span class="btn-txt">{{pullInterNationalization('prism.relationship-advisor.subhead2')}}</span>
+                            <span class="personality" style="text-transform:uppercase; color:#f63;">({{ctrl.candidateAdvise.personalityUnderPressure.trim()}})</span>
+                        </p>
+                        <p class="rel-title" data-ng-bind-html="ctrl.candidateAdvise.title"></p>
+                        <h3 class="sp-header-title-color">{{ctrl.selectedMemberDetails.left.firstName}} {{pullInterNationalization('prism.relationship-advisor.subhead4')}}</h3>
+                        <ul data-ng-bind-html="ctrl.formatList(ctrl.candidateAdvise.effort)"></ul>
+                        <h3 class="sp-header-title-color">{{ctrl.selectedMemberDetails.left.firstName}} {{pullInterNationalization('prism.relationship-advisor.subhead3')}}</h3>
+                        <ul data-ng-bind-html="ctrl.formatList(ctrl.candidateAdvise.avoid)"></ul>
+                    </div>
+                    <div class="ra-table-cols ra-col-mid"></div>
+                    <div class="ra-table-cols ra-col-right">
+                        <p class="rel-title" data-ng-if="ctrl.resultTabs.rightSelected === 0">
+                            <span class="btn-txt">{{pullInterNationalization('prism.relationship-advisor.subhead1')}}</span>
+                            <span class="personality" style="text-transform:uppercase; color:#f63;">({{ctrl.memberAdvise.personalityPrimary.trim()}})</span>
+                        </p>
+                        <p class="rel-title" data-ng-if="ctrl.resultTabs.rightSelected === 1">
+                            <span class="btn-txt">{{pullInterNationalization('prism.relationship-advisor.subhead2')}}</span>
+                            <span class="personality" style="text-transform:uppercase; color:#f63;">({{ctrl.memberAdvise.personalityUnderPressure.trim()}})</span>
+                        </p>
+                        <p class="rel-title" data-ng-bind-html="ctrl.memberAdvise.title"></p>
+                        <h3 class="sp-header-title-color">{{ctrl.selectedMemberDetails.right.firstName}} {{pullInterNationalization('prism.relationship-advisor.subhead4')}}</h3>
+                        <ul data-ng-bind-html="ctrl.formatList(ctrl.memberAdvise.effort)"></ul>
+                        <h3 class="sp-header-title-color">{{ctrl.selectedMemberDetails.right.firstName}} {{pullInterNationalization('prism.relationship-advisor.subhead3')}}</h3>
+                        <ul data-ng-bind-html="ctrl.formatList(ctrl.memberAdvise.avoid)"></ul>
+                    </div>
+                </div>
+                <!-- List Ends -->
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript" src="/resources/js-min/vendor.min.664a6165ba3e3118e03307490eff6621.js"></script>
+    <script type="text/javascript" src="/resources/js-min/common.min.594f033f85139fa109f3757008775d54.js"></script>
+    <script type="text/javascript" src="/resources/js-min/relationshipManagerController.min.js"></script>
+</body>
+</html>

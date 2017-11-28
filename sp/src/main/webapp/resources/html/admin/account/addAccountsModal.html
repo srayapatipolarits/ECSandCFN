@@ -1,0 +1,123 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-offset-3 col-md-6 col-sm-offset-1 col-sm-10">
+            <div>
+                <section class="wrapper createGroup">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar" data-ng-bind="pullInterNationalization('admin.account.business.'+addType+'.heading1')"></div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                            </div>
+                        </div>
+                        <div class="contentArea">
+                            <div class="add-accounts-modal member-accs hide" ng-class="addType==='members'?'show':'hide'" ng-if="addType==='members'">
+                                <h2 data-ng-bind="pullInterNationalization('admin.account.business.members.heading2')"></h2>
+                                <p data-ng-bind="pullInterNationalization('admin.account.business.members.desc1')" class="acc-desc"></p>
+                                <form id="addAccountsFormModal" name="addAccountsForm" novalidate autocomplete="off" action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" method="POST" data-ng-submit="processAddAccounts(addAccounts, $event)">
+                                
+                                	<input type=hidden name="orgid" value="00Dj0000001oNf3">
+                                    <input type="hidden" id="retURL" name="retURL" value="{{currentPageUrl}}">
+                                    
+                                    <input type="hidden" id="name" maxlength="80" name="name" size="20" type="text" value="{{companyDetail.name}}" />
+									<input type="hidden" id="email" maxlength="80" name="email" size="20" type="text" value="{{storedEmail}}" />
+									<input type="hidden" id="phone" maxlength="40" name="phone" size="20" type="text" value="{{companyDetail.phoneNumber}}" />
+									                                    
+                                    <input type="hidden" id="subject" name="subject" value="{{pullInterNationalization('admin.account.business.'+addType+'.heading1')}}">
+                                    <input type="hidden" id="description" name="description" value="Member Accounts: {{addAccounts.memberAccounts}}; Admin Accounts: {{addAccounts.memberAdminAccounts}};">
+                                    
+									<select type="hidden" id="00Nj000000AEzMJ" name="00Nj000000AEzMJ" title="Message Type" class="hide-this">
+										<option value="">--None--</option>
+										<option selected="selected" value="Request for Member/Admin Licenses">Request for Member/Admin Licenses</option>
+									</select>                                    
+                                    
+                                    <ol class="form-list-c">
+                                        <li class="input-fl">
+                                            <label data-ng-bind="pullInterNationalization('admin.account.business.members.label1')" class="acc-desc"></label>
+                                            <input class="serialize-ignore" type="number" min="0" step="1" autocomplete="off" ng-model="addAccounts.memberAccounts" name="memberAccounts" ng-pattern="/^[0-9][0-9]*$/" ng-required="!addAccounts.memberAdminAccounts"  />
+                                            <span class="validate-error" ng-show="$parent.addAccountsForm.submitted && addAccountsForm.memberAccounts.$error.required" data-ng-bind="pullInterNationalization('admin.account.business.error.req')"></span>
+                                            <span class="validate-error" ng-show="$parent.addAccountsForm.submitted && !addAccountsForm.memberAccounts.$error.required && addAccountsForm.memberAccounts.$error.pattern" data-ng-bind="pullInterNationalization('admin.account.business.error.inv')"></span>
+                                            <span class="validate-error" ng-show="$parent.addAccountsForm.submitted && addAccounts.memberAccounts===0 && addAccounts.memberAdminAccounts===0" data-ng-bind="pullInterNationalization('admin.account.business.error.req')"></span>
+                                        </li>
+                                        <li class="input-fl">
+                                            <label data-ng-bind="pullInterNationalization('admin.account.business.members.label2')" class="acc-desc"></label>
+                                            <input class="serialize-ignore" type="number" min="0" step="1" autocomplete="off" ng-model="addAccounts.memberAdminAccounts" name="memberAdminAccounts" ng-pattern="/^[0-9][0-9]*$/" />
+                                            <span class="validate-error" ng-show="$parent.addAccountsForm.submitted && addAccountsForm.memberAdminAccounts.$error.required" data-ng-bind="pullInterNationalization('admin.account.business.error.req')"></span>
+                                            <span class="validate-error" ng-show="$parent.addAccountsForm.submitted && !addAccountsForm.memberAdminAccounts.$error.required && addAccountsForm.memberAdminAccounts.$error.pattern" data-ng-bind="pullInterNationalization('admin.account.business.error.inv')"></span>
+                                        </li>
+                                        <li class="submit-cancel-btns">
+                                            <ul class="submit-cancel-list">
+                                                <li class="submit-charge">
+                                                    <input type="submit" value="{{pullInterNationalization('admin.account.business.members.btn1')}}" class="subscribeBtn btn-block btn-15px sp-btn-color" />
+                                                </li>
+                                                <li class="cancel-charge">
+                                                    <input type="button" value="{{pullInterNationalization('admin.account.business.members.btn2')}}" data-ng-click="closeThisDialog()" class="cancelBtn btn-block btn-15px btn-grey-dark" />
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ol>
+                                </form>
+                            </div>
+                            <div class="add-accounts-modal candidate-accs hide" ng-class="addType==='candidates'?'show':'hide'" ng-if="addType==='candidates'">
+                                <h2 data-ng-bind="pullInterNationalization('admin.account.business.candidates.heading2')"></h2>
+                                <p data-ng-bind="pullInterNationalization('admin.account.business.members.desc1')" class="acc-desc"></p>
+                                
+								<div class="bundle-info">
+									<p><span data-ng-bind="pullInterNationalization('admin.account.business.candidates.desc2')"></span> 10</p>
+									<p>1 bundle = 10 candidates</p>
+								</div>                                
+                                
+                                <form id="addAccountsFormModal" name="addAccountsForm" novalidate autocomplete="off" method="POST" action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" data-ng-submit="processAddAccounts(addAccounts, $event)">
+                                
+                                	<input type=hidden name="orgid" value="00Dj0000001oNf3">
+                                    <input type="hidden" id="retURL" name="retURL" value="{{currentPageUrl}}">
+                                    
+                                    <input type="hidden" id="name" maxlength="80" name="name" size="20" type="text" value="{{companyDetail.name}}" />
+									<input type="hidden" id="email" maxlength="80" name="email" size="20" type="text" value="{{storedEmail}}" />
+									<input type="hidden" id="phone" maxlength="40" name="phone" size="20" type="text" value="{{companyDetail.phoneNumber}}" />
+									
+                                    <input type="hidden" id="subject" name="subject" value="{{pullInterNationalization('admin.account.business.'+addType+'.heading1')}}">
+                                    <input type="hidden" id="description" name="description" value="Candidate Accounts: {{addAccounts.candidateBundles*10}}; Hiring Admin Accounts: {{addAccounts.hiringAdminAccounts}};">
+
+									<select type="hidden" id="00Nj000000AEzMJ" name="00Nj000000AEzMJ" title="Message Type" class="hide-this">
+										<option value="">--None--</option>
+										<option selected="selected" value="Request for Member/Admin Licenses">Request for Member/Admin Licenses</option>
+									</select>                                    
+                                                                        
+                                    <ol class="form-list-c">
+                                        <li class="input-fl">
+                                            <label data-ng-bind="pullInterNationalization('admin.account.business.candidates.label3')" class="acc-desc"></label>
+                                            <input class="serialize-ignore" type="number" min="0" step="1" autocomplete="off" ng-model="addAccounts.candidateBundles" name="candidateBundles" ng-pattern="/^[0-9][0-9]*$/" data-ng-required="!addAccounts.hiringAdminAccounts" />
+                                            <span class="validate-error" ng-show="$parent.addAccountsForm.submitted && addAccountsForm.candidateBundles.$error.required" data-ng-bind="pullInterNationalization('admin.account.business.error.req')"></span>
+                                            <span class="validate-error" ng-show="$parent.addAccountsForm.submitted && !addAccountsForm.candidateBundles.$error.required && addAccountsForm.candidateBundles.$error.pattern" data-ng-bind="pullInterNationalization('admin.account.business.error.inv')"></span>
+                                            <span class="validate-error" ng-show="$parent.addAccountsForm.submitted && addAccounts.candidateBundles === 0 && addAccounts.hiringAdminAccounts === 0" data-ng-bind="pullInterNationalization('admin.account.business.error.req')"></span>
+                                        </li>
+                                        <li class="input-fl">
+                                            <label data-ng-bind="pullInterNationalization('admin.account.business.candidates.label4')" class="acc-desc"></label>
+                                            <input  class="serialize-ignore" type="text" disabled value="{{addAccounts.candidateBundles?(10 * addAccounts.candidateBundles):0}}"/>
+                                        </li>                                        
+                                        <li class="input-fl">
+                                            <label data-ng-bind="pullInterNationalization('admin.account.business.candidates.label5')" class="acc-desc no-pads"></label>
+                                            <input class="serialize-ignore" type="number" min="0" step="1" autocomplete="off" ng-model="addAccounts.hiringAdminAccounts" name="hiringAdminAccounts" ng-pattern="/^[0-9][0-9]*$/" />
+                                            <span class="validate-error" ng-show="$parent.addAccountsForm.submitted && addAccountsForm.hiringAdminAccounts.$error.required" data-ng-bind="pullInterNationalization('admin.account.business.error.req')"></span>
+                                            <span class="validate-error" ng-show="$parent.addAccountsForm.submitted && !addAccountsForm.hiringAdminAccounts.$error.required && addAccountsForm.hiringAdminAccounts.$error.pattern" data-ng-bind="pullInterNationalization('admin.account.business.error.inv')"></span>
+                                        </li>
+                                        <li class="submit-cancel-btns">
+                                            <ul class="submit-cancel-list">
+                                                <li class="submit-charge">
+                                                    <input type="submit" value="{{pullInterNationalization('admin.account.business.members.btn1')}}" class="subscribeBtn btn-block btn-15px sp-btn-color" />
+                                                </li>
+                                                <li class="cancel-charge">
+                                                    <input type="button" value="{{pullInterNationalization('admin.account.business.members.btn2')}}" data-ng-click="closeThisDialog()" class="cancelBtn btn-block btn-15px btn-grey-dark" />
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ol>
+                                </form>                                
+                            </div>
+                        </div>
+                </section>
+                </div>
+            </div>
+        </div>
+    </div>

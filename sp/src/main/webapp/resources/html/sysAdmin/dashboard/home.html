@@ -1,0 +1,20 @@
+<section data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'" class="hide" data-ng-controller="adminDashboardCtrl as ctrl">
+    <div class="x-container admin-dashboard-wrapper oVisible">
+        <div class="container" >
+        	<div class="admin-dash-home">
+        		<div class="admin-dash-tabs">
+        			<ul>
+        				<li data-ng-bind="::pullInterNationalization('dashboardAdmin.tabPosts')" data-ng-click="ctrl.selectedTab='posts'" data-ng-class="{'on':ctrl.selectedTab==='posts'}"></li>
+        				<li data-ng-bind="::pullInterNationalization('dashboardAdmin.tabActivities')" data-ng-click="ctrl.selectedTab='activities'" data-ng-class="{'on':ctrl.selectedTab==='activities'}"></li>
+        				<li data-ng-bind="::pullInterNationalization('dashboardAdmin.tabAuthors')" data-ng-click="ctrl.selectedTab='authors'" data-ng-class="{'on':ctrl.selectedTab==='authors'}"></li>
+        			</ul>
+        		</div>
+        		<div class="admin-dash-content-wrap">
+        			<ng-include src="'/sp/resources/html/sysAdmin/dashboard/home-posts.html'" data-ng-if="ctrl.selectedTab==='posts'"></ng-include>
+        			<ng-include src="'/sp/resources/html/sysAdmin/dashboard/home-activities.html'" data-ng-if="ctrl.selectedTab==='activities'"></ng-include>
+        			<ng-include src="'/sp/resources/html/sysAdmin/dashboard/home-authors.html'" data-ng-if="ctrl.selectedTab==='authors'"></ng-include>
+        		</div>
+        	</div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,196 @@
+<section id="org-profile-balance" class="spectrum-section bleuprint-graph-section" data-ng-if="ctrl.chartDataReady">
+	  <header class="spectrum-header clearfix">
+	    <h1 class="spectrum-section-title sp-header-title-color uppercase" data-ng-bind="ctrl.globalNav==='pplAnalytics'? pullInterNationalization('spectrum.label.insights') : pullInterNationalization('spectrum.organization.ertInsights')"></h1>
+	    <div class="completedProfile"><span data-ng-bind="::pullInterNationalization('spectrum.matches')+': '"></span> <span class="number" data-ng-bind="(ctrl.profileBalanceDetail.total ||0)+' of '+ (ctrl.insights.userAnalytics.length||0)"></span></div>
+	  </header>
+	  
+	  <article class="filter-selection">
+	    <div class="filter-group" data-ng-if="ctrl.insights.spectrumFilter.filters.groups.length">
+	  		<h4 data-ng-bind="::pullInterNationalization('spectrum.profile.groups')+':'"></h4>
+	  		<div class="style-filter-group">
+	  			<ellipsis el-message="pullInterNationalization('spectrum.organization.all')" el-total="ctrl.insights.spectrumFilter.filters.groups.length" el-data='ctrl.pageSetting.groupSelected.length ? ctrl.pageSetting.groupSelected:ctrl.insights.spectrumFilter.filters.groups' el-length="'.filter-selection'" el-fontsize='14'></ellipsis>
+	  		</div>
+	  	</div>
+	  	
+	  	<div class="filter-gender-age">
+	  		<div class="filter-gender">
+	  			<h4 data-ng-bind="::pullInterNationalization('spectrum.profile.gender')+':'"></h4>
+	  			<div class='style-filter' data-ng-if="!ctrl.pageSetting.genderSelected.length || ctrl.pageSetting.genderSelected.indexOf('M')!==-1">
+	  				<span data-ng-bind="::pullInterNationalization('spectrum.gender.male')"></span>
+	  				<span class='percentage' data-ng-bind="'(' + ctrl.percentCalc(ctrl.profileBalanceDetail.divisionTotal,ctrl.profileBalanceDetail.gender.male) +'%)'"></span>
+	  			</div>
+	  			<div class='style-filter' data-ng-if="!ctrl.pageSetting.genderSelected.length || ctrl.pageSetting.genderSelected.indexOf('F')!==-1">
+	  				<span data-ng-bind="::pullInterNationalization('spectrum.gender.female')"></span>
+	  				<span class='percentage' data-ng-bind="'(' + ctrl.percentCalc(ctrl.profileBalanceDetail.divisionTotal,ctrl.profileBalanceDetail.gender.female) +'%)'"></span>
+	  			</div>
+	  			
+	  		</div>
+	  	</div>
+	  	
+	  	<div class="filter-gender-age">
+	  		<div class="filter-age clearfix">
+	  			<div class="left-age">
+	  			<h4 data-ng-bind="::pullInterNationalization('spectrum.profile.agebreakdown')"></h4>
+	  			</div>
+	  			<div class="right-age" data-ng-if="ctrl.userType==='Employees'">
+	  			<div class='style-filter' data-ng-if="!ctrl.pageSetting.ageSelected.length || ctrl.pageSetting.ageSelected.indexOf('0-21')!==-1">
+	  				<span data-ng-bind="::pullInterNationalization('spectrum.piechart.YOUNG')"></span>
+	  				<span class='percentage' data-ng-bind="'(' + ctrl.percentCalc(ctrl.profileBalanceDetail.divisionTotal,ctrl.profileBalanceDetail.age.YOUNG,2) +'%)'"></span>
+	  			</div>
+	  			<div class='style-filter' data-ng-if="!ctrl.pageSetting.ageSelected.length || ctrl.pageSetting.ageSelected.indexOf('22-34')!==-1">
+	  				<span data-ng-bind="::pullInterNationalization('spectrum.piechart.MILIENIAL')"></span>
+	  				<span class='percentage' data-ng-bind="'(' + ctrl.percentCalc(ctrl.profileBalanceDetail.divisionTotal,ctrl.profileBalanceDetail.age.MILIENIAL,2) +'%)'"></span>
+	  			</div>
+	  			<div class='style-filter' data-ng-if="!ctrl.pageSetting.ageSelected.length || ctrl.pageSetting.ageSelected.indexOf('35-44')!==-1">
+	  				<span data-ng-bind="::pullInterNationalization('spectrum.piechart.GEN_X')"></span>
+	  				<span class='percentage' data-ng-bind="'(' + ctrl.percentCalc(ctrl.profileBalanceDetail.divisionTotal,ctrl.profileBalanceDetail.age.GEN_X,2) +'%)'"></span>
+	  			</div>
+	  			<div class='style-filter' data-ng-if="!ctrl.pageSetting.ageSelected.length || ctrl.pageSetting.ageSelected.indexOf('45-54')!==-1">
+	  				<span data-ng-bind="::pullInterNationalization('spectrum.piechart.BOOMERS')"></span>
+	  				<span class='percentage' data-ng-bind="'(' + ctrl.percentCalc(ctrl.profileBalanceDetail.divisionTotal,ctrl.profileBalanceDetail.age.BOOMERS,2) +'%)'"></span>
+	  			</div>
+	  			<div class='style-filter' data-ng-if="!ctrl.pageSetting.ageSelected.length || ctrl.pageSetting.ageSelected.indexOf('55-64')!==-1">
+	  				<span data-ng-bind="::pullInterNationalization('spectrum.piechart.OLD')"></span>
+	  				<span class='percentage' data-ng-bind="'(' + ctrl.percentCalc(ctrl.profileBalanceDetail.divisionTotal,ctrl.profileBalanceDetail.age.OLD,2) +'%)'"></span>
+	  			</div>
+	  			<div class='style-filter' data-ng-if="!ctrl.pageSetting.ageSelected.length || ctrl.pageSetting.ageSelected.indexOf('65-200')!==-1">
+	  				<span data-ng-bind="::pullInterNationalization('spectrum.piechart.SILENT')"></span>
+	  				<span class='percentage' data-ng-bind="'(' + ctrl.percentCalc(ctrl.profileBalanceDetail.divisionTotal,ctrl.profileBalanceDetail.age.SILENT,2) +'%)'"></span>
+	  			</div>	
+	  			</div>
+	  			<div class="right-age" data-ng-if="ctrl.userType!=='Employees'">
+	  				<div class='style-filter'>
+		  				<span data-ng-bind="::pullInterNationalization('spectrum.notavailable')"></span>
+		  			</div>	
+	  			</div>
+	  		</div>
+	  	</div>
+	  	
+	  	<div class="filter-group" data-ng-if="ctrl.insights.spectrumFilter.filters.tags.length">
+	  		<h4 data-ng-bind="::pullInterNationalization('spectrum.profile.tags')+':'"></h4>
+	  		<div class="style-filter-group">
+	  			<ellipsis el-message="pullInterNationalization('spectrum.organization.all')" el-total="ctrl.insights.spectrumFilter.filters.tags.length" el-data='ctrl.pageSetting.tagSelected.length ? ctrl.pageSetting.tagSelected:ctrl.insights.spectrumFilter.filters.tags' el-length="'.filter-selection'" el-fontsize='14'></ellipsis>
+	  		</div>
+	  	</div>
+	  	
+	  	<div class="filter-group" data-ng-if="ctrl.insights.spectrumFilter.filters.trait.length">
+	  		<h4 data-ng-bind="::pullInterNationalization('spectrum.profile.personalityTraitSelected')+':'"></h4>
+	  		<div class="style-filter-group">
+	  			<ellipsis el-message="pullInterNationalization('spectrum.organization.all')" el-total="ctrl.insights.spectrumFilter.filters.trait.length" el-data='ctrl.pageSetting.traitSelectedDisplay.length ? ctrl.pageSetting.traitSelectedDisplay:ctrl.insights.spectrumFilter.filters.trait' el-length="'.filter-selection'" el-fontsize='14'></ellipsis>
+	  		</div>
+	  	</div>
+	  	
+	  </article>
+	  
+	  <div class="blueprint-analytics-graph" data-ng-if="ctrl.chartDataReady">
+	  		<div class="blueprint-sort">
+	  			<div class="sort-area clearfix">
+	  				<!-- <h5 data-ng-bind="::pullInterNationalization('spectrum.sort')"></h5>-->
+	  				<div class="left-filter-drop">
+	  					<div class="filter-dropdown">
+		        	 		<span class="naf-theme-icon_style1 icon-icon_dropdown-arrow sp-icon-color"></span>
+		        	 		<select data-ng-model="ctrl.pageSetting.sort" data-ng-change="ctrl.orderBy(ctrl.pageSetting.sort)" data-ng-options="v.value as pullInterNationalization('spectrum.sort.'+v.name) for (k,v) in [{'name':'asc_1','value':'plus'},{'name':'desc_1','value':'minus'}]">
+		                     </select>
+		                </div>
+	  				</div>
+	  			</div>
+	  			<div class="sort-area" data-ng-if="ctrl.userType && ctrl.pa">
+		  				<!-- <h5 data-ng-bind="::pullInterNationalization('spectrum.Personality')"></h5> -->
+		  				<div class="left-filter-drop">
+		  					<div class="filter-dropdown">
+			        	 		<span class="naf-theme-icon_style1 icon-icon_dropdown-arrow sp-icon-color"></span>
+			                    <select data-ng-model="ctrl.userType" data-ng-change="ctrl.balanceSelect()" data-ng-options="v.value as pullInterNationalization('filter.spectrum.'+v.name) for (k,v) in [{'name':'all','value':'All'}, {'name':'employee','value':'Employees'},{'name':'candidate','value':'Candidates'}]">
+			                     </select>
+			                </div>
+		  				</div>
+		  			</div>
+	  			<div class="search-area clearfix">
+	  				<!-- <h5 data-ng-bind="::pullInterNationalization('spectrum.search')"></h5>-->
+	  				<div class="left-search-area">
+	  					<div class="controlwrap sp-search-button">
+		                    <input type="text" class="form-control" maxlength="28" ng-model="ctrl.pageSetting.memberSearch" placeholder="{{::pullInterNationalization('spectrum.search.member')}}" data-ng-model-options="{ debounce: { 'default': 500, 'blur': 0 } }" data-ng-change="ctrl.ertInsightsFilterLogic()">
+		                    <button ng-class="{'icon-icon_remove':ctrl.pageSetting.memberSearch.length, 'icon-icon_search': !ctrl.pageSetting.memberSearch.length}" class="sp-icon-color" ng-click="ctrl.pageSetting.memberSearch='';ctrl.ertInsightsFilterLogic()"></button>
+		                </div>
+	  				</div>
+	  			</div>
+	  			
+	  		</div>
+	  		<div class="insightProfileSection clearfix" data-ng-if="!ctrl.userScreen">
+	  			<article data-ng-repeat="userDetail in (ctrl.recordFieldData = ctrl.insightsGraphData) track by $index" class="trait-information-block">
+	  				<header class="personlity-trait-detail">
+	  					<h4 class="personlity-trait-name" data-ng-bind="pullInterNationalization('spectrum.trait.type.'+userDetail.traitName)"></h4>
+	  					<a class="personlity-trait-view" href="javascript:void(0)" data-ng-bind="::pullInterNationalization('spectrum.viewAll')" data-ng-click="ctrl.screenInfo = userDetail;ctrl.userScreen=true;"></a>
+	  				</header>
+	  				<div class="starrer-bottom-top">
+	  					<div class="image-top-bottom">
+	  						
+                       </div>
+	  					<div class="name-top-bottom">
+	  						<ul>
+	  							<li data-ng-repeat="list in userDetail.userDto | limitTo : 5 track by $index">
+	  								<div class="positionLeft" data-ng-if="$first">
+	  									<div class="image-top-bottom" data-ng-if="ctrl.globalNav!=='pplAnalytics'">
+	  										<img data-ng-src="{{$parent.list.profile}}" alt="{{$parent.list.initial}}" data-ng-if="$parent.list.profile">
+                            				<div class="imgReplacementBig" data-ng-if="!$parent.list.profile" data-ng-bind="$parent.list.initial"></div>
+                            			</div>
+                            			<div class="image-top-bottom" data-ng-if="ctrl.globalNav==='pplAnalytics'">
+	  										<img data-ng-src="{{$parent.list.profile}}" alt="{{$parent.list.initial}}" data-ng-if="!$parent.list.initial && $parent.list.userType!=='HiringCandidate'">
+	  										<div class="imgReplacementBig icon-candidates bg-large lh-sp" data-ng-if="$parent.list.userType==='HiringCandidate'"></div>
+                            				<div class="imgReplacementBig" data-ng-if="$parent.list.initial && $parent.list.userType!=='HiringCandidate'" data-ng-bind="$parent.list.initial"></div>
+                            			</div>
+                            			<div class="name" data-ng-bind="ctrl.returnClampName($parent.list.name,30)"></div>
+	  								</div>
+	  								<div class="list-name"><span class="number" data-ng-bind="$index+1"></span><span class="name" data-ng-bind="list.name"></span></div>
+	  								<div class="list-percent" data-ng-bind="list.percent"></div>
+	  							</li>
+	  						</ul>
+	  					</div>
+	  				</div>
+	  			</article>
+	  		<p data-ng-if="!ctrl.recordFieldData.length" class="noMatchFound" data-ng-bind="::pullInterNationalization('spectrum.nouser')"></p>
+	  		</div>
+	  		
+	  		<div class="insightProfileUser" data-ng-if="ctrl.userScreen">
+	  			<div class="list-view-content profile-balance-list-view">
+			        <!-- this holds list of profiles -->
+			        <div class="closeIcon icon-icon_remove" title="{{::pullInterNationalization('spectrum.close')}}" ng-click="ctrl.userScreen=false"></div>
+			        <div class="category-hr-expand row">
+			     	   <div class="category-hr-list clearfix marginLeft5">
+				     	   <div class="col-sm-12 col-md-12 profile">
+					          		<div class="title"><span data-ng-bind="pullInterNationalization('spectrum.trait.type.'+ctrl.screenInfo.traitName)"></span> <span>(<span data-ng-bind="ctrl.screenInfo.userDto.length"></span>)</span></div>
+					          		<div class="full_desc" data-ng-bind="pullInterNationalization('spectrum.trait.description.'+ctrl.screenInfo.traitName)"></div>
+					          		<div data-ng-if="!ctrl.screenInfo.userDto.length" class="noMatchFound" data-ng-bind="::pullInterNationalization('spectrum.nouser')"></div>
+					        </div>
+					        <ul class="category-hr-list ert" data-ng-if="ctrl.screenInfo.userDto.length">
+					        	<li data-ng-repeat="member in ctrl.screenInfo.userDto track by $index">
+					        	  <div class="left-member-detail" data-ng-if="ctrl.globalNav!=='pplAnalytics'">
+					        	  	  <img data-ng-src="{{member.profile}}" alt="{{member.initial}}" data-ng-if="member.profile">
+	                           		  <div class="imgReplacement pad10" data-ng-if="!member.profile" data-ng-bind="member.initial"></div>
+					        	  </div>
+					        	  <div class="left-member-detail" data-ng-if="ctrl.globalNav==='pplAnalytics'">
+						        	  <img data-ng-src="{{member.profile}}" alt="{{member.initial}}" data-ng-if="!member.initial && member.userType!=='HiringCandidate'">
+		                              <div class="imgReplacement icon-candidates bg-small pad10" data-ng-if="member.userType==='HiringCandidate'"></div>
+		                              <div class="imgReplacement pad10" data-ng-if="member.initial && member.userType!=='HiringCandidate'" data-ng-bind="member.initial"></div>
+	                           	  </div>
+					        	  <div class="right-member-detail">
+					        	  	 <a class="category-hr-percent" href="javascript:void(0)" title="{{member.percent}}" data-ng-bind="member.percent+'%'"></a>
+					              	 <a class="category-hr-name organe-bold" href="javascript:void(0)" title="{{member.name}}" data-ng-bind="member.name"></a>
+					             	 <a class="category-hr-title" href="javascript:void(0)" title="{{member.title}}" data-ng-bind="member.title"></a>
+					        	  </div>
+					        	 
+					            </li>
+					        </ul>
+				      </div>
+			        </div>
+			      </div>
+	  		</div>
+	  </div>
+</section>
+<section class="spectrum-section bleuprint-graph-section" data-ng-if="ctrl.noData">
+	  <header class="spectrum-header clearfix pad16b">
+	    <h1 class="spectrum-section-title sp-header-title-color" data-ng-bind="::pullInterNationalization('spectrum.organization.ertInsights')"></h1>
+	  </header>
+	<section class="noActivityFound">
+		<div class="noMatchFound" data-ng-bind="::pullInterNationalization('spectrum.noInfo')"></div>
+	</section>
+</section>

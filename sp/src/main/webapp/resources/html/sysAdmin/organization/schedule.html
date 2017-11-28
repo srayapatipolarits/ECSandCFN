@@ -1,0 +1,97 @@
+<!-- Inline CSS to override the select appearance none global style -->
+<style type="text/css">
+select {
+padding-right: 10%;
+width:70px !important;
+-webkit-appearance: menulist !important;
+-moz-appearance: menulist !important;
+appearance: menulist !important;
+}
+@media (min-width: 320px) and (max-width: 767px) {
+  .table-condensed>tbody>tr>td, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>td, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>thead>tr>th {
+    padding: 1px;
+  }
+}
+@media (min-width: 320px) and (max-width: 359px) {
+   .daterangepicker {
+     margin-top: -132px !important; 
+   }
+}
+@media (min-width: 360px) and (max-width: 374px) {
+   .daterangepicker {
+     margin-top: -68px !important; 
+   }
+}
+@media (min-width: 375px) and (max-width: 767px) {
+   .daterangepicker {
+     margin-top: -56px !important; 
+   }
+}
+</style>
+<div class="container minimumHeight" id="addMemberScreen" data-ng-controller="scheduleController as ctrl" data-ng-init="ctrl.schedulePop()" data-ng-style="ctrl.winWidth<768 && {'height':ctrl.winHeight}">
+    <div class="row" data-ng-class="ctrl.winWidth<768?'row-full-w':''">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8" data-ng-class="ctrl.winWidth<768?'col-full-w':''">
+            <section class="wrapper">
+                <div class="contentBody">
+                    <div class="head">
+                        <div class="wrap">
+                            <div class="headerBar" data-ng-bind="::pullInterNationalization('admin.organization.scheduleameeting')"></div>
+                            <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color" data-ng-click="closeThis()"></div>
+                        </div>
+                    </div>
+                    <div class="contentArea clearfix">
+                        <form name="ctrl.schMeetingForm" class="schMeeting">
+                        <div class="growthAssessment noborder paddingTNone">
+                                <!-- Datetime example -->
+                                <div class="form-group clearfix calStyle">
+                                    <div class="form-group_1 displayInline posRelative">
+                                        <!-- <label class="startDate" data-ng-bind="::pullInterNationalization('sysadmin.organization.starts')"></label> -->
+                                        <span class="posRelative">
+                                        <input type="text" readonly id="startDateId" name="dateRange" class="form-control dtInput date-range-input"  data-ng-model="ctrl.dateRangeFilter">
+                                    
+                                     <label for="startDateId" class="calImg icon-icon_calendar sp-icon-color posSchedule"></label>
+                                  </span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="messageBlock">
+                                <h3 class="pa-subHeading" data-ng-bind="ctrl.schMeeting.actionTitle "></h3>
+                                <!-- <div class="description updated-margin" data-ng-bind="pullInterNationalization('admin.organization.copySuggestion')"></div>-->
+                                <div class="tagsEmailInput heightBottom">
+                                    <tags-input ng-model="tags" display-name="email" display-property="name" placeholder="{{::pullInterNationalization('sysadmin.organization.enteremail')}}" allowed-name="email" allowed-tags-pattern="^[A-Za-z0-9._-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$" replace-spaces-with-dashes="false" on-tag-removed="ctrl.meetingRemoved($tag)" on-tag-added="ctrl.meetingAdded($tag)">
+                                        <auto-complete min-length="1" load-on-focus="false" load-on-empty="true" max-results-to-show="10" source="ctrl.loadTags($query)" class="ng-tags-pos-fix"></auto-complete>
+                                    </tags-input>
+                                    <span class="validate-error" data-ng-if="ctrl.schMeeting.submitted && ctrl.schedule.meetingRequired" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                                </div>
+                                <div class="textarea heightBottom min42">
+                                    <input id="commentBlock" class="style_1" data-ng-model="ctrl.schedule.subject" placeholder="{{::pullInterNationalization('sysadmin.organization.subject')}}" name="subject" required></input>
+                                    <span class="validate-error" data-ng-if="ctrl.schMeeting.submitted && ctrl.schMeetingForm.subject.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                                </div>
+                                <div class="textarea">
+                                    <textarea id="commentBlock" class="style_1" data-ng-model='ctrl.schedule.agenda' rows="3" maxlength="300" placeholder="{{::pullInterNationalization('sysadmin.organization.agenda')}}" name="agenda"></textarea>
+                                </div>
+                                <div class="textarea display-inline min34">
+                                        <input id="commentBlock" class="style_1" data-ng-model="ctrl.schedule.location" placeholder="{{::pullInterNationalization('sysadmin.organization.enterlocation')}}" name="location"></input>
+                                    </div>
+                            </div>
+                            
+                            <div class="clearfix">
+                                <div class="sp-btn-wrapper sp-red btn-esmall floatLeft inviteBtn">
+                                    <div class="sp-btn">
+                                        <input type="button" value="{{::pullInterNationalization('pulse.startNewPulse.submit')}}" class="btnStyle1" data-ng-click="ctrl.scheduleMeeting()">
+                                    </div>
+                                </div>
+                                <div class="sp-btn-wrapper sp-grey btn-esmall floatLeft spacing">
+                                    <div class="sp-btn">
+                                        <input type="button" value="{{::pullInterNationalization('pulse.startNewPulse.cancel')}}" class="btnStyle1" data-ng-click="closeThisDialog()">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

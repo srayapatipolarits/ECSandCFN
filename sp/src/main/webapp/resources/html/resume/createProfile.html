@@ -1,0 +1,1303 @@
+<div class="sp-resume"  ng-controller="resumeController"
+	ng-init="getProfileDetails()">
+	<div class="x-container" ng-init="callGraphs()">
+		<!-- Extended Container -->
+		<div class="container">
+			<!-- Bootstrap Container -->
+			<div class="row">
+				<!-- Bootstrap Row -->
+				<div class="col-md-12">
+					<div class="resumeContainer hide" ng-if="inviteReady && profileContent" ng-class="profileContent?'show':'hide'">
+						<!-- Head Section -->
+						<header class="sp-resume-header">
+
+
+
+							<div class="sp-resume-header-user">
+								<div class="user-information">
+									<h1 class="user-nice-name-title" data-ng-bind="providerName"></h1>
+									<h2 class="role-title">Role</h2>
+									<p class="role-org" data-ng-bind="roleName" ng-trim="false"></p>
+								</div>
+								<img ng-src="{{userSummary.smallProfileImage}}"
+									class="user-nice-avatar" width="85" height="85"
+									alt="{{userSummary.userInitials}}"
+									ng-if="userSummary.smallProfileImage">
+								<div class="user-nice-avatar imgReplacementBig"
+									style="float: none" ng-if="!userSummary.smallProfileImage"
+									ng-bind="userSummary.userInitials"></div>
+							</div>
+
+							<div class="resume-header-tools">
+								<p class="manage-resumes" ng-if="manageResumeLength">
+									<a href="/sp/spResume" class="border-link"><span
+										class="mock-link"
+										data-ng-bind="pullInterNationalization('connect.linkedin.manageResume')"></span></a>
+								</p>
+								<ul class="preview-links">
+									<li><a class="btn-square-12px btn-darker-grey"
+										ng-click="previewPDF('resume-content')"
+										data-ng-bind="pullInterNationalization('connect.linkedin.preview')"></a>
+									</li>
+									<li><a class="btn-square-12px sp-background-color"
+										ng-click="createResumeCall('resume-content')"
+										data-ng-bind="pullInterNationalization('connect.linkedin.createPdf')"></a>
+									</li>
+								</ul>
+							</div>
+						</header>
+
+						<!-- Left Section Starts-->
+						<aside class="resume-control-tools">
+							<section class="resume-tool-block update-from-linkedin">
+								<h2 class="tool-block-title"
+									data-ng-bind-html="pullInterNationalization('connect.linkedin.lp')"></h2>
+								<p
+									data-ng-bind-html="pullInterNationalization('connect.linkedin.getLatest')"></p>
+								<p class="update-linkedin">
+									<a href="javascript:void(0)" ng-click="getProfileDetails('update')"><span
+										class="update-linkedin-txt"
+										data-ng-bind="pullInterNationalization('connect.linkedin.uform')"></span>
+										<span class="linkedin-logo-update"
+										data-ng-bind="pullInterNationalization('connect.linkedin.ntitle')"></span></a>
+								</p>
+							</section>
+
+							<section class="resume-tool-block contact-cover">
+								<h2 class="tool-block-title"
+									data-ng-bind="pullInterNationalization('connect.linkedin.cnc')"></h2>
+								<ul class="resume-control-list">
+									<li class="remove" ng-click="coverletterfn()"
+										ng-class="displayCover?'remove':'add'"><span data-ng-bind="pullInterNationalization('connect.linkedin.coverTitle')"></span> <span class="remove-section"
+										ng-click="displayCover = !displayCover;"></span> <span
+										class="add-section" ng-click="displayCover = !displayCover;"></span>
+									</li>
+									<li
+										ng-click="contactInfo=true;profileContentDisplay=false;coverLetter=false;"
+										data-ng-bind="pullInterNationalization('connect.linkedin.cinfo')"></li>
+								</ul>
+							</section>
+
+							<section class="resume-tool-block ordering-tool">
+								<h2 class="tool-block-title refresh-toggle"
+									ng-click="contactInfo=false;profileContentDisplay=true;coverLetter=false;">
+									<span
+										data-ng-bind="pullInterNationalization('connect.linkedin.professional')"></span>
+									<span class="refresh" ng-click="callReorder()"></span>
+								</h2>
+								<ul class="resume-control-list ordering-tool-list">
+									<li class="remove handleMe"
+										ng-class="profileContent[$index].status?'remove':'add'"
+										tabindex='{{$index}}' data-type="true"
+										ng-repeat="aside in asideContent track by aside">
+										<span
+										class="move-me"
+										data-ng-bind="pullInterNationalization('connect.linkedin.aside.{{aside|lowercase}}')"></span>
+										<span class="remove-section"
+										ng-click="changeStatusType($event,$index)"></span> <span
+										class="add-section" ng-click="changeStatusType($event,$index)"></span>
+									</li>
+
+								</ul>
+								<div class="protectLayer hide" ng-class="!profileContentDisplay?'show':'hide'"></div>
+							</section>
+
+						</aside>
+						<!-- Left Section Ends -->
+
+						<!-- right Section Profile Starts -->
+						<article class="resume-content hide"
+							ng-class="profileContentDisplay?'show':'hide'">
+							<div class="htmlMidSection">
+							<!-- Personal Details -->
+								<section
+									class="resume-section personal-toolbox technical-skills">
+									<h1 class="resume-section-title personal">
+										<div data-ng-bind="firstName"></div> <div
+											data-ng-bind="lastName"></div>
+									</h1>
+									<div class="toolbox-description">
+										<div class="" data-ng-bind="phone|tel"></div>
+										<div class="" data-ng-bind="email"></div>
+									</div>
+								</section>
+								<!-- Personal Details -->
+							<section
+								ng-repeat="contentToDisplay in profileContent | orderBy:'id':false"
+								tabindex="{{contentToDisplay.id}}" class="hide"
+								ng-class="contentToDisplay.status?'show':'hide'">
+								<!-- Title and Summary Starts-->
+								<section
+									class="resume-section personal-toolbox technical-skills"
+									ng-if="contentToDisplay.type=='headline'||contentToDisplay.type=='summary'||contentToDisplay.type=='interests'">
+									<h1 class="resume-section-title"
+										data-ng-bind="pullInterNationalization('connect.linkedin.{{contentToDisplay.type}}')"></h1>
+									<div class="toolbox-description"
+										ng-if="contentToDisplay.content">
+										<p data-ng-bind-html="contentToDisplay.content"></p>
+									</div>
+								</section>
+								<!-- Title and Summary Ends -->
+								<!-- Technical Skills-->
+								<section
+									class="resume-section personal-toolbox technical-skills"
+									ng-if="contentToDisplay.type=='skills'">
+									<h1 class="resume-section-title"
+										data-ng-bind="pullInterNationalization('connect.linkedin.{{contentToDisplay.type}}')"></h1>
+									<div class="toolbox-description"
+										ng-if="contentToDisplay.content">
+										<span data-ng-repeat="content in contentToDisplay.content track by $index" ng-if="$index < 11"><span data-ng-bind-html="content"></span><span ng-if="!($index=='10')">, </span></span>
+									</div>
+								</section>
+								<!--  Technical Skills-->
+								<!-- Education Starts -->
+								<section class="resume-section institution education"
+									ng-if="contentToDisplay.type =='educations'">
+									<h1 class="resume-section-title"
+										data-ng-bind="pullInterNationalization('connect.linkedin.{{contentToDisplay.type}}')"></h1>
+
+									<section class="institution-detail education"
+										ng-repeat="subContent in contentToDisplay.content">
+
+										<header class="institution-header">
+											<h2 class="institution-name" ng-if="subContent.schoolName"
+												data-ng-bind-html="subContent.schoolName"></h2>
+											<!-- <p class="location" data-ng-bind="">Evanston, Illinois</p>-->
+											<p class="date-span" ng-if="subContent.endDate">
+												<span data-ng-bind-html="subContent.startDate.year"></span> - <span
+													data-ng-bind-html="subContent.endDate.year"></span>
+											</p>
+											<p class="date-span" ng-if="subContent.endDate==null">
+												<span
+													data-ng-bind-html="pullInterNationalizationl('connect.linkedin.anticipated')"></span>
+												<span data-ng-bind-html="subContent.startDate.year"></span>
+											</p>
+
+										</header>
+
+										<div class="institution-highlights">
+											<section class="org-grouping">
+												<h2 class="org-title degree" ng-if="subContent.degree"
+													data-ng-bind-html="subContent.degree"></h2>
+												<h3 class="org-sub-title" ng-if="subContent.schoolName"
+													data-ng-bind-html="subContent.schoolName"></h3>
+												<!-- <p class="gpa-misc-info">Cumulative GPA: 3.1/4.00 | Major GPA: 3.0/4.0 | ACT: 33</p>-->
+
+												<ul class="highlight-list no-bullets"
+													ng-if="subContent.activities">
+													<li class=""
+														data-ng-repeat="extra in subContent.activities.split(',')"
+														data-ng-bind-html="extra"></li>
+												</ul>
+											</section>
+										</div>
+									</section>
+								</section>
+								<!-- Education Ends -->
+								<!-- Emplyment Starts -->
+
+								<section class="resume-section institution employment"
+									ng-if="contentToDisplay.type =='positions'">
+									<h1 class="resume-section-title"
+										data-ng-bind-html="pullInterNationalization('connect.linkedin.{{contentToDisplay.type}}')"></h1>
+
+									<section class="institution-detail employment"
+										ng-repeat="subContent in contentToDisplay.content">
+
+										<header class="institution-header">
+											<h2 class="institution-name"
+												ng-if="subContent.company.name" data-ng-bind-html="subContent.company.name"></h2>
+											<p class="location"
+												ng-if="subContent.company.locations" data-ng-bind-html="subContent.company.locations"></p>
+											<p class="date-span" ng-if="subContent.isCurrent">
+												<span
+													data-ng-bind-html="pullInterNationalization('connect.linkedin.{{subContent.startDate.month}}')"></span>
+												<span data-ng-bind-html="subContent.startDate.year"></span> <span
+													data-ng-bind-html="pullInterNationalization('connect.linkedin.present')"></span>
+											</p>
+											<p class="date-span" ng-if="!subContent.isCurrent">
+												<span
+													data-ng-bind-html="pullInterNationalization('connect.linkedin.{{subContent.startDate.month}}')" ng-if="subContent.startDate.month!='0'"></span>
+												<span data-ng-bind-html="subContent.startDate.year" ng-if="subContent.startDate.year!='0'"></span> - <span
+													data-ng-bind-html="pullInterNationalization('connect.linkedin.{{subContent.endDate.month}}')" ng-if="subContent.startDate.month!='0'"></span>
+												<span data-ng-bind-html="subContent.endDate.year" ng-if="subContent.startDate.year!='0'"></span>
+											</p>
+										</header>
+
+										<div class="institution-highlights">
+											<section class="org-grouping">
+												<h2 class="org-title" ng-if="subContent.title"
+													data-ng-bind-html="subContent.title"></h2>
+												<ul class="highlight-list no-bullets"
+													ng-if="subContent.summary">
+													<li class="" data-ng-bind-html="subContent.summary"></li>
+												</ul>
+											</section>
+										</div>
+									</section>
+								</section>
+
+								<!-- employement ends-->
+								<!-- Languages Starts -->
+								<section
+									class="resume-section personal-toolbox technical-skills"
+									ng-if="contentToDisplay.type=='languages'">
+									<h1 class="resume-section-title"
+										data-ng-bind-html="pullInterNationalization('connect.linkedin.{{contentToDisplay.type}}')"></h1>
+									<div class="toolbox-description">
+										<p ng-repeat="lang in contentToDisplay.content.values"
+											data-ng-bind-html="lang.language.name"></p>
+									</div>
+								</section>
+								<!--  Languages ends -->
+
+								<!-- Patent starts -->
+								<section class="resume-section personal-toolbox patents empty"
+									ng-if="contentToDisplay.type=='patents'">
+									<h1 class="resume-section-title"
+										data-ng-bind-html="pullInterNationalization('connect.linkedin.{{contentToDisplay.type}}')"></h1>
+									<div class="toolbox-description">
+										<p ng-class="{'linkedInNewLine':!$last}" ng-repeat="pat in contentToDisplay.content.values">
+											<span data-ng-bind-html="pat.title"></span> <span ng-if="pat.date">(<span
+												data-ng-bind-html="pat.date.day" ng-if="pat.date.day != '0'"></span> <span
+												data-ng-bind-html="pullInterNationalization('connect.linkedin.{{pat.date.month}}')" ng-if="pat.date.month != '0'"></span>
+											<span data-ng-bind-html="pat.date.year" ng-if="pat.date.year != '0'"></span>)</span>
+										</p>
+
+									</div>
+								</section>
+								<!-- Patent Ends -->
+								<!-- Honors Starts-->
+								<section
+									class="resume-section personal-toolbox technical-skills"
+									ng-if="contentToDisplay.type=='honorsawards'">
+									<h1 class="resume-section-title"
+										data-ng-bind-html="pullInterNationalization('connect.linkedin.{{contentToDisplay.type}}')"></h1>
+									<div class="toolbox-description">
+										<div ng-class="{'linkedInNewLine':!$last}" ng-repeat="subContent in contentToDisplay.content.values">
+											    <span class="strongTitle" data-ng-bind-html="subContent.name"></span> from <span
+												data-ng-bind-html="subContent.issuer"></span>
+										</div>
+									</div>
+								</section>
+								<!--  Honors Ends -->
+
+								<!-- Courses Starts -->
+								<section class="resume-section personal-toolbox patents empty"
+									ng-if="contentToDisplay.type=='courses' || contentToDisplay.type=='certifications' || contentToDisplay.type == 'testscores'">
+									<h1 class="resume-section-title"
+										data-ng-bind-html="pullInterNationalization('connect.linkedin.{{contentToDisplay.type}}')"></h1>
+									<div class="toolbox-description">
+										<p ng-repeat="pat in contentToDisplay.content.values">
+											<span data-ng-bind-html="pat.name"></span> <span
+												ng-if="pat.number">({{pat.number}})</span><span
+												ng-if="pat.score">({{pat.score}})</span>
+										</p>
+									</div>
+								</section>
+								<!-- Courses Ends -->
+								<!-- Volunteer starts volunteerExperiences-->
+								<section class="resume-section institution employment"
+									ng-if="contentToDisplay.type =='volunteer'">
+									<h1 class="resume-section-title"
+										data-ng-bind-html="pullInterNationalization('connect.linkedin.{{contentToDisplay.type}}')"></h1>
+
+									<section class="institution-detail employment"
+										ng-repeat="subContent in contentToDisplay.content.volunteerExperiences.values">
+
+										<header class="institution-header">
+											<h2 class="institution-name"
+												data-ng-bind-html="subContent.organization.name"></h2>
+										</header>
+
+										<div class="institution-highlights">
+											<section class="org-grouping">
+												<h2 class="org-title" data-ng-bind-html="subContent.role"></h2>
+											</section>
+										</div>
+
+									</section>
+									<section class="institution-detail employment"
+										ng-if="contentToDisplay.content.supportedOrganizations">
+
+										<header class="institution-header">
+											<h2 class="institution-name">Supported Organization</h2>
+										</header>
+
+										<div class="institution-highlights"
+											ng-repeat="subContent in contentToDisplay.content.supportedOrganizations.values">
+											<section class="org-grouping">
+												<h2 class="org-title" data-ng-bind-html="subContent.name"></h2>
+											</section>
+										</div>
+
+									</section>
+								</section>
+								<!-- Volunteer Ends -->
+								<!-- Publication starts -->
+								<section class="resume-section personal-toolbox patents empty"
+									ng-if="contentToDisplay.type=='publications'">
+									<h1 class="resume-section-title"
+										data-ng-bind-html="pullInterNationalization('connect.linkedin.{{contentToDisplay.type}}')"></h1>
+									<div class="toolbox-description">
+										<p ng-class="{'linkedInNewLine':!$last}" ng-repeat="pat in contentToDisplay.content.values">
+											<span data-ng-bind-html="pat.title"></span> <span ng-if="pat.date">(<span
+												data-ng-bind-html="pat.date.day" ng-if="pat.date.day != '0'"></span> <span
+												data-ng-bind-html="pullInterNationalization('connect.linkedin.{{pat.date.month}}')" ng-if="pat.date.month != '0'"></span>
+											<span data-ng-bind-html="pat.date.year" ng-if="pat.date.year != '0'"></span>)</span>
+										</p>
+
+									</div>
+								</section>
+								<!-- Publication ends -->
+
+								<!-- Projects Starts -->
+
+								<section class="resume-section institution employment"
+									ng-if="contentToDisplay.type =='projects'">
+									<h1 class="resume-section-title"
+										data-ng-bind-html="pullInterNationalization('connect.linkedin.{{contentToDisplay.type}}')"></h1>
+
+									<section class="institution-detail employment"
+										ng-repeat="subContent in contentToDisplay.content.values">
+
+										<header class="institution-header">
+											<h2 class="institution-name" data-ng-bind-html="subContent.name"></h2>
+										</header>
+
+										<div class="institution-highlights">
+											<section class="org-grouping">
+												<h2 class="org-title" data-ng-bind-html="subContent.name"></h2>
+												<ul class="highlight-list no-bullets"
+													ng-if="subContent.description">
+													<li class="">
+														<div data-ng-bind-html="subContent.description"></div>
+														<div>
+															<a href="{{subContent.url}}"
+																data-ng-bind-html="subContent.url"></a>
+														</div>
+													</li>
+												</ul>
+											</section>
+										</div>
+									</section>
+								</section>
+								<!-- Projects Ends -->
+								
+							</section>
+							</div>
+						</article>
+						<!-- right Section Profile ends -->
+
+						<!-- Right Section Contact Information Starts -->
+						<form class="resume-content resume-form hide" novalidate
+							name="resumeForm" ng-class="contactInfo?'show':'hide'">
+							<ol class="resume-form-sections">
+
+								<li class="resume-section nice-job">
+									<h1 class="resume-section-title"
+										data-ng-bind-html="pullInterNationalization('connect.linkedin.application')"></h1>
+
+									<p class="apply-job">
+										<input type="text" placeholder=""
+											ng-init="rolename = roleName" ng-model="rolename"
+											maxlength='90'>
+									</p>
+
+									<p class="character-count">
+										<span class="dynamic-txt">{{90-rolename.length}}</span> <span
+											class="static-txt"
+											data-ng-bind-html="pullInterNationalization('connect.linkedin.coverChar')"></span>
+									</p>
+
+								</li>
+
+								<li class="resume-section">
+									<h1 class="resume-section-title"
+										data-ng-bind-html="pullInterNationalization('connect.linkedin.applicant')"></h1>
+									<ol class="form-list applicant-form-list">
+										<li>
+											<ul class="two-col-input">
+												<li><label for="resume_fname"
+													data-ng-bind-html="pullInterNationalization('connect.linkedin.firstname')"></label>
+													<input class="" type="text"
+													ng-init="firstName = userProfileDetail.firstName"
+													placeholder="{{pullInterNationalization('firstName')}}"
+													ng-pattern="/^[a-zA-Z0-9-,’ ]+$/" ng-model="firstName"
+													id="resume_fname" name="firstName" required /> <span
+													class="err-msg"
+													ng-show="resumeFormSubmitted && resumeForm.firstName.$error.required"><span
+														class="icon">!</span> <span
+														data-ng-bind-html="pullInterNationalization('connect.linkedin.reuired')"></span></span>
+													<span class="err-msg"
+													ng-show="resumeFormSubmitted && resumeForm.firstName.$error.pattern"><span
+														class="icon">!</span> <span
+														data-ng-bind-html="pullInterNationalization('connect.linkedin.namepattern')"></span></span>
+												</li>
+												<li><label for="resume_lname">Last Name</label> <input
+													placeholder="{{pullInterNationalization('lastName')}}"
+													ng-init="lastName = userProfileDetail.lastName"
+													ng-pattern="/^[a-zA-Z0-9-,’ ]+$/" ng-model="lastName"
+													type="text" id="resume_lname" name="lastName" required />
+													<span class="err-msg"
+													ng-show="resumeFormSubmitted && resumeForm.lastName.$error.required"><span
+														class="icon">!</span> <span
+														data-ng-bind-html="pullInterNationalization('connect.linkedin.reuired')"></span></span>
+													<span class="err-msg"
+													ng-show="resumeFormSubmitted && resumeForm.lastName.$error.pattern"><span
+														class="icon">!</span> <span
+														data-ng-bind-html="pullInterNationalization('connect.linkedin.namepattern')"></span></span>
+												</li>
+											</ul>
+										</li>
+
+
+
+										<li>
+											<ul class="two-col-input">
+												<li><label for="resume_address_1">Address Line
+														1</label> <input type="text"
+													ng-init="address1 = userProfileAddress.addressLine1"
+													id="resume_address_1" name="address1"
+													placeholder="{{pullInterNationalization('address1')}}"
+													ng-model="address1" required /> <span class="err-msg"
+													ng-show="resumeFormSubmitted && resumeForm.address1.$error.required"><span
+														class="icon">!</span> <span
+														data-ng-bind-html="pullInterNationalization('connect.linkedin.reuired')"></span></span>
+												</li>
+												<li><label for="resume_address_2">Address Line
+														2</label> <input type="text"
+													ng-init="address2 = userProfileAddress.addressLine2"
+													id="resume_address_2" name="address2"
+													placeholder="{{pullInterNationalization('address2')}}"
+													ng-model="address2" /></li>
+											</ul>
+										</li>
+
+
+										<li>
+											<ul class="three-col-input">
+												<li class="city"><label for="resume_city">City</label>
+													<input type="text" id="resume_city"
+													ng-init="city = userProfileAddress.city"
+													placeholder="{{pullInterNationalization('city')}}"
+													name="city" ng-model="city" required /> <span
+													class="err-msg"
+													ng-show="resumeFormSubmitted && resumeForm.city.$error.required"><span
+														class="icon">!</span> <span
+														data-ng-bind-html="pullInterNationalization('connect.linkedin.reuired')"></span></span>
+												</li>
+												<li class="state">
+													<div class="select-content brdr h38">
+														<select id="resume_state" name="state" ng-model="state"
+															ng-init="state = userProfileAddress.state" required
+															ng-class="(resumeForm.state.$modelValue == 'default') ? 'default' : ''">
+															<option value="" label="Please Select">Please
+																Select</option>
+															<option value="AL" label="Alabama">Alabama</option>
+															<option value="AK" label="Alaska">Alaska</option>
+															<option value="AS" label="American Samoa">American
+																Samoa</option>
+															<option value="AZ" label="Arizona">Arizona</option>
+															<option value="AR" label="Arkansas">Arkansas</option>
+															<option value="AE" label="Armed Forces Middle East">Armed
+																Forces Middle East</option>
+															<option value="AA"
+																label="Armed Forces Americas (not Canada)">Armed
+																Forces Americas (not Canada)</option>
+															<option value="AP" label="Armed Forces Pacific">Armed
+																Forces Pacific</option>
+															<option value="CA" label="California">California</option>
+															<option value="CO" label="Colorado">Colorado</option>
+															<option value="CT" label="Connecticut">Connecticut</option>
+															<option value="DE" label="Delaware">Delaware</option>
+															<option value="DC" label="District of Columbia">District
+																of Columbia</option>
+															<option value="FL" label="Florida">Florida</option>
+															<option value="GA" label="Georgia">Georgia</option>
+															<option value="GU" label="Guam">Guam</option>
+															<option value="HI" label="Hawaii">Hawaii</option>
+															<option value="ID" label="Idaho">Idaho</option>
+															<option value="IL" label="Illinois">Illinois</option>
+															<option value="IN" label="Indiana">Indiana</option>
+															<option value="IA" label="Iowa">Iowa</option>
+															<option value="KS" label="Kansas">Kansas</option>
+															<option value="KY" label="Kentucky">Kentucky</option>
+															<option value="LA" label="Louisiana">Louisiana</option>
+															<option value="ME" label="Maine">Maine</option>
+															<option value="MD" label="Maryland">Maryland</option>
+															<option value="MA" label="Massachusetts">Massachusetts</option>
+															<option value="MI" label="Michigan">Michigan</option>
+															<option value="MN" label="Minnesota">Minnesota</option>
+															<option value="MS" label="Mississippi">Mississippi</option>
+															<option value="MO" label="Missouri">Missouri</option>
+															<option value="MT" label="Montana">Montana</option>
+															<option value="NE" label="Nebraska">Nebraska</option>
+															<option value="NV" label="Nevada">Nevada</option>
+															<option value="NH" label="New Hampshire">New
+																Hampshire</option>
+															<option value="NJ" label="New Jersey">New Jersey</option>
+															<option value="NM" label="New Mexico">New Mexico</option>
+															<option value="NY" label="New York">New York</option>
+															<option value="NC" label="North Carolina">North
+																Carolina</option>
+															<option value="ND" label="North Dakota">North
+																Dakota</option>
+															<option value="MP" label="Northern Mariana Islands">Northern
+																Mariana Islands</option>
+															<option value="OH" label="Ohio">Ohio</option>
+															<option value="OK" label="Oklahoma">Oklahoma</option>
+															<option value="OR" label="Oregon">Oregon</option>
+															<option value="PA" label="Pennsylvania">Pennsylvania</option>
+															<option value="PR" label="Puerto Rico">Puerto
+																Rico</option>
+															<option value="RI" label="Rhode Island">Rhode
+																Island</option>
+															<option value="SC" label="South Carolina">South
+																Carolina</option>
+															<option value="SD" label="South Dakota">South
+																Dakota</option>
+															<option value="TN" label="Tennessee">Tennessee</option>
+															<option value="TX" label="Texas">Texas</option>
+															<option value="UT" label="Utah">Utah</option>
+															<option value="VT" label="Vermont">Vermont</option>
+															<option value="VI" label="Virgin Islands">Virgin
+																Islands</option>
+															<option value="VA" label="Virginia">Virginia</option>
+															<option value="WA" label="Washington">Washington</option>
+															<option value="WV" label="West Virginia">West
+																Virginia</option>
+															<option value="WI" label="Wisconsin">Wisconsin</option>
+															<option value="WY" label="Wyoming">Wyoming</option>
+														</select>
+													</div> <span class="err-msg"
+													ng-show="resumeFormSubmitted && (resumeForm.state.$modelValue == 'default')"><span
+														class="icon">!</span> <span
+														data-ng-bind-html="pullInterNationalization('connect.linkedin.reuired')"></span></span>
+												</li>
+
+												<li class="zip"><label for="resume_postal_code"
+													data-ng-bind-html="pullInterNationalization('zipcode')"></label>
+													<input type="text" id="resume_postal_code"
+													ng-init="zip = userProfileAddress.zipCode" type="text"
+													name="zip"
+													placeholder="{{pullInterNationalization('zipcode')}}"
+													ng-model="zip"/> <span
+													class="err-msg"
+													ng-show="resumeFormSubmitted && resumeForm.zip.$error.required"><span
+														class="icon">!</span> <span
+														data-ng-bind-html="pullInterNationalization('connect.linkedin.reuired')"></span></span>
+													<span class="err-msg"
+													ng-show="resumeFormSubmitted && resumeForm.zip.$error.pattern"><span
+														class="icon">!</span> Please enter a valid Zip Code</span></li>
+											</ul>
+										</li>
+
+										<li>
+											<ul class="two-col-input">
+												<li><label for="resume_tel"
+													data-ng-bind="pullInterNationalization('phoneNumber')"></label>
+													<input type="text"
+													ng-init="phone = userProfileDetail.phone" id="resume_tel"
+													name="phone" ng-pattern="/^[0-9-.() ]{1,15}$/"
+													placeholder="{{pullInterNationalization('phoneNumber')}}"
+													ng-model="phone" required /> <span class="err-msg"
+													ng-show="resumeFormSubmitted && resumeForm.phone.$error.required"><span
+														class="icon">!</span> <span
+														data-ng-bind="pullInterNationalization('connect.linkedin.reuired')"></span></span>
+													<span class="err-msg"
+													ng-show="resumeFormSubmitted && resumeForm.phone.$error.pattern"><span
+														class="icon">!</span> Please enter valid number</span></li>
+												<li><label for="resume_email"
+													data-ng-bind="pullInterNationalization('email')"></label> <input
+													ng-init="email = userProfileDetail.email" type="text"
+													id="resume_email" name="email"
+													placeholder="{{pullInterNationalization('email')}}"
+													ng-model="email"
+													ng-pattern="emailRegex"
+													required /> <span class="err-msg"
+													ng-show="resumeFormSubmitted && resumeForm.email.$error.required"><span
+														class="icon">!</span> <span
+														data-ng-bind="pullInterNationalization('connect.linkedin.reuired')"></span></span>
+													<span class="err-msg"
+													ng-show="resumeFormSubmitted && resumeForm.email.$error.pattern"><span
+														class="icon">!</span> {{pullInterNationalization('signup.invalid.email.msg')}}</span></li>
+											</ul>
+										</li>
+
+										<li class="submit-cancel">
+											<ul class="two-col-input">
+												<li><input class="btn-block btn-14px" type="submit"
+													value="{{pullInterNationalization('save')}}" ng-click="contactInfo=false;coverLetter=false;profileContentDisplay=true;" /></li>
+												<li><input class="btn-block btn-14px btn-grey-dark"
+													type="press" value="Cancel"
+													ng-click="contactInfo=false;coverLetter=false;profileContentDisplay=true;" />
+												</li>
+											</ul>
+										</li>
+									</ol>
+								</li>
+							</ol>
+
+
+						</form>
+						<!-- Right Section Contact Information Ends -->
+
+						<form class="resume-content resume-form hide" novalidate
+							name="coverLetterForm" ng-class="coverLetter?'show':'hide'">
+							<div class="resume-form-sections">
+								<section class="resume-section cv-resume-section">
+									<h1 class="resume-section-title"
+										data-ng-bind="pullInterNationalization('connect.linkedin.coverTitle')"></h1>
+									<p class="character-count">
+										<span class="dynamic-txt">{{2000 -
+											coverlettertext.length}}</span> <span class="static-txt"
+											data-ng-bind="pullInterNationalization('connect.linkedin.coverChar')"></span>
+									</p>
+									<ol class="form-list cv-letter-list">
+
+										<li><label for="cover_letter"
+											data-ng-bind="pullInterNationalization('connect.linkedin.enterCoverLetter')"></label>
+											<textarea
+												placeholder="{{pullInterNationalization('connect.linkedin.coverPlaceholder')}}"
+												maxlength="2000"
+												ng-model="coverlettertext" class="cv-text-enter"
+												name="cover_letter" id="cover_letter" ng-trim="false"></textarea></li>
+										<li class="psCopyList">
+											<div class="psTitle">
+												<span
+													data-ng-bind="pullInterNationalization('connect.linkedin.pstitle')">PS</span><sup
+													class="black">*</sup>
+											</div>
+											<div class="psCopy"
+												data-ng-bind-html="pullInterNationalization('connect.linkedin.psCopy')"></div>
+										</li>
+										<li class="submit-cancel">
+											<ul class="two-col-input">
+												<li><input class="btn-block btn-14px" type="submit"
+													value="Save" ng-click="contactInfo=false;coverLetter=false;profileContentDisplay=true;" /></li>
+												<li><input class="btn-block btn-14px btn-grey-dark"
+													type="press" value="Cancel"
+													ng-click="contactInfo=false;coverLetter=false;profileContentDisplay=true;" />
+												</li>
+											</ul>
+										</li>
+									</ol>
+								</section>
+
+								<section class="postScript">
+									<sup>*</sup><span
+										data-ng-bind="pullInterNationalization('connect.linkedin.postScript')"></span>
+								</section>
+
+							</div>
+
+						</form>
+						<!-- Right Section Cover Letter Starts -->
+
+						<!-- hidden columns starts-->
+						<!-- Hidden Top -->
+						<div class="htmlFront hide">
+							<div class="frontPage">
+								<div class="upper">
+									<div class="date"><span data-ng-bind="pullInterNationalization('connect.linkedin.full.'+fullmonth)"></span> <span data-ng-bind="fullyear"></span></div>
+									<div class="title"
+										data-ng-bind="pullInterNationalization('connect.linkedin.applicationfor')"></div>
+									<div class="title2">
+										<div>{{roleName}}</div>
+										<!-- <div>{{pullInterNationalization('connect.linkedin.openPosition')}}</div> -->
+									</div>
+								</div>
+								<div class="bottom">
+
+									<div class="applicant"
+										data-ng-bind="pullInterNationalization('connect.linkedin.applicant')"></div>
+									<div class="name" ng-if="firstName">{{firstName}}
+										{{lastName}}</div>
+									<div class="location" ng-if="address1">
+										<div class="add1">{{address1}},</div>
+										<div class="add2" ng-if="address2">{{address2}},</div>
+									</div>
+									<div class="location">
+									<span ng-if="city">{{city}}, </span><span ng-if="state">{{state}}  </span><span ng-if="zip">{{zip}}</span>
+									</div>
+									<div class="phoneNumber" ng-if="phone">{{phone|tel}}</div>
+									<div class="emailId" ng-if="email">{{email}}</div>
+								</div>
+							</div>
+						</div>
+						<div class="htmlCover hide">
+							<div class="coverLetterPDF">
+								<div class="sub"
+									data-ng-bind="pullInterNationalization('connect.linkedin.hiringManager')"></div>
+								<div class="messageContainer">
+									<div class="messageContent" data-ng-bind-html="coverlettertext"></div>
+									<div class="kindRegards">
+										<div class="regards"
+											data-ng-bind="pullInterNationalization('connect.linkedin.regards')"></div>
+										<div class="name">{{firstName}} {{lastName}}</div>
+									</div>
+								</div>
+								
+								<div class="ps">
+									<div class="head"
+										data-ng-bind="pullInterNationalization('connect.linkedin.pstitle')"></div>
+									<div class="content"
+										data-ng-bind="pullInterNationalization('connect.linkedin.psCopy')">
+
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<!-- Hidden Bottom -->
+						<div class="graphs hide" ng-if="profileContentGraphs">
+							<div class="graphStyle">
+								<div class="oneSeparatePage" style="height:750px">
+								<div class="styleArea">
+									<div class="surepeopleProfile clearfix">
+										<div class="nopad">
+											<div>
+												<img alt="SurePeople"
+													src="/resources/images/sp_logo.png" />
+													</div>
+										</div>
+										<div class="spProfileContent nopad">
+											<div class="title borderSeparator">SUREPEOPLE PROFILE</div>
+											<div class="description">The SurePeople PRISM is the
+												industry's most comprehensive assessment capable of
+												measuring an individual's emotional intelligence, relational
+												intelligence and team intelligence by analyzing more than 50
+												unique traits and attributes.</div>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="traits clearfix">
+										<h2 class='titleHead'>SUREPEOPLE'S RECOMMENDATION ON {{firstName}} {{lastName}}</h2>
+										<div class="nopad">
+											<div class=" workCharacter nopad" data-ng-bind="linkedIn.profileStatement"></div>
+										</div>
+								</div>
+								<div
+									class="personality-outer-wrapper chart-border-bottom clearfix">
+
+									<!-- InfoBox Code Ends -->
+									<div class="personality-profile-wrapper personality-spacing clearfix">
+
+										<div class="info-graph clearfix">
+											<div class="col-sm-7 col-md-7 col-xs-7 nopad">
+												<h2 class='titleHead'>Personality</h2>
+
+												<div class="graph-text">
+													<div class="sec">
+														<p class="title_1 primary">
+															<span class="box"></span><span> Primary
+																personality</span>
+														</p>
+														<div class="adjust">
+															<h3
+																ng-bind-html="profileContentGraphs['profile.analysis.mapped.Primary.personalityType']"></h3>
+															<p class="cont">The SurePeople Primary Personality
+																Profile describes how we present ourselves to others, as
+																well as how others perceive us, in non-stressful
+																situations.</p>
+														</div>
+													</div>
+													<div class="sec">
+														<p class="title_1 secondary">
+															<span class="box"></span><span> Personality under
+																pressure</span>
+														</p>
+														<div class="adjust">
+															<h3
+																ng-bind-html="profileContentGraphs['profile.analysis.mapped.UnderPressure.personalityType']"></h3>
+															<p class="cont">The SurePeople Personality Profile Under Pressure describes how we posture when under stress or pressure.</p>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-5 col-md-5 col-xs-5 graphsSection nopad">
+												<div class="svg-graph-wrapper personality">
+													<div class="outer-labels">
+														<p class="left">Powerful</p>
+														<p class="right">Versatile</p>
+													</div>
+													<div class="graph-outer mob" style="position: relative">
+														<div class="graph" data-resume="true"
+															personality-info-graph></div>
+														<div class="graph-labels">
+															<div>
+																<p class="top">
+																	<span>Big<br />Picture
+																	</span>
+																</p>
+																<div>
+																	<p class="left">
+																		<span>Mission<br />Oriented
+																		</span>
+																	</p>
+																	<p class="right">
+																		<span>Relation<br />Oriented
+																		</span>
+																	</p>
+																</div>
+																<p class="bottom">
+																	<span>Detail<br />Oriented
+																	</span>
+																</p>
+															</div>
+														</div>
+													</div>
+													<div class="outer-labels">
+														<p class="left">Precise</p>
+														<p class="right">Adaptable</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								
+								</div>
+								
+									<div class="processing-blueprint-wrapper oneSeparatePage chart-border-bottom nopadNoBorder"
+										data-section="c5">
+										<div class="generic-content-bg clearfix">
+											<div class="col-sm-7 col-md-7 col-xs-7 nopad">
+												<h2 class="titleHead">Processing Blueprint</h2>
+												<div class="chartDesc" data-box="chartpbp">
+													<div>
+														<p>How do we approach the people, activities, thoughts
+															and causes that impact our lives? What energizes us? How
+															do we process real and perceived stimuli? Are we guided by
+															our hearts or our heads?</p>
+														<p>The SurePeople PRISM addresses internal processes,
+															often difficult to ascertain without the proper context.
+															The resulting measurements offer a precise view of an
+															individual's approach to processing internal and external
+															stimuli, information that is especially constructive in
+															team environments.</p>
+													</div>
+												</div>
+												<!-- InfoBox Code Ends -->
+											</div>
+											<div class="col-sm-5 col-md-5 col-xs-5 nopad graphsSection">
+												<div class="svg-graph-wrapper processing-blueprint">
+													<div class="labels axis left">
+														<p class="top">100%</p>
+														<p class="mid">0</p>
+														<p class="bottom">100%</p>
+													</div>
+													<div class="labels">
+														<p class="top">
+															<span class="percentage">{{profile.analysis.processing.External}}%</span>
+															<span>External</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="top" data-resume="true" bar-info-graph
+																data-bar="processing,V,T,External"></div>
+															<div class="bottom" data-resume="true" bar-info-graph
+																data-bar="processing,V,B,Internal"></div>
+														</div>
+														<p class="bottom">
+															<span class="percentage">{{profile.analysis.processing.Internal}}%</span>
+															<span>Internal</span>
+														</p>
+													</div>
+													<div class="labels">
+														<p class="top">
+															<span class="percentage">{{profile.analysis.processing.Concrete}}%</span>
+															<span>Concrete</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="top" data-resume="true" bar-info-graph
+																data-bar="processing,V,T,Concrete"></div>
+															<div class="bottom" data-resume="true" bar-info-graph
+																data-bar="processing,V,B,Intuitive"></div>
+														</div>
+														<p class="bottom">
+															<span class="percentage">{{profile.analysis.processing.Intuitive}}%</span>
+															<span>Intuitive</span>
+														</p>
+													</div>
+													<div class="labels">
+														<p class="top">
+															<span class="percentage">{{profile.analysis.processing.Cognitive}}%</span>
+															<span>Head</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="top" data-resume="true" bar-info-graph
+																data-bar="processing,V,T,Cognitive"></div>
+															<div class="bottom" data-resume="true" bar-info-graph
+																data-bar="processing,V,B,Affective"></div>
+														</div>
+														<p class="bottom">
+															<span class="percentage">{{profile.analysis.processing.Affective}}%</span>
+															<span>Heart</span>
+														</p>
+													</div>
+													<div class="labels no-margin">
+														<p class="top">
+															<span class="percentage">{{profile.analysis.processing.Orderly}}%</span>
+															<span>Orderly</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="top" data-resume="true" bar-info-graph
+																data-bar="processing,V,T,Orderly"></div>
+															<div class="bottom" data-resume="true" bar-info-graph
+																data-bar="processing,V,B,Spontaneous"></div>
+														</div>
+														<p class="bottom">
+															<span class="percentage">{{profile.analysis.processing.Spontaneous}}%</span>
+															<span>SPONTANEOUS</span>
+														</p>
+													</div>
+													<div class="labels axis right">
+														<p class="top">100%</p>
+														<p class="mid">0</p>
+														<p class="bottom">100%</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="conflict-management-wrapper oneSeparatePage chart-border-bottom"
+										data-section="c1">
+										<div class="generic-content-bg clearfix">
+											<div class="col-sm-7 col-md-7 col-xs-7 nopad">
+												<h2 class="titleHead">Conflict Management</h2>
+												<div class="chartDesc" data-box="chartcm">
+													<div>
+														<p>Embracing the knowledge that we, as well as those
+															with whom we interact, deal with conflict in different
+															ways allows for more productive and harmonious work
+															relationships. The SurePeople PRISM measures distinct
+															conflict management styles, knowing that, while no two
+															people are alike, we all operate on spectrum that
+															incorporates many ways of managing conflict based on
+															specific situations.</p>
+													</div>
+												</div>
+												<!-- InfoBox Code Ends -->
+											</div>
+											<div class="col-sm-5 col-md-5 col-xs-5">
+	
+												<div class="svg-graph-wrapper">
+													<div class="svg-info-graph" data-resume="true"
+														piechart-info-graph data-pie="conflictManagement"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="fundamental-needs-wrapper  oneSeparatePage chart-border-bottom"
+										data-section="c2">
+										<div class="generic-content-bg clearfix">
+											<div class="col-sm-7 col-md-7 col-xs-7 nopad">
+												<h2 class="titleHead">Fundamental Needs</h2>
+	
+												<!-- InfoBox Code Starts -->
+												<div class="chartDesc" data-box="chartfm">
+													<div>
+														<p>As human beings, we constantly make decisions and
+															take actions to fulfill our fundamental needs. Although we
+															may not be fully aware of or able to articulate them, our
+															fundamental needs deeply influence our behavior.</p>
+	
+														<p>The SurePeople PRISM measures fundamental needs
+															separate from other facets of the SurePeople Prism, giving
+															more comprehensive insight into what defines and drives us
+															as individuals. The information helps us better appreciate
+															and respond to those with whom we interact in the
+															workplace and beyond.</p>
+													</div>
+												</div>
+												<!-- InfoBox Code Ends -->
+											</div>
+											<div class="col-sm-5 col-md-5 col-xs-5 nopad">
+	
+												<div class="svg-graph-wrapper fundamental-needs">
+													<div data-resume="true" piechart-info-graph
+														data-pie="fundamentalNeeds"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								
+								
+									<div class="learning-wrapper" data-section="c4"> <!--  oneSeparatePage nopadNoBorder -->
+										<div class="generic-content-bg clearfix">
+											<div class="col-sm-7 col-md-7 col-xs-7 nopad">
+												<h2 class="titleHead">Learning Style</h2>
+	
+												<div class="chartDesc" data-box="chartls">
+													<div>
+														<p>While others press forward undaunted, others are
+															more deliberate and concerned with protocol. The
+															measurement of learning styles speaks to personal
+															process-are we more engaged by big ideas or details,
+															risk-taking or analysis? The SurePeople PRISM measures how
+															individuals process concepts and details to reveal
+															learning styles which is an important influence on
+															compatibility in work relationships.</p>
+													</div>
+												</div>
+												<!-- InfoBox Code Ends -->
+											</div>
+											<div class="col-sm-5 col-md-5 col-xs-5 nopad">
+	
+												<div class="svg-graph-wrapper learning">
+													<div data-resume="true" piechart-info-graph
+														data-pie="learningStyle"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="motivation-wrapper oneSeparatePage chart-border-bottom nopadNoBorder"
+										data-section="c6"> <!--  -->
+										<div class="generic-content-bg clearfix">
+											<div class="col-sm-7 col-md-7 col-xs-7 nopad">
+												<h2 class="titleHead">Motivation</h2>
+												<div class="chartDesc" data-box="chartmot">
+													<div>
+														<p>Understanding our motivations-how and why we take
+															certain actions-is critical to success in our personal and
+															professional lives. In the workplace, understanding the
+															motivations of individuals can help us manage others well
+															and work more productively on a team or with a supervisor.
+															The SurePeople PRISM presents separate measurements that
+															uncover our motivations with a telling and comprehensive
+															analysis.</p>
+													</div>
+												</div>
+												<!-- InfoBox Code Ends -->
+											</div>
+											<div class="col-sm-5 col-md-5 col-xs-5 nopad graphsSection">
+	
+	<div class="motivation-graph-wrapper">
+												<h3>Why</h3>
+												<div class="svg-graph-wrapper">
+													<div class="labels">
+														<p class="left">
+															<span class="percentage">{{profile.analysis.motivationWhy.AttainmentOfGoals}}%</span>
+															<span>ATTAINMENT OF GOALS</span>
+														</p>
+														<p class="right">
+															<span class="percentage">{{profile.analysis.motivationWhy.RecognitionForEffort}}%</span>
+															<span>RECOGNITION FOR EFFORTS</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="left" data-resume="true" bar-info-graph
+																data-bar="motivationWhy,H,L,AttainmentOfGoals"></div>
+															<div class="right" data-resume="true" bar-info-graph
+																data-bar="motivationWhy,H,R,RecognitionForEffort"></div>
+														</div>
+													</div>
+													<div class="labels">
+														<p class="left">
+															<span class="percentage">{{profile.analysis.motivationWhy.Power}}%</span>
+															<span>Power</span>
+														</p>
+														<p class="right">
+															<span class="percentage">{{profile.analysis.motivationWhy.Compliance}}%</span>
+															<span>COMPLIANCE</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="left" data-resume="true" bar-info-graph
+																data-bar="motivationWhy,H,L,Power"></div>
+															<div class="right" data-resume="true" bar-info-graph
+																data-bar="motivationWhy,H,R,Compliance"></div>
+														</div>
+													</div>
+													<div class="labels">
+														<p class="left">
+															<span class="percentage">{{profile.analysis.motivationWhy.Activity}}%</span>
+															<span>ACTIVITY</span>
+														</p>
+														<p class="right">
+															<span class="percentage">{{profile.analysis.motivationWhy.Affiliation}}%</span>
+															<span>AFFILIATION</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="left" data-resume="true" bar-info-graph
+																data-bar="motivationWhy,H,L,Activity"></div>
+															<div class="right" data-resume="true" bar-info-graph
+																data-bar="motivationWhy,H,R,Affiliation"></div>
+														</div>
+													</div>
+												</div>
+	
+	
+	
+												<h3>How</h3>
+	
+												<div class="svg-graph-wrapper">
+													<div class="labels">
+														<p class="left">
+															<span class="percentage">{{profile.analysis.motivationHow.SelfAffirmed}}%</span>
+															<span>SELF-AFFIRMED</span>
+														</p>
+														<p class="right">
+															<span class="percentage">{{profile.analysis.motivationHow.AffirmedByOthers}}%</span>
+															<span>AFFIRMED BY OTHERS</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="left" data-resume="true" bar-info-graph
+																data-bar="motivationHow,H,L,SelfAffirmed"></div>
+															<div class="right" data-resume="true" bar-info-graph
+																data-bar="motivationHow,H,R,AffirmedByOthers"></div>
+														</div>
+													</div>
+													<div class="labels">
+														<p class="left">
+															<span class="percentage">{{profile.analysis.motivationHow.ExchangeOfIdeas}}%</span>
+															<span>EXCHANGE OF IDEAS</span>
+														</p>
+														<p class="right">
+															<span class="percentage">{{profile.analysis.motivationHow.ReceiveDirection}}%</span>
+															<span>RECEIVE DIRECTION</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="left" data-resume="true" bar-info-graph
+																data-bar="motivationHow,H,L,ExchangeOfIdeas"></div>
+															<div class="right" data-resume="true" bar-info-graph
+																data-bar="motivationHow,H,R,ReceiveDirection"></div>
+														</div>
+													</div>
+													<div class="labels">
+														<p class="left">
+															<span class="percentage">{{profile.analysis.motivationHow.Freedom}}%</span>
+															<span>FREEDOM</span>
+														</p>
+														<p class="right">
+															<span class="percentage">{{profile.analysis.motivationHow.Consistency}}%</span>
+															<span>CONSISTENCY</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="left" data-resume="true" bar-info-graph
+																data-bar="motivationHow,H,L,Freedom"></div>
+															<div class="right" data-resume="true" bar-info-graph
+																data-bar="motivationHow,H,R,Consistency"></div>
+														</div>
+													</div>
+													<div class="labels">
+														<p class="left">
+															<span class="percentage">{{profile.analysis.motivationHow.TaskCompletion}}%</span>
+															<span>TASK COMPLETION</span>
+														</p>
+														<p class="right">
+															<span class="percentage">{{profile.analysis.motivationHow.PrefersProcess}}%</span>
+															<span>PREFERS PROCESS</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="left" data-resume="true" bar-info-graph
+																data-bar="motivationHow,H,L,TaskCompletion"></div>
+															<div class="right" data-resume="true" bar-info-graph
+																data-bar="motivationHow,H,R,PrefersProcess"></div>
+														</div>
+													</div>
+												</div>
+	
+	
+												<h3>What</h3>
+												<div class="svg-graph-wrapper">
+													<div class="labels">
+														<p class="left">
+															<span class="percentage">{{profile.analysis.motivationWhat.Hygiene}}%</span>
+															<span>WORK CONDITIONS</span>
+														</p>
+														<p class="right">
+															<span class="percentage">{{profile.analysis.motivationWhat.Accomplishment}}%</span>
+															<span>WORK FUNCTION</span>
+														</p>
+														<div class="bar-graphs">
+															<div class="left" data-resume="true" bar-info-graph
+																data-bar="motivationWhat,H,L,Hygiene"></div>
+															<div class="right" data-resume="true" bar-info-graph
+																data-bar="motivationWhat,H,R,Accomplishment"></div>
+														</div>
+													</div>
+												</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- Motivation Ends -->
+									<div class="decision-making-wrapper oneSeparatePage" data-section="c3">
+										<div class="generic-content-bg">
+											<div class="col-sm-7 col-md-7 col-xs-7 nopad">
+												<h2 class="titleHead">Decision Making</h2>
+	
+												<div class="chartDesc" data-box="chartdms">
+													<div>
+														<p>Understanding our decision making styles and the
+															styles of those with whom we interact, minimizes conflict
+															opportunities. The SurePeople PRISM measures decision
+															making style on four distinct but related scales. Where we
+															fall within each scale offers insight into our thought
+															processes and personal expectations.</p>
+													</div>
+												</div>
+												<!-- InfoBox Code Ends -->
+											</div>
+											<div class="col-sm-5 col-md-5 col-xs-5 nopad graphsSection">
+	
+												<div class="svg-graph-wrapper decision-making">
+													<div class="svg-info-graph">
+														<div class="label top">
+															<p>OUTWARD
+																{{profile.analysis.decisionMaking.Outward}}%</p>
+														</div>
+														<div class="graph-outer">
+															<div class="label left">
+																<p class="">CAREFUL<br/>
+																	{{profile.analysis.decisionMaking.Careful}}%</p>
+																
+															</div>
+															<div class="graph-inner" data-resume="true"
+																decision-info-graph>
+																<div class="on-graph-labels">
+																	<p class="top-label-set">
+																		<span>Indecisive</span> <span>Impulsive</span>
+																	</p>
+																	<p class="bottom-label-set">
+																		<span>Evasive</span> <span>Subversive</span>
+																	</p>
+																</div>
+															</div>
+															<div class="label right">
+																<p class="">RAPID<br/>
+																	{{profile.analysis.decisionMaking.Rapid}}%</p>
+															</div>
+														</div>
+														<div class="label bottom">
+															<p>INWARD {{profile.analysis.decisionMaking.Inward}}%</p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- Decision Graphs ends -->
+								
+								<div class="footerSection">
+									<div class="fullProfile">
+										<span>For access to the full SurePeople PRISM report, please contact {{firstName}} {{lastName}} via email, {{email}}</span>
+									</div>
+									<div class="bottom clearfix">
+									<div class="copy">Copyright @ 2015 SurePeople, LLC. All rights reserved.</div>
+									<div class="url"><a href="http://uat.surepeople.com">www.surepeople.com</a></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--  hidden COlumns ends -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>

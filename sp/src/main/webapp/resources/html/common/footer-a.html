@@ -1,0 +1,40 @@
+<footer class="container footer-wrapper-grey" fix-container>
+	<div class="row">
+			<div class="topSec">
+				<ul>
+					<li>
+					<span class="footerMessage sp-footer-text-color-a" data-ng-bind="::pullInterNationalization('footer.poweredby')">
+					<!-- <spring:message code="footer.signature"/><sup><spring:message code="footer.tradeMark"/></sup>-->
+					</span> <br/>
+					<img src="/resources/images/sp-logo.svg" alt="SurePeople&trade;">
+					</li>
+					<!--<li><a href="/products/"><spring:message code="footer.products"/></a></li>
+					 <li><a href="/company/"><spring:message code="footer.company"/></a></li>
+					<li><a href="tel:<spring:message code="footer.comanyNumber"/>"><spring:message code="footer.comanyNumber"/></a></li>-->
+				</ul>
+			</div>
+			<div class="bottomSec">
+				<div class="lists sp-footer-text-color-a">
+					<!-- <a class="sp-footer-text-color-a" id="event_footer-link_telephone-number"  data-ng-bind-html="::pullInterNationalization('footer.comanyNumber')" href="tel:{{::pullInterNationalization('footer.comanyNumber')}}"></a>-->
+					<!--<span class="spacerTop"></span>-->			
+					<a class="sp-footer-text-color-a disp-inline" href="/sp/resources/html/footer/privacy.html" id="event_footer-link_privacy" data-ng-click="ctrl.footerLinks('privacy', $event)" data-ng-bind-html="::pullInterNationalization('footer.privacy')"></a>
+					<a class="sp-footer-text-color-a disp-inline" href="/sp/resources/html/footer/agreement.html" id="event_footer-link_user-agreement" data-ng-click="ctrl.footerLinks('agreement', $event)" data-ng-bind-html="::pullInterNationalization('footer.termsOfUser')"></a>
+					<span class="copy-text" data-ng-bind-html="::pullInterNationalization('footer.copyright')"></span>
+					<!-- <a href="/cookies/" ng-click="footerLinks('cookies', $event)"><spring:message code="footer.cookies" /></a>-->
+					  <!-- Commented as this is not a transactional module 
+					  <div class="secureBadges clearfix">
+						  <div class="site-footer-badges clearfix">
+							<!-- (c) 2005, 2016. Authorize.Net is a registered trademark of CyberSource Corporation --> 
+							<!--  
+							<script language="JavaScript" type="text/javascript"> SiteSeal("/sp/resources/images/ns_icon_05_03.gif", "NETEV", "none");</script>
+							<div class="AuthorizeNetSeal"> 
+								<script type="text/javascript" language="javascript">var ANS_customer_id="7b5f06a5-def5-456e-a61a-68b399705e8c";</script>
+								  <a href="https://verify.authorize.net/anetseal/?pid=7b5f06a5-def5-456e-a61a-68b399705e8c&amp;rurl=http://surepeople.com','AuthorizeNetVerification','width=600,height=430,dependent=yes,resizable=yes,scrollbars=yes,menubar=no,toolbar=no,status=no,directories=no,location=yes"><img src="/sp/resources/images/authorize_05.gif" border="0" alt="Authorize.Net Merchant">
+								  </a> 
+							</div>
+						  </div>
+					  </div> -->
+				</div>
+			</div>
+		</div>
+</footer>

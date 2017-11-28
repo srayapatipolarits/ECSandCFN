@@ -1,0 +1,65 @@
+
+
+    <div class="container reminderArea" id="declineGrowthScreen">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+<div>
+    	<section class="wrapper">
+	<div class="contentBody">
+		<div class="head">
+			<div class="wrap">
+				<div class="headerBar">{{pullInterNationalization('feedback.feedbackListing.submitrequest.title')}}</div>
+				<div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+			</div>
+		</div>
+		<div class="contentArea clearfix">
+		 <form name="invitemember" class="imonly">
+	 			<input type="hidden" name="firstName" value="{{addProfile.firstName}}"/>
+				<input type="hidden" name="lastName" value="{{addProfile.lastName}}"/>
+				<input type="hidden" name="email" value="{{addProfile.email}}"/>
+				<input type="hidden" name="requestType" value="INTERNAL"/>
+				<input type="hidden" name="referenceType" value="Colleague"/>
+				
+				<div class="messageBlock borderarea feedbackUser">
+				<div class="message clearfix" style="padding-bottom:0px;">
+				<div class="nameBlock clearfix">
+					<div class="left"><span class="name" data-ng-bind="addProfile.name"></span><span class="title" data-ng-bind="addProfile.title"></span></div>
+					<div class="right"><span class="reminderEmail" data-ng-bind="addProfile.email"></span></div>
+				</div>
+				</div>
+			</div>
+			<div class="sendBlock">
+				<div class="headerTextArea"><span data-ng-bind="pullInterNationalization('feedback.feedbackListing.submitrequest.headerTextArea')"></span></div>
+				<div class="textarea">
+					<textarea id="commentBlock" name="comment" data-ng-bind="pullInterNationalization('feedback.feedbackListing.submitrequest.text')"></textarea>
+				</div> 
+				<div class="clearfix calStyle">
+				     	<div class="lastDateCalendar">
+				     		<label for="endDate" class="endDate"  data-ng-bind="pullInterNationalization('feedback.feedbackListing.lastdate')"></label>
+				     		<div class="posRelative w150">
+					     		<input type="text" readonly data-date-format="MM/dd/yyyy" data-placement="top-left" data-autoclose="1" class="form-control endInput h39" id="endDateId" ng-model="selectedDateAsNumber" data-min-date="today" data-max-date="{{maxDate}}" name="endDate" bs-datepicker required>
+					     		<label for="endDateId" class="calImg icon-icon_calendar sp-icon-color"></label>
+					     	</div>
+					     	<span class="err-msg blockGroup" ng-show="inviteError && invitemember.endDate.$error.required"><span
+									class="icon">!</span> This field is required</span>
+						</div> 
+				</div>
+			</div>
+			<div class="sp-btn-wrapper sp-red btn-small floatLeft inviteBtn">
+				<div class="sp-btn">
+					<input type="button" value="{{pullInterNationalization('feedback.feedbackListing.submitrequest.send')}}" class="btnStyle1" id="event_form_360_invite-member" ng-click="invitationSended(invitemember,addProfile.email)">
+				</div>
+			</div>
+			<div class="sp-btn-wrapper sp-grey btn-esmall floatLeft">
+				<div class="sp-btn">
+					<input type="button" value="{{pullInterNationalization('feedback.feedbackListing.submitrequest.cancel')}}" class="btnStyle1" id="event_360_request_cancel" ng-click="$parent.inviteError = false;closeThisDialog();">
+				</div>
+			</div>
+			</form>
+		 	</div>
+	</div>
+
+	</section>
+</div></div>
+</div></div>
+

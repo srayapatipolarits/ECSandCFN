@@ -1,0 +1,76 @@
+<section ng-controller="sysAdminPanel" ng-init="getLoggedInUserList()" ng-if="inviteReady" class="hide" ng-class="inviteReady?'show':'hide'">
+    <div class="x-container members">
+        <div class="container minimumHeight" >
+            <div class="bgWhiteBord clearfix">
+                <div class="toolbar clearfix portraitMember">
+                	<div class="title">
+                        <a href="javascript:void(0)" role="button">Logged In User<span class="blackcolor">({{memberList.length}})</span></a>
+                    </div>
+                    <div class="controls clearfix">
+                        <div class="controlwrap search">
+                            <input type="text" class="form-control" maxlength="28" ng-model="searchText" placeholder="{{pullInterNationalization('admin.member.search')}}" ng-keyup="searchTextFilter(searchText)">
+                            <button class="sp-icon-color" ng-class="enableCancel(searchText)? 'icon-icon_remove':'icon-icon_search'" ng-click="clearSearch()"></button>
+                        </div>
+                    </div>
+                    <a class="view-users-link mock-link" href="/sp/sysAdmin/users/getUserList">View All Users</a>
+                </div>
+
+                <article class="memberHolder" style="margin-top:30px;padding: 0 30px;">
+                    <div class="heading row">
+						  <!-- <div class="col-md-1 col-sm-1 check">
+                            <input type="checkbox" name="toggleAll" ng-model="alltoggle" id="alltoggle" class="memberCheckBox" ng-click="negative=!negative;checkAll()" />
+                            <label for="alltoggle" class="memberCheckBox-label"></label>
+                        </div> -->
+                        <div class="col-md-3 col-sm-3 m-name tog activeFilter" ng-click="reverse=!reverse;order('name', reverse);active($event)" data-predicate='name'>
+                            <h4 class="name on" data-ng-bind="pullInterNationalization('admin.member.name')"></h4>
+                        </div>
+                        <div class="col-md-3 col-sm-3 t-name tog" ng-click="reverse=!reverse;order('title', reverse);active($event)" data-predicate='title'>
+                            <h4 data-ng-bind="pullInterNationalization('admin.member.title')"></h4>
+                        </div>
+                        <div class="col-md-2 col-sm-2 s-name tog">Session Last Accessed</div>
+                        <div class="col-md-2 col-sm-2 s-name tog" ng-click="reverse=!reverse;order('userStatus', reverse);active($event)" data-predicate='userStatus'>
+                            <h4 data-ng-bind="pullInterNationalization('admin.member.status')"></h4>
+                        </div>
+                        <div class="col-md-1 col-sm-1"></div>
+                    </div>
+                   <div infinite-scroll="infinteScroll(pageSize+pageSize)" infinite-scroll-immediate-check="false" infinite-scroll-disabled="disabledInfinite">
+                    <div class="complete-profile animation_1" ng-class="{active:show}" id='{{$index}}' ng-repeat="memberList in recordField = ((memberList | filter:selectedSearch).slice(0,pageSize)) track by $index">
+
+                        <div class="table-row clearfix">
+                        	<!--  <div class="col-md-1 col-sm-1 check">
+                                <div ng-class="{hidden:show}">
+                                    <input type="checkbox" ng-click="checkUncheck()" name="selectUser" id="selectUser_{{$index}}" class="memberCheckBox" checklist-model="userEmail.email" checklist-value="{'email':memberList.email, 'name' : memberList.name ,'title': memberList.title}">
+                                    <label for="selectUser_{{$index}}" class="memberCheckBox-label"></label>
+                                </div>
+                            </div> -->
+                            <div class="col-md-3 col-sm-3 name">
+                                <img ng-src="{{memberList.smallProfileImage}}" alt="{{memberList.userInitials}}" ng-if="memberList.smallProfileImage">
+                                <div class="imgReplacement" ng-if="!memberList.smallProfileImage" ng-bind="memberList.userInitials"></div>
+                                <p>
+                                    <a href="#" class="fname" data-ng-bind="memberList.name" style="cursor:default;"></a>
+                                    <a href="#" class="email" data-ng-bind="memberList.email" style="cursor:default;"></a>
+                                </p>
+                            </div>
+                            <div class="col-md-3 col-sm-3 row_title" data-ng-bind="memberList.title"></div>
+							<div class="col-md-2 col-sm-2 row_title">
+								<div data-ng-repeat="(key,value) in memberList.sessionTimeList track by $index" data-ng-bind="value" style="padding:0px 0px 5px 0px;margin:0px;"></div>
+							</div>
+                            <div class="col-md-2 col-sm-2 statusMessage">
+                            	    <span ng-if="memberList.userStatus != 'VALID'"><span data-ng-bind-html="memberList.userStatusFormatted"></span>
+                            	    
+                            	    </span>
+									<span ng-if="memberList.userStatus == 'VALID'"><span data-ng-bind-html="memberList.userStatusFormatted"></span></span>
+					        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <p ng-show="!recordField.length" class="noMatchFound ng-hide" data-ng-bind="pullInterNationalization('admin.member.nomatch')"></p>
+                   <!--  <div class="more">
+                    <a href="javascript:void(0)" class="ng-hide" role="button" ng-click="loadBtnCLicked=true; returnMemberList(pageSize+pageSize)" ng-hide="alldisplay || recordField.length < intialPageSize" data-ng-bind="pullInterNationalization('admin.member.showmore')"></a>
+               		 </div>-->
+                </article>
+               
+            </div>
+        </div>
+    </div>
+</section>

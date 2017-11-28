@@ -1,0 +1,164 @@
+<section ng-controller="alternateBilling" ng-init="getResponse('Business',true)" ng-if="inviteReady" ng-class="inviteReady?'show':'hide'" class="hide">
+    <div class="x-container members alternate_billing create-pulse">
+        <div class="container minimumHeight" >
+            <div class="bgWhiteBord clearfix">
+                <div class="toolbar clearfix">
+                    <div class="title">
+                        <a href="javascript:void(0)" role="button" data-ng-bind="pullInterNationalization('admin.import.title')"></a>
+                    </div>
+                    <div class="controls clearfix">
+                        <div class="returnLink">
+                        	 <a href="/sp/sysAdmin/alternateBilling/business" role="button" data-ng-bind="pullInterNationalization('admin.import.return')"></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <article class="contactsHolder">
+                   <h2 class="sectionHeading" data-ng-bind="pullInterNationalization('admin.import.selectAccount')"></h2>
+                   <div class="searchAccount form-list-c">
+                   	    <div class="searchWrapper">
+                            <input type="text" class="search-box" name="search" ng-model="accountList.search" placeholder="Search" />
+                            <button ng-click="accountList.search=null" ng-class="accountList.search.length?'searching':''"></button>
+                        </div>
+                        <span class="field-instructions" data-ng-bind="pullInterNationalization('admin.import.searchdesc')"></span>
+                        <div class="account-list-wrapper">
+                            <div class="f-left all-accounts-list">
+                                <div class="list-header">
+                                    <div class="acc-name">
+                                        <p class="label" data-ng-bind="pullInterNationalization('admin.import.compnayName')"></p>
+                                    </div>
+                                    <div class="acc-loc">
+                                        <p class="label" data-ng-bind="pullInterNationalization('admin.import.location')"></p>
+                                    </div>
+                                    <div class="acc-actions"></div>
+                                </div>
+                                <div class="list-details">
+                                    <div class="list-row" ng-if="!filteredAccountListing.length">
+                                        <div class="list-msg">
+                                            <p class="no-result" data-ng-bind="pullInterNationalization('admin.import.noMatch')"></p>
+                                        </div>
+                                    </div>
+                                    <div class="list-row" ng-repeat="acc in (filteredAccountListing = (abMasterList | filter:accountList.search))" ng-class="($index==filteredAccountListing.length-1)?'last-row':''">
+                                        <div class="acc-name">
+                                            <p data-ng-bind="acc.companyName"></p>
+                                        </div>
+                                        <div class="acc-loc">
+                                            <p><span data-ng-bind="acc.city"></span>, <span class="country" data-ng-bind="acc.country"></span></p>
+                                        </div>
+                                        <div class="acc-actions"><a class="btn-square-12px sp-background-color" ng-click="fetchAccountDetails(acc.id,{'name':acc.companyName,'city':acc.city,'country':acc.country,'mode':'b'})">Select&#9656;</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="f-right all-accounts-list" ng-if="accountDetails">
+                                <div class="account_name">
+                                	<h3 class="name" data-ng-bind="detailModule.name"></h3>
+                                	<h5 class="location" data-ng-bind="detailModule.city+', '+detailModule.country"></h5>
+                                </div>
+                                <div class="account_detail">
+                                	<h3 class="subscription" data-ng-bind="pullInterNationalization('admin.import.subscription')"></h3>
+                                	<div class="full_detail">
+                                		<div class="title" data-ng-bind="accountDetails.account.productInfo.name"></div>
+                                		<div class="account"><span class="b-500" data-ng-bind="pullInterNationalization('admin.import.accountNo')+' '"></span> <span class="b-300" data-ng-bind="accountDetails.account.id"></span></div>
+                                		<div class="expire"><span data-ng-bind="(12*(accountDetails.account.agreementTerm||1))+' '+pullInterNationalization('admin.account.business.billing.expiress')+' '"></span><span class="b-300" data-ng-bind="accountDetails.account.aggreementEndDate"></span></div>
+                                		<div class="border-separator"></div>
+                                		<!-- Section member account -->
+                                		<div class="title" data-ng-bind="pullInterNationalization('admin.import.memberAccount')"></div>
+                                		<div class="available" data-ng-bind="pullInterNationalization('admin.import.memberAccountAvailable') + ' '+ accountDetails.account.productInfo.availalbeMemberSubscriptions"></div>
+                                		<div class="border-separator"></div>
+                                		<!-- Section hiring filter -->
+                                		<div class="title" data-ng-bind="pullInterNationalization('admin.import.hiringFilter')"></div>
+                                		<div class="available" data-ng-bind="pullInterNationalization('admin.import.hiringFilterAvailable')+ ' '+ accountDetails.account.hiringProduct.availableHiringSubscripitons"></div>
+                                		<div class="border-separator"></div>
+                                		<!-- payment and transaction details -->
+                                		<div class="title" data-ng-bind="pullInterNationalization('admin.import.paymentTrans')"></div>
+                                		<div class="transaction"><span class="b-300" data-ng-bind="pullInterNationalization('admin.account.business.billing.lasttrans') +': '"></span><span data-ng-bind="(accountDetails.account.lastPayment.amount | currency) + ' ' +pullInterNationalization('admin.import.on')+' ' + accountDetails.account.lastPayment.createdOnFormatted"></span></div>
+                                		<div class="transaction">
+                                			<div ng-hide="accountDetails.account.status == 'RENEWAL_PAYMENT_FAILED'"><span class="b-300" data-ng-bind="pullInterNationalization('admin.account.business.billing.nextpay') + ': '"></span><span data-ng-bind="(accountDetails.account.productInfo.renewalTotal | currency)+' ' +pullInterNationalization('admin.import.on')+' '+accountDetails.account.productInfo.renewalDate"></span></div>
+						                    <div class="error" ng-show="accountDetails.account.status == 'RENEWAL_PAYMENT_FAILED'">
+						                        <span class="err-msg"><span class="icon">!</span>  <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.billing.payfailederror')"></span></span>
+						                    </div>
+						                </div>
+                                	</div>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                   <article class='importExtraDetail'>
+                   		   <div class="section-separator"></div>
+	                       <div class="members_account_details">
+		                   		<h3 class="headBold" data-ng-bind="pullInterNationalization('admin.import.memberaccountdetail')"></h3>
+		                   		<ol class="form-list clearfix">
+		            	              <li class="floatList">
+					                  	<label for="payment_type" class="label-spacing" data-ng-bind="pullInterNationalization('admin.import.productType')"></label>
+					                    <div class="select-wrapper select-border-color"> 
+						                  	<select name="payment_type" id="payment_type" class="payment_type select-option-style" data-ng-model="signup.paymentType" disabled>
+						                    	<option value="-1">Select</option>
+						                    	<option value="0" data-ng-bind="accountDetails.account.productInfo.name"></option>
+						                    </select>
+					              	    </div>
+					                  </li>
+					                  
+					                  <li class="floatList">
+					                   	<label for="payment_agreement" class="label-spacing" data-ng-bind="pullInterNationalization('admin.import.termofagrrement')"></label>
+						                <div class="select-wrapper select-border-color"> 
+						                  	<select class="select-option-style" name="payment_agreement" id="payment_agreement" ng-model="signup.paymentAgreement" disabled>
+						                  	    <option value="-1">Select</option>
+						                    	<option value="1" data-ng-bind="pullInterNationalization('admin.import.agrrement1')"></option>
+						                        <option value="2" data-ng-bind="pullInterNationalization('admin.import.agrrement2')"></option>
+						                        <option value="3" data-ng-bind="pullInterNationalization('admin.import.agrrement3')"></option>
+						                	</select>
+					              	    </div>
+					                  </li>
+					             </ol>  
+		                   </div>
+		                   <div class="section-separator"></div>
+		                 <form name="importAccount" novalidate autocomplete="off" ng-submit="validateSendResponse()">
+	                       <div class="payment_details">
+		                   		<h3 class="headBold" data-ng-bind="pullInterNationalization('admin.import.paymentDetail')"></h3>
+			                  	 <ol class="form-list-c form-list-d clearfix">
+							        <li class="col_2">
+							            <label for="cpt" class="label-spacing" data-ng-bind="pullInterNationalization('admin.import.paymentType')"></label>
+							            <div class="select-wrapper select-border-color"> 
+						                  	<select class="select-option-style" name="cpt"  id="cpt" ng-model="imports.cpt" ng-change="removeError(imports.cpt);">
+						                    	<option value="-1" data-ng-bind="pullInterNationalization('admin.account.select')"></option>
+						                        <option value="SP_INTERNAL" data-ng-bind="pullInterNationalization('admin.account.SP_INTERNAL')"></option>
+						                        <option value="WIRE" data-ng-bind="pullInterNationalization('admin.account.WIRE')"></option>
+						                        <option value="TRIAL" data-ng-bind="pullInterNationalization('admin.account.TRIAL')"></option>
+						                	</select>
+					              	    </div>
+					              	    
+							            <span class="err-msg select-err validate-error" ng-show="submitted && ptype" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+							        </li>
+									<li class="col_2 noright">
+									  <label for="camount" class="label-spacing" data-ng-bind="pullInterNationalization('admin.import.amount')"></label>
+							          <input type="text" autocomplete="off" name="camount" ng-model="imports.camount" ng-pattern="/^[1-9][0-9]{0,9}(?:,?[0-9]{3}){0,3}(?:\.[0-9]{1,2})?$/" placeholder="Amount" required/>
+							          <span class="err-msg validate-error" ng-show="submitted && importAccount.camount.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+							          <span class="err-msg validate-error" ng-show="submitted && importAccount.camount.$error.pattern" data-ng-bind="pullInterNationalization('admin.account.enteramount')"></span>
+							        </li>
+							        
+							        <li class="clear">
+							          <label for="ccomment" class="label-spacing" data-ng-bind="pullInterNationalization('admin.import.comment')"></label>
+							          <textarea class="textArea" autocomplete="off" name="ccomment"  ng-model="imports.ccomment" placeholder="Comment" required></textarea>
+							          <span class="err-msg validate-error" ng-show="submitted && importAccount.ccomment.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+							        </li>
+							        <li ng-if="errorMessage" >
+			                            <span class="err-msg validate-error" data-ng-bind="pullInterNationalization('admin.import.selectAccount')"></span>
+			                        </li>
+									<li ng-if="sfailure" >
+			                            <span class="err-msg validate-error" ng-repeat="(key, value) in failure" data-ng-bind="value"></span>
+			                        </li>
+							        <li class="exceededUser alternateBillingBtn">        
+							          <input type="submit" ng-model="contactClick" value="{{pullInterNationalization('admin.import.submit')}}" class="contactBtn btn-block btn-15px" />
+							        </li>
+									<li class="exceededUser alternateBillingBtn">        
+							          <input type="button" ng-model="contactClick" ng-click="backToDefault()" value="{{pullInterNationalization('admin.import.cancel')}}" class="contactBtn btn-block btn-grey-dark btn-15px" />
+							        </li>
+							      </ol>
+		                   </div>
+	                   </form>
+                   </article>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>

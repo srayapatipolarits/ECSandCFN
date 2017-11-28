@@ -1,0 +1,384 @@
+<div class="x-container create-pulse pulse-details create-blueprint-home" data-ng-controller="blueprintAdminController as ctrl" data-ng-init="ctrl.getBluePrintData()" data-ng-cloak>
+    <div class="container" >
+        <div class="bg-wrapper">
+            <div class="space-box">
+                <p class="return-link">
+                	<a href="/sp/sysAdmin/blueprint/home" class="border-link">
+                        <span class="mock-link" data-ng-bind="::pullInterNationalization('admin.blueprint.back')"></span>
+                    </a>
+                </p> 
+                  
+                <h2 data-ng-if="ctrl.selectedCompanyId === 'default'" data-ng-bind="::pullInterNationalization('admin.blueprint.update.global.title')"></h2>
+                <h2 data-ng-if="ctrl.selectedCompanyId !== 'default'" data-ng-bind="::pullInterNationalization('admin.blueprint.update.title')"></h2> 
+				<a href="/sp/sysAdmin/blueprint/home" class="cancelBtn btn-block btn-15px btn-grey-dark"  data-ng-bind="::pullInterNationalization('admin.blueprint.action.cancel')"></a> 
+				<a class="subscribeBtn btn-block btn-15px sp-btn-color" data-ng-click="ctrl.updateBlueprintSettings()" data-ng-bind="::pullInterNationalization('admin.blueprint.action.update')"></a> 
+				<span class="err-msg validate-error ng-hide page-error" data-ng-show="ctrl.blueprintForm.submitted && !ctrl.blueprintForm.$valid" data-ng-bind="::pullInterNationalization('admin.blueprint.update.errors')"></span>  
+				<p data-ng-if="ctrl.selectedCompanyId !== 'default'"> {{::pullInterNationalization('admin.blueprint.company')}} <strong>{{ctrl.companyDisplayName}}</strong>         
+            </div>
+            </div>    
+        <div class="bg-wrapper no-border table-flex-cols">
+              <div class="lnd-right-sec">
+               <div class="practice-area-detail organization-area-detail lnd-right-box">
+               <form name="ctrl.blueprintForm" class="blueprintForm">
+                             <div class="category parent-cat category-overview" data-ng-class="ctrl.blueprintForm.submitted && !ctrl.isBlueprintDataValid? 'show':''">
+                            		<header class="header-style" data-ng-click="ctrl.toggleContentDisplay($event)">
+                            			<h2 class="header-title" data-ng-bind="::pullInterNationalization('admin.blueprint.section1.title')"></h2>
+                            			<div class="icon-toggle">
+						                    <div class="close-it">
+						                        <div class="hz"></div>
+						                    </div>
+						                    <div class="open-it">
+						                        <div class="hz"></div>
+						                        <div class="vl"></div>
+						                    </div>
+						                </div>
+                            		</header>
+                            		<div class="header-style-content" data-ng-class="ctrl.blueprintForm.submitted && !ctrl.isBlueprintDataValid? 'expand-section':''">
+                            			<div class="border-faq-content">
+				                            <ol class="form-list-c form-list-d clearfix">
+											              	  	<li class="type-and-number">
+				                            						<label class="label label-spacing overview-label" data-ng-bind="::pullInterNationalization('admin.blueprint.overviewText')"></label>
+				                            						<textarea class="themeTextArea" name="blueprintOverviewText" data-ng-model="ctrl.dataMap.blueprint.overviewText" placeholder="{{::pullInterNationalization('admin.blueprint.overviewtext')}}"  data-ng-required="true"></textarea>
+				                            						<span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.blueprintOverviewText.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                      	          		</li>
+						                      	          </ol>
+				                            				<ol class="form-list-c form-list-d clearfix">
+				                            				  <li class="type-and-number"><!--  -->
+							                      	          		<ol class="form-list-c form-list-d clearfix">
+						                            					<li class="col_3">
+						                            						<label for="blueprint" class="label-spacing" data-ng-bind="::pullInterNationalization('sysadmin.organization.actionLinkType')"></label>
+																            <div class="select-wrapper select-border-color">
+																            <span class="org-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+															                  	<select class="select-option-style" id="blueprint" name="blueprintLinkType" data-ng-model="ctrl.dataMap.blueprint.linkType" data-ng-required="false" data-ng-change="ctrl.optionsChange('blueprint')">
+															                    	<option value="" data-ng-bind="::pullInterNationalization('admin.account.select')"></option>
+															                    	<option value="VIDEO" data-ng-bind="::pullInterNationalization('admin.blueprint.video')"></option>
+															                    	<option value="PPT" data-ng-bind="::pullInterNationalization('admin.blueprint.ppt')"></option>
+															                    	<option value="PDF" data-ng-bind="::pullInterNationalization('admin.blueprint.pdf')"></option>
+															                    	<option value="WEB" data-ng-bind="::pullInterNationalization('admin.blueprint.web')"></option>
+															                    </select>
+															                </div>
+															                <span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.blueprintLinkType.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                      	          		        </li>
+						                            					<li class="col_3">
+						                            						<label class="label label-spacing" data-ng-bind="::pullInterNationalization('sysadmin.organization.actionLinkText')"></label>
+													                      	<input type="text" data-ng-disabled="ctrl.dataMap.blueprint.linkType === '' || ctrl.dataMap.blueprint.linkType === undefined" class="themeName"  placeholder="{{::pullInterNationalization('sysadmin.organization.actionLinkText')}}" name="blueprintLinkText" data-ng-model="ctrl.dataMap.blueprint.linkText" data-ng-required="false"/>
+													                      	<span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.blueprintLinkText.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                      	          		      	</li>
+													                  	<li class="col_3 noright">
+						                            						<label class="label label-spacing" data-ng-bind="::pullInterNationalization('sysadmin.organization.actionLinkUrl')"></label>
+													                      	<input type="text" data-ng-disabled="ctrl.dataMap.blueprint.linkType === '' || ctrl.dataMap.blueprint.linkType === undefined" class="themeName input-text-overflow" data-ng-pattern="/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/" placeholder="{{::pullInterNationalization('sysadmin.organization.actionLinkUrl')}}" name="blueprintLinkUrl" data-ng-model="ctrl.dataMap.blueprint.linkUrl" data-ng-required="false"/>
+													                      	<div class="select-media-btn sp-background-color add-extra-margin-right" data-ng-if="ctrl.dataMap.blueprint.linkType !=='VIDEO' && ctrl.dataMap.blueprint.linkType !== '' && ctrl.dataMap.blueprint.linkType !== undefined" data-ng-click="ctrl.openMediaManager(ctrl.dataMap.blueprint)">+</div>
+													                      	<span class="err-msg validate-error ng-hide" data-ng-show="((ctrl.blueprintForm.submitted && ctrl.blueprintForm.blueprintLinkUrl.$error.required) || !ctrl.blueprintForm.blueprintLinkUrl.$valid)" data-ng-bind="::pullInterNationalization('signup.emperr')"></span>
+						            		  	          		   		</li>
+													             	</ol>
+													             	<ol class="form-list-c form-list-d clearfix">
+													              		<li class="col_3">
+						                            						<label class="label label-spacing" data-ng-bind="::pullInterNationalization('sysadmin.organization.actionThumbImg')"></label>
+													                      	<input type="text" data-ng-disabled="ctrl.dataMap.blueprint.linkType === '' || ctrl.dataMap.blueprint.linkType === undefined || ctrl.dataMap.blueprint.linkType !== 'VIDEO'" class="themeName input-text-overflow" data-ng-pattern="/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/" placeholder="{{::pullInterNationalization('sysadmin.organization.actionThumbImg')}}"
+													                      	       name="blueprintThumbImageUrl" data-ng-model="ctrl.dataMap.blueprint.thumbImageUrl" data-ng-required="false"/>
+													                      	      <div class="select-media-btn sp-background-color add-extra-margin-right" data-ng-if="ctrl.dataMap.blueprint.linkType ==='VIDEO' && ctrl.dataMap.blueprint.linkType !== '' && ctrl.dataMap.blueprint.linkType !== undefined" data-ng-click="ctrl.openMediaManager(ctrl.dataMap.blueprint)">+</div>
+													                		<span class="err-msg validate-error ng-hide" data-ng-show="((ctrl.blueprintForm.submitted && ctrl.blueprintForm.blueprintThumbImageUrl.$error.required) || !ctrl.blueprintForm.blueprintThumbImageUrl.$valid)" data-ng-bind="::pullInterNationalization('signup.emperr')"></span>
+						            		  	          		    	</li>
+													              		<li class="col_3">
+						                            						<label class="label label-spacing" data-ng-bind="::pullInterNationalization('sysadmin.organization.actionAltImgText')"></label>
+													                      	<input type="text" data-ng-disabled="ctrl.dataMap.blueprint.linkType === '' || ctrl.dataMap.blueprint.linkType === undefined || ctrl.dataMap.blueprint.linkType !== 'VIDEO'" class="themeName" name="keyTitle" placeholder="{{::pullInterNationalization('sysadmin.organization.actionAltImgText')}}" data-ng-model="ctrl.dataMap.blueprint.imageAltText"/>
+													              		</li>
+													              		
+													             	</ol>
+											              		</li>
+											              		
+											              	</ol>
+											           </div>
+                            		</div>
+                            	</div>
+                            	<div class="category parent-cat category-overview" data-ng-class="ctrl.blueprintForm.submitted && !ctrl.isMissionDataValid? 'show':''">
+                            		<header class="header-style" data-ng-click="ctrl.toggleContentDisplay($event)">
+                            			<h2 class="header-title" data-ng-bind="ctrl.dataMap.mission.title"></h2>
+                            			<div class="icon-toggle">
+						                    <div class="close-it">
+						                        <div class="hz"></div>
+						                    </div>
+						                    <div class="open-it">
+						                        <div class="hz"></div>
+						                        <div class="vl"></div>
+						                    </div>
+						                </div>
+                            		</header>
+                            		<div class="header-style-content" data-ng-class="ctrl.blueprintForm.submitted && !ctrl.isMissionDataValid? 'expand-section':''">
+                            			<div class="border-faq-content">
+                            			<ol class="form-list-c form-list-d clearfix">
+				                            <li class="col_3">
+						                           <label class="label label-spacing" data-ng-bind="::pullInterNationalization('admin.blueprint.categoryTitle')"></label>
+												   <input type="text" class="themeName"  placeholder="{{::pullInterNationalization('admin.blueprint.categoryTitle')}}" maxlength="50" name="missionTitle" data-ng-model="ctrl.dataMap.mission.title" data-ng-required="true"/>
+												   <span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.missionTitle.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                    </li>
+						                   </ol>   	          		      	
+				                            <ol class="form-list-c form-list-d clearfix">
+											              	  	<li class="type-and-number">
+				                            						<label class="label label-spacing overview-label" data-ng-bind="::pullInterNationalization('admin.blueprint.overviewText')"></label>
+				                            						<textarea class="themeTextArea" name="missionOverviewText" data-ng-model="ctrl.dataMap.mission.overviewText" placeholder="{{::pullInterNationalization('admin.blueprint.overviewtext')}}"  data-ng-required="true"></textarea>
+				                            						<span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.missionOverviewText.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                      	          		</li>
+						                      	          </ol>
+				                            				<ol class="form-list-c form-list-d clearfix">
+				                            				  <li class="type-and-number"><!--  -->
+							                      	          		<ol class="form-list-c form-list-d clearfix">
+						                            					<li class="col_3">
+						                            						<label for="mission" class="label-spacing" data-ng-bind="::pullInterNationalization('sysadmin.organization.actionLinkType')"></label>
+																            <div class="select-wrapper select-border-color">
+																            <span class="org-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+															                  	<select class="select-option-style" id="mission" name="missionLinkType" data-ng-model="ctrl.dataMap.mission.linkType" data-ng-required="false" data-ng-change="ctrl.optionsChange('mission')">
+															                    	<option value="" data-ng-bind="::pullInterNationalization('admin.account.select')"></option>
+															                    	<option value="PPT" data-ng-bind="::pullInterNationalization('admin.blueprint.ppt')"></option>
+															                    	<option value="PDF" data-ng-bind="::pullInterNationalization('admin.blueprint.pdf')"></option>
+															                    </select>
+															                </div>
+															                <span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.missionLinkType.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                      	          		        </li>
+						                            					<li class="col_3">
+						                            						<label class="label label-spacing" data-ng-bind="::pullInterNationalization('sysadmin.organization.actionLinkText')"></label>
+													                      	<input type="text" data-ng-disabled="ctrl.dataMap.mission.linkType === '' || ctrl.dataMap.mission.linkType === undefined" class="themeName"  placeholder="{{::pullInterNationalization('sysadmin.organization.actionLinkText')}}" name="missionLinkText" data-ng-model="ctrl.dataMap.mission.linkText" data-ng-required="false"/>
+													                      	<span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.missionLinkText.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                      	          		      	</li>
+													                  	<li class="col_3 noright">
+						                            						<label class="label label-spacing" data-ng-bind="::pullInterNationalization('sysadmin.organization.actionLinkUrl')"></label>
+													                      	<input type="text" data-ng-disabled="ctrl.dataMap.mission.linkType === '' || ctrl.dataMap.mission.linkType === undefined" class="themeName input-text-overflow" data-ng-pattern="/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/" placeholder="{{::pullInterNationalization('sysadmin.organization.actionLinkUrl')}}" name="missionLinkUrl" data-ng-model="ctrl.dataMap.mission.linkUrl" data-ng-required="false"/>
+													                      	<div class="select-media-btn sp-background-color add-extra-margin-right" data-ng-if="ctrl.dataMap.mission.linkType !== '' && ctrl.dataMap.mission.linkType !== undefined" data-ng-click="ctrl.openMediaManager(ctrl.dataMap.mission)">+</div>
+													                      	<span class="err-msg validate-error ng-hide" data-ng-show="((ctrl.blueprintForm.submitted && ctrl.blueprintForm.missionLinkUrl.$error.required) || !ctrl.blueprintForm.missionLinkUrl.$valid)" data-ng-bind="::pullInterNationalization('signup.emperr')"></span>
+						            		  	          		   		</li>
+						            		  	          		   		
+													             	</ol>
+											              		</li>
+											              	</ol>
+											           </div>
+                            		</div>
+                            	</div>
+                            	<div class="category parent-cat category-overview" data-ng-class="ctrl.blueprintForm.submitted && !ctrl.isObjectiveDataValid? 'show':''">
+                            		<header class="header-style" data-ng-click="ctrl.toggleContentDisplay($event)">
+                            			<h2 class="header-title" data-ng-bind="ctrl.dataMap.objective.title"></h2>
+                            			<div class="icon-toggle">
+						                    <div class="close-it">
+						                        <div class="hz"></div>
+						                    </div>
+						                    <div class="open-it">
+						                        <div class="hz"></div>
+						                        <div class="vl"></div>
+						                    </div>
+						                </div>
+                            		</header>
+                            		<div class="header-style-content" data-ng-class="ctrl.blueprintForm.submitted && !ctrl.isObjectiveDataValid? 'expand-section':''">
+                            			<div class="border-faq-content">
+                            			<ol class="form-list-c form-list-d clearfix">
+				                            <li class="col_3">
+						                           <label class="label label-spacing" data-ng-bind="::pullInterNationalization('admin.blueprint.categoryTitle')"></label>
+												   <input type="text" class="themeName"  placeholder="{{::pullInterNationalization('admin.blueprint.categoryTitle')}}" maxlength="50" name="objectiveTitle" data-ng-model="ctrl.dataMap.objective.title" data-ng-required="true"/>
+												   <span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.objectiveTitle.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                    </li>
+						                   </ol>
+				                            <ol class="form-list-c form-list-d clearfix">
+											              	  	<li class="type-and-number">
+				                            						<label class="label label-spacing overview-label" data-ng-bind="::pullInterNationalization('admin.blueprint.overviewText')"></label>
+				                            						<textarea class="themeTextArea" name="objectiveOverviewText" data-ng-model="ctrl.dataMap.objective.overviewText" placeholder="{{::pullInterNationalization('admin.blueprint.overviewtext')}}"  data-ng-required="true"></textarea>
+				                            						<span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.objectiveOverviewText.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                      	          		</li>
+						                      	          </ol>
+				                            				<ol class="form-list-c form-list-d clearfix">
+				                            				  <li class="type-and-number"><!--  -->
+							                      	          		<ol class="form-list-c form-list-d clearfix">
+						                            					<li class="col_3">
+						                            						<label for="objectives" class="label-spacing" data-ng-bind="::pullInterNationalization('sysadmin.organization.actionLinkType')"></label>
+																            <div class="select-wrapper select-border-color">
+																            <span class="org-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+															                  	<select class="select-option-style" id="objectives" name="objectiveLinkType" data-ng-model="ctrl.dataMap.objective.linkType" data-ng-required="false" data-ng-change="ctrl.optionsChange('objectives')">
+															                    	<option value="" data-ng-bind="::pullInterNationalization('admin.account.select')"></option>
+															                    	<option value="PPT" data-ng-bind="::pullInterNationalization('admin.blueprint.ppt')"></option>
+															                    	<option value="PDF" data-ng-bind="::pullInterNationalization('admin.blueprint.pdf')"></option>
+															                    </select>
+															                </div>
+															                <span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.objectiveLinkType.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                      	          		        </li>
+						                            					<li class="col_3">
+						                            						<label class="label label-spacing" data-ng-bind="::pullInterNationalization('sysadmin.organization.actionLinkText')"></label>
+													                      	<input type="text" data-ng-disabled="ctrl.dataMap.objective.linkType === '' || ctrl.dataMap.objective.linkType === undefined" class="themeName"  placeholder="{{::pullInterNationalization('sysadmin.organization.actionLinkText')}}" name="objectiveLinkText" data-ng-model="ctrl.dataMap.objective.linkText" data-ng-required="false"/>
+													                      	<span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.objectiveLinkText.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                      	          		      	</li>
+													                  	<li class="col_3 noright">
+						                            						<label class="label label-spacing" data-ng-bind="::pullInterNationalization('sysadmin.organization.actionLinkUrl')"></label>
+													                      	<input type="text" data-ng-disabled="ctrl.dataMap.objective.linkType === '' || ctrl.dataMap.objective.linkType === undefined" class="themeName input-text-overflow" data-ng-pattern="/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/" placeholder="{{::pullInterNationalization('sysadmin.organization.actionLinkUrl')}}" name="objectiveLinkUrl" data-ng-model="ctrl.dataMap.objective.linkUrl" data-ng-required="false"/>
+													                      	<div class="select-media-btn sp-background-color add-extra-margin-right" data-ng-if="ctrl.dataMap.objective.linkType !== '' && ctrl.dataMap.objective.linkType !== undefined" data-ng-click="ctrl.openMediaManager(ctrl.dataMap.objective)">+</div>
+													                      	<span class="err-msg validate-error ng-hide" data-ng-show="((ctrl.blueprintForm.submitted && ctrl.blueprintForm.objectiveLinkUrl.$error.required) || !ctrl.blueprintForm.objectiveLinkUrl.$valid)" data-ng-bind="::pullInterNationalization('signup.emperr')"></span>
+						            		  	          		   		</li>
+													             	</ol>
+													             	<ol class="form-list-c form-list-d clearfix">
+													              		<li class="col_3">
+						                            						<label class="label-spacing" data-ng-bind="::pullInterNationalization('admin.blueprint.minObjectives')"></label>
+																            <input type="number" min="1" step="1" data-ng-keypress="ctrl.isNumeric(event)" data-ng-blur="ctrl.validateMinAndMax(event,this.ctrl.dataMap.objective)" class="themeName" name="minObjectives" data-ng-model="ctrl.dataMap.objective.minObjectives" data-ng-required="false"/>
+															                <span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.minObjectives.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                      	          		        </li>
+													              		<li class="col_3">
+						                            						<label class="label-spacing" data-ng-bind="::pullInterNationalization('admin.blueprint.maxObjectives')"></label>
+																            <input type="number" min="1" step="1" data-ng-keypress="ctrl.isNumeric(event)" data-ng-blur="ctrl.validateMinAndMax(event,this.ctrl.dataMap.objective)" class="themeName" name="maxObjectives" data-ng-model="ctrl.dataMap.objective.maxObjectives" data-ng-required="false"/>
+															                <span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.maxObjectives.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                      	          		        </li>
+													              		
+													             	</ol>
+											              		</li>
+											              	</ol>
+											           </div>
+                            		</div>
+                            	</div>
+                            	<div class="category parent-cat category-overview" data-ng-class="ctrl.blueprintForm.submitted && !ctrl.isInitiativesDataValid? 'show':''">
+                            		<header class="header-style" data-ng-click="ctrl.toggleContentDisplay($event)">
+                            			<h2 class="header-title" data-ng-bind="ctrl.dataMap.initiatives.title"></h2>
+                            			<div class="icon-toggle">
+						                    <div class="close-it">
+						                        <div class="hz"></div>
+						                    </div>
+						                    <div class="open-it">
+						                        <div class="hz"></div>
+						                        <div class="vl"></div>
+						                    </div>
+						                </div>
+                            		</header>
+                            		<div class="header-style-content" data-ng-class="ctrl.blueprintForm.submitted && !ctrl.isInitiativesDataValid? 'expand-section':''">
+                            			<div class="border-faq-content">
+                            			<ol class="form-list-c form-list-d clearfix">
+				                            <li class="col_3">
+						                           <label class="label label-spacing" data-ng-bind="::pullInterNationalization('admin.blueprint.categoryTitle')"></label>
+												   <input type="text" class="themeName"  placeholder="{{::pullInterNationalization('admin.blueprint.categoryTitle')}}" maxlength="50" name="initiativesTitle" data-ng-model="ctrl.dataMap.initiatives.title" data-ng-required="true"/>
+												   <span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.initiativesTitle.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                    </li>
+						                   </ol>
+				                            <ol class="form-list-c form-list-d clearfix">
+											              	  	<li class="type-and-number">
+				                            						<label class="label label-spacing overview-label" data-ng-bind="::pullInterNationalization('admin.blueprint.overviewText')"></label>
+				                            						<textarea class="themeTextArea" name="initiativesOverviewText" data-ng-model="ctrl.dataMap.initiatives.overviewText" placeholder="{{::pullInterNationalization('admin.blueprint.overviewtext')}}"  data-ng-required="true"></textarea>
+				                            						<span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.initiativesOverviewText.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                      	          		</li>
+						                      	          </ol>
+				                            				<ol class="form-list-c form-list-d clearfix">
+				                            				  <li class="type-and-number"><!--  -->
+							                      	          		<ol class="form-list-c form-list-d clearfix">
+						                            					<li class="col_3">
+						                            						<label for="initiatives" class="label-spacing" data-ng-bind="::pullInterNationalization('sysadmin.organization.actionLinkType')"></label>
+																            <div class="select-wrapper select-border-color">
+																            <span class="org-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+															                  	<select class="select-option-style" id="initiatives" name="initiativesLinkType" data-ng-model="ctrl.dataMap.initiatives.linkType" data-ng-required="false" data-ng-change="ctrl.optionsChange('initiatives')">
+															                    	<option value="" data-ng-bind="::pullInterNationalization('admin.account.select')"></option>
+															                    	<option value="PPT" data-ng-bind="::pullInterNationalization('admin.blueprint.ppt')"></option>
+															                    	<option value="PDF" data-ng-bind="::pullInterNationalization('admin.blueprint.pdf')"></option>
+															                    </select>
+															                </div>
+															                <span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.initiativesLinkType.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                      	          		        </li>
+						                            					<li class="col_3">
+						                            						<label class="label label-spacing" data-ng-bind="::pullInterNationalization('sysadmin.organization.actionLinkText')"></label>
+													                      	<input type="text" class="themeName" data-ng-disabled="ctrl.dataMap.initiatives.linkType === '' || ctrl.dataMap.initiatives.linkType === undefined" placeholder="{{::pullInterNationalization('sysadmin.organization.actionLinkText')}}" name="initiativesLinkText" data-ng-model="ctrl.dataMap.initiatives.linkText" data-ng-required="false"/>
+													                      	<span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.initiativesLinkText.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                      	          		      	</li>
+													                  	<li class="col_3 noright">
+						                            						<label class="label label-spacing" data-ng-bind="::pullInterNationalization('sysadmin.organization.actionLinkUrl')"></label>
+													                      	<input type="text" class="themeName input-text-overflow" data-ng-disabled="ctrl.dataMap.initiatives.linkType === '' || ctrl.dataMap.initiatives.linkType === undefined" data-ng-pattern="/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/" placeholder="{{::pullInterNationalization('sysadmin.organization.actionLinkUrl')}}" name="initiativesLinkUrl" data-ng-model="ctrl.dataMap.initiatives.linkUrl" data-ng-required="false"/>
+													                      	<div class="select-media-btn sp-background-color add-extra-margin-right" data-ng-if="ctrl.dataMap.initiatives.linkType !== '' && ctrl.dataMap.initiatives.linkType !== undefined" data-ng-click="ctrl.openMediaManager(ctrl.dataMap.initiatives)">+</div>
+													                      	<span class="err-msg validate-error ng-hide" data-ng-show="((ctrl.blueprintForm.submitted && ctrl.blueprintForm.initiativesLinkUrl.$error.required) || !ctrl.blueprintForm.initiativesLinkUrl.$valid)" data-ng-bind="::pullInterNationalization('signup.emperr')"></span>
+						            		  	          		   		</li>
+													             	</ol>
+													             	<ol class="form-list-c form-list-d clearfix">
+													             	    <li class="col_3">
+						                            						<label class="label-spacing" data-ng-bind="::pullInterNationalization('admin.blueprint.minInitiatives')"></label>
+																            <input type="number" min="1" step="1" data-ng-keypress="ctrl.isNumeric(event)" data-ng-blur="ctrl.validateMinAndMax(event,this.ctrl.dataMap.initiatives)" class="themeName" name="minInitiatives" data-ng-model="ctrl.dataMap.initiatives.minInitiatives" data-ng-required="false"/>
+															                <span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.minInitiatives.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                      	          		        </li>
+													              		
+													              		<li class="col_3">
+						                            						<label class="label-spacing" data-ng-bind="::pullInterNationalization('admin.blueprint.maxInitiatives')"></label>
+																            <input type="number" min="1" step="1" data-ng-keypress="ctrl.isNumeric(event)" data-ng-blur="ctrl.validateMinAndMax(event,this.ctrl.dataMap.initiatives)" class="themeName" name="maxInitiatives" data-ng-model="ctrl.dataMap.initiatives.maxInitiatives" data-ng-required="false"/>
+															                <span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.maxInitiatives.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                      	          		        </li>
+						                      	          		        
+													             	</ol>
+											              		</li>
+											              	</ol>
+											           </div>
+                            		</div>
+                            	</div>
+                            	<div class="category parent-cat category-overview" data-ng-class="ctrl.blueprintForm.submitted && !ctrl.isCsmDataValid? 'show':''">
+                            		<header class="header-style" data-ng-click="ctrl.toggleContentDisplay($event)">
+                            			<h2 class="header-title" data-ng-bind="ctrl.dataMap.csm.title"></h2>
+                            			<div class="icon-toggle">
+						                    <div class="close-it">
+						                        <div class="hz"></div>
+						                    </div>
+						                    <div class="open-it">
+						                        <div class="hz"></div>
+						                        <div class="vl"></div>
+						                    </div>
+						                </div>
+                            		</header>
+                            		<div class="header-style-content" data-ng-class="ctrl.blueprintForm.submitted && !ctrl.isCsmDataValid? 'expand-section':''">
+                            			<div class="border-faq-content">
+                            			<ol class="form-list-c form-list-d clearfix">
+				                            <li class="col_3">
+						                           <label class="label label-spacing" data-ng-bind="::pullInterNationalization('admin.blueprint.categoryTitle')"></label>
+												   <input type="text" class="themeName"  placeholder="{{::pullInterNationalization('admin.blueprint.categoryTitle')}}" maxlength="50" name="csmTitle" data-ng-model="ctrl.dataMap.csm.title" data-ng-required="true"/>
+												   <span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.csmTitle.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                    </li>
+						                   </ol>
+				                            <ol class="form-list-c form-list-d clearfix">
+											              	  	<li class="type-and-number">
+				                            						<label class="label label-spacing overview-label" data-ng-bind="::pullInterNationalization('admin.blueprint.overviewText')"></label>
+				                            						<textarea class="themeTextArea" name="csmOverviewText" data-ng-model="ctrl.dataMap.csm.overviewText" placeholder="{{::pullInterNationalization('admin.blueprint.overviewtext')}}"  data-ng-required="true"></textarea>
+				                            						<span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.csmOverviewText.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                      	          		</li>
+						                      	          </ol>
+				                            				<ol class="form-list-c form-list-d clearfix">
+				                            				  <li class="type-and-number"><!--  -->
+							                      	          		<ol class="form-list-c form-list-d clearfix">
+						                            					<li class="col_3">
+						                            						<label for="csm" class="label-spacing" data-ng-bind="::pullInterNationalization('sysadmin.organization.actionLinkType')"></label>
+																            <div class="select-wrapper select-border-color">
+																            <span class="org-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+															                  	<select class="select-option-style" id="csm" name="csmLinkType" data-ng-model="ctrl.dataMap.csm.linkType" data-ng-required="false" data-ng-change="ctrl.optionsChange('csm')">
+															                    	<option value="" data-ng-bind="::pullInterNationalization('admin.account.select')"></option>
+															                    	<option value="PPT" data-ng-bind="::pullInterNationalization('admin.blueprint.ppt')"></option>
+															                    	<option value="PDF" data-ng-bind="::pullInterNationalization('admin.blueprint.pdf')"></option>
+															                    </select>
+															                </div>
+															                <span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.csmLinkType.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                      	          		        </li>
+						                            					<li class="col_3">
+						                            						<label class="label label-spacing" data-ng-bind="::pullInterNationalization('sysadmin.organization.actionLinkText')"></label>
+													                      	<input type="text" class="themeName" data-ng-disabled="ctrl.dataMap.csm.linkType === '' || ctrl.dataMap.csm.linkType === undefined" placeholder="{{::pullInterNationalization('sysadmin.organization.actionLinkText')}}" name="csmLinkText" data-ng-model="ctrl.dataMap.csm.linkText" data-ng-required="false"/>
+													                      	<span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.csmLinkText.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                      	          		      	</li>
+													                  	<li class="col_3 noright">
+						                            						<label class="label label-spacing" data-ng-bind="::pullInterNationalization('sysadmin.organization.actionLinkUrl')"></label>
+													                      	<input type="text" class="themeName input-text-overflow" data-ng-disabled="ctrl.dataMap.csm.linkType === '' || ctrl.dataMap.csm.linkType === undefined" data-ng-pattern="/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/" placeholder="{{::pullInterNationalization('sysadmin.organization.actionLinkUrl')}}" name="csmLinkUrl" data-ng-model="ctrl.dataMap.csm.linkUrl" data-ng-required="false"/>
+													                      	<div class="select-media-btn sp-background-color add-extra-margin-right" data-ng-if="ctrl.dataMap.csm.linkType !== '' && ctrl.dataMap.csm.linkType !== undefined" data-ng-click="ctrl.openMediaManager(ctrl.dataMap.csm)">+</div>
+													                      	<span class="err-msg validate-error ng-hide" data-ng-show="((ctrl.blueprintForm.submitted && ctrl.blueprintForm.csmLinkUrl.$error.required) || !ctrl.blueprintForm.csmLinkUrl.$valid)" data-ng-bind="::pullInterNationalization('signup.emperr')"></span>
+						            		  	          		   		</li>
+													             	</ol>
+													             	<ol class="form-list-c form-list-d clearfix">
+													              		<li class="col_3">
+						                            						<label class="label-spacing" data-ng-bind="::pullInterNationalization('admin.blueprint.minCsm')"></label>
+																            <input type="number" min="1" step="1" data-ng-keypress="ctrl.isNumeric(event)" data-ng-blur="ctrl.validateMinAndMax(event,this.ctrl.dataMap.csm)" class="themeName" name="minCsm" data-ng-model="ctrl.dataMap.csm.minCsm" data-ng-required="false"/>
+															                <span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.minCsm.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                      	          		        </li>
+						                      	          		        <li class="col_3">
+						                            						<label class="label-spacing" data-ng-bind="::pullInterNationalization('admin.blueprint.maxCsm')"></label>
+																            <input type="number" min="1" step="1" data-ng-keypress="ctrl.isNumeric(event)" data-ng-blur="ctrl.validateMinAndMax(event,this.ctrl.dataMap.csm)" class="themeName" name="maxCsm" data-ng-model="ctrl.dataMap.csm.maxCsm" data-ng-required="false"/>
+															                <span class="err-msg validate-error ng-hide" data-ng-show="ctrl.blueprintForm.submitted && ctrl.blueprintForm.maxCsm.$error.required" data-ng-bind="::pullInterNationalization('admin.blueprint.required.error')"></span>
+						                      	          		        </li>
+													             	</ol>
+											              		</li>
+											              	</ol>
+											           </div>
+                            		</div>
+                            	</div>
+                            	</form>
+                    </div>
+                    </div>
+               
+              </div>
+        </div>
+</div>

@@ -1,0 +1,101 @@
+<div class="sp-resume"  ng-controller="resumeController" ng-init="getAllResume()">
+	<div class="x-container">
+			<!-- Extended Container -->
+		<div class="container">
+			<!-- Bootstrap Container -->
+			<div class="row">
+				<!-- Bootstrap Row -->
+				<div class="col-md-12">
+					<div class="resumeContainer locatedSubNavRelative padTop30 bgWhiteBord" ng-if="inviteReady">
+						<!--  When No resume is in database -->
+						<div class="noResume hide" ng-class="!resultStat.length && firstView=='false' ?'show':'hide'">
+							<!-- UpperBody -->
+							<div class="upperBody clearfix">
+								<div class="row">
+									<div class="col-sm-6 col-md-6">
+										<div class="title" data-ng-bind="pullInterNationalization('spResume.title')"></div>
+										<div class="boldDescription" data-ng-bind="pullInterNationalization('spResume.boldDesc')"></div>
+										<div class="description" data-ng-bind-html="pullInterNationalization('spResume.desc')">
+										</div>
+										<a href="resources/pdf/sp_resume_sample.pdf" target="_blank" class="viewSample" alt="view sample resume" data-ng-bind="pullInterNationalization('spResume.viewSample')"></a>
+										<a href="javascript:void(0)" class="buttoncss_1" alt="{{pullInterNationalization('spResume.getStarted')}}" data-ng-bind="pullInterNationalization('spResume.getStarted')" ng-click="displayResume()"></a>
+									</div>
+									<div class="col-sm-6 col-md-6">
+										<div class="thumbnail"><img src="resources/css/images/resumeSample.jpg"></div>
+									</div>
+								</div>
+							</div>
+							<!--  Lower Body -->
+							<div class="borderSeparator"></div>
+							<div class="lowerBody clearfix">
+								<div class="title" data-ng-bind="pullInterNationalization('spResume.whyResume')"></div>
+								<div class="row colArea">
+									<div class="col-sm-4 col-md-4">
+										<div class="title_1" data-ng-bind-html="pullInterNationalization('spResume.row1')"></div>
+										<div class="thumbnail"><img src="/resources/css/images/Resume_1.jpg"></div>
+										<div class="desciption" data-ng-bind-html="pullInterNationalization('spResume.rowd1')">
+										</div>
+									</div>
+									<div class="col-sm-4 col-md-4">
+										<div class="title_1" data-ng-bind-html="pullInterNationalization('spResume.row2')"></div>
+										<div class="thumbnail"><img src="/resources/css/images/Resume_2.jpg"></div>
+										<div class="desciption" data-ng-bind-html="pullInterNationalization('spResume.rowd2')">
+										</div>
+									</div>
+									<div class="col-sm-4 col-md-4">
+										<div class="title_1" data-ng-bind-html="pullInterNationalization('spResume.row3')"></div>
+										<div class="thumbnail"><img src="/resources/css/images/Resume_3.jpg"></div>
+										<div class="desciption" data-ng-bind-html="pullInterNationalization('spResume.rowd3')">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- When there is resume in database -->
+						<div class="hasResume hide" ng-class="resultStat.length || firstView=='true'?'show':'hide'">
+							<div class="title" data-ng-bind="pullInterNationalization('spResume.manageResume')"></div>
+							<div class="holder clearfix">
+								<div class="pull-left">
+									<div class="description" data-ng-bind-html="pullInterNationalization('spResume.manageResumeDesc')"></div>
+								</div>
+								<div class="pull-right">
+									<a href="javascript:void(0)" class="buttoncss_1" alt="CREATE NEW RESUME" ng-click="openDialogCreateResume()" data-ng-bind="pullInterNationalization('spResume.createResume')"></a>
+								</div>
+							</div>
+							<div class="contentArea">
+								<div class="heading clearfix">
+									<div class="col-md-3 col-sm-3 m-name tog activeFilter" ng-click="reverse=!reverse;order('fileName', reverse);active($event)" data-predicate='name'><h4 class="name on" data-ng-bind="pullInterNationalization('spResume.profileName')"></h4></div>
+									<div class="col-md-2 col-sm-2 mrole-name tog" ng-click="reverse=!reverse;order('userRole', reverse);active($event)" data-predicate='title'><h4 data-ng-bind="pullInterNationalization('spResume.role')"></h4></div>
+									<div class="col-md-2 col-sm-5 mr-name tog" ng-click="reverse=!reverse;order('formattedDate', reverse);active($event)" data-predicate='start'><h4 data-ng-bind="pullInterNationalization('spResume.dc')"></h4></div>
+									<div class="col-md-2 col-sm-2 b-name tog"></div>
+								</div>
+								<div class="complete-profile animation_1" ng-repeat="result in recordField = (resultStat)">
+									<div class="table-row clearfix">
+										<div class="col-md-3 col-sm-3 pdfName clearfix" ng-click="openPreviewNew(result.id)">
+											<span class="pdf"></span>
+											<span class="name" data-ng-bind="result.providerName"></span>
+										</div>
+										<div class="col-md-2 col-sm-2 role" data-ng-bind="result.userRole"></div>
+										<div class="col-md-5 col-sm-3 formattedDate" data-ng-bind="result.formattedDate"></div>
+										<div class="col-md-2 col-sm-4 powerOptions clearfix">
+											<span class="deleteButton">
+												<a href="javascript:void(0)" class="buttoncss" ng-click="deleteResumePop(result.id)" alt="delete" data-ng-bind="pullInterNationalization('spResume.delete')"></a>
+											</span>
+											<span class="message">
+												<a ng-click="openMessage(result)" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spResume.message')"></a>
+											</span>
+											<span class="printResume"><a ng-click="openPreview(result.id)" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spResume.pdf')"></a></span>
+											
+										</div>
+									</div>
+								</div>
+								 <p ng-class="!recordField.length?'show':'hide'" class="noMatchFound hide" data-ng-bind="pullInterNationalization('spResume.member.nomatch')"></p>
+                   		</div>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> 

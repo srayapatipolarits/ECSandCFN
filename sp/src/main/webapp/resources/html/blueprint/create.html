@@ -1,0 +1,311 @@
+<div class="practive-area-view blueprint-content" data-ng-if="ctrl.createScreenReady">
+    <!-- Description -->
+    <div class="blueprint-intro hide">
+		<p> 
+			<span data-ng-bind-html="ctrl.dataMap.blueprint.overviewText"></span>
+			<span data-ng-bind-html="pullInterNationalization('blueprint.blueprintApprovalDesc1')+' '"></span>
+			<span class="mission-statement font300" data-ng-bind="ctrl.dataMap.mission.title+', '"></span>
+			<span class="Objectives font300"><span data-ng-bind="ctrl.dataMap.objective.title +' ('"></span><span data-ng-if="ctrl.bluePrintSetting.minObjectives!==ctrl.bluePrintSetting.maxObjectives" data-ng-bind="ctrl.bluePrintSetting.minObjectives +' - '+ ctrl.bluePrintSetting.maxObjectives+'), '"></span><span data-ng-if="ctrl.bluePrintSetting.minObjectives===ctrl.bluePrintSetting.maxObjectives" data-ng-bind="ctrl.bluePrintSetting.minObjectives+'), '"></span></span>
+			<span class="initiatives font300"><span data-ng-bind="ctrl.dataMap.initiatives.title +' ('"></span><span data-ng-if="ctrl.bluePrintSetting.minInitiatives!==ctrl.bluePrintSetting.maxInitiatives" data-ng-bind="ctrl.bluePrintSetting.minInitiatives +' - '+ ctrl.bluePrintSetting.maxInitiatives+'), '"></span><span data-ng-if="ctrl.bluePrintSetting.minInitiatives===ctrl.bluePrintSetting.maxInitiatives" data-ng-bind="ctrl.bluePrintSetting.minInitiatives+'), '"></span></span>
+			<span class="csm font300"><span data-ng-bind="ctrl.dataMap.csm.title +' ('"></span><span data-ng-if="ctrl.bluePrintSetting.minSuccessMeasures!==ctrl.bluePrintSetting.maxSuccessMeasures" data-ng-bind-html="ctrl.bluePrintSetting.minSuccessMeasures +' - '+ ctrl.bluePrintSetting.maxSuccessMeasures+').'"></span><span data-ng-if="ctrl.bluePrintSetting.minSuccessMeasures===ctrl.bluePrintSetting.maxSuccessMeasures" data-ng-bind-html="ctrl.bluePrintSetting.minSuccessMeasures+').'"></span></span>
+		</p>
+		<a href="javascript:void(0)" data-ng-if="ctrl.dataMap.blueprint.linkUrl" class="border-link hide" data-ng-click="ctrl.previewLink(ctrl.dataMap.blueprint.linkType,ctrl.dataMap.blueprint.linkUrl)">
+			<span class="mock-link" data-ng-bind="ctrl.dataMap.blueprint.linkText || pullInterNationalization('blueprint.viewblueprintexample')"></span>
+        </a>
+        <div class="comments-icon-mob hide" data-ng-class="ctrl.switchToMobile?'show':'hide'">
+        	<span class="bp-comment-btn icon-icon_blueprint-comment esFix" title="{{::pullInterNationalization('dashboard.feedback')}}" data-ng-class="{'sp-icon-color hover-style' : !!ctrl.blueprint.feedbackReceivedList.length, 'default-color' : !ctrl.blueprint.feedbackReceivedList.length}" sp-condition="ctrl.blueprint.feedbackReceivedList.length" sp-click-outside="requestFeedback"></span>
+            <div class="bp-comments-wrap spaceAdj4a mCallOutAdj" data-ng-if="requestFeedback">
+                <div class="comments-scroll-wrapper">
+                    <div class="bp-comments-details" data-ng-repeat="comments in ctrl.blueprint.feedbackReceivedList track by $index">
+                        <a class="deleteComment icon-icon_trashbin sp-icon-color border-link" data-ng-click="ctrl.deleteFeedback(comments.uid,ctrl.blueprint.feedbackReceivedList,$index)"><span class="mock-link"></span></a>
+                        <p class="name fb-500" data-ng-bind="comments.feedbackUser.name"></p>
+                        <p class="date" data-ng-bind="comments.createdOnFormatted"></p>
+                        <p class="content preserve-line-break" data-ng-bind="comments.comment"></p>
+                    </div>
+                </div>
+            </div>        	
+        </div>
+    </div>
+    <div class="create-blueprint" data-ng-init="ctrl.editModeEnabled = true;">
+        <form name="ctrl.bluePrintform" novalidate>
+            <!-- Mission Statement -->
+            <div class="mission-statement-wrapper default-spacing add-mtop15" data-ng-init="ctrl.editObject.missionstatement = !!ctrl.blueprint.missionStatement.text" data-ng-class="{'bg-yellow edit-spacing':!ctrl.editObject.missionstatement}">
+                <div class="mission-title" data-ng-init="show=false">
+                    <h3 class="withBorder" data-ng-bind="ctrl.dataMap.mission.title"></h3>
+                    <span class="bp-comment-btn icon-icon_blueprint-comment fly" title="{{::pullInterNationalization('dashboard.feedback')}}" data-ng-class="{'sp-icon-color hover-style' : !!ctrl.blueprint.missionStatement.commentsList.length, 'default-color' : !ctrl.blueprint.missionStatement.commentsList.length, 'hide': !ctrl.editObject.missionstatement}" sp-condition="ctrl.blueprint.missionStatement.commentsList.length" sp-click-outside="missionshow"></span>
+                    <div class="bp-comments-wrap spaceAdj mWidthFix1" data-ng-if="missionshow">
+                    	<div class="comments-scroll-wrapper">
+                        <div class="bp-comments-details" data-ng-repeat="comments in ctrl.blueprint.missionStatement.commentsList track by $index">
+                            <a class="deleteComment icon-icon_trashbin sp-icon-color border-link" data-ng-click="ctrl.deleteComment({uid:ctrl.blueprint.missionStatement.uid,by:comments.by.id},ctrl.blueprint.missionStatement.commentsList,$index)"><span class="mock-link"></span></a>
+                            <p class="name fb-500" data-ng-bind="comments.by.name"></p>
+                            <p class="date" data-ng-bind="comments.createdOnFormatted"></p>
+                            <p class="content preserve-line-break" data-ng-bind="comments.comment"></p>
+                        </div>
+                        </div>
+                    </div>
+                    <span data-ng-if="ctrl.editObject.missionstatement" title="{{pullInterNationalization('manageAccountContent.edit')}}" class="bp-edit-btn icon-icon_blueprint-edit sp-icon-color edit_{{ctrl.editModeEnabled}}" data-ng-click="ctrl.editModeCheck(ctrl.editObject,'missionstatement')"></span>
+                </div>
+                <!-- If Edit Mode is Enabled -->
+                <p data-ng-if="!ctrl.editObject.missionstatement" class="withDataLinks">
+                    <span data-ng-bind-html="ctrl.dataMap.mission.overviewText"></span>
+                    <a data-ng-if="ctrl.dataMap.mission.linkType" class="border-link" href="javascript:void(0)" data-ng-click="ctrl.previewLink(ctrl.dataMap.mission.linkType,ctrl.dataMap.mission.linkUrl)">
+                        <span class="mock-link" data-ng-bind="ctrl.dataMap.mission.linkText || pullInterNationalization('blueprint.tipsandexample')"></span>
+                    </a>
+                </p>
+                <!-- Ends -->
+                <div class="updateEditSection">
+                    <!-- If Edit Mode is Enabled -->
+                    <div class="editMode" data-ng-if="!ctrl.editObject.missionstatement">
+                        <textarea data-ng-attr-placeholder="{{pullInterNationalization('blueprint.enterhere')}}" rows="4" cols="50" name="missionStatement" data-ng-model="ctrl.blueprint.missionStatement.text" required class="taEditFix"></textarea>
+                        <span class="bp-comment-btn icon-icon_blueprint-comment msFix" title="{{::pullInterNationalization('dashboard.feedback')}}" data-ng-class="{'sp-icon-color hover-style' : !!ctrl.blueprint.missionStatement.commentsList.length, 'default-color' : !ctrl.blueprint.missionStatement.commentsList.length}" sp-condition="ctrl.blueprint.missionStatement.commentsList.length" sp-click-outside="missionshow"></span>
+                        <div class="bp-comments-wrap spaceAdj3" data-ng-if="missionshow">
+                        	<div class="comments-scroll-wrapper">
+                            <div class="bp-comments-details" data-ng-repeat="comments in ctrl.blueprint.missionStatement.commentsList track by $index">
+                                <a class="deleteComment icon-icon_trashbin sp-icon-color border-link" data-ng-click="ctrl.deleteComment({uid:ctrl.blueprint.missionStatement.uid,by:comments.by.id},ctrl.blueprint.missionStatement.commentsList,$index)"><span class="mock-link"></span></a>
+                                <p class="name fb-500" data-ng-bind="comments.by.name"></p>
+                                <p class="date" data-ng-bind="comments.createdOnFormatted"></p>
+                                <p class="content preserve-line-break" data-ng-bind="comments.comment"></p>
+                            </div>
+                            </div>
+                        </div>
+                        <span class="validate-error" data-ng-if="ctrl.bluePrintform.submitted && ctrl.bluePrintform.missionStatement.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                        <input type="button" value="{{pullInterNationalization('practiceArea.save')}}" data-ng-click="ctrl.saveAndUpdate(ctrl.editObject,'missionstatement')" class="btn-block btn-14px sp-btn-color add-mtop20" />
+                        <input type="button" data-ng-if="ctrl.saveObject.missionStatement.text" value="{{pullInterNationalization('practiceArea.cancel')}}" data-ng-click="ctrl.blueprint.missionStatement.text = ctrl.saveObject.missionStatement.text; ctrl.editObject.missionstatement=!ctrl.editObject.missionstatement;ctrl.editModeEnabled=true;" class="btn-block btn-14px btn-grey-dark add-mtop20" />
+                    </div>
+                    <!-- Ends -->
+                    <!-- If Edit Mode Is Disabled -->
+                    <p class="add-mtop20 fixfont18" data-ng-if="ctrl.editObject.missionstatement" data-ng-bind-html="ctrl.blueprint.missionStatement.text"></p>
+                    <!-- Ends -->
+                </div>
+            </div>
+            <!-- Mission Statement Ends -->
+            <!-- Development Strategies Starts ctrl.editObject.editEnabled[$index] =false  ctrl.assignKeyWord({'obj1':ctrl.editObject,'key1':'objective','index1':$index,'value':!!devstat.title})-->
+            <!-- Create / Edit Objective Starts -->
+            <div class="develeopmentStrategies enable_{{!ctrl.editObject.objective[$index].value}} add-mtop50 objectives-wrapper animation_1" id="obj_{{$index}}" data-ng-init="ctrl.assignKeyWord({'obj1':ctrl.editObject,'key1':'objective','index1':$index,'value':!!devstat.title})" data-ng-repeat="devstat in ctrl.blueprint.devStrategyActionCategoryList track by $index" data-ng-class="{'bg-yellow define-objectives':!ctrl.editObject.objective[$index].value}">
+                <div class="mission-title" data-ng-class="{'obj-title m-obj-title': ctrl.editObject.objective[$index].value}">
+                    <h3 data-ng-bind="ctrl.dataMap.objective.title" class="objective-head add-rpad55"></h3>
+                    <p data-ng-if="ctrl.editObject.objective[$index].value" data-ng-bind-html="devstat.title" class="fixfont18"></p>
+                    <!-- $parent.editEnabled=!$parent.editEnabled -->
+                    <span class="bp-edit-btn icon-icon_blueprint-edit sp-icon-color extra-feature edit_{{ctrl.editModeEnabled}}" title="{{pullInterNationalization('manageAccountContent.edit')}}" data-ng-if="ctrl.editObject.objective[$index].value" data-ng-click="ctrl.editModeCheck(ctrl.editObject,'objective',$index)"></span>
+                    <span class="bp-comment-btn icon-icon_blueprint-comment fly" title="{{::pullInterNationalization('dashboard.feedback')}}" data-ng-class="{'sp-icon-color hover-style' : !!devstat.commentsList.length, 'default-color' : !devstat.commentsList.length, 'hide': !ctrl.editObject.objective[$index].value}" sp-condition="devstat.commentsList.length" sp-click-outside="showM"></span>
+                    <div class="bp-comments-wrap spaceAdj mWidthFix1" data-ng-if="showM">
+                    	<div class="comments-scroll-wrapper">
+                        <div class="bp-comments-details" data-ng-repeat="comments in devstat.commentsList track by $index">
+                            <a class="deleteComment icon-icon_trashbin sp-icon-color border-link" data-ng-click="ctrl.deleteComment({uid:devstat.uid,by:comments.by.id},devstat.commentsList,$index)"><span class="mock-link"></span></a>
+                            <p class="name fb-500" data-ng-bind="comments.by.name"></p>
+                            <p class="date" data-ng-bind="comments.createdOnFormatted"></p>
+                            <p class="content preserve-line-break" data-ng-bind="comments.comment"></p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- If Edit Mode is Enabled -->
+                <p class="withDataLinks" data-ng-if="!ctrl.editObject.objective[$index].value">
+                    <span data-ng-bind-html="ctrl.dataMap.objective.overviewText"></span>
+                    <a data-ng-if="ctrl.dataMap.objective.linkType" href="javascript:void(0)" data-ng-click="ctrl.previewLink(ctrl.dataMap.objective.linkType,ctrl.dataMap.objective.linkUrl)" class="border-link">
+                        <span class="mock-link" data-ng-bind="ctrl.dataMap.objective.linkText || pullInterNationalization('blueprint.tipsandexample')"></span>
+                    </a>
+                </p>
+                <div class="updateEditSection">
+                    <!-- If Edit Mode is Enabled -->
+                    <div class="editMode" data-ng-if="!ctrl.editObject.objective[$index].value">
+                        <input placeholder="{{pullInterNationalization('blueprint.enterhere')}}" dynamic-name="developmentStrategyList[$index].title" data-ng-model="devstat.title" required type="text" data-ng-class="{'adjDel' : ctrl.saveObject.devStrategyActionCategoryList[$index].title}" />
+                        <span class="bp-comment-btn icon-icon_blueprint-comment" title="{{::pullInterNationalization('dashboard.feedback')}}" data-ng-class="{'sp-icon-color hover-style' : !!devstat.commentsList.length, 'default-color' : !devstat.commentsList.length}" data-ng-if="ctrl.saveObject.devStrategyActionCategoryList[$index].title" sp-condition="devstat.commentsList.length" sp-click-outside="$parent.showAction"></span>
+                        <div class="bp-comments-wrap spaceAdj1" data-ng-if="showAction">
+                        	<div class="comments-scroll-wrapper">
+                            <div class="bp-comments-details" data-ng-repeat="comments in devstat.commentsList track by $index">
+                                <a class="deleteComment icon-icon_trashbin sp-icon-color border-link" data-ng-click="ctrl.deleteComment({uid:devstat.uid,by:comments.by.id},devstat.commentsList,$index)"><span class="mock-link"></span></a>
+                                <p class="name fb-500" data-ng-bind="comments.by.name"></p>
+                                <p class="date" data-ng-bind="comments.createdOnFormatted"></p>
+                                <p class="content preserve-line-break" data-ng-bind="comments.comment"></p>
+                            </div>
+                            </div>
+                        </div>
+                        <span class="bp-del-btn icon-icon_blueprint-remove sp-icon-color" data-ng-click="ctrl.deleteObjective({'obj':ctrl.editObject,'key':'objective','index':$parent.$index,'delete':ctrl.blueprint.devStrategyActionCategoryList})" data-ng-if="ctrl.saveObject.devStrategyActionCategoryList[$index].title"></span>
+                        <span class="validate-error" data-ng-show="ctrl.bluePrintform.submitted && ctrl.bluePrintform['developmentStrategyList[{{$index}}].title'].$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                        <!-- ctrl.editObject.editEnabled[$index]=false; -->
+                        <input type="button" data-ng-if="!devstat.actionList.length" value="{{pullInterNationalization('practiceArea.save')}}" data-ng-click="ctrl.saveAndUpdate(ctrl.editObject,'objective',$index);" class="btn-block btn-14px btnClearFix sp-btn-color add-mtop20" />
+                        <input type="button" data-ng-if="!ctrl.saveObject.devStrategyActionCategoryList[$index].title && !devstat.actionList.length" value="{{pullInterNationalization('practiceArea.cancel')}}" data-ng-click="ctrl.deleteEmptyObjective({'obj':ctrl.editObject,'key':'objective','index':$parent.$index,'delete':ctrl.blueprint.devStrategyActionCategoryList});" class="btn-block btn-14px btn-grey-dark add-mtop20" />
+                        <!-- $parent.$parent.editEnabled=false; -->
+                        <input type="button" data-ng-if="ctrl.saveObject.devStrategyActionCategoryList[$index].title && !devstat.actionList.length" value="{{pullInterNationalization('practiceArea.cancel')}}" data-ng-click="ctrl.blueprint.devStrategyActionCategoryList[$index] = ctrl.saveObject.devStrategyActionCategoryList[$index]; ctrl.editObject.objective[$index].value=!ctrl.editObject.objective[$index].value;ctrl.editModeEnabled=true;" class="btn-block btn-14px btn-grey-dark add-mtop20" />
+                    </div>
+                    <!-- Ends -->
+                </div>
+                <!-- Key Initiative Added data-ng-if="objective"-->
+                <div class="keyIntiative">
+                    <!-- Non Edit Mode data-ng-if="!editEnabled"-->
+                    <div class="col-xs-12 clearfix" data-ng-if="ctrl.editObject.objective[$index].value">
+                        <article data-ng-repeat="actionList in devstat.actionList track by $index">
+                            <div class="col-xs-3">
+                            	<div class="mobile-icon-wrap">
+                                    <span class="bp-comment-btn icon-icon_blueprint-comment fly editBtnFix1" title="{{::pullInterNationalization('dashboard.feedback')}}" data-ng-class="{'sp-icon-color hover-style' : !!actionList.commentsList.length, 'default-color' : !actionList.commentsList.length}" sp-condition="actionList.commentsList.length" sp-click-outside="show"></span>
+                                    <div class="bp-comments-wrap spaceAdj mWidthFix1 topFix1" data-ng-if="show">
+                                    	<div class="comments-scroll-wrapper">
+                                        <div class="bp-comments-details" data-ng-repeat="comments in actionList.commentsList track by $index">
+                                            <a class="deleteComment icon-icon_trashbin sp-icon-color border-link" data-ng-click="ctrl.deleteComment({uid:actionList.uid,by:comments.by.id},actionList.commentsList,$index)"><span class="mock-link"></span></a>
+                                            <p class="name fb-500" data-ng-bind="comments.by.name"></p>
+                                            <p class="date" data-ng-bind="comments.createdOnFormatted"></p>
+                                            <p class="content preserve-line-break" data-ng-bind="comments.comment"></p>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <span title="{{pullInterNationalization('manageAccountContent.edit')}}" class="bp-edit-btn icon-icon_blueprint-edit sp-icon-color extra-feature edit_{{ctrl.editModeEnabled}} editBtnFix1" data-ng-click="ctrl.editModeCheck(ctrl.editObject,'objective',$parent.$index,{'id':'devstat','index':$parent.$index,'child':$index})"></span>                            	
+                            	</div>
+                                <p class="bp-key fixfont16 add-rpad30 add-mpad75" data-ng-bind="ctrl.dataMap.initiatives.title"></p>
+                            </div>
+                            <!-- !!devstat.actionList[0].title -->
+                            <div class="col-xs-9" data-ng-init="show=false;">
+                                <div class="listTitle">
+                                    <span class="mobile-icons-hide bp-comment-btn icon-icon_blueprint-comment fly editBtnFix1" title="{{::pullInterNationalization('dashboard.feedback')}}" data-ng-class="{'sp-icon-color hover-style' : !!actionList.commentsList.length, 'default-color' : !actionList.commentsList.length}" sp-condition="actionList.commentsList.length" sp-click-outside="show"></span>
+                                    <div class="mobile-icons-hide bp-comments-wrap spaceAdj mWidthFix1 topFix1" data-ng-if="show">
+                                    	<div class="comments-scroll-wrapper">
+                                        <div class="bp-comments-details" data-ng-repeat="comments in actionList.commentsList track by $index">
+                                            <a class="deleteComment icon-icon_trashbin sp-icon-color border-link" data-ng-click="ctrl.deleteComment({uid:actionList.uid,by:comments.by.id},actionList.commentsList,$index)"><span class="mock-link"></span></a>
+                                            <p class="name fb-500" data-ng-bind="comments.by.name"></p>
+                                            <p class="date" data-ng-bind="comments.createdOnFormatted"></p>
+                                            <p class="content preserve-line-break" data-ng-bind="comments.comment"></p>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <span title="{{pullInterNationalization('manageAccountContent.edit')}}" class="mobile-icons-hide bp-edit-btn icon-icon_blueprint-edit sp-icon-color extra-feature edit_{{ctrl.editModeEnabled}} editBtnFix1" data-ng-click="ctrl.editModeCheck(ctrl.editObject,'objective',$parent.$index,{'id':'devstat','index':$parent.$index,'child':$index})"></span>
+                                    <p class="add-rpad55 fixfont16 mAdd-rpad80" data-ng-bind="actionList.title"></p>
+                                    <p class="bp-key add-mtop25 mob-top15 mfontfix14" data-ng-bind="ctrl.dataMap.csm.title"></p>
+                                    <ol class="clearfix toRomans boldOl">
+                                        <li class="col_2" data-ng-repeat="actionData in actionList.actionData track by $index">
+                                            <span class="boldLi" data-ng-bind="($index+1)+'. '"></span>
+                                            <span data-ng-bind="actionData.title"></span>
+                                        </li>
+                                    </ol>
+                                    <p class="bp-key-add">
+                                        <!-- $parent.$parent.$parent.editEnabled=true; -->
+                                        <a class="border-link bold-link" href="javascript:void(0)" data-ng-class="{'not-allowed':ctrl.bluePrintSetting.maxSuccessMeasures<=actionList.actionData.length || !ctrl.editModeEnabled}" data-ng-click="ctrl.editModeEnabled && ctrl.addCriticalSuccessMeasure(ctrl.blueprint.devStrategyActionCategoryList[$parent.$index].actionList[$index],{'id':'csm','parent':$parent.$index,'index':$index,'child':(ctrl.blueprint.devStrategyActionCategoryList[$parent.$index].actionList[$index].actionData.length||0)},ctrl.editObject.objective[$parent.$index]);">
+                                           <span class="mock-link" data-ng-bind="pullInterNationalization('blueprint.add')+' '+ctrl.dataMap.csm.title||pullInterNationalization('blueprint.addCriticalSuccessMeasure')"></span>
+                                        </a>
+                                           <span class="help-link fixfont12" data-ng-if="ctrl.bluePrintSetting.minSuccessMeasures > (actionList.actionData.length||0)" data-ng-bind="' ('+ (ctrl.bluePrintSetting.minSuccessMeasures - (actionList.actionData.length||0)) +' '+pullInterNationalization('blueprint.required')+')'"></span>
+                                    </p>
+                                    <hr class="showBorder eqSpace mLineSpace" />
+                                </div>
+                                <!-- $parent.$parent.editEnabled=true; -->
+                                <p class="bp-key-add" data-ng-if="$last">
+                                    <a class="border-link bold-link" href="javascript:void(0)" data-ng-class="{'not-allowed':ctrl.bluePrintSetting.maxInitiatives<=$parent.devstat.actionList.length || !ctrl.editModeEnabled}" data-ng-click="ctrl.editModeEnabled && ctrl.addKeyInitiative($parent.devstat,{'id':'devstat','index':$parent.$parent.$index,'child':$parent.devstat.actionList!==null?$parent.devstat.actionList.length:0},ctrl.editObject.objective[$parent.$parent.$index]);">
+                                        <span data-ng-bind="pullInterNationalization('blueprint.add')+' '+ctrl.dataMap.initiatives.title||pullInterNationalization('blueprint.addKeyInitiative')" class="mock-link"></span>
+                                    </a>
+                                    <span class="help-link fixfont12" data-ng-if="ctrl.bluePrintSetting.minInitiatives > ($parent.devstat.actionList.length||0)" data-ng-bind="' ('+ (ctrl.bluePrintSetting.minInitiatives - ($parent.devstat.actionList.length||0)) +' '+pullInterNationalization('blueprint.required')+')'"></span>
+                                </p>
+                            </div>
+                        </article>
+                        <article data-ng-if="!devstat.actionList.length">
+                        <div class="col-xs-3">
+                            <p class="bp-key" data-ng-bind="ctrl.dataMap.initiatives.title"></p>
+                        </div>                        
+                        <div class="col-xs-9">
+                            <p class="bp-key-desc withDataLinks">
+                                <span data-ng-bind-html="ctrl.dataMap.initiatives.overviewText"></span>
+                                <a href="javascript:void(0)" data-ng-if="ctrl.dataMap.initiatives.linkType" class="border-link" data-ng-click="ctrl.previewLink(ctrl.dataMap.initiatives.linkType,ctrl.dataMap.initiatives.linkUrl)">
+                                    <span class="mock-link" data-ng-bind="ctrl.dataMap.initiatives.linkText || pullInterNationalization('blueprint.tipsandexample')"></span>
+                                </a>
+                            </p>
+                               
+                            <!-- $parent.$parent.editEnabled=true; -->
+                            <p class="bp-key-add">
+                                <a class="border-link bold-link" href="javascript:void(0)" data-ng-click="ctrl.editModeEnabled && ctrl.addKeyInitiative($parent.devstat,{'id':'devstat','index':$index,'child':$parent.devstat.actionList!==null?$parent.devstat.actionList.length:0},ctrl.editObject.objective[$index]);">
+                                    <span class="mock-link" data-ng-bind="pullInterNationalization('blueprint.add')+' '+ctrl.dataMap.initiatives.title||pullInterNationalization('blueprint.addKeyInitiative')"></span>
+                                </a>
+                                <span class="help-link fixfont12" data-ng-if="ctrl.bluePrintSetting.minInitiatives > ($parent.devstat.actionList.length||0)" data-ng-bind="' ('+ (ctrl.bluePrintSetting.minInitiatives - ($parent.devstat.actionList.length||0)) +' '+pullInterNationalization('blueprint.required')+')'"></span>
+                            </p>
+                        </div>
+                        </article>
+                    </div>
+                    <!-- Non Edit Mode -->
+                    <!-- Edit Added data-ng-if="editEnabled"-->
+                    <div class="addedKey" data-ng-repeat="actionList in devstat.actionList" id="devstat_{{superIndex}}_{{$index}}" data-ng-init="ctrl.assignKeyWord({'obj1':ctrl.editObject.objective[$parent.$index],'key1':'initiative','index1':$index,'value':!!actionList.title}); superIndex = $parent.$index;">
+                        <hr class="showBorder eqSpace" data-ng-if="!ctrl.editObject.objective[superIndex].value" />
+                        <article class="posThisRel" data-ng-if="!ctrl.editObject.objective[superIndex].value" data-ng-init="show=false;">
+                            <p class="bp-key" data-ng-bind="ctrl.dataMap.initiatives.title"></p>
+                            <p class="bp-key-desc-edit withDataLinks">
+                                <span data-ng-bind-html="ctrl.dataMap.initiatives.overviewText"></span>
+                                <a href="javascript:void(0)" data-ng-if="ctrl.dataMap.initiatives.linkType" class="border-link" data-ng-click="ctrl.previewLink(ctrl.dataMap.initiatives.linkType,ctrl.dataMap.initiatives.linkUrl)">
+                                    <span class="mock-link" data-ng-bind="ctrl.dataMap.initiatives.linkText || pullInterNationalization('blueprint.tipsandexample')"></span>
+                                </a>
+                            </p>
+                            <input placeholder="{{pullInterNationalization('blueprint.enterhere')}}" change-name="developmentStrategyList_superIndex_actionList[$index].title" data-ng-model="actionList.title" required type="text" class="adjDel ieHFix" />
+                            <span title="{{::pullInterNationalization('dashboard.feedback')}}" class="bp-comment-btn icon-icon_blueprint-comment" data-ng-class="{'sp-icon-color hover-style' : !!actionList.commentsList.length, 'default-color' : !actionList.commentsList.length}" sp-condition="actionList.commentsList.length" sp-click-outside="show"></span>
+                            <div class="bp-comments-wrap spaceAdj2" data-ng-if="show">
+                            	<div class="comments-scroll-wrapper">
+                                <div class="bp-comments-details" data-ng-repeat="comments in actionList.commentsList track by $index">
+                                    <a class="deleteComment icon-icon_trashbin sp-icon-color border-link" data-ng-click="ctrl.deleteComment({uid:actionList.uid,by:comments.by.id},actionList.commentsList,$index)"><span class="mock-link"></span></a>
+                                    <p class="name fb-500" data-ng-bind="comments.by.name"></p>
+                                    <p class="date" data-ng-bind="comments.createdOnFormatted"></p>
+                                    <p class="content preserve-line-break" data-ng-bind="comments.comment"></p>
+                                </div>
+                                </div>
+                            </div>
+                            <span class="bp-del-btn icon-icon_blueprint-remove sp-icon-color" data-ng-click="ctrl.deleteObjective({'obj':ctrl.editObject.objective[superIndex],'key':'initiative','index':$index,'delete':devstat.actionList})"></span>
+                            <span class="validate-error ng-hide" data-ng-show="ctrl.bluePrintform.submitted && ctrl.bluePrintform['developmentStrategyList_{{superIndex}}_actionList[{{$index}}].title'].$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                            <!-- Critical success measure starts-->
+                            <div class="define-csm">
+                                <p class="bp-key add-mtop30" data-ng-bind="ctrl.dataMap.csm.title"></p>
+                                <p class="bp-key-desc-edit withDataLinks add-rpad100">
+                                    <span data-ng-bind-html="ctrl.dataMap.csm.overviewText"></span>
+                                    <a href="javascript:void(0)" data-ng-if="ctrl.dataMap.csm.linkType" class="border-link bold-link no-caps" data-ng-click="ctrl.previewLink(ctrl.dataMap.csm.linkType,ctrl.dataMap.csm.linkUrl)">
+                                        <span class="mock-link" data-ng-bind="ctrl.dataMap.csm.linkText || pullInterNationalization('blueprint.tipsandexample')"></span>
+                                    </a>
+                                </p>
+                                <ul>
+                                    <li data-ng-repeat="actionData in actionList.actionData" id="csm_{{superIndex}}_{{parentIndex}}_{{$index}}" data-ng-init="parentIndex = $parent.$index">
+                                        <p>
+                                            <span class="bp-list-index" data-ng-bind="$index+1"></span>
+                                            <input placeholder="{{pullInterNationalization('blueprint.enterhere')}}" type="text" data-ng-model="actionData.title" change-name="developmentStrategyList_superIndex_parentIndex_actionData[$index].title" required class="adjDel" />
+                                            <span class="bp-del-btn icon-icon_blueprint-remove sp-icon-color" data-ng-click="ctrl.deleteObjective({'key':'csm','index':$index,'delete':actionList.actionData})"></span>
+                                            <span class="validate-error addLeft ng-hide" data-ng-show="ctrl.bluePrintform.submitted && ctrl.bluePrintform['developmentStrategyList_{{superIndex}}_{{parentIndex}}_actionData[{{$index}}].title'].$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                                        </p>
+                                    </li>
+                                </ul>
+                                <p>
+                                    <a href="javascript:void(0)" class="border-link bold-link" data-ng-class="{'not-allowed':ctrl.bluePrintSetting.maxSuccessMeasures<=actionList.actionData.length}" data-ng-click="ctrl.addCriticalSuccessMeasure(actionList)">
+                                    	<span class="mock-link" data-ng-bind="pullInterNationalization('blueprint.add')+' '+ctrl.dataMap.csm.title||pullInterNationalization('blueprint.addCriticalSuccessMeasure')"></span>
+                                    </a>
+                                    <span class="help-link fixfont12" data-ng-if="ctrl.bluePrintSetting.minSuccessMeasures > (actionList.actionData.length||0)" data-ng-bind="' ('+ (ctrl.bluePrintSetting.minSuccessMeasures - (actionList.actionData.length||0)) +' '+pullInterNationalization('blueprint.required')+')'"></span>
+                                </p>
+                            </div>
+                        </article>
+                        <!-- Critical success measure ends -->
+                    </div>
+                    <!-- data-ng-if="editEnabled" -->
+                    <div data-ng-if="!ctrl.editObject.objective[$index].value && devstat.actionList.length" class="obj-btns">
+                        <hr class="showBorder eqSpace" />
+                        <p>
+                            <a href="javascript:void(0)" class="border-link bold-link" data-ng-class="{'not-allowed':ctrl.bluePrintSetting.maxInitiatives<=$parent.devstat.actionList.length}" data-ng-click="ctrl.addKeyInitiative($parent.devstat)">
+                            	<span class="mock-link" data-ng-bind="pullInterNationalization('blueprint.add')+' '+ctrl.dataMap.initiatives.title||pullInterNationalization('blueprint.addKeyInitiative')"></span>
+                            </a>
+                            <span class="help-link fixfont12" data-ng-if="ctrl.bluePrintSetting.minInitiatives > ($parent.devstat.actionList.length||0)" data-ng-bind="' ('+ (ctrl.bluePrintSetting.minInitiatives - ($parent.devstat.actionList.length||0)) +' '+pullInterNationalization('blueprint.required')+')'"></span>
+                        </p>
+                        <!--<hr class="showBorder eqSpace" />-->
+                        <!-- $parent.editEnabled=false; -->
+                        <input type="button" value="{{pullInterNationalization('practiceArea.save')}}" data-ng-click="ctrl.saveAndUpdate(ctrl.editObject,'objective',$index);" class="btn-block btn-14px sp-btn-color add-mtop50" />
+                        <!-- $parent.editEnabled=false; -->
+                        <input type="button" value="{{pullInterNationalization('practiceArea.cancel')}}" data-ng-click="ctrl.revertToPreviousState();  ctrl.editObject.objective[$index].value=!ctrl.editObject.objective[$index].value;ctrl.editModeEnabled=true; ctrl.deleteList=[];" class="btn-block btn-14px btn-grey-dark add-mtop50" />
+                    </div>
+                    <!-- Edit Ends -->
+                </div>
+                <!-- Key Initiative Added -->
+            </div>
+            <!-- Create / Edit Objective Ends -->
+          <section data-ng-if="ctrl.saveObject.missionStatement.text && ctrl.editModeEnabled && (ctrl.bluePrintSetting.maxObjectives > (ctrl.blueprint.devStrategyActionCategoryList.length||0))" class="default-spacing" data-ng-class="{'add-mtop65' : !ctrl.blueprint.devStrategyActionCategoryList.length, 'add-mtop30' : ctrl.blueprint.devStrategyActionCategoryList.length}">
+				<h4 class="bp-add-obj">
+	             <a href="javascript:void(0)" class="border-link fixfont18" data-ng-click="ctrl.addObjective(ctrl.blueprint,{'id':'obj','index':ctrl.blueprint.devStrategyActionCategoryList.length||0})" data-ng-class="{'not-allowed':ctrl.bluePrintSetting.maxObjectives<=ctrl.blueprint.devStrategyActionCategoryList.length || !ctrl.editModeEnabled}">
+	                <span class="mock-link" data-ng-bind="pullInterNationalization('blueprint.add')+' '+ctrl.dataMap.objective.title"></span>
+	             </a>
+	             <span class="help-link fixfont14" data-ng-if="ctrl.bluePrintSetting.minObjectives > (ctrl.blueprint.devStrategyActionCategoryList.length||0)" class="mock-link" data-ng-bind="'('+(ctrl.bluePrintSetting.minObjectives - (ctrl.blueprint.devStrategyActionCategoryList.length||0)) +' '+pullInterNationalization('blueprint.required')+ ')'"></span>
+	            </h4>
+                <p class="withDataLinks">
+                    <span data-ng-bind-html="ctrl.dataMap.objective.overviewText"></span>
+                    <a href="javascript:void(0)" data-ng-if="ctrl.dataMap.objective.linkType" class="border-link" data-ng-click="ctrl.previewLink(ctrl.dataMap.objective.linkType,ctrl.dataMap.objective.linkUrl)">
+                        <span class="mock-link" data-ng-bind="ctrl.dataMap.objective.linkText || pullInterNationalization('blueprint.tipsandexample')"></span>
+                    </a>
+                </p>
+            </section>
+            <!-- Develeopment Strategies ends -->
+        </form>
+    </div>
+</div>

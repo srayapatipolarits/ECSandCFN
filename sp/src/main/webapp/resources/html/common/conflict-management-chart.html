@@ -1,0 +1,20 @@
+<div class="cm-graph">
+    <div class="cm-graph-wrapper">
+        <div class="cm-graph-traits" data-ng-repeat="t in conflictManagementTraits">
+        	<div class="trait-filler" data-ng-style="{width:t.percentage+'%'}" data-ng-class="(t.isPrimary || t.isSecondry)?addCustomClass(t):'default'">&#160;</div>
+        	<div class="trait-lines"><ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul></div>
+        	<div class="trait-labels">
+        		<ol>
+        			<li data-ng-bind="t.percentage+'%'" data-ng-class="(t.isPrimary || t.isSecondry)?addCustomClass(t):'default'"></li>
+        			<li data-ng-bind="t.label" data-ng-class="(t.isPrimary || t.isSecondry)?addCustomClass(t):'default'"></li>
+        		</ol>
+        	</div>
+        </div>
+        <div class="cmc-legends">
+        	<ol>
+        		<li class="primary" data-ng-bind="pullInterNationalization('spectrum.primary')"></li>
+        		<li class="secondary" data-ng-bind="pullInterNationalization('spectrum.secondary')"></li>
+        	</ol>
+        </div>
+    </div>
+</div>

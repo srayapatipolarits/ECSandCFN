@@ -1,0 +1,89 @@
+<div class="x-container create-pulse practice-admin" data-ng-controller="practiceAdminController as ctrl" ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'" class="hide" data-ng-init="ctrl.addStrategy(3)">
+    <div class="container" >
+        <div class="bg-wrapper">
+            <div class="space-box">
+                <p class="return-link">
+                    <a class="border-link" href="/sp/sysAdmin/practiceArea/practiceAdminArea"><span class="mock-link" data-ng-bind="pullInterNationalization('practiceAreaAdmin.returnPAL')"></span></a>
+                </p>            
+                <h2 data-ng-bind="pullInterNationalization('practiceAreaAdmin.create')"></h2>
+            </div>
+            </div>    
+        <div class="bg-wrapper no-border">
+            <form name="ctrl.viewDetailForm" novalidate>
+                <ol class="form-list-c">
+                    <li class="type-and-number space-box">
+                        <label class="label des" for="name">{{pullInterNationalization('practiveAreaAdmin.pan')}} <span class="fRight" data-ng-bind="30-ctrl.viewPracticeAreaDetail.name.length+' '+pullInterNationalization('practiceAreaAdmin.characters')"></span></label>
+                        <input autoFocus type="text" class="themeName" name="name" data-ng-pattern="/^[a-zA-Z0-9-&,' ]+$/" data-ng-model="ctrl.viewPracticeAreaDetail.name" required maxlength="30"/>
+                        <span class="validate-error" data-ng-if="ctrl.viewDetailForm.submitted && ctrl.viewDetailForm.name.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                        <span class="err-msg validate-error" data-ng-if="ctrl.viewDetailForm.submitted && ctrl.viewDetailForm.name.$error.pattern" data-ng-bind="pullInterNationalization('signup.emperr')"></span>
+                    </li>
+                    <li class="type-and-number space-box">
+                        <label class="label des" for="description">{{pullInterNationalization('practiveAreaAdmin.description')}} <span class="fRight" data-ng-bind="400-ctrl.viewPracticeAreaDetail.description.length+' '+pullInterNationalization('practiceAreaAdmin.characters')"></span></label>
+                        <textarea type="text" name="description" data-ng-model="ctrl.viewPracticeAreaDetail.description" required maxlength="400"></textarea>
+                        <span class="validate-error" data-ng-if="ctrl.viewDetailForm.submitted && ctrl.viewDetailForm.description.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                    </li>
+                    <li class="type-and-number space-box">
+                        <label class="label" for="name" data-ng-bind="pullInterNationalization('practiceAreaAdmin.status')"></label>
+                        <ul class="radio-group-list">
+                            <li class="radio-btn">
+                                <input id="status5" type="radio" name="status" data-ng-model="ctrl.viewPracticeAreaDetail.status" value="ACTIVE" required data-ng-checked="ctrl.viewDetailObj.status"/>
+                                <label for="status5" data-ng-bind="pullInterNationalization('practiceAreaAdmin.statusActive')"></label>
+                            </li>
+                            <li class="radio-btn">
+                                <input id="status6" type="radio" name="status" data-ng-model="ctrl.viewPracticeAreaDetail.status" value="INACTIVE" required data-ng-checked="ctrl.viewDetailObj.status"/>
+                                <label for="status6" data-ng-bind="pullInterNationalization('practiceAreaAdmin.statusInactive')"></label>
+                            </li>
+                        </ul>
+                        <span class="validate-error" ng-show="ctrl.viewDetailForm.submitted && ctrl.viewDetailForm.status.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                    </li>
+                    <li class="type-and-number space-box clearfix" data-ng-repeat="description in ctrl.viewPracticeAreaDetail.developmentStrategyList track by $index">
+                        <div class="number">{{$index+1}}</div>
+                        <div class="textual">
+                            <input type="hidden" data-ng-model="description.id" dynamic-name="developmentStrategyList[$index].id" value="{{$index}}"/>
+                            <div class="block_area clearfix">
+                                <div class="pull-left ds_block">
+                                     <label class="label label_name" for="name" data-ng-bind="pullInterNationalization('practiceAreaAdmin.startegyDescription')"></label>
+                                     <textarea data-ng-model="description.dsDescription" dynamic-name="developmentStrategyList[$index].dsDescription" maxlength="400" required="required"></textarea>
+                                     <span class="validate-error" data-ng-show="ctrl.viewDetailForm.submitted && ctrl.viewDetailForm['developmentStrategyList[{{$index}}].dsDescription'].$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                               </div>
+                               <div class="pull-left url_block">
+                                    <label class="label label_name" for="name" data-ng-bind="pullInterNationalization('practiceAreaAdmin.videoUrl')"></label>
+                                    <input type="text" data-ng-pattern="/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/" data-ng-model="description.videoUrl" dynamic-name="developmentStrategyList[$index].videoUrl" maxlength="200"></input>
+                                    <span class="validate-error" data-ng-show="ctrl.viewDetailForm.submitted && ctrl.viewDetailForm['developmentStrategyList[{{$index}}].videoUrl'].$error.pattern" data-ng-bind="pullInterNationalization('signup.emperr')"></span>
+                                   </div>
+                               <div class="pull-left url_block">
+                                    <label class="label label_name" for="name" data-ng-bind="pullInterNationalization('practiceAreaAdmin.imageUrl')"></label>
+                                    <input type="text" data-ng-pattern="/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/" data-ng-model="description.imageUrl" dynamic-name="developmentStrategyList[$index].imageUrl" maxlength="200"></input>
+                                     <span class="validate-error" data-ng-show="ctrl.viewDetailForm.submitted && ctrl.viewDetailForm['developmentStrategyList[{{$index}}].imageUrl'].$error.pattern" data-ng-bind="pullInterNationalization('signup.emperr')"></span>
+                               </div>
+                               <a href="javascript:void(0)" data-ng-click="ctrl.selectImage(description)" class="select-image"><span class="mock-link" data-ng-bind="pullInterNationalization('practiceAreaAdmin.selectImage')"></span></a>
+                            </div>
+                           <div class="disabled_checkbox pa-admin-checkbox">
+                                <input type="hidden" dynamic-name="developmentStrategyList[$index].active"  data-ng-model="description.active" value="{{description.active}}"/>
+                                <input type="checkbox" class="memberCheckBox" dynamic-name="developmentStrategyList_$index" data-ng-model="description.active" data-ng-checked="!description.active"/>
+                                <label for="developmentStrategyList_$index" data-ng-click="description.active=!description.active">
+                                <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color checkPosAbs"></span>
+                                <span data-ng-bind="pullInterNationalization('practiceAreaAdmin.deactivate')"></span>
+                                </label>
+                            </div>
+                            
+                        </div>
+                    </li>
+                    <li class="type-and-number space-box">
+                        <div class="clearfix" data-ng-click="ctrl.addStrategy(1)"><span class="fullView pull-left"></span><span class="add_strategy pull-left">Add Strategy</span></div>
+                    </li>
+                    <li class="submit-cancel-btns space-box">
+                        <ul class="submit-cancel-list">
+                            <li class="submit-charge">
+                                <input type="submit" value="submit" class="subscribeBtn btn-block btn-15px sp-btn-color" data-ng-click="ctrl.createViewDetail()" />
+                            </li>
+                            <li class="cancel-charge">
+                                <input type="button" value="cancel" class="cancelBtn btn-block btn-15px btn-grey-dark" data-ng-click="ctrl.returnToListing()" />
+                            </li>
+                        </ul>
+                    </li>                                                      
+                </ol>
+            </form>
+        </div>
+    </div>
+</div>

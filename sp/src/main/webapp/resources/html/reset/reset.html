@@ -1,0 +1,42 @@
+
+        <!-- Reset Password Starts -->
+        <div class="x-container login-wrapper hide" ng-controller="loginFormController" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'">
+            <div class="container" >
+                <div class="row">
+                    <div class="sign-in-default alt-width">
+                    
+                        <div class="error-msgs reset-pw">
+
+                            <h2 class="sign-in-title sp-header-title-color" data-ng-bind="::pullInterNationalization('reset.form.heading')"></h2>
+                            <p class="sign-in-instruction" data-ng-bind="::pullInterNationalization('reset.form.p1')"></p>                        
+                        </div>
+
+                        <form name="resetPassword" ng-submit="resetCredentials()" novalidate>
+                            
+                          <ol class="form-list-c form-list-sign-in">
+                            <li>
+                                <label for="email" data-ng-bind="::pullInterNationalization('reset.form.email')"></label>
+                                <input autoFocus type="email" name="email" placeholder="{{pullInterNationalization('reset.form.email')}}" ng-model="user.email" required ng-pattern="emailRegex" />
+                                
+                                
+
+                                <span class="validate-error" ng-show="resetPasswordMessageErr && resetPassword.email.$error.required" data-ng-bind="::pullInterNationalization('reset.form.error.empty')"></span>
+                               <!--  {{pullInterNationalization('reset.form.error.notassociated')}}-->
+
+                                <span class="validate-error" ng-show="resetPasswordMessageErr && resetPassword.email.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email.msg')"></span>
+                               
+                                <span class="validate-error" ng-show="resetPasswordMessage" data-ng-bind="::pullInterNationalization('reset.form.instruction')"></span>
+                              
+                                <span class="validate-error" ng-show="resetPasswordErrorMessage" data-ng-bind="::pullInterNationalization('reset.form.error.notassociated')"></span>
+                            </li>
+                            <li class="sign-in-submit">
+                              <input type="submit" value="{{pullInterNationalization('reset.form.submit')}}"  class="btn-block btn-15px loginBtn sp-btn-color" />
+                            </li>
+                            </ol>
+                            <p class="password-reset"><a href="#" class="border-link" ng-click="returnHome();$event.preventDefault()"><span class="mock-link" data-ng-bind="::pullInterNationalization('reset.confirm.returnsign')"></span></a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Reset Password Ends -->

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+  <definition name="blueprintShare" extends="pageNotLoggedIn">
+        <put-attribute name="title" value="Blue Print Share | SurePeople" />
+		<put-attribute name="content" value="/resources/html/blueprint/blueprintShare.html" />
+		<put-attribute name="styles" value="resources/css/css-min/blueprint.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/blueprintController.min.js" cascade="true" />
+  </definition>
+  
+  <definition name="thankYouShare" extends="pageNotLoggedIn">
+        <put-attribute name="title" value="Thank You | SurePeople" />
+		<put-attribute name="content" value="/resources/html/blueprint/blueprintThankYouFeedback.html" />
+		<put-attribute name="styles" value="resources/css/css-min/blueprint.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/blueprintController.min.js" cascade="true" />
+  </definition>
+  
+  <definition name="thankYouApproval" extends="pageNotLoggedIn">
+        <put-attribute name="title" value="Thank You | SurePeople" />
+		<put-attribute name="content" value="/resources/html/blueprint/blueprintThankYouApproval.html" />
+		<put-attribute name="styles" value="resources/css/css-min/blueprint.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/blueprintController.min.js" cascade="true" />
+  </definition>
+	
+  <definition name="thankYouRevise" extends="pageNotLoggedIn">
+        <put-attribute name="title" value="Thank You | SurePeople" />
+		<put-attribute name="content" value="/resources/html/blueprint/blueprintThankYouRevise.html" />
+		<put-attribute name="styles" value="resources/css/css-min/blueprint.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/blueprintController.min.js" cascade="true" />
+  </definition>
+  
+ 	 <definition name="blueprintPublishShare" extends="pageNotLoggedIn">
+		<put-attribute name="title" value="Blue Print Share | SurePeople" />
+		<put-attribute name="content" value="/resources/html/blueprint/blueprintPublishShare.html" />
+		<put-attribute name="styles" value="resources/css/css-min/blueprint.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/blueprintController.min.js" cascade="true" />
+	</definition>
+	
+  <definition name="blueprint" extends="dashboardAngular-noroute">
+    <put-attribute name="content"
+      value="/resources/html/blueprint/createBlueprint.html" />
+      <put-attribute name="styles" value="resources/css/css-min/blueprint.min.css" cascade="true" />
+      <put-attribute name="javascripts" value="resources/js-min/blueprintController.min.js" cascade="true" />
+  </definition>
+  
+  <definition name="blueprintGetStarted" extends="dashboardAngular-noroute">
+    <put-attribute name="content"
+      value="/resources/html/blueprint/getStarted.html" />
+      <put-attribute name="styles" value="resources/css/css-min/blueprint.min.css" cascade="true" />
+      <put-attribute name="javascripts" value="resources/js-min/blueprintController.min.js" cascade="true" />
+  </definition>  
+
+</tiles-definitions>

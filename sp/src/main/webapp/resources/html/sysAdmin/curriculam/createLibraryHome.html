@@ -1,0 +1,184 @@
+
+<div class="x-container create-pulse create-library-home" ng-controller="createLibraryHomeController" ng-cloak>
+    <div class="container" >
+        <div class="bg-wrapper">
+            <div class="space-box">
+                <p class="return-link">
+                    <a href="/sp/sysAdmin/learning/curriculam/libraryHome" class="border-link">
+                        <span class="mock-link">Return to Home List</span>
+                    </a>
+                </p>
+                <h2>Create New Learning Library Home</h2>
+            </div>
+            <form name="createNewLibraryHome" novalidate>
+                <ol class="form-list-c">
+                  <section class="library-home-section">
+                    <li class="type-and-number f-left space-box">
+                        <img ng-src="{{newLibraryHome.articleImage0}}"/>
+                        </li>
+                    <li class="type-and-number f-left space-box second-column">
+                    <label class="label" for="name">Article 1</label>
+                        <input autoFocus type="text" name="newLibraryHome.articleName0"  ng-model="newLibraryHome.articleName0" required readonly/>
+                        
+                        <label class="label textareaLabel" for="name">Article Description</label>
+                      
+                       <textarea ng-model="newLibraryHome.articleDescription0" ng-required="true" name="message" maxlength="300" class="ng-pristine ng-invalid-required ng-invalid" required="required"></textarea>
+                         
+                    </li>
+                    <li class="select-article f-left space-box>
+                     <p class="fake-input-wrapper">
+                            <a href="#" class="select-btn btn-square-12px sp-background-color select-article-btn" ng-click="selectArticle(0);$event.preventDefault();">Select Article</a>
+                        </p>
+                    </li>
+                   </section>
+                   
+                   <section class="library-home-section">
+                    <li class="type-and-number f-left space-box">
+                        <img ng-src="{{newLibraryHome.articleImage1}}"/>
+                        </li>
+                    <li class="type-and-number f-left space-box second-column">
+                    <label class="label" for="name">Article 2</label>
+                        <input autoFocus type="text" name="newLibraryHome.articleName1"  ng-model="newLibraryHome.articleName1" required readonly/>
+                        
+                        <label class="label textareaLabel" for="name">Article Description</label>
+                      
+                       <textarea ng-model="newLibraryHome.articleDescription1" ng-required="true" name="message" maxlength="300" class="ng-pristine ng-invalid-required ng-invalid" required="required"></textarea>
+                         
+                    </li>
+                    <li class="select-article f-left space-box>
+                     <p class="fake-input-wrapper">
+                            <a href="#" class="select-btn btn-square-12px sp-background-color select-article-btn" ng-click="selectArticle(1);$event.preventDefault();">Select Article</a>
+                        </p>
+                    </li>
+                   </section>
+                   
+                   <section class="library-home-section">
+                    <li class="type-and-number f-left space-box">
+                        <img ng-src="{{newLibraryHome.articleImage2}}"/>
+                        </li>
+                    <li class="type-and-number f-left space-box second-column">
+                    <label class="label" for="name">Article 3</label>
+                        <input autoFocus type="text" name="newLibraryHome.articleName2"  ng-model="newLibraryHome.articleName2" required readonly/>
+                        
+                        <label class="label textareaLabel" for="name">Article Description</label>
+                      
+                       <textarea ng-model="newLibraryHome.articleDescription2" ng-required="true" name="message" maxlength="300" class="ng-pristine ng-invalid-required ng-invalid" required="required"></textarea>
+                         
+                    </li>
+                    <li class="select-article f-left space-box>
+                     <p class="fake-input-wrapper">
+                            <a href="#" class="select-btn btn-square-12px sp-background-color select-article-btn" ng-click="selectArticle(2);$event.preventDefault();">Select Article</a>
+                        </p>
+                    </li>
+                   </section>
+                   
+                   <section class="library-home-section">
+                    <li class="type-and-number f-left space-box">
+                        <img ng-src="{{newLibraryHome.articleImage3}}"/>
+                        </li>
+                    <li class="type-and-number f-left space-box second-column">
+                    <label class="label" for="name">Article 4</label>
+                        <input autoFocus type="text" name="newLibraryHome.articleName3"  ng-model="newLibraryHome.articleName3" required readonly/>
+                        
+                        <label class="label textareaLabel" for="name">Article Description</label>
+                      
+                       <textarea ng-model="newLibraryHome.articleDescription3" ng-required="true" name="message" maxlength="300" class="ng-pristine ng-invalid-required ng-invalid" required="required"></textarea>
+                         
+                    </li>
+                    <li class="select-article f-left space-box>
+                     <p class="fake-input-wrapper">
+                            <a href="#" class="select-btn btn-square-12px sp-background-color select-article-btn" ng-click="selectArticle(3);$event.preventDefault();">Select Article</a>
+                        </p>
+                    </li>
+                   </section>
+                    
+                    <li class="space-box" id="accountSection">
+                        <div class="searchWrapper">
+                            <input type="text" class="search-box" name="search" ng-model="accountList.search" placeholder="Search" />
+                            <button ng-click="accountList.search=null" ng-class="accountList.search.length>0?'searching':''"></button>
+                        </div>
+                        <span class="field-instructions">Search by account number/ Name / Industry / city / country</span>
+                        <div class="account-list-wrapper">
+                            <div class="f-left all-accounts-list">
+                                <div class="list-header">
+                                    <!--div class="acc-no"><p class="label">A/C#</p></div-->
+                                    <div class="acc-name">
+                                        <p class="label">Company Name</p>
+                                    </div>
+                                    <div class="acc-loc">
+                                        <p class="label">Location</p>
+                                    </div>
+                                    <div class="acc-actions"><a ng-if="accountList.search.length > 0 && filteredAccountListing.length > 0" class="border-link" ng-click="addFilteredAccounts()"><span class="mock-link">Select All</span></a></div>
+                                </div>
+                                <div class="list-details">
+                                    <div class="list-row" ng-show="filteredAccountListing.length===0">
+                                        <div class="list-msg">
+                                            <p class="no-result">No companies found which does not have Home Page Articles</p>
+                                        </div>
+                                    </div>
+                                    <div class="list-row" ng-repeat="acc in (filteredAccountListing = (updatedAccountListing | filter:accountList.search))" ng-if="acc.accountSelectedStatus === false" ng-class="($index==filteredAccountListing.length-1)?'last-row':''">
+                                        <!--div class="acc-no"><p data-ng-bind="acc.id"></p></div-->
+                                        <div class="acc-name">
+                                            <p data-ng-bind="acc.name"></p>
+                                        </div>
+                                        <div class="acc-loc">
+                                            <p><span data-ng-bind="acc.address.city"></span>, <span class="country" data-ng-bind="acc.address.country"></span></p>
+                                        </div>
+                                        <div class="acc-actions" ng-if="selectedAccountsCount === 0">
+                                         <a class="btn-square-12px sp-background-color" ng-click="addtoSelectedAccounts(acc.id)">ADD &#9656;</a>
+                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="f-right all-accounts-list">
+                                <div class="list-header">
+                                    <div class="acc-msg" ng-class="selectedAccountsCount===0?'full':''">
+                                        <p class="label1">SELECTED ACCOUNTS ({{selectedAccountsCount}})</p>
+                                    </div>
+                                    <!-- Commented since we add only one account at a time
+                                    <div class="acc-actions1"><a class="border-link" ng-if="selectedAccountsCount > 0" ng-click="removeAllSelectedAccounts()"><span class="mock-link">Remove All</span></a></div> 
+                                    -->
+                                </div>
+                                <div class="list-details" ng-if="selectedAccountsCount === 0 && filteredAccountListing.length!==0">
+                                    <div class="list-row">
+                                        <div class="list-msg" ng-class="(createNewPulse.validationErrors && createNewPulse.assignAccounts.$error.required===false && accList.length === 0)?'err-space':''">
+                                            <p ng-show="createNewPulse.validationErrors !== true && selectedAccountsCount === 0">Please select one company from the left</p>
+                                            <span class="validate-error" ng-show="createNewPulse.validationErrors && createNewPulse.assignAccounts.$error.required===false && accList.length === 0">Please select one or more accounts from the left</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-details" ng-if="selectedAccountsCount > 0">
+                                    <div class="list-row" ng-repeat="acc in updatedAccountListing | orderBy:'updatedListingIndex':reverse" ng-if="acc.accountSelectedStatus===true">
+                                        <!--div class="acc-no"><p data-ng-bind="acc.id"></p></div-->
+                                        <div class="acc-name">
+                                            <p data-ng-bind="acc.name"></p>
+                                        </div>
+                                        <div class="acc-loc">
+                                            <p><span data-ng-bind="acc.address.city"></span>, <span class="country" data-ng-bind="acc.address.country"></span></p>
+                                        </div>
+                                        <div class="acc-actions">
+                                            <a class="removeBtn" ng-click="removeFromSelectedAccounts(acc.id)"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li ng-show="createNewPulseException">
+                    	<span class="validate-error" data-ng-bind="createNewPulseExceptionMsg"></span>
+                    </li>
+                    <li class="submit-cancel-btns space-box">
+                        <ul class="submit-cancel-list">
+                            <li class="submit-charge">
+                                <input type="submit" value="submit" class="subscribeBtn btn-block btn-15px sp-btn-color" ng-click="createLibraryHome(newLibraryHome)" />
+                            </li>
+                            <li class="cancel-charge">
+                                <input type="button" value="cancel" class="cancelBtn btn-block btn-15px btn-grey-dark" ng-click="cancelRedirect()" />
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+            </form>
+        </div>
+    </div>
+</div>

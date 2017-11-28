@@ -1,0 +1,21 @@
+<div class="assessment-question-template std_container clear_both clearfix whoru-wrapper width_100p assessment-animation-container">
+    <div class="assessment-question std_container clear_both clearfix width_100p">
+        <p data-ng-bind-html="currentQuestion.description"></p>
+    </div>
+    <div class="assessment-options-container std_container clear_both clearfix width_100p">
+        <div class="answer-wrapper">
+            <ul id="answer-whoru-container">
+                <li data-ng-repeat="opt in randomAnswersList" class="assessment-answer whoruAdj" id="{{opt.id}}" data-ng-click="nextEnable && callToActions('opt', 'answer-whoru-container', false, opt.id)" data-ng-class="{'disable': !nextEnable}" repeat-done="templateActions('answer-whoru-container', false, (leftAnimation?1000:0))">
+                <!--li data-ng-repeat="opt in randomAnswersList" class="assessment-answer whoruAdj" id="{{opt.id}}" data-ng-click="(nextEnable && !isFinish)?callToActions('opt', 'answer-whoru-container', false, opt.id):chooseFinish('answer-whoru-container', opt.id)" data-ng-class="{'disable': !nextEnable}" repeat-done="templateActions('answer-whoru-container', false, (leftAnimation?1000:0))"-->
+                    <span class="bg-fill whoruAdj"></span>
+                    <span class="answer-content-wrapper">
+                        <span class="answer-desc" data-ng-bind="opt.text"></span>
+                    <span class="selection-icon whoruAdj icon-assessment_choose-selection off" data-ng-class="{'disable': !nextEnable}"></span>
+                    <span class="selection-icon whoruAdj icon-assessment_choose-selected on"></span>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <!--a data-ng-if="isFinish" href="javascript:void(0)" class="answer-next-btn" data-ng-click="nextEnable && nextQuestion(chooseAnswerId)" data-ng-bind="pullInterNationalization('assessment.bnt3')" data-ng-class="{'disable':!nextEnable}"></a -->
+    </div>
+</div>

@@ -1,0 +1,252 @@
+<div class="mini-poll-theme">
+<div class="create-poll-wrapper miniPollsPCheck" data-ng-init="_ctrl.initDtPicker();">
+    <h2 data-ng-if="!_ctrl.postView">Post a survey</h2>
+    <form name="_ctrl.miniPollsForm" data-ng-submit="_ctrl.validateNewPoll()" novalidate autocomplete="off" data-ng-if="!_ctrl.postView">
+        <ol>
+            <li>
+                <label for="question" class="invisible" data-ng-bind="_ctrl.rootScope('createPollsCont.labelQuestion')"></label>
+                <textarea data-ng-model="_ctrl.pollDetails.question" name="question" placeholder="{{_ctrl.rootScope('createPollsCont.labelQuestion')}}" data-ng-required="true" maxlength="200"></textarea>
+                <span class="validate-error" data-ng-if="_ctrl.miniPollsForm.submitted && _ctrl.miniPollsForm.question.$error.required" data-ng-bind="_ctrl.rootScope('signup.required.error')"></span>
+            </li>
+            <li class="instruction-link" data-ng-if="!_ctrl.showInstruction">
+                <a href="javascript:void(0)" class="border-link" data-ng-click="_ctrl.showInstruction=true;">
+                    <span class="mock-link" data-ng-bind="_ctrl.rootScope('createPollsCont.addLink')"></span>
+                </a>
+            </li>
+            <li data-ng-if="_ctrl.showInstruction" class="mtop10">
+                <label for="instruction" class="invisible" data-ng-bind="_ctrl.rootScope('createPollsCont.labelInstr')"></label>
+                <input type="text" data-ng-model="_ctrl.pollDetails.instructionStr" name="instructionStr" placeholder="{{_ctrl.rootScope('createPollsCont.labelInstr')}}" maxlength="1000"/>
+            </li>
+            <li class="mtop45" data-ng-init="_ctrl.setupQuestionsDD()">
+                <p class="fake-select questionsDD" id="{{_ctrl.uniqueId}}_questionsDD">
+                    <span data-ng-if="_ctrl.pollType === -1" data-ng-bind="_ctrl.rootScope('createPollsCont.qType')"></span>
+                    <span data-ng-if="_ctrl.pollType === 0" data-ng-bind="_ctrl.rootScope('createPollsCont.multiOpt')"></span>
+                    <span data-ng-if="_ctrl.pollType === 1" data-ng-bind="_ctrl.rootScope('createPollsCont.scaleOpt')"></span>
+                    <span class="ddi icon-icon_dropdown-arrow sp-icon-color"></span>
+                </p>
+                <span class="validate-error" data-ng-if="_ctrl.miniPollsForm.submitted && _ctrl.pollType === -1" data-ng-bind="_ctrl.rootScope('signup.required.error')"></span>
+                <ul class="polls-question-options" id="{{_ctrl.uniqueId}}_polls-question-dd">
+                    <li>
+                        <a href="javascript:void(0)" data-ng-click="_ctrl.setQuestionType(0)">
+                            <span class="optHead" data-ng-bind="_ctrl.rootScope('createPollsCont.multiOpt')"></span>
+                            <span class="optDesc" data-ng-bind="_ctrl.rootScope('createPollsCont.multiDesc')"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" data-ng-click="_ctrl.setQuestionType(1)">
+                            <span class="optHead" data-ng-bind="_ctrl.rootScope('createPollsCont.scaleOpt')"></span>
+                            <span class="optDesc" data-ng-bind="_ctrl.rootScope('createPollsCont.scaleDesc')"></span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="mtop10" data-ng-if="_ctrl.pollType === 0">
+                <ul class="radio-floats">
+                    <li>
+                        <p class="pCheckBox removeAbs cNone">
+                            <input type="radio" name="selectionType" id="{{_ctrl.uniqueId}}_singleSelect" class="iCheckBox" data-ng-model="_ctrl.pollDetails.selectionType" value="SingleSelect" />
+                            <label for="{{_ctrl.uniqueId}}_singleSelect" class="lCheckBox">
+                                <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color radioStyle"></span>
+                                <span class="lCheckBoxText" data-ng-bind="_ctrl.rootScope('createPollsCont.singleTxt')"></span>
+                            </label>
+                        </p>
+                    </li>
+                    <li>
+                        <p class="pCheckBox removeAbs cNone">
+                            <input type="radio" name="selectionType" id="{{_ctrl.uniqueId}}_multiSelect" class="iCheckBox" data-ng-model="_ctrl.pollDetails.selectionType" value="MultipleSelect" />
+                            <label for="{{_ctrl.uniqueId}}_multiSelect" class="lCheckBox">
+                                <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color radioStyle"></span>
+                                <span class="lCheckBoxText" data-ng-bind="_ctrl.rootScope('createPollsCont.multiTxt')"></span>
+                            </label>
+                        </p>
+                    </li>
+                </ul>
+            </li>
+            <li class="mtop15" data-ng-if="_ctrl.pollType === 0">
+                <ul id="{{_ctrl.uniqueId}}_multiPollOpts" class="no-floats">
+                    <li class="multiOpts mbot15" data-ng-repeat="mLabel in recordField = (_ctrl.multiOptsConfig) track by $index">
+                        <input type="text" class="scale-inputs" data-ng-model="_ctrl.pollDetails.multiLabel[$index]" name="{{mLabel.lName}}_{{$index}}" placeholder="{{mLabel.phName}} {{($index+1)}}" />
+                        <span data-ng-show="mLabel.deleteBtn" class="opt-del-btn icon-icon_blueprint-remove sp-icon-color" data-ng-click="_ctrl.delMultiOpt($index)"></span>
+                    </li>
+                    <li class="multiOpt-btn instruction-link" data-ng-if="recordField.length < _ctrl.maxOptions">
+                        <a href="javascript:void(0)" class="border-link" data-ng-click="_ctrl.addMultiOpt(recordField.length)">
+                            <span class="mock-link" data-ng-bind="_ctrl.rootScope('createPollsCont.optLink')"></span>
+                        </a>
+                    </li>
+                </ul>
+                <span class="validate-error" data-ng-if="_ctrl.miniPollsForm.submitted && _ctrl.optionsLengthError" data-ng-bind="_ctrl.rootScope('signup.required.error')"></span>
+            </li>
+            <!--
+            <li class="mtop15 poll-questions-wrapper" data-ng-if="_ctrl.pollType === 1">
+		        <ol class="multiPollScale m0">
+		            <li class="rBtns-box adj0 bl1">
+		                <p class="pCheckBox removeAbs cNone adj0">
+		                    <input type="radio" name="create_pollOptionsListing[]" id="{{_ctrl.uniqueId}}_create_pollOpts_0" class="iCheckBox" />
+		                    <label for="{{_ctrl.uniqueId}}_create_pollOpts_0" class="lCheckBox">
+		                        <span class="empty-hex miniPollsAdj0" data-rating="{{_ctrl.hexChar}}"></span>
+		                    </label>
+		                </p>
+		            </li>
+		            <li class="rBtns-box adj0">
+		                <p class="pCheckBox removeAbs cNone adj0">
+		                    <input type="radio" name="create_pollOptionsListing[]" id="{{_ctrl.uniqueId}}_create_pollOpts_1" class="iCheckBox" />
+		                    <label for="{{_ctrl.uniqueId}}_create_pollOpts_1" class="lCheckBox">
+		                        <span class="empty-hex miniPollsAdj0" data-rating="{{_ctrl.hexChar}}"></span>
+		                    </label>
+		                </p>
+		            </li>	
+		            <li class="rBtns-box adj0">
+		                <p class="pCheckBox removeAbs cNone adj0">
+		                    <input type="radio" name="create_pollOptionsListing[]" id="{{_ctrl.uniqueId}}_create_pollOpts_2" class="iCheckBox" />
+		                    <label for="{{_ctrl.uniqueId}}_create_pollOpts_2" class="lCheckBox">
+		                        <span class="empty-hex miniPollsAdj0" data-rating="{{_ctrl.hexChar}}"></span>
+		                    </label>
+		                </p>
+		            </li>		
+		            <li class="rBtns-box adj0">
+		                <p class="pCheckBox removeAbs cNone adj0">
+		                    <input type="radio" name="create_pollOptionsListing[]" id="{{_ctrl.uniqueId}}_create_pollOpts_3" class="iCheckBox" />
+		                    <label for="{{_ctrl.uniqueId}}_create_pollOpts_3" class="lCheckBox">
+		                        <span class="empty-hex miniPollsAdj0" data-rating="{{_ctrl.hexChar}}"></span>
+		                    </label>
+		                </p>
+		            </li>
+		            <li class="rBtns-box adj0">
+		                <p class="pCheckBox removeAbs cNone adj0">
+		                    <input type="radio" name="create_pollOptionsListing[]" id="{{_ctrl.uniqueId}}_create_pollOpts_4" class="iCheckBox" />
+		                    <label for="{{_ctrl.uniqueId}}_create_pollOpts_4" class="lCheckBox">
+		                        <span class="empty-hex miniPollsAdj0" data-rating="{{_ctrl.hexChar}}"></span>
+		                    </label>
+		                </p>
+		            </li>		            				            	            	            
+		        </ol>
+            </li>
+            -->
+            <!--  
+            <li class="mtop15" data-ng-if="_ctrl.pollType === 1">
+                <label for="label1" class="fl flAdj" data-ng-bind="_ctrl.rootScope('createPollsCont.label1')"></label>
+                <input type="text" class="scale-inputs" data-ng-model="_ctrl.pollDetails.label1" name="label1" placeholder="Label for Scale 1" data-ng-required="true" />
+                <span class="validate-error adj" data-ng-if="_ctrl.miniPollsForm.submitted && _ctrl.miniPollsForm.label1.$error.required" data-ng-bind="_ctrl.rootScope('signup.required.error')"></span>
+            </li>
+            <li class="mtop15" data-ng-if="_ctrl.pollType === 1">
+                <label for="label2" class="fl flAdj" data-ng-bind="_ctrl.rootScope('createPollsCont.label5')"></label>
+                <input type="text" class="scale-inputs" data-ng-model="_ctrl.pollDetails.label2" name="label2" placeholder="Label for Scale 2" data-ng-required="true" />
+                <span class="validate-error adj" data-ng-if="_ctrl.miniPollsForm.submitted && _ctrl.miniPollsForm.label2.$error.required" data-ng-bind="_ctrl.rootScope('signup.required.error')"></span>
+            </li>
+            -->
+            <li class="mtop45 cal-fix gd-hide">
+                <div class="form-grop calStyle calStyleW">
+                    <div class="posRel">
+                        <input type="text" id="{{_ctrl.uniqueId}}_endDate" name="endDate" class="form-control endInput cursorPointer" readonly data-ng-model="_ctrl.pollDetails.endDate" placeholder="{{_ctrl.rootScope('createPollsCont.labelDt')}}" autocomplete="off" novalidate />
+                        <label class="calImg icon-icon_calendar sp-icon-color" for="{{_ctrl.uniqueId}}_endDate"></label>
+                    </div>
+                </div>
+            </li>
+            <li class="mtop45 gd-hide">
+                <p class="pCheckBox removeAbs cNone">
+                    <input type="checkbox" name="sendNotifications" id="{{_ctrl.uniqueId}}_sendNotifications" class="iCheckBox" data-ng-model="_ctrl.pollDetails.sendNotifications" />
+                    <label for="{{_ctrl.uniqueId}}_sendNotifications" class="lCheckBox">
+                        <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                        <span class="lCheckBoxText" data-ng-bind="_ctrl.rootScope('createPollsCont.emailTxt')"></span>
+                    </label>
+                </p>
+            </li>
+            <li class="gd-hide">
+                <p class="pCheckBox removeAbs cNone">
+                    <input type="checkbox" name="hideResults" id="{{_ctrl.uniqueId}}_hideResults" class="iCheckBox" data-ng-model="_ctrl.pollDetails.hideResults" />
+                    <label for="{{_ctrl.uniqueId}}_hideResults" class="lCheckBox">
+                        <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                        <span class="lCheckBoxText" data-ng-bind="_ctrl.rootScope('createPollsCont.resultsTxt')"></span>
+                    </label>
+                </p>
+            </li>
+            <li class="mtop45">
+                <input type="submit" value="{{_ctrl.rootScope('createPollsCont.btnPreview')}}" class="ps-btn btn-square-30px sp-background-color" />
+                <input type="button" value="{{_ctrl.rootScope('dashboard.groups.cancel')}}" class="cancel-btn btn-square-30px sp-background-color" data-ng-click="_ctrl.closePollsView('closePollsView')"/>
+            </li>
+        </ol>
+    </form>
+    <div class="poll-questions-wrapper mtop30" data-ng-if="_ctrl.postView">
+        <h3 data-ng-bind="::_ctrl.newPolljson.miniPolls.question"></h3>
+        <p class="instruction-txt" data-ng-bind="::_ctrl.newPolljson.miniPolls.instructionStr" data-ng-if="_ctrl.newPolljson.miniPolls.instructionStr"></p>
+        <ol class="multiPollList" data-ng-if="_ctrl.newPolljson.miniPolls.type === 'MultipleOptions' && _ctrl.newPolljson.miniPolls.selectionType === 'MultipleSelect'">
+            <li data-ng-repeat="opts in _ctrl.newPolljson.miniPolls.options track by $index" class="brdr-grey bgWhite adj">
+                <p class="pCheckBox removeAbs cNone">
+                    <input type="checkbox" name="pollOptionsListing[]" id="{{_ctrl.uniqueId}}_pollOpts_{{$index}}" class="iCheckBox" />
+                    <label for="{{_ctrl.uniqueId}}_pollOpts_{{$index}}" class="lCheckBox">
+                        <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                        <span class="lCheckBoxText" data-ng-bind="::opts"></span>
+                    </label>
+                </p>
+            </li>
+        </ol>
+        <ol class="multiPollList" data-ng-if="_ctrl.newPolljson.miniPolls.type === 'MultipleOptions' && _ctrl.newPolljson.miniPolls.selectionType === 'SingleSelect'">
+            <li data-ng-repeat="opts in _ctrl.newPolljson.miniPolls.options track by $index" class="brdr-grey bgWhite adj">
+                <p class="pCheckBox removeAbs cNone">
+                    <input type="radio" name="pollOptionsListing[]" id="{{_ctrl.uniqueId}}_pollOpts_{{$index}}" class="iCheckBox" />
+                    <label for="{{_ctrl.uniqueId}}_pollOpts_{{$index}}" class="lCheckBox">
+                        <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color radioStyle"></span>
+                        <span class="lCheckBoxText" data-ng-bind="::opts"></span>
+                    </label>
+                </p>
+            </li>
+        </ol>
+        <ol class="multiPollScale" data-ng-if="_ctrl.newPolljson.miniPolls.type === 'Scale'">
+            <li data-ng-repeat="opts in _ctrl.newPolljson.miniPolls.options track by $index" class="rBtns-box" data-ng-class="{'bl1':$index===0}">
+                <!--span class="opt-num" data-ng-bind="::$index+1"></span-->
+                <p class="pCheckBox removeAbs cNone">
+                    <input type="radio" name="pollOptionsListing[]" id="{{_ctrl.uniqueId}}_pollOpts_{{$index}}" class="iCheckBox" />
+                    <label for="{{_ctrl.uniqueId}}_pollOpts_{{$index}}" class="lCheckBox">
+                        <!--span class="checkedTick icon-icon_dev_strategy_check sp-icon-color radioStyle"></span-->
+                        <span class="empty-hex miniPollsAdj" data-rating="{{_ctrl.hexChar}}" data-ng-class="hexHover?'sp-icon-color':'hex-default-grey'" data-ng-mouseenter="hexHover=true" data-ng-mouseleave="hexHover=false"></span>
+                    </label>
+                </p>
+            </li>
+        </ol>
+        <div class="poll-action-btns mtop30">
+            <a href="javascript:void(0)" class="poll-back-btn btn-square-30px sp-background-color" data-ng-click="_ctrl.postView=false;_ctrl.initDtPicker();" data-ng-bind="_ctrl.rootScope('manageAccountContent.edit')"></a>
+            <input type="button" value="{{_ctrl.rootScope('dashboard.groups.cancel')}}" class="cancel-btn btn-square-30px sp-background-color" data-ng-click="_ctrl.closePollsView('closePollsView')"/>
+            <a href="javascript:void(0)" class="poll-post-btn btn-square-30px sp-background-color" data-ng-click="_ctrl.setupMiniPoll();" data-ng-bind="_ctrl.rootScope('createPollsCont.btnPost')"></a>
+            
+            <div class="actions-filter w230 mw230 h32" data-ng-init="_ctrl.shareUpdate.actionSelected=_ctrl.rootScope('dashboard.sharewithall')" data-ng-if="_ctrl.shareUpdate.permission.iamaccountadmin||_ctrl.shareUpdate.permission.groupLead">
+                <p class="actions-dropdown-filter leftFilter h32">
+                    <a href="javascript:void(0)" sp-condition="true" sp-click-outside="show">{{_ctrl.shareUpdate.actionSelected}}
+                         <span class="actions-icon icon-icon_dropdown-arrow h32 sp-icon-color"></span>
+                     </a>
+                </p>
+                <div class="actions-callout-wrappper pos4" data-ng-if="show">
+                      <ul class="action-links dashboard-menu-links">
+	                      <li class="p10">
+	                      	<span class="action-text-desc" data-ng-bind="::_ctrl.shareUpdate.rootScope('dashboard.ddDesc')"></span>
+	                      </li>
+                          <li data-ng-if="_ctrl.shareUpdate.permission.iamaccountadmin||_ctrl.shareUpdate.permission.groupLead">
+                              <a href="javascript:void(0)" data-ng-click="_ctrl.shareUpdate.shareSelection('All',_ctrl.shareUpdate.rootScope('dashboard.sharewithall'))">
+                                  <span class="action-text-head" data-ng-bind="::_ctrl.shareUpdate.rootScope('dashboard.sharewithall')"></span>
+                                  <span class="action-text-desc" data-ng-bind="::_ctrl.shareUpdate.rootScope('dashboard.sharewithallDesc')"></span>
+                              </a>
+                          </li>
+                          <li data-ng-if="_ctrl.shareUpdate.permission.groupLead||_ctrl.shareUpdate.permission.iamaccountadmin">
+                              <a href="javascript:void(0)" data-ng-click="_ctrl.shareUpdate.shareSelection('Group',_ctrl.shareUpdate.rootScope('dashboard.sharewithgroup'))">
+								  <span class="action-text-head" data-ng-bind="::_ctrl.shareUpdate.rootScope('dashboard.sharewithgroup')"></span>                              
+                                  <span class="action-text-desc" data-ng-bind="::_ctrl.shareUpdate.rootScope('dashboard.sharewithgroupDesc')"></span>
+                              </a>
+                          </li>
+                          <li data-ng-if="_ctrl.shareUpdate.permission.iamaccountadmin">
+                              <a href="javascript:void(0)" data-ng-click="_ctrl.shareUpdate.shareSelection('Announcement',_ctrl.shareUpdate.rootScope('dashboard.announcement'))">
+                              	  <span class="action-text-head" data-ng-bind="::_ctrl.shareUpdate.rootScope('dashboard.announcement')"></span>
+                                  <span class="action-text-desc" data-ng-bind="::_ctrl.shareUpdate.rootScope('dashboard.announcementDesc')"></span>
+                              </a>
+                          </li>                             
+                          <li data-ng-if="_ctrl.shareUpdate.permission.iamaccountadmin">
+                              <a href="javascript:void(0)" data-ng-click="_ctrl.shareUpdate.shareSelection('Customize',_ctrl.shareUpdate.rootScope('dashboard.customize'))">
+                              	  <span class="action-text-head" data-ng-bind="::_ctrl.shareUpdate.rootScope('dashboard.customize')"></span>
+                                  <span class="action-text-desc" data-ng-bind="::_ctrl.shareUpdate.rootScope('dashboard.customizeDesc')"></span>
+                              </a>
+                          </li>   
+                      </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

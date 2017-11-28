@@ -1,0 +1,196 @@
+<div class="col-content-wrapper mh700" data-ng-init="ctrl.getFeedbackTeam()" data-ng-controller="prismLensAdminController as ctrl">
+    <div class="members-content-wrapper">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind-html="::pullInterNationalization('navigation.prism.360')"></h2>
+            <p class="group-add-btn" data-ng-if="!ctrl.showRequestFeedbackForm">
+                <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('manageAccountContent.requestPrism')" data-ng-click="ctrl.showHideRequestFeedbackForm()"></a>
+            </p>
+        </div>
+    </div>
+    <div class="prism-lens-wrapper">
+        <div class="prism-lens-request-form" data-ng-if="ctrl.showRequestFeedbackForm">
+            <p class="pf-head" data-ng-bind="::pullInterNationalization('manageAccountContent.prismLensReqH')"></p>
+            <div class="tagsEmailInput overrides">
+                <tags-input data-ng-model="tags" max-tags="1" placeholder="{{::pullInterNationalization('dashboard.enteremail')}}" display-name="email" display-property="name" hide-input="true" allowed-tags-pattern="^[A-Za-z0-9._-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$" replace-spaces-with-dashes="false" on-tag-removed="ctrl.tagRemoved($tag)" on-tag-added="ctrl.tagAdded($tag)">
+                    <auto-complete min-length="1" load-on-focus="false" load-on-empty="false" max-results-to-show="6" source="ctrl.loadTags($query)" class="ng-tags-pos-fix"></auto-complete>
+                </tags-input>
+                <span class="validate-error" data-ng-if="ctrl.formErrors.emailCheck" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+            </div>
+            <div class="show-names" data-ng-if="ctrl.showNames">
+                <div class="form-styles-override noMargin">
+                    <ol class="form-list-c">
+                        <li>
+                            <ul class="cols-2">
+                                <li>
+                                    <input type="text" data-ng-model="ctrl.nameDataFormfirstName" name="firstName" placeholder="{{pullInterNationalization('signup.firstName')}}" />
+                                    <!-- Error Messages -->
+                                    <span class="validate-error" data-ng-if="ctrl.formErrors.firstName" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                                </li>
+                                <li>
+                                    <input type="text" data-ng-model="ctrl.nameDataFormlastName" name="lastName" placeholder="{{pullInterNationalization('signup.lastName')}}" />
+                                    <!-- Error Messages -->
+                                    <span class="validate-error" data-ng-if="ctrl.formErrors.lastName" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="form-grop calStyle calStyleW">
+                <p class="label-block" data-ng-bind-html="::pullInterNationalization('manageAccountContent.lensRequestBy')"></p>
+                <div class="posRel">
+                    <input type="text" id="endDateId" name="endDate" class="form-control endInput cursorPointer" readonly data-ng-model="untilDate" required placeholder="{{(ctrl.winWidth<1024)?pullInterNationalization('feedback.request.datedeadline.mob'):pullInterNationalization('feedback.request.datedeadline')}}">
+                    <label class="calImg icon-icon_calendar sp-icon-color" for="endDateId"></label>
+                </div>
+                <div class="validate-error" data-ng-if="ctrl.formErrors.dateCheck" data-ng-bind="::pullInterNationalization('signup.required.error')"></div>
+            </div>
+            <div class="pf-btn-wrapper">
+                <input type="submit" value="{{pullInterNationalization('manageAccountContent.submit')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="ctrl.sendRequestFeedbackAdmin(untilDate, ctrl.nameDataFormfirstName, ctrl.nameDataFormlastName)" />
+                <input type="button" value="{{pullInterNationalization('manageAccountContent.cancel')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="ctrl.showHideRequestFeedbackForm()" />
+            </div>
+        </div>
+        <p class="f14w300lh18" data-ng-if="!ctrl.feedbackTeamList.length && !ctrl.feedbackDataResponse" data-ng-bind="::pullInterNationalization('manageAccountContent.lensMsgLoading')"></p>
+        <p class="f14w300lh18" data-ng-if="!ctrl.feedbackTeamList.length && ctrl.feedbackDataResponse" data-ng-bind-html="::pullInterNationalization('manageAccountContent.noLensMsg')"></p>
+        <section class="features-section" data-ng-repeat="member in ( ctrl.feedbackTeamList | orderBy: ['-userStatus', '-createdOnStr']) track by $index" data-ng-if="ctrl.feedbackTeamList.length">
+            <header class="fs-header-wrap" data-ng-class="{'on':ctrl.featuresSectionSelected === member.id, 'disabled':member.userStatus!=='VALID'}">
+                <div class="split-cols-wrapper">
+                    <div class="split-col scol1">
+                        <div class="member-pic">
+                            <img data-ng-src="{{member.smallProfileImage}}" alt="{{member.userInitials}}" data-ng-if="member.smallProfileImage">
+                            <div class="imgReplacement" data-ng-if="!member.smallProfileImage" data-ng-bind="member.userInitials"></div>
+                        </div>
+                        <div class="member-details">
+                            <p class="member-name" data-ng-bind="member.name"></p>
+                            <p class="member-title" data-ng-bind="member.title"></p>
+                            <p class="member-email" data-ng-bind="member.email"></p>
+                            
+	                        <div class="status-details-responsive">
+		                        <p data-ng-if="member.userStatus==='VALID'">
+		                            {{pullInterNationalization('manageAccountContent.completed')}}
+		                            <span class="dbl" data-ng-bind="ctrl.shrinkDt(member.completedOnStr)" data-ng-if="member.completedOnStr"></span>
+		                        </p>
+		                        <p data-ng-if="member.userStatus!=='VALID'">
+		                            <span class="dbl" data-ng-if="member.createdOnStr" data-ng-bind="::pullInterNationalization('manageAccountContent.pending')+' ('+ctrl.shrinkDt(member.createdOnStr)+')'"></span>
+		                            <span class="dbl" data-ng-if="!member.createdOnStr" data-ng-bind="::pullInterNationalization('manageAccountContent.pending')"></span>
+		                           <!--  Commented as part of Manage Account fixes
+		                           <a href="javascript:void(0)" class="border-link" data-ng-click="notificationEmailPoP([{'email':member.email,'name':member.name,'title':member.title}],'FeedbackReminder','PrismLens',{'id':member.id,'key':'feedbackUserId'})">
+		                                <span class="mock-link" data-ng-bind="::pullInterNationalization('manageAccountContent.sendReminder')"></span>
+		                            </a>  
+		                            -->
+		                        </p>                        
+	                        </div>                            
+                        </div>
+                    </div>
+                    <div class="split-col scol2">
+                        <p data-ng-if="member.userStatus==='VALID'">
+                            {{pullInterNationalization('manageAccountContent.completed')}}
+                            <span class="dbl" data-ng-bind="ctrl.shrinkDt(member.completedOnStr)" data-ng-if="member.completedOnStr"></span>
+                        </p>
+                        <p data-ng-if="member.userStatus!=='VALID'">
+                            <span class="dbl" data-ng-if="member.createdOnStr" data-ng-bind="::pullInterNationalization('manageAccountContent.pending')+' ('+ctrl.shrinkDt(member.createdOnStr)+')'"></span>
+                            <span class="dbl" data-ng-if="!member.createdOnStr" data-ng-bind="::pullInterNationalization('manageAccountContent.pending')"></span>
+                            <!--  Commented as part of Manage Account fixes
+                            <a href="javascript:void(0)" class="border-link" data-ng-click="notificationEmailPoP([{'email':member.email,'name':member.name,'title':member.title}],'FeedbackReminder','PrismLens',{'id':member.id,'key':'feedbackUserId'})">
+                                <span class="mock-link" data-ng-bind="::pullInterNationalization('manageAccountContent.sendReminder')"></span>
+                            </a>
+                            -->
+                        </p>
+                    </div>
+                </div>
+                <div class="icon-toggle" data-ng-click="member.userStatus==='VALID'?ctrl.getFeedbackDetails(member):''">
+	                <div class="close-it icon-icon_collapse sp-icon-color"></div>
+	                <div class="open-it icon-icon_expand sp-icon-color"></div>
+                </div>
+            </header>
+            <div class="fs-content hide" data-ng-class="ctrl.featuresSectionSelected === member.id?'show':'hide'">
+                <div class="inviteMemberView feedback-overrides">
+                    <div class="contentArea teamView" data-ng-show="ctrl.feedbackEnable">
+                        <div class="feedback_Additional_comments">
+                            <div class="feedbackCommentSection">
+                                <div class="title" data-ng-bind-html="pullInterNationalization('feedback.additional.title')"></div>
+                                <div class="description" data-ng-bind-html="ctrl.getInviteMemberDetail.profileStatment"></div>
+                            </div>
+                            <div class="feedbackCommentSection">
+                                <div class="title" data-ng-bind-html="ctrl.getInviteMemberDetail['notablechar.text']"></div>
+                                <div class="description" data-ng-bind-html="ctrl.getInviteMemberDetail['notablechar.desc']"></div>
+                            </div>
+                            <div class="feedbackCommentSection mar40">
+                                <div class="title" data-ng-bind-html="ctrl.getInviteMemberDetail['workEnviornment.text']"></div>
+                                <div class="description" data-ng-bind-html="ctrl.getInviteMemberDetail['workEnviornment.desc']"></div>
+                            </div>
+                        </div>
+                        <div data-ng-repeat="(key,value) in ctrl.getInviteMemberDetail.feedbackGoals track by $index" class="clearfix separatePad">
+                            <div class="headTitle noTopAddBottom" data-ng-bind="pullInterNationalization('feedback.feedbackListing.'+key)"></div>
+                            <div class="col-sm-12 col-md-12 clearfix row equalsSize clearfix">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-6 equalHeight clearfix" data-ng-repeat="area in value track by $index">
+                                        <div class="orangeBarBorder">
+                                            <div class="title" data-ng-bind="area.goal.name"></div>
+                                            <div class="desc" dd-text-collapse dd-text-collapse-max-length="pullInterNationalization('feedback.feedbackListing.count')" dd-text-collapse-text="{{area.goal.description}}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swot-analysis-wrapper" data-ng-show="ctrl.feedbackEnable">
+                        <h2 class="swotH2" data-ng-bind="pullInterNationalization('personality.swotAnalysis')"></h2>
+                        <p class="lens-desc" data-ng-bind-html="pullInterNationalization('personality.swotAnalysisDesc')"></p>
+                        <div class="swot-details">
+                            <div class="swot-top hide">
+                                <p>&#160;</p>
+                                <!--p data-ng-bind="pullInterNationalization('personality.internal')"></p-->
+                            </div>
+                            <div class="swot-mid">
+                                <table class="swot-data expand">
+                                    <tr class="top-swot">
+                                        <td class="swot-left-label hide" rowspan="2">
+                                            <!--p class="nowrap-text" label-adjust swot-mid="{{ctrl.swotMemId}}" data-ng-bind="pullInterNationalization('personality.helpful')"></p-->
+                                        </td>
+                                        <td class="b-r b-b">
+                                            <h3 data-ng-bind="pullInterNationalization('personality.opportunities')"></h3>
+                                            <p class="swot-labelDesc" data-ng-bind="pullInterNationalization('prismLens.swotDD3')"></p>
+                                            <ul>
+                                                <li data-ng-repeat="strength in ctrl.swotanalysis.Opportunities" data-ng-bind="strength"></li>
+                                            </ul>
+                                        </td>
+                                        <td class="b-b b-r-w">
+                                            <h3 data-ng-bind="pullInterNationalization('personality.threats')"></h3>
+                                            <p class="swot-labelDesc" data-ng-bind="pullInterNationalization('prismLens.swotDD4')"></p>
+                                            <ul>
+                                                <li data-ng-repeat="weakness in ctrl.swotanalysis.Threats" data-ng-bind="weakness"></li>
+                                            </ul>
+                                        </td>
+                                        <td class="swot-right-label hide" rowspan="2">
+                                            <!--p class="nowrap-text" label-adjust swot-mid="{{ctrl.swotMemId}}" data-ng-bind="pullInterNationalization('persoanlity.harmful')"></p-->
+                                        </td>
+                                    </tr>
+                                    <tr class="bottom-swot">
+                                        <td class="b-r">
+                                            <h3 data-ng-bind="pullInterNationalization('personality.weakness')"></h3>
+                                            <p class="swot-labelDesc" data-ng-bind="pullInterNationalization('prismLens.swotDD2')"></p>
+                                            <ul>
+                                                <li data-ng-repeat="oppurtunity in ctrl.swotanalysis.Weakness" data-ng-bind="oppurtunity"></li>
+                                            </ul>
+                                        </td>
+                                        <td class="b-r-w">
+                                            <h3 data-ng-bind="pullInterNationalization('personality.strengths')"></h3>
+                                            <p class="swot-labelDesc" data-ng-bind="pullInterNationalization('prismLens.swotDD1')"></p>
+                                            <ul>
+                                                <li data-ng-repeat="threats in ctrl.swotanalysis.Strengths" data-ng-bind="threats"></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="swot-bottom hide">
+                                <p>&#160;</p>
+                                <!--p data-ng-bind="pullInterNationalization('personality.external')"></p-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

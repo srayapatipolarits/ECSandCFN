@@ -1,0 +1,108 @@
+<div class="learning-development pm-admin hide" data-ng-controller="goalsPersonalityMapping as ctrl" data-ng-cloak data-ng-if="inviteReady && profileReady" data-ng-class="inviteReady?'show':'hide'">
+    <div class="x-container">
+        <div class="container" >
+            <div class="table-flex-cols">
+                    <!-- Left Box Starts -->
+                    <div class="lnd-left-sec">
+                        <div class="lnd-left-box lnd-top-border sp-panel-accent">
+                            <h2 data-ng-bind="pullInterNationalization('practiceAreaAdminPa.heading1')"></h2>
+                            <ul>
+                                <li class="border-link"  data-ng-click="ctrl.showPersonalityMapping(p.id, $index)" data-ng-repeat="p in ctrl.storedPersonalityMap" data-ng-class="ctrl.selectedProfileIndex==={{$index}}?'on':''">
+                                    <span class="mock-link" data-ng-bind="p.mappedPersonality"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Left Box Ends -->
+                    <!-- Right Box Starts -->
+                    <div class="lnd-right-sec" data-ng-if="ctrl.showMapping">
+                        <div class="practice-area-detail lnd-right-box lnd-top-border sp-panel-accent">
+                        <div class="personality-tabs">
+                                <h2 data-ng-class="ctrl.mappingType === 'PA'? 'active':''" data-ng-bind="pullInterNationalization('personalityMapping.tab1')" data-ng-click="ctrl.displayPracticeAreas()"></h2>
+                                <h2 data-ng-class="ctrl.mappingType === 'SWOT'? 'active':''" data-ng-bind="pullInterNationalization('personalityMapping.tab2')" data-ng-click="ctrl.displaySwot()"></h2>
+                            </div>
+                            <div class="title-with-icons">
+                                <h2 class="sp-header-title-color" data-ng-bind="ctrl.activePersonality.mappedPersonality"></h2>
+                                <ul class="no-bg">
+                                    <li data-ng-if="ctrl.editMapping===false"><a href="#" class="btn-square-12px sp-background-color" data-ng-click="ctrl.editAction();ctrl.editMapping=true;" data-ng-bind="pullInterNationalization('practiceAreaAdminPa.btn1')"></a></li>
+                                    <li data-ng-if="ctrl.editMapping===true"><a href="#" class="btn-square-12px sp-background-color" data-ng-click="ctrl.updateAction();" data-ng-bind="pullInterNationalization('practiceAreaAdminPa.btn2')"></a></li>
+                                    <li data-ng-if="ctrl.editMapping===true && ctrl.mappingType === 'SWOT'"><a href="#" class="cancelBtn btn-block btn-square-12px btn-grey-dark cancelbtn-personality" data-ng-click="ctrl.cancelUpdate();" data-ng-bind="pullInterNationalization('personality.mapping.cancel')"></a></li>
+                                </ul>
+                            </div>
+                            <div class="pa-details" data-ng-if="ctrl.mappingType === 'PA'">
+                                <h3 class="pa-subhead top-margin no-border" data-ng-bind="pullInterNationalization('practiceAreaAdminPa.heading2')"></h3>
+                                <ul class="goals-map-list" data-ng-if="ctrl.editMapping===false">
+                                    <li data-ng-repeat="m in ctrl.activePersonality.goals" data-ng-bind="m.name"></li>
+                                </ul>
+                                <ul id="pa-sort-list" class="goals-map-list active" data-ng-if="ctrl.editMapping===true">
+                                    <li data-ng-repeat="m in ctrl.activePersonality.goals" data-id="{{m.id}}" repeat-done="ctrl.initSortable()">
+                                        <span data-ng-bind="m.name"></span>
+                                        <span class="close-btn" data-ng-click="ctrl.removePracticeArea(m.id)"></span>
+                                    </li>
+                                </ul>
+                                <p class="pa-select-list" data-ng-if="ctrl.editMapping===true && ctrl.isPaListUpdated === true">
+                                    <select data-ng-change="ctrl.addPracticeArea(ctrl.selectedPa.id)" ng-model="ctrl.selectedPa" ng-options="pa.name for pa in ctrl.updatedPracticeAreas track by pa.id">
+                                        <option value="" data-ng-bind="pullInterNationalization('practiceAreaAdminPa.label1')"></option>
+                                    </select>
+                                </p>
+                            </div>
+                            <div class="swot-details" data-ng-if="ctrl.mappingType === 'SWOT'">
+						       <section class="swot-section">
+                                <h3 class="pa-subhead top-margin no-border" data-ng-bind="pullInterNationalization('personality.opportunities')"></h3>
+                               <div class="textual" data-ng-repeat="oppurtunity in ctrl.oppurtunityInputField track by $index">
+	                           		<div class="input">
+	                           			<input type="text" class="themeName ng-pristine ng-valid ng-valid-required"  placeholder="Oppurtunity" data-ng-model="ctrl.activePersonality.swotProfileMap.Opportunities[$index]" required="required" data-ng-disabled="ctrl.editMapping===false">
+	                           		</div>
+	                           		<div class="deleteButton" data-ng-if="ctrl.editMapping===true && ctrl.oppurtunityInputField.length>1">
+	                           			<span class="close-btn" data-ng-click="ctrl.removeInputField($index,'O')"></span>
+	                           		</div>
+						       </div>
+						       <p class="mapping-empty" data-ng-if="!ctrl.oppurtunityInputField.length" data-ng-bind="pullInterNationalization('personality.noMapping')"> </p>
+						       <a data-ng-if="ctrl.editMapping===true" class="btn-square-12px sp-background-color f-left ng-binding ng-scope" data-ng-click="ctrl.addInputField(1,'O')">ADD</a>
+						       </section>
+						       <section class="swot-section">
+                                <h3 class="pa-subhead top-margin no-border" data-ng-bind="pullInterNationalization('personality.threats')"></h3>
+                                <div class="textual" data-ng-repeat="threats in ctrl.threatInputField track by $index">
+	                           		<div class="input">
+	                           			<input type="text" class="themeName ng-pristine ng-valid ng-valid-required" placeholder="Threats" data-ng-model="ctrl.activePersonality.swotProfileMap.Threats[$index]" required="required" data-ng-disabled="ctrl.editMapping===false">
+	                           			</div>
+	                           		<div class="deleteButton" data-ng-if="ctrl.editMapping===true && ctrl.threatInputField.length>1">
+	                           			<span class="close-btn" data-ng-click="ctrl.removeInputField($index,'T')"></span>
+	                           		</div>
+						       </div>
+						       <p class="mapping-empty" data-ng-if="!ctrl.threatInputField.length" data-ng-bind="pullInterNationalization('personality.noMapping')"> </p>
+						       <a data-ng-if="ctrl.editMapping===true" class="btn-square-12px sp-background-color f-left ng-binding ng-scope" data-ng-click="ctrl.addInputField(1,'T')">ADD</a>
+						       </section>
+						       <section class="swot-section">
+                                <h3 class="pa-subhead top-margin no-border" data-ng-bind="pullInterNationalization('personality.weakness')"></h3>
+                                <div class="textual" data-ng-repeat="weakness in ctrl.weaknessInputField track by $index">
+	                           		<div class="input">
+	                           			<input type="text" class="themeName ng-pristine ng-valid ng-valid-required"  placeholder="Weakness" data-ng-model="ctrl.activePersonality.swotProfileMap.Weakness[$index]" required="required" data-ng-disabled="ctrl.editMapping===false">
+	                           	    </div>
+	                           		<div class="deleteButton" data-ng-if="ctrl.editMapping===true && ctrl.weaknessInputField.length>1">
+	                           			<span class="close-btn" data-ng-click="ctrl.removeInputField($index,'W')"></span>
+	                           		</div>
+						       </div>
+						       <p class="mapping-empty" data-ng-if="!ctrl.weaknessInputField.length" data-ng-bind="pullInterNationalization('personality.noMapping')"> </p>
+						       <a data-ng-if="ctrl.editMapping===true" class="btn-square-12px sp-background-color f-left ng-binding ng-scope" data-ng-click="ctrl.addInputField(1,'W')">ADD</a>
+						       </section>		
+                             <section class="swot-section">
+                                <h3 class="pa-subhead top-margin no-border" data-ng-bind="pullInterNationalization('personality.strengths')"></h3>
+                                <div class="textual" data-ng-repeat="strength in ctrl.strengthInputField track by $index" data-ng-if="ctrl.strengthInputField.length">
+	                           		<div class="input">
+	                           			<input type="text" class="themeName ng-pristine ng-valid ng-valid-required"  placeholder="Strength" data-ng-model="ctrl.activePersonality.swotProfileMap.Strengths[$index]" required="required" data-ng-disabled="ctrl.editMapping===false">
+						        	</div>
+	                           		<div class="deleteButton" data-ng-if="ctrl.editMapping===true && ctrl.strengthInputField.length>1">
+	                           			<span class="close-btn" data-ng-click="ctrl.removeInputField($index,'S')"></span>
+	                           		</div>
+						       </div>
+						       <p class="mapping-empty" data-ng-if="!ctrl.strengthInputField.length" data-ng-bind="pullInterNationalization('personality.noMapping')"> </p>
+						       <a data-ng-if="ctrl.editMapping===true" class="btn-square-12px sp-background-color f-left ng-binding ng-scope" data-ng-click="ctrl.addInputField(1,'S')">ADD</a>
+						       </section>						       				       
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

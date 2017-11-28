@@ -1,0 +1,193 @@
+<!-- SETUP Competency Evaluation Starts -->
+
+<div class="x-container">
+    <div class="container">
+        <div class="table-flex-cols">
+        
+        
+            <!-- Evaluation Left Section Starts -->
+            <div class="lnd-left-sec sp-panel-accent" data-ng-init="ctrl.prepareDatePicker()">
+                <div class="evaluation-left-wrap evaluation-cols">
+                    <form name="startEvaluation" class="clbt">
+                        <h2 class="clbt" data-ng-bind="::pullInterNationalization('competency.admin.activate.title')"></h2>
+                        <ol class="clbt">
+                            <li class="step-label mtop0" data-ng-bind="::pullInterNationalization('competency.admin.activate.step1')"></li>
+                            <li class="step-element">
+	                            <div class="posRel calStyle">
+	                                <input type="text" name="endDate" readonly required class="form-control endInput" id="fromDateId" value="{{ctrl.currentDate | date:'MM/dd/yyyy'}}">
+	                                <label class="calImg icon-icon_calendar sp-icon-color" for="fromDateId"></label>	                            
+	                            </div>
+                            </li>
+                            <li class="step-label" data-ng-bind="::pullInterNationalization('competency.admin.activate.step2')"></li>
+                            <li class="step-element">
+                                <ol>
+                                    <li class="flt evType">
+                                        <p class="pCheckBox">
+                                           <input type="checkbox" data-ng-model="ctrl.evaluationChecks.self" class="iCheckBox" id="selfCheck">
+                                            <label for="selfCheck" class="lCheckBox">
+                                                <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                                                <span class="lCheckBoxText" data-ng-bind="::pullInterNationalization('competency.admin.self')"></span>
+                                            </label>
+                                        </p>
+                                    </li>
+                                    <li class="flt evType addSpace">
+                                        <p class="pCheckBox">
+                                            <input type="checkbox" data-ng-model="ctrl.evaluationChecks.manager" class="iCheckBox" id="managerCheck">
+                                            <label for="managerCheck" class="lCheckBox">
+                                                <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                                                <span class="lCheckBoxText" data-ng-bind="::pullInterNationalization('competency.admin.manager')"></span>
+                                            </label>
+                                        </p>
+                                    </li>
+                                    <li class="flt evType">
+                                        <p class="pCheckBox">
+                                            <input type="checkbox" data-ng-model="ctrl.evaluationChecks.peer" class="iCheckBox" id="peerCheck">
+                                            <label for="peerCheck" class="lCheckBox">
+                                                <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                                                <span class="lCheckBoxText" data-ng-bind="::pullInterNationalization('competency.admin.peer')"></span>
+                                            </label>
+                                        </p>
+                                    </li>
+                                </ol>
+                                <span class="validate-error" data-ng-if="ctrl.activateErrors && !ctrl.evaluationChecks.self && !ctrl.evaluationChecks.manager && !ctrl.evaluationChecks.peer" data-ng-bind="::pullInterNationalization('admin.member.add.multiple.error.required')"></span>
+                                <span class="validate-error" data-ng-if="ctrl.activateErrors && !ctrl.evaluationChecks.self && !ctrl.evaluationChecks.manager && ctrl.evaluationChecks.peer" data-ng-bind="::pullInterNationalization('competency.admin.activate.peerOnly.error')"></span>
+                            </li>
+                            <li class="step-label" data-ng-bind="::pullInterNationalization('competency.admin.activate.step3')"></li>
+                            <li class="step-element noSides">
+                                <ol>
+                                    <li class="flt evType sp-radio">
+                                        <p class="pCheckBox">
+                                            <input type="radio" data-ng-change="ctrl.toggleActivateOption()" data-ng-model="ctrl.activateOption" value="competency" id="competency_profile" />
+                                            <label for="competency_profile" class="lCheckBox">
+                                                <span class="radioText" data-ng-bind="::pullInterNationalization('competency.activate.option.profile')"></span>
+                                            </label>
+                                        </p>
+                                    </li>
+                                    <li class="flt evType leftM15 sp-radio">
+                                        <p class="pCheckBox">
+                                            <input type="radio" data-ng-change="ctrl.toggleActivateOption()" data-ng-model="ctrl.activateOption" value="groups" id="group" />
+                                            <label for="group" class="lCheckBox">
+                                                <span class="radioText" data-ng-bind="::pullInterNationalization('spmatch_member1')"></span>
+                                            </label>
+                                        </p>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li class="step-element noSides angucomplete-wrapper">
+                              <angucomplete id="gl2" placeholder="{{::pullInterNationalization('manageAccountContent.search')}}..." pause="100" selectedobject="selectedObj" localdata="ctrl.competencySearchList" searchfields="name" titlefield="name" minlength="2" inputclass="form-control form-control-small" templatetype="default" update-fn="ctrl.addToUserList(callback)" />
+                            </li>
+                            <li class="step-tags">
+                            <span class="validate-error" data-ng-if="ctrl.activateErrors && !ctrl.competencyUserIds.length" data-ng-bind="::pullInterNationalization('admin.member.add.multiple.error.required')"></span>
+                            
+                                <ol>
+                                    <li data-ng-repeat="match in ctrl.selectedSearchList track by $index">
+                                        <span class="st-icon sp-icon-color" data-ng-class="{'icon-icon_accounts_all-members':match.type === 'user', 'icon-icon_accounts_all-groups':match.type === 'groups', 'icon-icon_spectrum_competency':match.type === 'competency'}"></span>
+                                        <span class="st-text addElps" data-ng-bind="match.name"></span>
+                                        <a href="javascript:void(0)" class="st-close-btn icon-icon_remove" data-ng-click="ctrl.removeUserFromList(match, 'left')"></a>
+                                    </li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </form>
+                </div>
+            </div>
+            <!-- Evaluation Left Section Ends -->
+            
+            
+            <!-- Evaluation Right Section Starts -->
+            <div class="lnd-right-sec sp-panel-accent">
+                <div class="evaluation-right-wrap evaluation-cols">
+                	<div class="evaluation-right-header">
+                		<div class="evaluation-info">
+                			<h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('competency.manager.evaluation.title')"></h2>
+                			<ol class="clbt">
+	                			<li class="flt">
+	                				<span data-ng-bind="::pullInterNationalization('competency.admin.startDate')+': '"></span>
+	                				<span class="dt-txt" data-ng-bind="ctrl.currentDate | date:'MMM dd, yyyy'"></span>
+	                			</li>
+	                			<li class="flt mleft15">
+	                				<span data-ng-bind="::pullInterNationalization('competency.admin.endDate')+': '"></span>
+	                				<span class="dt-txt" data-ng-bind="ctrl.evaluationDisplayDate"></span>
+	                			</li>                			
+                			</ol>
+                			<p class="clbt">
+                				<span data-ng-bind="::pullInterNationalization('competency.evaluation.type.label')+':'"></span>
+                				<span class="type-txt">
+                				<span data-ng-if="ctrl.evaluationChecks.self" data-ng-bind="::pullInterNationalization('competency.admin.self')"></span>
+                				<span data-ng-if="ctrl.evaluationChecks.self && (ctrl.evaluationChecks.manager || ctrl.evaluationChecks.peer)">,</span>
+                				<span data-ng-if="ctrl.evaluationChecks.manager" data-ng-bind="::pullInterNationalization('competency.admin.manager')"></span>
+                				<span data-ng-if="ctrl.evaluationChecks.manager && ctrl.evaluationChecks.peer">,</span>
+                				<span data-ng-if="ctrl.evaluationChecks.peer" data-ng-bind="::pullInterNationalization('competency.admin.peer')"></span>
+                				</span>
+                			</p>
+	                		<div class="evaluation-actions ipShow">
+	                			<ol>
+	                				<li class="flt" data-ng-class="{'added-margin-left' : !ctrl.pastEvaluationsList.length}">
+	                					<a href="javascript:void(0)" data-ng-click="ctrl.activateEvaluation()" class="btn-block btn-15px sp-btn-color">Activate</a>
+	                				</li>
+	                				<li class="flt" data-ng-if="ctrl.pastEvaluationsList.length">
+	                					<a href="javascript:void(0)" class="btn-block btn-15px btn-grey-dark" data-ng-click="ctrl.closeActivateView();">Cancel</a>
+	                				</li>                				
+	                			</ol>
+	                		</div>                			
+                		</div>
+                		<div class="evaluation-actions rlt ipHide">
+                			<ol>
+                				<li class="flt" data-ng-class="{'added-margin-left' : !ctrl.pastEvaluationsList.length}">
+                					<a href="javascript:void(0)" data-ng-click="ctrl.activateEvaluation()" class="btn-block btn-15px sp-btn-color">Activate</a>
+                				</li>
+                				<li class="flt" data-ng-if="ctrl.pastEvaluationsList.length">
+                					<a href="javascript:void(0)" class="btn-block btn-15px btn-grey-dark" data-ng-click="ctrl.closeActivateView();">Cancel</a>
+                				</li>                				
+                			</ol>
+                		</div>
+                	</div>
+                	
+                	
+                	<div class="evaluation-members-wrap">
+                		<div class="ev-members-header">
+                			<ol>
+                				<li class="flt">
+                					<span>{{::pullInterNationalization('manageAccountContent.selectedMembers')}} <strong>{{recordField.length}}</strong></span>
+                				</li>
+                				<li class="rlt">
+                					<input maxlength="28" data-ng-model="ctrl.userSearchText" type="text" placeholder="{{::pullInterNationalization('admin.member.search')}}" />
+                					<button data-ng-class="{'icon-icon_remove':ctrl.userSearchText.length, 'icon-icon_search': !ctrl.userSearchText.length}" class="sp-icon-color icon-icon_search" data-ng-click="ctrl.userSearchText='';"></button>
+                				</li>
+                			</ol>
+                		</div>
+                		<div class="ev-members-list">
+                			<ol>
+                				<li class="flt" data-ng-repeat="member in recordField = (ctrl.competencyUsersList | filter:ctrl.userSearchText) track by $index">
+                					<p class="ev-member-details">
+                						<a href="javascript:void(0)" data-ng-click="ctrl.removeUserFromList(member, 'right')" class="mem-clost-btn icon-icon_remove"></a>
+                						<span class="ev-mem-pic-holder">
+                						<span class="imgReplacement" data-ng-if="member.smallProfileImage === null" data-ng-bind="member.userInitials"></span>
+                						<span data-ng-if="member.smallProfileImage !== null">
+                							<img data-ng-src="{{member.smallProfileImage}}">
+                						</span>
+                						</span>
+                						<span class="ev-mem-info addLp">
+                							<span class="ev-name sp-link-color" data-ng-bind="member.name"></span>
+                							<span class="ev-title" data-ng-bind="member.title"></span>
+                							<span class="ev-email" data-ng-bind="member.email" data-ng-class="{'top0': !member.name}"></span>
+                						</span>
+                					</p>
+                					<p class="ev-member-profile" data-ng-bind="member.competencyName"></p>
+                				</li>                  				             				                				
+                			</ol>
+                			<h5 align="center" data-ng-if="!ctrl.competencyUsersList.length" data-ng-bind="::pullInterNationalization('competency.admin.activate.text')"></h5>
+                			<h5 align="center" data-ng-if="ctrl.competencyUsersList.length && !recordField.length" data-ng-bind="::pullInterNationalization('manageAccountContent.noUserAvailable')"></h5>
+                		</div>
+                	
+                	</div>
+                </div>
+            </div>
+            <!-- Evaluation Right Section Ends -->
+            
+            
+        </div>
+    </div>
+</div>
+
+<!-- SETUP Competency Evaluation Ends -->

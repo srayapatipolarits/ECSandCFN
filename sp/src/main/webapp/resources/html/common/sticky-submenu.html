@@ -1,0 +1,26 @@
+<div class="actions-callout-wrappper notes-module" data-ng-class="{'reduce-height':!tutorialAvailable}" data-ng-if="inviteReady">
+    <ul class="action-links notes-links">
+          <li>
+             <a href="javascript:void(0)" data-ng-click="openNotesPanel('profile')">
+             <span class="action-text" data-ng-bind="::pullInterNationalization('manageAccountContent.memDetails')"></span>
+            </a>
+         </li>
+         <li>
+             <a href="javascript:void(0)" data-ng-click="openNotesPanel('bookmark')">
+             <span class="action-text" data-ng-bind="::pullInterNationalization('goals.bookmarks')"></span>
+            </a>
+         </li>
+         <li class="sep"><hr class="note-space"></li>
+         <li>
+            <a href="javascript:void(0)" data-ng-click="openNotesPanel('support')">
+            <span class="action-text" data-ng-bind="::pullInterNationalization('sticky.support.heading')"></span>
+            </a>
+         </li>
+          <li class="sep" data-ng-if="tutorialAvailable"><hr class="note-space"></li>
+         <li data-ng-if="tutorialAvailable">
+            <a href="javascript:void(0)" data-ng-click="openNotesPanel('tutorial')">
+            <span class="action-text" data-ng-bind="tutorialObj.name+' ('+tutorialObj.completed+'%)'"></span>
+            </a>
+         </li>
+     </ul>
+</div>                            

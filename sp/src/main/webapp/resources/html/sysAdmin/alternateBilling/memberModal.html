@@ -1,0 +1,81 @@
+<div class="container" id="editGroup">
+    <div class="row">
+        <div class="col-xs-offset-3 col-xs-6 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6 members affiliate-listing library-home mob12">
+            <div>
+                <section class="wrapper">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar" data-ng-if="ctrl.isCompanySelect" data-ng-bind="::pullInterNationalization('signup.business.step2.selectComp')"></div>
+                                <div class="headerBar" data-ng-if="ctrl.isMemberSelect" data-ng-bind="::pullInterNationalization('signup.business.step2.selectMem')"></div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                            </div>
+                        </div>
+                        <!-- Members Starts -->
+                        <div class="contentArea article-select" data-ng-if="ctrl.isMemberSelect">
+                            <div class="pulse pulse-admin" >
+                                <div class="select-article-modal clearfix">
+                                    <div class="toolbar clearfix">
+                                    	<p style="margin:30px 30px 15px;padding:0;font-size:14px;font-weight:300;" data-ng-bind="::pullInterNationalization('signup.business.step2.selectComp1')"></p>
+                                    	<p style="margin:0px 30px 0px;padding:0;">
+                                    		<span style="margin:0px;padding:0 0 5px 0;font-size:14px;font-weight:700;line-height:14px;" data-ng-bind="ctrl.storeCompany.name"></span>
+                                    		<span style="margin:0px;padding:0;font-size:12px;font-weight:100;" >{{ctrl.storeCompany.city}}, {{ctrl.storeCompany.country}}</span>
+                                    	</p>
+                                    	<hr style="margin:30px;padding:0;width:89%;height:1px;border:0;background:#ccc;"/>
+                                    </div>
+                                    <article class="memberHolder adminMemberHolder" style="height:325px;overflow:scroll;">
+		                                <div class="tagsEmailInput" style="padding:10px 30px 30px;">
+                                            <tags-input data-ng-model="ctrl.tags" display-name="fullNameOrEmail" display-property="name" max-tags="1" hide-input="true" placeholder="{{::pullInterNationalization('dashboard.enteremail')}}" replace-spaces-with-dashes="false" on-tag-removed="ctrl.tagRemoved($tag)" on-tag-added="ctrl.tagAdded($tag)">
+                                                <auto-complete min-length="1" load-on-focus="true" debounce-delay="100" load-on-empty="false" max-results-to-show="6" source="ctrl.loadTags($query)"></auto-complete>
+                                            </tags-input> 
+											<span class="err-msg validate-error" data-ng-show="ctrl.inputRequired" data-ng-bind-html="::pullInterNationalization('signup.business.step2.memberError')"></span>
+		                                </div>                                    
+                                    </article>
+                                    <a href="javascript:void(0)" style="margin:35px 10px 45px 30px;float:left;" class="btn-block btn-14px sp-btn-color" data-ng-class="ctrl.selectedUser?'':'noSubmit'" data-ng-click="ctrl.selectedUser?ctrl.updateSelectedMember(ctrl.selectedUser):''" data-ng-bind="::pullInterNationalization('admin.import.submit')"></a>
+                                    <a href="javascript:void(0)" style="margin:35px 0 45px 0px;float:left;" class="btn-block btn-14px sp-btn-color" data-ng-click="closeThisDialog()" data-ng-bind="::pullInterNationalization('admin.blueprint.action.cancel')"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Members Ends -->
+                        <!-- Company Starts -->
+                        <div class="contentArea article-select" data-ng-if="ctrl.isCompanySelect">
+                            <div class="pulse pulse-admin" >
+                                <div class="select-article-modal clearfix">
+                                    <div class="toolbar clearfix">
+                                        <div class="controls clearfix">
+                                            <div class="controlwrap search">
+                                                <input type="text" class="form-control data-ng-pristine data-ng-valid pSearchBox" maxlength="28" data-ng-model="ctrl.searchText" placeholder="{{::pullInterNationalization('signup.business.step2.searchCompany')}}">
+                                                <button class="sp-icon-color" data-ng-class="ctrl.searchText.length? 'icon-icon_remove':'icon-icon_search'" data-ng-click="ctrl.searchText=''"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="filters">
+                                    </div>
+                                    <article class="memberHolder adminMemberHolder" style="height:316px;overflow:scroll;">
+                                        <div class="complete-profile" data-ng-class="{active:show, 'top-brd':({{$index}}===0)}" id='{{$index}}' data-ng-repeat="companyList in recordField = (ctrl.companyList | filter:ctrl.searchText)">
+                                            <div class="table-row clearfix">
+                                                <div class="col-xs-9">
+                                                    <p class="code">
+                                                        <span style="margin:0;padding:0" data-ng-bind="companyList.name"></span>
+                                                        <span style="margin:0;padding:0;font-size:12px;" data-ng-bind-html="companyList.address.city+', '+companyList.address.country"></span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    <!-- Added inline style for testing. Will be removed or moved to proper Less files -->
+                                                    <a href="javascript:void(0)" class="btn-block btn-14px sp-btn-color" style="margin-top:6px" data-ng-click="ctrl.getAllMembers(companyList.id, companyList.name, companyList.address.city, companyList.address.country)" data-ng-bind="::pullInterNationalization('admin.account.select')"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p data-ng-show="!recordField.length" class="noMatchFound data-ng-hide" data-ng-bind="::pullInterNationalization('signup.business.step2.compError')"></p>
+                                    </article>
+                                    <a href="javascript:void(0)" style="margin:35px 0 45px 30px;" class="btn-block btn-14px sp-btn-color" data-ng-click="closeThisDialog()" data-ng-bind="::pullInterNationalization('admin.blueprint.action.cancel')"></a>                                                       
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Company Ends -->
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

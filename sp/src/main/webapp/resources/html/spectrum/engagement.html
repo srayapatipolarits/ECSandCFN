@@ -1,0 +1,223 @@
+<section id="org-profile-balance" class="spectrum-section first-graph-section spectrum-graph-section engagement-matrix" data-ng-if="ctrl.chartDataReady">
+	  <header class="spectrum-header clearfix">
+	    <h1 class="spectrum-section-title sp-header-title-color" data-ng-bind="pullInterNationalization('spectrum.organization.engagement')"></h1>
+	  </header>
+	  
+	  <article class="filter-selection">
+	  	<div class="filter-group" data-ng-if="ctrl.engagementFilters.groups.length">
+	  		<h4 data-ng-bind="pullInterNationalization('spectrum.profile.groups')+':'"></h4>
+	  		<div class="style-filter-group">
+	  			<!--  --><ellipsis el-message="pullInterNationalization('spectrum.organization.all')" el-total="ctrl.engagementFilters.groups.length" el-data='ctrl.pageSetting.groupSelected.length ? ctrl.pageSetting.groupSelected:ctrl.engagementFilters.groups' el-length="'.filter-selection'" el-fontsize='14'></ellipsis>
+	  		</div>
+	  	</div>
+	  	<div class="filter-gender-age">
+	  		<div class="filter-gender">
+	  			<h4 data-ng-bind="pullInterNationalization('spectrum.profile.gender')+':'"></h4>
+	  			<div class='style-filter' data-ng-if="!ctrl.pageSetting.genderSelected.length || ctrl.pageSetting.genderSelected.indexOf('M')!==-1">
+	  				<span data-ng-bind="pullInterNationalization('spectrum.gender.male')"></span>
+	  				<span class='percentage' data-ng-bind="'(' + ctrl.percentCalc(ctrl.profileBalanceDetail.divisionTotal,ctrl.profileBalanceDetail.gender.male) +'%)'"></span>
+	  			</div>
+	  			<div class='style-filter' data-ng-if="!ctrl.pageSetting.genderSelected.length || ctrl.pageSetting.genderSelected.indexOf('F')!==-1">
+	  				<span data-ng-bind="pullInterNationalization('spectrum.gender.female')"></span>
+	  				<span class='percentage' data-ng-bind="'(' + ctrl.percentCalc(ctrl.profileBalanceDetail.divisionTotal,ctrl.profileBalanceDetail.gender.female) +'%)'"></span>
+	  			</div>
+	  			
+	  		</div>
+	  	</div>
+	  	<div class="filter-gender-age">
+	  		<div class="filter-age clearfix">
+	  		<div class="left-age">
+	  			<h4 data-ng-bind="pullInterNationalization('spectrum.profile.agebreakdown')"></h4>
+	  			</div>
+	  			<div class="right-age">
+	  			<div class='style-filter' data-ng-if="!ctrl.pageSetting.ageSelected.length || ctrl.pageSetting.ageSelected.indexOf('0-21')!==-1">
+	  				<span data-ng-bind="pullInterNationalization('spectrum.piechart.YOUNG')"></span>
+	  				<span class='percentage' data-ng-bind="'(' + ctrl.percentCalc(ctrl.profileBalanceDetail.divisionTotal,ctrl.profileBalanceDetail.age.YOUNG,2) +'%)'"></span>
+	  			</div>
+	  			<div class='style-filter' data-ng-if="!ctrl.pageSetting.ageSelected.length || ctrl.pageSetting.ageSelected.indexOf('22-34')!==-1">
+	  				<span data-ng-bind="pullInterNationalization('spectrum.piechart.MILIENIAL')"></span>
+	  				<span class='percentage' data-ng-bind="'(' + ctrl.percentCalc(ctrl.profileBalanceDetail.divisionTotal,ctrl.profileBalanceDetail.age.MILIENIAL,2) +'%)'"></span>
+	  			</div>
+	  			<div class='style-filter' data-ng-if="!ctrl.pageSetting.ageSelected.length || ctrl.pageSetting.ageSelected.indexOf('35-44')!==-1">
+	  				<span data-ng-bind="pullInterNationalization('spectrum.piechart.GEN_X')"></span>
+	  				<span class='percentage' data-ng-bind="'(' + ctrl.percentCalc(ctrl.profileBalanceDetail.divisionTotal,ctrl.profileBalanceDetail.age.GEN_X,2) +'%)'"></span>
+	  			</div>
+	  			<div class='style-filter' data-ng-if="!ctrl.pageSetting.ageSelected.length || ctrl.pageSetting.ageSelected.indexOf('45-54')!==-1">
+	  				<span data-ng-bind="pullInterNationalization('spectrum.piechart.BOOMERS')"></span>
+	  				<span class='percentage' data-ng-bind="'(' + ctrl.percentCalc(ctrl.profileBalanceDetail.divisionTotal,ctrl.profileBalanceDetail.age.BOOMERS,2) +'%)'"></span>
+	  			</div>
+	  			<div class='style-filter' data-ng-if="!ctrl.pageSetting.ageSelected.length || ctrl.pageSetting.ageSelected.indexOf('55-64')!==-1">
+	  				<span data-ng-bind="pullInterNationalization('spectrum.piechart.OLD')"></span>
+	  				<span class='percentage' data-ng-bind="'(' + ctrl.percentCalc(ctrl.profileBalanceDetail.divisionTotal,ctrl.profileBalanceDetail.age.OLD,2) +'%)'"></span>
+	  			</div>
+	  			<div class='style-filter' data-ng-if="!ctrl.pageSetting.ageSelected.length || ctrl.pageSetting.ageSelected.indexOf('65-200')!==-1">
+	  				<span data-ng-bind="pullInterNationalization('spectrum.piechart.SILENT')"></span>
+	  				<span class='percentage' data-ng-bind="'(' + ctrl.percentCalc(ctrl.profileBalanceDetail.divisionTotal,ctrl.profileBalanceDetail.age.SILENT,2) +'%)'"></span>
+	  			</div>	
+	  			</div>
+	  		</div>
+	  	</div>
+	  	<div class="filter-group" data-ng-if="ctrl.engagementFilters.tags.length">
+	  		<h4 data-ng-bind="pullInterNationalization('spectrum.profile.tags')+':'"></h4>
+	  		<div class="style-filter-group">
+	  			<ellipsis el-message="pullInterNationalization('spectrum.organization.all')" el-total="ctrl.engagementFilters.tags.length" el-data='ctrl.pageSetting.tagSelected.length ? ctrl.pageSetting.tagSelected:ctrl.engagementFilters.tags' el-length="'.filter-selection'" el-fontsize='14'></ellipsis>
+	  		</div>
+	  	</div>
+	  	
+	  </article>
+	  <span class="graph-section-label overview-label" data-ng-bind="::pullInterNationalization('spectrum.engagement.overview')"></span>
+	  <div class="graph-view-content graph-view-content-graph">
+	  	  <div class="view-options profile-balance-options category-hr-content height_{{ctrl.userScreen}}">
+	     	 <div class="personality-sort blueprint-sort">
+		  			<div class="sort-area">
+		  				<div class="left-filter-drop">
+		  					<div class="filter-dropdown">
+			        	 		<span class="naf-theme-icon_style1 icon-icon_dropdown-arrow sp-icon-color"></span>
+			                    <select class="engagement-opt-select" data-ng-model="ctrl.engagementOpt" data-ng-change="ctrl.engagementFilterLogic();" data-ng-options="v.value as pullInterNationalization('spectrum.engagement.options.'+v.name) for (k,v) in [{'name':'dropdown4','value':'unique'},{'name':'dropdown2','value':'logins'},{'name':'dropdown3','value':'avgSessions'}]"> 
+			                     </select>
+			                       <!-- <option value="users" data-ng-bind="::pullInterNationalization('spectrum.engagement.options.dropdown1')">Users</option>--> 
+			                </div>
+		  				</div>
+		  			</div>
+		  			
+		  			<div class="date-range">
+		  				 <label for="daterange" class="icon_style1 date-picker-arrow  calImg icon-icon_calendar sp-icon-color posSchedule"></label>
+		  			  <!-- <span class="naf-theme-icon_style1 date-picker-arrow icon-icon_calendar sp-icon-color"></span>-->
+                       <input type="text" class="form-control endInput cursorPointer" id="daterange" name="daterange" readonly data-ng-model="ctrl.engagementDatePicker" elem-ready="ctrl.prepareDatePicker()">
+                    </div>
+		  		</div>
+		  		<ul class="result-category">
+                         <li data-ng-class="{'active':ctrl.analyticsChartGroup === 'day'}">
+                           <a class="border-link" href="javascript:void(0)" data-ng-click="ctrl.engagementFilterLogic();ctrl.analyticsChartGroup = 'day';">
+                             <span class="mock-link" data-ng-bind="::pullInterNationalization('spectrum.engagement.options.dayView')"></span>
+                           </a>
+                         </li>
+                         <li data-ng-class="{'active':ctrl.analyticsChartGroup === 'week'}">
+                           <a class="border-link" href="javascript:void(0)" data-ng-if="ctrl.dateDiffCount === 1">
+                             <span class="mock-link link-disabled" data-ng-bind="::pullInterNationalization('spectrum.engagement.options.weekView')"></span>
+                            </a>
+                            <a class="border-link" href="javascript:void(0)" data-ng-if="ctrl.dateDiffCount !== 1" data-ng-click="ctrl.engagementFilterLogic();ctrl.analyticsChartGroup = 'week';">
+                             <span class="mock-link" data-ng-bind="::pullInterNationalization('spectrum.engagement.options.weekView')"></span>
+                            </a>
+                          </li>
+                         <li data-ng-class="{'active':ctrl.analyticsChartGroup === 'month'}">
+                           <a class="border-link" href="javascript:void(0)" data-ng-if="ctrl.dateDiffCount === 1">
+                             <span class="mock-link link-disabled" data-ng-bind="::pullInterNationalization('spectrum.engagement.options.monthView')"></span>
+                           </a>
+                           <a class="border-link" href="javascript:void(0)" data-ng-if="ctrl.dateDiffCount !== 1" data-ng-click="ctrl.engagementFilterLogic();ctrl.analyticsChartGroup = 'month';">
+                             <span class="mock-link" data-ng-bind="::pullInterNationalization('spectrum.engagement.options.monthView')"></span>
+                           </a>
+                         </li>
+                     </ul>
+                <div id="chart_div" data-ng-if="!ctrl.profileChartNoData"></div>
+                
+                <div class="col-container floatLeft" data-ng-if="!ctrl.profileChartNoData">
+                <!-- <div class="account-box user-section">
+                <div class="account-box-details">
+                    <p class="title-with-bg f500">
+                        <span class="desc-left" data-ng-bind="::pullInterNationalization('spectrum.engagement.aggregate.users')"></span>
+                    </p>
+                    <p class="left-font">
+                        <span class="desc-left" data-ng-if="ctrl.showEngagementAggregation" data-ng-bind="ctrl.engagementAggregate.users"></span>
+                        <span class="desc-left small-font" data-ng-if="!ctrl.showEngagementAggregation" data-ng-bind="'Data Loading...'"></span>
+                    </p>
+                </div>
+               </div> -->
+               <div class="account-box">
+                <div class="account-box-details">
+                    <p class="title-with-bg f500">
+                        <span class="desc-left" data-ng-bind="::pullInterNationalization('spectrum.engagement.aggregate.uniqueUsers')"></span>
+                    </p>
+                    <p class="left-font">
+                        <span class="desc-left" data-ng-if="ctrl.showEngagementAggregation" data-ng-bind="ctrl.engagementAggregate.uniqueUsers"></span>
+                        <span class="desc-left small-font" data-ng-if="!ctrl.showEngagementAggregation" data-ng-bind="'Data Loading...'"></span>
+                    </p>
+                </div>
+               </div>
+                <div class="account-box">
+                <div class="account-box-details">
+                    <p class="title-with-bg f500">
+                        <span class="desc-left" data-ng-bind="::pullInterNationalization('spectrum.engagement.aggregate.logins')"></span>
+                    </p>
+                   <p class="left-font">
+                        <span class="desc-left" data-ng-if="ctrl.showEngagementAggregation" data-ng-bind="ctrl.engagementAggregate.logins"></span>
+                        <span class="desc-left small-font" data-ng-if="!ctrl.showEngagementAggregation" data-ng-bind="'Data Loading...'"></span>
+                    </p>
+                </div>
+               </div>
+               
+               <div class="account-box">
+                <div class="account-box-details">
+                    <p class="title-with-bg f500">
+                        <span class="desc-left" data-ng-bind="::pullInterNationalization('spectrum.engagement.aggregate.avgSession')"></span>
+                    </p>
+                    <p class="left-font">
+                        <span class="desc-left" data-ng-if="ctrl.showEngagementAggregation" data-ng-bind="ctrl.engagementAggregate.averageSessions"></span>
+                        <span class="desc-left small-font" data-ng-if="!ctrl.showEngagementAggregation" data-ng-bind="'Data Loading...'"></span>
+                    </p>
+                </div>
+               </div>
+               </div>
+               <div class="col-container floatRight" data-ng-if="!ctrl.profileChartNoData">
+                
+               <div class="account-box">
+                <div class="account-box-details">
+                    <p class="title-with-bg f500">
+                        <span class="desc-left" data-ng-bind="::pullInterNationalization('spectrum.engagement.aggregate.articleView')"></span>
+                    </p>
+                    <p class="right-font">
+                        <span class="desc-left" data-ng-if="ctrl.showEngagementAggregation" data-ng-bind="ctrl.engagementAggregate.articlesViewed"></span>
+                        <span class="desc-left small-font" data-ng-if="!ctrl.showEngagementAggregation" data-ng-bind="'Data Loading...'"></span>
+                    </p>
+                </div>
+               </div>
+               
+               <div class="account-box">
+                <div class="account-box-details">
+                    <p class="title-with-bg f500">
+                        <span class="desc-left" data-ng-bind="::pullInterNationalization('spectrum.engagement.aggregate.articleComplete')"></span>
+                    </p>
+                    <p class="right-font">
+                        <span class="desc-left" data-ng-if="ctrl.showEngagementAggregation" data-ng-bind="ctrl.engagementAggregate.articlesCompleted"></span>
+                        <span class="desc-left small-font" data-ng-if="!ctrl.showEngagementAggregation" data-ng-bind="'Data Loading...'"></span>
+                    </p>
+                </div>
+               </div>
+               
+               </div>
+                <div class="nodataMessageContainer" data-ng-if="ctrl.profileChartNoData">
+			     	<div id="noDataMessage" data-ng-bind="::pullInterNationalization('spectrum.engagement.noRecord')"></div>
+			    </div>
+             </div>
+	  </div>
+	  <hr data-ng-if="ctrl.paFilterMonths.length"/>
+	  
+	  <div class="graph-view-content graph-view-content-graph top-pa-section" data-ng-if="ctrl.paFilterMonths.length">
+	  	  <div class="view-options profile-balance-options category-hr-content top-pa-option">
+	  	  
+	     	 <div class="personality-sort blueprint-sort">
+		  			<div class="sort-area">
+		  			<span class="graph-section-label top-pa-label" data-ng-bind="::pullInterNationalization('spectrum.engagement.topPA')"></span>
+		  				<div class="left-filter-drop pa-filter-drop">
+		  					<div class="filter-dropdown">
+			        	 		<span class="naf-theme-icon_style1 icon-icon_dropdown-arrow sp-icon-color"></span>
+			                    <select class="engagement-opt-select" data-ng-model="ctrl.selectedMonthForPA" data-ng-disabled="ctrl.paFilterMonths.length === 1" data-ng-change="ctrl.changeTopPA();" data-ng-options="list.value as (list.name) for list in ctrl.paFilterMonths">
+                                </select>
+			                </div>
+		  				</div>
+		  			</div>	
+		  		</div>
+		  	</div>
+		  	<div class="col-container floatLeft top-pa">
+                <div class="account-box top-pa" data-ng-repeat="list in ctrl.topPAList">
+                <div class="account-box-details">
+                    <p class="title-with-bg f500 pa-name">{{$index + 1}}. 
+                        <a href="#" data-ng-click="ctrl.viewTopPADetails(list)">
+                         <span class="desc-left mock-link" data-ng-bind="list.name"></span>
+                        </a>
+                    </p>
+                </div>
+               </div>
+               </div>
+	  </div>
+</section>

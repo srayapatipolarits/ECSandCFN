@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>	
+	
+	<definition name="createResume" extends="popup">
+		<put-attribute name="content" value="/resources/html/resume/createResume.html" />
+	</definition>
+	<definition name="pdfPreviewHtml" extends="pdfPreview">
+		<put-attribute name="content" value="/WEB-INF/views/resume/pdfPreview.jsp" />
+	</definition>
+	
+	<definition name="messagePop" extends="popup">
+		<put-attribute name="content" value="/resources/html/resume/message.html" />
+	</definition>
+	
+	<definition name="resumeStart" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/resume/createResumeStart.html" />
+        <put-attribute name="adminHeader"
+            value="/WEB-INF/layouts/standard/spResumeNavigationLinks.jsp" cascade="true" />
+	</definition>
+    	
+    <definition name="connect/linkedinConnected" extends="page">
+		<put-attribute name="content"
+			value="/resources/html/resume/createProfile.html" />
+        <put-attribute name="adminHeader"
+            value="/WEB-INF/layouts/standard/spResumeNavigationLinks.jsp" cascade="true" />
+	</definition>
+	
+	<definition name="connect/linkedinConnect" extends="page">
+		<put-attribute name="content"
+			value="/resources/html/resume/connectLinkedIn.html" />
+        <put-attribute name="adminHeader"
+            value="/WEB-INF/layouts/standard/spResumeNavigationLinks.jsp" cascade="true" />
+	</definition>
+	
+	<definition name="deleteConfirmationResume" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/resume/deleteConfirmation.html" />
+	</definition>
+	
+	
+		
+</tiles-definitions>

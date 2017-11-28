@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <!-- If you delete this meta tag, Half Life 3 will never be released. -->
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>SurePeople</title>
+</head>
+
+<body bgcolor="#FFFFFF" style="margin: 0;padding: 0;font-family: Arial;-webkit-font-smoothing: antialiased;-webkit-text-size-adjust: none;height: 100%;width: 100%!important;">
+    <!-- Content -->
+    <table class="head-wrap" bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%;">
+        <tbody>
+            <tr>
+                <td></td>
+                <td class="header" style="margin: 0 auto!important;padding: 0;font-family: Arial;display: block!important;max-width: 600px!important;clear: both!important;">
+                    <div class="content" style="padding: 0px 15px 15px 15px;margin: 0 auto;font-family: Arial;max-width: 600px;display: block;">
+                        <table bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%;">
+                            <tbody>
+                                <tr>
+                                    <td style="margin: 0;padding: 0;font-family: Arial;">
+                                        <p style="margin: 10px 0 0 0;padding: 0;font-family: Arial; font-size: 14px; color: #5A5B5D; line-height: 16px;">$message$</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- /Content -->
+        <!-- Content -->
+    $if(token)$
+    <table class="head-wrap" bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%;">
+        <tr>
+            <td></td>
+            <td class="header" style="margin: 0 auto!important;padding: 0;font-family: Arial;display: block!important;max-width: 600px!important;clear: both!important;">
+                <div class="content" style="padding: 0px 15px 15px 15px;margin: 0 auto;font-family: Arial;max-width: 600px;display: block;">
+                    <table bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%;">
+                        <tr>
+                            <td style="margin: 0;padding: 0;font-family: Arial;">
+                                <a style="margin:0;padding:3px 10px;text-decoration:none;color:#fff;background:#f63;text-align:center;font-size: 13px;font-weight:bolder;text-transform:uppercase;" href="$baseUrl$sp/processToken/$token$">Provide Feedback</a>
+                                
+                                <p style="margin: 12px 0 0;padding: 0; font-size: 12px; color:#000;">To decline feedback request, please click <a href="$baseUrl$sp/processToken/$token$">here</a>.</p>                            
+                                                            
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    $endif$
+    
+    <!-- /Content -->
+    
+<!-- FOOTER STARTS -->
+    <table style="margin: 30px 0 0; padding: 0; width: 100%;">
+        <tr>
+            <td></td>
+            <td bgcolor="#FFFFFF" style="margin: 0 auto !important; padding: 0; display: block !important; max-width: 600px !important; clear: both !important;">
+                <div style="padding: 0 15px 0 15px; margin: 0;">
+                    <div style="border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc; padding: 20px 0 20px 0; margin: 0 auto; max-width: 600px; display: block;">
+                        <table style="margin: 0; padding: 0; width: 100%;">
+                            <tr>
+                                <td style="margin: 0; padding: 0;">
+                                    <p style="font-size: 14px; line-height: 18px; margin: 0 0 0 0; padding: 0 0 0 0; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #000000; font-weight: 300;">
+                                        <span style="display: block; margin: 0; padding: 0;">Thank
+                      You,</span> <span style="display: block; font-weight: 500; margin: 0; padding: 0;">The
+                      SurePeople Team</span>
+                                    </p>
+                                    <p style="font-size: 12px; line-height: 18px; color: #999999; font-style: italic; padding: 0 0 0 0; margin: 20px 0 0 0; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight: 300;">
+                                        This is a system generated alert. We request that you not reply to this message.</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <table style="margin: 0; padding: 0; width: 100%; clear: both !important;">
+        <tr>
+            <td></td>
+            <td style="margin: 0 auto !important; padding: 0; display: block !important; max-width: 600px !important; clear: both !important;">
+                <div style="padding: 0 15px 0 15px; margin: 0;">
+                    <div style="padding: 0 0 30px 0; margin: 0 auto; max-width: 600px; display: block;">
+                        <table style="margin: 0; padding: 0; width: 100%;">
+                            <tr>
+                                <td style="margin: 0; padding: 0;">
+                                    <p style="margin: 0 0 12px 0; padding: 0; color: #ff6633; font-size: 14px; line-height: 18px; font-weight: 300; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">+1 855-755-SURE (7873)</p>
+
+                                    <p style="font-size: 12px; line-height: 18px; color: #999999; font-style: italic; padding: 0 0 0 0; margin: 0 0 0 0; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight: 300;">
+                                        Copyright &copy; 2017 SurePeople, LLC. All rights reserved.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <!-- /FOOTER ENDS -->    
+</body>
+
+</html>

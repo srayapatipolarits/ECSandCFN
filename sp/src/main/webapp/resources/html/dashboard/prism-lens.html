@@ -1,0 +1,17 @@
+<section class="prismLens-aside" data-ng-if="ctrl.prismLensView">
+    <h4 class="header" data-ng-bind="::pullInterNationalization('dashboard.prismLens')"></h4>
+    <div class="description" data-ng-bind-html="::pullInterNationalization('dashboard.prismLensDescription')"></div>
+
+    <div class="action">
+        <span class="url-action sp-link-color" data-ng-if="!ctrl.prismLensView.feedbackUser" data-ng-click="ctrl.prismLens()" data-ng-bind="::pullInterNationalization('dashboard.Request')"></span>
+        <span data-ng-bind-html="ctrl.prismLensView.message"></span>
+    </div>
+    
+    <div class="assement-pending" data-ng-if="ctrl.prismLensView.feedbackUser.userStatus==='ASSESSMENT_PENDING'">
+        <a href="javascript:void(0)" data-ng-click="ctrl.sendReminderFeedback(ctrl.prismLensView.feedbackUser.email,ctrl.prismLensView.feedbackUser.id)" data-ng-bind="::pullInterNationalization('dashboard.prismLensReminder')"></a>
+    </div>
+    
+    <div class="view-lens" data-ng-if="ctrl.prismLensView.feedbackUser.userStatus==='VALID'">
+        <a href="javascript:void(0)" data-ng-click="ctrl.setLocalStorage('feedbackUserId',ctrl.prismLensView.feedbackUser,'/sp/feedback')" data-ng-bind="::pullInterNationalization('dashboard.prismLensView')"></a>
+    </div>
+</section>

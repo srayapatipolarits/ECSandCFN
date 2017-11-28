@@ -1,0 +1,25 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color adj0"></div>
+                </div>
+                <div class="new-modals-wrapper">
+                
+                    <!-- Top Message Starts -->
+                    <p class="dialog-message-16px" data-ng-bind="::pullInterNationalization('competency.admin.actions.endEvaluation.desc')"></p>
+                    <!-- Top Message Ends -->                  
+                    
+                    <!-- Buttons Starts -->
+                    <div class="dialog-btns-wrapper">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.yes')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="ctrl.endEvaluation();">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.no')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="closeThisDialog();">
+                    </div>
+                    <!-- Buttons Ends -->
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

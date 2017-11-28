@@ -1,0 +1,362 @@
+/** Whitelabeling CSS */
+
+/* Top Navigation */
+.nav-main-app {
+   background-color: $theme.stylesMap.spMainNavBackgroundColor$;
+}
+.nav-main-app-toc h2.active a {
+    color: $theme.stylesMap.spMainNavColor$;
+}
+.nav-main-app-toc h2 a:hover {
+    color: $theme.stylesMap.spMainNavColor$; 
+}
+.container.blueBar+.bg-sub-nav {
+ background-color: $theme.stylesMap.spSubNavBackgroundColor$;
+ background-image: none;
+}
+.bg-sub-nav {
+ background-color: $theme.stylesMap.spSubNavBackgroundColor$;
+ background-image: none;
+} 
+.nav-main-app-toc h2::after {
+border-bottom: 5px solid $theme.stylesMap.spSubNavBackgroundColor$;
+}
+.nav-main-app-toc li.active a span {
+   color: $theme.stylesMap.spSubNavLinkColor$;
+   border-color: $theme.stylesMap.spSubNavLinkColor$;
+}
+.nav-main-app-toc li a:focus span, .nav-main-app-toc li a:hover span, .nav-main-app-toc li.active a:hover span {
+   color: $theme.stylesMap.spSubNavLinkColor$;
+   border-color: $theme.stylesMap.spSubNavLinkColor$;
+}
+
+/* Footer */
+.footer-wrapper {
+  background: $theme.stylesMap.spFooterBackgroundColor$; 
+}
+.sp-footer-text-color {
+ color: $theme.stylesMap.spFooterNavigationTextColor$;   
+}
+footer a:hover {
+ color: $theme.stylesMap.spFooterNavigationHoverColor$;    
+}
+
+/* Link/Buttons and Icons */
+.sp-icon-color { 
+ color: $theme.stylesMap.spIconColor$;   
+}
+.sp-btn-color {
+  border-bottom: none;
+  background: $theme.stylesMap.spButtonColor$; 
+  box-shadow: 0px 4px 0px -2px $theme.stylesMap.spButtonHoverColor$;    
+}
+.sp-btn-color:hover {
+   background-color: $theme.stylesMap.spButtonHoverColor$;
+}
+
+a {
+    color: $theme.stylesMap.spLinkColor$;   
+}
+a:hover {
+  color:$theme.stylesMap.spLinkHoverColor$;    
+}
+.sp-link-color {
+  color: $theme.stylesMap.spLinkColor$;
+}
+.sp-background-color {
+   background: $theme.stylesMap.spButtonColor$;  
+}
+.sp-btn-default-color {
+   color: $theme.stylesMap.spButtonColor$;  
+}
+
+/* Panel Accent Bar */
+.sp-panel-accent {
+   border-top: 4px solid $theme.stylesMap.spPanelAccentbarColor$; 
+}
+
+/* Header Accent Bar */
+.sp-header-accent {
+   background-color: $theme.stylesMap.spHeaderAccentbarColor$; 
+}
+
+/* Component Header Title Color */
+.sp-header-title-color {
+    color:$theme.stylesMap.spHeaderTitleColor$;
+}
+
+/* Sign In Accent Bar */
+#header.signInBorder+#content, #header.signInBorder+#content-container {
+   border-top: solid 7px $theme.stylesMap.spSigninAccentbarColor$;    
+}
+#header.addOrangeBrdr+#content, #header.addOrangeBrdr+#content-container {
+   border-top: solid 7px $theme.stylesMap.spSigninAccentbarColor$;    
+}
+
+/* Dashboard overrides will use button/link colors */
+.db-tab-pager li {
+ color: $theme.stylesMap.spLinkColor$;
+}
+.db-tab-pager li.active {
+  background-color: $theme.stylesMap.spButtonColor$;    
+}
+.db-tab-pager li.active::after {
+border-top: 9px solid $theme.stylesMap.spButtonColor$; 
+}
+.db-tab-pager li.active:hover {
+  background-color: $theme.stylesMap.spButtonHoverColor$;    
+}
+.db-tab-pager li.active:hover::after {
+  border-top-color:$theme.stylesMap.spButtonHoverColor$;    
+}
+
+/** Few button Overrides **/
+.buttoncss {
+   background: $theme.stylesMap.spButtonColor$;
+}
+.sp-btn-wrapper.sp-red {
+    background: none repeat scroll 0 0 $theme.stylesMap.spButtonColor$;  
+}
+.sp-btn-wrapper.sp-red .sp-btn {
+     border-bottom: 2px solid $theme.stylesMap.spButtonHoverColor$;  
+}
+.account-pages a.pill.orange {
+    background: $theme.stylesMap.spButtonColor$; 
+}
+
+/* Logout dropdown background overrides */
+.nav-nice-name-tools li.log-out {
+background-color: $theme.stylesMap.spSigninAccentbarColor$; 
+}
+
+/* Members and groups button style dropdown overrides */
+.toolbar .controls .wrapper-dropdown-5 {
+    background: $theme.stylesMap.spButtonColor$;  
+    border: 1px solid $theme.stylesMap.spButtonColor$;  
+}
+.toolbar .controls .wrapper-dropdown-5 .dropdown {
+      border: 1px solid $theme.stylesMap.spButtonColor$;  
+}
+.toolbar .controls .wrapper-dropdown-5.active .dropdown {
+  border-bottom: 1px solid $theme.stylesMap.spButtonColor$;  
+}
+.toolbar .controls .wrapper-dropdown-5 .dropdown li a {
+   color: $theme.stylesMap.spButtonColor$;  
+   border-bottom: 1px solid $theme.stylesMap.spButtonColor$;  
+}
+.toolbar .controls .wrapper-dropdown-5 .dropdown li:hover a {
+   background: $theme.stylesMap.spButtonColor$;  
+}
+.hiring-list-wrapper p {
+    background: $theme.stylesMap.spButtonColor$; 
+    border: 1px solid $theme.stylesMap.spButtonColor$; 
+ }
+ .hiring-list-wrapper .hiring-list ul {
+   border: 1px solid $theme.stylesMap.spButtonColor$; 
+ }
+ .hiring-list-wrapper .hiring-list li a {
+   color: $theme.stylesMap.spButtonColor$; 
+ }
+ .hiring-list-wrapper .hiring-list li a:focus, .hiring-list-wrapper .hiring-list li a:hover {
+ background: $theme.stylesMap.spButtonColor$; 
+ }
+ 
+ /** Support Page Overrides */
+ .support-body .nav-support-link-list a {
+   background-color: $theme.stylesMap.spButtonColor$;
+ }
+ .support-body .nav-support-link-list a:focus, .support-body .nav-support-link-list a:hover {
+    background-color: $theme.stylesMap.spButtonHoverColor$;
+  }
+ .support-body header.section-faq-header {
+   background-color: $theme.stylesMap.spButtonColor$;
+  } 
+ .support-body header.section-faq-header:hover {
+    background-color: $theme.stylesMap.spButtonHoverColor$;
+  }
+  
+ /** Overlay modal header bar overrides **/
+section.wrapper .contentBody {
+ border-top: 5px solid $theme.stylesMap.spPanelAccentbarColor$; 
+} 
+
+/** Organization dropdown background hover **/
+.lnd-left-style-box ul li:hover {
+  background : $theme.stylesMap.spLinkColor$;
+}
+
+/** Prism Lens Request Tab Overrides **/
+.inviteLink.active {
+  background: $theme.stylesMap.spButtonColor$;
+}
+.inviteLink.active.selected {
+ background: $theme.stylesMap.spButtonColor$;
+}
+.inviteLink.active:hover {
+  background: $theme.stylesMap.spButtonHoverColor$;
+}
+
+/** Blueprint objectives toggle bar overrides */
+.blueprint-content .obj-header-wrap {
+ background-color: $theme.stylesMap.spButtonColor$;
+}
+.blueprint-content .obj-header-wrap:hover {
+ background-color: $theme.stylesMap.spButtonHoverColor$;
+}
+
+/** Prism Personality Bar Overrides */
+.profile-tab-wrapper li.selected {
+  border-top: 4px solid $theme.stylesMap.spButtonColor$;
+}
+.personality-profile-wrapper .profile-wrapper h2 {
+   background-color: $theme.stylesMap.spButtonColor$;
+}
+.compare-candidates .result-tabs li.on {
+  border-top: 4px solid $theme.stylesMap.spButtonColor$;
+}
+
+@media only screen and (max-width: 767px) {
+.profile-tab-wrapper .mobile-tab {
+ background-color: $theme.stylesMap.spButtonColor$;
+}
+.profile-tab-wrapper ul {
+ background: $theme.stylesMap.spButtonHoverColor$;
+}
+}
+
+/** Ind-Org Notes and Feedback Overrides for mobile */
+@media only screen and (max-width: 767px) {
+ .practice-areas-dd a {
+   background: $theme.stylesMap.spButtonColor$;
+ }
+ .practice-areas-dd ul {
+   background: $theme.stylesMap.spButtonHoverColor$;
+ }
+ .practice-areas-dd .return-link {
+   background: $theme.stylesMap.spButtonHoverColor$;
+ }
+}
+
+/** Tooltip Overrides */
+.sp_tooltip .surepeople {
+ border-top: 3px solid $theme.stylesMap.spPanelAccentbarColor$;
+}
+.sp_tooltip .surepeople_norel {
+ border-top: 3px solid $theme.stylesMap.spPanelAccentbarColor$;
+}
+
+/** Mobile dropdown nav menu overrides */
+@media only screen and (max-width: 767px) {
+.nav-nice-name-tools a {
+ background-color: $theme.stylesMap.spSigninAccentbarColor$; 
+}
+.nav-nice-name-tools a:focus, .nav-nice-name-tools a:hover {
+    background-color: $theme.stylesMap.spSigninAccentbarColor$; 
+}
+.nice-name-avatar.hamburger-toggle span.line {
+   background-color: $theme.stylesMap.spSigninAccentbarColor$; 
+ }
+ .nav-main-app-toc>section.nav-dashboard ul a::before {
+  border-right: 6px solid $theme.stylesMap.spSigninAccentbarColor$; 
+ }
+ .nav-main-app {
+  border-top: 4px solid $theme.stylesMap.spMainNavBackgroundColor$;
+ }
+}
+
+/** Mobile Overlay header Background Overrides */
+.mobile-report-modal .report-header {
+ background: $theme.stylesMap.spSubNavBackgroundColor$;
+}
+.lnd-content-dialog .dialog-header-closeBtn {
+ background: $theme.stylesMap.spSubNavBackgroundColor$;
+}
+
+/** Prism Relationship Advisor Mobile Tab Overrides */
+.db-tab-pager li.reverted-bg {
+ background-color: $theme.stylesMap.spButtonColor$;
+}
+.db-tab-pager li.reverted-bg:hover {
+ background-color: $theme.stylesMap.spButtonHoverColor$;
+}
+
+/** New Global Navigation Global accent color override **/
+.new-app-header-wrap {
+    border-bottom: 4px solid $theme.stylesMap.spSigninAccentbarColor$; 
+}
+.new-app-header-wrap.assessment-header {
+    border-bottom: 4px solid $theme.stylesMap.spSigninAccentbarColor$; 
+}
+
+/** Notes Panel tabs overrides */
+.notes-section .notes-tabs .selected {
+  border-bottom: 5px solid $theme.stylesMap.spButtonColor$;
+}
+
+/** Goals Progress Module overrides */
+.goal-information .header.selected {
+  border-top: 4px solid $theme.stylesMap.spLinkColor$;
+}
+
+/** Secondary Color */
+.sp-secondary-color {
+   color: $theme.stylesMap.spSubNavBackgroundColor$;   
+}
+/** Secondary background Color */
+.sp-secondary-bg-color {
+   background: $theme.stylesMap.spSubNavBackgroundColor$;
+}
+
+.empty-hex.miniPollsAdj0.result-hex.adj {
+  border: 1px solid $theme.stylesMap.spButtonColor$;
+}
+.action-plan-section-panel .lp-task-check-wrap .lp-check-icons.icon-lp-uncheck:focus, 
+.action-plan-section-panel .lp-task-check-wrap .lp-check-icons.icon-lp-uncheck:hover {
+  color: $theme.stylesMap.spLinkColor$;
+}
+
+.share-update .file-stack-dashboard-pos:hover {
+  color: $theme.stylesMap.spLinkColor$;
+}
+.share-update .icon-tab-member:hover  {
+  color: $theme.stylesMap.spLinkColor$;
+}
+.share-update .icon-mini-poll:hover  {
+  color: $theme.stylesMap.spLinkColor$;
+}
+
+/** Tags Input Overrides */
+tags-input .tags .tag-item span {
+  background: $theme.stylesMap.spButtonColor$;
+  border: 1px solid $theme.stylesMap.spButtonColor$;
+}
+tags-input .tags .tag-item a {
+  background: $theme.stylesMap.spButtonColor$;
+  border: 1px solid $theme.stylesMap.spButtonColor$;
+}
+tags-input .autocomplete .suggestion-list li:hover {
+ background-color: $theme.stylesMap.spButtonColor$;
+}
+tags-input .autocomplete .suggestion-list li:hover em {
+  background-color: $theme.stylesMap.spButtonColor$;
+}
+.angucomplete-selected-row {
+  background: $theme.stylesMap.spButtonColor$ !important;
+ }
+ tags-input .autocomplete .suggestion-item.selected {
+  background-color: $theme.stylesMap.spButtonColor$;
+ }
+ tags-input .autocomplete .suggestion-item.selected em {
+  background-color: $theme.stylesMap.spButtonColor$;
+ }
+ tags-input .tags .tag-item.selected span {
+  background: $theme.stylesMap.spButtonColor$;
+  border: 1px solid $theme.stylesMap.spButtonColor$;
+ }
+ tags-input .tags .tag-item.selected a {
+  background: $theme.stylesMap.spButtonColor$;
+  border: 1px solid $theme.stylesMap.spButtonColor$;
+ }
+ .news-feed-holder .mention-dropdown-sp .active {
+  background: $theme.stylesMap.spButtonColor$;
+ }

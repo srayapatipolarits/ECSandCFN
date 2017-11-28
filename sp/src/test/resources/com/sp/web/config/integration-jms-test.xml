@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/integration/mongodb http://www.springframework.org/schema/integration/mongodb/spring-integration-mongodb-4.1.xsd
+		http://www.springframework.org/schema/integration/mail http://www.springframework.org/schema/integration/mail/spring-integration-mail.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+    xmlns:int="http://www.springframework.org/schema/integration"
+    xmlns:int-mail="http://www.springframework.org/schema/integration/mail"
+    xmlns:int-mongodb="http://www.springframework.org/schema/integration/mongodb"
+    xmlns:util="http://www.springframework.org/schema/util">
+	
+	<!-- Activemq connection factory -->
+	 <bean id="amqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+  		<constructor-arg index="0" value="${jms.broker.url}" /> 
+	 </bean>
+	 
+	 <!-- ConnectionFactory Definition -->
+	 <bean id="connectionFactory"
+	 class="org.springframework.jms.connection.CachingConnectionFactory">
+	 	<constructor-arg ref="amqConnectionFactory" />
+	 </bean>
+	 
+	 <!-- Destination Topic -->
+	 <bean id="destinationTopic" class="org.apache.activemq.command.ActiveMQTopic" >
+	 <constructor-arg index="0" value="${jms.topic.name}" /> 
+	 </bean>
+	 
+	 <!-- JmsTemplate Definition -->
+	 <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+	 	<property name="connectionFactory" ref="connectionFactory" />
+	 	<property name="defaultDestination" ref="destinationTopic" />
+	 	<property name="pubSubDomain" value="true" />
+	 </bean>
+	 
+	 <!-- Message Publisher 
+	 <bean id="messagePublisher" class="com.sp.web.service.session.SessionUpdateMessagePublisher" / -->
+	 
+	 <!-- Message Subscriber 
+	 <bean id="messageSubscriber" class="com.sp.web.service.session.SessionUpdateMessageSubscriber" / -->
+	 	 
+	 <!-- Message Subscriber Container 
+	 <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destinationName" value="${jms.topic.name}" />
+	 	<property name="messageListener" ref="messageSubscriber" />
+	 	<property name="pubSubDomain" value="true" />
+	 	<property name="sessionTransacted" value="true"/>	 	
+	 </bean -->
+</beans>

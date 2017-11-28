@@ -1,0 +1,28 @@
+<div class="assessment-question-template std_container clear_both clearfix rank-wrapper width_100p assessment-animation-container" data-ng-class="{'rankAdj': templateType==='Rating3'}">
+    <div class="assessment-question std_container clear_both clearfix width_100p">
+        <p data-ng-bind-html="currentQuestion.description" class="questionAdj"></p>
+    </div>
+    <div class="assessment-options-container std_container clear_both clearfix width_100p">
+        <div class="answer-wrapper std_container clear_both clearfix width_100p">
+            <ul id="answer-rank-container">
+                <li data-ng-repeat="opt in randomAnswersList" class="assessment-answer rankAdj drag-enabled" id="{{opt.id}}" repeat-done="templateActions('answer-rank-container', true, (leftAnimation?1000:0))" data-ng-class="{'rank4Adj':templateType!=='Rating3'}">
+                    <span class="drag-dots left" data-ng-class="{'rank4Adj':templateType!=='Rating3'}"></span>
+                    <span class="answer-content-wrapper spaceAdj answer-drag">
+                        <span class="answer-desc removePadding" data-ng-bind="opt.text"></span>
+                    </span>
+                    <span class="drag-dots right" data-ng-class="{'rank4Adj':templateType!=='Rating3'}"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="drag-labels" draggable="false" ondragstart="return false;" ondrop="return false;">
+            <ol draggable="false" ondragstart="return false;" ondrop="return false;" data-ng-class="{'rank4Adj':templateType!=='Rating3'}">
+                <li draggable="false" ondragstart="return false;" ondrop="return false;" data-ng-bind-html="pullInterNationalization('assessment.rankLabel1')"></li>
+                <li draggable="false" ondragstart="return false;" ondrop="return false;" data-ng-bind-html="pullInterNationalization('assessment.rankLabel2')"></li>
+                <li draggable="false" ondragstart="return false;" ondrop="return false;" data-ng-bind-html="pullInterNationalization('assessment.rankLabel3')"></li>
+                <li draggable="false" data-ng-if="templateType!=='Rating3'" ondragstart="return false;" ondrop="return false;" data-ng-bind-html="pullInterNationalization('assessment.rankLabel4')"></li>
+            </ol>
+        </div>
+        <a href="javascript:void(0)" class="answer-next-btn" data-ng-click="nextEnable && callToActions('next', 'answer-rank-container', false)" data-ng-bind="pullInterNationalization('assessment.btn1')" data-ng-class="{'disable':!nextEnable}"></a>
+        <!--a href="javascript:void(0)" class="answer-next-btn" data-ng-click="nextEnable && callToActions('next', 'answer-rank-container', false)" data-ng-bind="!isFinish?pullInterNationalization('assessment.btn1'):pullInterNationalization('assessment.bnt3')" data-ng-class="{'disable':!nextEnable}"></a-->
+    </div>
+</div>

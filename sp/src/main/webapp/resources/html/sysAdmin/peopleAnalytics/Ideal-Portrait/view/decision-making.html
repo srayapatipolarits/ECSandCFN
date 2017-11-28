@@ -1,0 +1,46 @@
+<section class="keyMatch">
+    <article class="match-holder">
+        <h3 class="match-holder-heading weight-500" data-ng-bind="::pullInterNationalization('spectrum.trait.DecisionMaking')"></h3>
+        <article class="range-data-section">
+            <div class='data-content-two-way'>
+               <!-- Inward And Outward -->
+			
+                <div class="tick-selection clearfix">
+                    <input type="checkbox" class="filterCheckBox" id="Outward" data-ng-model="portraitMatch.categoryDataMap.DecisionMaking.Outward.enabled" data-ng-true-value="true" data-ng-false-value="false" data-ng-change="includeCheck('Outward',filterSelected.DecisionMaking)">
+                    <label for="Outward" class="filterCheckBox-label">
+                  		<span class="checkedTick pull-left bpPopFix  icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                        <span class="font_14_300 pull-left" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Outward')+' '+pullInterNationalization('idealPortrait.portrait.processing.vs')+' '+pullInterNationalization('spectrum.trait.type.Inward')"></span>
+                    </label>
+                    <range-drag data-steps="21" data-label1="pullInterNationalization('spectrum.trait.type.Outward')" data-label2="pullInterNationalization('spectrum.trait.type.Inward')" drag-range="portraitMatch.categoryDataMap.DecisionMaking.Outward.matchCriterias[0].matchPercent" checkbox-fn="includeCheck('Outward',filterSelected.DecisionMaking)" range-data1="portraitMatch.categoryDataMap.DecisionMaking.Outward.matchCriterias[0].matchPercent" editable="portraitMatch.categoryDataMap.DecisionMaking.Outward.enabled"></range-drag>
+                    <!-- <div class="labels clearfix">
+                        <span class="pull-left font_14_300 sp-spectrum-label-color" data-ng-bind="portraitMatch.categoryDataMap.DecisionMaking.Outward.matchCriterias[0].matchPercent+'% '+pullInterNationalization('spectrum.trait.type.Outward')"></span>
+                        <span class="pull-right font_14_300 sp-spectrum-label-color" data-ng-bind="(100 - portraitMatch.categoryDataMap.DecisionMaking.Outward.matchCriterias[0].matchPercent)+'% '+pullInterNationalization('spectrum.trait.type.Inward')"></span>
+                    </div>-->
+                </div>
+            </div>
+            <div class='data-content-two-way'>
+                <!-- Rapid And Careful -->
+                <div class="tick-selection clearfix">
+                    <input type="checkbox" class="filterCheckBox" id="Careful" data-ng-model="portraitMatch.categoryDataMap.DecisionMaking.Careful.enabled" data-ng-true-value="true" data-ng-false-value="false" data-ng-change="includeCheck('Careful',filterSelected.DecisionMaking)">
+                    <label for="Careful" class="filterCheckBox-label">
+                  		<span class="checkedTick pull-left bpPopFix icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                        <span class="font_14_300 pull-left" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Careful')+' '+pullInterNationalization('idealPortrait.portrait.processing.vs')+' '+pullInterNationalization('spectrum.trait.type.Rapid')"></span>
+                    </label>
+                    <range-drag data-steps="21" data-label1="pullInterNationalization('spectrum.trait.type.Careful')" data-label2="pullInterNationalization('spectrum.trait.type.Rapid')" drag-range="portraitMatch.categoryDataMap.DecisionMaking.Careful.matchCriterias[0].matchPercent" checkbox-fn="includeCheck('Careful',filterSelected.DecisionMaking)" range-data1="portraitMatch.categoryDataMap.DecisionMaking.Careful.matchCriterias[0].matchPercent" editable="portraitMatch.categoryDataMap.DecisionMaking.Careful.enabled"></range-drag>
+                    <!-- <div class="labels clearfix">
+                        <span class="pull-left font_14_300 sp-spectrum-label-color" data-ng-bind="portraitMatch.categoryDataMap.DecisionMaking.Careful.matchCriterias[0].matchPercent+'% '+pullInterNationalization('spectrum.trait.type.Careful')"></span>
+                        <span class="pull-right font_14_300 sp-spectrum-label-color" data-ng-bind="(100 - portraitMatch.categoryDataMap.DecisionMaking.Careful.matchCriterias[0].matchPercent)+'% '+pullInterNationalization('spectrum.trait.type.Rapid')"></span>
+                    </div>-->
+                </div>
+            </div>
+        </article>
+        <div class="trait-list-description">
+            <div class="trait-listing processing">
+                <p data-ng-bind="::pullInterNationalization('idealPortrait.portrait.decision.outward')"></p>
+            </div>
+            <div class="trait-listing processing">
+                <p data-ng-bind="::pullInterNationalization('idealPortrait.portrait.decision.inward')"></p>
+            </div>
+        </div>
+    </article>
+</section>

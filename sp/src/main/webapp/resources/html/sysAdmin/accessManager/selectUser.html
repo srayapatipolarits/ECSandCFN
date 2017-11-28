@@ -1,0 +1,80 @@
+<div class="container" id="editGroup">
+    <div class="row">
+        <div class="col-xs-offset-3 col-xs-6 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6 members affiliate-listing library-home mob12">
+            <div>
+                <section class="wrapper">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar" data-ng-if="ctrl.isCompanySelect">Select Company</div>
+                                <div class="headerBar" data-ng-if="ctrl.isMemberSelect">Select User</div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                            </div>
+                        </div>
+                        <!-- Members Starts -->
+                        <div class="contentArea article-select" data-ng-if="ctrl.isMemberSelect">
+                            <div class="pulse pulse-admin" >
+                                <div class="select-article-modal clearfix">
+                                    <div class="toolbar clearfix">
+                                    	<p style="margin:30px 30px 15px;padding:0;font-size:14px;font-weight:300;">Company:</p>
+                                    	<p style="margin:0px 30px 0px;padding:0;">
+                                    		<span style="margin:0px;padding:0 0 5px 0;font-size:14px;font-weight:700;line-height:14px;" data-ng-bind="ctrl.storeCompany.name"></span>
+                                    		<span style="margin:0px;padding:0;font-size:12px;font-weight:100;" >{{ctrl.storeCompany.city}}, {{ctrl.storeCompany.country}}</span>
+                                    	</p>
+                                    	<hr style="margin:30px;padding:0;width:89%;height:1px;border:0;background:#ccc;"/>
+                                    </div>
+                                    <article class="memberHolder adminMemberHolder" style="height:200px;overflow:scroll;">
+		                                <div class="tagsEmailInput" style="padding:10px 30px 30px;">
+		                                    <tags-input ng-model="tags" display-name="email" display-property="name" max-tags="1"  placeholder="{{::pullInterNationalization('dashboard.enteremail')}}" add-from-autocomplete-only="true" replace-spaces-with-dashes="false" on-tag-removed="ctrl.tagRemoved($tag)" on-tag-added="ctrl.tagAdded($tag)">
+		                                        <auto-complete max-tags="1" min-length="1" load-on-focus="true" load-on-empty="true" max-results-to-show="6" source="ctrl.loadTags($query)" class="ng-tags-pos-fix"></auto-complete>
+		                                    </tags-input>  
+		                                </div>                                    
+                                    </article>
+                                    <a href="#" style="margin:35px 10px 45px 30px;float:left;" class="btn-block btn-14px sp-btn-color" data-ng-class="ctrl.selectedUser?'':'noSubmit'" data-ng-click="ctrl.selectedUser?ctrl.redirectToAccessPage(ctrl.selectedUser):''">SELECT USER</a>
+                                    <a href="#" style="margin:35px 0 45px 0px;float:left;" class="btn-block btn-14px sp-btn-color" data-ng-click="ctrl.cancelUserSelection();">CANCEL</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Members Ends -->
+                        <!-- Company Starts -->
+                        <div class="contentArea article-select" data-ng-if="ctrl.isCompanySelect">
+                            <div class="pulse pulse-admin" >
+                                <div class="select-article-modal clearfix">
+                                    <div class="toolbar clearfix">
+                                        <div class="controls clearfix">
+                                            <div class="controlwrap search">
+                                                <input type="text" class="form-control ng-pristine ng-valid pSearchBox" maxlength="28" data-ng-model="ctrl.companySearchText" placeholder="Search Company">
+                                                <button class="sp-icon-color" ng-class="ctrl.companySearchText.length? 'icon-icon_remove':'icon-icon_search'" data-ng-click="ctrl.companySearchText=''"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="filters">
+                                    </div>
+                                    <article class="memberHolder adminMemberHolder" style="height:316px;overflow:scroll;">
+                                        <div class="complete-profile" data-ng-class="{active:show, 'top-brd':({{$index}}===0)}" id='{{$index}}' data-ng-repeat="companyList in recordField = (ctrl.companiesList | filter:ctrl.companySearchText)">
+                                            <div class="table-row clearfix">
+                                                <div class="col-xs-9">
+                                                    <p class="code">
+                                                        <span style="margin:0;padding:0" data-ng-bind="companyList.name"></span>
+                                                        <span style="margin:0;padding:0;font-size:12px;" data-ng-bind-html="companyList.address.city+', '+companyList.address.country"></span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    <!-- Added inline style for testing. Will be removed or moved to proper Less files -->
+                                                    <a href="#" class="btn-block btn-14px sp-btn-color" style="margin-top:6px" data-ng-click="ctrl.getCompanyMembers(companyList.id, companyList.name, companyList.address.city, companyList.address.country)">Select</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p ng-show="!recordField.length" class="noMatchFound ng-hide" data-ng-bind="'No Companies Found'"></p>
+                                    </article>
+                                    <a href="#" style="margin:35px 0 45px 30px;" class="btn-block btn-14px sp-btn-color" data-ng-click="closeThisDialog()">CANCEL</a>                                                       
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Company Ends -->
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

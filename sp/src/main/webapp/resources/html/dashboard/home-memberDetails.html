@@ -1,0 +1,76 @@
+<div class="member-profile-wrapper" data-ng-init="ctrl.initMemberProfile()">
+	<a href="/sp/dashboard/groups" class="icon-icon_remove close-view"></a>
+    <div class="member-details-wrap sp-panel-accent fullW">
+    	<div class="mem-profile-pic">
+	        <img data-ng-src="{{ctrl.memberProfileBackup.smallProfileImage}}" alt="{{ctrl.memberProfileBackup.userInitials}}" data-ng-if="ctrl.memberProfileBackup.smallProfileImage">
+	        <div class="imgReplacementBig topSpace" data-ng-if="!ctrl.memberProfileBackup.smallProfileImage" data-ng-bind="ctrl.memberProfileBackup.userInitials"></div>    		
+    	</div>
+    	<div class="mem-personal-details">
+    		<p class="mem-name">
+    			<span data-ng-bind="ctrl.memberProfileBackup.name" data-ng-if="ctrl.memberProfileBackup.name"></span>
+    			<span data-ng-if="ctrl.userPermissions.isAccountAdministrator">
+    				<span class="thin mt4" data-ng-bind="::pullInterNationalization('dashboard.groups.admin')"></span>
+    			</span>
+    		</p>
+    		<p class="mem-title" data-ng-bind="ctrl.memberProfileBackup.title" data-ng-if="ctrl.memberProfileBackup.title"></p>
+    		<p class="mem-email">
+    			<a href="mailto:{{ctrl.memberProfileBackup.email}}" class="border-link">
+    				<span class="mock-link" data-ng-bind="ctrl.memberProfileBackup.email"></span>
+    			</a>
+    		</p>
+    	</div>
+    </div>
+</div>
+<div class="new-cols filters-col full-spanned noMleft">
+	<div class="sp-panel-accent">
+    <div class="col-content-wrapper mh700 noTopSpace">
+        <div class="internal-nav-links-wrapper noMTop">
+            <ul>
+                <!--li class="nobTop">
+                    <a href="javascript:void(0)" class="profile-links" data-ng-bind-html="::pullInterNationalization('manageAccountContent.linksProfile')" data-ng-click="ctrl.setMemberDetailsView('Profile')" data-ng-class="ctrl.memberNav==='Profile'?'on':''"></a>
+                    <span data-ng-class="ctrl.memberNav==='Profile'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" class="profile-links" data-ng-bind-html="::pullInterNationalization('manageAccountContent.linksGroupsTags')" data-ng-click="ctrl.setMemberDetailsView('groupsTags')" data-ng-class="ctrl.memberNav==='groupsTags'?'on':''"></a>
+                    <span data-ng-class="ctrl.memberNav==='groupsTags'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                </li-->
+                <li class="nobTop">
+                    <a href="javascript:void(0)" class="profile-links" data-ng-bind-html="::pullInterNationalization('manageAccountContent.linksPrism')" data-ng-click="(ctrl.assessmentStatus==='VALID' && ctrl.companyFeatures.isPrism)?ctrl.setMemberDetailsView('prismPortrait'):''" data-ng-class="{'on':ctrl.memberNav==='prismPortrait','disabled':ctrl.assessmentStatus!=='VALID'}"></a>
+                    <span data-ng-class="ctrl.memberNav==='prismPortrait'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" class="profile-links" data-ng-bind-html="::pullInterNationalization('navigation.prism.360')" data-ng-click="(ctrl.assessmentStatus==='VALID' && ctrl.companyFeatures.isPrismLens)?ctrl.setMemberDetailsView('prismLens'):''" data-ng-class="{'on':ctrl.memberNav==='prismLens','disabled':(ctrl.assessmentStatus!=='VALID' || !ctrl.companyFeatures.isPrismLens)}"></a>
+                    <span data-ng-class="ctrl.memberNav==='prismLens'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                </li>                
+                <li>
+                    <a href="javascript:void(0)" class="profile-links" data-ng-bind-html="::pullInterNationalization('manageAccountContent.linksLnd')" data-ng-click="ctrl.assessmentStatus==='VALID'?ctrl.setMemberDetailsView('lndSection'):''" data-ng-class="{'on':ctrl.memberNav==='lndSection','disabled':ctrl.assessmentStatus!=='VALID'}"></a>
+                    <span data-ng-class="ctrl.memberNav==='lndSection'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                </li>                                
+                <li>
+                    <a href="javascript:void(0)" class="profile-links" data-ng-bind-html="::pullInterNationalization('dashboardUserAnalysis.performance')" data-ng-click="(ctrl.assessmentStatus==='VALID' && ctrl.companyFeatures.isBluePrint)?ctrl.setMemberDetailsView('blueprint'):''" data-ng-class="{'on':ctrl.memberNav==='blueprint','disabled':(ctrl.assessmentStatus!=='VALID' || !ctrl.companyFeatures.isBluePrint)}"></a>
+                    <span data-ng-class="ctrl.memberNav==='blueprint'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                </li>                                                
+            </ul>
+        </div>
+    </div>
+    </div>
+    <div class="filter-col-sham"></div>
+</div>
+<div class="new-cols content-col sp-panel-accent" data-ng-if="ctrl.memberNav==='Profile'">
+ <ng-include src="'/sp/resources/html/dashboard/memberDetails-profile.html'"></ng-include>
+</div>
+<div class="new-cols content-col sp-panel-accent"  data-ng-if="ctrl.memberNav==='groupsTags'">
+ <ng-include src="'/sp/resources/html/dashboard/memberDetails-groupsTags.html'"></ng-include>
+</div>
+<div class="new-cols content-col sp-panel-accent" data-ng-if="ctrl.memberNav==='blueprint'">
+ <ng-include src="'/sp/resources/html/dashboard/memberDetails-blueprint.html'"></ng-include>
+</div>
+<div class="new-cols content-col sp-panel-accent"  data-ng-if="ctrl.memberNav==='prismLens'">
+ <ng-include src="'/sp/resources/html/dashboard/memberDetails-prismLens.html'"></ng-include>
+</div>
+<div class="new-cols content-col sp-panel-accent" data-ng-if="ctrl.memberNav==='lndSection'">
+ <ng-include src="'/sp/resources/html/dashboard/memberDetails-lndSection.html'"></ng-include>
+</div>
+<div class="new-cols content-col sp-panel-accent noSpace" data-ng-if="ctrl.memberNav==='prismPortrait'">
+ <ng-include src="'/sp/resources/html/dashboard/memberDetails-prismPortrait.html'"></ng-include>
+</div>

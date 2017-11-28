@@ -1,0 +1,18 @@
+<!-- Reset Password Starts -->
+<div class="x-container login-wrapper">
+	<div class="container hide"  data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'">
+		<div class="row">
+				<div class="error-msgs">
+					<h2 class="sign-in-title"
+						data-ng-bind="pullInterNationalization('linkExpired.heading')"></h2>
+					<p class="sign-in-instruction"
+						data-ng-bind="pullInterNationalization('linkExpired.message')"></p>
+				</div>
+
+				<p class="password-reset">
+					<a href="/sp" data-ng-bind="pullInterNationalization('linkExpired.link.name')"></a>
+				</p>
+		</div>
+	</div>
+</div>
+<!-- Reset Password Ends -->

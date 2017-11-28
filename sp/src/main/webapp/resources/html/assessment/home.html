@@ -1,0 +1,102 @@
+<div class="new-assessment-wrapper std_container clear_both clearfix">
+    <!-- 
+        Responsive Assessment Menu Starts  
+    -->
+    <div class="assessment-responsive-menu" id="assessment-menu" draggable="false" ondragstart="return false;" ondrop="return false;">
+        <ol>
+            <li>
+                <a href="/sp/logout" data-ng-bind-html="pullInterNationalization('assessment.savelogout')"></a>
+            </li>
+        </ol>
+        <div class="assessment-footer" data-ng-controller="footerController as ctrl" data-ng-if="inviteReady">
+            <p class="af-logo icon-logo-badge"></p>
+            <p class="af-copy" data-ng-bind-html="::pullInterNationalization('footer.copyright')"></p>
+            <ol class="af-links">
+                <li>
+                    <a href="/sp/resources/html/footer/privacy.html" id="event_footer-link_privacy" data-ng-click="ctrl.footerLinks('privacy', $event)" data-ng-bind-html="::pullInterNationalization('footer.privacy')"></a>
+                </li>
+                <li>&amp;</li>
+                <li>
+                    <a href="/sp/resources/html/footer/agreement.html" id="event_footer-link_user-agreement" data-ng-click="ctrl.footerLinks('agreement', $event)" data-ng-bind-html="::pullInterNationalization('footer.termsOfUser')">User Agreement</a>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <!-- 
+        Responsive Assessment Menu Ends  
+    -->
+    <!-- 
+        Responsive Assessment Instruction POP UP Starts   
+    -->
+    <div class="assessment-instruction-popup" id="instruction-popup">
+        <p class="instruction-header assessment-info-pop">
+            <span class="i-img" data-ng-class="iconName"></span>
+            <span class="i-txt" data-ng-bind-html="iconDesc"></span>
+            <a href="javascript:void(0)" class="i-info rightNone icon-assessment_close instructionClose" id="instructionPopClose"></a>
+        </p>
+        <div class="instruction-content std_container clear_both clearfix width_100p responsive-adj">
+            <p data-ng-bind="categoryInstruction"></p>
+        </div>
+        <a href="javascript:void(0)" data-ng-show="!showContinueText" class="answer-next-btn posAdj instructionClose" id="instructionPopContinue" data-ng-bind="pullInterNationalization('home.continue.proceed')"></a>
+    </div>
+    <!-- 
+        Responsive Assessment Instruction POP UP Starts   
+    -->
+    <!-- Progress Bar Starts -->
+    <div class="assessment-progress-bar std_container clear_both clearfix">
+        <div class="assessment-progress-tracker std_container clear_both clearfix">&#160;</div>
+    </div>
+    <!-- Progress Bar Ends -->
+    <!-- Questions / Options Layout Starts -->
+    <div class="new-assessment-layout std_container clear_both clearfix">
+        <div class="assessment-col-layout std_container clear_both clearfix">
+            <div class="assessment-col-left">
+                <p class="instruction-header instruction-icon-animate">
+                    <span class="i-img" data-ng-class="iconName"></span>
+                    <span class="i-txt" data-ng-bind-html="iconDesc"></span>
+                </p>
+                <div class="instruction-content std_container clear_both clearfix width_100p instruction-container-animate">
+                    <p data-ng-bind="categoryInstruction"></p>
+                </div>
+                
+                <div class="assessment-icon-crumbs" data-ng-if="categoriesCount > 2">
+                	<p class="iCrumb-shuffle icon-assessment_shffule"></p>
+                	<ul class="iCrumb-list">
+                		<li class="iCrumb-choose icon-assessment_page_choose" data-ng-if="templateType !== 'MultipleChoice2'"></li>
+                		<li class="iCrumb-choose icon-assessment_most-least" data-ng-if="templateType !== 'MultipleChoice4'"></li>
+                		<li class="iCrumb-choose icon-assessment_rank_new" data-ng-if="templateType !== 'Rating3' && templateType !== 'Rating4'"></li>
+                		<li class="iCrumb-choose icon-assessment_mostleast_new" data-ng-if="templateType !== 'PersonalityRating4'"></li>
+                	</ul>
+                </div>
+                
+                <div class="assessment-footer" data-ng-controller="footerController as ctrl" data-ng-if="inviteReady">
+                    <p class="af-logo icon-logo-badge"></p>
+                    <p class="af-copy" data-ng-bind-html="::pullInterNationalization('footer.copyright')"></p>
+                    <ol class="af-links">
+                        <li>
+                            <a href="/sp/resources/html/footer/privacy.html" id="event_footer-link_privacy" data-ng-click="ctrl.footerLinks('privacy', $event)" data-ng-bind-html="::pullInterNationalization('footer.privacy')"></a>
+                        </li>
+                        <li>&amp;</li>
+                        <li>
+                            <a href="/sp/resources/html/footer/agreement.html" id="event_footer-link_user-agreement" data-ng-click="ctrl.footerLinks('agreement', $event)" data-ng-bind-html="::pullInterNationalization('footer.termsOfUser')">User Agreement</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="assessment-col-right">
+                <div class="assessment-previous std_container clear_both clearfix">
+                    <p class="instruction-header pdLeftAdj assessment-responsive-hide assessment-previous-link">
+                        <a href="javascript:void(0)" class="i-img icon-assessment_previous" data-ng-click="(!isPrevious && completedAnswers > 0)?previousQuestion():''" data-ng-class="{'disabled': isPrevious || completedAnswers < 1}"></a>
+                    </p>
+                    <p class="instruction-header pdLeftAdj10 assessment-responsive-instructions">
+                        <span class="i-img" data-ng-class="iconName"></span>
+                        <span class="i-txt" data-ng-bind-html="iconDesc"></span>
+                        <a href="javascript:void(0)" class="i-info icon-assessment_info" id="assessmentResponsiveInfo"></a>
+                    </p>
+                </div>
+                <div id="assessment-template-container" class="std_container clear_both clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Questions / Options Layout Ends -->
+</div>

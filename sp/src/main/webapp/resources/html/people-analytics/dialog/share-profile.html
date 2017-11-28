@@ -1,0 +1,45 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                	<h2 data-ng-if="selectedMemberInfo.type==='HiringCandidate'" data-ng-bind="::pullInterNationalization('candidates.addCandidates.sharePortrait.candidate')"></h2>
+                	<h2 data-ng-if="selectedMemberInfo.type==='Member'" data-ng-bind="::pullInterNationalization('candidates.addCandidates.sharePortrait.employee')"></h2>
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                </div>
+                <div class="new-modals-wrapper form-list-c">
+                   <!-- Email List Starts  -->
+                    <div class="multiple-emails-block">
+                        <div class="table-content">
+                            <div class="left-cont">
+                                <p data-ng-if="selectedMemberInfo.type === 'Member'" data-ng-bind="::pullInterNationalization('pa.selectedEmployees')"></p>
+                                <p data-ng-if="selectedMemberInfo.type === 'HiringCandidate'" data-ng-bind="::pullInterNationalization('pa.selectedCandidates')"></p>
+                            </div>
+                            <div class="right-cont">
+                                <p class="email-list">
+                                    <span>
+                                    <span data-ng-if="ctrl.deleteMemberInfo.name" data-ng-bind="selectedMemberInfo.name"></span>
+                                    <span data-ng-if="!ctrl.deleteMemberInfo.name" data-ng-bind="selectedMemberInfo.email"></span>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Email List Ends  -->   
+                    <p class="table-content share-portrait-style" data-ng-if="selectedMemberInfo.type==='HiringCandidate'" data-ng-bind="::pullInterNationalization('candidates.addCandidates.sendLinkPrismPortrait')"></p>
+                    <p class="table-content share-portrait-style" data-ng-if="selectedMemberInfo.type==='Member'" data-ng-bind="::pullInterNationalization('candidates.addCandidates.sendLinkPrismPortraitemp')"></p>
+                    
+                    <!-- Link to Public Profile -->
+                	<input type="text" disabled="disabled" name="profileShareId" value="{{shareProfileUrl}}" class="disabled color_eee">
+                    
+                    <!-- Buttons Starts -->
+                    <div class="dialog-btns-wrapper">
+                        <input type="button" value="{{::pullInterNationalization('practiceArea.send')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="sendProfilePortrait()">
+                        <input type="button" value="{{::pullInterNationalization('practiceArea.Cancel')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="closeThisDialog();">
+                    </div>
+                    <!-- Buttons Ends -->                  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

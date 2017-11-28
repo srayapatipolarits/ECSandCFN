@@ -1,0 +1,98 @@
+<div class="x-container account-recharge hide addCreditSection" ng-controller="addCreditControler" ng-init="initAddMemberAccoutns('INDIVIDUAL')" ng-if="inviteReady" ng-class="inviteReady?'show':'hide'">
+    <div class="container" >
+        <div class="bg-wrapper">
+            <div class="cont-wrapper new-contianer">
+                <div class="module-head">
+                    <h2>Add Credit</h2>
+                    <p class="err fl spc" ng-show="productInfoError">
+                        <span class="err-msg"><span class="icon">!</span> <span data-ng-bind="pullInterNationalization('admin.account.add.memberaccounts.error.server')"></span></span>
+                    </p>
+                    <p class="err fl spc" ng-show="serverError">
+                        <span class="err-msg" ng-repeat="(key, value) in serverErrorMsg"><span class="icon">!</span> <span data-ng-bind="value"></span></span>
+                    </p>                    
+					
+						<p class="title-top first m-top-regular"><span class="b-500" data-ng-bind="account.account.productInfo.name"></span></p>
+		                <p><span class="b-500">Account number:</span> <span class="b-300" data-ng-bind="account.account.id"></span></p>
+		                <!-- <p><span class="b-500">Company:</span> <span class="b-300" data-ng-bind="account.company.name"></span></p>-->
+		               
+                    <p><span data-ng-bind="(12*(account.account.agreementTerm||1))+' '+pullInterNationalization('admin.account.add.memberaccounts.monthlysubscriptions')"></span>
+                        <span class="highlight" data-ng-bind="account.account.aggreementEndDate"></span>
+                    </p>        
+                    <div class="separateSection">
+                   		<p class="title-top first m-top-regular"><span class="b-500">Payment & Credit Details</span></p>            
+	                    <p><span class="b-500">Payment Type:</span> <span class="b-300" data-ng-bind="account.account.paymentType"></span></p>
+		                <p><span class="b-500">Credit Balance:</span> <span class="b-300" data-ng-bind="account.account.paymentInstrument.creditBalance | currency"></span></p>
+	                    <form name="spSubscribe" novalidate autocomplete="off" ng-submit="addCredit(spSubscribe,'Individual')">
+		                    <ol class="form-list-c form-list-d clearfix">
+						        <!-- <li class="col_2">
+						          <label for="cnr">Credit Note #</label>
+						          <input type="text" autocomplete="off" name="cnr" class="grey" ng-model="account.account.lastPayment.txnId" disabled="true" placeholder="Credit Note Reference"/>
+						        </li>-->
+						        <li class="col_2">
+		                    		<label for="cpt">Payment Type</label>
+						            <div class="select-wrapper select-border-color"> 
+					                  	<select class="select-option-style" name="cpt"  id="cpt" ng-model="signup.cpt" required>
+					                    	<option value="">Select</option>
+					                        <option value="SP_INTERNAL">SP Internal</option>
+					                         <option value="WIRE">Wire Transfer</option>
+			                        		<option value="TRIAL">Trial</option>
+					                	</select>
+				              	    </div>
+						            <span class="err-msg select-err validate-error" ng-show="submitted && spSubscribe.cpt.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+						        </li>
+						        <li class="col_2 noright">
+						          <label for="camount">Credit Amount</label>
+						          <input type="text" autocomplete="off" name="camount" ng-pattern="/^[1-9][0-9]{0,9}(?:,?[0-9]{3}){0,3}(?:\.[0-9]{1,2})?$/" ng-model="amount" placeholder="Amount" required/>
+						          <span class="err-msg validate-error" ng-show="submitted && spSubscribe.camount.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+						          <span class="err-msg validate-error" ng-show="submitted && spSubscribe.camount.$error.pattern" data-ng-bind="'Please enter valid amount'"></span>
+						          <span class="err-msg validate-error" ng-show="submitted && amount=='0'">Please enter valid amount</span>
+				                </li>
+						        <li class="clear">
+						          <label for="ccomment">Comment</label>
+						          <textarea class="textArea" autocomplete="off" name="ccomment"  ng-model="signup.ccomment" placeholder="Comment" required></textarea>
+						          <span class="err-msg validate-error" ng-show="submitted && spSubscribe.ccomment.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+						        </li>
+						      </ol> 
+						       <div class="form-btns">
+				                    <div class="sp-btn-wrapper sp-red" ng-class="submitDisabled===true?'disabled':''">
+				                        <div class="sp-btn">
+				                            <input type="submit" value="{{pullInterNationalization('admin.account.add.memberaccounts.Submitbtn')}}" class="saveBtn"/>
+				                        </div>
+				                    </div>
+				                    <div class="sp-btn-wrapper sp-grey">
+				                        <div class="sp-btn">
+				                            <input type="button" value="{{pullInterNationalization('admin.account.add.memberaccounts.cancelbtn')}}" class="cancelBtn" ng-click="cancelRedirect('Individual')" />
+				                        </div>
+				                    </div>
+				                </div>
+					      </form>  
+                    </div>                
+                </div>
+              </div>
+              <div class="cont-wrapper-2">
+              	<div class="cc-details-wrapper">
+                    <p class="title"><span class="b-500">Next bill details</span></p>
+                    <div class="clearfix row">
+	                    <div class="col-md-12 col-sm-12 row">
+	                    	<div class="col-md-5 col-sm-5">
+	                    		<span class="b-500">Date</span>
+	                    	</div>
+	                    	<div class="col-md-7 col-sm-7">
+	                    		<span class="b-500">Amount</span>
+	                    	</div>
+	                    </div>
+	                    <div class="col-md-12 col-sm-12 row">
+	                    	<div class="col-md-5 col-sm-5">
+	                    		<span data-ng-bind="account.account.productInfo.renewalDate"></span>
+	                    	</div>
+	                    	<div class="col-md-7 col-sm-7">
+	                    		<span data-ng-bind="account.account.productInfo.renewalTotal| currency"></span>
+	                    	</div>
+	                    </div>	
+                    </div>
+                </div>
+              </div>
+                
+        </div>
+    </div>
+</div>

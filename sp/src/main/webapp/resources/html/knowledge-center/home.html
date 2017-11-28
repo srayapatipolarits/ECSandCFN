@@ -1,0 +1,90 @@
+<div class="x-container article-teasers home_Library oVisible">
+    <div class="container">
+        <div class="table-flex-cols">
+            <!-- Left Sections Starts -->
+            <aside class="related-content table-col-hide">
+                <practice-areas-widget data-pause-search="false" url-src="practice-areas-widget.html" data-type="standard"></practice-areas-widget>
+                <trending-widget url-src="trending-widget.html"></trending-widget>
+                <spotlight-widget url-src="spotlight-widget.html"></spotlight-widget>
+            </aside>
+            <!-- Left Sections Ends -->
+            <div class="available-stories main-content">
+                <article class="article-teaser-panel space-adj event-featured-articles" data-ng-class="{'two-col m0':!$first}" data-ng-repeat="record in trainingLibraryControl.Content track by $index">
+                    <div class="book-mark-share">
+                            <div class="book-mark-share-title sp-header-accent">
+                                <a data-ng-href="/sp/trainingLibrary/results#/topicCategory=Themes&topicValue={{record.goal.id}}:{{record.goal.name}}" data-ng-bind="record.goal.name"></a>
+                            </div>
+                        <div class="share-bookmark-tools hide">
+                            <div class="share-bookmark-toggle" data-ng-click="articleBookmark(record.articleLinkUrl)"></div>
+                        </div>
+                    </div>
+                    <div class="article-media" data-ng-if="record.imageUrl">
+                        <img data-ng-src="{{record.imageUrl}}?width=764" alt="">
+                        <!--fpo-feature-story-784.jpg-->
+                    </div>
+                    <div class="article-synopsis" data-ng-class="record.imageUrl?'':'full-width bodyTop0'">
+                        <h2 class="synopsis-lede">
+                                            <div data-ng-if="$index === 0">
+                                                <a class="border-link" href="/sp/trainingLibrary/article?{{record.articleLinkUrl}}"  id="event_title_article-featured_{{record.articleType}}">
+                                                    <span class="mock-link black-link" data-ng-bind="record.articleLinkLabel"></span>
+                                                </a>
+                                            </div>
+                                            <div data-ng-if="$index !== 0">
+                                                <a class="border-link" href="/sp/trainingLibrary/article?{{record.articleLinkUrl}}"  id="event_title_article-regular_{{record.articleType}}_{{$index}}">
+                                                    <span class="mock-link black-link" data-ng-bind="record.articleLinkLabel"></span>
+                                                </a>
+                                            </div>
+                                        </h2>
+                        <p class="article-publisher-info" data-ng-if="record.author[0]">
+                            <span class="article-title"><span class="article-author" data-ng-bind="record.author[0]"></span></span>
+                            <!-- &ndash; <span class="article-date">February 14, 2013</span> -->
+                        </p>
+                        <p class="article-summary"><span data-ng-bind="record.shortDescription"></span>
+                            <div data-ng-if="$index === 0">
+                                <a class="border-link" href="/sp/trainingLibrary/article?{{record.articleLinkUrl}}" id="event_more_article-featured_{{record.articleType}}">
+                                    <span class="mock-link bold12-link" data-ng-if="record.articleType=='TEXT'" data-ng-bind="::pullInterNationalization('kcContent.readArticle')"></span><span class="mock-link bold12-link" data-ng-if="record.articleType=='VIDEO'" data-ng-bind="::pullInterNationalization('kcContent.playVid')"></span>
+                                </a>
+                            </div>
+                            <div data-ng-if="$index !== 0">
+                                <a class="border-link" href="/sp/trainingLibrary/article?{{record.articleLinkUrl}}" id="event_more_article-regular_{{record.articleType}}_{{$index}}">
+                                    <span class="mock-link bold12-link" data-ng-if="record.articleType=='TEXT'" data-ng-bind="::pullInterNationalization('kcContent.readArticle')"></span><span class="mock-link bold12-link" data-ng-if="record.articleType=='VIDEO'" data-ng-bind="::pullInterNationalization('kcContent.playVid')"></span>
+                                </a>
+                            </div>
+                        </p>
+                    </div>
+                </article>
+                <!-- //.article-teaser-panel space-adj .one-col-->
+                <!-- Hidden For Desktop -->
+                <article class="article-teaser-panel space-adj two-col m0 onlyMob">
+                    <div class="book-mark-share">
+                        <div class="book-mark-share-title sp-header-accent" data-ng-bind="::pullInterNationalization('kcContent.spotlight')"></div>
+                        <!-- <a href="/sp/trainingLibrary/article?{{trainingSpotlightContent.articleLinkUrl}}"><img
+              data-ng-src="{{trainingSpotlightContent.imageUrl}}" alt="" /></a>-->
+                    </div>
+                    <div class="article-synopsis nomartop">
+                        <h2 class="synopsis-lede">
+                                            <a class="border-link" href="/sp/trainingLibrary/article?{{trainingSpotlightContent.articleLinkUrl}}">
+                                                <h4 class="spotlight-title-4">
+                                                    <span class="mock-link black-link" data-ng-bind="trainingSpotlightContent.articleLinkLabel"></span>
+                                                </h4>
+                                            </a>
+                                        </h2>
+                        <p class="article-publisher-info">
+                            <span class="article-author" data-ng-bind="trainingSpotlightContent.author[0]"></span>
+                        </p>
+                        <p class="article-summary"><span data-ng-bind-html="trainingSpotlightContent.content"></span><a class="border-link spotlight-block-link" data-ng-href="/sp/trainingLibrary/article?{{trainingSpotlightContent.articleLinkUrl}}"><span data-ng-bind="::pullInterNationalization('kcContent.playVid')"></span></a></p>
+                    </div>
+                </article>
+                <!-- Hidden for Desktop -->
+            </div>
+            <!-- // .available-stories .main-content -->
+            <!-- Left Sections Mobile Starts -->
+            <aside class="related-content table-col-show" data-ng-if="showResponsivePanel">
+                <practice-areas-widget data-pause-search="false" url-src="practice-areas-widget.html" data-type="standard"></practice-areas-widget>
+                <trending-widget url-src="trending-widget.html"></trending-widget>
+                <spotlight-widget url-src="spotlight-widget.html"></spotlight-widget>
+            </aside>
+            <!-- Left Sections Mobile Ends -->
+        </div>
+    </div>
+</div>

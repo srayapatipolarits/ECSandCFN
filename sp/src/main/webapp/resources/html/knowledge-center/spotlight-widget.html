@@ -1,0 +1,12 @@
+<section class="spotlight event-spotlight-articles bg-white" data-ng-if="spotlightResponse">
+    <header class="spotlight-header">
+        <h2 class="spotlight-title-2 sp-header-accent" data-ng-bind="::pullInterNationalization('kcContent.spotlight')"></h2>
+        <a href="/sp/trainingLibrary/article?{{trainingSpotlightContent.articleLinkUrl}}" id="event_image_sidebar-spotlight"><img data-ng-src="{{trainingSpotlightContent.imageUrl}}" alt="" /></a>
+    </header>
+    <div class="spotlight-description">
+        <h3 class="spotlight-title-3"><span class="mock-link black-link" data-ng-bind="trainingSpotlightContent.author[0]"></span></h3>
+        <a class="border-link" href="/sp/trainingLibrary/article?{{trainingSpotlightContent.articleLinkUrl}}" id="event_title_sidebar-spotlight"><h4 class="spotlight-title-4"><span class="mock-link black-link" data-ng-bind="trainingSpotlightContent.articleLinkLabel"></span></h4></a>
+        <p> <span data-ng-bind-html="trainingSpotlightContent.content"></span><a class="border-link spotlight-block-link" data-ng-href="/sp/trainingLibrary/article?{{trainingSpotlightContent.articleLinkUrl}}" id="event_more_sidebar-spotlight"><span data-ng-bind="::pullInterNationalization('kcContent.playVid')"></span></a>
+        </p>
+    </div>
+</section>

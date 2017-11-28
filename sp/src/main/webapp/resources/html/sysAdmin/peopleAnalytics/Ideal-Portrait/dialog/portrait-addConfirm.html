@@ -1,0 +1,54 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color adj0"></div>
+                </div>
+                <div class="new-modals-wrapper">
+                    <!-- Top Message Starts -->
+                    <p class="dialog-message-16px" data-ng-bind="::pullInterNationalization('sysadmin.ppAddDesc')"></p>
+                    <!-- Top Message Ends -->
+                    
+                    <!-- Email List Starts  -->
+                    <div class="multiple-emails-block">
+                    	<div class="generic-content-messages">
+							<p>
+								<span data-ng-bind="pullInterNationalization('sysadmin.ppSelCompany')"></span>
+								<strong><span data-ng-bind="addInfo.companyObj.name"></span></strong>
+							</p>
+							<p>
+								<span data-ng-bind="pullInterNationalization('sysadmin.ppSelPort')"></span>
+								<strong><span data-ng-bind="addInfo.portraitObj.name"></span></strong>
+							</p>							
+						</div>
+                    </div>
+                    <!-- Email List Ends  -->
+					
+					<div class="form-elements">
+                        <p class="attachment-links w200px" data-ng-if="addInfo.url">
+                        	<span class="upload-desc" data-ng-bind="pullInterNationalization('sysadmin.ppUploadDesc')"></span>
+                            <a href="{{addInfo.url}}" class="border-link doc-link" target="_blank">
+                                <span class="mock-link" data-ng-bind="addInfo.url"></span>
+                            </a>
+                            <a href="javascript:void(0)" class="doc-remove icon-icon_remove sp-icon-color" data-ng-click="addInfo.url=''"></a>
+                        </p>					
+                        <p class="attachment-links w200px" data-ng-if="!addInfo.url">
+                        	<span class="upload-desc" data-ng-bind="pullInterNationalization('sysadmin.ppUploadDesc')"></span>
+                            <a href="javascript:void(0)" class="border-link doc-link wAuto" data-ng-click="startFileUpload(addInfo.portraitObj.id, addInfo.companyObj.id, true)">
+                                <span class="mock-link" data-ng-bind="::pullInterNationalization('sysadmin.ppUpload')"></span>
+                            </a>
+                        </p>					
+					</div>
+                    <!-- Buttons Starts -->
+                    <div class="dialog-btns-wrapper">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.yes')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="addPortrait(addInfo.portraitObj.id, addInfo.companyObj.id)">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.no')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="closeThisDialog();">
+                    </div>
+                    <!-- Buttons Ends -->
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

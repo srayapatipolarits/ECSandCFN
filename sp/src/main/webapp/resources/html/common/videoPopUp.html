@@ -1,0 +1,48 @@
+ <style type="text/css">
+ .ngdialog.ngdialog-theme-default .ngdialog-close{
+     right: 3px;
+    top: 3px;
+ }
+ .sp-col-md-offset{
+ 	margin-left:20.8%;
+ }
+ 
+@media screen and (min-width: 768px) and (max-width: 900px) {
+  .sp-col-md-offset{
+ 	width: 80%;
+    margin-left: 10%;
+ } 
+}
+ </style>
+ <div class="x-container videoPopDialog" data-ng-controller="videoController as ctrl" data-ng-init="ctrl.videoCall()">
+        <!-- Extended Container -->
+        <div class="container" >
+            <!-- Bootstrap Container -->
+            <div class="row">
+                <!-- Bootstrap Row -->
+                <div class="sp-col-md-offset col-md-7 mobile-centered videoPop">
+                	<div class="wrap">
+						<div class="ngdialog-close nobord closeIcon icon-icon_remove sp-icon-color"></div>
+					</div>
+                    <div class="article-media videoWrapper" data-ng-if="ctrl.videoType==='youtube'">
+                    <iframe class="youtube-player" type="text/html" width="952" height="534" data-ng-src="{{ctrl.videoUrl}}" frameborder="0" allowfullscreen></iframe>			
+					</div>
+					<div class="article-media videoWrapper" data-ng-if="ctrl.videoType==='vimeo'">
+					<div id="vimeoPlayer"></div>
+                    <!-- <iframe id="player1" src="{{ctrl.videoUrl}}" width="630" height="354" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>	 -->		
+					</div>
+					<div class="article-media" data-ng-if="ctrl.videoType==='html5'">
+					 <div class="md-content">
+						   <div class="video-wrapper">
+						   <video controls width="100%" autoplay>
+						    <source data-ng-src="{{ctrl.videoUrl}}"  type="video/mp4">{{::pullInterNationalization('video.browser')}}
+						   </video>
+						   </div>
+						 </div>
+					</div>    
+				 </div>
+              </div>
+            </div>
+        </div>
+    </div>
+

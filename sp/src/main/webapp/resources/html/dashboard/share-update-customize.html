@@ -1,0 +1,47 @@
+<div class="container" id="declineGrowthScreen">
+    <div class="row" data-ng-class="notesCtrl.winWidth<768?'row-full-w':''">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+            <div>
+                <section class="wrapper">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar" data-ng-bind="::notesCtrl.rootScope('dashboard.customize')"></div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color" data-ng-click="notesCtrl.saveCustomize();"></div>
+                            </div>
+                        </div>
+                        <div class="contentArea nobrr">
+	                       <ol class="form-list-c form-list-d messageBlock mem-font" style="padding-bottom:10px">
+			                    <li class="type-and-number planStatus noMarBottom">
+				                  	<ul class="style_radioList style_1 font18">
+				                    	<li class="sp-radio">
+				                             <input id="oMember" data-ng-value="'o'" data-ng-change="notesCtrl.clearSelection()" data-ng-model="notesCtrl.pageSetting.searchMode" type="radio"/>
+				                      		<label for="oMember">
+				                        		  <span class="title" data-ng-bind="::notesCtrl.rootScope('dashboard.customize.organization')"></span> 
+				                        	  	</label>
+				                         </li>
+				                         <li class="sp-radio">
+				                         	<input id="oGroup" data-ng-value="'c'" data-ng-change="notesCtrl.clearSelection()" data-ng-model="notesCtrl.pageSetting.searchMode" type="radio"/>
+				                      		<label for="oGroup">
+				                        		  <span class="title" data-ng-bind="::notesCtrl.rootScope('dashboard.customize.competency')"></span> 
+				                        	  	</label>
+				                         </li>
+				                   	</ul>
+			                   	</li>
+		            		</ol>
+	            		</div>
+                        <!-- Member -->
+		                <div data-ng-if="notesCtrl.pageSetting.searchMode==='o'">
+		                  <ng-include src="'/sp/resources/html/dashboard/share-update-customize-addorg.html'"></ng-include>
+		                </div>
+		                <!-- Group -->
+		                <div  data-ng-if="notesCtrl.pageSetting.searchMode==='c'">
+		                  <ng-include src="'/sp/resources/html/dashboard/share-update-customize-addcomp.html'"></ng-include>
+		                </div>
+                        
+                 	</div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

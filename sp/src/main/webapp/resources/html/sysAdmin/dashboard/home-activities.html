@@ -1,0 +1,91 @@
+<div class="dash-activityFeed" data-ng-controller="activityFeedsCtrl as ctrl" data-ng-init="ctrl.getFeeds()">
+    <form name="ctrl.newFeedForm" novalidate autocomplete="off" data-ng-submit="ctrl.addNewFeed()">
+        <ol class="form-list-c">
+            <li class="tinyMceFont">
+                <textarea name="text" data-ui-tinymce data-custom-overrides="ctrl.tinymceOptions" data-ng-model="ctrl.newFeed.text" data-ng-required="true"></textarea>
+                <span class="validate-error" data-ng-bind="::pullInterNationalization('signup.required.error')" data-ng-if="ctrl.newFeedSubmit && ctrl.newFeedForm.text.$error.required"></span>
+            </li>
+            <li>
+                <ul class="cols">
+                    <li class="col-pos">
+                        <input type="text" name="position" data-ng-model="ctrl.newFeed.position" placeholder="{{::pullInterNationalization('dashboardAdmin.label1')}}" data-ng-required="true" data-ng-pattern="/^[1-9][0-9]*$/" />
+                        <span class="validate-error" data-ng-bind="::pullInterNationalization('signup.required.error')" data-ng-if="ctrl.newFeedSubmit && ctrl.newFeedForm.position.$error.required"></span>
+                        <span class="validate-error" data-ng-bind="::pullInterNationalization('signup.invalid.email')" data-ng-if="ctrl.newFeedSubmit && ctrl.newFeedForm.position.$error.pattern"></span>
+                    </li>
+                    <li class="col-tag">
+                        <div class="select-wrapper">
+                            <span class="select-dd-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                            <select name="feature" data-ng-model="ctrl.newFeed.feature" data-ng-required="true">
+                                <option value="" data-ng-bind="::pullInterNationalization('dashboardAdmin.label2')"></option>
+                                <option value="Prism" data-ng-bind="::pullInterNationalization('dashboardAdmin.option1')"></option>
+                                <option value="PrismLens" data-ng-bind-html="::pullInterNationalization('dashboardAdmin.option2')"></option>
+                                <option value="RelationShipAdvisor" data-ng-bind="::pullInterNationalization('dashboardAdmin.option3')"></option>
+                                <option value="Erti" data-ng-bind="::pullInterNationalization('dashboardAdmin.option4')"></option>
+                                <option value="OrganizationPlan" data-ng-bind="::pullInterNationalization('dashboardAdmin.option5')"></option>
+                                <option value="Competency" data-ng-bind="::pullInterNationalization('dashboardAdmin.option6')"></option>
+                                <option value="Blueprint" data-ng-bind="::pullInterNationalization('dashboardAdmin.option7')"></option>
+                                <!--option value="Hiring" data-ng-bind="::pullInterNationalization('dashboardAdmin.option8')"></option-->
+                            </select>
+                        </div>
+                        <span class="validate-error" data-ng-bind="::pullInterNationalization('signup.required.error')" data-ng-if="ctrl.newFeedSubmit && ctrl.newFeedForm.feature.$error.required"></span>
+                    </li>
+                    <li class="col-btn">
+                        <input type="submit" class="btn-square-12px sp-background-color" value="{{::pullInterNationalization('manageAccountContent.save')}}" />
+                    </li>
+                </ul>
+            </li>
+        </ol>
+    </form>
+    <hr class="list-sep" data-ng-if="ctrl.responseReceived && ctrl.activityList.length" />
+    <div class="activityfeeds-listing-wrapper custom-col-table" data-ng-if="ctrl.responseReceived && ctrl.activityList.length" >
+	    <div class="custom-col-row head-row">
+	    	<div class="cc-col cc-col-pos">
+	    		<p data-ng-bind="::pullInterNationalization('dashboardAdmin.label1')"></p>
+	    	</div>
+	    	<div class="cc-col cc-col-desc">
+	    		<p data-ng-bind="::pullInterNationalization('dashboardAdmin.label3')"></p>
+	    	</div>
+	    	<div class="cc-col cc-col-actions">
+	    	</div>
+	    	<p class="search-bx">
+                <input type="text" data-ng-model="ctrl.searchActivityFeeds" placeholder="{{::pullInterNationalization('manageAccountContent.search')}}" data-ng-model-options="{ debounce: { 'default': 100, 'blur': 0 } }">
+                <button data-ng-class="{'icon-icon_remove':ctrl.searchActivityFeeds.length, 'icon-icon_search': !ctrl.searchActivityFeeds.length}" class="sp-icon-color" data-ng-click="ctrl.searchActivityFeeds.length?ctrl.searchActivityFeeds='':''"></button>	    	
+	    	</p>
+	    </div>
+        <div class="custom-col-row" data-ng-repeat="list in recordField = (ctrl.activityList | filter:ctrl.searchActivityFeeds)">
+            <div class="cc-col cc-col-pos">
+            	<p data-ng-bind="ctrl.posNo($index)"></p>
+            </div>
+            <div class="cc-col cc-col-desc" data-ng-bind-html="list.text"></div>
+            <div class="cc-col cc-col-actions">
+                <div class="actions-filter s165">
+                    <p class="actions-dropdown-filter smallFilter">
+                        <a href="javascript:void(0)" sp-condition="true" sp-click-outside="show">{{::pullInterNationalization('manageAccountContent.actions')}}
+							<span class="actions-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+						</a>
+                    </p>
+                </div>
+                <div class="actions-callout-wrappper activity-feeds" data-ng-if="show">
+                    <ul class="action-links notes-links">
+                        <li>
+                            <a href="javascript:void(0)" data-ng-click="ctrl.editFeed(list,ctrl.posNo($index))">
+                                <span class="action-icon icon-icon_send-message sp-icon-color"></span>
+                                <span class="action-text" data-ng-bind="::pullInterNationalization('dashboardAdmin.btnEdit')"></span>
+                            </a>
+                        </li>
+                        <li class="sep">
+                            <hr class="note-space" />
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" data-ng-click="ctrl.deleteConfirm(list)">
+                                <span class="action-icon icon-icon_trashbin sp-icon-color"></span>
+                                <span class="action-text" data-ng-bind="::pullInterNationalization('dashboardAdmin.btnDelete')"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <p class="no-matches" data-ng-if="ctrl.searchActivityFeeds.length && !recordField.length" data-ng-bind="::pullInterNationalization('practiceArea.noMatch0')"></p>
+    </div>
+</div>

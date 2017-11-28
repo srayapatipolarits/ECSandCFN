@@ -1,0 +1,207 @@
+<div class="practive-area-view competency">
+	<div class="pa-desc-wrapper">
+	    <p class="pa-description-new fullw">
+	        <span class="patxt" data-ng-bind-html="ctrl.activeProfileDetails.description" data-ng-class="ctrl.activeProfileDetails.introVideo.url?'':'fullWidth'">
+	        </span>
+	        <a href="javascript:void(0)" class="list-thumb ltBtnFix0 marginTop20 thumb-video" data-ng-if="ctrl.activeProfileDetails.introVideo.url" data-ng-click="ctrl.videoPopUp(ctrl.activeProfileDetails.introVideo.url,'Intro')">
+	            <img data-ng-src="{{ctrl.activeProfileDetails.introVideo.thumbnailURL}}" width="150" height="85" alt="{{ctrl.activeProfileDetails.introVideo.thumbImageAltText}}" title="{{ctrl.activeProfileDetails.introVideo.thumbImageAltText}}" />
+	        </a>
+	    </p>
+	</div>
+    <div class="pa-details">
+        <h3 class="pa-subhead top-margin2" data-ng-bind="ctrl.devStrategyDetails.title"></h3>
+        <p class="learning-intro dev-desc" data-ng-bind="ctrl.devStrategyDetails.helpText"></p>
+        <div class="development-strategy">
+            <div class="ds-list" data-ng-repeat="list in filtered = (ctrl.devStrategyList) track by $index">
+                <p class="list-no sp-link-color" data-ng-bind="$index+1" ng-class="($index+1)>9?'big-no':''"></p>
+                <div class="list-content">
+                    <p data-ng-bind-html="list.title" data-ng-click="ctrl.state()"></p>
+                    <p class="list-thumb lnd-req-mobile list-thumb-mob" data-ng-if="list.actionData[0].url">
+                        <a href="javascript:void(0)" class="Video" data-ng-click="ctrl.videoPopUp(list.actionData[0].url,'devStrategy')">
+                            <!-- Setting width and height here. -->
+                            <img data-ng-src="{{list.actionData[0].imageLink}}" alt="{{list.actionData[0].linkText}}" width="150" height="85" />
+                        </a>
+                    </p>
+                    <ul class="goal-topic-panel-tools" data-ng-if="noSelf==='' && list.permissions.Note">
+                        <li>
+                            <a href="javascript:void(0)" class="border-link post-note" notes-options url-src="notes/notes-options.html" styles="notes-sub-options" notes-callback="ctrl.setContentReference(list,'competencyStrategy')">
+                                <span class="theme-ico icon-icon_editnote sp-icon-color"></span>
+                                <span class="mock-link" data-ng-bind="::pullInterNationalization('practiceArea.postNote')"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <p class="list-thumb" data-ng-if="list.actionData[0].url">
+                    <a href="javascript:void(0)" class="Video" data-ng-click="ctrl.videoPopUp(list.actionData[0].url,'devStrategy')">
+                        <!-- Setting width and height here. -->
+                        <img data-ng-src="{{list.actionData[0].imageLink}}" alt="{{list.actionData[0].linkText}}" width="150" height="85">
+                    </a>
+                </p>
+                <hr class="new-seprator" data-ng-hide="$last" />
+            </div>
+        </div>      
+        <!--p class="manage-strategies" data-ng-if="noSelf===''">
+            <a href="javascript:void(0)" class="border-link" data-ng-click="ctrl.winWidth > 767?ctrl.state(5):ctrl.openNgOverlay('manageStratagies')">
+                <span class="mock-link" data-ng-bind="pullInterNationalization('practiceArea.manageDevStrategies')"></span>
+            </a>
+        </p-->
+        
+        <!-- Feedback Response -->
+       	 <feedback-response data-ng-if="noSelf===''" data-response-obj="{{ {'id':ctrl.activeProfileDetails.id,'name':ctrl.activeProfile.name,'parentId':ctrl.competencyProfileDetails.id,'parentName':'Competency','spFeature':'Competency'} }}"></feedback-response>
+        <!-- Feedback Response -->
+       
+       
+        <h3 class="pa-subhead top-margin1" data-ng-bind="::pullInterNationalization('practiceArea.knowledgeBuilding')" data-ng-if="ctrl.allArticlesListings.length"></h3>
+        <div class="new-learning-section" data-ng-if="ctrl.allArticlesListings.length">
+            <p class="learning-intro" data-ng-bind="::pullInterNationalization('practiceArea.developementeffort')"></p>
+            
+
+			<!--  Article Filter Starts  -->
+			<div class="learning-filters">
+			<div class="mFilters">
+			<p class="sHead" data-ng-bind="::pullInterNationalization('practiceArea.Filter1')"></p>
+			<p class="select">
+				<span class="ld-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+				<select data-ng-model="mArticleFilters" data-ng-init="mArticleFilters='all'" data-ng-change="ctrl.applyArticleFilterMobile(mArticleFilters)">
+					<option value="all" data-ng-bind="::pullInterNationalization('practiceArea.Filter2')">
+					<option value="mandatoryArticle" data-ng-bind="::pullInterNationalization('practiceArea.Filter3')">
+					<option value="articleRecommendedByUser" data-ng-bind="::pullInterNationalization('practiceArea.Filter4')">
+					<option value="articleBookmarked" data-ng-bind="::pullInterNationalization('practiceArea.Filter5')">
+					<option value="userArticleStatus" data-ng-bind="::pullInterNationalization('practiceArea.Filter6')">
+				</select>
+			</p>
+			</div>
+				<ul>
+					<li class="filters-intro"
+						data-ng-bind="::pullInterNationalization('practiceArea.Filter1')"></li>
+					<li class="pipe-right"><a href="javascript:void(0)" class="border-link"
+						data-ng-class="{'active' : ctrl.articlesFilterSelected===0 || ctrl.articlesFilterSelected===-1}"
+						data-ng-click="ctrl.applyArticleFilter('', '', 0,'click','')"> <span
+							class="mock-link"
+							data-ng-bind="::pullInterNationalization('practiceArea.Filter2')"></span>
+					</a></li>
+					<li class="pipe-right"><a href="javascript:void(0)" class="border-link"
+						data-ng-class="{'active' : ctrl.articlesFilterSelected===3}"
+						data-ng-click="ctrl.applyArticleFilter('mandatoryArticle', true, 3,'click','')">
+							<span class="mock-link"
+							data-ng-bind="::pullInterNationalization('practiceArea.Filter3')"></span>
+					</a></li>
+					<li class="pipe-right"><a href="javascript:void(0)" class="border-link"
+						data-ng-class="{'active' : ctrl.articlesFilterSelected===4}"
+						data-ng-click="ctrl.applyArticleFilter('articleRecommendedByUser', true, 4,'click','')">
+							<span class="mock-link"
+							data-ng-bind="::pullInterNationalization('practiceArea.Filter4')"></span>
+					</a></li>
+					<li class="pipe-right"><a href="javascript:void(0)" class="border-link"
+						data-ng-class="{'active' : ctrl.articlesFilterSelected===5}"
+						data-ng-click="ctrl.applyArticleFilter('articleBookmarked', true, 5,'click','')">
+							<span class="mock-link"
+							data-ng-bind="::pullInterNationalization('practiceArea.Filter5')"></span>
+					</a></li>
+					<li><a href="javascript:void(0)" class="border-link"
+						data-ng-class="{'active' : ctrl.articlesFilterSelected===6}"
+						data-ng-click="ctrl.applyArticleFilter('userArticleStatus', 'COMPLETED', 6,'click','')">
+							<span class="mock-link"
+							data-ng-bind="::pullInterNationalization('practiceArea.Filter6')"></span>
+					</a></li>
+				</ul>
+				
+				<div class="mFilters mType">
+				<p class="sHead" data-ng-bind="::pullInterNationalization('practiceArea.Filter0')"></p>
+				<p class="select">
+					<span class="ld-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+					<select data-ng-model="ctrl.articleMediaFilters" data-ng-init="ctrl.articleMediaFilters='ALL'" data-ng-options="v.value as pullInterNationalization('practiceArea.'+v.name) for (k,v) in [{'name':'mType0','value':'ALL'},{'name':'mType1','value':'TEXT'},{'name':'mType2','value':'VIDEO'}]" data-ng-change="ctrl.applyArticleFilterMedia(ctrl.articleMediaFilters)">
+					</select>
+				</p>
+				</div>					
+			</div>
+			<!--  Article Filter Ends  -->
+            
+            
+            <div class="learning-articles-wrapper" infinite-scroll="ctrl.infinteScroll(ctrl.pageSetting.pageSize+ctrl.pageSetting.pageSize)" infinite-scroll-immediate-check="false">
+                <div class="new-article-content" data-ng-repeat="articles in recordField = ((ctrl.allArticlesListings | filter:ctrl.articlesFilter).slice(0,ctrl.pageSetting.pageSize))">
+                    <p class="new-article-icon sp-icon-color" data-ng-class="{'icon-icon_audio':articles.articleType=='PODCAST','icon-icon_slideshow':articles.articleType=='SLIDESHARE','icon-icon_video':articles.articleType=='VIDEO','icon-icon_article':articles.articleType=='TEXT'}"></p>
+                    <div class="new-article-details" data-ng-class="noSelf===''?'':'lPad'">
+                        <p class="event-competency-article">
+                            <a data-ng-href="/sp/trainingLibrary/article?{{articles.articleLinkUrl}}" class="border-link" id="event_type_{{articles.articleType}}_{{$index}}"> <span class="mock-link" data-ng-bind="articles.articleLinkLabel"></span>
+                            </a> 
+                            <span class="new-articles-info"> <span
+								data-ng-class="{'add-pipe-right' : articles.articleSource || articles.mandatoryArticle || articles.userArticleStatus==='COMPLETED'}"
+								data-ng-if="articles.author"
+								data-ng-bind="pullInterNationalization('practice.by')+' '+articles.author[0]"></span>
+                            <span data-ng-class="{'add-pipe-right' : articles.mandatoryArticle || articles.userArticleStatus==='COMPLETED'}" data-ng-if="articles.articleSource" data-ng-bind="articles.articleSource"></span> <span class="editors-choice" data-ng-class="{'add-pipe-right' : articles.userArticleStatus==='COMPLETED'}" data-ng-if="articles.mandatoryArticle"><em
+									data-ng-bind="::pullInterNationalization('practiceArea.Filter3')"></em></span>
+                            <span class="completed-icon" data-ng-if="articles.userArticleStatus==='COMPLETED'"> <span
+									class="article-done-icon icon-icon_dev_strategy_check sp-icon-color"></span>
+                            <span class="article-done-text" data-ng-bind="::pullInterNationalization('practiceArea.Filter6')"></span>
+                            </span>
+                            </span>
+                        </p>
+                        <div class="new-article-actions social_media" data-ng-if="noSelf===''">
+                            <ul>
+                                <li>
+                                    <div class="share-recommended sp_tooltip">
+                                        <a href="javascript:void(0)" class="icon-icon_article-recommend" data-ng-class="articles.articleRecommendedByUser?'sp-icon-color':'default-color'" ng-click="noSelf===''?ctrl.articleLike(articles.articleLinkUrl, articles.articleRecommendedByUser):''"><span
+										class="custom_1 surepeople sp_span_1"><span
+											class="whiteAuto sp-link-color" data-ng-bind="::pullInterNationalization('practiceArea.recommend')"></span><span class="beak_1"></span></span></a>
+                                    </div>
+                                </li>
+                                <li class="recommended-count" data-ng-class="!articles.recommendationCount?'hide':''">
+                                    <div class="share-recommendedCount">
+                                        <a href="javascript:void(0)" class="count" data-ng-bind="articles.recommendationCount || 0"></a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="share-spread sp_tooltip">
+                                        <a href="javascript:void(0)" class="icon-icon_article-share" data-ng-class="{'default-color' : true, 'sp-icon-color' : false}" sp-condition="true" sp-click-outside="showShareMenu"><span
+										class="custom_1 surepeople sp_span_1"><span
+											class="whiteAuto sp-link-color" data-ng-bind="::pullInterNationalization('practiceArea.share')"></span><span class="beak_1"></span></span></a>
+                                    </div>
+                                    <div class="actions-callout-wrappper notes-module article-share-kb" data-ng-if="showShareMenu">
+                                            <ul class="action-links notes-links">
+                                                <li>
+                                                    <a href="javascript:void(0)" data-ng-click="ctrl.articleShare(articles.articleLinkUrl, articles, 'share')">
+                                                        <span class="action-text sp-inline-block" data-ng-bind="::pullInterNationalization('practiceArea.shareinemail')"></span>
+                                                    </a>
+                                                </li>
+                                                <li class="adjust-height">
+                                                    <a href="javascript:void(0)" data-ng-click="ctrl.articleShare(articles.articleLinkUrl, articles, 'newsfeed')">
+                                                        <span class="action-text sp-inline-block" data-ng-bind="::pullInterNationalization('practiceArea.shareinnews')"></span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                </li>
+                                <li>
+                                    <div class="share-bookmark-tools sp_tooltip">
+                                        <a href="javascript:void(0)" data-ng-click="noSelf===''?ctrl.articleBookmark(articles.articleLinkUrl, articles.articleBookmarked):''" class="icon-icon_article-bookmark" data-ng-class="articles.articleBookmarked?'sp-icon-color':'default-color'"><span
+										class="custom_1 surepeople sp_span_1"><span
+											class="whiteAuto sp-link-color" data-ng-bind="::pullInterNationalization('practiceArea.bookmark')"></span><span class="beak_1"></span></span>
+									</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-err-msgs" data-ng-if="!recordField.length">
+                    <p data-ng-if="ctrl.articlesFilterSelected===3 || ctrl.articlesFilterSelected===-1" data-ng-bind="::pullInterNationalization('practiceArea.noMatch0')"></p>
+                    <p data-ng-if="ctrl.articlesFilterSelected===4" data-ng-bind="::pullInterNationalization('practiceArea.noMatch1')"></p>
+                    <p data-ng-if="ctrl.articlesFilterSelected===5" data-ng-bind="::pullInterNationalization('practiceArea.noMatch2')"></p>
+                    <p data-ng-if="ctrl.articlesFilterSelected===6" data-ng-bind="::pullInterNationalization('practiceArea.noMatch3')"></p>
+                    <p data-ng-if="ctrl.articlesFilterSelected > 6" data-ng-bind="::pullInterNationalization('practiceArea.noMatch0')"></p>
+                    <p> </p>
+                </div>
+                <div class="list-err-msgs load-more" data-ng-if="ctrl.showMoreLink">
+                    <p>
+                        <a href="javascript:void(0)" class="border-link" data-ng-click="ctrl.loadAllArticles()">
+                            <span class="mock-link" data-ng-bind="::pullInterNationalization('practiceArea.more')"></span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+</div>

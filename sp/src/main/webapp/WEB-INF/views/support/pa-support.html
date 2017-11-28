@@ -1,0 +1,821 @@
+<div class="x-container" ng-if="inviteReady && profileReady" ng-class="inviteReady?'':'hide'">
+    <div class="container">
+        <div class="header-info-container">
+            <div class="header-info-content">
+                <div class="header-icon-wrap">
+                    <p class="hinfo-wrap">
+                        <span class="hinfo-icons icon-icon_module-default sp-icon-color"></span>
+                    </p>
+                </div>
+                <div class="header-content-wrap">
+                    <p class="hinfo-wrap">
+                        <span class="info-txt ml0 mb8 mt6">Support</span>
+                    </p>
+                    <div class="contact-options">
+                        <ul class="contact-option-list">
+                            <li class="contact-declaration">
+                                <h3 class="contact-option-title hide sp-header-title-color">CUSTOMER SUPPORT</h3>
+                                <p class="contact-option-summary">Find answers to our most frequently asked questions here. Not finding your answer? Please email or call us for further support.</p>
+                            </li>
+                            <li class="contact-option-email">
+                                <h3 class="contact-option-title sp-header-title-color">Email</h3>
+                                <p class="contact-option-summary">Rapid response around the clock</p>
+                                <p class="contact-option-method border-link"><a href="mailto:support@surepeople.com" id="event_top_send-email_email" class="border-link"><span class="mock-link">support@surepeople.com</span></a></p>
+                            </li>
+                            <li class="contact-option-phone">
+                                <h3 class="contact-option-title sp-header-title-color">Call</h3>
+                                <p class="contact-option-summary">Reach our Concierge Desk 24 hours a day</p>
+                                <p class="contact-option-method"><span class="sp-link-color">1-855-755-SURE (7873)</span></p>
+                                <p class="contact-option-summary">Outside of the US dial <span class="phnoBreak">+1-312-800-1990</span></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- PRISM Lens Header Ends -->
+
+<div class="row x-container">
+
+  <div class="wrap-outer container" fix-container>
+
+    <div class="wrap-inner" ng-controller="supportController" ng-if="inviteReady && profileReady" ng-class="inviteReady?'':'hide'">
+    <!--  
+      <div class="contact-options">
+
+  <ul class="contact-option-list sp-panel-accent">
+    <li class="contact-declaration">
+      <h3 class="contact-option-title hide sp-header-title-color">CUSTOMER SUPPORT</h3>
+      <p class="contact-option-summary">Find answers to our most frequently asked questions here. Not finding your answer? Please email or call us for further support.</p>
+    </li>
+
+    <li class="contact-option-email">
+      <h3 class="contact-option-title sp-header-title-color">Email</h3>
+      <p class="contact-option-summary">Rapid response around the clock</p>
+      <p class="contact-option-method border-link"><a href="mailto:support@surepeople.com" id="event_top_send-email_email" class="border-link"><span class="mock-link">support@surepeople.com</span></a></p>
+    </li>
+
+    <li class="contact-option-phone">
+      <h3 class="contact-option-title sp-header-title-color">Call</h3>
+      <p class="contact-option-summary">Reach our Concierge Desk 24 hours a day</p>
+      <p class="contact-option-method"><span class="sp-link-color">1-855-755-SURE (7873)</span></p>
+      <p class="contact-option-summary">Outside of the US dial <span class="phnoBreak">+1-312-800-1990</span></p>
+    </li>
+
+    <!-*-li class="contact-option-video">
+      <h3 class="contact-option-title">Tutorial</h3>
+      <p class="contact-option-summary">Watch brief tutorial on SurePeople platform</p>
+      <p class="contact-option-method border-link"><a href="javascript:void(0)" id="event_top_more-info_play-video" ng-click="videoPopUp('https://www.youtube.com/watch?v=IuQo_DnwFj8&feature=youtu.be')" class="border-link"><span class="mock-link">Play Video</span></a></p>
+    </li-*->
+
+
+    <!-*- <li class="contact-option-twitter">
+      <h3 class="contact-option-title">Tweet</h3>
+      <p class="contact-option-summary">Quick answers to short questions</p>
+      <p class="contact-option-method"><a href="" class="border-link"><span class="mock-link">@surepeoplesupport</span></a></p>
+    </li> -*->
+
+  </ul>
+</div>
+-->
+
+      <div class="support-body sp-panel-accent">
+        <nav class="nav-support-content">
+
+            <ul class="nav-support-link-list">
+        
+                <li class="nav-technical"><a class="active" id="event_sidebar_switch-view_product-support" href="javascript:void(0)" data-list="1"><span>Product Support</span></a>
+                </li>
+                <li class="nav-account"><a href="javascript:void(0)" id="event_sidebar_switch-view_account-support" data-list="2"><span>Account Support</span></a>
+                </li>
+                <li class="nav-training"><a href="javascript:void(0)" id="event_sidebar_switch-view_definitions" data-list="3"><span>Definitions</span></a>
+                </li>
+                <li class="nav-training"><a href="javascript:void(0)" id="event_sidebar_switch-view_get-more-help" data-list="4"><span>Get More Help</span></a>
+                </li>
+            </ul>
+        </nav>
+
+   <!-- Profile Navigation Starts -->
+    <div class="x-container profile-tab-wrapper support">
+        <div class="container">
+            <div class="row" data-ng-init="selectedTabText='Product Support';tabOpen=false">
+                <div class="col-xs-12">
+                    <a href="#" class="mobile-tab mobileNavigationText" data-rel="profile-tabs">
+                   		 <span class="selectedTabText" data-ng-bind="selectedTabText"></span><span class="btn-icon" data-ng-click="tabOpen=!tabOpen"></span>
+                    </a>
+                </div>
+                <div class="col-xs-12 mobileNavigationSupport ng-hide" data-id="profile-tabs" data-ng-show="tabOpen">
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)" id="event_sidebar_switch-view_product-support_mobile" data-list="1" data-ng-click="tabOpen=false;selectedTabText='Product Support'">Product Support</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" id="event_sidebar_switch-view_account-support_mobile" data-list="2" data-ng-click="tabOpen=false;selectedTabText='Account Support'">Account Support</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" id="event_sidebar_switch-view_definitions_mobile" data-list="3" data-ng-click="tabOpen=false;selectedTabText='Definitions'">Definitions</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" id="event_sidebar_switch-view_get-more-help_mobile" data-list="4" data-ng-click="tabOpen=false;selectedTabText='Get More Help'">Get More Help</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Profile Navigation Ends -->
+
+
+    <div class="main-support-content">
+<article class="support-article support-customer local-hide local-show" data-tab = "1">
+        <header class="support-article-header">
+            <h1 class="support-article-title sp-header-title-color">PRODUCT SUPPORT</h1>
+            <!-- <p class="support-article-lede">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae augue a nisi tempus tempus. Aenean cursus molestie mi ut egestas. Nullam nec velit ornare, feugiat dolor sed, aliquet mauris.</p> -->
+        </header>
+        <section id="faq-dashboard" class="section-faq defaultOpen">
+
+            <header class="section-faq-header">
+                <h2 class="section-faq-title">Dashboard</h2>
+
+                <div class="icon-toggle">
+
+                    <div class="close-it">
+                        <div class="hz"></div>
+                    </div>
+
+                    <div class="open-it">
+                        <div class="hz"></div>
+                        <div class="vl"></div>
+                    </div>
+                </div>
+
+            </header>
+
+            <div class="x-section-faq-content">
+                <div class="section-faq-content">
+                    <dl>
+                        <dt>The People Analytics Dashboard</dt>
+                        <dd>
+                            <p>The Dashboard provides a quick view into specific details of your People Analytics account while providing easy access to handy tools. On the left side of the dashboard you'll see a snapshot of existing Employees, Candidates and Roles with an option to easily add new additions to each. On the right side of the dashboard are quick links to the Relationship Advisor, Prism Analytics and Ideal Portraits. Additionally, on the bottom left of the dashboard are helpful articles to spark your creativity about how best to employ People Analytics in your organization.</p>
+                        </dd>                     
+                    </dl>
+                </div>
+            </div>
+        </section>
+
+		<!-- <section class="group-name">Employees</section> -->
+		
+        <section id="faq-employees" class="section-faq">
+            <header class="section-faq-header">
+                <h2 class="section-faq-title">Employees</h2>
+
+                <div class="icon-toggle">
+
+                    <div class="close-it">
+                        <div class="hz"></div>
+                    </div>
+
+                    <div class="open-it">
+                        <div class="hz"></div>
+                        <div class="vl"></div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="x-section-faq-content">
+                <div class="section-faq-content">
+                    <dl>
+                        <dt>Employees Overview</dt>
+                        <dd>
+                            <p>The Employees section of People Analytics is designed to give you a complete handle on the people that make up your organization. From this section, you'll have access to your employees' Prism Portraits, with the added ability to share this information with them. In addition to filtering and categorization tools for organizing your teams, you can compare employee's to existing <a href="javascript:void(0)" data-ng-click="clickActivity('faq-ideal-portrait')">Ideal Portraits</a>, add notes to their profile, or compare individuals in the <a href="javascript:void(0)" data-ng-click="clickActivity('faq-relationship-advisor')">Relationship Advisor.</a></p>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </section>
+        
+         <section id="faq-candidates" class="section-faq">
+            <header class="section-faq-header">
+                <h2 class="section-faq-title">Candidates</h2>
+
+                <div class="icon-toggle">
+
+                    <div class="close-it">
+                        <div class="hz"></div>
+                    </div>
+
+                    <div class="open-it">
+                        <div class="hz"></div>
+                        <div class="vl"></div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="x-section-faq-content">
+                <div class="section-faq-content">
+                    <dl>
+                        <dt>Candidates Overview</dt>
+                        <dd>
+                            <p>The Candidates section of People Analytics incorporates all of the useful functions from the <a href="javascript:void(0)" data-ng-click="clickActivity('faq-employees')">Employees</a> section, with added abilities to properly assess your potential new hires. The added functions in Candidates includes the ability to share Portraits with other decision-makers, compare candidates against both other candidates or employees in the <a href="javascript:void(0)" data-ng-click="clickActivity('faq-relationship-advisor')">Relationship Advisor</a>, and turn a candidate into an employee through the hire function.</p>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq-groups" class="section-faq">
+            <header class="section-faq-header">
+                <h2 class="section-faq-title">
+		          Groups
+		        </h2>
+
+                <div class="icon-toggle">
+
+                    <div class="close-it">
+                        <div class="hz"></div>
+                    </div>
+
+                    <div class="open-it">
+                        <div class="hz"></div>
+                        <div class="vl"></div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="x-section-faq-content">
+                <div class="section-faq-content">
+                    <dl>
+                        <dt>Groups Overview</dt>
+                        <dd>
+                            <p>The Groups section is for simple organization of both employees and candidates into existing teams, departments or roles that are pre-established in your organization. From this section you can do a side-by-side analysis of individual's Prism Portraits to understand the similarities and differences that make up a group.</p>
+                        </dd>
+                    </dl>
+			    </div>
+            </div>
+        </section>
+        <section id="faq-roles" class="section-faq">
+            <header class="section-faq-header">
+                <h2 class="section-faq-title">
+		          Roles
+		        </h2>
+
+                <div class="icon-toggle">
+
+                    <div class="close-it">
+                        <div class="hz"></div>
+                    </div>
+
+                    <div class="open-it">
+                        <div class="hz"></div>
+                        <div class="vl"></div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="x-section-faq-content">
+                <div class="section-faq-content">
+                    <dl>
+                        <dt>Roles Overview</dt>
+                        <dd>
+                            <p>The Roles section allows you to take new or existing positions in your organization and create a role for it for use within People Analytics. In this section you can add either employees or candidates to a role, as well as assign an <a href="javascript:void(0)" data-ng-click="clickActivity('faq-ideal-portrait')">Ideal Portrait</a> to the role, to compare employees and candidates to the ideal percentages for the role.</p>
+                        </dd>
+                    </dl>
+			    </div>
+            </div>
+        </section>
+        
+        <section id="faq-archives" class="section-faq">
+            <header class="section-faq-header">
+                <h2 class="section-faq-title">
+		          Archives
+		        </h2>
+
+                <div class="icon-toggle">
+
+                    <div class="close-it">
+                        <div class="hz"></div>
+                    </div>
+
+                    <div class="open-it">
+                        <div class="hz"></div>
+                        <div class="vl"></div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="x-section-faq-content">
+                <div class="section-faq-content">
+                    <dl>
+                        <dt>Archives Overview</dt>
+                        <dd>
+                            <p>The Archives section allows you to store employees and candidates for later use in People Analytics.</p>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </section>
+
+	   <section id="faq-relationship-advisor" class="section-faq">
+            <header class="section-faq-header">
+                <h2 class="section-faq-title">
+          			Relationship Advisor
+        		</h2>
+
+                <div class="icon-toggle">
+
+                    <div class="close-it">
+                        <div class="hz"></div>
+                    </div>
+
+                    <div class="open-it">
+                        <div class="hz"></div>
+                        <div class="vl"></div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="x-section-faq-content">
+                <div class="section-faq-content">
+                    <dl>
+                        <dt>Relationship Advisor</dt>
+                        <dd>
+                            <p>The <a href="/sp/pa/relationship-advisor">Relationship Advisor</a> allows you to perform side-by-side personality comparisons of any two individuals. Use this powerful tool to navigate relationship dynamics, coach one another on differences in work styles, and help improve communication and trust between yourself and your team members. The <a href="/sp/pa/relationship-advisor">Relationship Advisor</a> is easily accessible from either the top right corner of the main dashboard or through the navigation menu.</p>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </section>
+        
+        <section id="faq-ideal-portrait" class="section-faq">
+            <header class="section-faq-header">
+                <h2 class="section-faq-title">
+          			Ideal Portrait
+        		</h2>
+
+                <div class="icon-toggle">
+
+                    <div class="close-it">
+                        <div class="hz"></div>
+                    </div>
+
+                    <div class="open-it">
+                        <div class="hz"></div>
+                        <div class="vl"></div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="x-section-faq-content">
+                <div class="section-faq-content">
+                    <dl>
+                        <dt>Ideal Portraits Overview</dt>
+                        <dd>
+                            <p>The Ideal Portraits section allows you to compare and contrast both candidates and employees against the Ideal Portraits you've commissioned from SurePeople. Once you've had an Ideal Portrait created, use this section to view the results, add roles and easily compare individuals to understand how closely they match the criteria. </p>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>What Are Ideal Portraits?</dt>
+                        <dd>
+                            <p>Every role in your company is unique. With different expectations, comes a varied mix of vital skills and capabilities. Choosing the right person goes far beyond looking at experience alone. Ideal Portraits are a data-driven way to assist in finding the perfect fit.</p>
+                            <p>Based on 58 traits and attributes from Prism, Ideal Portraits give a clear understanding of how a candidate matches the role from a psychometric perspective. By assessing critical aspects of the role requirements, IO psychologists are able to select the preferred traits and attributes that are critical for success in each role.</p>
+                            <p>Finding the ideal match gets even more precise when comparing data from your existing top performers. By using data from your proven team members, we’ll surface tangible success metrics that are inherent to your company culture.</p>
+                            <p>An Ideal Portrait project can incorporate a number of your company’s key variables including; values, culture, competencies, or the impact of managers, team members and direct reports on the candidate. These findings are loaded into the People Analytics platform where a proprietary algorithm takes over and delivers a percentage match for each candidate of the role.</p>
+                            <p>Ideal Portraits can be used to compare job candidates for new roles or assess your current staff for promotions and succession planning.</p>
+                            <p>To begin using your included Ideal Portraits, start the project by getting in touch with your SurePeople Client Solutions Representative.</p>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </section>
+        
+        <section id="faq-prism-analytics" class="section-faq">
+            <header class="section-faq-header">
+                <h2 class="section-faq-title">
+          			Prism Analytics
+        		</h2>
+
+                <div class="icon-toggle">
+
+                    <div class="close-it">
+                        <div class="hz"></div>
+                    </div>
+
+                    <div class="open-it">
+                        <div class="hz"></div>
+                        <div class="vl"></div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="x-section-faq-content">
+                <div class="section-faq-content">
+                    <dl>
+                        <dt>Prism Analytics Overview</dt>
+                        <dd>
+                            <p>Prism Analytics is a data-rich psychometric tool that provides a view into the individual and group dynamics that make up your organization. This tool is used to dive deep into individual and group ERT-i to further understand the individuals and groups that contribute to your culture.</p>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>Personality Balance</dt>
+                        <dd>
+                            <p>This section of Prism Analytics shows a breakdown of personality types for all employees and candidates in People Analytics. Easy-to-use tools allow you to look at the entire population all together, or narrow down the results to specific groups. Additional filters allow you to include or exclude candidates and employees from the results.</p>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>Prism Traits & Attributes</dt>
+                        <dd>
+                            <p>This section of Prism Analytics provides a comprehensive toolset for analyzing specific Prism traits and attributes of employees and candidates. Along with demographic information, filters for digging deep into the psychometric nuances of the organization allow you to narrow down search results to groups or individuals that best fit your search criteria.</p>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>Prism Insights</dt>
+                        <dd>
+                            <p>This section of Prism Analytics provides a simple way to see which employees and candidates show up the highest against each Prism Portrait trait and attribute. Filters allow you to search demographic information as well as the Prism traits and attributes themselves.</p>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </section>
+        <section id="faq-profile-details" class="section-faq">
+            <header class="section-faq-header">
+                <h2 class="section-faq-title">
+          			Profile Details
+        		</h2>
+
+                <div class="icon-toggle">
+
+                    <div class="close-it">
+                        <div class="hz"></div>
+                    </div>
+
+                    <div class="open-it">
+                        <div class="hz"></div>
+                        <div class="vl"></div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="x-section-faq-content">
+                <div class="section-faq-content">
+                    <dl>
+                        <dt>Profile Details</dt>
+                        <dd>
+                            <p>This handy tool allows you to quickly adjust your profile details and change your People Analytics password if needed.</p>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </section>
+</article>
+<!-- //.support-article -->
+
+<article class="support-article support-customer local-hide" data-tab = "5">
+    <header class="support-article-header">
+      <h1 class="support-article-title sp-header-title-color">Coaching Support</h1> 
+      <p class="support-article-lede">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae augue a nisi tempus tempus. Aenean cursus molestie mi ut egestas. Nullam nec velit ornare, feugiat dolor sed, aliquet mauris.</p>
+    </header>
+
+    <section id="faq-setup" class="section-faq defaultOpen">
+
+      <header class="section-faq-header">
+        <h2 class="section-faq-title">
+          Setup
+        </h2>
+
+        <div class="icon-toggle">
+
+          <div class="close-it">
+            <div class="hz"></div>
+          </div>
+
+          <div class="open-it">
+            <div class="hz"></div>
+            <div class="vl"></div>
+          </div>
+        </div>
+
+      </header>
+
+      <div class="x-section-faq-content">
+        <div class="section-faq-content">
+          <dl>
+            <dt>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut sapien lacus. Pellentesque tempus leo eu enim feugiat consequat. Nulla tempus suscipit lacinia?</dt>
+            <dd>
+              <p>Nullam hendrerit diam at consectetur gravida. Integer sed auctor justo, ac accumsan augue. Praesent consectetur dignissim ante id suscipit. Phasellus sodales nulla turpis, nec sagittis erat porttitor ut. Sed tempor tempus urna, vel placerat diam cursus in. Curabitur cursus faucibus metus, nec tincidunt massa tincidunt nec. Ut ornare orci nec nisl lobortis pretium. Morbi facilisis eros nulla, ut mattis mauris hendrerit et.</p>
+            </dd>
+          </dl>
+        
+          <dl>
+            <dt>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut sapien lacus. Pellentesque tempus leo eu enim feugiat consequat. Nulla tempus suscipit lacinia?</dt>
+            <dd>
+              <p>Nullam hendrerit diam at consectetur gravida. Integer sed auctor justo, ac accumsan augue. Praesent consectetur dignissim ante id suscipit. Phasellus sodales nulla turpis, nec sagittis erat porttitor ut. Sed tempor tempus urna, vel placerat diam cursus in. Curabitur cursus faucibus metus, nec tincidunt massa tincidunt nec. Ut ornare orci nec nisl lobortis pretium. Morbi facilisis eros nulla, ut mattis mauris hendrerit et.</p>
+            </dd>
+          </dl>
+
+
+        </div>
+      </div>
+    </section>
+
+
+    <section id="faq-rampup" class="section-faq">
+      <header class="section-faq-header">
+        <h2 class="section-faq-title">
+          Rampup
+        </h2>
+
+        <div class="icon-toggle">
+
+          <div class="close-it">
+            <div class="hz"></div>
+          </div>
+
+          <div class="open-it">
+            <div class="hz"></div>
+            <div class="vl"></div>
+          </div>
+        </div>
+      </header>
+
+      <div class="x-section-faq-content">
+        <div class="section-faq-content">
+          <dl>
+            <dt>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut sapien lacus. Pellentesque tempus leo eu enim feugiat consequat. Nulla tempus suscipit lacinia?</dt>
+            <dd>
+              <p>Nullam hendrerit diam at consectetur gravida. Integer sed auctor justo, ac accumsan augue. Praesent consectetur dignissim ante id suscipit. Phasellus sodales nulla turpis, nec sagittis erat porttitor ut. Sed tempor tempus urna, vel placerat diam cursus in. Curabitur cursus faucibus metus, nec tincidunt massa tincidunt nec. Ut ornare orci nec nisl lobortis pretium. Morbi facilisis eros nulla, ut mattis mauris hendrerit et.</p>
+            </dd>
+          </dl>
+        
+          <dl>
+            <dt>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut sapien lacus. Pellentesque tempus leo eu enim feugiat consequat. Nulla tempus suscipit lacinia?</dt>
+            <dd>
+              <p>Nullam hendrerit diam at consectetur gravida. Integer sed auctor justo, ac accumsan augue. Praesent consectetur dignissim ante id suscipit. Phasellus sodales nulla turpis, nec sagittis erat porttitor ut. Sed tempor tempus urna, venec tincidunt massa tincidunt nec. Ut ornare orci nec nisl lobortis pretium. Morbi facilisis eros nulla, ut mattis mauris hendrerit et.</p>
+            </dd>
+          </dl>
+
+
+        </div>
+      </div>
+    </section>
+
+
+
+    <section id="faq-best-practice" class="section-faq">
+      <header class="section-faq-header">
+        <h2 class="section-faq-title">
+          Best Practices
+        </h2>
+
+        <div class="icon-toggle">
+
+          <div class="close-it">
+            <div class="hz"></div>
+          </div>
+
+          <div class="open-it">
+            <div class="hz"></div>
+            <div class="vl"></div>
+          </div>
+        </div>
+      </header>
+
+      <div class="x-section-faq-content">
+        <div class="section-faq-content">
+          <dl>
+            <dt>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut sapien lacus. Pellentesque tempus leo eu enim feugiat consequat. Nulla tempus suscipit lacinia?</dt>
+            <dd>
+              <p>Nullam hendrerit diam at consectetur gravida. Integer sed auctor justo, ac accumsan augue. Praesent consectetur dignissim ante id suscipit. Phasellus sodales nulla turpis, nec sagittis erat porttitor ut. Sed tempor tempus urna, vel placerat diam cursus in. Curabitur cursus faucibus metus, nec tincidunt massa tincidunt nec. Ut ornare orci nec nisl lobortis pretium. Morbi facilisis eros nulla, ut mattis mauris hendrerit et.</p>
+            </dd>
+          </dl>
+        
+          <dl>
+            <dt>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut sapien lacus. Pellentesque tempus leo eu enim feugiat consequat. Nulla tempus suscipit lacinia?</dt>
+            <dd>
+              <p>Nullam hendrerit diam at consectetur gravida. Integer sed auctor justo, ac accumsan augue. Praesent consectetur dignissim ante id suscipit. Phasellus sodales nulla turpis, nec sagittis erat porttitor ut. Sed tempor tempus urna, vel placerat diam cursus in. Curabitur cursus faucibus metus, nec tincidunt massa tincidunt nec. Ut ornare orci nec nisl lobortis pretium. Morbi facilisis eros nulla, ut mattis mauris hendrerit et.</p>
+            </dd>
+          </dl>
+
+
+        </div>
+      </div>
+    </section>
+  </article> <!-- //.support-article -->
+
+
+<article class="support-article support-customer local-hide" data-tab = "2">
+
+    <section id="faq-setup" class="section-faq childAccount defaultOpen">
+
+      <header class="section-faq-header noAction">
+        <h2 class="section-faq-title">
+          Account Details
+        </h2>
+
+        <div class="icon-toggle">
+
+          <div class="close-it">
+            <div class="hz"></div>
+          </div>
+
+          <div class="open-it">
+            <div class="hz"></div>
+            <div class="vl"></div>
+          </div>
+        </div>
+
+      </header>
+
+      <div class="x-section-faq-content">
+        <div class="section-faq-content">
+        
+          <dl>
+            <dt>Administrators</dt>
+            <dd>
+              <p>This section allows you to see all People Analytics administrators simultaneously and add new administrators as necessary.</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>Company Details</dt>
+            <dd>
+              <p>This quick view shows your organization's details for administrative purposes.</p>
+            </dd>
+          </dl>
+        
+          <dl>
+            <dt>Billing & Subscriptions</dt>
+            <dd>
+              <p>This section gives a snapshot of your account details with helpful tools for adding new licenses and reminders for administrative purposes.</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>Permissions</dt>
+            <dd>
+              <p>Permissions allow you to automatically share Prism Portraits with employees once they've completed the Prism. Sharing Prism Portraits to both employees and candidates can be done on an individual basis from the Employees and Candidates sections.</p>
+            </dd>
+          </dl>
+	  </div>
+      </div>
+    </section>
+</article>
+
+<article class="support-article support-customer local-hide" data-tab = "3">
+    
+    <header class="support-article-header">
+      <h1 class="support-article-title sp-header-title-color">SUREPEOPLE DEFINITIONS</h1>
+      <!-- SUREPEOPLE DEFINITIONS -->
+      <!-- <p class="support-article-lede">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae augue a nisi tempus tempus. Aenean cursus molestie mi ut egestas. Nullam nec velit ornare, feugiat dolor sed, aliquet mauris.</p> -->
+    </header>
+
+    <section id="faq-setup" class="section-faq">
+
+      <div class="x-section-faq-content">
+        <div class="section-faq-content">
+          <dl>
+            <!-- <dt>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut sapien lacus. Pellentesque tempus leo eu enim feugiat consequat. Nulla tempus suscipit lacinia?</dt> -->
+            <dd>
+              <p><span>Candidate</span>- A Candidate is a potential new hire for your organization who has been added to the SurePeople platform by taking the Prism.</p>
+            </dd>
+          </dl>
+        
+          <dl>
+            <!-- <dt>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut sapien lacus. Pellentesque tempus leo eu enim feugiat consequat. Nulla tempus suscipit lacinia?</dt> -->
+            <dd>
+              <p><span>Conflict Management</span>- Embracing the knowledge that we, as well as those with whom we interact, deal with conflict in different ways allows for more productive and harmonious work relationships. The SurePeople Prism measures distinct conflict management styles, knowing that, while no two people are alike, we all operate on a spectrum that incorporates many ways of managing conflict based on specific situations.</p>
+            </dd>
+          </dl>
+
+        
+          <dl>
+            <!-- <dt>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut sapien lacus. Pellentesque tempus leo eu enim feugiat consequat. Nulla tempus suscipit lacinia?</dt> -->
+            <dd>
+              <p><span>Decision making</span>- Understanding our decision making styles and the styles of those with whom we interact, minimizes conflict opportunities. The SurePeople Prism measures decision making style on four distinct but related scales. Where we fall within each scale offers insight into our thought processes and personal expectations.</p>
+            </dd>
+          </dl>          
+
+          <dl>
+            <!-- <dt>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut sapien lacus. Pellentesque tempus leo eu enim feugiat consequat. Nulla tempus suscipit lacinia?</dt> -->
+            <dd>
+              <p><span>Emotional Relational & Team Intelligence (ERT-i™)</span>- A critical measurement of oneself, one's emotions and one's interactions with others.</p>
+            </dd>
+          </dl>
+          
+          <dl>
+            <!-- <dt>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut sapien lacus. Pellentesque tempus leo eu enim feugiat consequat. Nulla tempus suscipit lacinia?</dt> -->
+            <dd>
+              <p><span>Employee</span>- An Employee is an existing member of your organization who has been added to the SurePeople platform by taking the Prism.</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <!-- <dt>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut sapien lacus. Pellentesque tempus leo eu enim feugiat consequat. Nulla tempus suscipit lacinia?</dt> -->
+            <dd>
+              <p><span>Fundamental Needs</span>- As human beings, we constantly make decisions and take actions to fulfill our fundamental needs. Although we may not be fully aware of or able to articulate them, our fundamental needs deeply influence our behavior. The SurePeople Prism measures fundamental needs separate from other facets of the SurePeople Prism, giving more comprehensive insight into what defines and drives us as individuals. The information helps us better appreciate and respond to those with whom we interact in the workplace and beyond.</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <!-- <dt>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut sapien lacus. Pellentesque tempus leo eu enim feugiat consequat. Nulla tempus suscipit lacinia?</dt> -->
+            <dd>
+              <p><span>Learning style</span>- While others press forward undaunted, others are more deliberate and concerned with protocol. The measurement of learning styles speaks to personal process-are we more engaged by big ideas or details, risk-taking or analysis? The SurePeople Prism measures how individuals process concepts and details to reveal learning styles which is an important influence on compatibility in work relationships.</p>
+            </dd>
+          </dl>  
+                  
+          <dl>
+            <!-- <dt>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut sapien lacus. Pellentesque tempus leo eu enim feugiat consequat. Nulla tempus suscipit lacinia?</dt> -->
+            <dd>
+              <p><span>Motivation</span>- Understanding how and why we take certain actions, is critical to success in our personal and professional lives. In the workplace, understanding the motivations of others can help us manage others well and work more productively on a team or with a supervisor. The SurePeople Prism presents separate measurements that uncover our motivations with a telling and comprehensive analysis.</p>
+            </dd>
+          </dl>  
+
+          <dl>
+            <!-- <dt>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut sapien lacus. Pellentesque tempus leo eu enim feugiat consequat. Nulla tempus suscipit lacinia?</dt> -->
+            <dd>
+              <p><span>Personality</span>- While everyone exhibits dominant and complementary personality characteristics, each personality is typically a compilation of various types. Some people exhibit the same personality no matter the context, but most present a real and perceptible personality shift at certain times, especially when under stress. Appreciating these types of distinctions about ourselves and others minimizes conflict and leads to greater efficiency and effectiveness in both our professional and personal lives. The SurePeople Prism yields comprehensive and highly relevant insights into personality-how we posture and interact with others. It measures individuals within a four-dimensional scale where the relative values of each dimension combine to form a broad portrait of one's orientation towards challenges and situations.</p>
+            </dd>
+          </dl>
+          
+          <dl>
+            <!-- <dt>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut sapien lacus. Pellentesque tempus leo eu enim feugiat consequat. Nulla tempus suscipit lacinia?</dt> -->
+            <dd>
+              <p><span>Prism</span>- Prism®, our proprietary algorithm, provides a comprehensive portrait of each and every employee: personality profile, processing, motivation, fundamental needs, decision-making and learning style. Backed by science. Powered by data.</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <!-- <dt>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut sapien lacus. Pellentesque tempus leo eu enim feugiat consequat. Nulla tempus suscipit lacinia?</dt> -->
+            <dd>
+              <p><span>Processing</span>- How do we approach the people, activities, thoughts and causes that impact our lives? What energizes us? How do we process real and perceived stimuli? Are we guided by our hearts or our heads? The SurePeople Prism addresses internal processes, often difficult to ascertain without the proper context. The resulting measurements offer a precise view of an individual's approach to processing internal and external stimuli, information that is especially constructive in team environments.</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <!-- <dt>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut sapien lacus. Pellentesque tempus leo eu enim feugiat consequat. Nulla tempus suscipit lacinia?</dt> -->
+            <dd>
+              <p><span>Reliability</span>- The extent to which an assessment yields the same results over time.</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <!-- <dt>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut sapien lacus. Pellentesque tempus leo eu enim feugiat consequat. Nulla tempus suscipit lacinia?</dt> -->
+            <dd>
+              <p><span>Validity</span>- The extent to which an assessment measures what it is supposed to measure.</p>
+            </dd>
+          </dl>
+
+              </div>
+      </div>
+    </section>
+
+  </article> <!-- //.support-article -->
+
+<article class="support-article support-customer local-hide" data-tab = "4">
+    
+    <header class="support-article-header">
+      <h1 class="support-article-title sp-header-title-color">Get More Help</h1>  
+      <p class="support-article-lede">Still have questions? Let us know and we'll be in touch as soon as possible.</p>
+    </header>
+
+    <form id="help" class="js_help_form" name="help" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST">
+      <input type="hidden" id="email" name="email" value="{{userInfo.member.email}}" />
+			      <input type="hidden" id="company" name="company" value="{{userInfo.company.name}}" />
+			      <input type="hidden" id="first_name" name="first_name" value="{{userInfo.member.firstName}}" />
+			      <input type="hidden" id="last_name" name="last_name" value="{{userInfo.member.lastName}}" />
+			      <input type="hidden" id="phone" name="phone">
+      <ol class="help">
+        <li style="margin-bottom: 2px;">
+          <label for="message_type">Message Type</label>
+        </li>
+        <li class="select-content brdr">
+        <span class="dd-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+          <select class="js_message_type" id="00Nj0000008ioy8" name="00Nj0000008ioy8">
+            <option value="-1">Select Message Type</option>
+            <option value="Product Support">Product Support</option>
+            <option value="Technical Support">Technical Support</option>
+            <option value="Account Support">Account Support</option>
+            <option value="Other">Other</option>                            
+          </select>
+          <div class="error-form-message js_select_error">Required</div>
+        </li>   
+        <li>
+          <label for="description">Message</label>
+          <textarea class="text-input js_textarea" maximum="300" id="description" name="description" rows="4" placeholder="Message"></textarea>
+          <div class="error-form-message js_narrow_message narrow-message">Required, must have at least 20 characters.</div>
+        </li>        
+        <li>
+          <input type="hidden" id="retURL" class="js_hostName" name="retURL" value="http://www.surepeople.com/">
+          <input id="submit_contact" class="btn-16px js_helpFormSubmit sp-btn-color" type="submit" value="Submit" name="submit">
+        </li>
+      </ol>
+    </form>
+  </article> <!-- //.support-article -->
+</div>
+
+        <div class="faux-col-shim"></div>
+      </div>
+    </div>
+  </div>
+</div>

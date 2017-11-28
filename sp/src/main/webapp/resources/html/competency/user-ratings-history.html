@@ -1,0 +1,89 @@
+<link rel="stylesheet" href="/resources/css/css-min/competencies-new.min.css?ref=true">
+<div class="cm-listing-wrap cm-listing-cols ratings-history">
+                    <div class="ev-listing-header evaluation-cols noMin">
+                        <!-- Header 2 Starts -->
+                        <div class="evaluation-right-header">
+                            <div class="evaluation-info">
+                                <a href="javascript:void(0)" class="ev-print-link close-link" data-ng-click="ctrl.ratingsHistoryView = false">
+                                    <span class="close-view icon-icon_remove sp-icon-color remove-top"></span>
+                                </a>
+                                <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('competency.admin.self.rating.title')"></h2>
+                             </div>
+                        </div>
+                        <!-- Header 2 Ends -->
+                     </div>
+                   
+                    <div class="ev-listing-cols-wrap mtop50">
+                        <div class="ev-listing-cols" data-ng-repeat="list in record=(ctrl.ratingsHistoryList | orderBy:'-') track by $index">
+                            <div class="ev-listing-row" data-ng-class="{'mb20': !list.competencyScores}">
+                                <div class="ev-list-mem-info ev-list-cols uCol_1" data-ng-class="{'botBrd': !list.competencyScores}">
+                                    <p class="ev-member-details spectrum userRatingHeight">
+                                        <span class="ev-mem-info pl0">
+                                        
+                                        <span class="ev-name sp-link-color" data-ng-bind="list.startDate | spLocaleDate"></span>
+                                        
+                                        <span class="ev-title" data-ng-bind="list.competencyProfile.name"></span>
+                                        </span>
+                                    </p>
+                                 </div>
+                                <div class="ev-list-rating-self ev-list-cols rating-cols lastCol uCol_2 userRatingHeightCols" data-ng-class="{'botBrd': !list.competencyScores}">
+                                    <div class="ev-rating-cont">
+                                        <div class="ev-rating-cont-top">
+                                            <p class="rating-val sp-link-color" data-ng-if="list.competencyScores !==null" data-ng-bind="list.score"></p>
+                                            <p class="rating-val sp-link-color" data-ng-if="list.competencyScores ===null" data-ng-bind="'Not Available'"></p>
+                                            <div class="ratings-hex" data-ng-if="list.competencyScores !==null">
+                                                <div class="empty-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(list.competencyProfile.ratingConfiguration.size)}}"></div>
+                                                <div class="full-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(list.competencyProfile.ratingConfiguration.size)}}" data-ng-style="{width:(list.score/((list.competencyProfile.ratingConfiguration.size)/10))*10+ '%'}"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+            <section class="competency-trait-section col_1 uExtd" data-ng-if="list.competencyScores !==null">
+                <header class="ct-header-wrap" data-ng-click="ctrl.toggleSection(('#section_cont_'+$index), $index)">
+                    <ol>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <span data-ng-bind="::pullInterNationalization('competency.score.average')"></span>
+                                <span class="evp-icon icon-icon_sort sp-icon-color" data-ng-class="ctrl.activeToggleId===$index?'icon-icon_sort-up':'icon-icon_sort'"></span>
+                            </a>
+                        </li>
+                    </ol>
+                </header>
+                <div class="ct-content" id="section_cont_{{$index}}">
+                    <div class="competency-trait-block">
+                        <div class="header-related-content">
+                            <div class="content-section clearfix">
+                                <div class="competencyProfile company-average" data-ng-repeat="scores in list.competencyScores track by $index">
+                                    <div class="ev-listing-row">
+                                        <div class="ev-list-mem-info ev-list-cols uAdj1">
+                                            <p class="ev-member-details company-average">
+                                                <span class="ev-mem-info w100 pl0">
+                     								<span class="ev-name f500" data-ng-bind="scores.name" data-ng-if="ctrl.winWidth>1025"></span>
+                                                    <span class="ev-name f500" data-ng-bind="scores.name | addEllipsis:50" data-ng-if="ctrl.winWidth<1023"></span>                                    				
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <div class="ev-list-rating-self ev-list-cols rating-cols uAdj2">
+                                            <div class="ev-rating-cont company-average">
+                                                <div class="ev-rating-cont-top">
+                                                    <p class="rating-val sp-link-color" data-ng-bind="scores.score"></p>
+                                                    <div class="ratings-hex">
+                                                        <div class="empty-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(list.competencyProfile.ratingConfiguration.size)}}"></div>
+                                                        <div class="full-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(list.competencyProfile.ratingConfiguration.size)}}" data-ng-style="{width:(scores.score/((list.competencyProfile.ratingConfiguration.size)/10))*10+ '%'}"></div>
+                                                    </div>
+                                                </div>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+                        </div>
+                    </div>
+                    </div>

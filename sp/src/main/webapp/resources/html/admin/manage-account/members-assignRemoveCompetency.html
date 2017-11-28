@@ -1,0 +1,78 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color" data-ng-class="{'adj0':ctrl.competencyActionType === 'REMOVE'}"></div>
+                    <h2 data-ng-if="ctrl.competencyActionType === 'ASSIGN'" data-ng-bind="::pullInterNationalization('competency.members.assign.title')"></h2>
+                </div>
+                <div class="new-modals-wrapper">
+                
+                    <!-- Top Message Starts -->
+                    <p data-ng-if="ctrl.competencyActionType === 'REMOVE'" class="dialog-message-16px" data-ng-bind="::pullInterNationalization('competency.members.remove.desc')"></p>
+                    <!-- Top Message Ends -->
+
+                    <!-- Email List Starts  -->
+                    <div class="multiple-emails-block" data-ng-if="ctrl.singleMemberCompetency">
+                        <div class="table-content">
+                            <div class="left-cont">
+                                <p data-ng-bind="::pullInterNationalization('manageAccountContent.selectedMembers')"></p>
+                            </div>
+                            <div class="right-cont">
+                                <p class="email-list">
+                                    <span>
+                                    <span data-ng-if="ctrl.competencyAssignRemoveOptions[0].name" data-ng-bind="ctrl.competencyAssignRemoveOptions[0].name"></span>
+                                    <span data-ng-if="!ctrl.competencyAssignRemoveOptions[0].name" data-ng-bind="ctrl.competencyAssignRemoveOptions[0].email"></span>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Email List Ends  -->                    
+                    
+                    <!-- Email List Starts  -->
+                    <div class="multiple-emails-block" data-ng-if="!ctrl.singleMemberCompetency">
+                        <div class="table-content">
+                            <div class="left-cont">
+                                <p data-ng-bind="::pullInterNationalization('manageAccountContent.selectedMembers')"></p>
+                            </div>
+                            <div class="right-cont">
+                                <p class="email-list">
+                                    <span data-ng-repeat="userList in ctrl.competencyAssignRemoveOptions">
+                                    <span data-ng-if="userList.name" data-ng-bind="userList.name+($last?'':',')"></span>
+                                    <span data-ng-if="!userList.name" data-ng-bind="userList.email+($last?'':',')"></span>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Email List Ends  -->
+                    
+                    <!-- Form Elements -->
+                    <div class="form-elements" data-ng-if="ctrl.competencyActionType === 'ASSIGN'">
+                        <div class="rolesSelectWrapper">
+                            <span class="mg-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                            <select data-ng-options="competencyList.id as competencyList.name for competencyList in ctrl.competencyList" class="form-control rolesSelect" data-ng-model="ctrl.selectedCompetencyDrop" data-ng-change="ctrl.selectedCompetency==='REMOVESINGLE'?ctrl.competencyRemoveAction=true:ctrl.competencyRemoveAction=false">
+                            	<option value="" data-ng-bind="pullInterNationalization('competency.members.selectCompetency')"></option>
+                            </select>
+                        </div>
+                        <span class="validate-error" data-ng-if="!ctrl.selectedCompetencyDrop && ctrl.assignClick" data-ng-bind="::pullInterNationalization('competency.members.selectCompetency.error')"></span>
+                    </div>
+                    <!-- Form Elements Ends -->
+                    
+                    <!-- Buttons Starts -->
+                    <div class="dialog-btns-wrapper" data-ng-if="ctrl.competencyActionType === 'ASSIGN'">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.submit')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="ctrl.assignCompetency([ctrl.selectedCompetencyDrop])">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.cancel')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="closeThisDialog();">
+                    </div>
+                    <div class="dialog-btns-wrapper" data-ng-if="ctrl.competencyActionType === 'REMOVE'">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.yes')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="ctrl.removeCompetency()">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.no')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="closeThisDialog();">
+                    </div>
+                    <!-- Buttons Ends -->
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

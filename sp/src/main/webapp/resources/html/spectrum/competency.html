@@ -1,0 +1,234 @@
+<section id="org-profile-balance" class="spectrum-section bleuprint-graph-section" data-ng-if="ctrl.chartDataReady">
+    <header class="spectrum-header clearfix">
+        <h1 class="spectrum-section-title sp-header-title-color" data-ng-bind="::pullInterNationalization('spectrum.organization.competency')"></h1>
+        <!--  <div class="completedProfile"><span data-ng-bind="::pullInterNationalization('spectrum.matches')+': '"></span> <span class="number" data-ng-bind="(ctrl.recordFieldData.length ||0)+' of '+ (ctrl.pageSetting.total||0)"></span></div>-->
+    </header>
+    <article class="filter-selection">
+        <div class="filter-group">
+            <h4 data-ng-bind="::pullInterNationalization('spectrum.profile.competency')+':'"></h4>
+            <div class="style-filter-group" data-ng-bind="ctrl.pageSetting.competencyProfile.name"></div>
+        </div>
+        <div class="filter-group" data-ng-if="ctrl.competencyEvaluationList.length">
+	  		<h4 data-ng-bind="::pullInterNationalization('spectrum.profile.competencies')+':'"></h4>
+	  		<div class="style-filter-group">
+	  			<ellipsis el-message="pullInterNationalization('spectrum.organization.all')" el-total="ctrl.competencyEvaluationList.length" el-data='ctrl.pageSetting.competencySelected.length ? ctrl.pageSetting.competencySelected:ctrl.competencyEvaluationList' el-length="'.filter-selection'" el-fontsize='14'></ellipsis>
+	  		</div>
+	  	</div>
+    </article>
+    <div class="blueprint-analytics-graph insightProfileSection" data-ng-if="ctrl.chartDataReady && ctrl.competencyDropDownList">
+        <div class="chartView">
+            <div class="blueprint-sort clearfix">
+                <div class="sort-area">
+                    <div class="left-filter-drop">
+                        <!-- <div class="filter-dropdown">
+                            <span class="naf-theme-icon_style1 icon-icon_dropdown-arrow sp-icon-color"></span>
+                            <select data-ng-model="ctrl.pageSetting.competencyDrop" data-ng-options="item as pullInterNationalization('spectrum.competency.'+item.name) for item in ctrl.competencyDropDownList track by item.id">
+                            </select>-->
+                            <ul class="competency-filter-drive">
+	                            <li class="list-filter-drive" data-ng-if="ctrl.helpingData.requiredEvaluationList.indexOf('Self')!==-1">
+	                                <p class="pCheckBox">
+	                                    <input type="checkbox" data-ng-click="ctrl.competencyCheckTriggered('Self')" data-ng-model="ctrl.evaluationsSelected.self" class="iCheckBox" id="selfCheck">
+	                                    <label for="selfCheck" class="lCheckBox">
+	                                        <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+	                                        <span class="lCheckBoxText" data-ng-bind="::pullInterNationalization('competency.admin.self')"></span>
+	                                    </label>
+	                                </p>
+	                            </li>
+	                            <li class="list-filter-drive" data-ng-if="ctrl.helpingData.requiredEvaluationList.indexOf('Manager')!==-1">
+	                                <p class="pCheckBox">
+	                                    <input type="checkbox" data-ng-click="ctrl.competencyCheckTriggered('Manager')" data-ng-model="ctrl.evaluationsSelected.manager" class="iCheckBox" id="managerCheck">
+	                                    <label for="managerCheck" class="lCheckBox">
+	                                        <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+	                                        <span class="lCheckBoxText" data-ng-bind="::pullInterNationalization('competency.admin.manager')"></span>
+	                                    </label>
+	                                </p>
+	                            </li>
+	                            <li class="list-filter-drive" data-ng-if="ctrl.helpingData.requiredEvaluationList.indexOf('Peer')!==-1">
+	                                <p class="pCheckBox">
+	                                    <input type="checkbox" data-ng-click="ctrl.competencyCheckTriggered('Peer')" data-ng-model="ctrl.evaluationsSelected.peer" class="iCheckBox" id="peerCheck">
+	                                    <label for="peerCheck" class="lCheckBox">
+	                                        <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+	                                        <span class="lCheckBoxText" data-ng-bind="::pullInterNationalization('competency.admin.peer')"></span>
+	                                    </label>
+	                                </p>
+	                            </li>
+	                        </ul>
+                        </div>
+                    </div>
+                    <div id="legend2" class="fl">
+	                    <div class="legend2" data-ng-if="ctrl.helpingData.requiredEvaluationList.indexOf('Peer')!==-1">
+	                        <p class="highlight-name"><span class="key-dot peer"></span><span data-ng-bind="::pullInterNationalization('competency.admin.peer')"></span></p>
+	                    </div>
+	                    <div class="legend2" data-ng-if="ctrl.helpingData.requiredEvaluationList.indexOf('Manager')!==-1">
+	                        <p class="highlight-name"><span class="key-dot manager"></span><span data-ng-bind="::pullInterNationalization('spectrum.manager')"></span></p>
+	                    </div>
+	                    <div class="legend2" data-ng-if="ctrl.helpingData.requiredEvaluationList.indexOf('Self')!==-1">
+	                        <p class="highlight-name"><span class="key-dot self"></span><span data-ng-bind="::pullInterNationalization('spectrum.self')"></span></p>
+	                    </div>
+	                </div>
+                </div>
+            </div>
+            <div class="svg-container">
+            	<group-bar-chart chart-data="ctrl.competencyChartTable" chart-rating="ctrl.helpingData.ratingSize" chart-view="ctrl.viewTableIndex.in" chart-color="ctrl.pageSetting.competencyDrop.color" chart-filter="ctrl.pageSetting.competencyDrop.value" class-bind="insightProfileSection"></group-bar-chart>
+            </div>
+            <article class="arrow-block clearfix">
+                <article class="arrow-icons" data-ng-if="ctrl.competencyChartTable.length > ctrl.viewTableIndex.increment">
+                    <span class="arrow-icon icon-icon_home-arrow reverse-icon active_{{!!(ctrl.viewTableIndex.in)}}" data-ng-class="{'sp-background-color':(!!(ctrl.viewTableIndex.in))}" data-ng-click="ctrl.updateviewTableIndex('prev')"></span>
+                    <span class="arrow-icon icon-icon_home-arrow active_{{ctrl.competencyChartTable.length > (((ctrl.viewTableIndex.in+1)*ctrl.viewTableIndex.increment))}}" data-ng-class="{'sp-background-color':(ctrl.competencyChartTable.length > (((ctrl.viewTableIndex.in+1)*ctrl.viewTableIndex.increment)))}" data-ng-click="ctrl.updateviewTableIndex('next')"></span>
+                </article>
+            </article>
+        <div class="competency-trait-block">
+            <div class="cm-listing-wrap cm-listing-cols">
+                <div class="ev-listing-cols-wrap">
+                    <div class="ev-listing-cols-header">
+                        <div class="ev-listing-row mb0">
+                            <div class="ev-list-mem-info ev-list-cols extd">
+                                <h4 class="sort-filter on" data-ng-init="reverse=true" data-ng-click="ctrl.competencyActive($event,{'predicate':'startDate', 'reverse':reverse=!reverse})" data-predicate="startDate">
+		                            <span class="sort-text" data-ng-bind="pullInterNationalization('spectrum.evaluation')+' ('+ctrl.competencyEvaluation.length+')'"></span>
+		                            <span class="sort-icon icon-icon_sort sp-icon-color sort-down"></span>
+		                            <span class="sort-icon icon-icon_sort default-color sort-down"></span>
+		                            <span class="sort-icon icon-icon_sort-up sp-icon-color sort-up"></span>
+		                        </h4>
+                            </div>
+                            <div class="ev-list-rating-self ev-list-cols" data-ng-if="ctrl.pageSetting.competencyDrop.value.indexOf('Self')!==-1">
+                                <h4 class="sort-filter on" data-ng-init="reverse=true" data-ng-click="ctrl.competencyActive($event,{'predicate':'averageScores.Self.score', 'reverse':reverse=!reverse})" data-predicate="Self">
+		                            <span class="sort-text" data-ng-bind="::pullInterNationalization('spectrum.self')"></span>
+		                            <span class="sort-icon icon-icon_sort sp-icon-color sort-down"></span>
+		                            <span class="sort-icon icon-icon_sort default-color sort-down"></span>
+		                            <span class="sort-icon icon-icon_sort-up sp-icon-color sort-up"></span>
+		                        </h4>
+                            </div>
+                            <div class="ev-list-rating-manager ev-list-cols" data-ng-if="ctrl.pageSetting.competencyDrop.value.indexOf('Manager')!==-1">
+                                <h4 class="sort-filter on" data-ng-init="reverse=true" data-ng-click="ctrl.competencyActive($event,{'predicate':'averageScores.Manager.score', 'reverse':reverse=!reverse})" data-predicate="Manager">
+		                            <span class="sort-text" data-ng-bind="::pullInterNationalization('spectrum.manager')"></span>
+		                            <span class="sort-icon icon-icon_sort sp-icon-color sort-down"></span>
+		                            <span class="sort-icon icon-icon_sort default-color sort-down"></span>
+		                            <span class="sort-icon icon-icon_sort-up sp-icon-color sort-up"></span>
+		                        </h4>
+                            </div>
+                            <div class="ev-list-rating-peer ev-list-cols" data-ng-if="ctrl.pageSetting.competencyDrop.value.indexOf('Peer')!==-1">
+                                <h4 class="sort-filter on" data-ng-init="reverse=true" data-ng-click="ctrl.competencyActive($event,{'predicate':'averageScores.Peer.score', 'reverse':reverse=!reverse})" data-predicate="Peer">
+		                            <span class="sort-text" data-ng-bind="::pullInterNationalization('competency.admin.peer')"></span>
+		                            <span class="sort-icon icon-icon_sort sp-icon-color sort-down"></span>
+		                            <span class="sort-icon icon-icon_sort default-color sort-down"></span>
+		                            <span class="sort-icon icon-icon_sort-up sp-icon-color sort-up"></span>
+		                        </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div infinite-scroll="ctrl.infinteScroll(ctrl.pageSetting.pageSize+ctrl.pageSetting.pageSize)" infinite-scroll-immediate-check="false">
+                        <div class="ev-listing-cols" data-ng-repeat="competency in (ctrl.evaluationTable.slice(0,ctrl.pageSetting.pageSize)) track by competency.competencyEvaluationId">
+                            <div class="ev-listing-row">
+                                <article class="clearfix">
+                                    <div class="ev-list-mem-info ev-list-cols extd">
+                                        <p class="ev-member-details spectrum">
+                                            <span class="ev-mem-info pl0">
+												<span class="ev-name" data-ng-bind="competency.startDate | spLocaleDate"></span>
+                                            <span class="ev-title f12" data-ng-bind-html="pullInterNationalization('manageAccountContent.membersEval')+' <strong>'+competency.memberCount+'</strong>'"></span>
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="ev-list-rating-self ev-list-cols rating-cols" data-ng-repeat="list in ctrl.pageSetting.competencyDrop.value track by list"><!--['Self','Manager','Peer']-->
+                                        <div class="ev-rating-cont">
+                                            <div class="ev-rating-cont-top" data-ng-if="competency.averageScores[list]">
+                                            	<div data-ng-if="competency.averageScores[list].competencyScores!==null">
+	                                            	<div class="rating-val sp-link-color" data-ng-bind="competency.averageScores[list].score"></div>
+	                                                <div class="ratings-hex">
+	                                                    <div class="empty-hex size_{{competency.competencyProfile.ratingConfiguration.size||5}}" data-rating="{{ctrl.sharedProp.processRatingHex(competency.competencyProfile.ratingConfiguration.size||5)}}"></div>
+	                                                    <div class="full-hex size_{{competency.competencyProfile.ratingConfiguration.size||5}}" data-rating="{{ctrl.sharedProp.processRatingHex(competency.competencyProfile.ratingConfiguration.size||5)}}" data-ng-style="{width:(competency.averageScores[list].score/((competency.competencyProfile.ratingConfiguration.size||5)/10))*10+ '%'}"></div>
+	                                                </div>
+                                                </div>
+                                                <div data-ng-if="competency.averageScores[list].competencyScores===null">
+	                                            	<p class="ev-status-msg">
+	                                                    <span class="status-txt" data-ng-bind="::pullInterNationalization('competency.admin.rating.notAvailable')"></span>
+	                                                </p>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="ev-rating-cont-top" data-ng-if="!competency.averageScores[list]">
+                                                <p class="ev-status-msg">
+                                                    <span class="status-txt" data-ng-bind="::pullInterNationalization('competency.admin.rating.notInitiated')"></span>
+                                                </p>
+                                            </div>-->
+                                            <div class="ev-rating-cont-bottom" data-ng-if="competency.averageScores[list] && competency.averageScores[list].competencyScores!==null">
+                                                <div class="competency-radial">
+                                                    <div class="status-radial">
+                                                        <div class="lp-progress" progress-animation remaining-tasks="competency.averageScores[list].completedCount" total-tasks="competency.averageScores[list].count" type="radial"></div>
+                                                    </div>
+                                                    <div class="status-completed-comptency">
+                                                        <div class="status-completed"><span class="countCompleted" data-ng-bind="competency.averageScores[list].completedCount"></span>/<span class="countTotal" data-ng-bind="competency.averageScores[list].count"></span></div>
+                                                        <div class="evaluations" data-ng-bind="::pullInterNationalization('spectrum.evaluation')"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <!-- Competency Accordian Starts -->
+                                <section class="competency-trait-section extd" data-ng-if="competency.competencyProfile.competencyList.length" data-ng-class="{'col_2': ctrl.pageSetting.competencyDrop.value.length===2, 'col_1': ctrl.pageSetting.competencyDrop.value.length===1}">
+                                    <header class="ct-header-wrap" data-ng-click="ctrl.toggleDrawer(competency, ('#section_cont_'+competency.competencyEvaluationId), competency.competencyEvaluationId)">
+                                        <ol>
+                                            <li>
+                                                <a href="javascript:void(0)">
+								                    <span data-ng-bind="::pullInterNationalization('spectrum.companyAverage')"></span>
+								                    <span class="evp-icon icon-icon_sort sp-icon-color" data-ng-class="competency.competencyEvaluationId===ctrl.activeToggleId?'icon-icon_sort-up':'icon-icon_sort'"></span>
+								                </a>
+                                            </li>
+                                        </ol>
+                                    </header>
+                                    <div class="ct-content" id="section_cont_{{competency.competencyEvaluationId}}">
+                                        <div class="competency-trait-block">
+                                            <div class="header-related-content">
+                                                <div class="content-section clearfix">
+                                                    <div class="competencyProfile company-average" data-ng-repeat="profiles in competency.competencyProfile.competencyList track by $index">
+                                                        <div class="ev-listing-row">
+                                                            <div class="ev-list-mem-info ev-list-cols d_extd" data-ng-class="{'d_col1_single': ctrl.pageSetting.competencyDrop.value.length===1, 'adj1': ctrl.pageSetting.competencyDrop.value.length===2}">
+                                                                <p class="ev-member-details company-average">
+                                                                    <span class="ev-mem-info pl0 w100">
+                                        								<span class="ev-name f500 block-with-text-vertical" data-ng-bind="profiles.name"></span>
+                                        					        </span>
+                                                                </p>
+                                                            </div>
+                                                            <div class="ev-list-rating-self ev-list-cols rating-cols d_col_adj" data-ng-class="{'d_col2_single': ctrl.pageSetting.competencyDrop.value.length===1, 'd_col_adj2': (ctrl.pageSetting.competencyDrop.value.indexOf('Peer') === -1 && ctrl.pageSetting.competencyDrop.value.indexOf('Manager') !== -1 && ctrl.pageSetting.competencyDrop.value.indexOf('Self') !== -1), 'd_col_adj1': ctrl.pageSetting.competencyDrop.value.length<3, 'd_col2':(listed==='Self'), 'd_col3':(listed==='Manager'), 'd_col4':(listed==='Peer')}" data-ng-repeat="listed in ctrl.pageSetting.competencyDrop.value track by listed"><!-- ['Self','Manager','Peer'] -->
+                                                                <div class="ev-rating-cont company-average">
+	                                                                 <div class="ev-rating-cont-top" data-ng-if="competency.averageScores[listed]">
+	                                                                 	<div data-ng-if="competency.averageScores[listed].competencyScores !== null" >
+					                                                        <div class="rating-val f11 f300" data-ng-bind="competency.averageScores[listed].collaboratedScore[profiles.name]"></div>
+					                                                        <div class="ratings-hex">
+	                                                                            <div class="empty-hex size_{{competency.competencyProfile.ratingConfiguration.size}}" data-rating="{{ctrl.sharedProp.processRatingHex(competency.competencyProfile.ratingConfiguration.size||5)}}"></div>
+	                                                                            <div class="full-hex size_{{competency.competencyProfile.ratingConfiguration.size}}" data-rating="{{ctrl.sharedProp.processRatingHex(competency.competencyProfile.ratingConfiguration.size||5)}}" data-ng-style="{width:(competency.averageScores[listed].collaboratedScore[profiles.name]/((competency.competencyProfile.ratingConfiguration.size||5)/10))*10+ '%'}"></div>
+	                                                                        </div>
+                                                                        </div>
+                                                                        <div class="rating-val f11 f300" data-ng-if="competency.averageScores[listed].competencyScores === null" data-ng-bind="::pullInterNationalization('competency.admin.rating.notAvailable')"></div>
+				                                                        
+				                                                    </div>
+                                                           		    <!-- <div class="ev-rating-cont-top" data-ng-if="!competency.averageScores[listed]">
+                                                                    	<p class="ev-status-msg">
+                                                                            <span class="status-txt" data-ng-bind="::pullInterNationalization('competency.admin.rating.notInitiated')"></span>
+                                                                        </p>
+                                                                    </div>-->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <!-- Competency Accordian Ends -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         </div>
+</section>
+<section class="spectrum-section bleuprint-graph-section" data-ng-if="ctrl.noData">
+    <header class="spectrum-header clearfix pad16b">
+        <h1 class="spectrum-section-title sp-header-title-color" data-ng-bind="::pullInterNationalization('spectrum.organization.competency')"></h1>
+    </header>
+    <section class="noActivityFound">
+        <div class="noMatchFound" data-ng-bind="::pullInterNationalization('spectrum.noactivity')"></div>
+    </section>
+</section>

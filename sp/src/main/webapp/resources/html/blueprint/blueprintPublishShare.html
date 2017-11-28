@@ -1,0 +1,108 @@
+<div class="learning-development blueprint hide" data-ng-controller="bluePrintController as ctrl" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'" data-ng-init="ctrl.getPublishShareDetails()">
+    <div class="x-container oVisible">
+        <div class="container" >
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- Right Box Starts -->
+                    <div class="practice-area-detail lnd-right-box lnd-grey-border">
+                        <article class="slide-right">
+                            <div class="practive-area-view blueprint-content spcAdj2">
+                                <!-- User Profile Details / Blueprint Share Header Starts -->
+                                <div class="blueprint-memberDetail">
+                                    <h2 data-ng-bind-html="::pullInterNationalization('blueprint.blueprintname')"></h2>
+                                    <div class="bp-pic">
+                                        <img data-ng-src="{{ctrl.blueprintMember.smallProfileImage}}" alt="{{ctrl.blueprintMember.userInitials}}" ng-if="ctrl.blueprintMember.smallProfileImage">
+                                        <div class="imgReplacementBig" data-ng-bind="ctrl.blueprintMember.userInitials" ng-if="!ctrl.blueprintMember.smallProfileImage"></div>
+                                    </div>
+                                    <div class="bp-mem">
+                                        <h3 data-ng-bind="ctrl.blueprintMember.name"></h3>
+                                        <p data-ng-bind="ctrl.blueprintMember.title"></p>
+                                    </div>
+                                </div>
+                                <!-- User Profile Details / Blueprint Share Header Ends -->
+                                <!-- Mission Statement Starts -->
+                                <div class="mission-statement-wrapper default-spacing ext-spacing add-mtop15">
+                                    <div class="mission-title">
+                                        <h3 class="key-title" data-ng-bind="ctrl.dataMap.mission.title"></h3>
+                                    </div>
+                                    <!-- If Edit Mode is Enabled -->
+                                    <p class="fixfont18" data-ng-bind-html="ctrl.blueprint.missionStatement.text"></p>
+                                </div>
+                                <!-- Mission Statement Ends -->
+                                <!--  OBJECTIVES + KI + CSM ACCORDIAN STARTS  -->
+                                <div class="bp-pub-obj-wrap-2">
+                                    <div class="obj-normal" data-ng-repeat="list in ctrl.blueprint.devStrategyActionCategoryList">
+                                        <section class="objectives-section">
+                                        
+                                         	<!-- Objective Header Starts -->
+							                <header class="obj-header-wrap-mode sp-background-color">
+							                    <h2 class="obj-header title" data-ng-bind="ctrl.dataMap.objective.title"></h2>
+							                    <h3 class="obj-header" data-ng-bind="list.title"></h3>
+							                </header>
+							                <!-- Objective Header Ends -->
+                                            
+                                            <!-- Objective KI and CSM Details Starts -->
+                                            <div class="obj-content">
+                                                <div class="obj-ki-wrap" data-ng-repeat="actionList in list.actionList" data-ng-init="parentIndex=$parent.$index;currentIndex = $index">
+                                                	<h3 class="key-title" data-ng-bind="ctrl.dataMap.initiatives.title"></h3>
+                                                    <p class="obj-ki-info" data-ng-if="ctrl.fullResponse.showProgress">
+                                                        <input type="checkbox" data-ng-model="actionList.completed" data-ng-disabled="true" class="iCheckBox" id="devStrategyActionCategoryList_{{parentIndex}}_{{$index}}">
+                                                        <label for="devStrategyActionCategoryList_{{parentIndex}}_{{$index}}" class="lCheckBox" data-ng-class="ctrl.stateControl(actionList)?'block':'blockCHeck'">
+                                                        	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+		                                                        <span>
+								                               		<span class="bp-nums f14" data-ng-bind="($index+1)+'. '"></span>
+								                               		<span class="bp-txts" data-ng-bind="actionList.title"></span>
+																</span>
+                                                        </label>
+                                                    </p>
+                                                    <p class="obj-ki-info" data-ng-if="!ctrl.fullResponse.showProgress">
+                                                        <label>
+	                                                        <span>
+							                               		<span class="bp-nums f14" data-ng-bind="($index+1)+'. '"></span>
+							                               		<span class="bp-txts" data-ng-bind="actionList.title"></span>
+															</span>						                               		                                                         
+                                                        </label>
+                                                    </p>
+                                                    <article class="critical_success_measure">
+                                                        <ol class="obj-csm-list ol-no-top">
+                                                        	 <li>
+							                        			<h3 class="key-title" data-ng-bind="ctrl.dataMap.csm.title"></h3>
+							                    			</li>
+                                                            <li data-ng-repeat="actionData in actionList.actionData" data-ng-init="childParIndex=$parent.$index">
+                                                                <p data-ng-if="ctrl.fullResponse.showProgress">
+                                                                    <input type="checkbox" data-ng-model="actionData.completed" class="iCheckBox" id="groupActionCategoryList_{{$index}}_{{childParIndex}}_{{parentIndex}}" data-ng-click="ctrl.changeStatus({'completed':!actionData.completed,'uid':actionData.uid},actionData)" data-ng-disabled="true">
+                                                                    <label for="groupActionCategoryList_{{$index}}_{{childParIndex}}_{{parentIndex}}" class="lCheckBox mp" data-ng-class="{'block':!actionData.permissions.Completion,'cursorHand':noSelf!==''}">
+                                                                    	<span class="checkedTick topFix1 icon-icon_dev_strategy_check sp-icon-color"></span>
+							                                        	<span>
+							                                        		<span class="bp-nums" data-ng-bind="(childParIndex+1)+'.'+($index+1)+'. '"></span>
+							                                        		<span class="bp-txts f14" data-ng-bind="actionData.title"></span>
+							                                        	</span>                                                                    	
+                                                                    </label>
+                                                                </p>
+                                                                <p data-ng-if="!ctrl.fullResponse.showProgress">
+                                                                    <label>
+							                                        	<span class="mp">
+							                                        		<span class="bp-nums" data-ng-bind="(childParIndex+1)+'.'+($index+1)+'. '"></span>
+							                                        		<span class="bp-txts f14" data-ng-bind="actionData.title"></span>
+							                                        	</span>                                                                      
+                                                                    </label>
+                                                                </p>
+                                                            </li>
+                                                        </ol>
+                                                    </article>
+                                                </div>
+                                            </div>
+                                            <!-- Objective KI and CSM Details Ends -->
+                                        </section>
+                                    </div>
+                                </div>
+                                <!--  OBJECTIVES + KI + CSM ACCORDIAN STARTS  -->
+                            </div>
+                        </article>
+                    </div>
+                    <!-- Right Box Ends -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

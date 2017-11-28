@@ -1,0 +1,65 @@
+package com.sp.web.model.goal;
+
+/**
+ * 
+ * @author Dax Abraham
+ *
+ *         The enumeration to store all the different types of themes.
+ */
+public enum ThemeType {
+
+  Acceptance,
+  Accountability,
+  ActiveListening,
+  Appreciation,
+  Assertiveness,
+  AttentionToDetail,
+  AwarenessOfOthers,
+  BigPictureThinking,
+  BuildingStability,
+  CommunicatingForResults,
+  Compassion,
+  Compromise,
+  ConstructiveCriticism,
+  Collaboration,
+  CriticalThinking,
+  DecisionMaking,
+  Delegation,
+  EffectiveManagement,
+  EmbracingChange,
+  EncouragingImagination,
+  EngagingConversation,
+  Flexibility,
+  Focus,
+  ForethoughtAndPlanning,
+  GettingToThePoint,
+  GroupAwareness,
+  HedgingStatements,
+  IncorporatingCreativity,
+  IntuitiveThinking,
+  LogicAndRationale,
+  ManagingDifferences,
+  Patience,
+  Persuasion,
+  PresentationSkills,
+  PresentingFacts,
+  ReceptivityToNewIdeas,
+  RelationshipBuilding,
+  ReleasingControl,
+  Satisfaction,
+  SeekingFeedback,
+  SelfAwareness,
+  SeparatingOutEmotions,
+  SettingExpectations,
+  ShowingConsideration,
+  ShowingEmpathy,
+  SpeakingUp,
+  SpeakingWithPurpose,
+  TakingAction,
+  TakingRisks,
+  TaskCompletion,
+  TeamBuilding,
+  Teamwork,
+  TimeManagement,
+  WorkLifeBalance;
+}

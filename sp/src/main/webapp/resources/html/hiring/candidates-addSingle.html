@@ -1,0 +1,156 @@
+<div class="custom-overlay-wrapper posRel" data-ng-init="ctrl.initAddCandidates()" style="min-height:{{ctrl.overlayDim.height}}px">
+    <a href="javascript:void(0)" class="close-custom-overlay icon-icon_remove sp-icon-color" data-ng-click="ctrl.addCandidatesView=false;ctrl.isImportForm=false;ctrl.clearMinHeight();"></a>
+    <div class="members-content-wrapper">
+        <div class="members-header">
+            <h2 data-ng-if="!ctrl.isImportForm && !ctrl.isImportList" class="sp-header-title-color" data-ng-bind="::pullInterNationalization('tools.hiring.add.candidate.title')"></h2>
+            <h2 data-ng-if="ctrl.isImportForm || ctrl.isImportList" class="sp-header-title-color" data-ng-bind="::pullInterNationalization('tools.hiring.importList.h1')"></h2>
+            <p data-ng-if="!ctrl.isImportForm && !ctrl.isImportList" class="full-desc f14w300lh18">
+                <span data-ng-bind-html="::pullInterNationalization('tools.hiring.add.candidate.desc')"></span>
+                <a href="javascript:void(0)" class="border-link" data-ng-click="ctrl.subscriptionCount>0?ctrl.initImportList():''" data-ng-class="{'disable':ctrl.subscriptionCount<=0}">
+                    <span class="mock-link" data-ng-bind-html="::pullInterNationalization('tools.hiring.add.candidate.here')"></span>
+                </a>
+                <span data-ng-bind-html="::pullInterNationalization('tools.hiring.add.candidate.desc0')"></span>
+            </p>
+            <p data-ng-if="ctrl.isImportForm && !ctrl.isImportList" class="full-desc f14w300lh18" data-ng-bind-html="::pullInterNationalization('tools.hiring.importList.des')"></p>
+        </div>
+        <form name="ctrl.addCandidate" novalidate class="form-styles-override floatLeft" data-ng-submit="ctrl.subscriptionCount>0?ctrl.addNewCandidate():''" autocomplete="off" data-ng-if="!ctrl.isImportForm && !ctrl.isImportList">
+            <ol class="form-list-c">
+                <li class="form-sub-head" data-ng-bind="::pullInterNationalization('tools.hiring.add.candidate.title1')"></li>
+                <li>
+                    <ul class="cols-2">
+                        <li>
+                            <label for="firstName" class="l-hide" data-ng-bind="::pullInterNationalization('signup.firstName')"></label>
+                            <input type="text" data-ng-model="ctrl.newCandidate.firstName" name="firstName" placeholder="{{::pullInterNationalization('signup.firstName')}}" data-ng-required="true" data-ng-pattern="/^[a-zA-Z0-9-,' ]+$/" />
+                            <!-- Error Messages -->
+                            <span class="validate-error" data-ng-if="ctrl.addCandidate.submitted && ctrl.addCandidate.firstName.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                            <span class="validate-error" data-ng-if="ctrl.addCandidate.submitted && ctrl.addCandidate.firstName.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+                        </li>
+                        <li>
+                            <label for="lastName" class="l-hide" data-ng-bind="::pullInterNationalization('signup.lastName')"></label>
+                            <input type="text" data-ng-model="ctrl.newCandidate.lastName" name="lastName" placeholder="{{::pullInterNationalization('signup.lastName')}}" data-ng-required="true" data-ng-pattern="/^[a-zA-Z0-9-,' ]+$/" />
+                            <!-- Error Messages -->
+                            <span class="validate-error" data-ng-if="ctrl.addCandidate.submitted && ctrl.addCandidate.lastName.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                            <span class="validate-error" data-ng-if="ctrl.addCandidate.submitted && ctrl.addCandidate.lastName.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="cols-2">
+                        <li>
+                            <label for="email" class="l-hide" data-ng-bind="::pullInterNationalization('tools.hiring.add.candidate.labelem')"></label>
+                            <input type="text" data-ng-model="ctrl.newCandidate.email" name="email" placeholder="{{::pullInterNationalization('tools.hiring.add.candidate.labelem')}}" data-ng-required="true" data-ng-pattern="emailRegex" data-ng-paste="ctrl.emailCheck(ctrl.newCandidate.email)" data-ng-keyup="ctrl.emailCheck(ctrl.newCandidate.email)" data-ng-keydown="ctrl.emailCheck(ctrl.newCandidate.email)" data-ng-keypress="ctrl.emailCheck(ctrl.newCandidate.email)" confirm-email-check="{{ctrl.newCandidate.confirmEmail}}" />
+                            <!-- Error Messages -->
+                            <span class="validate-error" data-ng-if="ctrl.addCandidate.submitted && ctrl.addCandidate.email.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                            <span class="validate-error" data-ng-if="ctrl.addCandidate.submitted && ctrl.addCandidate.email.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+                            <span class="validate-error" data-ng-if="ctrl.existingCandidate && ctrl.msgKey==='hiring'" data-ng-bind="::pullInterNationalization('tools.hiring.add.candidate.candidateexist')"></span>
+                            <span class="validate-error" data-ng-if="ctrl.existingCandidate && ctrl.msgKey==='company'" data-ng-bind="::pullInterNationalization('tools.hiring.add.candidate.candidateexistcomp')"></span>
+                            <span class="validate-error" data-ng-if="ctrl.existingCandidate && ctrl.msgKey==='hiring-archived'" data-ng-bind="::pullInterNationalization('tools.hiring.add.candidate.candidateexistarc')"></span>
+                        </li>
+                        <li class="sp-member" data-ng-if="ctrl.msgKey === 'memberList'">
+                            <span class="sp-ico icon-logo-badge" data-ng-class="ctrl.prismAccess?'spColor':'default-color'"></span>
+                            <span class="sp-txt" data-ng-bind="::pullInterNationalization('tools.hiring.add.candidate.spmsmber')"></span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="cols-2">
+                        <li>
+                            <label for="confirmEmail" class="l-hide" data-ng-bind="::pullInterNationalization('tools.hiring.add.candidate.labelcem')"></label>
+                            <input type="text" data-ng-model="ctrl.newCandidate.confirmEmail" name="confirmEmail" placeholder="{{::pullInterNationalization('tools.hiring.add.candidate.labelcem')}}" data-ng-required="true" confirm-email-check="{{ctrl.newCandidate.email}}" />
+                            <!-- Error Messages -->
+                            <span class="validate-error" data-ng-if="ctrl.addCandidate.submitted && ctrl.addCandidate.confirmEmail.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                            <span class="validate-error" data-ng-if="ctrl.addCandidate.submitted && !ctrl.addCandidate.confirmEmail.$error.required && ctrl.addCandidate.confirmEmail.$error.confirmEmailCheck" data-ng-bind="::pullInterNationalization('tools.hiring.add.candidate.emailerr')"></span>
+                        </li>
+                        <li>
+                            <label for="phoneNumber" class="l-hide" data-ng-bind="::pullInterNationalization('tools.hiring.add.candidate.labelph')"></label>
+                            <input type="text" data-ng-model="ctrl.newCandidate.phoneNumber" name="phoneNumber" placeholder="{{::pullInterNationalization('tools.hiring.add.candidate.labelph')}}" data-ng-required="true" data-ng-pattern="/^\+?([-.\s\d]){10,16}$/" />
+                            <!-- Error Messages -->
+                            <span class="validate-error" data-ng-if="ctrl.addCandidate.submitted && ctrl.addCandidate.phoneNumber.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                            <span class="validate-error" data-ng-if="ctrl.addCandidate.submitted && ctrl.addCandidate.phoneNumber.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <label for="webURL" class="l-hide" data-ng-bind="::pullInterNationalization('tools.hiring.add.candidate.labelweb')"></label>
+                    <input type="text" data-ng-model="ctrl.newCandidate.webURL" name="webURL" placeholder="{{::pullInterNationalization('tools.hiring.add.candidate.labelweb')}}" data-ng-required="false" />
+                </li>
+                <li class="form-sub-head mTop45" data-ng-bind="::pullInterNationalization('tools.hiring.add.candidate.title2')"></li>
+                <li class="tagsEmailInput brdr0">
+                    <label for="roles" class="l-hide" data-ng-bind="::pullInterNationalization('tools.hiring.add.candidate.labelroles')"></label>
+                    <tags-input name="roles" data-ng-model="ctrl.newCandidate.roles" replace-spaces-with-dashes="false" placeholder="{{::pullInterNationalization('tools.hiring.add.candidate.labelroles')}}" data-min-tags="1" data-min-length="1"></tags-input>
+                    <span class="validate-error" data-ng-if="ctrl.addCandidate.submitted && ctrl.addCandidate.roles.$error.minTags" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                </li>
+                <li class="tagsEmailInput brdr0">
+                    <label for="tags" class="l-hide" data-ng-bind="::pullInterNationalization('tools.hiring.add.candidate.labeltags')"></label>
+                    <tags-input name="tags" data-ng-model="ctrl.newCandidate.tags" replace-spaces-with-dashes="false" placeholder="{{::pullInterNationalization('tools.hiring.add.candidate.labeltags')}}" data-ng-required="false" data-min-length="1"></tags-input>
+                </li>
+                <li data-ng-if="ctrl.msgKey !== 'memberList'" class="form-sub-head mTop45" data-ng-bind="::pullInterNationalization('tools.hiring.add.candidate.ddatetext')"></li>
+                <li data-ng-if="ctrl.msgKey !== 'memberList'">
+                    <ul class="cols-2 cal-fix">
+                        <li>
+                            <div class="form-grop calStyle calStyleW">
+                                <div class="posRel">
+                                    <input type="text" id="dueDate1" name="dueDate1" class="form-control endInput cursorPointer" data-ng-model="ctrl.newCandidate.dueDate" data-ng-required="true" placeholder="{{::pullInterNationalization('tools.hiring.add.candidate.labeldate')}}">
+                                    <label class="calImg adj icon-icon_calendar sp-icon-color" for="dueDate1"></label>
+                                </div>
+                            </div>
+                            <span class="validate-error" data-ng-if="ctrl.addCandidate.submitted && ctrl.addCandidate.dueDate.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                        </li>
+                    </ul>
+                </li>
+                <li class="form-msg-txt" data-ng-if="ctrl.msgKey === 'memberList' && ctrl.prismAccess" data-ng-bind-html="::pullInterNationalization('tools.hiring.add.candidate.memberexist')"></li>
+                <li class="form-msg-txt" data-ng-if="ctrl.msgKey === 'memberList' && !ctrl.prismAccess" data-ng-bind-html="::pullInterNationalization('tools.hiring.add.candidate.memberaccess')"></li>
+                <!-- Form Button Starts -->
+                <li class="submit-cancel-btns">
+                    <ul class="submit-cancel-list">
+                        <li>
+                            <input type="submit" value="{{::pullInterNationalization('pulse.startNewPulse.submit')}}" class="btn-block btn-15px sp-btn-color" data-ng-class="{'disable-transparent':ctrl.subscriptionCount<=0}" />
+                        </li>
+                        <li>
+                            <input type="button" value="{{::pullInterNationalization('pulse.startNewPulse.cancel')}}" class="btn-block btn-grey-dark btn-15px" data-ng-click="ctrl.addCandidatesView=false;ctrl.isImportForm=false;ctrl.isImportList=false;ctrl.clearMinHeight();" />
+                        </li>
+                    </ul>
+                </li>
+                <!-- Form Button Ends -->
+            </ol>
+        </form>
+        <form enctype="multipart/form-data" name="ctrl.importCandidatesList" id="importCandidatesList" novalidate class="form-styles-override floatLeft" data-ng-submit="ctrl.importCandidates()" autocomplete="off" data-ng-if="ctrl.isImportForm && !ctrl.isImportList">
+            <ol class="form-list-c">
+                <li class="posRel">
+                    <a href="javascript:void(0)" class="btn-square-12px sfile-btn" data-ng-class="!ctrl.fileDataObj.name?'sp-background-color':'btn-lighter-grey'" data-ng-bind="::pullInterNationalization('manageHiringContent.sFile')" data-ng-click="!ctrl.fileDataObj.name?ctrl.triggerInput():''"></a>
+                    <span class="fake-file-input">
+                        <span class="file-name-pill" data-ng-if="ctrl.fileDataObj.name">
+                            <span class="x-txt" data-ng-bind="ctrl.fileDataObj.name"></span>
+                    <span class="x-ico icon-icon_accounts_remove" data-ng-click="ctrl.clearFile();"></span>
+                    </span>
+                    </span>
+                    <label for="importedFileData" class="l-hide" data-ng-bind="::pullInterNationalization('admin.blueprint.selectFile')"></label>
+                    <input class="import-file-input" type="file" name="importedFileData" id="importedFileData" data-ng-model="ctrl.importedFileData" data-ng-required="true" data-ng-change="ctrl.getFileData(ctrl.importedFileData)">
+                    <span class="validate-error" data-ng-if="ctrl.listSubmitted" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                    <span class="validate-error" data-ng-if="ctrl.invalidFileError" data-ng-bind="::pullInterNationalization('manageHiringContent.invalidFormat')"></span>
+                </li>
+                <!-- Form Button Starts -->
+                <li class="submit-cancel-btns">
+                    <ul class="submit-cancel-list">
+                        <li>
+                            <input type="submit" value="{{::pullInterNationalization('pulse.startNewPulse.submit')}}" class="btn-block btn-15px sp-btn-color" />
+                        </li>
+                        <li>
+                            <input type="button" value="{{::pullInterNationalization('pulse.startNewPulse.cancel')}}" class="btn-block btn-grey-dark btn-15px" data-ng-click="ctrl.addCandidatesView=false;ctrl.isImportForm=false;ctrl.isImportList=false;ctrl.clearMinHeight();" />
+                        </li>
+                    </ul>
+                </li>
+                <!-- Form Button Ends -->
+            </ol>
+        </form>
+        <div class="subscriptions-details floatLeft" data-ng-if="!ctrl.isImportList">
+            <h3 data-ng-bind="ctrl.subscriptionCount+' '+pullInterNationalization('tools.hiring.add.candidate.availabileacc')"></h3>
+            <p data-ng-bind="pullInterNationalization('tools.hiring.add.candidate.availabledesc')" data-ng-if="ctrl.isAccountAdmin || ctrl.isHiringAdmin"></p>
+            <p data-ng-bind="pullInterNationalization('tools.hiring.add.candidate.availabledesc1')" data-ng-if="!ctrl.isAccountAdmin || ctrl.isHiringAdmin"></p>
+            <a href="javascript:void(0)" class="border-link" data-ng-if="ctrl.isAccountAdmin || ctrl.isHiringAdmin" data-ng-click="ctrl.requestForAccounts('candidates')">
+                <span class="mock-link" data-ng-bind="pullInterNationalization('tools.hiring.add.candidate.purchaselink')"></span>
+            </a>
+        </div>
+        <ng-include src="'/sp/resources/html/hiring/candidates-importList.html'" data-ng-if="ctrl.isImportList"></ng-include>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+
+    <div class="container" id="declineGrowthScreen">
+        <div class="row">
+            <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+<div>
+    	<section class="wrapper">
+	<div class="contentBody">
+		<div class="head">
+			<div class="wrap">
+				<div class="headerBar" data-ng-bind="::pullInterNationalization('blueprint.sendreminder.title')"></div>
+				<div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+			</div>
+		</div>
+		<div class="contentArea clearfix">
+		<form name="sendReminder" class="sendReminder">
+			<div class="messageBlock">
+				<div data-ng-bind="::pullInterNationalization('blueprint.sendreminderdescription')"></div> 
+			</div>
+			<div class="sp-btn-wrapper sp-red btn-esmall floatLeft inviteBtn">
+				<div class="sp-btn">
+					<input type="button" value="{{::pullInterNationalization('blueprint.sendreminder.send')}}" class="btnStyle1" ng-click="ctrl.sendReminder()">
+				</div>
+			</div>
+			<div class="sp-btn-wrapper sp-grey btn-esmall floatLeft">
+				<div class="sp-btn">
+					<input type="button" value="{{::pullInterNationalization('blueprint.sendreminder.cancel')}}" class="btnStyle1" ng-click="closeThisDialog()">
+				</div>
+			</div>
+			</form>
+		 	</div>
+	</div>
+
+	</section>
+</div></div>
+</div></div>
+
+
+

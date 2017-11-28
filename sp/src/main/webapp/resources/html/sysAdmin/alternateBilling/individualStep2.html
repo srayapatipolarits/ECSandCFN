@@ -1,0 +1,192 @@
+<div id="content-container">
+
+  <div class="x-container sign-up-wrapper subscribe-wrapper" ng-controller="signUpController" ng-init="getAllProducts('INDIVIDUAL');" ng-if="inviteReady" class="hide" ng-class="inviteReady?'show':'hide'">
+
+    <div class="container minimumHeight"  >
+
+      <div class="row">
+
+        <div class="payment-page sign-up-product payment-page-business product_leftSection">
+          
+          <h2 class="sign-in-title">Create New Account  <span class="subsection">Step 2/2</span></h2>
+                        
+          <form name="spSubscribe" novalidate autocomplete="off" ng-submit="validateSendResponse(spSubscribe,'individual')">
+	
+            <section class="numberPad employee-calculator paymentDropDown">
+            
+            <div class="compare-subscriptions">
+            	<ol class="form-list clearfix">
+            	
+                  <li class="floatList">
+                   <label for="payment_type" class="label-spacing">Product Type</label>
+                   <div class="select-wrapper"> 
+	                  	<select name="payment_type" id="payment_type" class="payment_type select-option-style" ng-init="$parent.signup.paymentType=''" data-ng-model="$parent.signup.paymentType" ng-change="paymentTypeChange(this)" required>
+	                    	<option value="" data-ng-bind="'Select'"></option>
+	                      <option value="{{$index}}" ng-repeat="all in products track by all.id" data-ng-bind="all.name"></option>
+	                	</select>
+              	    </div>
+                    <span class="err-msg select-err validate-error" ng-show="signup.submitted && spSubscribe.payment_type.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                  </li>
+                  
+                  <li class="floatList">
+                    <label for="payment_agreement" class="label-spacing">Terms of Agreement</label>
+                    <div class="select-wrapper"> 
+	                  	<select class="select-option-style" name="payment_agreement"  id="payment_agreement" ng-init="$parent.signup.paymentAgreement=1" ng-model="$parent.signup.paymentAgreement" ng-change="paymentAgreementChange(this)">
+	                    	<option value="1">1 Year Agreement</option>
+	                       <option value="2">2 Year Agreement</option>
+	                       <option value="3">3 Year Agreement</option>
+	                	</select>
+              	    </div>
+                  </li>
+                  
+                </ol>  
+            </div>
+              <div class="clearfix">	
+	              <div class="pull-left">
+	              	<h3 class="calculator-title">Price per Member</h3>
+	             	<div class="totamount"><input type="text" class="totalPrice" name="totalPrice" value="{{signup.total | currency}}" placeholder="Amount" disabled/></div>
+	              </div>
+              </div>
+              
+            </section>
+
+            <section class="priority-spacing">
+              <h3 class="util-move">Promo Code</h3>
+
+              <div class="priority-code call-out-plan">
+                
+                <div class="overlaySuccessMsg" ng-show="getResult && overlayClose">
+                  <div class="wrapper">
+                    <div class="title" data-ng-bind="pullInterNationalization('signup.business.step2.priorityCodeApplied')"></div>
+                    <div class="content" ng-bind-html="getContent"></div>
+                    <div class="closeOverlaySuccessMsg"
+                      ng-click="closeOverlaySuccessMsg($event)">
+                      Deactivate Discount<span class="crossImg"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="coupon-container">
+                  <div class="priorityTitle">
+                    <p class="title" data-ng-bind="pullInterNationalization('signup.business.step2.priorityCode')">
+                    </p>
+                  </div>
+                  
+                  <div class="couponInput">
+                    <p class="title">
+                      <label for="coupon" data-ng-bind="pullInterNationalization('signup.business.step2.coupon')"></label>
+                      <input name="coupon" maxlength="8" class="customStyle"
+                        type="text" autocomplete="off" ng-model="signup.coupon"
+                        ng-class="{'notValid' : getResult==false  && !overlayClose}"
+                        ng-Enter="priorityCode(coupon,activateCheck)" />
+                    </p>
+                  </div>
+                 
+                  
+                    <p class="apply-coupon-link">
+                      <a href="javascript:void(0)" class="btn-square-12px sp-background-color"
+                        data-ng-click="priorityCode(coupon,activateCheck)" data-ng-bind="pullInterNationalization('signup.business.step2.apply')">
+                      </a>
+                    </p>
+                </div>
+
+              </div>
+
+              <div class="promoCodeError">
+                <span class="err-msg validate-error" ng-show="getResult==false && !overlayClose" data-ng-bind="PromotionsValidationException"></span>
+                <span class="err-msg validate-error" ng-show="!validCoupoun && !overlayClose" data-ng-bind="pullInterNationalization('signup.business.step2.notValidCode')"></span>
+              </div>
+            </section>
+          
+            <hr/>
+                            
+            <!-- The Credit Card Form -->
+            <section class="credit-card-inputs cc-info">
+  				      <h3 class="headBold">Payment & Credit Details</h3>
+				       
+				      <ol class="form-list-c form-list-d clearfix">
+				       <!--  <li>
+				          <label for="cnr" class="label-spacing">Credit Note Reference </label>
+				          <input type="text" autocomplete="off" name="cnr" ng-model="signup.cnr" placeholder="Credit Note Reference"/>
+				        </li>-->
+				
+				        <li class="col_2">
+				           <label for="cpt" class="label-spacing">Payment Type</label>
+				           <div class="select-wrapper"> 
+			                  	<select class="select-option-style" name="cpt"  id="cpt" ng-model="signup.cpt" required>
+			                    	<option value="">Select</option>
+			                        <option value="SP_INTERNAL">SP Internal</option>
+			                         <option value="WIRE">Wire Transfer</option>
+			                        <option value="TRIAL">Trial</option>
+			                	</select>
+		              	    </div>
+				            <span class="err-msg select-err validate-error" ng-show="signup.submitted && spSubscribe.cpt.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+				        </li>
+						<li class="col_2 noright">
+						  <label for="camount" class="label-spacing">Amount</label>
+				          <input type="text" autocomplete="off" name="camount" ng-pattern="/^[1-9][0-9]{0,9}(?:,?[0-9]{3}){0,3}(?:\.[0-9]{1,2})?$/" ng-model="signup.camount" placeholder="Amount" required/>
+				          <span class="err-msg validate-error" ng-show="signup.submitted && spSubscribe.camount.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+				           <span class="err-msg validate-error" ng-show="signup.submitted && spSubscribe.camount.$error.pattern" data-ng-bind="'Please enter valid amount'"></span>
+				          <span class="err-msg validate-error" ng-show="signup.submitted && signup.camount<signup.total" data-ng-bind="'Amount Needs to be greater than the total amount'"></span>
+				        </li>
+				        
+				        <li class="clear">
+				          <label for="ccomment" class="label-spacing">Comment</label>
+				          <textarea class="textArea" autocomplete="off" name="ccomment"  ng-model="signup.ccomment" placeholder="Comment" required></textarea>
+				          <span class="err-msg validate-error" ng-show="signup.submitted && spSubscribe.ccomment.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+				        </li>
+				        
+				        <li ng-show="sfailure" >
+                            <span class="err-msg validate-error" ng-repeat="(key, value) in failure" data-ng-bind="value"></span>
+                        </li>
+				
+				        <li class="exceededUser alternateBillingBtn">        
+				          <input type="submit" ng-model="contactClick" value="SUBMIT" class="contactBtn btn-block btn-15px sp-btn-color" />
+				        </li>
+						<li class="exceededUser alternateBillingBtn">        
+				          <input type="button" ng-model="contactClick" ng-click="historyGoBack('business')" value="CANCEL" class="contactBtn btn-block btn-grey-dark btn-15px" />
+				        </li>
+				      </ol>
+				
+		
+            </section>
+          </form>
+                    </div>
+                    
+                    <div class="pricing_column product_rightSection">
+                    	<div class="list clearfix">
+	                    	<h2 class="section_head" data-ng-bind="'Order Summary'"></h2>
+	                    	<div class="border_bottom"></div>
+                    	</div>
+                    	
+                    	
+                    	<!-- <h3 class="section_title">Hiring Accounts</h3>
+                    	<div class="list">
+                    		<ul>
+                    			<li>
+                    				<div class="list_labels">Number of Bundles</div>
+                    				<div class="number"></div>
+                    			</li>
+                    			<li>
+                    				<div class="list_labels">Candidates</div>
+                    				<div class="number"></div>
+                    			</li>
+                    		</ul>
+                    	</div> -->
+                    	
+                    	<div class="totalCharge">
+                    		<h2 class="total" data-ng-bind="'Total charges will be'"></h2>
+                    		<div class="totamount" data-ng-bind="signup.total | currency"></div>
+                    		<input name="totalPrice" type="hidden" ng-model="signup.total" value="{{signup.total}}" />
+                    		<div class="border_bottom"></div>
+                    		<div class="agreement_parent">
+                    			<h3 class="agreement"><span data-ng-bind="'Agreement Total Amount:'"></span> <span data-ng-bind="(($parent.signup.paymentType!=='' && paymentAgreement(signup.total,$parent.signup.paymentAgreement))||0) | currency"></span></h3>
+                    		</div>
+                    	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Subscribe Enterprise Template / Partial Ends -->
+
+</div>

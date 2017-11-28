@@ -1,0 +1,15 @@
+<article class="feedback-response-widget">
+	<ul class="feedback-list">
+		<li data-ng-class="{'pipe-right':masterList.length}">
+           <a href="javascript:void(0)" class="border-link" data-ng-click="openFeedback(0)">
+           	   <span class="icon-icon_feedback2 icon-placement sp-icon-color"></span>
+               <span class="mock-link" data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead2')"></span>
+           </a>
+       </li>
+       <li data-ng-if="masterList.length">
+           <a href="javascript:void(0)" class="border-link" data-ng-click="openFeedback(1)">
+               <span class="mock-link" data-ng-bind="pullInterNationalization('feedback.response')+' ('+masterList.length+')'"></span>
+           </a>
+       </li>
+	</ul>
+</article>

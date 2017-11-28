@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	
+	<definition name="hiringCompleteProfile" extends="pageNotLoggedIn">
+		<put-attribute name="content" value="/resources/html/hiring/incompleteProfile.html" />
+		<put-attribute name="styles" value="resources/css/css-min/candidate-reference.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/candidateIncompleteProfile.min.js" cascade="true" />
+	</definition>
+					
+	<definition name="candidateReference" extends="pageNotLoggedIn">
+		<put-attribute name="content" value="/resources/html/hiring/candidate-references.html" />	
+		<put-attribute name="javascripts" value="resources/js-min/candidateReferenceController.min.js" cascade="true" />
+		<put-list-attribute name="styles">
+			<add-attribute value="resources/css/css-min/candidate-reference.min.css" />
+			<add-attribute value="resources/css/css-min/hiring.min.css" />	
+		</put-list-attribute>		
+	</definition>
+					
+	<definition name="candidateWelcome" extends="pageNotLoggedIn">
+	<put-attribute name="styles" value="resources/css/css-min/hiring.min.css" cascade="true" />
+		<put-attribute name="content" value="/resources/html/hiring/welcome.html" />
+	</definition>
+	
+	<definition name="candidateAssessment" extends="pageNotLoggedIn">
+	<put-attribute name="styles" value="resources/css/css-min/hiring.min.css" cascade="true" />
+		<put-attribute name="content" value="/resources/html/hiring/welcome-back.html" />
+	</definition>		
+	
+	<definition name="partnerThankYou" extends="publicAssessment">
+		<put-attribute name="styles" value="resources/css/css-min/sp-profile.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/profileMainControllerCharts.min.js" cascade="true" />
+		<put-attribute name="content" value="/resources/html/people-analytics/external/view/partner-portrait.html" />
+	</definition>
+	
+	<definition name="partnerWelcome" extends="publicAssessment">
+	<put-attribute name="styles" value="resources/css/css-min/hiring.min.css" cascade="true" />
+		<put-attribute name="content" value="/resources/html/hiring/welcome.html" />
+	</definition>
+	
+	<definition name="partnerAssessment" extends="publicAssessment">
+	<put-attribute name="styles" value="resources/css/css-min/hiring.min.css" cascade="true" />
+		<put-attribute name="content"
+	value="/resources/html/hiring/welcome-back.html" />
+	</definition>		
+	
+	
+	<definition name="candidateThankYou" extends="pageNotLoggedIn">
+	<put-attribute name="styles" value="resources/css/css-min/hiring.min.css" cascade="true" />
+		<put-attribute name="content" value="/resources/html/hiring/hiringThankyou.html" />
+	</definition>
+		
+	
+	<definition name="employeeThankYou" extends="pageNotLoggedIn">
+	<put-attribute name="styles" value="resources/css/css-min/hiring.min.css" cascade="true" />
+		<put-attribute name="content" value="/resources/html/hiring/employeeThankyou.html" />
+	</definition>			
+	
+	<definition name="hiringReferenceCompleteProfile" extends="pageNotLoggedIn">
+		<put-attribute name="content" value="/WEB-INF/views/confirmProfile/confirmProfile.jsp" />
+		<put-attribute name="styles" value="resources/css/css-min/hiring.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/externalFeedbackController.min.js" cascade="true" />
+	</definition>
+	
+	<definition name="externalWelcome" extends="pageNotLoggedIn">
+	<put-attribute name="styles" value="resources/css/css-min/hiring.min.css" cascade="true" />
+		<put-attribute name="content" value="/WEB-INF/views/hiring/externalWelcome.jsp" />
+	</definition>	
+	
+	<definition name="hiringLensWelcome" extends="pageNotLoggedIn">
+	<put-attribute name="styles" value="resources/css/css-min/hiring.min.css" cascade="true" />
+		<put-attribute name="content" value="/WEB-INF/views/hiring/externalWelcome.jsp" />
+	</definition>	
+	
+	<definition name="externalRestart" extends="pageNotLoggedIn">
+	<put-attribute name="styles" value="resources/css/css-min/hiring.min.css" cascade="true" />
+		<put-attribute name="content" value="/WEB-INF/views/hiring/externalWelcomeBack.jsp" />
+	</definition>	
+	
+	<definition name="paTools" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/people-analytics/home.html" />		
+		<put-attribute name="adminHeader" value="/WEB-INF/layouts/standard/toolsNavigationLinks.jsp" cascade="true" />
+		<put-attribute name="type" value="pa" />
+		<put-list-attribute name="styles">
+			<add-attribute value="resources/css/css-min/sp-profile.min.css" />
+			<add-attribute value="resources/css/css-min/hiring.min.css" />
+			<add-attribute value="resources/css/css-min/team-advisor.min.css" />		
+			<add-attribute value="resources/css/css-min/page-payment-history.min.css" />
+		</put-list-attribute>
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js/date-range-picker/date-range-picker.min.js" />
+			<add-attribute value="resources/js/_d3-charts/d3/d3.min.js" />
+			<add-attribute value="resources/js-min/prismCharts.min.js" />
+			<add-attribute value="resources/js-min/peopleAnalyticsTools.min.js" />
+			<add-attribute value="resources/js-min/peopleAnalyticsServices.min.js" />	
+			<add-attribute value="resources/js-min/teamAdvisor.min.js" />		
+		</put-list-attribute>
+	</definition>	
+	<definition name="sharePortraitPublic" extends="pageNotLoggedIn">
+		<put-attribute name="content" value="/resources/html/people-analytics/external/public-share-portrait.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-profile.min.css" cascade="true" />
+		<put-attribute name="type" value="pa" />
+		<put-attribute name="javascripts" value="resources/js-min/profileMainControllerCharts.min.js" cascade="true" />	
+</definition>
+
+<definition name="hiringSharePortrait" extends="pageNotLoggedIn">
+		<put-attribute name="content" value="/resources/html/people-analytics/external/public-share-portrait-user.html" />
+		<put-attribute name="type" value="pa" />
+		<put-list-attribute name="styles">
+			<add-attribute value="resources/css/css-min/sp-profile.min.css" />
+			<add-attribute value="resources/css/css-min/hiring.min.css" />
+			<add-attribute value="resources/css/css-min/learning-developement.min.css" />
+		</put-list-attribute>
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js-min/profileMainControllerCharts.min.js" />
+			<add-attribute value="resources/js-min/peopleAnalyticsExternal.min.js" />
+			<add-attribute value="resources/js-min/peopleAnalyticsServices.min.js" />
+		</put-list-attribute>
+</definition>
+
+<definition name="paCompare" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/people-analytics/ra.html" />
+		<put-attribute name="type" value="pa" />
+		<put-list-attribute name="styles">
+			<add-attribute value="resources/css/css-min/sp-profile.min.css" />
+			<add-attribute value="resources/css/css-min/ra.min.css" />		
+		</put-list-attribute>		
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js/_d3-charts/d3/d3.min.js" />
+			<add-attribute value="resources/js-min/prismCharts.min.js" />	    	
+			<add-attribute value="resources/js-min/paRelationshipController.min.js" /> 	
+			<add-attribute value="resources/js-min/peopleAnalyticsServices.min.js" />
+	    </put-list-attribute>					
+	</definition>
+	
+	<definition name="paSpectrum" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/people-analytics/spectrum.html" />
+		<put-attribute name="type" value="pa" />
+		<put-attribute name="styles" value="resources/css/css-min/spectrum.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js/_d3-charts/d3/d3.min.js" />
+	    	<add-attribute value="resources/js-min/prismCharts.min.js" />
+	    	<add-attribute value="resources/js/dragdealer.js" />
+	    	<add-attribute value="resources/js-min/pa-spectrum.min.js" />
+	    </put-list-attribute>
+	</definition>
+	
+	<definition name="idealPortrait" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/people-analytics/ideal-portrait.html" />
+		<put-attribute name="type" value="pa" />
+		<put-list-attribute name="styles">
+			<add-attribute value="resources/css/css-min/ideal-portrait.min.css" />
+			<add-attribute value="resources/css/css-min/match-report.min.css" />		
+		</put-list-attribute>
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js-min/peopleAnalyticsServices.min.js" />
+			<add-attribute value="resources/js-min/idealPortraits.min.js" />
+	    </put-list-attribute>
+	</definition>
+	
+	<!-- People Analytics -->
+	<definition name="paDashBoard" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources//html/people-analytics/paDashboard.html" />
+		<put-attribute name="type" value="pa" />
+		<put-attribute name="styles" value="resources/css/css-min/paDashboard.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js-min/paDashBoardUser.min.js" />
+			<add-attribute value="resources/js-min/peopleAnalyticsServices.min.js" />
+		</put-list-attribute>
+	</definition>
+
+
+</tiles-definitions>
+
+
+

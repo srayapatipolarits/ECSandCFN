@@ -1,0 +1,46 @@
+<link type="text/css" rel="stylesheet" href="/resources/css/css-min/feedback-reply.min.css?fetch=true" />
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color adj0"></div>
+                    <h2 data-ng-bind="::pullInterNationalization('notes.gd.actions.addNote')"></h2>
+                </div>
+                <div class="new-modals-wrapper">
+                
+               	   <!-- Email List Starts  -->
+                    <div class="multiple-emails-block">
+                        <div class="table-content">
+                            <div class="left-cont">
+                            	<p data-ng-if="selectedMemberInfo.type === 'Member'" data-ng-bind="::pullInterNationalization('pa.selectedEmployees')"></p>
+                                <p data-ng-if="selectedMemberInfo.type === 'HiringCandidate'" data-ng-bind="::pullInterNationalization('pa.selectedCandidates')"></p>
+                            </div>
+                            <div class="right-cont">
+                                <p class="email-list">
+                                    <span>
+                                    <span data-ng-if="selectedMemberInfo.name" data-ng-bind="selectedMemberInfo.name"></span>
+                                    <span data-ng-if="!selectedMemberInfo.name" data-ng-bind="selectedMemberInfo.email"></span>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Email List Ends  -->     
+                    <div class="feedback-reply-wrapper">             
+                    <textarea class="decline-feedback" data-ng-attr-placeholder="{{::pullInterNationalization('notes.privateNotes.addNote.placeholder')}}" data-ng-model="noteObj.comment"></textarea>
+                    <span class="err-msg validate-error add-error-margin" data-ng-if="(noteObj.comment === null || noteObj.comment === '') && noteSubmitted" data-ng-bind="::pullInterNationalization('practiceArea.required.error')"></span>
+                    </div>                 
+                    
+                    <!-- Buttons Starts -->
+                    <div class="dialog-btns-wrapper">
+                        <input type="button" value="{{::pullInterNationalization('notes.postNote.title')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="postNote()">
+                        <input type="button" value="{{::pullInterNationalization('notes.privateNotes.actions.cancel')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="closeThisDialog();">
+                    </div>
+                    <!-- Buttons Ends -->
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

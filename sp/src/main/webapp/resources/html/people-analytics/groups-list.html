@@ -1,0 +1,245 @@
+<div class="table-col-layout">
+<div class="new-cols filters-col full-spanned">
+    <div class="col-content-wrapper mh700 sp-panel-accent">
+        <h2 class="groups-heading spc-adj" data-ng-bind="::pullInterNationalization('manageAccountContent.headingGroups')"></h2>
+        <p data-ng-if="!showCreateGroup">
+            <a href="javascript:void(0)" class="btn-square-12px sp-background-color new-group-btn" data-ng-bind="::pullInterNationalization('manageAccountContent.createGroup')" data-ng-click="resetCreateNewGroup()"></a>
+        </p>
+        <div class="create-group-wrapper animation_1" data-ng-if="showCreateGroup">
+            <p>
+                <input type="text" data-ng-model="createGroupName" placeholder="{{::pullInterNationalization('manageAccountContent.enterGroupName')}}" />
+                <span class="err-msg validate-error" data-ng-bind="::pullInterNationalization('admin.group.noname')" data-ng-if="pageSetting.errornewEmptyGroup"></span>
+                <span class="err-msg validate-error" data-ng-bind="::pullInterNationalization('admin.group.samename')" data-ng-if="pageSetting.errornewGroup"></span>
+            </p>
+            <p class="btns-wrapper">
+                <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('manageAccountContent.create')" data-ng-click="saveNewGroup(createGroupName)"></a>
+                <a href="javascript:void(0)" class="btn-square-12px btn-darker-grey" data-ng-bind="::pullInterNationalization('manageAccountContent.cancel')" data-ng-click="resetCreateNewGroup(true)"></a>
+            </p>
+        </div>
+        <div class="search-filter s100 mb15 p20">
+            <p>
+                <input type="text" data-ng-model="pageSetting.searchForGroups" placeholder="{{::pullInterNationalization('manageAccountContent.labelSearch')}}" data-ng-model-options="{ debounce: { 'default': 100, 'blur': 0 } }">
+                <button data-ng-class="{'icon-icon_remove':pageSetting.searchForGroups.length, 'icon-icon_search': !pageSetting.searchForGroups.length}" class="sp-icon-color pos-adj" data-ng-click="pageSetting.searchForGroups.length?pageSetting.searchForGroups='':''"></button>
+            </p>
+        </div>
+        <div class="internal-nav-links-wrapper">
+            <ul>
+                <li data-ng-repeat="groupList in recordCount = (groupList | filter:{name:pageSetting.searchForGroups}) track by groupList.id">
+                    <a href="javascript:void(0)" data-ng-bind-html="groupList.name+'<span>('+(groupList.count||0)+')</span>'" data-ng-click="getGroupDetail(groupList.id)" data-ng-class="activeGroup===groupList.id?'on':''"></a>
+                    <span data-ng-class="activeGroup===groupList.id?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                </li>
+            </ul>
+            <p class="generic-no-matches" data-ng-if="pageReady && !recordCount.length && groupList.length" data-ng-bind="::pullInterNationalization('manageAccountContent.noMatchesFound')"></p>
+            <p class="generic-no-matches" data-ng-if="pageReady && !groupList.length" data-ng-bind="::pullInterNationalization('manageAccountContent.noGroupsAvailable')"></p>
+        </div>
+    </div>
+    <div class="filter-col-sham posBot0 full-spanned"></div>
+</div>
+<div class="new-cols content-col sp-panel-accent">
+
+	<!-- IF NO Groups CREATED Starts -->
+	<div class="col-content-wrapper mh700 mh500" data-ng-if="pageReady && !groupList.length">
+	    <div class="members-content-wrapper noGroups">
+			<h2 data-ng-bind="::pullInterNationalization('manageAccountContent.noGroupHead')"></h2>
+			<p data-ng-bind-html="::pullInterNationalization('pa.groups.defaultMessage')"></p>
+    	</div>
+        <!-- <div class="custom-row-5" data-ng-if="groupListDeleted">
+           <div class="custom-new-cols s100">
+               <p class="no-data-msgs" data-ng-bind="::groupListDeleted"></p>
+           </div>
+        </div>-->
+   </div>
+	<!-- IF NO Groups CREATED Ends -->
+	<div class="col-content-wrapper mh700" data-ng-if="groupList.length">
+        <div class="members-content-wrapper">
+            <div class="members-header">
+                <h2 class="sp-header-title-color" data-ng-if="!showRenameGroup">
+                	<span data-ng-bind="groupsDetail.name"></span>
+                    <span class="total-row-count" data-ng-bind="'('+((pageSetting.searchForGroups.length)?recordField.length:(groupsDetail.users.length||0))+')'"></span>
+                </h2>
+                <p class="group-icons-wrapper" data-ng-if="!showRenameGroup">
+                    <span class="group-action-icons icon-icon_accounts_edit sp-icon-color" data-ng-click="renameGroupReset()"></span>
+                    <span class="group-action-icons icon-icon_trashbin sp-icon-color" data-ng-click="deletePopup()"></span>
+                </p>
+                <p class="group-rename-wrapper" data-ng-if="showRenameGroup">
+                    <input type="text" data-ng-model="newGroupSelector" />
+                    <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('manageAccountContent.save')" data-ng-click="renameGroup(newGroupSelector)"></a>
+                    <a href="javascript:void(0)" class="btn-square-12px btn-darker-grey" data-ng-bind="::pullInterNationalization('manageAccountContent.cancel')" data-ng-click="renameGroupReset(true)"></a>
+                    <span class="err-msg validate-error" data-ng-bind="::pullInterNationalization('admin.group.noname')" data-ng-if="pageSetting.newEmptyGroup"></span>
+                    <span class="err-msg validate-error" data-ng-bind="::pullInterNationalization('admin.group.samename')" data-ng-if="pageSetting.newGroup"></span>
+                </p>
+                <p class="group-add-btn mobAdj">
+                   <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('peopleAnalytics.addmemberGroup')" data-ng-click="addMembersModal()"></a>
+                </p>
+            </div>
+            <div class="members-filters posRel">          
+            	<div class="actions-filter s165OnlyWidth">
+                   <p class="pCheckBox top7">
+                   		<input type="checkbox" data-ng-disabled="!groupsDetail.users.length" name="toggleAll" id="alltoggle" class="iCheckBox" data-ng-true-value="true" data-ng-false-value="false" data-ng-model="$parent.negative" data-ng-change="checkAll(negative)"/>
+                        <label for="alltoggle" class="lCheckBox">
+                            <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                        </label>
+                    </p>
+                    <p class="actions-dropdown-filter">
+                        <a href="javascript:void(0)" data-ng-class="{'default-color':!contentSetting.user.length}" sp-condition="contentSetting.user.length" sp-click-outside="allUsersMenu">
+                            <span data-ng-bind="::pullInterNationalization('manageAccountContent.actions')"></span>
+                            <span class="actions-icon icon-icon_dropdown-arrow sp-icon-color" data-ng-class="contentSetting.user.length?'sp-icon-color':'default-color'"></span>
+                        </a>
+                    </p>
+                </div>
+                <div class="actions-callout-wrappper pos1-candidate" data-ng-if="allUsersMenu">
+                    <ul class="action-links">
+                    	<li>
+                            <a href="javascript:void(0)" data-ng-click="removeMultiMember();">
+                                <span class="action-icon icon-icon_accounts_all-groups sp-icon-color"></span>
+                                <span class="action-text" data-ng-bind="::pullInterNationalization('admin.group.profile.delete')"></span>
+                            </a>
+                        </li>
+                    	<li>
+                            <a href="javascript:void(0)" data-ng-click="viewCompare(groupsDetail.id, 'paGroups', groupsDetail.name)">
+                                <span class="action-icon icon-icon-compareOverlay sp-icon-color"></span>
+                                <span class="action-text" data-ng-bind="::pullInterNationalization('peopleAnalytics.comparePortraits')"></span>
+                            </a>
+                        </li>                        
+                    </ul>
+                </div>
+                <div class="search-filter">
+                    <p>
+                        <input type="text" maxlength="28" data-ng-model="contentSetting.userSearching" placeholder="{{pullInterNationalization('admin.member.search')}}" data-ng-model-options="{ debounce: { 'default': 100, 'blur': 0 } }" data-ng-disabled="!groupsDetail.users.length" data-ng-minlength="2">
+                        <button data-ng-class="{'icon-icon_remove':contentSetting.userSearching.length, 'icon-icon_search': !contentSetting.userSearching.length}" class="sp-icon-color" data-ng-click="contentSetting.userSearching=''"></button>
+                    </p>
+                </div>
+            </div>
+            <div class="custom-container mTop20">
+                <div class="custom-row row-header">
+                    <div class="custom-new-cols s4">
+                    </div>
+                    <div class="custom-new-cols tog s45">
+                        <h4 class="sort-filter on" data-ng-click="active($event,{'predicate':'lastName', 'reverse':reverse=!reverse})" data-predicate='lastName'>
+                            <span class="sort-text" data-ng-bind="::pullInterNationalization('manageAccountContent.name')"></span>
+                            <span class="sort-icon icon-icon_sort sp-icon-color sort-down"></span>
+                            <span class="sort-icon icon-icon_sort default-color sort-down"></span>
+                            <span class="sort-icon icon-icon_sort-up sp-icon-color sort-up"></span>
+                        </h4>
+                    </div>
+                    <div class="custom-new-cols tog s30 member-status-col-head">
+                        <h4 class="sort-filter" data-ng-click="active($event,{'predicate':'-userStatusFormatted', 'reverse':reverse=!reverse})" data-predicate='userStatusFormatted'>
+                            <span class="sort-text" data-ng-bind="::pullInterNationalization('manageAccountContent.status')"></span>
+                            <span class="sort-icon icon-icon_sort sp-icon-color sort-down"></span>
+                            <span class="sort-icon icon-icon_sort default-color sort-down"></span>
+                            <span class="sort-icon icon-icon_sort-up sp-icon-color sort-up"></span>
+                        </h4>
+                    </div>
+                    <div class="custom-new-cols s20">
+                    </div>
+                </div>
+                <div infinite-scroll="pageCounter(contentSetting.pageSize+contentSetting.pageSize)" infinite-scroll-immediate-check="false">
+                    <div class="custom-row minH" id='{{$index}}' data-ng-repeat="memberList in recordField = (groupsDetail.users | filter:contentSetting.userSearching).slice(0,contentSetting.pageSize)">
+                        <div class="custom-new-cols s4 posRel">
+                            <p class="pCheckBox">
+                                <input type="checkbox" data-ng-change="checkCount(checked)" name="selectUser_{{$index}}" id="selectUser_{{$index}}" class="iCheckBox" checklist-model="contentSetting.user" checklist-value="{'userId':memberList.id, 'email':memberList.email, 'name' : memberList.name ,'title': memberList.title, 'userStatus': memberList.userStatus}">
+                                <label for="selectUser_{{$index}}" class="lCheckBox">
+                                    <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                                </label>
+                            </p>
+                        </div>
+                        <div class="custom-new-cols s45 member-details-col">
+                            <div class="member-info">
+                                <div class="member-pic">
+                                    <img data-ng-src="{{employeeImage}}" alt="{{memberList.email}}" data-ng-if="!memberList.userInitials && memberList.type!=='HiringCandidate'">
+                                    <div class="imgReplacement icon-candidates bg-small" data-ng-if="memberList.type==='HiringCandidate'"></div>
+                                    <div class="imgReplacement" data-ng-if="memberList.userInitials && memberList.type!=='HiringCandidate'" data-ng-bind="memberList.userInitials"></div>
+                                </div>
+                                <div class="member-details" data-ng-class="memberList.name?'addSpace':''">
+                                    <a href="javascript:void(0)" data-ng-click="viewMemberDetails(memberList.id, memberList.email)" class="member-name border-link" data-ng-if="memberList.name">
+                                        <span class="mock-link util-word-wrap" data-ng-bind-html="memberList.name"></span>
+                                        <span class="role-labels" data-ng-if="memberList.inErti">
+                                        	<span class="thin nocase" data-ng-bind="::pullInterNationalization('dashboardUserAnalysis.goalHead')"></span>
+                                        </span>
+                                        <span class="role-labels" data-ng-if="memberList.roles.indexOf('Hiring')!== -1">
+                                        	<span class="thin nocase" data-ng-bind="::pullInterNationalization('manageAccountContent.admin')"></span>
+                                        </span>
+                                    </a>
+                                    <span class="member-title util-word-wrap" data-ng-bind="memberList.title" data-ng-if="memberList.title"></span>
+                                    <span class="role-labels-responsive" data-ng-if="memberList.inErti">
+                                    	<span class="thin nocase" data-ng-bind="::pullInterNationalization('dashboardUserAnalysis.goalHead')"></span>
+                                    </span>
+                                    <span class="role-labels-responsive" data-ng-if="memberList.roles.indexOf('Hiring')!== -1">
+                                    	<span class="thin nocase" data-ng-bind="::pullInterNationalization('manageAccountContent.admin')"></span>
+                                    </span>                                    
+                                    <a href="mailto:{{memberList.email}}" class="member-email border-link" data-ng-class="{'noMarg':!memberList.name}">
+                                        <span class="mock-link util-word-wrap inline-block" data-ng-bind-html="memberList.email"></span>
+                                    </a>
+                                   <!--  <div class="member-status-responsive">
+                                        <p data-ng-if="memberList.userStatus != 'VALID'" class="member-status">
+                                            <span class="dBlock util-word-wrap" data-ng-bind-html="memberList.userStatusFormatted"></span>
+                                            <span class="dBlock font-12 color_aaa" data-ng-bind-html="memberList.createdOn | spLocaleDate"></span>
+                                            <a href="javascript:void(0)" data-ng-click="sendEmailReminders(memberList)" class="border-link">
+                                                <span class="mock-link" data-ng-bind="::pullInterNationalization('admin.member.sendreminder')"></span>
+                                            </a>
+                                            <span class="dBlock font-12 color_aaa" data-ng-bind-html="memberList.lastRemindedOn | spLocaleDate"></span>
+                                        </p>
+                                        <p data-ng-if="memberList.userStatus == 'VALID'" class="member-status">
+                                            <span class="dBlock util-word-wrap" data-ng-bind-html="memberList.userStatusFormatted"></span>
+                                            <span class="dBlock font-12 color_aaa" data-ng-bind-html="memberList.createdOn | spLocaleDate"></span>
+                                        </p>                                    
+                                    </div>  -->                                  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="custom-new-cols s30 member-status-col">
+                            <p data-ng-if="memberList.userStatus != 'VALID'" class="member-status">
+                                <span class="dBlock util-word-wrap" data-ng-bind-html="memberList.userStatusFormatted"></span>
+                                <span class="dBlock font-12 color_aaa" data-ng-bind-html="memberList.createdOn | spLocaleDate"></span>
+                                <a href="javascript:void(0)" data-ng-click="sendEmailReminders(memberList)" class="border-link">
+                                    <span class="mock-link" data-ng-bind="::pullInterNationalization('admin.member.sendreminder')"></span>
+                                </a>
+                                <span class="dBlock font-12 color_aaa" data-ng-bind-html="memberList.lastRemindedOn | spLocaleDate"></span>
+                            </p>
+                            <p data-ng-if="memberList.userStatus == 'VALID'" class="member-status">
+                                <span class="dBlock util-word-wrap" data-ng-bind-html="memberList.userStatusFormatted"></span>
+                                <span class="dBlock font-12 color_aaa" data-ng-bind-html="memberList.createdOn | spLocaleDate"></span>
+                            </p>
+                        </div>
+                        <div class="custom-new-cols s20 posRel member-actions-col">
+                            <div class="actions-filter s165">
+                                <p class="actions-dropdown-filter smallFilter">
+                                    <a href="javascript:void(0)"  sp-condition="true" sp-click-outside="show">
+                                    	<span data-ng-bind="::pullInterNationalization('manageAccountContent.actions')"></span>
+                                        <span class="actions-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                                    </a>
+                                </p>
+                            </div>
+                            <div class="actions-callout-wrappper pos2-candidate" data-ng-if="show">
+                                <ul class="action-links">
+                                	<li>
+                                        <a href="javascript:void(0)" data-ng-click="removeSingleMember(memberList)">
+                                            <span class="action-icon icon-icon_accounts_all-groups sp-icon-color"></span>
+                                            <span class="action-text" data-ng-bind="::pullInterNationalization('admin.group.profile.delete')"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="custom-row" data-ng-if="!recordField.length && pageReady && contentSetting.userSearching">
+                        <div class="custom-new-cols s100">
+                            <p class="no-data-msgs" data-ng-bind="::pullInterNationalization('admin.member.nomatch')"></p>
+                        </div>
+                    </div>
+                    <div class="custom-row" data-ng-if="!recordField.length && !pageReady">
+                        <div class="custom-new-cols s100">
+                            <p class="no-data-msgs" data-ng-bind="::pullInterNationalization('admin.member.informationLoading')"></p>
+                        </div>
+                    </div>
+                    <div class="custom-row" data-ng-if="!recordField.length && pageReady && !ps_profileList.groupLead && !contentSetting.userSearching">
+                        <div class="custom-new-cols s100">
+                            <p class="no-data-msgs" data-ng-bind="::pullInterNationalization('pa.groups.nomember')"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

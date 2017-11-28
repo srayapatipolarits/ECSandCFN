@@ -1,0 +1,101 @@
+<section ng-controller="auditLogDetailController as audit" ng-init="audit.getAuditDetailData()">
+    <div class="x-container members">
+        <div class="container minimumHeight" >
+            <div class="bgWhiteBord clearfix">
+                <div class="toolbar clearfix portraitMember">
+                    <div class="title">
+                        <a href="javascript:void(0)" role="button" ng-click="audit.resetfilter()">{{audit.userDetail.name}}<span class="blackcolor">({{audit.userDetail.email}})</span></a>
+                    </div>
+                    <div class="controls clearfix">
+                        <div class="controlwrap search">
+                            <input type="text" class="form-control" maxlength="28" ng-model="audit.searchText" placeholder="{{pullInterNationalization('audit.search.log')}}" ng-keyup="audit.searchTextFilter(audit.searchText)">
+                            <button class="sp-icon-color" ng-class="audit.enableCancel(audit.searchText)? 'icon-icon_remove':'icon-icon_search'" ng-click="audit.clearSearch()"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filters">
+                    <ul class="box clearfix">
+                        <li class="first w15">
+                            <p class="title resetPad">{{pullInterNationalization('sysAdmin.audit.member.filter')}}:</p>
+                            <a href="javascript:void(0)" class="resetAnchor" data-ng-bind="pullInterNationalization('sysAdmin.audit.member.reset')" ng-click="audit.resetfilter()"></a>
+                        </li>
+                        <li class="w25 days-week">
+                            <ul class="filter-time-radio clearfix resetPad">
+                            	<li class="w25">
+	                            	<input id="Days" type="radio" ng-model="audit.pageSetting.time" ng-change="audit.includeCheck('days')" value="DAY" name="base_audit_radio">
+	                            	<label for="Days">Days</label>
+                            	</li>
+                                <li class="w25">
+	                            	<input id="Week" type="radio" ng-model="audit.pageSetting.time"  ng-change="audit.includeCheck('Week')" value="WEEK" name="base_audit_radio">
+	                            	<label for="Week" class="ng-binding">Week</label>
+                            	</li>
+                            	<li class="w25">
+	                            	<input id="Month" type="radio" ng-model="audit.pageSetting.time" ng-change="audit.includeCheck('Month')" value="MONTH" name="base_audit_radio">
+	                            	<label for="Month">Month</label>
+                            	</li>
+                            	<li class="w25">
+	                            	<input id="Year" type="radio" ng-model="audit.pageSetting.time" ng-change="audit.includeCheck('Years')" value="YEAR" name="base_audit_radio">
+	                            	<label for="Year">Year</label>
+                            	</li>
+                            </ul>
+                              <ul class="filter-time-radio clearfix">
+                            	<li><a href="javascript:void(0)" class="resetAnchor" data-ng-bind="pullInterNationalization('sysAdmin.audit.member.advancedfilter')" ng-click="audit.advancedFilterDialog()"></a></li>
+                            </ul>
+
+                        </li>
+                        <li class="w35">
+                            <p class="title" data-ng-bind="pullInterNationalization('sysAdmin.audit.byservice')"></p>
+                            <div class="rolesSelectWrapper">
+                                <select class="form-control rolesSelect" ng-init="audit.getAllServices()" ng-model="audit.pageSetting.userServiceSelected" ng-change="audit.includeCheck(audit.pageSetting.userServiceSelected)">
+                                    <option value="">{{pullInterNationalization('sysAdmin.audit.byservice.placestatus')}}</option>
+                                    <option ng-repeat="service in audit.allServices" value="{{service}}" data-ng-bind="service"></option>
+                                </select>
+                            </div>
+                        </li>
+                        <li class="w25 pull-right">
+                              <a href="/sp/sysAdmin/audit/home" class="border-link return-link">
+                            <span class="mock-link">{{pullInterNationalization('sysAdmin.audit.returnToAuditHome')}}</span>
+                        </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+
+                <article class="memberHolder">
+                    <div class="heading row clearfix">
+
+						<div class="col-md-2 col-sm-2 check tog">
+                            <h4 data-ng-bind="pullInterNationalization('sysAdmin.audit.service')"></h4>
+                        </div>
+                        
+                        <div class="col-md-6 col-sm-6 m-name tog activeFilter">
+                            <h4 class="name on" data-ng-bind="pullInterNationalization('sysAdmin.audit.activity')"></h4>
+                        </div>
+                        
+                        <div class="col-md-4 col-sm-4 g-name tog">
+                            <h4 data-ng-bind="pullInterNationalization('sysAdmin.audit.createdOn')"></h4>
+                        </div>
+                    </div>
+                   <div class="complete-profile animation_1" ng-repeat="memberList in audit.auditFilteredList | filter: audit.pageSetting.textSearching">
+                        <div class="table-row clearfix border-bottom">
+                            <div class="col-md-2 col-sm-2 row_title check" data-ng-bind="memberList.serviceType" class="border-bottom"></div>
+                            
+                            <div class="col-md-6 col-sm-6 name" data-ng-bind="memberList.activityDetails">
+                            </div>
+
+                            <div class="col-md-4 col-sm-4 addModal" data-ng-bind="memberList.createdOn">
+                            </div>
+
+                        </div>
+                    </div>
+                     <p ng-show="!audit.auditFilteredList.length" class="noMatchFound ng-hide" data-ng-bind="pullInterNationalization('admin.member.nomatch')"></p>
+                   <!--  <div class="more">
+                    <a href="javascript:void(0)" class="ng-hide" role="button" ng-click="loadBtnCLicked=true; returnMemberList(pageSize+pageSize)" ng-hide="alldisplay || recordField.length < intialPageSize" data-ng-bind="pullInterNationalization('admin.member.showmore')"></a>
+               		 </div>-->
+                </article>
+               
+            </div>
+        </div>
+    </div>
+</section>

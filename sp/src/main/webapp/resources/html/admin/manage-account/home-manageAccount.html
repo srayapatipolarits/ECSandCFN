@@ -1,0 +1,36 @@
+<div data-ng-if="inviteReady && profileReady" class="hide" data-ng-class="inviteReady?'show':'hide'" data-ng-controller="manageAccount as ctrl" data-ng-init="ctrl.resetAll()">
+    <div class="x-container oVisible" >
+        <div class="col-container">
+            <div class="icons-col labels-enabled">
+                <div class="col-content-wrapper sp-panel-accent">
+                	<ul class="icons-list-sec bBot">
+	                	<li data-ng-click="ctrl.switchViews('members', true)" class="icon-icon_accounts_all-members link-icons" data-ng-class="(ctrl.isPreviousView === 'members' || ctrl.activeView === 'members')?'active':'sp-icon-color'">
+	                		<span data-ng-bind="pullInterNationalization('manageAccountContent.members')" class="hover-animate"></span>
+	                	</li>
+	                	<li data-ng-click="ctrl.switchViews('groups', true)" class="icon-icon_accounts_all-groups link-icons" data-ng-class="(ctrl.isPreviousView === 'groups' || ctrl.activeView === 'groups')?'active':'sp-icon-color'">
+	                		<span data-ng-bind="pullInterNationalization('manageAccountContent.groups')" class="hover-animate"></span>
+	                	</li>
+                	</ul>
+                	
+                	<ul class="icons-list-sec bBot" data-ng-if="ctrl.permissionLevel.org || ctrl.permissionLevel.competency">
+	                	<li data-ng-if="ctrl.permissionLevel.org" data-ng-click="ctrl.switchViews('accountOrganization', true)" class="icon-LearningProgram_new link-icons" data-ng-class="ctrl.activeView === 'accountOrganization'?'active':'sp-icon-color'">
+	                		<span data-ng-bind="pullInterNationalization('manageAccountContent.orgPlans')" class="hover-animate"></span>
+	                	</li>
+	                	<li data-ng-if="ctrl.permissionLevel.competency" data-ng-click="ctrl.switchViews('accountCompetency', true)" class="icon-icon_spectrum_competency donut link-icons" data-ng-class="ctrl.activeView === 'accountCompetency'?'active':'sp-icon-color'">
+	                		<span data-ng-bind="pullInterNationalization('manageAccountContent.headingcompetency')" class="hover-animate"></span>
+	                	</li>
+                	</ul>
+                	
+                	<ul class="icons-list-sec">
+	                	<li data-ng-click="ctrl.switchViews('settings', true)" class="icon-icon_accounts_settings link-icons" data-ng-class="(ctrl.isPreviousView === 'settings' || ctrl.activeView === 'settings')?'active':'sp-icon-color'">
+	                		<span data-ng-bind="pullInterNationalization('manageAccountContent.accounts')" class="hover-animate"></span>
+	                	</li>  
+                	</ul>              	
+                </div>
+            </div>
+            <div class="other-cols extra-margins">
+				<div class="table-col-layout" ui-view></div>
+            </div>
+        </div>
+    </div>
+</div>

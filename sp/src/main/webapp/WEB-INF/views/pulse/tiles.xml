@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="pulseListing" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/pulse/pulse.html" />
+		<put-attribute name="adminHeader" value="/WEB-INF/layouts/standard/dashboardNavigationLinks.jsp" cascade="true" />
+		<put-attribute name="styles" value="resources/css/css-min/pulse.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js/date-range-picker/date-range-picker.min.js" />
+	    	<add-attribute value="resources/js-min/pulseSection.min.js" />
+	    </put-list-attribute>
+	</definition>
+	<definition name="pulseStartAssessment" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/pulse/pulseQuestion.html" />
+		<put-attribute name="adminHeader" value="/WEB-INF/layouts/standard/dashboardNavigationLinks.jsp" cascade="true" />
+		<put-attribute name="styles" value="resources/css/css-min/pulse.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js/date-range-picker/date-range-picker.min.js" />
+	    	<add-attribute value="resources/js-min/pulseSection.min.js" />
+	    </put-list-attribute>
+	</definition>
+	<definition name="startNewPulse" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/pulse/startNewPulse.html" />
+	</definition>
+	<definition name="pulseReminder" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/reminder/pulseSendReminder.html" />
+	</definition>
+	<definition name="cancelSP" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/pulse/cancelSp.html" />
+	</definition>
+	<definition name="pulseErr" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/resources/html/reset/pulse-error.html" />
+	</definition>
+
+</tiles-definitions>

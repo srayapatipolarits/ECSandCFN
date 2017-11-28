@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- Do not delete. -->
+<meta name="viewport" content="width=device-width">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>SurePeople</title>
+</head>
+<body bgcolor="#FFFFFF"
+  style="margin: 0; padding: 0; font-family: Arial; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; height: 100%; width: 100% !important;">
+  
+  <!-- Header Box -->
+  <table bgcolor="#ffffff"
+    style="margin: 0px 0 0; padding: 0; font-family: Arial; width: 100%;"
+    cellpadding="0" cellspacing="0" border="0">
+    <tr style="margin: 0; padding: 0;">
+      <td
+        style="margin: 0; padding: 0; display: block !important; clear: both !important;">
+        <div class="content"
+          style="padding: 0; margin: 0 auto; font-family: Arial; display: block;">
+          <table bgcolor="#ffffff"
+            style="margin: 0; padding: 0; font-family: Arial; width: 100%;"
+            cellpadding="0" cellspacing="0" border="0">
+            <tr style="margin: 0; padding: 0;">
+              <td
+                style="margin: 0; padding: 15px 40px; background: $company.companyTheme.stylesMap.spLinkColor$;">
+                <p
+                  style="margin: 0; padding: 0; font-family: Arial; font-size: 14px; color: #fff; line-height: 18px;">
+                  <strong>$member.firstName$ $member.lastName$</strong> has requested your feedback.
+                </p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <!-- /Header Box -->
+
+  <!-- Body Description Content -->
+  <table bgcolor="#ffffff"
+    style="margin: 20px 0 0; padding: 0; font-family: Arial; width: 100%;"
+    cellpadding="0" cellspacing="0" border="0">
+    <tr style="margin: 0; padding: 0;">
+      <td
+        style="margin: 0; padding: 0; display: block !important; max-width: 612px !important; clear: both !important;">
+        <div class="content"
+          style="padding: 0; margin: 0 auto; font-family: Arial; max-width: 612px; display: block;">
+          <table bgcolor="#ffffff"
+            style="margin: 0; padding: 0; font-family: Arial; width: 100%;"
+            cellpadding="0" cellspacing="0" border="0">
+            <tr style="margin: 0; padding: 0;">
+              <td style="margin: 0; padding: 0 40px;">
+              $if(goal.individualLearningDevelopment)$
+                <p
+                  style="margin: 0; padding: 0; font-family: Arial; font-size: 14px; color: #000; line-height: 18px;">
+                  $member.firstName$ $member.lastName$</strong> has requested your feedback on $hisHerTheir$ Intelligent Learning Plan. Reply to this email or click the link below to provide feedback. Make sure to add context with examples—the more specific, the better.
+                </p>
+              $endif$
+              $if(goal.bluePrint)$
+                <p
+                  style="margin: 0; padding: 0; font-family: Arial; font-size: 14px; color: #676767; line-height: 18px;">
+                  $member.firstName$ has shared $hisHerTheir$ Blueprint with you and is requesting your feedback. Your input is extremely valuable and will help to guide the long-term success of this performance planning activity. Simply reply to this email or click the link below to provide feedback.
+                </p>
+                $endif$  
+              $if(goal.actionPlan)$
+                <p
+                  style="margin: 0; padding: 0; font-family: Arial; font-size: 14px; color: #676767; line-height: 18px;">
+                  $member.firstName$ is currently working on $goal.name$ and has requested your feedback. Simply reply to this email or click the link below to provide feedback.  
+                </p>
+              $endif$    
+              $if(goal.competency)$
+            <p
+              style="margin: 0; padding: 0; font-family: Arial; font-size: 14px; color: #676767; line-height: 18px;">
+              $member.firstName$ is currently working on $goal.name$ and has requested your feedback. Simply reply to this email or click the link below to provide feedback.  
+            </p>
+          $endif$
+              </td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  $if(goal.individualLearningDevelopment)$
+  <!-- Practice Area Content -->
+  <table bgcolor="#ffffff"
+    style="margin: 20px 0 0; padding: 0; font-family: Arial; width: 100%;"
+    cellpadding="0" cellspacing="0" border="0">
+    <tr style="margin: 0; padding: 0;">
+      <td
+        style="margin: 0; padding: 0; display: block !important; max-width: 612px !important; clear: both !important;">
+        <div class="content"
+          style="padding: 0; margin: 0 auto; font-family: Arial; max-width: 612px; display: block;">
+          <table bgcolor="#ffffff"
+            style="margin: 0; padding: 0; font-family: Arial; width: 100%;"
+            cellpadding="0" cellspacing="0" border="0">
+            <tr style="margin: 0; padding: 0;">
+              <td style="margin: 0; padding: 0 40px;">
+              <p
+                  style="margin: 0; padding: 0; font-family: Arial; font-size: 14px; color: #000; line-height: 18px;">
+                ERT-i PRACTICE AREA </p>
+
+                <p
+                  style="margin: 0; padding: 0; font-family: Arial; font-size: 14px; color: #000; line-height: 18px;">
+                <strong>$goal.name$</strong> </p>
+                <p
+                  style="margin: 0; padding: 0; font-family: Arial; font-size: 14px; color: #000; line-height: 18px;">
+                $goal.description$</p>
+ 
+              </td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+  $endif$
+  <!-- /Practice Area Content -->
+
+
+  $if(feedback.comment)$
+  <!-- Comment Content -->
+  <table bgcolor="#ffffff"
+    style="margin: 20px 0 0; padding: 0; font-family: Arial; width: 100%;"
+    cellpadding="0" cellspacing="0" border="0">
+    <tr style="margin: 0; padding: 0;">
+      <td
+        style="margin: 0; padding: 0; display: block !important; max-width: 612px !important; clear: both !important;">
+        <div class="content"
+          style="padding: 0; margin: 0 auto; font-family: Arial; max-width: 612px; display: block;">
+          <table bgcolor="#ffffff"
+            style="margin: 0; padding: 0; font-family: Arial; width: 100%;"
+            cellpadding="0" cellspacing="0" border="0">
+            <tr style="margin: 0; padding: 0;">
+              <td style="margin: 0; padding: 0 40px;">
+                <p
+                  style="margin: 0; padding: 0; font-family: Arial; font-size: 14px; color: #000; line-height: 18px;">
+                  <em>$feedback.comment$</em>
+                </p>
+                <p
+                  style="margin: 0; padding: 0; font-family: Arial; font-size: 14px; color: #000; line-height: 18px;">
+                  <em>- $member.firstName$</em>
+                </p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <!-- /Comment Content -->
+  $endif$
+
+  <!-- /Body Description Content -->
+
+  <!-- CTA Content -->
+  <table bgcolor="#ffffff"
+    style="margin: 30px 0 0; padding: 0; font-family: Arial; width: 100%;"
+    cellpadding="0" cellspacing="0" border="0">
+    <tr style="margin: 0; padding: 0;">
+      <td
+        style="margin: 0; padding: 0; display: block !important; max-width: 612px !important; clear: both !important;">
+        <div class="content"
+          style="padding: 0; margin: 0 auto; font-family: Arial; max-width: 612px; display: block;">
+          <table bgcolor="#ffffff"
+            style="margin: 0; padding: 0; font-family: Arial; width: 100%;"
+            cellpadding="0" cellspacing="0" border="0">
+            <tr style="margin: 0; padding: 0;">
+              <td style="margin: 0; padding: 0 40px;">
+                <p
+                  style="margin: 0; padding: 0; font-family: Arial; font-size: 16px; color: #ff6633; line-height: 20px;">
+                  <a href="$tokenUrl$ " title="PROVIDE FEEDBACK"
+                    style="margin: 0; padding: 0; display: block; color: $company.companyTheme.stylesMap.spLinkColor$; text-decoration: none; border: none;">
+                    <strong>PROVIDE FEEDBACK</strong>
+                  </a>
+                </p>
+                <p style="margin: 0;padding: 0;font-family: Arial; font-size: 12px; color: #676767; line-height: 16px;">
+                                    To decline this feedback request, please <a href="$tokenUrl$" style="margin:0;padding:0;display:inline;color: $company.companyTheme.stylesMap.spLinkColor$;text-decoration:none;border:none;">click here</a>.
+                </p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <!-- /CTA Content -->
+  <!-- Footer Content -->
+  <table bgcolor="#ffffff"
+    style="margin: 40px 0 0; padding: 0; font-family: Arial; width: 100%;"
+    cellpadding="0" cellspacing="0" border="0">
+    <tr style="margin: 0; padding: 0;">
+      <td
+        style="margin: 0; padding: 0; display: block !important; max-width: 612px !important; clear: both !important;">
+        <div class="content"
+          style="padding: 0; margin: 0 auto; font-family: Arial; max-width: 612px; display: block;">
+          <table bgcolor="#ffffff"
+            style="margin: 0; padding: 0; font-family: Arial; width: 100%;"
+            cellpadding="0" cellspacing="0" border="0">
+            <tr style="margin: 0; padding: 0;">
+              <td style="margin: 0; padding: 0 40px;">
+                <p
+                  style="margin: 0; padding: 15px 1px 0; font-family: Arial; font-size: 12px; color: #676767; line-height: 16px; border-top: 2px solid #e6e6e6">
+                  <em>This email was sent by the SurePeople
+                    team</em>
+                </p>
+                <p
+                  style="margin: 0; padding: 0 1px 0; font-family: Arial; font-size: 12px; line-height: 16px; color: #676767;">
+                  <em>If you have any questions, please contact us
+                    at <a href="mailto:support@surepeople.com"
+                    style="margin: 0; padding: 0; display: inline; color: $company.companyTheme.stylesMap.spLinkColor$; text-decoration: none; border: none;">support@surepeople.com</a>
+                  </em>
+                </p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <!-- /Footer Content -->
+</body>
+</html>

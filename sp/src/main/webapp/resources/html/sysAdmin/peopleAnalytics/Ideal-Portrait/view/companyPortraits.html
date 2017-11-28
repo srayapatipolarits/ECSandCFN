@@ -1,0 +1,84 @@
+<section class="listing-action-plan">
+    <div class="comp-head">
+        <a href="javascript:void(0)" class="border-link rLink" data-ng-click="closeCompanyPortrait()">
+            <span class="mock-link" data-ng-bind="::pullInterNationalization('viewAccountDetails.rLink')"></span>
+        </a>
+        <h2 data-ng-bind="selectedCompanyObj.name" class="sp-header-title-color"></h2>
+        <p data-ng-bind="selectedCompanyObj.address.city+', '+selectedCompanyObj.address.country"></p>
+    </div>
+    <div class="members-filters">
+        <div class="search-filter">
+            <p>
+                <input type="text" maxlength="28" data-ng-model="pageSetting.textSearching1" placeholder="{{::pullInterNationalization('sysadmin.organization.search')}}" data-ng-model-options="{ debounce: { 'default': 300, 'blur': 0 } }" data-ng-change="pageSetting.pageSize=originalPageSetting.pageSize;" data-ng-minlength="3">
+                <button data-ng-class="{'icon-icon_remove':pageSetting.textSearching1.length, 'icon-icon_search': !pageSetting.textSearching1.length}" class="sp-icon-color" data-ng-click="pageSetting.textSearching1='';pageSetting.pageSize=originalPageSetting.pageSize;"></button>
+            </p>
+        </div>
+        <a href="javascript:void(0)" class="btn-square-12px sp-background-color fRight" data-ng-bind="::pullInterNationalization('sysadmin.addPortrait')" data-ng-click="addPortraitPop(selectedCompanyObj.id)"></a>
+    </div>
+    <section class="account-organization">
+        <div class="custom-row row-header row">
+            <div class="col-md-4 col-sm-4">
+                <h4 class="sort-filter on">
+                    <span class="sort-text" data-ng-bind="::pullInterNationalization('sysadmin.ppHeading1')"></span>
+                </h4>
+            </div>
+            <div class="col-md-2 col-sm-2"></div>
+            <div class="col-md-2 col-sm-2"></div>
+            <div class="col-md-4 col-sm-4"></div>
+        </div>
+        <div infinite-scroll="infinteScroll(pageSetting.pageSize+pageSetting.pageSize, 'companyPortraits')" infinite-scroll-immediate-check="false">
+            <div class="complete-profile" data-ng-repeat="matchList in recordField = ((companyExistingList | filter:{name:pageSetting.textSearching1}).slice(0,pageSetting.pageSize)) track by matchList.id">
+                <div class="table-row clearfix">
+                    <div class="col-md-4 col-sm-4">
+                        <p class="matchList-name">
+                            <a href="/sp/sysAdmin/idealPortrait/update?pid={{matchList.id}}" class="border-link">
+                                <span class="mock-link" data-ng-bind-html="matchList.name"></span>
+                            </a>
+                        </p>
+                        <p class="matchList-desc">
+                            <input type="checkbox" class="read-more-state" id="matchListDesc_{{matchList.id}}" />
+                            <span class="read-more-wrap-horizontal" data-ng-init="btn=true;">
+								<span class="text" data-ng-bind-html="(btn?(matchList.description | addEllipsis : 200):matchList.description) | htmlLinky" data-ng-class="{'moreellipses':matchList.description.length>200&&btn,'inline-block':!ctrl.whiteSpace(matchList.description)}"></span>
+                            </span>
+                            <label for="matchListDesc_{{matchList.id}}" data-readMore="{{::pullInterNationalization('spectrum.more')}}" data-readLess="{{::pullInterNationalization('label.readless')}}" data-ng-click="btn=!btn" class="read-more-trigger-horizontal sp-link-color" data-ng-class="{'sp-label-option':!(matchList.description.length>200)}"></label>
+                        </p>
+                    </div>
+                    <div class="col-md-2 col-sm-2 role_title">
+                        <p class="attachment-links" data-ng-if="isDocumentUrl(matchList, selectedCompanyObj.id)">
+                            <a href="{{attachmentsList[matchList.id]}}" class="border-link doc-link" target="_blank">
+                                <span class="mock-link" data-ng-bind="attachmentsList[matchList.id]"></span>
+                            </a>
+                            <a href="javascript:void(0)" class="doc-remove icon-icon_remove sp-icon-color" data-ng-click="removeAttachmentPop(matchList.id, selectedCompanyObj.id, attachmentsList[matchList.id])"></a>
+                        </p>
+                        <p class="attachment-links" data-ng-if="!isDocumentUrl(matchList, selectedCompanyObj.id)">
+                            <a href="javascript:void(0)" class="border-link doc-link wAuto" data-ng-click="startFileUpload(matchList.id, selectedCompanyObj.id, false)">
+                                <span class="mock-link" data-ng-bind="::pullInterNationalization('sysadmin.ppUpload')"></span>
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-md-2 col-sm-2">
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="button-links">
+                            <div class="buttons">
+                                <a href="javascript:void(0)" class="btn-square-12px sp-background-color fixedWidth left" data-ng-bind="::pullInterNationalization('sysadmin.organization.prev')" data-ng-click="getDetails(matchList.id)"></a>
+                                <a href="/sp/sysAdmin/idealPortrait/update?pid={{matchList.id}}" class="btn-square-12px sp-background-color fixedWidth left" data-ng-bind="::pullInterNationalization('sysadmin.organization.edit')"></a>
+                            </div>
+                            <div class="buttons m20">
+                                <a href="/sp/sysAdmin/idealPortrait/clone?pid={{matchList.id}}" class="fixedWidthText left p7">
+                                    <span class="icon-style-position16 icon-learning-programs_clone sp-icon-color"></span>
+                                    <span class="action-text" data-ng-bind="::pullInterNationalization('sysadmin.organization.clone')"></span>
+                                </a>
+                                <a href="javascript:void(0)" class="fixedWidthText left" data-ng-click="removePortraitPop(matchList, selectedCompanyObj.id)">
+                                    <span class="icon-style-position20 icon-icon_trashbin sp-icon-color"></span>
+                                    <span class="action-text" data-ng-bind="::pullInterNationalization('admin.member.remove')"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p data-ng-if="!recordField.length" class="noMatchF" data-ng-bind="::pullInterNationalization('sysadmin.noPortraits')"></p>
+    </section>
+</section>

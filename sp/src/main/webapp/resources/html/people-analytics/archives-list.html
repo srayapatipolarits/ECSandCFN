@@ -1,0 +1,381 @@
+<div class="table-col-layout">
+    <div class="new-cols filters-col full-spanned">
+        <div class="sp-panel-accent">
+            <article class="spectrum-filter-toggle">
+                <span class="icon-icon_spectrum-filter filters-icon"></span>
+                <span class="filters-header-text" data-ng-bind="::pullInterNationalization('manageAccountContent.filter')"></span>
+            </article>
+            <article class="accordian-filter posRel">
+                <div class='header-related-content no-accordian-layout'>
+                    <div class="tick-selection">
+                        <input type="checkbox" name="candidateFlag" data-ng-model="pageSetting.candidateFlag" data-ng-true-value="true" data-ng-false-value="false" class="filterCheckBox candCheckBox" id="candidateFlag" data-ng-change="candidateChecked()">
+                        <label for="candidateFlag" class="filterCheckBox-label pull-left">
+                            <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                        </label>
+                        <label for="candidateFlag">
+                            <span class="floLeft font_14_300 sp-spectrum-color right-adjust archive-filter-adjust" data-ng-bind="::pullInterNationalization('filter.label.candidate')"></span>
+                        </label>
+                        <input type="checkbox" name="employeeFlag" data-ng-model="pageSetting.employeeFlag" data-ng-true-value="true" data-ng-false-value="false" class="filterCheckBox empCheckbox" id="employeeFlag" data-ng-change="employeeChecked()">
+                        <label for="employeeFlag" class="filterCheckBox-label pull-left">
+                            <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                        </label>
+                        <label for="employeeFlag">
+                            <span class="floLeft font_14_300 sp-spectrum-color right-adjust archive-filter-adjust" data-ng-bind="::pullInterNationalization('filter.label.employee')"></span>
+                        </label>
+                    </div>
+                </div>
+                <ul>
+                    <!-- Role Filter Starts -->
+                    <li data-ng-if="!pageSetting.employeeFlag || pageSetting.candidateFlag">
+                        <input type="checkbox" class="accordian-checkbox" checked data-ng-click="closeRest($event)" />
+                        <span class="clearButon sp-spectrum-color" data-ng-if="pageSetting.userRoleSelected.length" data-ng-click="clear('.groupCheckBox','userRoleSelected','searchRoleFilters')" data-ng-bind="::pullInterNationalization('manageAccountContent.clear')"></span>
+                        <span class='expand-collapse'></span>
+                        <h3 data-ng-bind="::pullInterNationalization('candidates.addCandidates.filter.role')"></h3>
+                        <div class='header-related-content' id="role">
+                            <div class="controlwrap sp-search-button">
+                                <input type="text" class="form-control" maxlength="28" data-ng-model="pageSetting.searchRoleFilters" placeholder="{{::pullInterNationalization('candidates.addCandidates.filter.roleSearch')}}" data-ng-model-options="{ debounce: { 'default': 100, 'blur': 0 } }" data-ng-change="updateSearchVal(pageSetting.searchRoleFilters)">
+                                <button ng-class="{'icon-icon_remove':pageSetting.searchRoleFilters.length, 'icon-icon_search': !pageSetting.searchRoleFilters.length}" class="sp-icon-color" data-ng-click="pageSetting.searchRoleFilters='';resetUpdatedSearchVal()"></button>
+                            </div>
+                            <div class="tick-selection" repeat-done="calculateHeight('role')" data-ng-repeat="manageFilter in recordField = (filterOptions.hiringRole | filter:pageSetting.updateSearchText) track by manageFilter.id">
+                                <input type="checkbox" data-ng-checked="pageSetting.userRoleSelected.indexOf(manageFilter.id)!==-1" class="filterCheckBox groupCheckBox" id="role_{{$index}}" data-ng-click="includeCheck(manageFilter.id,'userRoleSelected',false)">
+                                <label for="role_{{$index}}" class="filterCheckBox-label pull-left">
+                                    <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                                </label>
+                                <label for="role_{{$index}}">
+                                    <span class="floLeft font_14_300 sp-spectrum-color right-adjust" data-ng-bind="manageFilter.name | unescapeText"></span>
+                                </label>
+                            </div>
+                            <p data-ng-if="!recordField.length" class="generic-no-matches" data-ng-bind="::pullInterNationalization('manageAccountContent.noMatchesFound')"></p>
+                        </div>
+                    </li>
+                    <!-- Role Filter Ends -->
+                    <!-- Title Filter Starts  -->
+                    <li data-ng-if="pageSetting.employeeFlag || !pageSetting.candidateFlag">
+                        <input type="checkbox" class="accordian-checkbox" checked data-ng-click="closeRest($event)" />
+                        <span class="clearButon sp-spectrum-color" data-ng-if="pageSetting.selectedTitles.length" data-ng-click="clear('.titlesCheckBox','selectedTitles','searchTitlesFilter')" data-ng-bind="::pullInterNationalization('manageAccountContent.clear')"></span>
+                        <span class='expand-collapse'></span>
+                        <h3 data-ng-bind="::pullInterNationalization('manageAccountContent.titles')"></h3>
+                        <div class='header-related-content' id="titles">
+                            <div class="controlwrap sp-search-button">
+                                <input type="text" class="form-control" maxlength="28" data-ng-model="pageSetting.searchTitlesFilter" placeholder="{{::pullInterNationalization('manageAccountContent.searchTitle')}}" data-ng-model-options="{ debounce: { 'default': 100, 'blur': 0 } }">
+                                <button ng-class="{'icon-icon_remove':pageSetting.searchTitlesFilter.length, 'icon-icon_search': !pageSetting.searchTitlesFilter.length}" class="sp-icon-color" data-ng-click="pageSetting.searchTitlesFilter=''"></button>
+                            </div>
+                            <div class="tick-selection" repeat-done="calculateHeight('titles')" data-ng-repeat="manageFilter in recordField = (filterOptions.titleFilters | filter:pageSetting.searchTitlesFilter) track by manageFilter">
+                                <input type="checkbox" data-ng-checked="pageSetting.selectedTitles.indexOf(manageFilter)!==-1" class="filterCheckBox titlesCheckBox" id="titles_{{$index}}" data-ng-click="includeCheck(manageFilter,'selectedTitles',false)">
+                                <label for="titles_{{$index}}" class="filterCheckBox-label pull-left">
+                                    <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                                </label>
+                                <label for="titles_{{$index}}">
+                                    <span class="floLeft font_14_300 sp-spectrum-color right-adjust" data-ng-bind="::manageFilter"></span>
+                                </label>
+                            </div>
+                            <p data-ng-if="!recordField.length" class="generic-no-matches" data-ng-bind="::pullInterNationalization('manageAccountContent.noMatchesFound')"></p>
+                        </div>
+                    </li>
+                    <!-- Title Filter Ends  -->
+                    <!-- Status Filter Starts  -->
+                    <li>
+                        <input type="checkbox" class="accordian-checkbox" checked data-ng-click="closeRest($event)" />
+                        <span class="clearButon sp-spectrum-color" data-ng-if="pageSetting.userStatusSelected.length || pageSetting.hiredFlag" data-ng-click="clear('.statusCheckBox','userStatusSelected');" data-ng-bind="::pullInterNationalization('manageAccountContent.clear')"></span>
+                        <span class='expand-collapse'></span>
+                        <h3 data-ng-bind="::pullInterNationalization('manageAccountContent.status')"></h3>
+                        <div class='header-related-content' id="status">
+                            <div class="tick-selection" data-ng-repeat="manageFilter in (filterOptions.userStatus | orderBy:'userFormatted') track by $index">
+                                <input type="checkbox" class="filterCheckBox statusCheckBox" id="status_{{$index}}" data-ng-click="includeCheck(manageFilter.userStatus,'userStatusSelected',false)">
+                                <label for="status_{{$index}}" class="filterCheckBox-label">
+                                    <span class="floLeft font_14_300 sp-spectrum-color" data-ng-bind="::manageFilter.userFormatted"></span>
+                                    <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                                </label>
+                            </div>
+                            <div class="tick-selection">
+                                <input type="checkbox" class="filterCheckBox statusCheckBox" data-ng-model="hiredCheck" id="status_hired" data-ng-click="hiredFilterCheck()">
+                                <label for="status_hired" class="filterCheckBox-label">
+                                    <span class="floLeft font_14_300 sp-spectrum-color" data-ng-bind="::pullInterNationalization('userStatus.HIRED')"></span>
+                                    <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Status Filter Ends  -->
+                    <!-- Date Filter Starts  -->
+                    <li>
+                        <input type="checkbox" class="accordian-checkbox" checked data-ng-click="closeRest($event)" />
+                        <span class="clearButon sp-spectrum-color" data-ng-if="pageSetting.dateRangeSelected" data-ng-click="pageSetting.dateRangeSelected = false;manageFilterDisplayList('dateRangeSelected');returnMemberList(pageSetting.pageSize);" data-ng-bind="::pullInterNationalization('manageAccountContent.clear')"></span>
+                        <span class='expand-collapse'></span>
+                        <h3 data-ng-bind="::pullInterNationalization('manageAccountContent.dateAdded')"></h3>
+                        <div class='header-related-content'>
+                            <p class="pCheckBox removeAbs mb15 floatLeft">
+                                <input type="checkbox" name="dateFilter" id="dateFilter" class="iCheckBox" data-ng-click="includeDateCheck(filterFromDate, filterToDate, dateFilterCheck)" data-ng-model="dateFilterCheck" data-ng-checked="pageSetting.dateRangeSelected" />
+                                <label for="dateFilter" class="lCheckBox">
+                                    <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                                </label>
+                            </p>
+                            <div class="date-filter-wrap">
+                                <div class="date-field-wrap mBot20">
+                                    <!-- <p class="date-label" data-ng-bind="::pullInterNationalization('manageAccountContent.fromDt')"></p> -->
+                                    <div class="filter-cal-wrap form-grop calStyle">
+                                        <input type="text" readonly id="dateRangeFilter" name="dateRangeFilter" class="form-control cursorPointer" data-ng-model="dateRangeFilter">
+                                        <label for="dateRangeFilter" class="calImg icon-icon_calendar sp-icon-color"></label>
+                                    </div>
+                                </div>
+                                <p class="date-err-msg" data-ng-if="dateErrorFrom">
+                                    <span class="validate-error" data-ng-bind="::pullInterNationalization('manageAccountContent.inValidDtRange')"></span>
+                                </p>
+                                <p class="date-apply-btn">
+                                    <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('manageAccountContent.apply')" data-ng-click="includeDateCheck(filterFromDate, filterToDate, true)"></a>
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Date Filter Ends  -->
+                    <!-- Tags Filter Starts  -->
+                    <li>
+                        <input type="checkbox" class="accordian-checkbox" checked data-ng-click="closeRest($event)" />
+                        <span class="clearButon sp-spectrum-color" data-ng-if="pageSetting.searchTag.length" data-ng-click="clear('.tagsCheckBox','searchTag','searchTagsFilter')" data-ng-bind="::pullInterNationalization('manageAccountContent.clear')"></span>
+                        <span class='expand-collapse'></span>
+                        <h3 data-ng-bind="::pullInterNationalization('manageAccountContent.tags')"></h3>
+                        <div class='header-related-content' id="tags">
+                            <div class="controlwrap sp-search-button">
+                                <input type="text" class="form-control" maxlength="28" data-ng-model="pageSetting.searchTagsFilter" placeholder="{{::pullInterNationalization('manageAccountContent.searchTag')}}" data-ng-model-options="{ debounce: { 'default': 100, 'blur': 0 } }">
+                                <button ng-class="{'icon-icon_remove':pageSetting.searchTagsFilter.length, 'icon-icon_search': !pageSetting.searchTagsFilter.length}" class="sp-icon-color" data-ng-click="pageSetting.searchTagsFilter=''"></button>
+                            </div>
+                            <div class="tick-selection" repeat-done="calculateHeight('tags')" data-ng-repeat="manageFilter in recordField = (filterOptions.tagList | filter:pageSetting.searchTagsFilter) track by manageFilter">
+                                <input type="checkbox" data-ng-checked="pageSetting.searchTag.indexOf(manageFilter)!==-1" class="filterCheckBox tagsCheckBox" id="tags_{{$index}}" data-ng-click="includeCheck(manageFilter,'searchTag',false)">
+                                <label for="tags_{{$index}}" class="filterCheckBox-label pull-left">
+                                    <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                                </label>
+                                <label for="tags_{{$index}}">
+                                    <span class="floLeft font_14_300 sp-spectrum-color right-adjust" data-ng-bind="::manageFilter"></span>
+                                </label>
+                            </div>
+                            <p data-ng-if="!recordField.length" class="generic-no-matches" data-ng-bind="::pullInterNationalization('manageAccountContent.noMatchesFound')"></p>
+                        </div>
+                    </li>
+                    <!-- Tags Filter Ends  -->
+                </ul>
+            </article>
+        </div>
+        <div class="filter-col-sham posBot0 full-spanned"></div>
+    </div>
+    <div class="new-cols content-col sp-panel-accent">
+        <div class="col-content-wrapper mh700 posRel">
+            <div class="members-content-wrapper hide_{{addCandidateViewFlag}}">
+                <div class="members-header">
+                    <h2 class="sp-header-title-color">
+                    <span data-ng-bind="::pullInterNationalization('manageAccountContent.archives')"></span>
+                    <span data-ng-if="masterMemberList.length" class="total-row-count" data-ng-bind="'('+memberList.length+')'"></span>
+                </h2>
+                </div>
+                <div class="members-filters posRel">
+                    <div class="actions-filter s165OnlyWidth">
+                        <p class="pCheckBox top7">
+                            <input type="checkbox" data-ng-disabled="!memberList.length" name="toggleAll" id="alltoggle" class="iCheckBox" data-ng-true-value="true" data-ng-false-value="false" data-ng-model="negative" data-ng-change="checkAll(negative)" />
+                            <label for="alltoggle" class="lCheckBox">
+                                <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                            </label>
+                        </p>
+                        <p class="actions-dropdown-filter">
+                            <a href="javascript:void(0)" data-ng-class="{'default-color':!pageSetting.user.length}" sp-condition="pageSetting.user.length" sp-click-outside="allUsersMenu">
+                                <span data-ng-bind="::pullInterNationalization('manageAccountContent.actions')"></span>
+                                <span class="actions-icon icon-icon_dropdown-arrow sp-icon-color" data-ng-class="pageSetting.user.length?'sp-icon-color':'default-color'"></span>
+                            </a>
+                        </p>
+                    </div>
+                    <div class="actions-callout-wrappper pos1-candidate" data-ng-if="allUsersMenu">
+                        <ul class="action-links">
+                            <li>
+                                <a href="javascript:void(0)" data-ng-click="deleteModalMultiple()">
+                                    <span class="action-icon icon-icon_trashbin sp-icon-color"></span>
+                                    <span class="action-text" data-ng-bind="::pullInterNationalization('tools.hiring.btn0')"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="search-filter">
+                        <p>
+                            <input type="text" maxlength="28" data-ng-model="pageSetting.textSearching" placeholder="{{pullInterNationalization('admin.member.search')}}" data-ng-model-options="{ debounce: { 'default': 100, 'blur': 0 } }" data-ng-change="returnMemberList(pageSetting.pageSize)" data-ng-minlength="3">
+                            <button data-ng-class="{'icon-icon_remove':pageSetting.textSearching.length, 'icon-icon_search': !pageSetting.textSearching.length}" class="sp-icon-color" data-ng-click="pageSetting.textSearching='';returnMemberList(pageSetting.pageSize)"></button>
+                        </p>
+                    </div>
+                </div>
+                <div class="custom-container mTop20">
+                    <div class="custom-row row-header">
+                        <div class="custom-new-cols s4">
+                        </div>
+                        <div class="custom-new-cols tog s30">
+                            <h4 class="sort-filter on" data-ng-click="active($event,{'predicate':'lastName', 'reverse':reverse=!reverse})" data-predicate='lastName'>
+                            <span class="sort-text" data-ng-bind="::pullInterNationalization('manageAccountContent.name')"></span>
+                            <span class="sort-icon icon-icon_sort sp-icon-color sort-down"></span>
+                            <span class="sort-icon icon-icon_sort default-color sort-down"></span>
+                            <span class="sort-icon icon-icon_sort-up sp-icon-color sort-up"></span>
+                        </h4>
+                        </div>
+                        <div class="custom-new-cols tog s25 member-status-col-head">
+                            <h4 class="sort-filter">
+                            <span class="sort-text" data-ng-bind="::pullInterNationalization('candidates.addCandidates.table.roleposition')"></span>
+                         </h4>
+                        </div>
+                        <div class="custom-new-cols tog s20 member-status-col-head">
+                            <h4 class="sort-filter" data-ng-click="active($event,{'predicate':'-userStatusFormatted', 'reverse':reverse=!reverse})" data-predicate='userStatusFormatted'>
+                            <span class="sort-text" data-ng-bind="::pullInterNationalization('manageAccountContent.status')"></span>
+                            <span class="sort-icon icon-icon_sort sp-icon-color sort-down"></span>
+                            <span class="sort-icon icon-icon_sort default-color sort-down"></span>
+                            <span class="sort-icon icon-icon_sort-up sp-icon-color sort-up"></span>
+                        </h4>
+                        </div>
+                        <div class="custom-new-cols s20">
+                        </div>
+                    </div>
+                    <div infinite-scroll="infinteScroll(pageSetting.pageSize+pageSetting.pageSize)" infinite-scroll-immediate-check="false">
+                        <div class="custom-row minH" id='{{$index}}' data-ng-repeat="memberList in recordField = (memberList.slice(0,pageSetting.pageSize)) track by memberList.id">
+                            <div class="custom-new-cols s4 posRel">
+                                <p class="pCheckBox">
+                                    <input type="checkbox" name="selectUser" id="selectUser_{{$index}}" class="iCheckBox" data-ng-change="checkCount(checked)" checklist-model="pageSetting.user" checklist-value="{'userId':memberList.id, 'email':memberList.email, 'name' : memberList.name ,'title': memberList.title}">
+                                    <label for="selectUser_{{$index}}" class="lCheckBox">
+                                        <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                                    </label>
+                                </p>
+                            </div>
+                            <div class="custom-new-cols s30 member-details-col">
+                                <div class="member-info">
+                                    <div class="member-pic">
+                                    <img data-ng-src="{{memberList.smallProfileImage}}" alt="{{memberList.userInitials}}" data-ng-if="!memberList.userInitials && memberList.type!=='HiringCandidate'">
+                                    <div class="imgReplacement icon-candidates bg-small" data-ng-if="memberList.type==='HiringCandidate'"></div>
+                                    <div class="imgReplacement" data-ng-if="memberList.userInitials && memberList.type!=='HiringCandidate'" data-ng-bind="memberList.userInitials"></div>
+                                    </div>
+                                    <div class="member-details" data-ng-class="memberList.name?'addSpace':''">
+                                        <a href="javascript:void(0)" data-ng-click="viewMemberDetails(memberList.id, memberList.email)" class="member-name border-link" data-ng-if="memberList.name">
+                                            <span class="mock-link util-word-wrap" data-ng-bind-html="memberList.name"></span>
+                                            <span class="role-labels" data-ng-bind-html="displayRole(memberList)" data-ng-if="displayRole(memberList)"></span>
+                                            <span class="role-labels" data-ng-if="memberList.hired">
+		                                        <span class="thin nocase" data-ng-bind="::pullInterNationalization('userStatus.HIRED')"></span>
+		                                    </span>
+                                        </a>
+                                        <span class="member-title util-word-wrap" data-ng-bind="memberList.title" data-ng-if="memberList.title"></span>
+                                       
+                                        <span class="role-labels-responsive" data-ng-bind-html="displayRole(memberList)" data-ng-if="displayRole(memberList)"></span>
+                                        <span class="role-labels-responsive" data-ng-if="memberList.hired">
+	                                        <span class="thin nocase" data-ng-bind="::pullInterNationalization('userStatus.HIRED')"></span>
+	                                    </span>
+                                        <a href="mailto:{{memberList.email}}" class="member-email border-link" data-ng-class="{'noMarg':!memberList.name}">
+                                        <span class="mock-link util-word-wrap inline-block" data-ng-bind-html="(!memberList.name && winWidth > 1100)?(memberList.email+displayRole(memberList)):memberList.email"></span>
+                                        </a>
+                                        <span data-ng-if="memberList.type ==='HiringCandidate' && memberList.userStatus === 'VALID'" class="mock-link member-title" data-ng-bind-html="memberList.phoneNumber"></span>
+                                       <!-- <div class="member-status-responsive">
+                                            <p data-ng-if="memberList.userStatus != 'VALID'" class="member-status">
+                                                <span class="dBlock util-word-wrap" data-ng-bind-html="memberList.userStatusFormatted"></span>
+                                                <span class="dBlock font-12 color_aaa" data-ng-bind-html="memberList.dateToShow | spLocaleDate"></span>
+                                                
+                                            </p>
+                                            <p data-ng-if="memberList.userStatus == 'VALID'" class="member-status">
+                                                <span class="dBlock" data-ng-bind-html="memberList.userStatusFormatted"></span>
+                                                <span class="dBlock font-12 color_aaa" data-ng-bind-html="memberList.dateToShow | spLocaleDate"></span>
+                                            </p>
+                                        </div>-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="custom-new-cols s25 member-status-col">
+                                <p class="member-status roles-position" data-ng-if="memberList.type ==='HiringCandidate'">
+                                    <span class="dBlock util-word-wrap" data-ng-bind-html="roles.name | unescapeText" data-ng-repeat="roles in memberList.hiringRoles | limitTo:5 track by roles.id"></span>
+                                    <a href="javascript:void(0)" data-ng-if="memberList.hiringRoles.length > 5" data-ng-click="goToRoleView(memberList.id, memberList.email)" class="border-link">
+                                    <span class="mock-link" data-ng-bind="'+'+(memberList.hiringRoles.length - 5)"></span>
+                                    </a>
+                                </p>
+                                <p class="member-status" data-ng-if="memberList.type ==='Member'">
+                                    <span class="dBlock" data-ng-bind-html="'&nbsp;'"></span>
+                                </p>
+                            </div>
+                            <div class="custom-new-cols s20 member-status-col">
+                                <p data-ng-if="memberList.userStatus != 'VALID'" class="member-status">
+                                    <span class="dBlock util-word-wrap" data-ng-bind-html="memberList.userStatusFormatted"></span>
+                                    <span class="dBlock font-12 color_aaa" data-ng-bind-html="memberList.dateToShow | spLocaleDate"></span>
+                                    
+                                </p>
+                                <p data-ng-if="memberList.userStatus == 'VALID'" class="member-status">
+                                    <span  class="dBlock util-word-wrap" data-ng-bind-html="memberList.userStatusFormatted"></span>
+                                    <span class="dBlock font-12 color_aaa" data-ng-bind-html="memberList.dateToShow | spLocaleDate"></span>
+                                </p>
+                            </div>
+                            <div class="custom-new-cols s20 posRel member-actions-col">
+                                <div class="actions-filter s165">
+                                    <p class="actions-dropdown-filter smallFilter">
+                                        <a href="javascript:void(0)" sp-condition="true" sp-click-outside="show">
+                                            <span data-ng-bind="::pullInterNationalization('manageAccountContent.actions')"></span>
+                                            <span class="actions-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                                        </a>
+                                    </p>
+                                </div>
+                                <div class="actions-callout-wrappper pos2-candidate" data-ng-if="show" data-ng-class="{'posTop1':(memberList.length-($index+1) < 2)}">
+                                    <ul class="action-links" data-ng-if="memberList.userStatus === 'VALID'">
+                                        <li>
+                                            <a href="javascript:void(0)" data-ng-click="viewMemberDetails(memberList.id, memberList.email)">
+                                                <span class="action-icon icon-logo-badge sp-icon-color"></span>
+                                                <span class="action-text" data-ng-bind="::pullInterNationalization('tools.hiring.btn4')"></span>
+                                            </a>
+                                        </li>
+                                        
+                                        <li data-ng-if="memberList.type ==='HiringCandidate' && !memberList.hired">
+                                            <a href="javascript:void(0)" data-ng-click="putBackPop(memberList)">
+                                                <span class="action-icon icon-candidates sp-icon-color"></span>
+                                                <span class="action-text" data-ng-bind="::pullInterNationalization('moveToCandidates')"></span>
+                                            </a>
+                                        </li>
+                                        <li data-ng-if="memberList.type ==='Member'">
+                                            <a href="javascript:void(0)" data-ng-click="putBackPop(memberList)">
+                                                <span class="action-icon icon-icon_accounts_all-members sp-icon-color"></span>
+                                                <span class="action-text" data-ng-bind="::pullInterNationalization('moveToEmployees')"></span>
+                                            </a>
+                                        </li>
+                                       <li class="sep">
+                                            <hr/>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" data-ng-click="deleteModalSingle(memberList)">
+                                                <span class="action-icon icon-icon_trashbin sp-icon-color"></span>
+                                                <span class="action-text" data-ng-bind="::pullInterNationalization('tools.hiring.btn0')"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <ul class="action-links" data-ng-if="memberList.userStatus !== 'VALID'">
+                                       <li data-ng-if="memberList.type ==='HiringCandidate'">
+                                            <a href="javascript:void(0)" data-ng-click="putBackPop(memberList)">
+                                                <span class="action-icon icon-candidates sp-icon-color"></span>
+                                                <span class="action-text" data-ng-bind="::pullInterNationalization('moveToCandidates')"></span>
+                                            </a>
+                                        </li>
+                                        <li data-ng-if="memberList.type ==='Member'">
+                                            <a href="javascript:void(0)" data-ng-click="putBackPop(memberList)">
+                                                <span class="action-icon icon-icon_accounts_all-members sp-icon-color"></span>
+                                                <span class="action-text" data-ng-bind="::pullInterNationalization('moveToEmployees')"></span>
+                                            </a>
+                                        </li>
+                                        <li class="sep">
+                                            <hr/>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" data-ng-click="deleteModalSingle(memberList)">
+                                                <span class="action-icon icon-icon_trashbin sp-icon-color"></span>
+                                                <span class="action-text" data-ng-bind="::pullInterNationalization('tools.hiring.btn0')"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="custom-row" data-ng-if="!recordField.length && responseAvailable">
+                            <div class="custom-new-cols s100">
+                                <p class="no-data-msgs" data-ng-bind="::pullInterNationalization('admin.member.nomatch')"></p>
+                            </div>
+                        </div>
+                        <div class="custom-row" data-ng-if="!recordField.length && !responseAvailable">
+                            <div class="custom-new-cols s100">
+                                <p class="no-data-msgs" data-ng-bind="::pullInterNationalization('admin.member.informationLoading')"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

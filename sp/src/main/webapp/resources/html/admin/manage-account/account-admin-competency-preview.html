@@ -1,0 +1,27 @@
+<div class="add-preview account-admin-previw account-competency-previw custom-overlay-wrapper posRel">
+    <a href="javascript:void(0)" class="done-btn icon-close icon-icon_remove sp-icon-color pad0" title="{{::pullInterNationalization('accessibility.labelClose')}}" data-ng-click="ctrl.competency.preview=false;"></a>
+    <div class="members-content-wrapper">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="ctrl.competencyPreviewDetail.name"></h2>
+        </div>
+    </div>
+    
+    <div class="competencies-lilsting-wrapper">
+    	<div class="competency-details-wrap" data-ng-repeat="competency in ctrl.competencyPreviewDetail.competencyList track by $index">
+    		<h3 data-ng-bind="competency.name"></h3>
+    		<div class="cDesc" data-ng-bind-html="competency.description"></div>
+    		
+    		<h4 data-ng-bind="competency.devStrategyActionCategoryList[0].title"></h4>
+    		<ul>
+    			<li data-ng-repeat="devList in competency.devStrategyActionCategoryList[0].actionList" data-ng-bind="devList.title"></li>
+    		</ul>
+    	</div>
+    	<div class="competency-details-wrap" data-ng-if="!ctrl.competencyPreviewDetail.competencyList.length">
+			<div class="custom-row-5 clearfix">
+                 <div class="custom-new-cols">
+                     <p class="no-data-msgs" data-ng-bind="::pullInterNationalization('manageAccountContent.notplan')"></p>
+                 </div>
+             </div>
+		</div>
+    </div>
+</div>

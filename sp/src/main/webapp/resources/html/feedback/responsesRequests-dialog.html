@@ -1,0 +1,88 @@
+<link type="text/css" rel="stylesheet" href="/resources/css/css-min/feedbackPanelPopup.min.css" />
+<div class="container" data-ng-init="feedbackCtrl.newFeedbackFlow();">
+    <div class="row">
+        <div class="col-xs-12 col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
+            <div>
+                <section class="wrapper createGroup">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar" data-ng-bind="::pullInterNationalization('practiceCtrl.type.FEEDBACK')"></div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color" data-ng-click="feedbackCtrl.closeModal()"></div>
+                            </div>
+                        </div>
+                        <div class="contentArea">
+                            <div class="feedbackPanelPopup">
+                                <div class="fpp-tabs-wrap">
+                                    <ul>
+                                        <li>
+                                            <a href="javascript:void(0)" class="on">Request Feedback</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)">Feedback Responses(3)</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="fpp-cont-wrap">
+                                    <div class="fpp-form-wrap">
+                                        <div class="fpp-form-header">
+                                            <p data-ng-bind="feedbackCtrl.feedbackRefObj.parentName"></p>
+                                            <p class="fww" data-ng-bind="feedbackCtrl.feedbackRefObj.name"></p>
+                                        </div>
+                                        <form novalidate class="fpp-styles-override" autocomplete="off">
+                                            <ol class="form-list-c">
+                                                <li>
+                                                    <textarea data-ng-attr-placeholder="{{::pullInterNationalization('feedback.sidePanel.feedbackNote.placeholder')}}" data-ng-model="feedbackCtrl.feedbackForm.comment" name="feedbackRequest" id="feedbackRequest"></textarea>
+                                                    <span class="validate-error" data-ng-if="feedbackCtrl.formSubmitted && (feedbackCtrl.feedbackForm.comment==='' || feedbackCtrl.feedbackForm.comment === undefined)" data-ng-bind="::pullInterNationalization('home.required.error')"></span>
+                                                </li>
+                                                <li>
+                                                    <div class="tagsEmailInput">
+                                                        <tags-input ng-model="feedbackCtrl.tagsAdded" self-email="true" display-property="name" placeholder="{{::pullInterNationalization('feedback.sidePanel.tags.placeholder')}}" display-name="email" allowed-tags-pattern="^[A-Za-z0-9._-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$" replace-spaces-with-dashes="false" on-tag-removed="feedbackCtrl.tagRemoved($tag)" on-tag-added="feedbackCtrl.tagAdded($tag)">
+                                                            <auto-complete min-length="1" load-on-focus="true" load-on-empty="true" max-results-to-show="10" source="feedbackCtrl.loadEmail($query)" class="ng-tags-pos-fix"></auto-complete>
+                                                        </tags-input>
+                                                    </div>
+                                                    <span class="validate-error" data-ng-if="feedbackCtrl.formSubmitted && !feedbackCtrl.feedbackUsers.length" data-ng-bind="::pullInterNationalization('home.required.error')"></span>
+                                                </li>
+                                                <!-- Form Button Starts -->
+                                                <li class="submit-cancel-btns">
+                                                    <ul class="submit-cancel-list">
+                                                        <li>
+                                                            <input type="submit" value="{{::pullInterNationalization('blueprint.sendreminder.send')}}" data-ng-click="feedbackCtrl.submitFeedbackRequest()" class="btn-square-12px sp-background-color" />
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <!-- Form Button Ends -->
+                                            </ol>
+                                        </form>
+                                        <div class="fpp-list-wrap">
+                                            <div class="feedback-info">
+                                                <p class="title" data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.label')"></p>
+                                                <p class="sub-title" data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead1')"></p>
+                                                <ul class="desc">
+                                                    <li data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead1.subDesc1')"></li>
+                                                    <li data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead1.subDesc2')"></li>
+                                                    <li data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead1.subDesc3')"></li>
+                                                </ul>
+                                                <p class="sub-title" data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead2')"></p>
+                                                <ul class="desc">
+                                                    <li data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead2.subDesc1')"></li>
+                                                    <li data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead2.subDesc2')"></li>
+                                                </ul>
+                                                <p class="sub-title" data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead3')"></p>
+                                                <ul class="desc">
+                                                    <li data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead3.subDesc1')"></li>
+                                                    <li data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead3.subDesc2')"></li>
+                                                    <li data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead3.subDesc3')"></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

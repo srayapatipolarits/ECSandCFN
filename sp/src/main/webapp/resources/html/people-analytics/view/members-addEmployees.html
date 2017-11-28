@@ -1,0 +1,67 @@
+<div class="custom-overlay-wrapper posRel" style="min-height:{{ctrl.overlayDim.height}}px">
+    <a href="javascript:void(0)" class="close-custom-overlay icon-icon_remove sp-icon-color" data-ng-click="addMemberView()"></a>
+    <div class="members-content-wrapper">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('pa.employees.add.title')"></h2>
+            <p class="full-desc descriptionAddNew" data-ng-bind="::pullInterNationalization('pa.employees.add.description')"></p>
+        </div>
+        <div class="subscriptions-information">
+            <h3 class="countLeft">
+            	<span class="weight-700 available_{{!!subscriptionCount}}" data-ng-bind="subscriptionCount+' '+pullInterNationalization('candidates.addCandidates.prismportrait')"></span>
+            	<span data-ng-bind="::pullInterNationalization('candidates.addCandidates.invitation')"></span>
+            	<a class="border-link" data-ng-click="requestForAccounts('candidates')" href="javascript:void(0)" data-ng-bind="::pullInterNationalization('candidates.addCandidates.requestmore')"></a>
+            </h3>
+        </div>
+        <form name="addMultipleMembers" novalidate class="form-styles-override add-new-candidate-form" data-ng-submit="addNewMember()" autocomplete="off">
+           <ol class="form-list-c">
+            	<li class="allTags emailTags">
+            		 <div class="stepHeading"><span class="weight-700" data-ng-bind="::pullInterNationalization('candidates.addCandidates.step1')"></span> <span data-ng-bind="::pullInterNationalization('candidates.addEmployee.step1Detail')"></span></div>
+            		 <div class="tagsEmailInput brdr0 tagsTextarea">
+            		 <tags-input data-ng-model="candidateEmails" add-on-paste="true" template-input="ngTagsInput/tags-textarea.html" display-property="name" max-tags="{{subscriptionCount}}" min-tags="1" add-on-paste="true"  placeholder="{{::pullInterNationalization('admin.member.add.multiple.memberList')}}" display-name="email" allowed-tags-pattern="^[A-Za-z0-9._-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$" replace-spaces-with-dashes="false" on-tag-removed="tagRemoved($tag,{'obj':'email','store':'emails'})" on-tag-added="tagAdded($tag,{'obj':'email','store':'emails'})">
+                     	</tags-input>
+                     </div>
+                     
+                     <span data-ng-if="addMember.emailErrors.isExisting">
+                     	<!-- data-ng-bind="::pullInterNationalization('admin.member.add.multiple.error.existingemail')" -->
+                     	<span class="validate-error" data-ng-repeat="existing in existingUserEmailError track by $index">
+                     		<span data-ng-bind="existing.name +' : '+existing.msg"></span>
+                     	</span>
+                     </span>
+                     
+                     <span class="validate-error" data-ng-if="addMember.emailErrors.required" data-ng-bind="::pullInterNationalization('admin.member.add.multiple.error.required')"></span>
+                     <span class="validate-error" data-ng-if="addMember.emailErrors.countExceed" data-ng-bind="::pullInterNationalization('admin.member.add.multiple.error.emailexceed')"></span>
+                     <span class="validate-error" data-ng-if="addCandidate.emailErrors.subscriptionCount" data-ng-bind="addCandidate.emailErrors.subscriptionCount"></span>
+                </li>
+              	<li class="col-two-third m250" data-ng-init="datePickerForAdd()">
+            		<div class="form-grop calStyle calStyleW">
+                          <div class="posRel">
+                              <input type="text" id="endDateId" name="endDate" class="form-control endInput cursorPointer prism-date" readonly data-ng-model="addMember.displayDate" required placeholder="{{::pullInterNationalization('candidates.addCandidates.prismCompletionDate')}}">
+                              <label class="calImg icon-icon_calendar sp-icon-color v-align prism-date-icon" for="endDateId"></label>
+                          </div>
+                          <div class="validate-error" data-ng-if="!addMember.displayDate && addMember.emailErrors.dateCheck" data-ng-bind="::pullInterNationalization('signup.required.error')"></div>
+                      </div>
+            	</li>
+                <li>&nbsp;</li>
+                 <li class="tagsEmailInput brdr0">
+                 	<div class="stepHeading"><span class="weight-700" data-ng-bind="::pullInterNationalization('candidates.addEmployee.step2')"></span><span data-ng-bind="::pullInterNationalization('candidates.addCandidates.step3Detail')"></span></div>
+                    <tags-input min-length="1" data-type="tags" data-ng-model="memberTags" replace-spaces-with-dashes="false" placeholder="{{::pullInterNationalization('candidates.addCandidates.step3Place')}}" on-tag-removed="tagRemoved($tag,{'obj':'text','store':'tags'})" on-tag-added="tagAdded($tag,{'obj':'text','store':'tags'})">
+                        <auto-complete min-length="1" load-on-focus="false" debounce-delay="500" load-on-empty="false" max-results-to-show="5" source="loadSource($query,'masterTagList')" class="ng-tags-pos-fix"></auto-complete>
+                    </tags-input> 
+                </li>
+                
+                <!-- Form Button Starts -->
+                <li class="submit-cancel-btns">
+                    <ul class="submit-cancel-list">
+                        <li>
+                            <input type="submit" value="{{::pullInterNationalization('admin.member.submit')}}" class="btn-block btn-15px sp-btn-color" />
+                        </li>
+                        <li>
+                            <input type="button" value="{{::pullInterNationalization('admin.member.cancel')}}" class="btn-block btn-grey-dark btn-15px" data-ng-click="addMemberView();" />
+                        </li>
+                    </ul>
+                </li>
+                <!-- Form Button Ends -->
+            </ol>
+        </form>
+    </div>
+</div>

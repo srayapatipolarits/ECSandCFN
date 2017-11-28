@@ -1,0 +1,9 @@
+New SurePeople Subscription
+<br/>
+Date: $ spPlans.billingCycleStartDate;format="MMM dd,yyyy" $ to $endDate;format="MMM dd,yyyy"$
+$if(isBusiness)$
+<br/>
+$spPlans.billingCycle.billingCycleType$ Payment Plan
+<br/>
+Plan name : $spPlans.name$ : $spPlans.numMember$ $if(isPA)$ Portraits  $else$ Member Accounts $endif$ , $spPlans.numAdmin$ Admin Accounts <br/>
+$endif$

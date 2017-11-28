@@ -1,0 +1,230 @@
+<!-- Inline style should be removed once we figure the padding issue -->
+<link type="text/css" rel="stylesheet" href="/resources/css/css-min/feedback-reply.min.css?fetch=true" />
+<div class="feedback-reply-wrapper" data-ng-init="feedbackCtrl.init();" style="padding-left:15px;padding-right: 15px;">
+    <a data-ng-if="feedbackCtrl.parentPage === 'dashboard'" href="javascript:void(0)" class="icon-icon_remove close-ic" data-ng-click="feedbackCtrl.closeOverlay()"></a>
+    <div class="feedback-reply-header" data-ng-if="feedbackCtrl.feedbackRequestList.length">
+        <h2 class="header-title-font sp-header-title-color" data-ng-bind="::pullInterNationalization('feedback.feedbackReply.topLabel')"></h2>
+        <p data-ng-bind="::pullInterNationalization('feedback.feedbackReply.topDesc')"></p>
+    </div>
+    <div class="feedback-reply-header" data-ng-if="feedbackCtrl.responseAvailable && !feedbackCtrl.feedbackRequestList.length">
+        <h2 align="center" class="sp-header-title-color" data-ng-bind="::pullInterNationalization('feedback.feedbackReply.noData.message')"></h2>
+    </div>
+    <div class="feedback-reply-header" data-ng-if="!feedbackCtrl.responseAvailable && !feedbackCtrl.feedbackRequestList.length">
+        <h2 align="center" class="sp-header-title-color" data-ng-bind="::pullInterNationalization('practiceArea.loading')"></h2>
+    </div>
+    <div class="feedback-reply-col-wrap" data-ng-if="feedbackCtrl.feedbackRequestList.length">
+        <div class="feedback-reply-col left">
+            <ul class="feeedback-list">
+                <li data-ng-class="{'active':list.id === feedbackCtrl.activeFeedId}" data-ng-repeat="list in feedbackCtrl.feedbackRequestList" data-ng-click="feedbackCtrl.getFeedbackDetail(list.id, list.spFeature)">
+                    <span data-ng-if="list.id === feedbackCtrl.activeFeedId" class="tri-icon icon-triangle-right sp-icon-color"></span>
+                    <span class="imgReplacement" data-ng-if="!list.user.smallProfileImage" data-ng-bind="list.user.userInitials"></span>
+                    <span class="user-pic" data-ng-if="list.user.smallProfileImage"><img width="38" height="38" title="" alt="" data-ng-src="{{list.user.smallProfileImage}}">
+                                </span>
+                    <span class="user-info">
+                                <span class="un-info listing-name" data-ng-bind="list.user.name"></span>
+                    <span class="un-title listing-title" data-ng-bind="list.user.title"></span>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <div class="feedback-reply-col right">
+            <p class="feedback-reply-cont-header">
+                <span class="imgReplacement" data-ng-if="!feedbackCtrl.feedbackDetail.user.smallProfileImage" data-ng-bind="feedbackCtrl.feedbackDetail.user.userInitials"></span>
+                <span class="user-pic" data-ng-if="feedbackCtrl.feedbackDetail.user.smallProfileImage"><img width="38" height="38" title="" alt="" data-ng-src="{{feedbackCtrl.feedbackDetail.user.smallProfileImage}}">
+                                </span>
+                <span class="user-info">
+                            <span class="un-info name-font" data-ng-bind="feedbackCtrl.feedbackDetail.user.fullNameOrEmail"></span>
+                <span class="un-title" data-ng-bind="feedbackCtrl.feedbackDetail.user.title"></span>
+                </span>
+                <span class="feedback-request-date" data-ng-bind="feedbackCtrl.feedbackDetail.createdOn | spDateFormat"></span>
+            </p>
+            <div class="feedback-sub-cols-wrap">
+                <div class="feedback-sub-col left">
+                    <p class="feedback-plan-head">
+                        <span class="no-text-transform feedback-hfont" data-ng-bind="::pullInterNationalization('feedback.feedbackReply.rightHeading')"></span>
+                        <span data-ng-if="feedbackCtrl.feedbackDetail.dataMap.blueprint!==undefined" class="feedback-hfont sp-header-title-color" data-ng-bind="::pullInterNationalization('feedback.feedbackReply.blueprint.title')"></span>
+                        <span data-ng-if="feedbackCtrl.feedbackDetail.dataMap.blueprint === undefined" class="feedback-hfont sp-header-title-color" data-ng-bind="feedbackCtrl.feedbackDetail.dataMap.dataMap.name"></span>
+                    </p>
+                    <p class="feedback-comment" data-ng-bind="feedbackCtrl.feedbackDetail.comment"></p>
+                    <div class="feedback-form-wrap">
+                        <form name="feedbackReplay" autocomplete=off novalidate>
+                            <ol class="form-list-c">
+                                <li>
+                                	<a href="javascript:void(0)" class="tips-lnk" data-ng-click="feedbackCtrl.showTips()" data-ng-bind="::pullInterNationalization('feedback.feedbackReply.tips.label')"></a>
+                                    <span class="form-lbl" data-ng-bind="::pullInterNationalization('feedback.feedbackReply.formLabel')"></span>
+                                    <textarea data-ng-attr-placeholder="Send your response" data-ng-model="feedbackCtrl.feedbackForm.response" name="postResponse"></textarea>
+                                    <span class="validate-error" data-ng-if="feedbackCtrl.inputRequired" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                                </li>
+                                <!-- Form Button Starts -->
+                                <li class="submit-cancel-btns">
+                                    <ul class="submit-cancel-list">
+                                        <li class="pt15">
+                                            <input type="submit" value="{{::pullInterNationalization('feedback.feedbackReply.button.submit')}}" data-ng-click="feedbackCtrl.sendFeedbackResponse()" class="btn-block btn-15px sp-btn-color" />
+                                        </li>
+                                        <li class="pt15" data-ng-if="feedbackCtrl.parentPage === 'dashboard'">
+                                            <input type="button" value="{{::pullInterNationalization('feedback.feedbackReply.button.cancel')}}" class="btn-block btn-grey-dark btn-15px" data-ng-click="feedbackCtrl.closeOverlay()" />
+                                        </li>
+                                        <li class="decline-link">
+                                            <a href="javascript:void(0)" data-ng-click="feedbackCtrl.declineFeedback()" class="border-link">
+                                                <span class="mock-link">{{::pullInterNationalization('feedback.feedbackReply.decline.label')}}</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- Form Button Ends -->
+                            </ol>
+                        </form>
+                    </div>
+                </div>
+                <div class="feedback-sub-col right feed-col-hide-mob">
+                    <div class="feedback-info">
+                        <p class="title" data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.label')"></p>
+                        <p class="sub-title" data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.subHead1')"></p>
+                        <ul class="desc">
+                            <li data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.subHead1.subDesc1')"></li>
+                            <li data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.subHead1.subDesc2')"></li>
+                        </ul>
+                        <p class="sub-title" data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.subHead2')"></p>
+                        <ul class="desc">
+                            <li data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.subHead2.subDesc1')"></li>
+                            <li data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.subHead2.subDesc2')"></li>
+                            <li data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.subHead2.subDesc3')"></li>
+                            <li data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.subHead2.subDesc4')"></li>
+                        </ul>
+                        <p class="sub-title" data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.subHead3')"></p>
+                        <ul class="desc">
+                            <li data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.subHead3.subDesc1')"></li>
+                            <li data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.subHead3.subDesc2')"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="feedback-sub-row blueprint-content organization-area-detail spcAdj3" data-ng-if="feedbackCtrl.feedbackDetail.dataMap.blueprint!==undefined">
+                <p class="feedback-plan-head">
+                    <span class="font-uc" data-ng-bind="::pullInterNationalization('feedback.feedbackReply.blueprint.title')"></span>
+                </p>
+                <!-- MISSION STATEMENT INFO STARTS -->
+                <div class="publish-mission-statement">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h3 class="key-title" data-ng-bind="feedbackCtrl.dataMap.mission.title"></h3>
+                            <p data-ng-bind="feedbackCtrl.blueprint.missionStatement.text"></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- MISSION STATEMENT INFO ENDS -->
+                <!--  OBJECTIVES + KI + CSM ACCORDIAN STARTS  -->
+                <div class="bp-pub-obj-wrap-2">
+                    <div class="obj-normal" data-ng-repeat="list in feedbackCtrl.blueprint.devStrategyActionCategoryList">
+                        <section class="objectives-section">
+                            <!-- Objective Header Starts -->
+                            <header class="obj-header-wrap-mode">
+                                <h2 class="obj-header title" data-ng-bind="feedbackCtrl.dataMap.objective.title"></h2>
+                                <p data-ng-bind="list.title"></p>
+                            </header>
+                            <!-- Objective Header Ends -->
+                            <!-- Objective KI and CSM Details Starts -->
+                            <div class="obj-content">
+                                <div class="obj-ki-wrap" data-ng-repeat="actionList in list.actionList" data-ng-init="parentIndex=$parent.$index;currentIndex = $index">
+                                    <h3 class="key-title" data-ng-bind="feedbackCtrl.dataMap.initiatives.title"></h3>
+                                    <p class="obj-ki-info">
+                                        <label data-ng-if="noSelf===''" for="devStrategyActionCategoryList_{{parentIndex}}_{{$index}}" class="lCheckBox" data-ng-class="feedbackCtrl.stateControl(actionList)?'block':'blockCHeck'">
+                                            <span class="black-txt-color font-weight100">
+                                    <span class="bp-nums f14" data-ng-bind="($index+1)+'. '"></span>
+                                            <span class="bp-txts default-size" data-ng-bind="actionList.title"></span>
+                                            </span>
+                                        </label>
+                                        <label data-ng-if="noSelf!==''" class="lCheckBox" data-ng-class="feedbackCtrl.stateControl(actionList)?'block':'blockCHeck'">
+                                            <span class="black-txt-color font-weight100">
+                                    <span class="bp-nums f14" data-ng-bind="($index+1)+'. '"></span>
+                                            <span class="bp-txts default-size" data-ng-bind="actionList.title"></span>
+                                            </span>
+                                        </label>
+                                    </p>
+                                    <article class="critical_success_measure">
+                                        <ol class="obj-csm-list">
+                                            <li>
+                                                <h3 class="key-title" data-ng-bind="feedbackCtrl.dataMap.csm.title"></h3>
+                                            </li>
+                                            <li data-ng-repeat="actionData in actionList.actionData" data-ng-init="childParIndex=$parent.$index">
+                                                <p>
+                                                    <label data-ng-if="noSelf===''" for="groupActionCategoryList_{{$index}}_{{childParIndex}}_{{parentIndex}}" class="lCheckBox mp" data-ng-class="{'block':!actionData.permissions.Completion,'cursorHand':noSelf!==''}">
+                                                        <span class="black-txt-color">
+                                                <span class="bp-nums" data-ng-bind="(childParIndex+1)+'.'+($index+1)+'. '"></span>
+                                                        <span class="bp-txts" data-ng-bind="actionData.title"></span>
+                                                        </span>
+                                                    </label>
+                                                    <label data-ng-if="noSelf!==''" class="lCheckBox mp" data-ng-class="{'block':!actionData.permissions.Completion,'cursorHand':noSelf!==''}">
+                                                        <span class="black-txt-color">
+                                                <span class="bp-nums" data-ng-bind="(childParIndex+1)+'.'+($index+1)+'. '"></span>
+                                                        <span class="bp-txts" data-ng-bind="actionData.title"></span>
+                                                        </span>
+                                                    </label>
+                                                </p>
+                                            </li>
+                                        </ol>
+                                    </article>
+                                </div>
+                            </div>
+                            <!-- Objective KI and CSM Details Ends -->
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="feedback-sub-row" data-ng-if="feedbackCtrl.feedbackDetail.dataMap.blueprint===undefined">
+                <p class="feedback-plan-head">
+                    <span class="font-uc" data-ng-if="feedbackCtrl.activeFeature === 'OrganizationPlan'" data-ng-bind="feedbackCtrl.goalObj.programName"></span>
+                    <span class="font-uc" data-ng-if="feedbackCtrl.activeFeature === 'Competency'" data-ng-bind="'Competency'"></span>
+                    <span class="font-uc no-text-transform" data-ng-if="feedbackCtrl.activeFeature == 'Erti'" data-ng-bind="'ERT-i'"></span>
+                    <span class="feedback-hfont" data-ng-bind-html="feedbackCtrl.goalObj.name"></span>
+                </p>
+                <p data-ng-if="feedbackCtrl.activeFeature !== 'OrganizationPlan'" data-ng-bind-html="feedbackCtrl.goalObj.description | secureHtml"></p>
+                <div data-ng-if="feedbackCtrl.activeFeature === 'OrganizationPlan'">
+                    <p class="sub-hd added-margin-bottom" data-ng-bind="::pullInterNationalization('feedback.feedbackReply.overview.label')"></p>
+                    <p class="overview-text" data-ng-bind-html="feedbackCtrl.goalObj.description | secureHtml"></p>
+                    <p class="sub-hd added-margin-bottom" data-ng-if="feedbackCtrl.goalObj.keyOutcomes.outcomesList.length && feedbackCtrl.goalObj.keyOutcomes.active" data-ng-bind="::pullInterNationalization('feedback.feedbackReply.keyOutComes.label')"></p>
+                    <ol data-ng-if="feedbackCtrl.goalObj.keyOutcomes.active">
+                        <li data-ng-repeat="keyList in feedbackCtrl.goalObj.keyOutcomes.outcomesList track by $index" data-ng-bind="keyList"></li>
+                    </ol>
+                </div>
+                <div data-ng-if="feedbackCtrl.activeFeature === 'Competency'">
+                    <p class="sub-hd added-margin-bottom" data-ng-bind="::pullInterNationalization('feedback.feedbackReply.devStrat.label')"></p>
+                    <ol>
+                        <li data-ng-repeat="list in feedbackCtrl.goalObj.devStrategyActionCategoryList[0].actionList" data-ng-bind="list.title"></li>
+                    </ol>
+                </div>
+                <div data-ng-if="feedbackCtrl.activeFeature === 'Erti'">
+                    <p class="sub-hd added-margin-bottom" data-ng-bind="::pullInterNationalization('feedback.feedbackReply.devStrat.label')"></p>
+                    <ol>
+                        <li data-ng-repeat="list in feedbackCtrl.goalObj.developmentStrategyList" data-ng-bind="list.dsDescription"></li>
+                    </ol>
+                </div>
+            </div>
+            <div class="feedback-sub-cols-wrap feed-col-show-mob" id="feedbackTips">
+                <div class="feedback-sub-col right">
+                    <div class="feedback-info">
+                        <p class="title" data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.label')"></p>
+                        <p class="sub-title" data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.subHead1')"></p>
+                        <ul class="desc">
+                            <li data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.subHead1.subDesc1')"></li>
+                            <li data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.subHead1.subDesc2')"></li>
+                        </ul>
+                        <p class="sub-title" data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.subHead2')"></p>
+                        <ul class="desc">
+                            <li data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.subHead2.subDesc1')"></li>
+                            <li data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.subHead2.subDesc2')"></li>
+                            <li data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.subHead2.subDesc3')"></li>
+                            <li data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.subHead2.subDesc4')"></li>
+                        </ul>
+                        <p class="sub-title" data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.subHead3')"></p>
+                        <ul class="desc">
+                            <li data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.subHead3.subDesc1')"></li>
+                            <li data-ng-bind="::pullInterNationalization('feedback.feedbackReply.info.subHead3.subDesc2')"></li>
+                        </ul>
+                    </div>
+                </div>            
+            </div>            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<!-- Notification Starts -->
+<div class="x-container">
+    <div class="container">
+        <div class="competency-manage-notifications">
+            <h2 class="sp-header-title-color">Evaluation in progress</h2>
+            <p class="clbt mBot3">
+                <span>Start Date: </span>
+                <span class="dt-txt" data-ng-bind="ctrl.competencyEvaluation.startDate"></span>
+                <span class="mLeft15">End Date: </span>
+                <span class="dt-txt" data-ng-bind="ctrl.competencyEvaluation.endDate"></span>
+            </p>
+            <p class="clbt">
+                <span>Evaluation Type:</span>
+                <span class="type-txt" data-ng-bind="ctrl.competencyEvaluation.requiredEvaluationList.join(', ')"></span>
+                <span class="mLeft15">Members: <strong>{{ctrl.competencyEvaluation.users.length}}</strong></span>
+                <a href="javascript:void(0)" class="border-link mLeft15" data-ng-click="ctrl.addUserToEvaluationModal()">
+                	<span class="mock-link">Add members</span>
+                </a>
+            </p>
+            <div class="eLink-wrap">
+            	<a href="javascript:void(0)" data-ng-click="ctrl.endEvaluationModal()" class="btn-block btn-15px sp-btn-color">End evaluation</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Notification Ends -->

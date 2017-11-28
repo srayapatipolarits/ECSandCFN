@@ -1,0 +1,104 @@
+ <div class="add-update">
+	<!-- create Column Starts-->
+	<div class="practice-area-detail organization-area-detail lnd-right-box lnd-top-border sp-panel-accent">
+        <div class="title-with-icons">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('pa.admin.images.label')"></h2>
+        </div>
+        <div class="category parent-cat category-overview pa-details">
+				<div class="header-style-content">
+					<div class="border-faq-content">
+					<div class="image-section">
+        <div class="col-container floatLeft">
+               <p class="title-with-bg f300">
+                        <span class="desc-left" data-ng-bind="::pullInterNationalization('navigation.prism.relationship')"></span>
+                    </p>
+               <div class="crop-it-image">
+	                    <div class="img-wrapper-admin">
+	                        <img data-ng-src="{{mediaSettings.RelationShipAdvisor}}" alt="" data-ng-if="mediaSettings.RelationShipAdvisor" class="org-admin-image-preview" />
+	                        <div class="admin-section-pic" data-ng-if="mediaSettings.RelationShipAdvisor === null"  data-ng-bind="::pullInterNationalization('sysadmin.organization.uploadImage')"></div>
+	                        <span class="upload-icon icon-icon_camera sp-icon-color" data-ng-click="selectBackground('RA');"></span>
+	                        <span class="upload-icon remove-icon icon-icon_accounts_remove sp-icon-color" data-ng-if="mediaSettings.RelationShipAdvisor !== null" data-ng-click="mediaSettings.RelationShipAdvisor=null"></span>
+	                    </div>
+	                </div>
+               </div>
+               <div class="col-container floatRight">
+                <p class="title-with-bg f500">
+                        <span class="desc-left" data-ng-bind="::pullInterNationalization('admin.theming.action.preview')"></span>
+                    </p>
+               <div class="relation-ship" data-ng-style="mediaSettings.RelationShipAdvisor !== null ? { 'background-image':'url('+mediaSettings.RelationShipAdvisor+')' } : { 'background-image':'url(/resources/images/pa-ra.jpg)' }">
+	<h3 class="ra-title">
+		<span class="ra-setting-icon icon-icon_RelationsAdvisor"></span>
+		<span class="textual" data-ng-bind="::pullInterNationalization('navigation.prism.relationship')"></span>
+	</h3>
+	<div class="ra-description" data-ng-bind="::pullInterNationalization('pa.admin.dashboard.ra.desc')"></div>
+	<div class="angucomplete-wrapper">
+       <input type="submit" value="Go" class="btn-square-30px ra-go sp-background-color">
+    </div>
+    </div>
+               
+               </div>
+               </div>
+               <div class="image-section">
+               <div class="col-container floatLeft">
+               <p class="title-with-bg f300">
+                        <span class="desc-left" data-ng-bind="::pullInterNationalization('navigation.spectrum')"></span>
+                    </p>
+               <div class="crop-it-image">
+	                    <div class="img-wrapper-admin">
+	                        <img data-ng-src="{{mediaSettings.Spectrum}}" alt="" data-ng-if="mediaSettings.Spectrum"  class="org-admin-image-preview" />
+	                        <div class="admin-section-pic" data-ng-if="mediaSettings.Spectrum === null" data-ng-bind="::pullInterNationalization('sysadmin.organization.uploadImage')"></div>
+	                        <span class="upload-icon icon-icon_camera sp-icon-color" data-ng-click="selectBackground('Spectrum');"></span>
+	                        <span class="upload-icon remove-icon icon-icon_accounts_remove sp-icon-color" data-ng-if="mediaSettings.Spectrum !== null"  data-ng-click="mediaSettings.Spectrum=null"></span>
+	                    </div>
+	                </div>
+               </div>
+               <div class="col-container floatRight">
+                <p class="title-with-bg f500">
+                        <span class="desc-left" data-ng-bind="::pullInterNationalization('admin.theming.action.preview')"></span>
+                    </p>
+               <div class="relation-ship" data-ng-style="mediaSettings.Spectrum !== null ? { 'background-image':'url('+mediaSettings.Spectrum+')' } : { 'background-image':'url(/resources/images/pa-spectrum.jpg)' }">
+	<h3 class="ra-title">
+		<span class="ra-setting-icon icon-icon_RelationsAdvisor"></span>
+		<span class="textual" data-ng-bind="::pullInterNationalization('navigation.spectrum')"></span>
+	</h3>
+	<div class="ra-description" data-ng-bind="::pullInterNationalization('pa.admin.dashboard.spectrum.desc')"></div>
+    </div>
+               
+               </div>
+               </div>
+               <div class="image-section last">
+               <div class="col-container floatLeft">
+               <p class="title-with-bg f300">
+                        <span class="desc-left" data-ng-bind="::pullInterNationalization('navigation.preferred.portrait')"></span>
+                    </p>
+               <div class="crop-it-image">
+	                    <div class="img-wrapper-admin">
+	                        <img data-ng-src="{{mediaSettings.Hiring}}" alt="" data-ng-if="mediaSettings.Hiring" class="org-admin-image-preview" />
+	                        <div class="admin-section-pic" data-ng-if="mediaSettings.Hiring === null" data-ng-bind="::pullInterNationalization('sysadmin.organization.uploadImage')"></div>
+	                        <span class="upload-icon icon-icon_camera sp-icon-color" data-ng-click="selectBackground('PP');"></span>
+	                        <span class="upload-icon remove-icon icon-icon_accounts_remove sp-icon-color" data-ng-if="mediaSettings.Hiring !== null" data-ng-click="mediaSettings.Hiring=null"></span>
+	                    </div>
+	                </div>
+               </div>
+               <div class="col-container floatRight">
+                <p class="title-with-bg f500">
+                        <span class="desc-left" data-ng-bind="::pullInterNationalization('admin.theming.action.preview')"></span>
+                    </p>
+               <div class="relation-ship" data-ng-style="mediaSettings.Hiring !== null ? { 'background-image':'url('+mediaSettings.Hiring+')' } : { 'background-image':'url(/resources/images/pa-pp.jpg)' }">
+	<h3 class="ra-title">
+		<span class="ra-setting-icon icon-icon_RelationsAdvisor"></span>
+		<span class="textual" data-ng-bind="::pullInterNationalization('navigation.preferred.portrait')"></span>
+	</h3>
+	<div class="ra-description" data-ng-bind="::pullInterNationalization('pa.admin.dashboard.pp.desc')"></div>
+	<div class="angucomplete-wrapper">
+       <input type="submit" value="Go" class="btn-square-30px ra-go sp-background-color">
+    </div>
+    </div>
+               
+               </div>
+               </div>
+        	</div>
+        	</div>
+        	</div>
+    </div>
+</div>

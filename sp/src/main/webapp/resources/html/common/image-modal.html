@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="/resources/css/css-min/image-modal.css">
+<!-- Using in-page style because this can be a modal within another modal and dont want any conflicts. Also used by many modules. -->
+<style type="text/css">
+.lg-toolbar {
+	background: none;
+}
+.lg-toolbar .closeIcon {
+	color: #fff;
+    cursor: pointer;
+    float: right;
+    font-size: 20px;
+    height: 47px;
+    line-height: 27px;
+    padding: 5px 0;
+    text-align: center;
+    width: 50px;
+    outline: 0;
+}
+.modal-backdrop {
+	background: rgba(0, 0, 0, 1);
+}
+.lg {
+	width: 100%;
+	height: 100%;
+}
+.lg-inner {
+	transition-timing-function: ease;
+	transition-duration: 600ms;
+}
+.lg-outer .lg-image {
+  max-height: 90%;
+}
+</style>
+
+<div class="modal right fade" id="imageModal" role="dialog"
+	data-ng-init="imageCtrl.init();">
+	<div class="modal-dialog" role="document" style="width:100%">
+		<div
+			class="lg-outer  lg-start-zoom lg-use-css3 lg-css3 lg-slide lg-show-after-load lg-visible">
+			<div class="lg">
+				<div class="lg-inner">
+					<div class="lg-item lg-loaded lg-current lg-complete">
+						<div class="lg-img-wrap">
+							<img class="lg-object lg-image" data-ng-src="{{modalImageUrl}}">
+						</div>
+					</div>
+				</div>
+				<div class="lg-toolbar group">
+					<span class="closeIcon icon-icon_remove"
+						data-ng-click="imageCtrl.closeModal();"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

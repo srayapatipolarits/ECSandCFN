@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd 
+		 http://www.springframework.org/schema/integration/jms http://www.springframework.org/schema/integration/jms/spring-integration-jms.xsd"
+
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:int-jms="http://www.springframework.org/schema/integration/jms"
+	xmlns:util="http://www.springframework.org/schema/util">
+	<beans profile="PROD-Subscriber">
+		<!-- Activemq connection factory -->
+		<bean id="amqConnectionFactorySubs" class="org.apache.activemq.ActiveMQConnectionFactory">
+			<constructor-arg index="0" value="${jms.broker.url}" />
+			<property name="redeliveryPolicy">
+				<bean class="org.apache.activemq.RedeliveryPolicy">
+					<property name="maximumRedeliveries" value="3" />
+					<property name="queue" value="*" />
+				</bean>
+			</property>
+		</bean>
+
+		<bean id="connectionFactorySub"
+			class="org.springframework.jms.connection.CachingConnectionFactory">
+			<constructor-arg ref="amqConnectionFactory" />
+		</bean>
+
+		<bean id="messageServiceHandler" class="com.sp.web.service.message.SPMessageReciever" /> <!-- 2 -->
+
+		<int:channel id="inChannel" /> <!-- 3 -->
+
+		<int-jms:inbound-channel-adapter jms-template="jmsTemplateSub"
+			channel="inChannel" destination-name="sp.message" auto-startup="true"  >
+				<int:poller fixed-rate="1000" />
+			</int-jms:inbound-channel-adapter> <!-- 4 -->
+
+		<!-- Destination Topic -->
+		<bean id="destinationTopicSub" class="org.apache.activemq.command.ActiveMQTopic">
+			<constructor-arg index="0" value="sp.message" />
+		</bean>
+
+		<!-- JmsTemplate Definition -->
+		<bean id="jmsTemplateSub" class="org.springframework.jms.core.JmsTemplate">
+			<property name="connectionFactory" ref="connectionFactorySub" />
+			<property name="defaultDestination" ref="destinationTopicSub" />
+			<property name="pubSubDomain" value="true" />
+		</bean>
+		
+		<int:service-activator input-channel="inChannel" ref="messageServiceHandler"/>
+		
+
+	</beans>
+</beans>

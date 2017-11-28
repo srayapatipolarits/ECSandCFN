@@ -1,0 +1,27 @@
+<article class="accordian-filter">
+	<ul>
+		<li data-ng-if="ctrl.orgPlan.spectrumFilter.filters.organizationPlan.length">
+			<input type="checkbox" class="accordian-checkbox" data-ng-click="ctrl.closeRest($event)"/>
+			<span class='expand-collapse'></span>
+			<h3 data-ng-bind="::pullInterNationalization('spectrum.profile.organizationPlan')"></h3>
+			<span class="clearButon sp-spectrum-color lang-special" data-ng-if="ctrl.pageSetting.orgSelected.length" data-ng-click="ctrl.clear('.orgCheckBox','orgSelected','orgSearch')" data-ng-bind="::pullInterNationalization('spectrum.clear')"></span>
+			<div class='header-related-content' id="org">
+				<div class="controlwrap sp-search-button">
+                    <input type="text" class="form-control" maxlength="28" ng-model="ctrl.pageSetting.orgSearch" placeholder="{{::pullInterNationalization('spectrum.search.organizational')}}" data-ng-model-options="{ debounce: { 'default': 500, 'blur': 0 } }">
+                    <button ng-class="{'icon-icon_remove':ctrl.pageSetting.orgSearch.length, 'icon-icon_search': !ctrl.pageSetting.orgSearch.length}" class="sp-icon-color" data-ng-click="ctrl.pageSetting.orgSearch=''"></button>
+                </div>
+                <div class="tick-selection clearfix" repeat-done="ctrl.calculateHeight('org')" data-ng-repeat="spectrumFilter in recordField = (ctrl.orgPlan.spectrumFilter.filters.organizationPlan | filter:ctrl.pageSetting.orgSearch) track by $index">
+            		<input type="checkbox" data-ng-checked="ctrl.pageSetting.orgSelected.indexOf(spectrumFilter)!==-1" class="filterCheckBox orgCheckBox" id="group_{{$index}}" data-ng-click="ctrl.includeCheck(spectrumFilter,ctrl.pageSetting.orgSelected)">
+	                <label for="group_{{$index}}" class="filterCheckBox-label pull-left">
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+	                <label for="group_{{$index}}">
+	                	<span class="floLeft font_14_300 sp-spectrum-color right-adjust" data-ng-bind="spectrumFilter"></span>
+	                </label>
+	                
+	            </div>
+                <p data-ng-if="!recordField.length" class="noMatchFound" data-ng-bind="::pullInterNationalization('spectrum.nouser')"></p>
+            </div>
+		</li>
+	</ul>
+</article>

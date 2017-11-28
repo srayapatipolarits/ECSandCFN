@@ -1,0 +1,75 @@
+<section data-ng-controller="accessManager as ctrl" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'" class="hide" data-ng-init="ctrl.getAllUsersWithPermissions();">
+    <div class="x-container members hiring-candidates affiliate-listing pulse-listing competency-admin sp-access-listing">
+        <div class="container minimumHeight" >
+            <div class="bgWhiteBord clearfix">
+                <div class="toolbar clearfix">
+                    <div class="title">
+                        <a href="javascript:void(0)" role="button" data-ng-click="ctrl.resetfilter()">All Users<span class="blackcolor" data-ng-bind="'('+(ctrl.userPermissionList.length||0)+')'"></span></a>
+                    </div>
+                    <div class="controls clearfix">
+                        <div class="hiring-list-wrapper">
+                            <p class='iea'>
+                                <a href="javascript:void(0)" data-ng-click="ctrl.changePasswordModal();">Change Master Password</a>
+                            </p>  
+                        </div>
+                        <div class="hiring-list-wrapper">
+                            <p class='iea'>
+                                 <a href="javascript:void(0)" data-ng-click="ctrl.selectCompany();">Assign Tools to User</a>
+                            </p>
+                        </div>
+                        
+                        <div class="controlwrap search">
+                            <input type="text" class="form-control" maxlength="28" data-ng-model-options="{debounce:{'default':500,'blur':0}}" data-ng-model="ctrl.pageVariables.searchText" placeholder="{{pullInterNationalization('sysAdmin.organization.search')}}">
+                            <button class="sp-icon-color" data-ng-class="ctrl.pageVariables.searchText.length>1? 'icon-icon_remove':'icon-icon_search'" data-ng-click="ctrl.pageVariables.searchText=''"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="filters"></div>
+                <article class="memberHolder">
+                    <div class="heading row">
+                        <div class="col-md-4 col-sm-4 tog activeFilter" data-ng-click="ctrl.active($event,{'predicate':'name', 'reverse':reverse=!reverse})" data-predicate='name'>
+                            <h4 class="on code">Name</h4>
+                        </div>
+                        <div class="col-md-4 col-sm-4 tog col-fix-1" data-ng-click="ctrl.active($event,{'predicate':'companyName', 'reverse':reverse=!reverse})" data-predicate='companyName'>
+                            <h4>Company</h4>
+                        </div>
+                        
+                        <div class="col-md-3 col-sm-3 tog col-fix-2">
+                            <h4 class="hideHandIcon">Assigned Tools</h4>
+                        </div>
+                        
+                    </div>
+                        <div class="complete-profile animation_1" data-ng-class="{active:show}" id='{{$index}}' data-ng-repeat="list in recordField = (ctrl.userPermissionList | filter:ctrl.pageVariables.searchText) track by $index">
+                            <div class="table-row clearfix">
+                                <div class="col-md-4 col-sm-4">
+                                <p class="code">
+                                    <a href="#" data-ng-click="ctrl.redirectToAccessPage(list)"><span class="mock-link wordWrap" data-ng-bind="list.name"></span></a>
+                                     </p>
+                                </div>
+                                <div class="col-md-4 col-sm-4 row_title">
+                                    <p class="role_title"><span data-ng-bind="list.companyName"></span></p>
+                                </div>
+                                
+                                <div class="col-md-3 col-sm-3 row_title">
+                                <input type="checkbox" class="read-more-state" id="readMoreToggle_{{$index}}" />
+                                 <div class="read-more-wrap">
+                                    <p class="role_title" data-ng-repeat="role in list.roles" data-ng-class="$index>2? 'read-more-target':''">
+                                      <span data-ng-bind="pullInterNationalization('accessManager.' + role)"></span>     
+                                    </p>   
+                                 </div>
+                                 <label for="readMoreToggle_{{$index}}" data-readMore="{{::pullInterNationalization('spectrum.more')}}.." data-readLess="{{::pullInterNationalization('label.readless')}}.." class="read-more-trigger" data-ng-if="list.roles.length>3"></label>
+                               
+                                <div class="col-md-1 col-sm-1"></div>
+                       		</div>
+                       		<div class="col-md-1 col-sm-1 remove-btn">
+							 <a href="#" role="button" class="buttoncss" data-ng-click="ctrl.removeAllAccessModal(list.email)">REMOVE</a>
+                           </div>
+                        </div>
+                    </div>
+                    <p data-ng-show="!recordField.length && ctrl.responseAvailable" class="noMatchFound ng-hide" data-ng-bind="pullInterNationalization('admin.blueprint.noRecord')"></p>
+			        <p data-ng-show="!recordField.length && !ctrl.responseAvailable" class="noMatchFound ng-hide" data-ng-bind="pullInterNationalization('practiceArea.loading')"></p>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,154 @@
+<div class="admin-posts-wrapper" data-ng-controller="adminMsgPostCtrl as ctrl" data-ng-init="ctrl.setOptions(true,true,false);">
+    <div class="post-search-create" data-ng-if="ctrl.listView">
+        <p class="search-box fr">
+            <input type="text" data-ng-model="ctrl.searchPostList" placeholder="{{::pullInterNationalization('manageAccountContent.search')}}" data-ng-model-options="{ debounce: { 'default': 100, 'blur': 0 } }">
+            <button data-ng-class="{'icon-icon_remove':ctrl.searchPostList.length, 'icon-icon_search': !ctrl.searchPostList.length}" class="sp-icon-color" data-ng-click="ctrl.searchPostList.length?ctrl.searchPostList='':''"></button>
+        </p>
+        <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-click="ctrl.setOptions(false,true,false)" data-ng-bind="::pullInterNationalization('manageAccountContent.createPost')"></a>
+    </div>
+    <div class="post-listing-filters-wrap" data-ng-if="ctrl.listView">
+        <ul>
+            <li class="reset-filter">
+                <span class="txt" data-ng-bind="::pullInterNationalization('admin.member.filter')"></span>
+                <a href="javascript:void(0)" class="border-link" data-ng-click="ctrl.resetFilters()">
+                    <span class="mock-link" data-ng-bind="::pullInterNationalization('admin.member.reset')"></span>
+                </a>
+            </li>
+            <li>
+                <span class="label-txt" data-ng-bind="::pullInterNationalization('dashboardAdmin.colByAuthor')"></span>
+                <div class="select-wrapper">
+                    <span class="select-dd-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                    <select name="searchByAuthor" data-ng-model="ctrl.searchByAuthor" data-ng-options="author as author for author in ctrl.postAuthorsList">
+                        <option value="" data-ng-bind="::pullInterNationalization('dashboardAdmin.selectAuthor')"></option>
+                    </select>
+                </div>
+            </li>
+            <li>
+                <span class="label-txt" data-ng-bind="::pullInterNationalization('dashboardAdmin.colStatus')"></span>
+                <div class="select-wrapper">
+                    <span class="select-dd-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                    <select name="searchByStatus" data-ng-model="ctrl.searchByStatus">
+                        <option value="" data-ng-bind="::pullInterNationalization('dashboardAdmin.all')"></option>
+                        <option value="true" data-ng-bind="::pullInterNationalization('dashboardAdmin.published')"></option>
+                        <option value="false" data-ng-bind="::pullInterNationalization('dashboardAdmin.notPublished')"></option>
+                    </select>
+                </div>
+            </li>
+            <li>
+                <span class="label-txt">Company</span>
+                <p class="search-box">
+                    <input type="text" name="searchByCompany" data-ng-model="ctrl.searchByCompany" placeholder="{{::pullInterNationalization('manageAccountContent.search')}}" data-ng-model-options="{ debounce: { 'default': 100, 'blur': 0 } }">
+                    <button data-ng-class="{'icon-icon_remove':ctrl.searchByCompany.length, 'icon-icon_search': !ctrl.searchByCompany.length}" class="sp-icon-color" data-ng-click="ctrl.searchByCompany.length?ctrl.searchByCompany='':''"></button>
+                </p>
+            </li>
+        </ul>
+    </div>
+    <div class="dash-activityFeed" data-ng-if="ctrl.responseReceived && ctrl.messagePosts.length && ctrl.listView">
+        <div class="activityfeeds-listing-wrapper custom-col-table">
+            <div class="custom-col-row head-row">
+            	<!--  
+                <div class="cc-col cc-col-chkbox">
+                </div>
+                -->
+                <div class="cc-col cc-col-posts">
+                    <p data-ng-bind="::pullInterNationalization('dashboardAdmin.colPost')"></p>
+                </div>
+                <div class="cc-col cc-col-auth">
+                    <p data-ng-bind="::pullInterNationalization('dashboardAdmin.colAuthor')"></p>
+                </div>
+                <div class="cc-col cc-col-pubStatus">
+                    <p data-ng-bind="::pullInterNationalization('dashboardAdmin.colStatus')"></p>
+                </div>
+                <div class="cc-col cc-col-actions">
+                </div>
+            </div>
+            <div infinite-scroll="ctrl.infinteScroll(ctrl.listSize+ctrl.listSize)" infinite-scroll-immediate-check="false">
+            <div class="custom-col-row" data-ng-repeat="post in recordField = (ctrl.messagePosts | filter:ctrl.searchByAuthor | filter:ctrl.searchByCompany | filter:ctrl.searchPostList | filter:{'published':ctrl.searchByStatus}).slice(0,ctrl.listSize) track by post.id">
+            	<!--  
+                <div class="cc-col cc-col-chkbox">
+                    <p class="pCheckBox">
+                        <input type="checkbox" name="selectUser" id="selectUser_{{$index}}" class="iCheckBox" data-ng-change="ctrl.checkCount(checked)" checklist-model="ctrl.selectedMsgPosts" checklist-value="{'id':list.id,'name':list.firstName}">
+                        <label for="selectUser_{{$index}}" class="lCheckBox">
+                            <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                        </label>
+                    </p>
+                </div>
+                -->
+                <div class="cc-col cc-col-posts">
+                    <p class="post-desc-msg">
+                    	<a href="javascript:void(0)" class="border-link" data-ng-click="ctrl.setOptions(false,false,false,true,'edit',post)">
+                    		<span class="mock-link" data-ng-bind="post.message.text"></span>
+                    	</a>
+                    </p>
+                </div>
+                <div class="cc-col cc-col-auth">
+                    <div class="auth-info-img">
+                        <div class="auth-info-img">
+                            <img data-ng-src="{{post.message.onBehalfUser.smallProfileImage}}" />
+                        </div>
+                        <p class="aNameInfo">
+                            <span data-ng-bind="post.message.onBehalfUser.firstName"></span>
+                            <span class="atTitle" data-ng-bind="post.message.onBehalfUser.title"></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="cc-col cc-col-pubStatus">
+                    <p data-ng-if="!post.published" data-ng-bind="::pullInterNationalization('dashboardAdmin.notPublished')"></p>
+                    <div data-ng-if="post.published" class="selcted-hover-list" overflow-hover-list data-list="post.companyNames" data-length="3" data-mlength="3" data-ellipsis="false" data-addcommas="true">
+                        <p></p>
+                        <div class="more-list-wrapper hide"></div>
+                    </div>
+                </div>
+                <div class="cc-col cc-col-actions">
+                    <div class="actions-filter s165">
+                        <p class="actions-dropdown-filter smallFilter">
+                            <a href="javascript:void(0)" sp-condition="true" sp-click-outside="show">{{pullInterNationalization('manageAccountContent.actions')}}
+                                <span class="actions-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                            </a>
+                        </p>
+                    </div>
+                    <div class="actions-callout-wrappper activity-feeds" data-ng-if="show">
+                        <ul class="action-links notes-links">
+                            <li>
+                                <a href="javascript:void(0)" data-ng-click="ctrl.setOptions(false,true,true,true,'edit',post)">
+                                    <span class="action-icon icon-icon_send-message sp-icon-color"></span>
+                                    <span class="action-text" data-ng-bind="::pullInterNationalization('dashboardAdmin.btnEdit')"></span>
+                                </a>
+                            </li>
+                            <li class="sep" data-ng-if="!post.published">
+                                <hr class="note-space" />
+                            </li>
+                            <li data-ng-if="!post.published">
+                                <a href="javascript:void(0)" data-ng-click="ctrl.setOptions(false,false,false,true,'edit',post)">
+                                    <span class="action-icon icon-icon_dev_strategy_check sp-icon-color"></span>
+                                    <span class="action-text" data-ng-bind="::pullInterNationalization('dashboardAdmin.btnPublish')"></span>
+                                </a>
+                            </li>
+                            <li class="sep">
+                                <hr class="note-space" />
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" data-ng-click="ctrl.setOptions(false,true,false,true,'clone',post)">
+                                    <span class="action-icon icon-learning-programs_clone sp-icon-color"></span>
+                                    <span class="action-text" data-ng-bind="::pullInterNationalization('dashboardAdmin.btnClone')"></span>
+                                </a>
+                            </li>
+                            <li class="sep">
+                                <hr class="note-space" />
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" data-ng-click="ctrl.deletePost(post)">
+                                    <span class="action-icon icon-icon_trashbin sp-icon-color"></span>
+                                    <span class="action-text" data-ng-bind="::pullInterNationalization('dashboardAdmin.btnDelete')"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <p class="no-matches" data-ng-if="!recordField.length" data-ng-bind="::pullInterNationalization('practiceArea.noMatch0')"></p>
+        </div>
+    </div>
+    <ng-include src="'/sp/resources/html/sysAdmin/dashboard/home-managePosts.html'" data-ng-if="!ctrl.listView"></ng-include>
+</div>

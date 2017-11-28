@@ -1,0 +1,82 @@
+<section ng-controller="sysAdminPanel" ng-init="getCompanyList()" ng-if="inviteReady" class="hide" ng-class="inviteReady?'show':'hide'">
+    <div class="x-container members blueprint-home">
+        <div class="container minimumHeight" >
+        <section class="blueprint-home-section sp-panel-accent">
+            <div class="custom-cols left results-content">
+                <div class="blueprint-home-column">
+                    
+                    <div class="results-wrapper">
+                        
+                        <div class="rel-content top">
+                            <div class="global-title">Tone Analyzer</div>
+                            <span>This service uses linguistic analysis to detect and interpret emotions, social tendencies, and language style cues found in text.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </section>
+            <div class="bgWhiteBord clearfix">
+                <div class="toolbar clearfix portraitMember">
+              	    <div class="title">
+                        <a href="javascript:void(0)" role="button">Accounts<span class="blackcolor">({{memberList.length}})</span></a>
+                    </div>
+                    <div class="controls clearfix">
+                        <div class="controlwrap search">
+                            <input type="text" class="form-control" maxlength="28" data-ng-model="searchText" placeholder="Search Company">
+                            <button class="sp-icon-color" ng-class="enableCancel(searchText)? 'icon-icon_remove':'icon-icon_search'" data-ng-click="searchText=''"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <article class="memberHolder" style="margin-top:30px;padding: 0 30px;">
+                    <div class="heading row">
+						  <!-- <div class="col-md-1 col-sm-1 check">
+                           
+                            <input type="checkbox" name="toggleAll" ng-model="alltoggle" id="alltoggle" class="memberCheckBox" ng-click="negative=!negative;" />
+                            <label for="alltoggle" class="memberCheckBox-label"></label>
+                        </div> -->
+                        <div class="col-md-3 col-sm-3 m-name tog activeFilter" ng-click="reverse=!reverse;order('name', reverse);active($event)" data-predicate='name'>
+                            <h4 class="name on" data-ng-bind="pullInterNationalization('admin.member.name')"></h4>
+                        </div>
+                        <div class="col-md-2 col-sm-2 t-name tog" ng-click="reverse=!reverse;order('industry', reverse);active($event)" data-predicate='industry'>
+                            <h4>Industry</h4>
+                        </div>
+                        <div class="col-md-4 col-sm-4 t-name tog" ng-click="reverse=!reverse;order('address.city', reverse);active($event)" data-predicate='title' style="margin:0;">
+                            <h4>Address</h4>
+                        </div>
+                        <div class="col-md-2 col-sm-2 s-name tog" ng-click="reverse=!reverse;order('numberOfEmployees', reverse);active($event)" data-predicate='userStatus'>
+                            <h4># of Employees</h4>
+                        </div>
+                        <div class="col-md-1 col-sm-1"></div>
+                    </div>
+                   <div infinite-scroll="infinteScroll(pageSize+pageSize)" infinite-scroll-immediate-check="false" infinite-scroll-disabled="disabledInfinite">
+                    <div class="complete-profile animation_1" ng-class="{active:show}" id='{{$index}}' ng-repeat="memberList in recordField = ((memberList | filter:searchText).slice(0,pageSize)) track by $index">
+
+                        <div class="table-row clearfix">
+                            <div class="col-md-3 col-sm-3 name">
+                                <p style="margin-left:0px;">
+                                    <a href="#" class="fname" data-ng-click="goToToneAnalyzer(memberList);" data-ng-bind="memberList.name"></a>
+                                </p>
+                            </div>
+                            <div class="col-md-2 col-sm-2 row_title" data-ng-bind="memberList.industry"></div>
+							<div class="col-md-4 col-sm-4">
+								<span ng-if="memberList.address.addressLine1" data-ng-bind="memberList.address.addressLine1"></span> <span ng-if="memberList.address.addressLine2">, <span data-ng-bind="memberList.address.addressLine2"></span></span>
+								<div style="padding:2px 0px;"> <span data-ng-bind="memberList.address.city"></span> <span data-ng-bind="memberList.address.state"></span></div>
+								<div style="padding:2px 0px;"> <span data-ng-bind="memberList.address.country"></span> <span data-ng-bind="memberList.address.zipCode"></span></div>
+							</div>
+                            <div class="col-md-2 col-sm-2 statusMessage">
+                        			<span data-ng-bind-html="memberList.numberOfEmployees"></span>
+					        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <p ng-show="!recordField.length" class="noMatchFound ng-hide" data-ng-bind="pullInterNationalization('admin.member.nomatch')"></p>
+                   <!--  <div class="more">
+                    <a href="javascript:void(0)" class="ng-hide" role="button" ng-click="loadBtnCLicked=true; returnMemberList(pageSize+pageSize)" ng-hide="alldisplay || recordField.length < intialPageSize" data-ng-bind="pullInterNationalization('admin.member.showmore')"></a>
+               		 </div>-->
+                </article>
+               
+            </div>
+        </div>
+    </div>
+</section>

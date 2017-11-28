@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="dashboard" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/dashboard/dashboardFeed.html" />
+		<put-attribute name="adminHeader" value="/WEB-INF/layouts/standard/dashboardNavigationLinks.jsp" cascade="true" />
+		<put-list-attribute name="styles">
+			<add-attribute value="resources/css/css-min/miniPolls.min.css" />
+			<add-attribute value="resources/css/css-min/dashboard.min.css" />	
+		</put-list-attribute>	
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js/date-range-picker/date-range-picker.min.js" />
+			<add-attribute value="resources/js-min/dashBoardDirective.min.js" />
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="messageDetail" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/dashboard/message.html" />
+		<put-attribute name="adminHeader" value="/WEB-INF/layouts/standard/dashboardNavigationLinks.jsp" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/dashBoardDirective.min.js" cascade="true" />
+		<put-list-attribute name="styles">
+			<add-attribute value="resources/css/css-min/miniPolls.min.css" />
+			<add-attribute value="resources/css/css-min/dashboard.min.css" />	
+		</put-list-attribute>	
+	</definition>
+	
+	<definition name="dashboardProfileDetail" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/dashboard/profile.html" />
+		<put-attribute name="adminHeader" value="/WEB-INF/layouts/standard/dashboardNavigationLinks.jsp" cascade="true" />
+		<put-list-attribute name="styles">
+			<add-attribute value="resources/css/css-min/miniPolls.min.css" />
+			<add-attribute value="resources/css/css-min/dashboard.min.css" />	
+		</put-list-attribute>	
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js/_d3-charts/d3/d3.min.js" />
+			<add-attribute value="resources/js-min/prismCharts.min.js" />
+			<add-attribute value="resources/js-min/dashBoardDirective.min.js" />
+			<add-attribute value="resources/js/date-range-picker/date-range-picker.min.js" />
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="pcComments" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/dashboard/message.html" />
+		<put-attribute name="adminHeader" value="/WEB-INF/layouts/standard/dashboardNavigationLinks.jsp" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/dashboardFeed.min.js" cascade="true" />
+		<put-list-attribute name="styles">
+			<add-attribute value="resources/css/css-min/miniPolls.min.css" />
+			<add-attribute value="resources/css/css-min/dashboard.min.css" />	
+		</put-list-attribute>	
+	</definition>
+	
+	<definition name="dashboardUser" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/dashboard/home-memberDashboard.html" />
+		<put-attribute name="adminHeader" value="/WEB-INF/layouts/standard/dashboardNavigationLinks.jsp" cascade="true" />
+		<put-list-attribute name="styles">
+			<add-attribute value="resources/css/css-min/miniPolls.min.css" />
+			<add-attribute value="resources/css/css-min/sp-profile.min.css" />
+			<add-attribute value="resources/css/css-min/dashboard.min.css" />	
+			<add-attribute value="resources/css/css-min/learning-program.min.css" />
+			<add-attribute value="resources/css/css-min/blueprint.min.css" />
+		</put-list-attribute>	
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/dashBoard.min.js" />
+	    	<add-attribute value="resources/js-min/accountDashboardController.min.js" />
+	    	<add-attribute value="resources/js-min/adminSharedControllers.min.js" />
+	    	<add-attribute value="resources/js-min/groupDashboardCtrl.min.js" />
+	    	<add-attribute value="resources/js/date-range-picker/date-range-picker.min.js" />    	
+	    </put-list-attribute>
+	</definition>	
+	<definition name="dashboardList" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/dashboard/dashboardListing.html" />
+		<put-attribute name="adminHeader" value="/WEB-INF/layouts/standard/dashboardNavigationLinks.jsp" cascade="true" />
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js/_d3-charts/d3/d3.min.js" />
+			<add-attribute value="resources/js-min/profileMainController.min.js" />
+			<add-attribute value="resources/js-min/prismCharts.min.js" />		
+			<add-attribute value="resources/js-min/teamAdvisor.min.js" />
+			<add-attribute value="resources/js-min/dashBoard.min.js" />
+		</put-list-attribute>
+	</definition>
+	<definition name="notificationEmail" extends="popup">
+		<put-attribute name="content" value="/resources/html/reminder/notification.html" />
+	</definition>	
+		
+</tiles-definitions>

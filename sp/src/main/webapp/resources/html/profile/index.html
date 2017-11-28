@@ -1,0 +1,49 @@
+<!-- Standard / Chart Options Starts -->
+<!-- PRISM Portrait Header Starts -->
+<div class="x-container hide" data-ng-init="$parent.switchView = 'standard'" data-ng-if="inviteReady && profileReady" data-ng-class="inviteReady?'show':'hide'">
+    <div class="container">
+        <div class="header-info-container">
+            <div class="header-info-content">
+                <div class="header-icon-wrap">
+                    <p class="hinfo-wrap">
+                        <span class="hinfo-icons icon-logo-badge sp-icon-color"></span>
+                    </p>
+                </div>
+                <div class="header-content-wrap">
+                    <span class="box-icon icon-icon_editnote sp-icon-color adjPos hide" notes-options url-src="notes/notes-options.html" notes-callback="setContentReferenceForModule({'mainModule':'PRISM Portrait','subModule':''},'prismMain')" styles="pos_header_box"></span>
+                    <p class="hinfo-wrap">
+                        <span class="info-txt ml0 mb8 mt6" data-ng-bind-html="pullInterNationalization('prismProfile.heading1')"></span>
+                    </p>
+                    <p class="header-info-def" data-ng-bind-html="pullInterNationalization('prismProfile.description1')"></p>
+                    <ul class="iconLinks-wrap floats m-hide-cont">
+                        <li data-ng-class="{'on':$parent.switchView === 'standard'}" data-ng-click="$parent.switchView = 'standard';$event.preventDefault();switchPrismView('standard');">
+                            <span class="listIcon icon-icon_advisor sp-icon-color"></span>
+                            <span class="iconDesc sp-link-color" data-ng-bind="::pullInterNationalization('prismBtns.complete')"></span>
+                        </li>
+                        <li data-ng-class="{'on':$parent.switchView === 'chart'}" data-ng-click="$parent.switchView = 'chart';$event.preventDefault();switchPrismView('charts');">
+                            <span class="listIcon icon-icon_compare sp-icon-color"></span>
+                            <span class="iconDesc sp-link-color" data-ng-bind="::pullInterNationalization('prismBtns.graph')"></span>
+                        </li>
+                        <li data-ng-click="openPrintWin('/sp/resources/html/common/prism-print-template.html?mode=print', this)">
+                            <span class="listIcon icon-icon_print sp-icon-color"></span>
+                            <span class="iconDesc sp-link-color" data-ng-bind="::pullInterNationalization('prismBtns.print')"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- PRISM Portrait Header Ends -->
+<!-- Standard / Chart Options Starts -->
+<div ng-switch on="switchView">
+    <div ng-switch-when="standard">
+        <ng-include src="'/sp/resources/html/profile/standard.html'"></ng-include>
+    </div>
+    <div ng-switch-when="chart">
+        <ng-include src="'/sp/resources/html/profile/charts.html'"></ng-include>
+    </div>
+    <div ng-switch-default>
+        <ng-include src="'/sp/resources/html/profile/standard.html'"></ng-include>
+    </div>
+</div>

@@ -1,0 +1,111 @@
+<section ng-controller="feedbackArchiveDetailController" class="hide"  ng-init="getArchivedMemberDetail()" ng-if="inviteReady" ng-class="inviteReady?'show':'hide'">
+	<div class="x-container requestmodular">
+	<!-- when length ===0 starts and no archives-->
+		<div class="container requestSet feedbackDrop clearfix"  ng-if="memberList.userGoal.length == 0">
+			<div class="locatedSubNavRelative bgWhiteBord clearfix">
+				<div class="feedbackHeadingBlock ng-hide clearfix">
+					<div class="pull-left">
+						<div class="title" data-ng-bind-html="pullInterNationalization('feedback.themeView.headBar.title')"></div>
+						<div class="desc" data-ng-bind-html="pullInterNationalization('feedback.themeView.headBar.description')"></div>
+						<div class="themeSwitch ng-hide" ng-show="!viewArchive">
+							<a href="/sp/feedback" ng-if="noSelf==''" data-ng-bind="pullInterNationalization('feedback.archiveDetail.team')">Team</a><a href="sp360" ng-click="redirectTo('sp360')" ng-if="noSelf!=''" data-ng-bind="pullInterNationalization('feedback.archiveDetail.team')">Team</a><span class="pipe">|</span><a href="javascript:void(0)" class="active" data-ng-bind="pullInterNationalization('feedback.archiveDetail.theme')">Theme</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="bgWhite col-sm-12 col-md-12 clearfix nogoals" data-ng-bind="pullInterNationalization('feedback.archiveDetail.nomatch')">
+						
+			</div>
+		</div>
+		<!-- when length ==0 ends and no archives -->
+		
+		<!-- when length > 0 and no self -->
+		<div class="container requestSet clearfix">
+			<div class="locatedSubNavRelative ng-hide bgWhiteBord clearfix" ng-show="noSelf==''">
+				<div class="feedbackHeadingBlock clearfix">
+					<div class="pull-left">
+						<div class="title" data-ng-bind-html="pullInterNationalization('feedback.themeView.headBar.title')"></div>
+						<div class="desc" data-ng-bind-html="pullInterNationalization('feedback.themeView.headBar.description')"></div>
+						<div class="themeSwitch">
+							<a href="/sp/feedback" ng-if="noSelf==''"
+								data-ng-bind="pullInterNationalization('feedback.archiveDetail.team')">Team</a>
+								<a href="sp360" ng-click="redirectTo('sp360')" ng-if="noSelf!=''"
+								data-ng-bind="pullInterNationalization('feedback.archiveDetail.team')">Team</a> | 
+							<a href="javascript:void(0)" class="active"
+								data-ng-bind-html="pullInterNationalization('feedback.archiveDetail.theme')">Theme</a>
+						</div>
+					</div>
+					<div class="pull-right">
+						<div class="wrapSubNav">
+							<a href="/sp/feedback/archive"
+								data-ng-bind="pullInterNationalization('feedback.archiveDetail.archivedfeedback')"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="requestwrap bgWhite clearfix" ng-if="memberList['notablechar.text']" style="margin-bottom:0px;padding-bottom:0px;">
+				<div class="feedback_Additional_comments">
+					<div class="title" data-ng-bind-html="pullInterNationalization('feedback.archiveDetail.additional.title')"></div>
+					<div class="description" data-ng-bind-html="memberList.profileStatment"></div>
+					<div class="feedbackCommentSection">
+						<div class="title" data-ng-bind-html="memberList['notablechar.text']"></div>
+						<div class="description" data-ng-bind-html="memberList['notablechar.desc']"></div>
+					</div>
+					<div class="feedbackCommentSection">
+						<div class="title" data-ng-bind-html="memberList['workEnviornment.text']"></div>
+						<div class="description" data-ng-bind-html="memberList['workEnviornment.desc']"></div>
+					</div>
+				</div>
+			</div>
+			<div class="requestwrap bgWhite clearfix">
+				<div class="growthAssement">
+					<div class="title" data-ng-bind="pullInterNationalization('goals.themeView.growth')">Practice Areas</div>
+					<!--  data-ng-bind="pullInterNationalization('feedback.archiveDetail.list.{{$index}}')"> -->
+					<div class="description"></div>
+				</div>
+				<div class="col-sm-12 col-md-12 clearfix row equalsSize clearfix">
+				<div class="row">
+					<div class="col-sm-6 col-md-4 col-vs-6 equalHeight clearfix" ng-repeat="area in memberList.userGoal track by $index">
+	    				<div class="orangeBarBorder">
+	    						<div class="title" data-ng-bind="area.goal.name"></div>
+	    						<div class="desc" dd-text-collapse dd-text-collapse-max-length="pullInterNationalization('feedback.archiveDetail.count')" dd-text-collapse-text="{{area.goal.description}}"></div>
+	    						<!-- Mandatory -->
+	    						<div class="type clearfix" ng-if="area.mandatory">
+	    							<div class="lf">
+		    							<!-- <span class="typeCat" data-ng-bind="pullInterNationalization('feedback.archiveDetail.type.mandatory')"></span>-->
+		    							<span class="typeText" ng-if="area.selected" data-ng-bind="pullInterNationalization('feedback.archiveDetail.type.alAdded')"></span>
+		    						    <span class="typeText" ng-if="!area.selected" data-ng-bind="pullInterNationalization('feedback.archiveDetail.type.addToGoal')"></span>
+		    						</div>
+		    						<div class="rf ng-hide" ng-show="noSelf==''">
+		    							<!-- <a href="javascript:void(0)" ng-if="area.goal.alreadyInvited" ng-click="goalRemove(area.goal.id,$index)"><span class="addGoal" data-ng-bind="pullInterNationalization('feedbackListing.type.removeGoal')"></span></a>-->
+		    							<a href="javascript:void(0)" ng-if="!area.selected" ng-click="goalAdd(area.goal.id,$index,'theme')"><span class="removeGoal" data-ng-bind="pullInterNationalization('feedbackListing.type.addGoal')"></span></a>
+					    			</div>
+					    			<!--<span class="closeButton" ng-if="area.selected" ng-click="goalRemove(area.goal.id,$index,'theme')"></span>-->
+		    					</div>
+		    					
+		    					<!-- Optional -->
+		    					<div class="type clearfix" ng-if="!area.mandatory">
+	    							<div class="lf">
+		    							<!-- <span class="typeCat" data-ng-bind="pullInterNationalization('feedback.archiveDetail.type.optional')"></span>-->
+		    							<span class="typeText" ng-if="area.selected" data-ng-bind="pullInterNationalization('feedback.archiveDetail.type.alAdded')"></span>
+		    							<span class="typeText" ng-if="!area.selected" data-ng-bind="pullInterNationalization('feedback.archiveDetail.type.addToGoal')"></span>
+		    						</div>
+		    						<div class="rf ng-hide" ng-show="noSelf==''">
+		    							<!-- <a href="javascript:void(0)" ng-if="area.goal.alreadyInvited" ng-click="goalRemove(area.goal.id,$index)"><span class="addGoal" data-ng-bind="pullInterNationalization('feedbackListing.type.removeGoal')"></span></a>-->
+		    							<a href="javascript:void(0)" ng-if="!area.selected" ng-click="goalAdd(area.goal.id,$index,'theme')"><span class="removeGoal" data-ng-bind="pullInterNationalization('feedbackListing.type.addGoal')"></span></a>
+					    			</div>
+					    			<!-- <span class="closeButton" ng-if="area.selected" ng-click="goalRemove(area.goal.id,$index,'theme')"></span> -->
+		    					</div>
+	    				</div>
+	    			</div>
+	    			</div>
+			   </div>	
+			</div>
+		</div>
+		<!-- when length > 0  -->
+	</div>
+</section>
+
+
+
+

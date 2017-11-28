@@ -1,0 +1,185 @@
+    <div class="news-feed-block no-border" data-ng-if="!ctrl.currentNews.hide">
+        <article class="name-information">
+            <header>
+                <div class="profile-style">
+                    <div class="col-container action-container image-detail-part">
+                    <!-- Behalf of Check -->
+                    	<div>
+	                        <div class="member-pic channels size-50" data-ng-if="!ctrl.currentNews.message.onBehalfUser.name">
+	                            <img data-lazy-img="{{ctrl.currentNews.message.user.smallProfileImage}}" alt="{{ctrl.currentNews.message.user.userInitials}}" data-ng-if="ctrl.currentNews.message.user.smallProfileImage">
+	                            <div class="imgReplacement" data-ng-if="!ctrl.currentNews.message.user.smallProfileImage" data-ng-bind="ctrl.currentNews.message.user.userInitials"></div>
+	                        </div>
+	                        <div class="member-pic channels size-50" data-ng-if="ctrl.currentNews.message.onBehalfUser.name && !ctrl.currentNews.message.onBehalfUser.smallProfileImage">
+	                        	<a href="javascript:void(0)" class="cursor-default border-link">
+	                        		<span class="sp-label-option" data-ng-bind="pullInterNationalization('dashboard.announcement') +' '+pullInterNationalization('dashboard.image')"></span>
+					        	    <span class="action-icon icon-icon_dashboard-announcment sp-annoucement-icon sp-icon-color"></span>
+						        </a>
+	                        </div>
+	                        <div class="member-pic channels size-50" data-ng-if="ctrl.currentNews.message.onBehalfUser.name && ctrl.currentNews.message.onBehalfUser.smallProfileImage">
+	                        	<img data-lazy-img="{{ctrl.currentNews.message.onBehalfUser.smallProfileImage}}">
+	                        </div>
+	                        
+	                        <div class="member-details posL0">
+	                            <a data-ng-if="!ctrl.currentNews.message.onBehalfUser.name" data-ng-href="{{ctrl.userInfo.member.id===ctrl.currentNews.message.user.id?'/sp/dashboard/profile':'/sp/dashboard/profile?userId='+ctrl.currentNews.message.user.id}}" class="border-link lh-14">
+	                                <span class="weight-700 sp-link-color lh-14" drop-tool-tip data-self='{{ctrl.userInfo.member.id}}' data-desc='{{ctrl.currentNews.message.user}}' data-ng-bind="ctrl.currentNews.message.user.name"></span>
+	                            </a>
+	                            <a data-ng-if="ctrl.currentNews.message.onBehalfUser.name" href="javascript:void(0)" class="border-link default_true lh-14">
+	                                <span class="weight-700 sp-link-color lh-14" data-ng-bind="ctrl.currentNews.message.onBehalfUser.name"></span>
+	                            </a>
+	                            <a href="javascript:void(0)" class="border-link cursor-default">
+	                                <span data-ng-if="!ctrl.currentNews.message.onBehalfUser.name" class="mock-text weight-300" data-ng-bind="ctrl.currentNews.message.user.title"></span>
+	                                <span data-ng-if="ctrl.currentNews.message.onBehalfUser.name" class="mock-text weight-300" data-ng-bind="ctrl.currentNews.type"></span>
+	                            </a>
+	                        </div>
+                        </div>
+                        <div class="actions-dropdown" data-ng-if="ctrl.currentNews.type!=='UserActivity' && ctrl.currentNews.owner && ctrl.profilePage===null"">
+                            <a href="javascript:void(0)" class="noHover" sp-condition="true" sp-click-outside="show">
+                            	<span class="sp-label-option" data-ng-bind="::pullInterNationalization('dashboard.options')"></span>
+                                <span class="action-link icon-icon_sort sp-icon-color"></span>
+                            </a>
+                            <div class="actions-callout-wrappper_style1 pos6 mob7" data-ng-if="show">
+                                <ul class="action-links" data-ng-if="ctrl.currentNews.owner">
+                                    <li>
+                                        <a href="javascript:void(0)" data-ng-click="ctrl.specficTheme('edit');">
+                                            <span class="action-icon icon-icon_accounts_all-groups sp-icon-color"></span>
+                                            <span class="action-text" data-ng-bind="::pullInterNationalization('dashboard.edit.post')"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" data-ng-click="ctrl.deletePostModal(ctrl.currentNews.id)">
+                                            <span class="action-icon icon-icon_trashbin sp-icon-color"></span>
+                                            <span class="action-text" data-ng-bind="::pullInterNationalization('dashboard.edit.delete')"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" data-ng-click="ctrl.blockPostModal(ctrl.currentNews)">
+                                            <span class="action-icon icon-icon_accounts_block-members sp-icon-color"></span>
+                                            <span class="action-text" data-ng-bind="!ctrl.currentNews.blockCommenting?pullInterNationalization('dashboard.edit.block'):pullInterNationalization('dashboard.edit.nonblock')"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="actions-dropdown" data-ng-if="!ctrl.currentNews.edit && (ctrl.currentNews.type==='UserActivity' || !ctrl.currentNews.owner) && ctrl.profilePage===null">
+                            <a href="javascript:void(0)" class="noHover" sp-condition="true" sp-click-outside="show">
+                            	<span class="sp-label-option" data-ng-bind="::pullInterNationalization('dashboard.options')"></span>
+                                <span class="action-link icon-icon_sort sp-icon-color"></span>
+                            </a>
+                            <div class="actions-callout-wrappper_style1 pos6 mob5" data-ng-if="show">
+                                <ul class="action-links">
+                                    <li>
+                                        <a href="javascript:void(0)" data-ng-click="ctrl.follow(ctrl.currentNews,false);">
+                                            <span class="action-icon icon-icon_accounts_remove sp-icon-color"></span>
+                                            <span class="action-text" data-ng-bind="::pullInterNationalization('dashboard.edit.hide')"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="duration">
+                        	<span class="sp-label-option" data-ng-bind="::pullInterNationalization('dashboard.durationtime')"></span>
+                            <span data-ng-bind="ctrl.currentNews.updatedOn | spTimeUpdate"></span>
+                        </div>
+                        <!-- Header With Edit Mode Starts-->
+                        <div class="share-update edit-mode" data-ng-if="ctrl.currentNews.edit">
+                            <form>
+                                <article class="closed-textarea">
+                                    <textarea name="comment" og-directive height="40" reference="ctrl.cloneFeed.message.contentReference" clear-url="ctrl.cloneFeed.message.text" data-ng-model="ctrl.cloneFeed.message.text" data-ng-attr-placeholder="{{::pullInterNationalization('dashboard.whatonmind')}}" data-ng-required="!ctrl.cloneFeed.message.contentReference.title"></textarea>
+                                    <div class="contentReference clearfix" data-ng-if="ctrl.cloneFeed.message.contentReference.title">
+                                    	<div data-ng-include="'/sp/resources/html/dashboard/ogContentComment.html'" data-ng-init="comment = ctrl.cloneFeed.message.contentReference"></div>
+                                        <a class="icon-icon_remove close-view" href="javascript:void(0)" data-ng-click="ctrl.removeReference(ctrl.cloneFeed.message.contentReference)"></a>
+                                    </div>
+                                    <span class="validate-error validate-error-proto" data-ng-if="(!ctrl.cloneFeed.message.text.length && !ctrl.cloneFeed.message.contentReference.title)" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                                    <div class="tag-member">
+                                        <div class="text" data-ng-bind="::pullInterNationalization('dashboard.tagMember')"></div>
+                                        <div class="tagsEmailInput">
+                                            <tags-input data-ng-model="ctrl.cloneFeed.taggedMembersFull" placeholder="{{::pullInterNationalization('dashboard.tagmembername')}}" add-from-autocomplete-only="true" replace-spaces-with-dashes="false" display-property="name" display-name="email" on-tag-removed="ctrl.tagRemovedEdit($tag)" on-tag-added="ctrl.tagAddedEdit($tag)">
+                                                <auto-complete min-length="1" load-on-focus="true" debounce-delay="100" load-on-empty="true" source="ctrl.loadEmail($query)" class="ng-tags-pos-fix"></auto-complete>
+                                            </tags-input>
+                                        </div>
+                                    </div>
+                                </article>
+                                <div class="share-with-post clearfix">
+                                    <div class="post pull-right">
+                                        <div class="clearfix">
+                                            <a href="javascript:void(0)" class="buttoncss" data-ng-click="(ctrl.cloneFeed.message.text.length||ctrl.cloneFeed.message.contentReference.title) && ctrl.saveFeed()" data-ng-bind="::pullInterNationalization('manageAccountContent.save')"></a>
+                                            <a href="javascript:void(0)" class="buttoncss grey" data-ng-click="ctrl.currentNews.edit=false;ctrl.cloneFeed=null;ctrl.emitLazy();" data-ng-bind="::pullInterNationalization('manageAccountContent.cancel')"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Header With Edit Mode Starts-->
+                    </div>
+                </div>
+            </header>
+                     
+            <!-- Header With No Edit Mode Ends -->
+            <div class="content-news-section" data-ng-if="!ctrl.currentNews.edit">
+                <div class="description-provided">
+                	<span data-ng-if="ctrl.currentNews.message.text && ctrl.currentNews.type !=='UserBadge'">
+                	   <input type="checkbox" class="read-more-state" id="readMoreToggling_{{ctrl.currentNews.id}}"/>
+                	   <span class="read-more-wrap-horizontal" data-ng-init="btn=true">
+	                         <span class="text" data-ng-bind-html="(btn?(ctrl.currentNews.message.text| addEllipsis : 500):ctrl.currentNews.message.text) | htmlLinky" data-ng-class="{'moreellipses':ctrl.currentNews.message.text.length>500&&btn,'inline-block':!ctrl.whiteSpace(ctrl.currentNews.message.text)}"></span>
+	                    </span>
+                       <label for="readMoreToggling_{{ctrl.currentNews.id}}" data-readMore="{{::pullInterNationalization('spectrum.more')}}" data-readLess="{{::pullInterNationalization('label.readless')}}" data-ng-click="btn=!btn" class="read-more-trigger-horizontal sp-link-color" data-ng-class="{'sp-label-option':!(ctrl.currentNews.message.text.length>500)}"></label>
+                    </span>
+                    <span data-ng-if="ctrl.currentNews.message.text && ctrl.currentNews.type ==='UserBadge'">
+	                 	<span class="text" data-ng-bind="::pullInterNationalization('badge.dashboard.message')"></span> 
+	                  </span>
+                      <div class="tag-space">
+                       <input type="checkbox" class="read-more-state" id="tagging_{{ctrl.currentNews.id}}"/>
+	                    <span class="read-more-wrap-horizontal tag-no-space">
+	                         <span class="tagMember" data-ng-repeat="taggedMember in ctrl.currentNews.taggedMembers track by $index" data-ng-class="$index>3? 'read-more-target':''">
+			                   <a data-ng-href="{{ctrl.userInfo.member.id===taggedMember.id?'/sp/dashboard/profile':'/sp/dashboard/profile?userId='+taggedMember.id}}" drop-tool-tip data-self='{{ctrl.userInfo.member.id}}' data-desc='{{taggedMember}}' data-ng-bind="taggedMember.name"></a>
+			                 </span>
+			            </span>
+                    	<label for="tagging_{{ctrl.currentNews.id}}" data-readMore="+{{ctrl.currentNews.taggedMembers.length-4}}" class="read-more-trigger-tag" data-ng-class="{'sp-label-option':!(ctrl.currentNews.taggedMembers.length-4>0)}"></label>
+                    	</div>
+                 </div>
+                 
+                <div class="og-content clearfix" data-ng-if="ctrl.currentNews.message.contentReference.title && news.type !=='UserBadge'">
+                	<div data-ng-include="'/sp/resources/html/dashboard/ogContentComment.html'" data-ng-init="comment = ctrl.currentNews.message.contentReference"></div>    
+                </div>
+                 <div class="badges clearfix" data-ng-if="news.message.contentReference.title && news.type ==='UserBadge'">
+                	<div data-ng-include="'/sp/resources/html/dashboard/ogContentCommentUser.html'" data-ng-init="comment = news.message"></div>
+                </div>
+                
+                <div class="social-media">
+                	<div class="icons-media">
+                		<a href="javascript:void(0)" class="border-link" data-ng-click="ctrl.likePost({'news':ctrl.currentNews,'comment':-1,'childComment':-1})">
+                    		<span class="mock-link link-media uppercase weight-300" data-ng-bind="ctrl.currentNews.likedByUser?pullInterNationalization('dashboard.unlike'):pullInterNationalization('dashboard.like')"></span>
+	                    </a>
+	                    <a href="javascript:void(0)" class="border-link" data-ng-if="!ctrl.currentNews.blockCommenting" data-ng-click="ctrl.hideFocus(ctrl.currentNews.id)">
+	                    	<span class="mock-link link-media weight-300" data-ng-bind="::pullInterNationalization('dashboard.comment')"></span>
+	                    </a>
+	            	</div>
+                	<div class="count-media-like">
+				        <a href="javascript:void(0)" class="default_{{!(!!ctrl.currentNews.likeCount)}}" data-ng-click="ctrl.currentNews.likeCount && ctrl.likedUserName({'news':ctrl.currentNews,'comment':-1,'childComment':-1,'count':ctrl.currentNews.likeCount},$event)">
+				            <span class="action-icon icon-dashboard_like" data-ng-class="ctrl.currentNews.likeCount?'sp-icon-color':'sp-not-active-color'"></span>
+				            <span class="action-text" data-ng-bind="ctrl.currentNews.likeCount"></span>
+				        </a>
+				        <a href="javascript:void(0)" class="border-link" data-ng-click="ctrl.hideFocus(ctrl.currentNews.id);">
+				            <span class="action-icon icon-dashboard_comment" data-ng-class="ctrl.currentNews.commentCount?'sp-icon-color':'sp-not-active-color'"></span>
+				            <span class="action-text" data-ng-bind="ctrl.currentNews.commentCount"></span>
+				        </a>
+				    </div>
+				    
+                </div>
+      	  </div>
+        </article>
+       <div data-ng-include="'/sp/resources/html/dashboard/commentResponsive.html'"></div>
+    </div>
+    <div class="hide-message" data-ng-if="ctrl.currentNews.hide">
+   			 <div data-ng-if="ctrl.currentNews.delete!=true">
+    	    	<span class="default" data-ng-bind="::pullInterNationalization('dashboard.message.hide')"></span>
+    	    	<span><a href="javascript:void(0)" class="weight-500 undo" data-ng-click="ctrl.follow(ctrl.currentNews,true);" data-ng-bind="::pullInterNationalization('dashboard.message.undo')"></a></span>
+            </div>
+            
+            <div data-ng-if="ctrl.currentNews.delete">
+    	    	<a class="specific" href="javascript:void(0)" data-ng-bind="ctrl.currentNews.message.onBehalfUser.firstName||ctrl.currentNews.message.user.name+' '"></a>
+    	    	<span class="default" data-ng-bind="::pullInterNationalization('dashboard.deletedhasPost')"></span>
+            </div>
+            <!-- <a href="javascript:void(0)" class="weight-700" data-ng-click="ctrl.deleteIndex(news.id);"><span class="action-icon icon-icon_accounts_remove sp-icon-color"></span></a> -->
+    </div>
+    

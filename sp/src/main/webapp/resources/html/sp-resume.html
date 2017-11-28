@@ -1,0 +1,1240 @@
+
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <title>Pradeeeeeeeeep!!!!</title>
+
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+    <script type="text/javascript">
+
+  $("document").ready(function(){
+
+    
+
+      var data = {
+
+        "content": $( "div#content" ).html()
+
+      };
+
+      data = $.param(data);
+
+      $.ajax({
+
+        type: "POST",
+
+        dataType: "json",
+
+        url: "http://localhost:8080/sp/resume/createResume", //Relative or absolute path to response.php file
+
+        data: data,
+
+        success: function(data) {
+
+          $(".the-return").html(
+
+            "Favorite beverage: " + data["favorite_beverage"] + "<br />Favorite restaurant: " + data["favorite_restaurant"] + "<br />Gender: " + data["gender"] + "<br />JSON: " + data["json"]
+
+          );
+
+
+
+          alert("Form submitted successfully.\nReturned json: " + data["json"]);
+
+        }
+
+    });
+
+  });
+
+</script>
+
+</head>
+
+<body>
+
+<div id="content">
+
+  <div class="x-container sp-resume">
+
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <article class="resume-content">
+
+            TESTING RESUME
+
+            <section class="resume-section institution education">
+
+              <h1 class="resume-section-title">Education</h1>
+
+
+
+              <section class="institution-detail education">
+
+              
+
+                <header class="institution-header">
+
+                  <h2 class="institution-name">Northwestern University</h2>
+
+                  <p class="location">Evanston, Illinois</p>
+
+                  <p class="date-span">Anticipated June 2017</p>
+
+                </header>
+
+
+
+                <div class="institution-highlights">
+
+                  <section class="org-grouping">
+
+                    <h2 class="org-title degree">Bachelor of Arts in Economics</h2>
+
+                    <h3 class="org-sub-title">Harvey Kapnick Business Institutions Minor</h3>
+
+                    <p class="gpa-misc-info">Cumulative GPA: 3.1/4.00 | Major GPA: 3.0/4.0 | ACT: 33</p>
+
+
+
+                    <ul class="highlight-list">
+
+
+
+                    </ul>
+
+                  </section>
+
+                </div>
+
+              </section>
+
+
+
+              <section class="institution-detail education">
+
+
+
+                <header class="institution-header">
+
+                  <h2 class="institution-name">Buffalo Grove High School</h2>
+
+                  <p class="location">Buffalo Grove, Illinois</p>
+
+                  <p class="date-span">2009–2013</p>
+
+                </header>
+
+
+
+                <div class="institution-highlights">
+
+                  <section class="org-grouping">
+
+                    <h2 class="org-title statement">Graduated with Highest Honors 5.21/5.0 GPA</h2>
+
+                    <h3 class="highlight-title">Distinctions</h3>
+
+                    <ul class="highlight-list">
+
+                      <li class="">Highest Honors</li>
+
+                      <li class="">Illinois State Scholar</li>
+
+                      <li class="">Member of National Honor Society</li>
+
+                      <li class="">AP Scholar with Distinction</li>
+
+                      <li class="">Principal’s Honor Roll</li>
+
+                      <li class="">Varsity Soccer Captain 2012</li>
+
+                      <li class="">All-Conference Player Varsity Soccer</li>
+
+                      <li class="">All-Area Player Varsity Soccer</li>
+
+                      <li class="">All-State All-Academic 2nd Team</li>
+
+                      <li class="">Club Soccer Captain 2009–2013</li>
+
+                    </ul>
+
+                  </section>
+
+                </div>
+
+
+
+
+
+
+
+
+
+              </section>
+
+
+
+            </section>
+
+
+
+
+
+            <section class="personal-addendum">
+
+              <h1></h1>
+
+            </section>
+
+
+
+          </article>
+
+          <!-- //.resume-content -->
+
+
+
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <article class="resume-content">
+
+            
+
+            <section class="resume-section institution education">
+
+              <h1 class="resume-section-title">Education</h1>
+
+
+
+              <section class="institution-detail education">
+
+              
+
+                <header class="institution-header">
+
+                  <h2 class="institution-name">Northwestern University</h2>
+
+                  <p class="location">Evanston, Illinois</p>
+
+                  <p class="date-span">Anticipated June 2017</p>
+
+                </header>
+
+
+
+                <div class="institution-highlights">
+
+                  <section class="org-grouping">
+
+                    <h2 class="org-title degree">Bachelor of Arts in Economics</h2>
+
+                    <h3 class="org-sub-title">Harvey Kapnick Business Institutions Minor</h3>
+
+                    <p class="gpa-misc-info">Cumulative GPA: 3.1/4.00 | Major GPA: 3.0/4.0 | ACT: 33</p>
+
+
+
+                    <ul class="highlight-list">
+
+
+
+                    </ul>
+
+                  </section>
+
+                </div>
+
+              </section>
+
+
+
+              <section class="institution-detail education">
+
+
+
+                <header class="institution-header">
+
+                  <h2 class="institution-name">Buffalo Grove High School</h2>
+
+                  <p class="location">Buffalo Grove, Illinois</p>
+
+                  <p class="date-span">2009–2013</p>
+
+                </header>
+
+
+
+                <div class="institution-highlights">
+
+                  <section class="org-grouping">
+
+                    <h2 class="org-title statement">Graduated with Highest Honors 5.21/5.0 GPA</h2>
+
+                    <h3 class="highlight-title">Distinctions</h3>
+
+                    <ul class="highlight-list">
+
+                      <li class="">Highest Honors</li>
+
+                      <li class="">Illinois State Scholar</li>
+
+                      <li class="">Member of National Honor Society</li>
+
+                      <li class="">AP Scholar with Distinction</li>
+
+                      <li class="">Principal’s Honor Roll</li>
+
+                      <li class="">Varsity Soccer Captain 2012</li>
+
+                      <li class="">All-Conference Player Varsity Soccer</li>
+
+                      <li class="">All-Area Player Varsity Soccer</li>
+
+                      <li class="">All-State All-Academic 2nd Team</li>
+
+                      <li class="">Club Soccer Captain 2009–2013</li>
+
+                    </ul>
+
+                  </section>
+
+                </div>
+
+
+
+
+
+
+
+
+
+              </section>
+
+
+
+            </section>
+
+
+
+
+
+            <section class="personal-addendum">
+
+              <h1></h1>
+
+            </section>
+
+
+
+          </article>
+
+          <!-- //.resume-content -->
+
+
+
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <article class="resume-content">
+
+            
+
+            <section class="resume-section institution education">
+
+              <h1 class="resume-section-title">Education</h1>
+
+
+
+              <section class="institution-detail education">
+
+              
+
+                <header class="institution-header">
+
+                  <h2 class="institution-name">Northwestern University</h2>
+
+                  <p class="location">Evanston, Illinois</p>
+
+                  <p class="date-span">Anticipated June 2017</p>
+
+                </header>
+
+
+
+                <div class="institution-highlights">
+
+                  <section class="org-grouping">
+
+                    <h2 class="org-title degree">Bachelor of Arts in Economics</h2>
+
+                    <h3 class="org-sub-title">Harvey Kapnick Business Institutions Minor</h3>
+
+                    <p class="gpa-misc-info">Cumulative GPA: 3.1/4.00 | Major GPA: 3.0/4.0 | ACT: 33</p>
+
+
+
+                    <ul class="highlight-list">
+
+
+
+                    </ul>
+
+                  </section>
+
+                </div>
+
+              </section>
+
+
+
+              <section class="institution-detail education">
+
+
+
+                <header class="institution-header">
+
+                  <h2 class="institution-name">Buffalo Grove High School</h2>
+
+                  <p class="location">Buffalo Grove, Illinois</p>
+
+                  <p class="date-span">2009–2013</p>
+
+                </header>
+
+
+
+                <div class="institution-highlights">
+
+                  <section class="org-grouping">
+
+                    <h2 class="org-title statement">Graduated with Highest Honors 5.21/5.0 GPA</h2>
+
+                    <h3 class="highlight-title">Distinctions</h3>
+
+                    <ul class="highlight-list">
+
+                      <li class="">Highest Honors</li>
+
+                      <li class="">Illinois State Scholar</li>
+
+                      <li class="">Member of National Honor Society</li>
+
+                      <li class="">AP Scholar with Distinction</li>
+
+                      <li class="">Principal’s Honor Roll</li>
+
+                      <li class="">Varsity Soccer Captain 2012</li>
+
+                      <li class="">All-Conference Player Varsity Soccer</li>
+
+                      <li class="">All-Area Player Varsity Soccer</li>
+
+                      <li class="">All-State All-Academic 2nd Team</li>
+
+                      <li class="">Club Soccer Captain 2009–2013</li>
+
+                    </ul>
+
+                  </section>
+
+                </div>
+
+
+
+
+
+
+
+
+
+              </section>
+
+
+
+            </section>
+
+
+
+
+
+            <section class="personal-addendum">
+
+              <h1></h1>
+
+            </section>
+
+
+
+          </article>
+
+          <!-- //.resume-content -->
+
+
+
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <article class="resume-content">
+
+            
+
+            <section class="resume-section institution education">
+
+              <h1 class="resume-section-title">Education</h1>
+
+
+
+              <section class="institution-detail education">
+
+              
+
+                <header class="institution-header">
+
+                  <h2 class="institution-name">Northwestern University</h2>
+
+                  <p class="location">Evanston, Illinois</p>
+
+                  <p class="date-span">Anticipated June 2017</p>
+
+                </header>
+
+
+
+                <div class="institution-highlights">
+
+                  <section class="org-grouping">
+
+                    <h2 class="org-title degree">Bachelor of Arts in Economics</h2>
+
+                    <h3 class="org-sub-title">Harvey Kapnick Business Institutions Minor</h3>
+
+                    <p class="gpa-misc-info">Cumulative GPA: 3.1/4.00 | Major GPA: 3.0/4.0 | ACT: 33</p>
+
+
+
+                    <ul class="highlight-list">
+
+
+
+                    </ul>
+
+                  </section>
+
+                </div>
+
+              </section>
+
+
+
+              <section class="institution-detail education">
+
+
+
+                <header class="institution-header">
+
+                  <h2 class="institution-name">Buffalo Grove High School</h2>
+
+                  <p class="location">Buffalo Grove, Illinois</p>
+
+                  <p class="date-span">2009–2013</p>
+
+                </header>
+
+
+
+                <div class="institution-highlights">
+
+                  <section class="org-grouping">
+
+                    <h2 class="org-title statement">Graduated with Highest Honors 5.21/5.0 GPA</h2>
+
+                    <h3 class="highlight-title">Distinctions</h3>
+
+                    <ul class="highlight-list">
+
+                      <li class="">Highest Honors</li>
+
+                      <li class="">Illinois State Scholar</li>
+
+                      <li class="">Member of National Honor Society</li>
+
+                      <li class="">AP Scholar with Distinction</li>
+
+                      <li class="">Principal’s Honor Roll</li>
+
+                      <li class="">Varsity Soccer Captain 2012</li>
+
+                      <li class="">All-Conference Player Varsity Soccer</li>
+
+                      <li class="">All-Area Player Varsity Soccer</li>
+
+                      <li class="">All-State All-Academic 2nd Team</li>
+
+                      <li class="">Club Soccer Captain 2009–2013</li>
+
+                    </ul>
+
+                  </section>
+
+                </div>
+
+
+
+
+
+
+
+
+
+              </section>
+
+
+
+            </section>
+
+
+
+
+
+            <section class="personal-addendum">
+
+              <h1></h1>
+
+            </section>
+
+
+
+          </article>
+
+          <!-- //.resume-content -->
+
+
+
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <article class="resume-content">
+
+            
+
+            <section class="resume-section institution education">
+
+              <h1 class="resume-section-title">Education</h1>
+
+
+
+              <section class="institution-detail education">
+
+              
+
+                <header class="institution-header">
+
+                  <h2 class="institution-name">Northwestern University</h2>
+
+                  <p class="location">Evanston, Illinois</p>
+
+                  <p class="date-span">Anticipated June 2017</p>
+
+                </header>
+
+
+
+                <div class="institution-highlights">
+
+                  <section class="org-grouping">
+
+                    <h2 class="org-title degree">Bachelor of Arts in Economics</h2>
+
+                    <h3 class="org-sub-title">Harvey Kapnick Business Institutions Minor</h3>
+
+                    <p class="gpa-misc-info">Cumulative GPA: 3.1/4.00 | Major GPA: 3.0/4.0 | ACT: 33</p>
+
+
+
+                    <ul class="highlight-list">
+
+
+
+                    </ul>
+
+                  </section>
+
+                </div>
+
+              </section>
+
+
+
+              <section class="institution-detail education">
+
+
+
+                <header class="institution-header">
+
+                  <h2 class="institution-name">Buffalo Grove High School</h2>
+
+                  <p class="location">Buffalo Grove, Illinois</p>
+
+                  <p class="date-span">2009–2013</p>
+
+                </header>
+
+
+
+                <div class="institution-highlights">
+
+                  <section class="org-grouping">
+
+                    <h2 class="org-title statement">Graduated with Highest Honors 5.21/5.0 GPA</h2>
+
+                    <h3 class="highlight-title">Distinctions</h3>
+
+                    <ul class="highlight-list">
+
+                      <li class="">Highest Honors</li>
+
+                      <li class="">Illinois State Scholar</li>
+
+                      <li class="">Member of National Honor Society</li>
+
+                      <li class="">AP Scholar with Distinction</li>
+
+                      <li class="">Principal’s Honor Roll</li>
+
+                      <li class="">Varsity Soccer Captain 2012</li>
+
+                      <li class="">All-Conference Player Varsity Soccer</li>
+
+                      <li class="">All-Area Player Varsity Soccer</li>
+
+                      <li class="">All-State All-Academic 2nd Team</li>
+
+                      <li class="">Club Soccer Captain 2009–2013</li>
+
+                    </ul>
+
+                  </section>
+
+                </div>
+
+
+
+
+
+
+
+
+
+              </section>
+
+
+
+            </section>
+
+
+
+
+
+            <section class="personal-addendum">
+
+              <h1></h1>
+
+            </section>
+
+
+
+          </article>
+
+          <!-- //.resume-content -->
+
+
+
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <article class="resume-content">
+
+            
+
+            <section class="resume-section institution education">
+
+              <h1 class="resume-section-title">Education</h1>
+
+
+
+              <section class="institution-detail education">
+
+              
+
+                <header class="institution-header">
+
+                  <h2 class="institution-name">Northwestern University</h2>
+
+                  <p class="location">Evanston, Illinois</p>
+
+                  <p class="date-span">Anticipated June 2017</p>
+
+                </header>
+
+
+
+                <div class="institution-highlights">
+
+                  <section class="org-grouping">
+
+                    <h2 class="org-title degree">Bachelor of Arts in Economics</h2>
+
+                    <h3 class="org-sub-title">Harvey Kapnick Business Institutions Minor</h3>
+
+                    <p class="gpa-misc-info">Cumulative GPA: 3.1/4.00 | Major GPA: 3.0/4.0 | ACT: 33</p>
+
+
+
+                    <ul class="highlight-list">
+
+
+
+                    </ul>
+
+                  </section>
+
+                </div>
+
+              </section>
+
+
+
+              <section class="institution-detail education">
+
+
+
+                <header class="institution-header">
+
+                  <h2 class="institution-name">Buffalo Grove High School</h2>
+
+                  <p class="location">Buffalo Grove, Illinois</p>
+
+                  <p class="date-span">2009–2013</p>
+
+                </header>
+
+
+
+                <div class="institution-highlights">
+
+                  <section class="org-grouping">
+
+                    <h2 class="org-title statement">Graduated with Highest Honors 5.21/5.0 GPA</h2>
+
+                    <h3 class="highlight-title">Distinctions</h3>
+
+                    <ul class="highlight-list">
+
+                      <li class="">Highest Honors</li>
+
+                      <li class="">Illinois State Scholar</li>
+
+                      <li class="">Member of National Honor Society</li>
+
+                      <li class="">AP Scholar with Distinction</li>
+
+                      <li class="">Principal’s Honor Roll</li>
+
+                      <li class="">Varsity Soccer Captain 2012</li>
+
+                      <li class="">All-Conference Player Varsity Soccer</li>
+
+                      <li class="">All-Area Player Varsity Soccer</li>
+
+                      <li class="">All-State All-Academic 2nd Team</li>
+
+                      <li class="">Club Soccer Captain 2009–2013</li>
+
+                    </ul>
+
+                  </section>
+
+                </div>
+
+
+
+
+
+
+
+
+
+              </section>
+
+
+
+            </section>
+
+
+
+
+
+            <section class="personal-addendum">
+
+              <h1></h1>
+
+            </section>
+
+
+
+          </article>
+
+          <!-- //.resume-content -->
+
+
+
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <article class="resume-content">
+
+            
+
+            <section class="resume-section institution education">
+
+              <h1 class="resume-section-title">Education</h1>
+
+
+
+              <section class="institution-detail education">
+
+              
+
+                <header class="institution-header">
+
+                  <h2 class="institution-name">Northwestern University</h2>
+
+                  <p class="location">Evanston, Illinois</p>
+
+                  <p class="date-span">Anticipated June 2017</p>
+
+                </header>
+
+
+
+                <div class="institution-highlights">
+
+                  <section class="org-grouping">
+
+                    <h2 class="org-title degree">Bachelor of Arts in Economics</h2>
+
+                    <h3 class="org-sub-title">Harvey Kapnick Business Institutions Minor</h3>
+
+                    <p class="gpa-misc-info">Cumulative GPA: 3.1/4.00 | Major GPA: 3.0/4.0 | ACT: 33</p>
+
+
+
+                    <ul class="highlight-list">
+
+
+
+                    </ul>
+
+                  </section>
+
+                </div>
+
+              </section>
+
+
+
+              <section class="institution-detail education">
+
+
+
+                <header class="institution-header">
+
+                  <h2 class="institution-name">Buffalo Grove High School</h2>
+
+                  <p class="location">Buffalo Grove, Illinois</p>
+
+                  <p class="date-span">2009–2013</p>
+
+                </header>
+
+
+
+                <div class="institution-highlights">
+
+                  <section class="org-grouping">
+
+                    <h2 class="org-title statement">Graduated with Highest Honors 5.21/5.0 GPA</h2>
+
+                    <h3 class="highlight-title">Distinctions</h3>
+
+                    <ul class="highlight-list">
+
+                      <li class="">Highest Honors</li>
+
+                      <li class="">Illinois State Scholar</li>
+
+                      <li class="">Member of National Honor Society</li>
+
+                      <li class="">AP Scholar with Distinction</li>
+
+                      <li class="">Principal’s Honor Roll</li>
+
+                      <li class="">Varsity Soccer Captain 2012</li>
+
+                      <li class="">All-Conference Player Varsity Soccer</li>
+
+                      <li class="">All-Area Player Varsity Soccer</li>
+
+                      <li class="">All-State All-Academic 2nd Team</li>
+
+                      <li class="">Club Soccer Captain 2009–2013</li>
+
+                    </ul>
+
+                  </section>
+
+                </div>
+
+
+
+
+
+
+
+
+
+              </section>
+
+
+
+            </section>
+
+
+
+
+
+            <section class="personal-addendum">
+
+              <h1></h1>
+
+            </section>
+
+
+
+          </article>
+
+          <!-- //.resume-content -->
+
+
+
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <article class="resume-content">
+
+            
+
+            <section class="resume-section institution education">
+
+              <h1 class="resume-section-title">Education</h1>
+
+
+
+              <section class="institution-detail education">
+
+              
+
+                <header class="institution-header">
+
+                  <h2 class="institution-name">Northwestern University</h2>
+
+                  <p class="location">Evanston, Illinois</p>
+
+                  <p class="date-span">Anticipated June 2017</p>
+
+                </header>
+
+
+
+                <div class="institution-highlights">
+
+                  <section class="org-grouping">
+
+                    <h2 class="org-title degree">Bachelor of Arts in Economics</h2>
+
+                    <h3 class="org-sub-title">Harvey Kapnick Business Institutions Minor</h3>
+
+                    <p class="gpa-misc-info">Cumulative GPA: 3.1/4.00 | Major GPA: 3.0/4.0 | ACT: 33</p>
+
+
+
+                    <ul class="highlight-list">
+
+
+
+                    </ul>
+
+                  </section>
+
+                </div>
+
+              </section>
+
+
+
+              <section class="institution-detail education">
+
+
+
+                <header class="institution-header">
+
+                  <h2 class="institution-name">Buffalo Grove High School</h2>
+
+                  <p class="location">Buffalo Grove, Illinois</p>
+
+                  <p class="date-span">2009–2013</p>
+
+                </header>
+
+
+
+                <div class="institution-highlights">
+
+                  <section class="org-grouping">
+
+                    <h2 class="org-title statement">Graduated with Highest Honors 5.21/5.0 GPA</h2>
+
+                    <h3 class="highlight-title">Distinctions</h3>
+
+                    <ul class="highlight-list">
+
+                      <li class="">Highest Honors</li>
+
+                      <li class="">Illinois State Scholar</li>
+
+                      <li class="">Member of National Honor Society</li>
+
+                      <li class="">AP Scholar with Distinction</li>
+
+                      <li class="">Principal’s Honor Roll</li>
+
+                      <li class="">Varsity Soccer Captain 2012</li>
+
+                      <li class="">All-Conference Player Varsity Soccer</li>
+
+                      <li class="">All-Area Player Varsity Soccer</li>
+
+                      <li class="">All-State All-Academic 2nd Team</li>
+
+                      <li class="">Club Soccer Captain 2009–2013</li>
+
+                    </ul>
+
+                  </section>
+
+                </div>
+
+
+
+
+
+
+
+
+
+              </section>
+
+
+
+            </section>
+
+
+
+
+
+            <section class="personal-addendum">
+
+              <h1></h1>
+
+            </section>
+
+
+
+          </article>
+
+          <!-- //.resume-content -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

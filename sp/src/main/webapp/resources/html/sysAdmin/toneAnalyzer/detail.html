@@ -1,0 +1,797 @@
+<link rel="stylesheet" href="/resources/css/css-min/tone-analyze.css">
+<section data-ng-controller="toneAnalyzer as ctrl" data-ng-init="ctrl.getAllToneAnalysisData()" data-ng-cloak data-ng-if="inviteReady" class="hide" data-ng-class="inviteReady?'show':'hide'">
+    <div class="x-container members blueprint-home">
+        <div class="container minimumHeight" >
+        <section class="blueprint-home-section sp-panel-accent">
+            <div class="custom-cols left results-content">
+                <div class="blueprint-home-column">
+                    
+                    <div class="results-wrapper">
+                        
+                        <div class="rel-content top">
+                    <div class="hiring-list-wrapper">
+                            <p>
+                                <a href="#" data-ng-click="ctrl.redirectToHome()" style="color:#fff;">Back</a>
+                            </p>
+                        </div>
+                            <div class="global-title">Tone Analysis of {{ctrl.activeCompany}}</div>
+                            <p data-ng-show="!ctrl.toneAnalysisAgg.length && ctrl.responseAvailable" class="noMatchFound ng-hide" data-ng-bind="'No Data Found.'"></p>
+                           <p data-ng-show="!ctrl.toneAnalysisAgg.length && !ctrl.responseAvailable" class="noMatchFound ng-hide" data-ng-bind="'Information Loading...'"></p>
+                            
+                            <h4 class="analysis-label" data-ng-if="ctrl.toneAnalysisAgg.length">Aggregated Tone Analysis</h4>
+                            <div class="summary--row" data-ng-if="ctrl.toneAnalysisAgg.length">
+          <div class="summary--emotion">
+            <h5 class="base--h5 summary--header">Emotion</h5>
+            <div class="summary-emotion-graph bar-graph">
+    
+      <div class="bar-graph--row summary-emotion-graph--row">
+        <div class="bar-graph--label-container summary-emotion-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Anger
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                Likelihood of writer being perceived as angry. Low value indicates unlikely to be perceived as angry. High value indicates very likely to be perceived as angry. 
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-emotion-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-emotion-graph--bar-value summary-emotion-graph--bar-value_Anger" data-ng-if="ctrl.companyAnalysis.Anger" data-ng-style="{width:ctrl.companyAnalysis.Anger*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-emotion-graph--bar-value summary-emotion-graph--bar-value_Anger" data-ng-if="!ctrl.companyAnalysis.Anger" data-ng-style="{width:'0%'}"></div>
+          </div>
+        </div>
+        <div class="summary-emotion-graph--percentage-label" data-ng-if="ctrl.companyAnalysis.Anger">{{ctrl.companyAnalysis.Anger.toFixed(2)}}
+        <br>
+        <span data-ng-if="ctrl.companyAnalysis.Anger >= 0.50" class="summary-emotion-graph--percentage-label-likeliness">LIKELY</span>
+        <span data-ng-if="ctrl.companyAnalysis.Anger < 0.50" class="summary-emotion-graph--percentage-label-likeliness">UNLIKELY</span>
+        </div>
+        <div class="summary-emotion-graph--percentage-label" data-ng-if="!ctrl.companyAnalysis.Anger">0
+          <br><span class="summary-emotion-graph--percentage-label-likeliness">UNLIKELY</span>
+         </div>
+      </div>
+      
+      <div class="bar-graph--row summary-emotion-graph--row">
+        <div class="bar-graph--label-container summary-emotion-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Disgust
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                Likelihood of writer being perceived as disgusted. Low value, unlikely to be perceived as disgusted. High value, very likely to be perceived as disgusted.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-emotion-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-emotion-graph--bar-value summary-emotion-graph--bar-value_Disgust" data-ng-if="ctrl.companyAnalysis.Disgust" data-ng-style="{width:ctrl.companyAnalysis.Disgust*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-emotion-graph--bar-value summary-emotion-graph--bar-value_Disgust" data-ng-if="!ctrl.companyAnalysis.Disgust" data-ng-style="{width:'0%'}"></div>
+          </div>
+        </div>
+        <div class="summary-emotion-graph--percentage-label" data-ng-if="ctrl.companyAnalysis.Disgust">{{ctrl.companyAnalysis.Disgust.toFixed(2)}}
+        <br>
+        <span data-ng-if="ctrl.companyAnalysis.Disgust >= 0.50" class="summary-emotion-graph--percentage-label-likeliness">LIKELY</span>
+        <span data-ng-if="ctrl.companyAnalysis.Disgust < 0.50" class="summary-emotion-graph--percentage-label-likeliness">UNLIKELY</span>
+        </div>
+        <div class="summary-emotion-graph--percentage-label" data-ng-if="!ctrl.companyAnalysis.Disgust">0<br><span class="summary-emotion-graph--percentage-label-likeliness">UNLIKELY</span>
+         </div>
+      </div>
+      
+      <div class="bar-graph--row summary-emotion-graph--row">
+        <div class="bar-graph--label-container summary-emotion-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Fear
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                Likelihood of writer being perceived as scared. Low value indicates unlikely to be perceived as fearful. High value, very likely to be perceived as scared.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-emotion-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-emotion-graph--bar-value summary-emotion-graph--bar-value_Fear" data-ng-if="ctrl.companyAnalysis.Fear" data-ng-style="{width:ctrl.companyAnalysis.Fear*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-emotion-graph--bar-value summary-emotion-graph--bar-value_Fear" data-ng-if="!ctrl.companyAnalysis.Fear" data-ng-style="{width:'0%'}"></div>
+          </div>
+        </div>
+        <div class="summary-emotion-graph--percentage-label" data-ng-if="ctrl.companyAnalysis.Fear">{{ctrl.companyAnalysis.Fear.toFixed(2)}}
+        <br>
+        <span data-ng-if="ctrl.companyAnalysis.Fear >= 0.50" class="summary-emotion-graph--percentage-label-likeliness">LIKELY</span>
+        <span data-ng-if="ctrl.companyAnalysis.Fear < 0.50" class="summary-emotion-graph--percentage-label-likeliness">UNLIKELY</span>
+        </div>
+        <div class="summary-emotion-graph--percentage-label" data-ng-if="!ctrl.companyAnalysis.Fear">0<br><span class="summary-emotion-graph--percentage-label-likeliness">UNLIKELY</span>
+         </div>
+      </div>
+      
+      <div class="bar-graph--row summary-emotion-graph--row">
+        <div class="bar-graph--label-container summary-emotion-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Joy
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                Likelihood of writer being perceived as happy. Low value, unlikely to be perceived as joyful. High value very likely to be perceived as happy.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-emotion-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-emotion-graph--bar-value summary-emotion-graph--bar-value_Joy" data-ng-if="ctrl.companyAnalysis.Joy" data-ng-style="{width:ctrl.companyAnalysis.Joy*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-emotion-graph--bar-value summary-emotion-graph--bar-value_Joy" data-ng-if="!ctrl.companyAnalysis.Joy.toFixed(2)" data-ng-style="{width:'0%'}"></div>
+          </div>
+        </div>
+        <div class="summary-emotion-graph--percentage-label" data-ng-if="ctrl.companyAnalysis.Joy">{{ctrl.companyAnalysis.Joy.toFixed(2)}}
+        <br>
+        <span data-ng-if="ctrl.companyAnalysis.Joy >= 0.50" class="summary-emotion-graph--percentage-label-likeliness">LIKELY</span>
+        <span data-ng-if="ctrl.companyAnalysis.Joy < 0.50" class="summary-emotion-graph--percentage-label-likeliness">UNLIKELY</span>
+        </div>
+        <div class="summary-emotion-graph--percentage-label" data-ng-if="!ctrl.companyAnalysis.Joy">0<br><span class="summary-emotion-graph--percentage-label-likeliness">UNLIKELY</span>
+         </div>
+      </div>
+      
+      <div class="bar-graph--row summary-emotion-graph--row">
+        <div class="bar-graph--label-container summary-emotion-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Sadness
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                Likelihood of writer being perceived as sad. Low value, unlikely to be perceived as sad. High value very likely to be perceived as sad.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-emotion-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-emotion-graph--bar-value summary-emotion-graph--bar-value_Sadness" data-ng-if="ctrl.companyAnalysis.Sadness" data-ng-style="{width:ctrl.companyAnalysis.Sadness*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-emotion-graph--bar-value summary-emotion-graph--bar-value_Sadness" data-ng-if="!ctrl.companyAnalysis.Sadness" data-ng-style="{width:'0'}"></div>
+          </div>
+        </div>
+        <div class="summary-emotion-graph--percentage-label" data-ng-if="ctrl.companyAnalysis.Sadness">{{ctrl.companyAnalysis.Sadness.toFixed(2)}}
+        <br>
+        <span data-ng-if="ctrl.companyAnalysis.Sadness >= 0.50" class="summary-emotion-graph--percentage-label-likeliness">LIKELY</span>
+        <span data-ng-if="ctrl.companyAnalysis.Sadness < 0.50" class="summary-emotion-graph--percentage-label-likeliness">UNLIKELY</span>
+        </div>
+        <div class="summary-emotion-graph--percentage-label" data-ng-if="!ctrl.companyAnalysis.Sadness">0<br><span class="summary-emotion-graph--percentage-label-likeliness">UNLIKELY</span>
+         </div>
+      </div>
+      
+  </div>
+          </div>
+          <div class="summary--writing">
+            <h5 class="base--h5 summary--header">Language Style</h5>
+            <div class="summary-writing-graph">
+    
+      <div class="bar-graph--row">
+        <div class="bar-graph--label-container summary-writing-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Analytical
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                A writer's reasoning and analytical attitude about things. Higher value, more likely to be perceived as intellectual, rational, systematic, emotionless, or impersonal.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-writing-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-writing-graph--bar-value summary-writing-graph--bar-value_Analytical" data-ng-if="ctrl.companyAnalysis.Analytical" data-ng-style="{width:ctrl.companyAnalysis.Analytical*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-writing-graph--bar-value summary-writing-graph--bar-value_Analytical" data-ng-if="!ctrl.companyAnalysis.Analytical" data-ng-style="{width:'0'}"></div>          
+          </div>
+        </div>
+        <div class="bar-graph--percentage-label" data-ng-if="ctrl.companyAnalysis.Analytical" data-ng-bind="ctrl.companyAnalysis.Analytical.toFixed(2)"></div>
+        <div class="bar-graph--percentage-label" data-ng-if="!ctrl.companyAnalysis.Analytical">0</div>
+      </div>
+      
+      <div class="bar-graph--row">
+        <div class="bar-graph--label-container summary-writing-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Confident
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                A writer's degree of certainty. Higher value, more likely to be perceived as assured, collected, hopeful, or egotistical.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-writing-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-writing-graph--bar-value summary-writing-graph--bar-value_Confident" data-ng-if="ctrl.companyAnalysis.Confident" data-ng-style="{width:ctrl.companyAnalysis.Confident*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-writing-graph--bar-value summary-writing-graph--bar-value_Confident" data-ng-if="!ctrl.companyAnalysis.Confident" data-ng-style="{width:'0'}"></div>
+          </div>
+        </div>
+        <div class="bar-graph--percentage-label" data-ng-if="ctrl.companyAnalysis.Confident" data-ng-bind="ctrl.companyAnalysis.Confident.toFixed(2)"></div>
+        <div class="bar-graph--percentage-label" data-ng-if="!ctrl.companyAnalysis.Confident">0</div>
+      </div>
+      
+      <div class="bar-graph--row">
+        <div class="bar-graph--label-container summary-writing-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Tentative
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                A writer's degree of inhibition. Higher value, more likely to be perceived as questionable, doubtful, limited, or debatable.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-writing-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-writing-graph--bar-value summary-writing-graph--bar-value_Tentative" data-ng-if="ctrl.companyAnalysis.Tentative" data-ng-style="{width:ctrl.companyAnalysis.Tentative*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-writing-graph--bar-value summary-writing-graph--bar-value_Tentative" data-ng-if="!ctrl.companyAnalysis.Tentative" data-ng-style="{width:'0'}"></div>
+          </div>
+        </div>
+        <div class="bar-graph--percentage-label" data-ng-if="ctrl.companyAnalysis.Tentative" data-ng-bind="ctrl.companyAnalysis.Tentative.toFixed(2)"></div>
+        <div class="bar-graph--percentage-label" data-ng-if="!ctrl.companyAnalysis.Tentative">0</div>
+      </div>
+      
+  </div>
+          </div>
+          <div class="summary--social">
+            <h5 class="base--h5 summary--header">Social Tendencies</h5>
+            <div class="summary-social-graph bar-graph">
+    
+      <div class="bar-graph--row">
+        <div class="bar-graph--label-container summary-social-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Openness
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                Higher value, writer more likely to be perceived as open to experiences for a variety of activities.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-social-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-social-graph--bar-value summary-social-graph--bar-value_Openness" data-ng-if="ctrl.companyAnalysis.Openness" data-ng-style="{width:ctrl.companyAnalysis.Openness*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-social-graph--bar-value summary-social-graph--bar-value_Openness" data-ng-if="!ctrl.companyAnalysis.Openness" data-ng-style="{width:'0'}"></div>
+          </div>
+        </div>
+        <div class="bar-graph--percentage-label" data-ng-if="ctrl.companyAnalysis.Openness" data-ng-bind="ctrl.companyAnalysis.Openness.toFixed(2)"></div>
+        <div class="bar-graph--percentage-label" data-ng-if="!ctrl.companyAnalysis.Openness">0</div>
+      </div>
+      
+      <div class="bar-graph--row">
+        <div class="bar-graph--label-container summary-social-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Conscientiousness
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                Higher value, the writer likely to be percieved as someone who would act in an organized or thoughtful way.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-social-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-social-graph--bar-value summary-social-graph--bar-value_Conscientiousness" data-ng-if="ctrl.companyAnalysis.Conscientiousness" data-ng-style="{width:ctrl.companyAnalysis.Conscientiousness*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-social-graph--bar-value summary-social-graph--bar-value_Conscientiousness" data-ng-if="!ctrl.companyAnalysis.Conscientiousness" data-ng-style="{width:'0'}"></div>
+          </div>
+        </div>
+        <div class="bar-graph--percentage-label" data-ng-if="ctrl.companyAnalysis.Conscientiousness" data-ng-bind="ctrl.companyAnalysis.Conscientiousness.toFixed(2)"></div>
+        <div class="bar-graph--percentage-label" data-ng-if="!ctrl.companyAnalysis.Conscientiousness">0</div>
+      </div>
+      
+      <div class="bar-graph--row">
+        <div class="bar-graph--label-container summary-social-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Extraversion
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                Higher value, the writer is likely to be perceived as someone who would seek stimulation in the company of others.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-social-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-social-graph--bar-value summary-social-graph--bar-value_Extraversion" data-ng-if="ctrl.companyAnalysis.Extraversion" data-ng-style="{width:ctrl.companyAnalysis.Extraversion*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-social-graph--bar-value summary-social-graph--bar-value_Extraversion" data-ng-if="!ctrl.companyAnalysis.Extraversion" data-ng-style="{width:'0'}"></div>
+          </div>
+        </div>
+        <div class="bar-graph--percentage-label" data-ng-if="ctrl.companyAnalysis.Extraversion" data-ng-bind="ctrl.companyAnalysis.Extraversion.toFixed(2)"></div>
+        <div class="bar-graph--percentage-label" data-ng-if="!ctrl.companyAnalysis.Extraversion">0</div>
+      </div>
+      
+      <div class="bar-graph--row">
+        <div class="bar-graph--label-container summary-social-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Agreeableness
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                Higher value, writer more likely to be perceived as, compassionate and cooperative towards others.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-social-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-social-graph--bar-value summary-social-graph--bar-value_Agreeableness" data-ng-if="ctrl.companyAnalysis.Agreeableness" data-ng-style="{width:ctrl.companyAnalysis.Agreeableness*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-social-graph--bar-value summary-social-graph--bar-value_Agreeableness" data-ng-if="!ctrl.companyAnalysis.Agreeableness" data-ng-style="{width:'0'}"></div>          
+          </div>
+        </div>
+        <div class="bar-graph--percentage-label" data-ng-if="ctrl.companyAnalysis.Agreeableness" data-ng-bind="ctrl.companyAnalysis.Agreeableness.toFixed(2)"></div>
+        <div class="bar-graph--percentage-label" data-ng-if="!ctrl.companyAnalysis.Agreeableness">0</div>
+      </div>
+      
+      <div class="bar-graph--row">
+        <div class="bar-graph--label-container summary-social-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Emotional Range
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                Higher value, writer likely to be perceived as someone sensitive to the environment.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-social-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-social-graph--bar-value summary-social-graph--bar-value_Emotional-Range" data-ng-if="ctrl.companyAnalysis.EmotionalRange" data-ng-style="{width:ctrl.companyAnalysis.EmotionalRange*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-social-graph--bar-value summary-social-graph--bar-value_Emotional-Range" data-ng-if="!ctrl.companyAnalysis.EmotionalRange" data-ng-style="{width:'0'}"></div>
+          </div>
+        </div>
+        <div class="bar-graph--percentage-label" data-ng-if="ctrl.companyAnalysis.EmotionalRange" data-ng-bind="ctrl.companyAnalysis.EmotionalRange.toFixed(2)"></div>
+        <div class="bar-graph--percentage-label" data-ng-if="!ctrl.companyAnalysis.EmotionalRange">0</div>
+      </div>
+      
+  </div>
+          </div>
+        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </section>
+            <div class="bgWhiteBord clearfix" data-ng-if="ctrl.toneAnalysisAgg.length">
+                <div class="toolbar clearfix portraitMember">
+                	<div class="title">
+                        <a href="javascript:void(0)" role="button">User List</a>
+                     </div>
+                    <div class="controls clearfix">
+                    
+                        <div class="controlwrap search">
+                            <input type="text" class="form-control" maxlength="28" data-ng-model="ctrl.searchText" placeholder="{{pullInterNationalization('admin.member.search')}}">
+                            <button class="sp-icon-color" data-ng-class="ctrl.searchText.length>2? 'icon-icon_remove':'icon-icon_search'" data-ng-click="ctrl.searchText =''"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <article class="memberHolder" style="margin-top:30px;padding: 0 30px;">
+                    <div class="heading row">
+                        <div class="col-md-2 col-sm-2 m-name tog activeFilter" data-ng-click="reverse=!reverse;ctrl.order('name', reverse);ctrl.active($event)" data-predicate='name'>
+                            <h4 class="name on" data-ng-bind="pullInterNationalization('admin.member.name')"></h4>
+                        </div>
+                        <div class="col-md-2 col-sm-2 m-name tog" style="margin:0 0 0 -22px;" data-ng-click="reverse=!reverse;ctrl.order('aggregateAnalysis.emotion.Anger', reverse);ctrl.active($event)" data-predicate='aggregateAnalysis.emotion.Anger'>
+                            <h4>Anger</h4>
+                        </div>
+                        <div class="col-md-2 col-sm-2 m-name tog" style="margin:0 0 0 -3px;" data-ng-click="reverse=!reverse;ctrl.order('aggregateAnalysis.emotion.Disgust', reverse);ctrl.active($event)" data-predicate='aggregateAnalysis.emotion.Disgust'>
+                            <h4>Disgust</h4>
+                        </div>
+                        <div class="col-md-2 col-sm-2 m-name tog" style="margin:0 0 0 -3px;" data-ng-click="reverse=!reverse;ctrl.order('aggregateAnalysis.emotion.Fear', reverse);ctrl.active($event)" data-predicate='aggregateAnalysis.emotion.Fear'>
+                            <h4>Fear</h4>
+                        </div>
+                        <div class="col-md-2 col-sm-2 m-name tog" style="margin:0 0 0 -3px;" data-ng-click="reverse=!reverse;ctrl.order('aggregateAnalysis.emotion.Joy', reverse);ctrl.active($event)" data-predicate='aggregateAnalysis.emotion.Joy'>
+                            <h4>Joy</h4>
+                        </div>
+                        <div class="col-md-2 col-sm-2 m-name tog" style="margin:0 0 0 -6px;" data-ng-click="reverse=!reverse;ctrl.order('aggregateAnalysis.emotion.Sadness', reverse);ctrl.active($event)" data-predicate='aggregateAnalysis.emotion.Sadness'>
+                            <h4>Sadness</h4>
+                        </div>
+                        
+                    </div>
+                   
+                    <div class="complete-profile animation_1" data-ng-class="{active:show}" id='{{$index}}' data-ng-repeat="list in recordField = (ctrl.toneAnalysisAgg|filter:ctrl.searchText) track by $index">
+
+                        <div class="table-row clearfix">
+                            <div class="col-md-2 col-sm-2 name">
+                                <img ng-src="{{list.user.smallProfileImage}}" alt="{{list.user.userInitials}}" data-ng-if="list.user.smallProfileImage">
+                                <div class="imgReplacement" data-ng-if="!list.user.smallProfileImage" data-ng-bind="list.user.userInitials"></div>
+                                <p>
+                                    <a href="#" class="fname" data-ng-bind="list.user.name" data-ng-click="show=!show"></a>
+                                    <span class="email" data-ng-bind="list.user.title" style="cursor:default;"></span>
+                                </p>
+                            </div>
+                            <div class="col-md-2 col-sm-2 row_title" data-ng-if="list.aggregateAnalysis.emotion.Anger" data-ng-bind="list.aggregateAnalysis.emotion.Anger.toFixed(2) | number"></div>
+                            <div class="col-md-2 col-sm-2 row_title" data-ng-if="!list.aggregateAnalysis.emotion.Anger">0.00</div>
+                            
+                            <div class="col-md-2 col-sm-2 row_title" data-ng-if="list.aggregateAnalysis.emotion.Disgust" data-ng-bind="list.aggregateAnalysis.emotion.Disgust.toFixed(2) | number"></div>
+                            <div class="col-md-2 col-sm-2 row_title" data-ng-if="!list.aggregateAnalysis.emotion.Disgust">0.00</div>
+                            
+                            <div class="col-md-2 col-sm-2 row_title" data-ng-if="list.aggregateAnalysis.emotion.Fear" data-ng-bind="list.aggregateAnalysis.emotion.Fear.toFixed(2) | number"></div>
+                            <div class="col-md-2 col-sm-2 row_title" data-ng-if="!list.aggregateAnalysis.emotion.Fear">0.00</div>
+                            
+                            <div class="col-md-2 col-sm-2 row_title" data-ng-if="list.aggregateAnalysis.emotion.Joy" data-ng-bind="list.aggregateAnalysis.emotion.Joy.toFixed(2) | number"></div>
+                            <div class="col-md-2 col-sm-2 row_title" data-ng-if="!list.aggregateAnalysis.emotion.Joy">0.00</div>
+                            
+                            <div class="col-md-2 col-sm-2 row_title" data-ng-if="list.aggregateAnalysis.emotion.Sadness" data-ng-bind="list.aggregateAnalysis.emotion.Sadness.toFixed(2) | number"></div>
+                            <div class="col-md-2 col-sm-2 row_title" data-ng-if="!list.aggregateAnalysis.emotion.Sadness">0.00</div>
+                           
+
+					        <div class="col-md-1 col-sm-1 btnGroupSp" data-ng-click="show=!show" style="top: -8px;">
+                                    <button class="fullView btn-plus icon-icon_expand sp-icon-color noSpace" type="button"></button><button class="fullView btn-minus icon-icon_collapse-fill sp-icon-color" type="button"></button>
+                        	</div>
+                        </div>
+                         <h4 class="analysis-label" data-ng-class="{hidden:!show}">Aggregated Tone Analysis</h4>
+                         
+                        <div class="summary--row" data-ng-class="{hidden:!show}">
+          <div class="summary--emotion">
+            <h5 class="base--h5 summary--header">Emotion</h5>
+            <div class="summary-emotion-graph bar-graph">
+    
+      <div class="bar-graph--row summary-emotion-graph--row">
+        <div class="bar-graph--label-container summary-emotion-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Anger
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                Likelihood of writer being perceived as angry. Low value indicates unlikely to be perceived as angry. High value indicates very likely to be perceived as angry. 
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-emotion-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-emotion-graph--bar-value summary-emotion-graph--bar-value_Anger" data-ng-if="list.aggregateAnalysis.emotion.Anger" data-ng-style="{width:list.aggregateAnalysis.emotion.Anger*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-emotion-graph--bar-value summary-emotion-graph--bar-value_Anger" data-ng-if="!list.aggregateAnalysis.emotion.Anger" data-ng-style="{width:'0%'}"></div>
+          </div>
+        </div>
+        <div class="summary-emotion-graph--percentage-label" data-ng-if="list.aggregateAnalysis.emotion.Anger">{{list.aggregateAnalysis.emotion.Anger.toFixed(2)}}
+        <br>
+        <span data-ng-if="list.aggregateAnalysis.emotion.Anger >= 0.50" class="summary-emotion-graph--percentage-label-likeliness">LIKELY</span>
+        <span data-ng-if="list.aggregateAnalysis.emotion.Anger < 0.50" class="summary-emotion-graph--percentage-label-likeliness">UNLIKELY</span>
+        </div>
+        <div class="summary-emotion-graph--percentage-label" data-ng-if="!list.aggregateAnalysis.emotion.Anger">0
+          <br><span class="summary-emotion-graph--percentage-label-likeliness">UNLIKELY</span>
+         </div>
+      </div>
+      
+      <div class="bar-graph--row summary-emotion-graph--row">
+        <div class="bar-graph--label-container summary-emotion-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Disgust
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                Likelihood of writer being perceived as disgusted. Low value, unlikely to be perceived as disgusted. High value, very likely to be perceived as disgusted.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-emotion-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-emotion-graph--bar-value summary-emotion-graph--bar-value_Disgust" data-ng-if="list.aggregateAnalysis.emotion.Disgust" data-ng-style="{width:list.aggregateAnalysis.emotion.Disgust*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-emotion-graph--bar-value summary-emotion-graph--bar-value_Disgust" data-ng-if="!list.aggregateAnalysis.emotion.Disgust" data-ng-style="{width:'0%'}"></div>
+          </div>
+        </div>
+        <div class="summary-emotion-graph--percentage-label" data-ng-if="list.aggregateAnalysis.emotion.Disgust">{{list.aggregateAnalysis.emotion.Disgust.toFixed(2)}}
+        <br>
+        <span data-ng-if="list.aggregateAnalysis.emotion.Disgust >= 0.50" class="summary-emotion-graph--percentage-label-likeliness">LIKELY</span>
+        <span data-ng-if="list.aggregateAnalysis.emotion.Disgust < 0.50" class="summary-emotion-graph--percentage-label-likeliness">UNLIKELY</span>
+        </div>
+        <div class="summary-emotion-graph--percentage-label" data-ng-if="!list.aggregateAnalysis.emotion.Disgust">0<br><span class="summary-emotion-graph--percentage-label-likeliness">UNLIKELY</span>
+         </div>
+      </div>
+      
+      <div class="bar-graph--row summary-emotion-graph--row">
+        <div class="bar-graph--label-container summary-emotion-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Fear
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                Likelihood of writer being perceived as scared. Low value indicates unlikely to be perceived as fearful. High value, very likely to be perceived as scared.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-emotion-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-emotion-graph--bar-value summary-emotion-graph--bar-value_Fear" data-ng-if="list.aggregateAnalysis.emotion.Fear" data-ng-style="{width:list.aggregateAnalysis.emotion.Fear*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-emotion-graph--bar-value summary-emotion-graph--bar-value_Fear" data-ng-if="!list.aggregateAnalysis.emotion.Fear" data-ng-style="{width:'0%'}"></div>
+          </div>
+        </div>
+        <div class="summary-emotion-graph--percentage-label" data-ng-if="list.aggregateAnalysis.emotion.Fear">{{list.aggregateAnalysis.emotion.Fear.toFixed(2)}}
+        <br>
+        <span data-ng-if="list.aggregateAnalysis.emotion.Fear >= 0.50" class="summary-emotion-graph--percentage-label-likeliness">LIKELY</span>
+        <span data-ng-if="list.aggregateAnalysis.emotion.Fear < 0.50" class="summary-emotion-graph--percentage-label-likeliness">UNLIKELY</span>
+        </div>
+        <div class="summary-emotion-graph--percentage-label" data-ng-if="!list.aggregateAnalysis.emotion.Fear">0<br><span class="summary-emotion-graph--percentage-label-likeliness">UNLIKELY</span>
+         </div>
+      </div>
+      
+      <div class="bar-graph--row summary-emotion-graph--row">
+        <div class="bar-graph--label-container summary-emotion-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Joy
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                Likelihood of writer being perceived as happy. Low value, unlikely to be perceived as joyful. High value very likely to be perceived as happy.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-emotion-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-emotion-graph--bar-value summary-emotion-graph--bar-value_Joy" data-ng-if="list.aggregateAnalysis.emotion.Joy" data-ng-style="{width:list.aggregateAnalysis.emotion.Joy*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-emotion-graph--bar-value summary-emotion-graph--bar-value_Joy" data-ng-if="!list.aggregateAnalysis.emotion.Joy.toFixed(2)" data-ng-style="{width:'0%'}"></div>
+          </div>
+        </div>
+        <div class="summary-emotion-graph--percentage-label" data-ng-if="list.aggregateAnalysis.emotion.Joy">{{list.aggregateAnalysis.emotion.Joy.toFixed(2)}}
+        <br>
+        <span data-ng-if="list.aggregateAnalysis.emotion.Joy >= 0.50" class="summary-emotion-graph--percentage-label-likeliness">LIKELY</span>
+        <span data-ng-if="list.aggregateAnalysis.emotion.Joy < 0.50" class="summary-emotion-graph--percentage-label-likeliness">UNLIKELY</span>
+        </div>
+        <div class="summary-emotion-graph--percentage-label" data-ng-if="!list.aggregateAnalysis.emotion.Joy">0<br><span class="summary-emotion-graph--percentage-label-likeliness">UNLIKELY</span>
+         </div>
+      </div>
+      
+      <div class="bar-graph--row summary-emotion-graph--row">
+        <div class="bar-graph--label-container summary-emotion-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Sadness
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                Likelihood of writer being perceived as sad. Low value, unlikely to be perceived as sad. High value very likely to be perceived as sad.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-emotion-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-emotion-graph--bar-value summary-emotion-graph--bar-value_Sadness" data-ng-if="list.aggregateAnalysis.emotion.Sadness" data-ng-style="{width:list.aggregateAnalysis.emotion.Sadness*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-emotion-graph--bar-value summary-emotion-graph--bar-value_Sadness" data-ng-if="!list.aggregateAnalysis.emotion.Sadness" data-ng-style="{width:'0'}"></div>
+          </div>
+        </div>
+        <div class="summary-emotion-graph--percentage-label" data-ng-if="list.aggregateAnalysis.emotion.Sadness">{{list.aggregateAnalysis.emotion.Sadness.toFixed(2)}}
+        <br>
+        <span data-ng-if="list.aggregateAnalysis.emotion.Sadness >= 0.50" class="summary-emotion-graph--percentage-label-likeliness">LIKELY</span>
+        <span data-ng-if="list.aggregateAnalysis.emotion.Sadness < 0.50" class="summary-emotion-graph--percentage-label-likeliness">UNLIKELY</span>
+        </div>
+        <div class="summary-emotion-graph--percentage-label" data-ng-if="!list.aggregateAnalysis.emotion.Sadness">0<br><span class="summary-emotion-graph--percentage-label-likeliness">UNLIKELY</span>
+         </div>
+      </div>
+      
+  </div>
+          </div>
+          <div class="summary--writing">
+            <h5 class="base--h5 summary--header">Language Style</h5>
+            <div class="summary-writing-graph">
+    
+      <div class="bar-graph--row">
+        <div class="bar-graph--label-container summary-writing-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Analytical
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                A writer's reasoning and analytical attitude about things. Higher value, more likely to be perceived as intellectual, rational, systematic, emotionless, or impersonal.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-writing-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-writing-graph--bar-value summary-writing-graph--bar-value_Analytical" data-ng-if="list.aggregateAnalysis.languageStyle.Analytical" data-ng-style="{width:list.aggregateAnalysis.languageStyle.Analytical*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-writing-graph--bar-value summary-writing-graph--bar-value_Analytical" data-ng-if="!list.aggregateAnalysis.languageStyle.Analytical" data-ng-style="{width:'0'}"></div>          
+          </div>
+        </div>
+        <div class="bar-graph--percentage-label" data-ng-if="list.aggregateAnalysis.languageStyle.Analytical" data-ng-bind="list.aggregateAnalysis.languageStyle.Analytical.toFixed(2)"></div>
+        <div class="bar-graph--percentage-label" data-ng-if="!list.aggregateAnalysis.languageStyle.Analytical">0</div>
+      </div>
+      
+      <div class="bar-graph--row">
+        <div class="bar-graph--label-container summary-writing-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Confident
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                A writer's degree of certainty. Higher value, more likely to be perceived as assured, collected, hopeful, or egotistical.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-writing-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-writing-graph--bar-value summary-writing-graph--bar-value_Confident" data-ng-if="list.aggregateAnalysis.languageStyle.Confident" data-ng-style="{width:list.aggregateAnalysis.languageStyle.Confident*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-writing-graph--bar-value summary-writing-graph--bar-value_Confident" data-ng-if="!list.aggregateAnalysis.languageStyle.Confident" data-ng-style="{width:'0'}"></div>
+          </div>
+        </div>
+        <div class="bar-graph--percentage-label" data-ng-if="list.aggregateAnalysis.languageStyle.Confident" data-ng-bind="list.aggregateAnalysis.languageStyle.Confident.toFixed(2)"></div>
+        <div class="bar-graph--percentage-label" data-ng-if="!list.aggregateAnalysis.languageStyle.Confident">0</div>
+      </div>
+      
+      <div class="bar-graph--row">
+        <div class="bar-graph--label-container summary-writing-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Tentative
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                A writer's degree of inhibition. Higher value, more likely to be perceived as questionable, doubtful, limited, or debatable.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-writing-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-writing-graph--bar-value summary-writing-graph--bar-value_Tentative" data-ng-if="list.aggregateAnalysis.languageStyle.Tentative" data-ng-style="{width:list.aggregateAnalysis.languageStyle.Tentative*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-writing-graph--bar-value summary-writing-graph--bar-value_Tentative" data-ng-if="!list.aggregateAnalysis.languageStyle.Tentative" data-ng-style="{width:'0'}"></div>
+          </div>
+        </div>
+        <div class="bar-graph--percentage-label" data-ng-if="list.aggregateAnalysis.languageStyle.Tentative" data-ng-bind="list.aggregateAnalysis.languageStyle.Tentative.toFixed(2)"></div>
+        <div class="bar-graph--percentage-label" data-ng-if="!list.aggregateAnalysis.languageStyle.Tentative">0</div>
+      </div>
+      
+  </div>
+          </div>
+          <div class="summary--social">
+            <h5 class="base--h5 summary--header">Social Tendencies</h5>
+            <div class="summary-social-graph bar-graph">
+    
+      <div class="bar-graph--row">
+        <div class="bar-graph--label-container summary-social-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Openness
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                Higher value, writer more likely to be perceived as open to experiences for a variety of activities.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-social-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-social-graph--bar-value summary-social-graph--bar-value_Openness" data-ng-if="list.aggregateAnalysis.socialTendencies.Openness" data-ng-style="{width:list.aggregateAnalysis.socialTendencies.Openness*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-social-graph--bar-value summary-social-graph--bar-value_Openness" data-ng-if="!list.aggregateAnalysis.socialTendencies.Openness" data-ng-style="{width:'0'}"></div>
+          </div>
+        </div>
+        <div class="bar-graph--percentage-label" data-ng-if="list.aggregateAnalysis.socialTendencies.Openness" data-ng-bind="list.aggregateAnalysis.socialTendencies.Openness.toFixed(2)"></div>
+        <div class="bar-graph--percentage-label" data-ng-if="!list.aggregateAnalysis.socialTendencies.Openness">0</div>
+      </div>
+      
+      <div class="bar-graph--row">
+        <div class="bar-graph--label-container summary-social-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Conscientiousness
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                Higher value, the writer likely to be percieved as someone who would act in an organized or thoughtful way.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-social-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-social-graph--bar-value summary-social-graph--bar-value_Conscientiousness" data-ng-if="list.aggregateAnalysis.socialTendencies.Conscientiousness" data-ng-style="{width:list.aggregateAnalysis.socialTendencies.Conscientiousness*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-social-graph--bar-value summary-social-graph--bar-value_Conscientiousness" data-ng-if="!list.aggregateAnalysis.socialTendencies.Conscientiousness" data-ng-style="{width:'0'}"></div>
+          </div>
+        </div>
+        <div class="bar-graph--percentage-label" data-ng-if="list.aggregateAnalysis.socialTendencies.Conscientiousness" data-ng-bind="list.aggregateAnalysis.socialTendencies.Conscientiousness.toFixed(2)"></div>
+        <div class="bar-graph--percentage-label" data-ng-if="!list.aggregateAnalysis.socialTendencies.Conscientiousness">0</div>
+      </div>
+      
+      <div class="bar-graph--row">
+        <div class="bar-graph--label-container summary-social-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Extraversion
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                Higher value, the writer is likely to be perceived as someone who would seek stimulation in the company of others.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-social-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-social-graph--bar-value summary-social-graph--bar-value_Extraversion" data-ng-if="list.aggregateAnalysis.socialTendencies.Extraversion" data-ng-style="{width:list.aggregateAnalysis.socialTendencies.Extraversion*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-social-graph--bar-value summary-social-graph--bar-value_Extraversion" data-ng-if="!list.aggregateAnalysis.socialTendencies.Extraversion" data-ng-style="{width:'0'}"></div>
+          </div>
+        </div>
+        <div class="bar-graph--percentage-label" data-ng-if="list.aggregateAnalysis.socialTendencies.Extraversion" data-ng-bind="list.aggregateAnalysis.socialTendencies.Extraversion.toFixed(2)"></div>
+        <div class="bar-graph--percentage-label" data-ng-if="!list.aggregateAnalysis.socialTendencies.Extraversion">0</div>
+      </div>
+      
+      <div class="bar-graph--row">
+        <div class="bar-graph--label-container summary-social-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Agreeableness
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                Higher value, writer more likely to be perceived as, compassionate and cooperative towards others.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-social-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-social-graph--bar-value summary-social-graph--bar-value_Agreeableness" data-ng-if="list.aggregateAnalysis.socialTendencies.Agreeableness" data-ng-style="{width:list.aggregateAnalysis.socialTendencies.Agreeableness*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-social-graph--bar-value summary-social-graph--bar-value_Agreeableness" data-ng-if="!list.aggregateAnalysis.socialTendencies.Agreeableness" data-ng-style="{width:'0'}"></div>          
+          </div>
+        </div>
+        <div class="bar-graph--percentage-label" data-ng-if="list.aggregateAnalysis.socialTendencies.Agreeableness" data-ng-bind="list.aggregateAnalysis.socialTendencies.Agreeableness.toFixed(2)"></div>
+        <div class="bar-graph--percentage-label" data-ng-if="!list.aggregateAnalysis.socialTendencies.Agreeableness">0</div>
+      </div>
+      
+      <div class="bar-graph--row">
+        <div class="bar-graph--label-container summary-social-graph--label-container">
+          <div class="bar-graph--label">
+            <p class="base--p">
+              Emotional Range
+            </p>
+            
+              <div class="bar-graph--tooltip">
+                Higher value, writer likely to be perceived as someone sensitive to the environment.
+              </div>
+              
+          </div>
+        </div>
+        <div class="bar-graph--bar-container summary-social-graph--bar-container">
+          <div class="bar-graph--bar">
+            <div class="bar-graph--bar-value summary-social-graph--bar-value summary-social-graph--bar-value_Emotional-Range" data-ng-if="list.aggregateAnalysis.socialTendencies.EmotionalRange" data-ng-style="{width:list.aggregateAnalysis.socialTendencies.EmotionalRange*100+ '%'}"></div>
+            <div class="bar-graph--bar-value summary-social-graph--bar-value summary-social-graph--bar-value_Emotional-Range" data-ng-if="!list.aggregateAnalysis.socialTendencies.EmotionalRange" data-ng-style="{width:'0'}"></div>
+          </div>
+        </div>
+        <div class="bar-graph--percentage-label" data-ng-if="list.aggregateAnalysis.socialTendencies.EmotionalRange" data-ng-bind="list.aggregateAnalysis.socialTendencies.EmotionalRange.toFixed(2)"></div>
+        <div class="bar-graph--percentage-label" data-ng-if="!list.aggregateAnalysis.socialTendencies.EmotionalRange">0</div>
+      </div>
+      
+  </div>
+          </div>
+        </div>
+        <div class="user-analysis-link" data-ng-class="{hidden:!show}"><a href="#" data-ng-click="ctrl.getUserAnalysis(list.user.id, list.user.name);" class="fname">View Detailed Analysis of {{list.user.name}}</a></div>
+                    </div>
+                    
+                    <p data-ng-show="!recordField.length && ctrl.responseAvailable" class="noMatchFound ng-hide" data-ng-bind="'No Data Found.'"></p>
+                    <p data-ng-show="!recordField.length && !ctrl.responseAvailable" class="noMatchFound ng-hide" data-ng-bind="'Information Loading...'"></p>
+                </article>
+               
+            </div>
+        </div>
+    </div>
+</section>

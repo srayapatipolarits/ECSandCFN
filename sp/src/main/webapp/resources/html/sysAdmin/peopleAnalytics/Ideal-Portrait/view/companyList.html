@@ -1,0 +1,55 @@
+<section class="listing-action-plan" data-ng-if="!showCompanyPortraits">
+    <div class="members-filters">
+        <div class="search-filter">
+            <p>
+                <input type="text" maxlength="28" data-ng-model="pageSetting.textSearching0" placeholder="{{::pullInterNationalization('sysadmin.organization.search')}}" data-ng-model-options="{ debounce: { 'default': 300, 'blur': 0 } }" data-ng-change="pageSetting.pageSize=originalPageSetting.pageSize;" data-ng-minlength="3">
+                <button data-ng-class="{'icon-icon_remove':pageSetting.textSearching0.length, 'icon-icon_search': !pageSetting.textSearching0.length}" class="sp-icon-color" data-ng-click="pageSetting.textSearching0='';pageSetting.pageSize=originalPageSetting.pageSize;"></button>
+            </p>
+        </div>
+        <a href="/sp/sysAdmin/idealPortrait/create" class="btn-square-12px sp-background-color fRight" data-ng-bind="::pullInterNationalization('sysadmin.createPortrait')"></a>
+    </div>
+    <section class="account-organization">
+        <div class="custom-row row-header row">
+            <div class="col-md-4 col-sm-4">
+                <h4 class="sort-filter">
+					<span class="sort-text" data-ng-bind="::pullInterNationalization('accessManager.SysAccount')"></span>
+				</h4>
+            </div>
+            <div class="col-md-2 col-sm-2">
+            	<h4 class="sort-filter">
+            		<span class="sort-text" data-ng-bind="'City, Country'"></span>
+            	</h4>
+            </div>
+            <div class="col-md-2 col-sm-2"></div>
+            <div class="col-md-4 col-sm-4">
+            	<h4 class="sort-filter">
+            		<span class="sort-text" data-ng-bind="::pullInterNationalization('sysadmin.idealPortrait')"></span>
+            	</h4>            
+            </div>
+        </div>
+        <div infinite-scroll="infinteScroll(pageSetting.pageSize+pageSetting.pageSize, 'companyList')" infinite-scroll-immediate-check="false">
+            <div class="complete-profile" data-ng-repeat="companyList in recordField = ((portraitMatchCompanies | filter:{name:pageSetting.textSearching0}).slice(0,pageSetting.pageSize)) track by companyList.id">
+                <div class="table-row clearfix">
+                    <div class="col-md-4 col-sm-4">
+                    	<a href="javascript:void(0)" class="border-link" data-ng-click="viewCompanyPortraits(companyList)">
+                    		<span class="mock-link" data-ng-bind="companyList.name"></span>
+                    	</a>                        
+                    </div>
+                    <div class="col-md-2 col-sm-2 role_title">
+                    	<p data-ng-bind="companyList.address.city+', '+companyList.address.country"></p>
+                    </div>
+                    <div class="col-md-2 col-sm-2">
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                    	<a href="javascript:void(0)" class="border-link" data-ng-click="viewCompanyPortraits(companyList)">
+                    		<span class="mock-link" data-ng-bind="::pullInterNationalization('sysadmin.idealPortrait')+' ('+getCount(companyList.id)+')'"></span>
+                    	</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p data-ng-if="!recordField.length" class="noMatchF" data-ng-bind="::pullInterNationalization('sysadmin.noCompanies')"></p>
+    </section>
+</section>
+
+<ng-include src="'/sp/resources/html/sysAdmin/peopleAnalytics/Ideal-Portrait/view/companyPortraits.html'" data-ng-if="showCompanyPortraits"></ng-include>

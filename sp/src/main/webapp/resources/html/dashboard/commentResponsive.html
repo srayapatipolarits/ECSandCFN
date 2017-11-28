@@ -1,0 +1,195 @@
+<div class="comment-area comment-responsive response_{{ctrl.hideShow[ctrl.currentNews.id]}}">
+    <article class="previous-comment-container mobileEnd">
+    <div infinite-scroll="ctrl.infinteScrollComment(ctrl.pageSetting.commentPageSize+ctrl.pageSetting.commentPageSize)" infinite-scroll-distance="1" infinite-scroll-immediateCheck="false" infinite-scroll-parent="true" infinite-scroll-container="'.dashboard-comment-scroll .eaeaea'">
+    <!-- set-focus-last="$last" -->
+    	<div class="profile-style previous-comment" data-ng-repeat="comment in record = ctrl.currentNews.comments.slice(0,ctrl.pageSetting.commentPageSize) track by comment.cid" set-height="'.eaeaea .newsFeed'" set-el="'.dashboard-feed .eaeaea'" data-repeat-done="ctrl.emitLazy()" data-ng-init="uniqueId = comment.cid+'_'+ctrl.currentNews.id">
+            <div class="col-container action-container image-detail-part">
+                <div class="member-pic smallest">
+                    <img data-lazy-img="{{::comment.user.smallProfileImage}}" alt="{{::comment.user.userInitials}}" data-ng-if="comment.user.smallProfileImage">
+                    <div class="imgReplacementSmall" data-ng-if="!comment.user.smallProfileImage" data-ng-bind="::comment.user.userInitials"></div>
+                </div>
+                <div class="comment-info">
+                    <a data-ng-href="{{ctrl.userInfo.member.id===comment.user.id?'':'/sp/dashboard/profile?userId='+comment.user.id}}" class="default_{{ctrl.userInfo.member.id===comment.user.id}}">
+                        <span class="name mock-link" data-ng-bind="::comment.user.name" drop-tool-tip data-self='{{ctrl.userInfo.member.id}}' data-desc='{{comment.user}}'></span>
+                    </a>
+                    <input type="checkbox" class="read-more-state" id="readMoreToggleRes_{{comment.cid}}"/>
+                    <div class="read-more-wrap-horizontal changeStyle highLight_{{ctrl.highlighted==comment.cid}}" data-ng-init="btn=true">
+                         <span class="text block_mode" data-ng-bind-html="(btn?(comment.text| addEllipsis : 500):comment.text) | htmlLinky" data-ng-class="{'moreellipses':comment.text.length>500&&btn,'inline-block':!ctrl.whiteSpace(comment.text)}"></span>
+                    </div>
+                    <label for="readMoreToggleRes_{{comment.cid}}" data-readMore="{{::pullInterNationalization('spectrum.more')}}" data-readLess="{{::pullInterNationalization('label.readless')}}" data-ng-click="btn=!btn" class="read-more-trigger-horizontal sp-link-color" data-ng-class="{'sp-label-option':!(comment.text.length>500)}"></label>
+                       
+                    <div class="og-content clearfix changeOg" data-ng-if="comment.contentReference.title">
+                    	<div class="comment-preview-image" data-ng-include="'/sp/resources/html/dashboard/ogContent.html'" data-ng-init="comment = comment.contentReference"></div>
+                    </div>
+                </div>
+                <div class="actions-dropdown" data-ng-if="ctrl.userInfo.member.id===comment.user.id||ctrl.currentNews.owner">
+                    <a href="javascript:void(0)" class="noHover" sp-condition="true" sp-click-outside="deleteAll">
+                        <span class="action-link icon-icon_sort sp-icon-color"></span>
+                    </a>
+                    <div class="actions-callout-wrappper_style1 pos6 mob6" data-ng-if="deleteAll">
+                        <ul class="action-links">
+                            <li>
+                                <a href="javascript:void(0)" data-ng-click="ctrl.deleteCommentModal({'news':ctrl.currentNews,'comment':comment,'childComment':-1});">
+                                    <span class="action-icon icon-icon_accounts_remove sp-icon-color"></span>
+                                    <span class="action-text" data-ng-bind="pullInterNationalization('dashboard.edit.delete')"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="duration action-dropdown-added">
+					<span class="sp-label-option" data-ng-bind="::pullInterNationalization('dashboard.durationtime')"></span>
+                    <span data-ng-bind="comment.createdOn | spTimeUpdate"></span>
+                </div>
+                <div class="social-media count-media reply-comment-box">
+	               	<a href="javascript:void(0)" class="border-link sp-icon-color" data-ng-click="ctrl.likePost({'news':ctrl.currentNews,'comment':comment,'childComment':-1})">
+	                   <span class="mock-link link-media sp-icon-color" data-ng-bind="comment.likedByUser?pullInterNationalization('dashboard.unlike'):pullInterNationalization('dashboard.like')"></span>
+	                </a>
+	                <a href="javascript:void(0)" class="border-link sp-icon-color" data-ng-if="!ctrl.currentNews.blockCommenting" data-ng-click="ctrl.hideShow[uniqueId]=true;$parent.replyFocus=true;$parent.tagUser=false">
+	                   <span class="mock-link link-media weight-300 sp-icon-color" data-ng-bind="::pullInterNationalization('dashboard.reply')"></span>
+	                </a>
+	                <a href="javascript:void(0)" class="default_{{!(!!comment.likeCount)}}" data-ng-click="comment.likeCount && ctrl.likedUserName({'news':ctrl.currentNews,'comment':comment,'childComment':-1},$event)">
+			            <span class="action-icon icon-dashboard_like" data-ng-class="comment.likeCount?'sp-icon-color':'sp-not-active-color-999'"></span>
+			            <span class="action-text" data-ng-bind="comment.likeCount"></span>
+			        </a>
+			        <a href="javascript:void(0)" class="cursor-default border-link">
+			            <span class="action-icon icon-dashboard_comment" data-ng-class="comment.commentCount?'sp-icon-color':'sp-not-active-color-999'"></span>
+			            <span class="action-text" data-ng-bind="comment.commentCount"></span>
+			        </a>
+	            </div>
+            </div>
+            
+            
+            <!-- Child Level Hirarchy -->
+		    <article class="child-heirarchy" data-ng-init="comment.number = 1;" data-ng-if="comment.childComments.length">
+		    	 <a href="javascript:void(0)" class="previousChildComment" data-ng-if="comment.commentCount > record.length">
+		        	<span class="mock-link showMore" data-ng-click="ctrl.childComment(comment)" data-ng-bind="::pullInterNationalization('dashboard.showprevious')"></span>
+		         </a>
+		         <div class="profile-style previous-comment previous-child-comment" data-ng-class="{'first-child':(comment.commentCount > record.length && $first)}" data-ng-repeat="childComments in record = (comment.childComments.slice(0,comment.number).reverse()) track by childComments.cid" data-repeat-done="ctrl.emitLazy()">
+				 	
+				 	<div class="col-container action-container image-detail-part">
+		                <div class="member-pic smallest">
+		                    <img data-lazy-img="{{::childComments.user.smallProfileImage}}" alt="{{::childComments.user.userInitials}}" data-ng-if="childComments.user.smallProfileImage">
+		                    <div class="imgReplacementSmall" data-ng-if="!childComments.user.smallProfileImage" data-ng-bind="::childComments.user.userInitials"></div>
+		                </div>
+		                <div class="comment-info">
+		                    <a data-ng-href="{{ctrl.userInfo.member.id===childComments.user.id?'':'/sp/dashboard/profile?userId='+childComments.user.id}}" class="default_{{ctrl.userInfo.member.id===childComments.user.id}}">
+		                        <span class="name mock-link" data-ng-bind="::childComments.user.name" drop-tool-tip data-self='{{ctrl.userInfo.member.id}}' data-desc='{{childComments.user}}'></span>
+		                    </a>
+		                    <input type="checkbox" class="read-more-state" id="readMoreToggle_child_{{childComments.cid}}"/>
+		                    <div class="read-more-wrap-horizontal changeStyle" data-ng-init="btn=true">
+								<span class="text block_mode"
+									data-ng-bind-html="(btn?(childComments.text| addEllipsis : 500):childComments.text) | htmlLinky"
+									data-ng-class="{'moreellipses':childComments.text.length>500&&btn,'inline-block':!ctrl.whiteSpace(childComments.text)}"></span>
+							</div>
+		                    <label for="readMoreToggle_child_{{childComments.cid}}" data-readMore="{{::pullInterNationalization('spectrum.more')}}" data-readLess="{{::pullInterNationalization('label.readless')}}" data-ng-click="btn=!btn" class="read-more-trigger-horizontal sp-link-color" data-ng-class="{'sp-label-option':!(childComments.text.length>500)}"></label>
+		                       
+		                    <div class="og-content clearfix" data-ng-if="childComments.contentReference.title">
+		                    	<div class="comment-preview-image" data-ng-include="'/sp/resources/html/dashboard/ogContent.html'" data-ng-init="comment = childComments.contentReference"></div>
+		                    </div>
+		                </div>
+		                <div class="actions-dropdown" data-ng-if="ctrl.userInfo.member.id===childComments.user.id||ctrl.currentNews.owner">
+		                    <a href="javascript:void(0)" class="noHover" sp-condition="true" sp-click-outside="delete">
+		                        <span class="action-link icon-icon_sort sp-icon-color"></span>
+		                    </a>
+		                    <div class="actions-callout-wrappper_style1 pos6 mob6" data-ng-if="delete">
+		                        <ul class="action-links">
+		                            <li>
+		                                <a href="javascript:void(0)" data-ng-click="ctrl.deleteCommentModal({'news':ctrl.currentNews,'comment':comment,'childComment':childComments});">
+		                                    <span class="action-icon icon-icon_accounts_remove sp-icon-color"></span>
+		                                    <span class="action-text" data-ng-bind="pullInterNationalization('dashboard.edit.delete')"></span>
+		                                </a>
+		                            </li>
+		                        </ul>
+		                    </div>
+		                </div>
+		                <div class="duration action-dropdown-added">
+		                    <span data-ng-bind="childComments.createdOn | spTimeUpdate"></span>
+		                </div>
+		                <div class="social-media count-media reply-comment-box">
+			               	<a href="javascript:void(0)" class="border-link" data-ng-click="ctrl.likePost({'news':ctrl.currentNews,'comment':comment,'childComment':childComments})">
+			               	   <!-- data-ng-class="comment.likedByUser?'weight-900':'weight-300'"  -->
+			                   <span class="mock-link link-media weight-300" data-ng-bind="childComments.likedByUser?pullInterNationalization('dashboard.unlike'):pullInterNationalization('dashboard.like')"></span>
+			                </a>
+			                <a href="javascript:void(0)" class="border-link" data-ng-if="!ctrl.currentNews.blockCommenting" data-ng-click="ctrl.hideShow[uniqueId]=true;$parent.$parent.$parent.replyFocus=true;$parent.$parent.$parent.tagUser=true;comment.tempcomment.comment.comment='';$parent.$parent.$parent.user=childComments.user">
+			                   <span class="mock-link link-media weight-300 sp-icon-color" data-ng-bind="::pullInterNationalization('dashboard.reply')"></span>
+			                </a>
+			                <a href="javascript:void(0)" class="default_{{!(!!childComments.likeCount)}}" data-ng-click="childComments.likeCount && ctrl.likedUserName({'news':ctrl.currentNews,'comment':comment,'childComment':childComments},$event)">
+					            <span class="action-icon icon-dashboard_like" data-ng-class="childComments.likeCount?'sp-icon-color':'sp-not-active-color-999'"></span>
+					            <span class="action-text" data-ng-bind="childComments.likeCount"></span>
+					        </a>
+			            </div>
+		            </div>
+		          </div> 
+	         </article> 
+		    <!-- Child Level hirarchy -->
+		    
+		    <!-- Reply Comment Box Starts-->
+		    <div class="profile-style user-comment reply-comment-box" data-ng-if="!ctrl.currentNews.blockCommenting && ctrl.hideShow[uniqueId]">
+		        <div class="image-detail-part">
+		            <div class="member-pic smallest">
+		                <img data-ng-src="{{ctrl.userInfo.member.smallProfileImage}}" alt="{{ctrl.userInfo.member.userInitials}}" data-ng-if="ctrl.userInfo.member.smallProfileImage">
+		                <div class="imgReplacementSmall" data-ng-if="!ctrl.userInfo.member.smallProfileImage" data-ng-bind="ctrl.userInfo.member.userInitials"></div>
+		            </div>
+		            <!-- ui-mention-container -->
+		            <div class="comment-text-area" data-ng-init="comment.tempcomment = ctrl.createCommentObject(comment.cid);processing=false">
+		                <article class="closed-textarea disabled_{{ctrl.currentNews.edit}}">
+		                   <textarea class="reply-text-area " data-ng-trim="false" focus-if="$parent.replyFocus" data-ng-blur="$parent.replyFocus=false;$parent.tagUser=false;" ui-mention my-mention og-directive file-stack-modal override-style="file-stack-dashboard" reference="comment.tempcomment.comment.contentReference" clear-url="comment.tempcomment.comment.comment" og-processing="processing" data-ng-disabled="ctrl.currentNews.edit" data-ng-model="comment.tempcomment.comment.comment" name="provideComment" data-ng-attr-placeholder="{{::pullInterNationalization('dashboard.addcomment')}}"></textarea>
+		                   <!-- !comment.tempcomment.comment.comment.length &&  -->
+		                    <span data-ng-if="$parent.tagUser && $mention.mentions[0].id!==user.id" data-ng-init="comment.tempcomment.comment.comment='';($parent.user.id!==ctrl.userInfo.member.id&&$mention.select($parent.user))"></span>
+		                 
+		                   <div class="ui-mention-highlight" data-ng-bind-html="$mention.maskedText"></div>
+		                    <div class="contentReference clearfix" data-ng-if="comment.tempcomment.comment.contentReference.title">
+		                    	<div class="preview" data-ng-include="'/sp/resources/html/dashboard/ogContentComment.html'" data-ng-init="comment = comment.tempcomment.comment.contentReference"></div>
+		                    	<a class="icon-icon_remove close-view" href="javqscript:void(0)" data-ng-click="ctrl.removeReference(comment)"></a>
+		                    </div>
+		                    <ul class="mention-dropdown-sp" data-ng-if="$mention.choices.length" data-ng-style="{'top':-($mention.choices.length>5?5:$mention.choices.length)*44+'px'}">
+						      <li ng-repeat="choice in $mention.choices |limitTo:5" ng-class="{active:$mention.activeChoice==choice}">
+						        <a ng-click="$mention.select(choice)" data-ng-bind="::choice.name+' - '+choice.email">
+						        </a>
+						      </li>
+							</ul>
+		               </article>
+		               <div class="enter-comment">
+		               	<!-- <input type="button" value="{{::pullInterNationalization('dashboard.reply')}}" class="btn-block btn-14px sp-btn-color" data-ng-class="{'submit-btn-disabled':!processing && !comment.tempcomment.comment.comment.length && !comment.tempcomment.comment.contentReference.title.length}" data-ng-click="!processing && ctrl.addChildComment(comment,ctrl.currentNews,$mention.mentions,$event)"> -->
+		                <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('dashboard.reply')" data-ng-class="{'submit-btn-disabled':!processing && !comment.tempcomment.comment.comment.length && !comment.tempcomment.comment.contentReference.title.length}" data-ng-click="!processing && ctrl.addChildComment(comment,ctrl.currentNews,$mention.mentions,uniqueId)"></a>
+		               
+		               </div>
+		                 
+		         	</div>
+		        </div>
+		    </div>
+		    <!-- Reply Comment Box Ends -->
+        </div>
+    </div>
+    </article>
+    <div class="profile-style user-comment stickyCommentArea" data-ng-if="!ctrl.currentNews.blockCommenting && !ctrl.currentNews.edit && ctrl.hideShow[ctrl.currentNews.id]">
+        <div class="image-detail-part">
+            <div class="member-pic smallest">
+                <img data-ng-src="{{ctrl.userInfo.member.smallProfileImage}}" alt="{{ctrl.userInfo.member.userInitials}}" data-ng-if="ctrl.userInfo.member.smallProfileImage">
+                <div class="imgReplacementSmall" data-ng-if="!ctrl.userInfo.member.smallProfileImage" data-ng-bind="ctrl.userInfo.member.userInitials"></div>
+            </div>
+            <div class="comment-text-area rightPos" data-ng-init="ctrl.currentNews.tempcomment = ctrl.createCommentObject();processing=false">
+                <article class="closed-textarea disabled_{{ctrl.currentNews.edit}} right10">
+                	<label class="sp-label-option" for="comment-text_{{ctrl.currentNews.id}}" data-ng-bind="::pullInterNationalization('dashboard.labelcomment')"></label>
+                    <textarea id="comment-text_{{ctrl.currentNews.id}}" data-ng-trim="false" data-focus-if="ctrl.hideShowFocus[ctrl.currentNews.id]" data-ng-blur="ctrl.hideShowFocus[ctrl.currentNews.id]=false" ui-mention my-mention og-directive file-stack-modal override-style="file-stack-dashboard" reference="ctrl.currentNews.tempcomment.comment.contentReference" clear-url="ctrl.currentNews.tempcomment.comment.comment" og-processing="processing" data-ng-model="ctrl.currentNews.tempcomment.comment.comment" name="provideComment" data-ng-attr-placeholder="{{::pullInterNationalization('dashboard.addcomment')}}"></textarea>
+                    <div class="ui-mention-highlight" data-ng-bind-html="$mention.maskedText"></div>
+                    <div class="contentReference clearfix" data-ng-if="ctrl.currentNews.tempcomment.comment.contentReference.title">
+                    	<div class="preview" data-ng-include="'/sp/resources/html/dashboard/ogContentComment.html'" data-ng-init="comment = ctrl.currentNews.tempcomment.comment.contentReference"></div>
+                        <a class="icon-icon_remove close-view" href="javascript:void(0)" data-ng-click="ctrl.removeReference(ctrl.currentNews.tempcomment.comment.contentReference)"></a>
+                    </div>
+                    
+                    <ul class="mention-dropdown-sp" data-ng-if="$mention.choices.length" data-ng-style="{'top':-($mention.choices.length>5?5:$mention.choices.length)*44+'px'}">
+				      <li ng-repeat="choice in $mention.choices | limitTo:5" ng-class="{active:$mention.activeChoice==choice}">
+				        <a ng-click="$mention.select(choice)" data-ng-bind="::choice.name+' - '+choice.email">
+				        </a>
+				      </li>
+					</ul>
+                </article>
+                <div class="enter-comment">
+                	<a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('dashboard.addComment')" data-ng-class="{'submit-btn-disabled':!ctrl.currentNews.tempcomment.comment.comment.length && !ctrl.currentNews.tempcomment.comment.contentReference.title.length}" data-ng-click="!processing && ctrl.addComment(ctrl.currentNews,$mention.mentions,$event)"></a>
+               </div>
+            </div>
+        </div>
+    </div>
+</div>

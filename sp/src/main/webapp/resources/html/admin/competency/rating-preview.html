@@ -1,0 +1,62 @@
+<div class="container competency-rating-modal-desktop" data-ng-style="ctrl.winWidth<768 && {'height':ctrl.winHeight}">
+    <div class="row" data-ng-class="ctrl.winWidth<768?'row-full-w':''">
+        <div class="col-xs-12 col-md-offset-1 col-md-11 col-sm-offset-2 col-sm-8" data-ng-class="ctrl.winWidth<768?'col-full-w':''">
+            <section class="wrapper createGroup">
+                <div class="contentBody">
+                    <div class="head">
+                        <div class="wrap">
+                            <div class="headerBar" data-ng-bind="ctrl.selectedCompetencyProfileName"></div>
+                            <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="cm-rating-popup">
+                <div class="col-xs-12">
+                   <div class="left-col">
+                    <div class="cmr-comp-content-wrap clearfix mpReset mgTop10 mb15">
+                        <h5>{{::pullInterNationalization('competency.rating.name')}} ({{ctrl.currentIndex+1}}/{{ctrl.selectedCompetencyList.length}})</h5>
+                        <div class="cmrc-details clearfix mpReset">
+                            <p class="tUpperCase tSize12 tWeight900" data-ng-bind="ctrl.selectedCompetency.name"></p>
+                            <p class="tSize22 pdTop5 pMinH" data-ng-bind-html="ctrl.selectedCompetency.description"></p>
+                            <!-- <p class="tSize12 tUpperCase pdTop5"><a href="#">MORE</a></p>  -->
+                        </div>
+                        </div>
+                        </div>
+                        <div class="right-col">
+                        <div class="cmr-slider-rating clearfix mpReset mgTop30">
+                            <!--  Range Slider Starts -->
+                            <div class="competency-rating-wrap fWidth">
+                            	<!-- <p class="competency-rating-value" data-ng-bind="ctrl.competencyRangeSlider"></p>  -->
+                                <p class="competency-rating-slider">
+                                    <input type="range" min="1" max="{{ctrl.selectedCompetency.rating.ratingList.length}}" step="1"  data-ng-model="ctrl.competencyRangeSlider">
+                                </p>
+                                <div class="competency-rating-desc">
+                                    <ul>
+                                        <li data-ng-style="{width:87/(ctrl.selectedCompetency.rating.ratingList.length-1)+ '%'}" data-ng-class="{'active' : ctrl.competencyRangeSlider==$index+1,'auto-width-last': $last}" data-ng-repeat="rating in ctrl.selectedCompetency.rating.ratingList track by $index">
+                                            <span class="cm-rating-num sp-icon-color" data-ng-bind="rating.score"></span>
+                                            <!-- <span class="cm-rating-desc sp-icon-color" data-ng-bind="rating.title"></span>  -->
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--  Range Slider Ends -->
+                        </div>
+                        
+                        <div class="cmrc-desc-cont clearfix mpReset mgTop5" id="cmrc-desc-cont_{{ctrl.competencyRangeSlider}}">
+                            <h5 data-ng-bind="ctrl.selectedCompetency.rating.ratingList[ctrl.competencyRangeSlider - 1].title"></h5>
+                            <div class="mgTopNegative10"><span data-ng-if="ctrl.selectedCompetency.rating.ratingList[ctrl.competencyRangeSlider - 1].title !==null && ctrl.selectedCompetency.rating.ratingList[ctrl.competencyRangeSlider - 1].title !==''" data-ng-bind-html="ctrl.selectedCompetency.rating.ratingList[ctrl.competencyRangeSlider - 1].description"></span></div>
+                            <!-- <h5 data-ng-if="ctrl.selectedCompetency.rating.ratingList[ctrl.competencyRangeSlider - 1].title ===null || ctrl.selectedCompetency.rating.ratingList[ctrl.competencyRangeSlider - 1].title ===''">Evaluation between {{ctrl.selectedCompetency.rating.ratingList[ctrl.competencyRangeSlider - 2].title}} and {{ctrl.selectedCompetency.rating.ratingList[ctrl.competencyRangeSlider].title}}.</h5> -->
+                        </div>
+                    </div>
+                    <div class="cmrc-action-btns clearfix mpReset pdTop25 mgTop30 pdBot25">
+                        <a href="#" data-ng-click="closeThisDialog()" class="tSize12 tWeight700 default-color" data-ng-bind="::pullInterNationalization('competency.rating.cancel')"></a>
+                        <a href="#" data-ng-if="ctrl.currentIndex + 1 === ctrl.selectedCompetencyList.length" data-ng-click="closeThisDialog()" class="tSize12 tWeight700 tAlignR sp-link-color prev-next" data-ng-bind="::pullInterNationalization('competency.manager.managerEvaluation.done')"></a>
+                        <a href="#" data-ng-if="ctrl.currentIndex + 1 !== ctrl.selectedCompetencyList.length" data-ng-click="ctrl.next();" class="tSize12 tWeight700 tAlignR sp-link-color prev-next mRight" data-ng-bind="::pullInterNationalization('competency.rating.next')"></a>
+                        <a href="#" data-ng-class="ctrl.currentIndex ===0? 'default-color':''" data-ng-click="ctrl.prev();" class="tSize12 tWeight700 tAlignR sp-link-color prev-next" data-ng-bind="::pullInterNationalization('competency.rating.previous')"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

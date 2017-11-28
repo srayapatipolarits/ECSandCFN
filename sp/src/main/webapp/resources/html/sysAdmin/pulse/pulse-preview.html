@@ -1,0 +1,78 @@
+<div class="container" id="editGroup">
+    <div class="row">
+        <div class="col-xs-offset-1 col-xs-10">
+            <div>
+                <section class="wrapper">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar">PULSE QUESTION SET PREVIEW</div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                            </div>
+                        </div>
+                        <div class="contentArea">
+                            <div class="pulse pulse-admin" >
+                                <div class="x-container">
+                                    <!-- Extended Container -->
+                                    <div class="">
+                                        <!-- Bootstrap Container -->
+                                        <div class="">
+                                            <!-- Bootstrap Row -->
+                                            <div class="pulse-content">
+                                                <section>
+                                                    <div class="col-md-12 pulse-questions">
+                                                        <div class="pulse-question-group">
+                                                        	<div class="clearfix">
+								                                <h3 class="dropDownSelected" data-ng-bind-html="newPulse.name"></h3>
+								                                <div class="iconRotation"><span class="arrow-icon" ng-class="$parent.defaultPulseName!=0?'icon-triangle-left sp-icon-color':'icon-triangle-left'" data-ng-click="$parent.defaultPulseName > 0 &&  decrement() && defaultPulse($parent.defaultPulseName)"></span><span class="count weight-500" data-ng-bind-html="($parent.defaultPulseName+1) +' '+ pullInterNationalization('pulse.of') +' ' + (pulseDrop.length)"></span><span class="arrow-icon" ng-class="$parent.defaultPulseName!=pulseDrop.length-1?'icon-triangle-right sp-icon-color':'icon-triangle-right'" data-ng-click="$parent.defaultPulseName < pulseDrop.length-1 && increment() && defaultPulse($parent.defaultPulseName)"></span></div>
+								                            </div>
+                                                            <ul class="pulse-question-list-checkbox">
+                                                                <li class="form-container">
+                                                                	<h3 class="heading-h3">
+												                        <span class="label-question-key" >
+												                          <span data-ng-bind-html="pulseDrop[$parent.defaultPulseName]" class="label"></span>
+												                        </span>
+								                  					  </h3>
+                                                                </li>
+                                                                <li class="mb35" data-ng-repeat="mapObject in mapQuestionObject">
+                                                                    <h3><span data-ng-bind-html="mapObject.description" class="weight-100"></span></h3>
+								                                    <ul>
+								                                        <li data-ng-repeat="mapObjects in mapObject.optionsList" class="messageBlock">
+								                                            <div class="pCheckBox top7">
+								                                                <input type="checkbox" name="toggleAll" value="false" data-ng-disabled="true" id="disabled" class="iCheckBox">
+								                                                <label for="disabled" class="lCheckBox disabled">
+								                                                    <span class="checkedTick disabled top3 icon-icon_dev_strategy_check sp-icon-color"></span>
+								                                                </label>
+								                                                <span class="label-name-25 weight-300" data-ng-bind-html="mapObjects.text"></span>
+								                                            </div>
+								                                        </li>
+								                                    </ul>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <!-- //pulse-questions -->
+                                                </section>
+												<div class="sp-btn-wrapper sp-red btn-small floatLeft spacing">
+				                                   	<div class="sp-btn">
+				                                       	<input type="button" value="DONE" class="btnStyle1 " ng-click="closeThisDialog()">
+				                                   	</div>
+				                               	</div>                                                  
+                                            </div>
+                                            <!-- //feedback-results -->
+                                        </div>
+                                        <!-- //pulse-feedback -->                                          
+                                    </div>
+                                  
+                                </div>
+                            </div>                          
+                        </div>   
+
+                    </div>
+            </div>
+        </div>
+        </section>
+    </div>
+</div>
+</div>
+</div>

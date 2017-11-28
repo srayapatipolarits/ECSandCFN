@@ -1,0 +1,132 @@
+<div class="note-entry-details panel-notes-slide-4" data-ng-class="{'out':ctrl.pageView === 'listing','in':ctrl.pageView === 'detail'}">
+    <!-- header sec -->
+    <div class="note-entry-header sp-background-color">
+        <div class="notes-header-title">
+            <span class="icon-back-link icon-triangle-left" data-ng-click="actionCtrl.taskType = '';actionCtrl.pageView = 'listing';">
+	         </span>
+            <!-- Inline style will be removed once the image is converted to an icon -->
+            <span class="icon-panel-top-back icon-icon_actionplan invisible"></span>
+        </div>
+        <div class="text-icons text-icon-margin">
+            <p>
+                <span class="top-task-title no-text-transform less-left-margin" data-ng-bind="ctrl.currentActive.name" data-ng-click="actionCtrl.taskType = '';actionCtrl.pageView = 'listing';"></span>
+            </p>
+        </div>
+    </div>
+    <!-- content sec -->
+    <div class="note-entry-content max-height-panel">
+        <div class="pa-details" data-ng-if="ctrl.pageView === 'detail'" data-ng-init="ctrl.setRootScopeView()">
+            <div class="private-notes-list notify-section org-section section-1 ert-i">
+                <span class="lp-tasks-linear" data-ng-bind="pullInterNationalization('badge.erti.level')+' '+ertiProgress.level+' ('+ertiProgress.completedCount+' '+pullInterNationalization('practiceArea.of')+' '+ertiProgress.totalCount+' '+pullInterNationalization('goals.erti.completed')+')'"></span>
+                <div class="lp-progress-linear" progress-animation progress-graph="ctrl.progressBar" remaining-tasks="ertiProgress.completedCount" total-tasks="ertiProgress.totalCount" type="linear"></div>
+                <span class="action-icon" data-ng-class="{'badge-grey icon-badge_ertiLevel1':ertiProgress.level === 1,
+       				                'badge-grey icon-badge_ertiLevel2':ertiProgress.level === 2,
+       				                'badge-grey icon-badge_ertiLevel3':ertiProgress.level === 3,
+       				                'badge-grey icon-badge_ertiLevel4':ertiProgress.level === 4,
+       				                'badge-grey icon-badge_ertiLevel5':ertiProgress.level === 5 && ertiProgress.completedCount !== ertiProgress.totalCount,
+       				                'icon-badge_ertiLevel5 sp-icon-color':ertiProgress.level === 5 && ertiProgress.completedCount === ertiProgress.totalCount}"></span>
+            </div>
+            <span class="erti-text" data-ng-bind="::pullInterNationalization('practiceArea.developmentStrategies')"></span>
+            <div class="erti-counter adj">
+                <a href="#" data-ng-if="ctrl.currentIndex !== 0" data-ng-click="ctrl.prevDevStrategy();" class="tSize12 tWeight700 tAlignR sp-link-color prev-next"><span class="icon-icon_home-arrow back-ic ic-flip adj dirArrows al sp-background-color"></span></a>
+                <a href="#" data-ng-if="ctrl.currentIndex === 0" class="tSize12 tWeight700 tAlignR inactive-state-color prev-next"><span class="icon-icon_home-arrow back-ic grey ic-flip adj dirArrows al"></span></a>
+                <span class="counter">{{ctrl.currentIndex + 1}}/{{ctrl.goalsDetail.userGoalsDto.activeDevelopmentStrategyList.length}}</span>
+                <a href="#" data-ng-if="ctrl.currentIndex + 1 !== ctrl.goalsDetail.userGoalsDto.activeDevelopmentStrategyList.length" data-ng-click="ctrl.nextDevStrategy();" class="tSize12 tWeight700 tAlignR sp-link-color prev-next mRight"> <span class="icon-icon_home-arrow back-ic dirArrows sp-background-color"></span></a>
+                <a href="#" data-ng-if="ctrl.currentIndex + 1 === ctrl.goalsDetail.userGoalsDto.activeDevelopmentStrategyList.length" class="tSize12 tWeight700 tAlignR last-state-color prev-next grey mRight"> <span class="icon-icon_home-arrow back-ic grey dirArrows"></span></a>
+            </div>
+            <div class="development-strategy notify-section erti-section adjust-margin-first">
+                <div class="ds-list" id="devStrategy_{{$index}}" data-ng-repeat="list in filtered = (ctrl.goalsDetail.userGoalsDto.activeDevelopmentStrategyList) track by list.id" data-ng-init="isVideo = list.videoUrl">
+                    <div class="ert-thumb-img" data-ng-if="list.videoUrl">
+                        <a href="javascript:void(0)" data-ng-click="ctrl.videoPopUp(list.videoUrl)">
+                            <!-- Setting width and height here. -->
+                            <img data-ng-src="{{list.imageUrl}}" />
+                            <span class="erti-play-btn">
+                            	<span class="icon-triangle-right sp-icon-color"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="list-content" data-ng-class="{'list-only-content':!list.videoUrl,'additional-left-margin':list.videoUrl}">
+                        <p class="dev-strategy-description" data-ng-bind-html="list.dsDescription"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="new-learning-section">
+                <div class="erti-text kc-text" data-ng-bind="::pullInterNationalization('practiceArea.knowledgeBuilding')"></div>
+                <!--  Article Filter Starts  -->
+                <div class="learning-filters">
+                    <div class="mFilters mType">
+                        <span class="filter-text click-cursor" sp-condition="true" sp-click-outside="showFilter" data-ng-bind="ctrl.filterLabel"></span>
+                        <span class="icon-icon_sort filter-dropdown-icon click-cursor" sp-condition="true" sp-click-outside="showFilter"></span>
+                        <div class="actions-callout-wrappper notes-module ertiFilter" data-ng-if="showFilter">
+                            <ul class="action-links notes-links">
+                                <li>
+                                    <a href="javascript:void(0)" data-ng-click="ctrl.applyArticleFilterMobile('all',pullInterNationalization('practiceArea.Filter2'))">
+                                        <span class="action-text" data-ng-bind="pullInterNationalization('practiceArea.Filter2')"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" data-ng-click="ctrl.applyArticleFilterMobile('mandatoryArticle', pullInterNationalization('practiceArea.Filter3'))">
+                                        <span class="action-text" data-ng-bind="pullInterNationalization('practiceArea.Filter3')"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" data-ng-click="ctrl.applyArticleFilterMobile('articleRecommendedByUser', pullInterNationalization('practiceArea.Filter4'))">
+                                        <span class="action-text" data-ng-bind="pullInterNationalization('practiceArea.Filter4')"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" data-ng-click="ctrl.applyArticleFilterMobile('articleBookmarked', pullInterNationalization('practiceArea.Filter5'))">
+                                        <span class="action-text" data-ng-bind="pullInterNationalization('practiceArea.Filter5')"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" data-ng-click="ctrl.applyArticleFilterMobile('userArticleStatus', pullInterNationalization('practiceArea.Filter6'))">
+                                        <span class="action-text" data-ng-bind="pullInterNationalization('practiceArea.Filter6')"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--  Article Filter Ends  -->
+                <div class="learning-articles-wrapper" infinite-scroll="ctrl.infinteScroll(ctrl.pageSetting.pageSize+ctrl.pageSetting.pageSize)" infinite-scroll-immediate-check="false">
+                    <div class="new-article-content" data-ng-repeat="articles in recordField = ((ctrl.allArticlesListings | filter:ctrl.articlesFilter).slice(0,ctrl.pageSetting.pageSize))">
+                        <div class="new-article-details" data-ng-class="{'lPad':noSelf!=='','mt9':$first}">
+                            <span class="new-article-icon sp-icon-color" data-ng-class="{'icon-icon_audio':articles.articleType=='PODCAST','icon-icon_slideshow':articles.articleType=='SLIDESHARE','icon-icon_video':articles.articleType=='VIDEO','icon-icon_article':articles.articleType=='TEXT'}"></span>
+                            <div class="event-practice-article">
+                                <a data-ng-href="/sp/trainingLibrary/article?{{articles.articleLinkUrl}}" class="border-link" id="event_type_{{articles.articleType}}_{{$index}}"> <span class="mock-link article-font" data-ng-bind="articles.articleLinkLabel"></span>
+                                </a>
+                                <div class="new-articles-info"> <span data-ng-class="{'add-pipe-right' : articles.articleSource || articles.mandatoryArticle || articles.userArticleStatus==='COMPLETED'}" data-ng-if="articles.author" data-ng-bind="pullInterNationalization('practice.by')+' '+articles.author[0]"></span>
+                                    <span data-ng-class="{'add-pipe-right' : articles.mandatoryArticle || articles.userArticleStatus==='COMPLETED'}" data-ng-if="articles.articleSource" data-ng-bind="articles.articleSource"></span>
+                                    <span class="editors-choice" data-ng-if="articles.mandatoryArticle"><em
+									data-ng-bind="pullInterNationalization('practiceArea.Filter3')"></em></span>
+                                </div>
+                                <div class="new-articles-info" data-ng-if="articles.userArticleStatus==='COMPLETED'">
+                                    <span class="completed-icon adj"> 
+                                    	<span class="article-done-icon icon-icon_dev_strategy_check sp-icon-color adj1"></span>
+                                    	<span class="article-done-text" data-ng-bind="pullInterNationalization('practiceArea.Filter6')"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-err-msgs" data-ng-if="!recordField.length">
+                        <p data-ng-if="ctrl.articlesFilterSelected===3 || ctrl.articlesFilterSelected===-1" data-ng-bind="pullInterNationalization('practiceArea.noMatch0')"></p>
+                        <p data-ng-if="ctrl.articlesFilterSelected===4" data-ng-bind="pullInterNationalization('practiceArea.noMatch1')"></p>
+                        <p data-ng-if="ctrl.articlesFilterSelected===5" data-ng-bind="pullInterNationalization('practiceArea.noMatch2')"></p>
+                        <p data-ng-if="ctrl.articlesFilterSelected===6" data-ng-bind="pullInterNationalization('practiceArea.noMatch3')"></p>
+                        <p data-ng-if="ctrl.articlesFilterSelected > 6" data-ng-bind="pullInterNationalization('practiceArea.noMatch0')"></p>
+                        <p> </p>
+                    </div>
+                    <div class="load-more" data-ng-if="ctrl.showMoreLink">
+                        <p>
+                            <a href="javascript:void(0)" class="border-link" data-ng-click="ctrl.loadAllArticles()">
+                                <span class="mock-link more-link" data-ng-bind="::pullInterNationalization('actionPlan.module.erti.moreLink')"></span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

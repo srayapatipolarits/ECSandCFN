@@ -1,0 +1,49 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                    <h2 data-ng-bind="::pullInterNationalization('admin.group.createstatusassign')"></h2>
+                </div>
+                <div class="new-modals-wrapper">
+                    <!-- Form Elements -->
+                    <div class="form-elements">
+                        <div class="angucomplete-wrapper">
+                            <angucomplete id="gl1" placeholder="{{::pullInterNationalization('manageAccountContent.searchMemberNameEmail')}}" pause="100" selectedobject="ctrl.searchGroupLead" localdata="ctrl.ps_fullEmailList" searchfields="firstName,lastName,email" titlefield="firstName,lastName" minlength="1" inputclass="form-control form-control-small" templatetype="default" update-fn="ctrl.ps_saveLeadData(callback.originalObject)"/>
+                        </div>
+                        <span class="validate-error" data-ng-if="vm.ps_errorNotification.selectGroupLead" data-ng-bind="::pullInterNationalization('admin.group.groupLeadNameReaquired')"></span>
+                    </div>
+                    <!-- Form Elements Ends -->
+                    <!-- Selected Items List Start -->
+                    <div class="selected-group-List-wrapper customH">
+                        <div class="group-row nob" data-ng-if="ctrl.searchGroupLead.originalObject">
+                            <div class="group-col w80">
+                                <div class="member-details-pic-wrapper">
+                                    <div class="mem-pic-thumb regPic">
+                                        <img data-ng-src="{{ctrl.searchGroupLead.originalObject.smallProfileImage}}" alt="{{ctrl.searchGroupLead.originalObject.userInitials}}" data-ng-if="ctrl.searchGroupLead.originalObject.smallProfileImage">
+                                        <div class="imgReplacement spcTop" data-ng-if="!ctrl.searchGroupLead.originalObject.smallProfileImage" data-ng-bind="ctrl.searchGroupLead.originalObject.userInitials"></div>
+                                    </div>
+                                    <div class="mem-details-info ml">
+                                        <p class="memNameOne" data-ng-if="ctrl.searchGroupLead.originalObject.name">
+                                            <span class="sp-link-color" data-ng-bind="ctrl.searchGroupLead.originalObject.name+', '"></span>
+                                            <span data-ng-bind="ctrl.searchGroupLead.originalObject.title"></span>
+                                        </p>
+                                        <p class="memEmail lh16" data-ng-bind="ctrl.searchGroupLead.originalObject.email"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Selected Items List End -->
+                    <!-- Buttons Starts -->
+                    <div class="dialog-btns-wrapper">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.submit')}}" class="btn-block btn-14px sp-btn-color" class="btn-block btn-14px sp-btn-color" data-ng-click="ctrl.ps_assignNewGroup(ctrl.ps_profileList.name,ctrl.searchGroupLead.originalObject.email)">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.cancel')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="closeThisDialog();">
+                    </div>
+                    <!-- Buttons Ends -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

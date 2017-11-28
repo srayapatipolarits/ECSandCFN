@@ -1,0 +1,266 @@
+<!-- IntilligentHiring Starts -->
+<div class="sp-billing-section intilligentHiring-section" id="formIntelligentHiring">
+    <div class="billing-form">
+        <ol class="form-list-billing">
+            <li class="section-sep-head" data-ng-bind="::pullInterNationalization('pricing.create.heading7')"></li>
+            <li class="ele-left w44 r30">
+                <label class="label-text" data-ng-bind="::pullInterNationalization('pricing.create.label2')"></label>
+                <div class="select-wrapper brdr" data-ng-class="{'disabled':ctrl.disableHiringForm}">
+                    <span class="ab-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                    <select class="select-option-style" name="planForms_F2_aggreementTerm" data-ng-model="ctrl.billingStep2HiringDetails.aggreementTerm" data-ng-required="ctrl.viewForm==='IntelligentHiring' && !ctrl.disableHiringForm" data-ng-change="ctrl.updatePricing('hiring')" data-ng-disabled="ctrl.disableHiringForm" data-ng-class="{'serialize-ignore':ctrl.ignoreHiringForm}">
+                        <option value="" data-ng-bind="::pullInterNationalization('pricing.create.y0')"></option>
+                        <option value="1" data-ng-bind="::pullInterNationalization('pricing.create.y1')"></option>
+                        <option value="2" data-ng-bind="::pullInterNationalization('pricing.create.y2')"></option>
+                        <option value="3" data-ng-bind="::pullInterNationalization('pricing.create.y3')"></option>
+                    </select>
+                </div>
+                <span class="validate-error" data-ng-if="ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.planForms_F2_aggreementTerm.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+            </li>
+            <li class="ele-left w44">
+                <label class="label-text" data-ng-bind="::pullInterNationalization('pricing.create.label3')"></label>
+                <input type="number" min="1" step="1" name="planForms_F2_spPlanLicensePrice" data-ng-model="ctrl.billingStep2HiringDetails.spPlanLicensePrice" data-ng-pattern="/^\s*(?=.*[0-9])\d*(?:\.\d{1,2})?\s*$/" data-ng-required="ctrl.viewForm==='IntelligentHiring' && !ctrl.disableHiringForm" data-ng-paste="ctrl.updatePricing('hiring')" data-ng-keyup="ctrl.updatePricing('hiring')" data-ng-keydown="ctrl.updatePricing('hiring')" data-ng-keypress="ctrl.updatePricing('hiring')" data-ng-disabled="ctrl.disableHiringForm" data-ng-class="{'serialize-ignore':ctrl.ignoreHiringForm}"/>
+                <span class="validate-error" data-ng-if="ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.planForms_F2_spPlanLicensePrice.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                <span class="validate-error" data-ng-if="ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.planForms_F2_spPlanLicensePrice.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+                <span class="validate-error" data-ng-if="ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.planForms_F2_spPlanLicensePrice.$error.min" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+            </li>
+            <li class="section-sep-head ele-left mtop60" data-ng-bind="::pullInterNationalization('pricing.create.heading3')"></li>
+            <li class="ele-left r30">
+                <label class="label-text" data-ng-bind="::pullInterNationalization('pricing.create.label7')"></label>
+                <input type="number" min="0" step="1" name="planForms_F2_numAdmin" data-ng-model="ctrl.billingStep2HiringDetails.numAdmin" data-ng-pattern="/^[1-9][0-9]*$/" data-ng-required="ctrl.viewForm==='IntelligentHiring' && !ctrl.disableHiringForm" data-ng-paste="ctrl.updatePricing('hiring')" data-ng-keyup="ctrl.updatePricing('hiring')" data-ng-keydown="ctrl.updatePricing('hiring')" data-ng-keypress="ctrl.updatePricing('hiring')"  data-ng-disabled="ctrl.disableHiringForm" data-ng-class="{'serialize-ignore':ctrl.ignoreHiringForm}"/>
+                <span class="validate-error" data-ng-if="ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.planForms_F2_numAdmin.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                <span class="validate-error" data-ng-if="ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.planForms_F2_numAdmin.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+            </li>
+            <li class="ele-left r30">
+                <label class="label-text" data-ng-bind="::pullInterNationalization('pricing.create.label8')"></label>
+                <span class="info-box" data-ng-if="ctrl.billingStep2HiringDetails.isOverrideAdminAmount || (ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable)" data-ng-bind="ctrl.billingStep2HiringDetails.unitAdminPrice"></span>
+                <input data-ng-class="{'hideField':ctrl.billingStep2HiringDetails.isOverrideAdminAmount || (ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable),'serialize-ignore':ctrl.ignoreHiringForm}" type="number" min="0" step="1" name="planForms_F2_unitAdminPrice" data-ng-model="ctrl.billingStep2HiringDetails.unitAdminPrice" data-ng-pattern="/^\s*(?=.*[0-9])\d*(?:\.\d{1,2})?\s*$/" data-ng-required="ctrl.viewForm==='IntelligentHiring' && !ctrl.disableHiringForm" data-ng-paste="ctrl.updatePricing('hiring')" data-ng-keyup="ctrl.updatePricing('hiring')" data-ng-keydown="ctrl.updatePricing('hiring')" data-ng-keypress="ctrl.updatePricing('hiring')"  data-ng-disabled="ctrl.disableHiringForm" />
+                <span class="label-text fs12" data-ng-bind="pullInterNationalization('pricing.create.desc17')"></span>
+                <span class="validate-error" data-ng-if="ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.planForms_F2_unitAdminPrice.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                <span class="validate-error" data-ng-if="ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.planForms_F2_unitAdminPrice.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+            </li>
+            <li class="ele-left">
+                <p class="cb-custom fl">
+                    <input id="isOverrideAdminAmount_Hiring" type="checkbox" data-ng-model="ctrl.billingStep2HiringDetails.isOverrideAdminAmount" data-ng-change="ctrl.updatePricing('hiring')" class="serialize-ignore" data-ng-disabled="ctrl.disableHiringForm"/>
+                    <label for="isOverrideAdminAmount_Hiring">
+                        <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                        <span class="checkText" data-ng-bind="::pullInterNationalization('pricing.create.label6')"></span>
+                    </label>
+                </p>
+                <input type="radio" checked="checked" class="hideField no-reset" data-ng-checked="true" data-ng-value="ctrl.billingStep2HiringDetails.isOverrideAdminAmount" value="{{ctrl.billingStep2HiringDetails.isOverrideAdminAmount}}" name="planForms_F2_isOverrideAdminAmount" data-ng-disabled="ctrl.disableHiringForm" data-ng-class="{'serialize-ignore':ctrl.ignoreHiringForm}"/>
+                <span class="info-box" data-ng-if="!ctrl.billingStep2HiringDetails.isOverrideAdminAmount" data-ng-bind="ctrl.monthlyAdminPriceHiring"></span>
+                <input class="hideField" data-ng-class="{'showField':ctrl.billingStep2HiringDetails.isOverrideAdminAmount,'serialize-ignore':ctrl.ignoreHiringForm}" type="number" min="0" step="1" name="planForms_F2_overrideAdminPrice" data-ng-model="ctrl.billingStep2HiringDetails.overrideAdminPrice" data-ng-pattern="/^\s*(?=.*[0-9])\d*(?:\.\d{1,2})?\s*$/" data-ng-required="ctrl.billingStep2HiringDetails.isOverrideAdminAmount" data-ng-paste="ctrl.updatePricing('hiring')" data-ng-keyup="ctrl.updatePricing('hiring')" data-ng-keydown="ctrl.updatePricing('hiring')" data-ng-keypress="ctrl.updatePricing('hiring')" data-ng-disabled="ctrl.disableHiringForm"/>
+                <span class="label-text fs12" data-ng-bind="pullInterNationalization('pricing.create.desc17')"></span>
+                <span class="validate-error" data-ng-if="ctrl.billingStep2HiringDetails.isOverrideAdminAmount && ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.planForms_F2_overrideAdminPrice.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                <span class="validate-error" data-ng-if="ctrl.billingStep2HiringDetails.isOverrideAdminAmount && ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.planForms_F2_overrideAdminPrice.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+                
+                <a href="javascript:void(0)" class="border-link step2Details" data-ng-if="ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable" data-ng-click="ctrl.getDetails('Admins', 'IntelligentHiring')">
+                	<span class="mock-link" data-ng-bind="::pullInterNationalization('pricing.create.btn1')"></span>
+                </a>                  
+            </li>
+            <li class="section-sep-head ele-left" data-ng-bind="::pullInterNationalization('pricing.prismPortraits')"></li>
+            <li class="ele-left w100 b15">
+                <input type="radio" checked="checked" class="hideField" data-ng-checked="true" data-ng-value="ctrl.billingStep2HiringDetails.isBundle" value="{{ctrl.billingStep2HiringDetails.isBundle}}" name="planForms_F2_isBundle" data-ng-disabled="ctrl.disableHiringForm" data-ng-class="{'serialize-ignore':ctrl.ignoreHiringForm}"/>
+                <ul class="radioBoxes">
+                    <li>
+                        <input class="serialize-ignore no-reset" id="yesBundle" type="radio" name="isBundle" value="true" data-ng-click="ctrl.updateBundles(true)" data-ng-disabled="ctrl.disableHiringForm || (ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable)" data-ng-class="{'serialize-ignore':ctrl.ignoreHiringForm}" checked="checked" />
+                        <label for="yesBundle" data-ng-bind="::pullInterNationalization('pricing.create.label33')"></label>
+                    </li>                
+                    <li>
+                        <input class="serialize-ignore no-reset" id="noBundle" type="radio" name="isBundle" value="false" data-ng-click="ctrl.updateBundles(false)" data-ng-disabled="ctrl.disableHiringForm || (ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable)" data-ng-class="{'serialize-ignore':ctrl.ignoreHiringForm}"/>
+                        <label for="noBundle" data-ng-bind="::pullInterNationalization('pricing.portraits')"></label>
+                    </li>
+                </ul>
+            </li>
+            <li class="ele-left r30">
+                <label class="label-text" data-ng-bind="ctrl.billingStep2HiringDetails.isBundle?pullInterNationalization('pricing.create.label11'):pullInterNationalization('pricing.create.label4')"></label>
+                <input data-ng-class="{'hideField':ctrl.billingStep2HiringDetails.isBundle || (ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable),'serialize-ignore':ctrl.ignoreHiringForm}" type="number" min="0" step="1" name="planForms_F2_numCandidates" data-ng-model="ctrl.billingStep2HiringDetails.numCandidates" data-ng-pattern="/^[1-9][0-9]*$/" data-ng-required="ctrl.viewForm==='IntelligentHiring' && !ctrl.billingStep2HiringDetails.isBundle && !ctrl.disableHiringForm" data-ng-paste="ctrl.updatePricing('hiring')" data-ng-keyup="ctrl.updatePricing('hiring')" data-ng-keydown="ctrl.updatePricing('hiring')" data-ng-keypress="ctrl.updatePricing('hiring')" data-ng-disabled="ctrl.disableHiringForm" data-ng-if="!ctrl.hiringPlanAvailable"/>
+                <input data-ng-class="{'hideField':ctrl.billingStep2HiringDetails.isBundle || (ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable),'serialize-ignore':ctrl.ignoreHiringForm}" type="number" min="0" step="1" name="planForms_F2_numCandidates" data-ng-model="ctrl.billingStep2HiringDetails.numCandidates" data-ng-required="ctrl.viewForm==='IntelligentHiring' && !ctrl.billingStep2HiringDetails.isBundle && !ctrl.disableHiringForm" data-ng-paste="ctrl.updatePricing('hiring')" data-ng-keyup="ctrl.updatePricing('hiring')" data-ng-keydown="ctrl.updatePricing('hiring')" data-ng-keypress="ctrl.updatePricing('hiring')" data-ng-disabled="ctrl.disableHiringForm" data-ng-if="ctrl.hiringPlanAvailable"/>
+                <span class="info-box" data-ng-if="ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable" data-ng-bind="ctrl.billingStep2HiringDetails.numCandidates"></span>
+                <span class="validate-error" data-ng-if="!ctrl.billingStep2HiringDetails.isBundle && ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.planForms_F2_numCandidates.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                <span class="validate-error" data-ng-if="!ctrl.billingStep2HiringDetails.isBundle && ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.planForms_F2_numCandidates.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+                
+                <input data-ng-if="ctrl.billingStep2HiringDetails.isBundle" class="serialize-ignore" name="numBundles" type="number" min="0" step="1" data-ng-model="ctrl.billingStep2HiringDetails.numBundles" data-ng-pattern="/^[1-9][0-9]*$/" data-ng-required="ctrl.viewForm==='IntelligentHiring' && !ctrl.disableHiringForm" data-ng-paste="ctrl.updatePricing('hiring')" data-ng-keyup="ctrl.updatePricing('hiring')" data-ng-keydown="ctrl.updatePricing('hiring')" data-ng-keypress="ctrl.updatePricing('hiring')" data-ng-disabled="ctrl.disableHiringForm"/>
+                <span class="validate-error" data-ng-if="ctrl.billingStep2HiringDetails.isBundle && ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.numBundles.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                <span class="validate-error" data-ng-if="ctrl.billingStep2HiringDetails.isBundle && ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.numBundles.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>                
+            </li>
+            <li class="ele-left r30">
+                <label class="label-text" data-ng-bind="ctrl.billingStep2HiringDetails.isBundle?pullInterNationalization('pricing.create.label12'):pullInterNationalization('pricing.create.label5')"></label>
+                <span class="info-box" data-ng-if="ctrl.billingStep2HiringDetails.isOverrideAmount" data-ng-bind="ctrl.billingStep2HiringDetails.pricePerCandidate"></span>
+                
+                <input data-ng-class="{'hideField':ctrl.billingStep2HiringDetails.isOverrideAmount || ctrl.billingStep2HiringDetails.isBundle || (ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable),'serialize-ignore':ctrl.ignoreHiringForm}" type="number" min="0" step="1" name="planForms_F2_pricePerCandidate" data-ng-model="ctrl.billingStep2HiringDetails.pricePerCandidate" data-ng-pattern="/^\s*(?=.*[0-9])\d*(?:\.\d{1,2})?\s*$/" data-ng-required="ctrl.viewForm==='IntelligentHiring' && !ctrl.billingStep2HiringDetails.isOverrideAmount && !ctrl.billingStep2HiringDetails.isBundle && !ctrl.disableHiringForm" data-ng-paste="ctrl.updatePricing('hiring')" data-ng-keyup="ctrl.updatePricing('hiring')" data-ng-keydown="ctrl.updatePricing('hiring')" data-ng-keypress="ctrl.updatePricing('hiring')" data-ng-disabled="ctrl.disableHiringForm"/>
+                <input data-ng-class="{'hideField': (ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable)}"data-ng-if="!ctrl.billingStep2HiringDetails.isOverrideAmount && ctrl.billingStep2HiringDetails.isBundle" class="serialize-ignore" type="number" min="0" step="1" name="pricePerBundle" data-ng-model="ctrl.billingStep2HiringDetails.pricePerBundle" data-ng-pattern="/^\s*(?=.*[0-9])\d*(?:\.\d{1,2})?\s*$/" data-ng-required="ctrl.viewForm==='IntelligentHiring' && !ctrl.disableHiringForm" data-ng-paste="ctrl.updatePricing('hiring')" data-ng-keyup="ctrl.updatePricing('hiring')" data-ng-keydown="ctrl.updatePricing('hiring')" data-ng-keypress="ctrl.updatePricing('hiring')" data-ng-disabled="ctrl.disableHiringForm"/>
+                
+                <span class="info-box" data-ng-if="ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable && ctrl.billingStep2HiringDetails.isBundle && !ctrl.billingStep2HiringDetails.isOverrideAmount" data-ng-bind="ctrl.billingStep2HiringDetails.pricePerBundle"></span>
+                <span class="info-box" data-ng-if="ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable && !ctrl.billingStep2HiringDetails.isBundle && !ctrl.billingStep2HiringDetails.isOverrideAmount" data-ng-bind="ctrl.billingStep2HiringDetails.pricePerCandidate"></span>
+                
+                <span class="label-text fs12" data-ng-bind="pullInterNationalization('pricing.create.desc17')"></span>
+                <span class="validate-error" data-ng-if="!ctrl.billingStep2HiringDetails.isOverrideAmount && !ctrl.billingStep2HiringDetails.isBundle && ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.planForms_F2_pricePerCandidate.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                <span class="validate-error" data-ng-if="!ctrl.billingStep2HiringDetails.isOverrideAmount && !ctrl.billingStep2HiringDetails.isBundle && ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.planForms_F2_pricePerCandidate.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+                                
+                <span class="validate-error" data-ng-if="!ctrl.billingStep2HiringDetails.isOverrideAmount && ctrl.billingStep2HiringDetails.isBundle && ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.pricePerBundle.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                <span class="validate-error" data-ng-if="!ctrl.billingStep2HiringDetails.isOverrideAmount && ctrl.billingStep2HiringDetails.isBundle && ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.pricePerBundle.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+            </li>
+            <li class="ele-left">
+                <p class="cb-custom fl">
+                    <input id="isOverrideAmount_Hiring" type="checkbox" data-ng-model="ctrl.billingStep2HiringDetails.isOverrideAmount" data-ng-change="ctrl.updatePricing('hiring')" class="serialize-ignore" data-ng-disabled="ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable" />
+                    <label for="isOverrideAmount_Hiring" data-ng-class="{'greyIcon':ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable}">
+                        <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                        <span class="checkText" data-ng-bind="::pullInterNationalization('pricing.create.label6')"></span>
+                    </label>
+                </p>
+                <input type="radio" checked="checked" data-ng-checked="true" class="hideField no-reset" data-ng-value="ctrl.billingStep2HiringDetails.isOverrideAmount" value="{{ctrl.billingStep2HiringDetails.isOverrideAmount}}" name="planForms_F2_isOverrideAmount" data-ng-disabled="ctrl.disableHiringForm"/>
+                <span class="info-box" data-ng-if="!ctrl.billingStep2HiringDetails.isOverrideAmount || (ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable)" data-ng-bind="ctrl.monthlyMemberPriceHiring"></span>
+                <input class="hideField" data-ng-class="{'showField':ctrl.billingStep2HiringDetails.isOverrideAmount && !ctrl.hiringPlanAvailable,'serialize-ignore':ctrl.ignoreHiringForm}" type="number" min="0" step="1" name="planForms_F2_overrideCandidatePrice" data-ng-model="ctrl.billingStep2HiringDetails.overrideCandidatePrice" data-ng-pattern="/^\s*(?=.*[0-9])\d*(?:\.\d{1,2})?\s*$/" data-ng-required="ctrl.viewForm==='IntelligentHiring' && ctrl.billingStep2HiringDetails.isOverrideAmount" data-ng-paste="ctrl.updatePricing('hiring')" data-ng-keyup="ctrl.updatePricing('hiring')" data-ng-keydown="ctrl.updatePricing('hiring')" data-ng-keypress="ctrl.updatePricing('hiring')" data-ng-disabled="ctrl.disableHiringForm"/>
+                <span class="label-text fs12">&#160;</span>
+                <span class="validate-error" data-ng-if="ctrl.billingStep2HiringDetails.isOverrideAmount && ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.planForms_F2_overrideCandidatePrice.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                <span class="validate-error" data-ng-if="ctrl.billingStep2HiringDetails.isOverrideAmount && ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.planForms_F2_overrideCandidatePrice.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+                
+                
+                <a href="javascript:void(0)" class="border-link step2Details" data-ng-if="ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable" data-ng-click="ctrl.getDetails('Members', 'IntelligentHiring')">
+                	<span class="mock-link" data-ng-bind="::pullInterNationalization('pricing.create.btn1')"></span>
+                </a>                                  
+            </li>
+            <li class="section-sep-head ele-left" data-ng-bind="::pullInterNationalization('pricing.desc1')"></li>
+            <li class="ele-left w60 r30 b15 clearb">
+                <a href="javascript:void(0)" class="border-link addLink" data-ng-click="ctrl.getExistingMember('Hiring')" data-ng-class="{'hide':(ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable) || ((ctrl.step2Mode==='edit' || ctrl.step2Mode==='create') && ctrl.disableHiringForm)}">
+                    <span class="mock-link" data-ng-bind="::pullInterNationalization('billingContent.addExisting')"></span>
+                </a>
+                <label class="label-text" data-ng-bind="::pullInterNationalization('signup.firstName')"></label>
+                <input type="text" name="firstName_F4" data-ng-model="ctrl.billingStep2HiringDetails.firstName" data-ng-required="!ctrl.disableHiringForm && !ctrl.hiringPlanAvailable" data-ng-disabled="ctrl.disableHiringForm || (ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable)" data-ng-class="{'serialize-ignore':ctrl.ignoreHiringForm || (ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable)}"/>
+                <span class="validate-error" data-ng-if="ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.firstName_F4.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+            </li>
+            <li class="ele-left w60 b15 clearb">
+                <label class="label-text" data-ng-bind="::pullInterNationalization('signup.lastName')"></label>
+                <input type="text" name="lastName_F4" data-ng-model="ctrl.billingStep2HiringDetails.lastName" data-ng-required="!ctrl.disableHiringForm && !ctrl.hiringPlanAvailable" data-ng-disabled="ctrl.disableHiringForm || (ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable)" data-ng-class="{'serialize-ignore':ctrl.ignoreHiringForm || (ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable)}"/>
+                <span class="validate-error" data-ng-if="ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.lastName_F4.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+            </li>
+            <li class="ele-left b15 w60 clearb">
+                <label class="label-text" data-ng-bind="::pullInterNationalization('signup.Title')"></label>
+                <input class="w100" type="text" name="title_F4" data-ng-model="ctrl.billingStep2HiringDetails.title" data-ng-required="!ctrl.disableHiringForm && !ctrl.hiringPlanAvailable" data-ng-disabled="ctrl.disableHiringForm || (ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable)" data-ng-class="{'serialize-ignore':ctrl.ignoreHiringForm || (ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable)}"/>
+                <span class="validate-error" data-ng-if="ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.title_F4.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+            </li>
+            <li class="ele-left w60 r30 b15 clearb">
+                <label class="label-text" data-ng-bind="::pullInterNationalization('signup.email')"></label>
+                <input type="text" name="email_F4" data-ng-model="ctrl.billingStep2HiringDetails.email" data-ng-required="!ctrl.disableHiringForm && !ctrl.hiringPlanAvailable" data-ng-pattern="emailRegex" data-ng-disabled="ctrl.disableEmailHiring || ctrl.disableHiringForm || (ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable)" data-ng-class="{'readOnly':ctrl.disableEmailHiring}" data-ng-class="{'serialize-ignore':ctrl.ignoreHiringForm || (ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable)}"/>
+                <span class="validate-error" data-ng-if="ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.email_F4.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                <span class="validate-error" data-ng-if="ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.email_F4.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email.msg')"></span>
+                <input type="text" data-ng-if="ctrl.disableEmailHiring" name="email_F4" class="hideField" data-ng-model="ctrl.billingStep2HiringDetails.email" data-ng-class="{'serialize-ignore':(ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable)}" />
+            </li>
+            <li class="ele-left w60 b15 clearb">
+                <label class="label-text" data-ng-bind="::pullInterNationalization('signup.cemail')"></label>
+                <input class="serialize-ignore" type="text" name="confirmEmail_F4" data-ng-model="ctrl.billingStep2HiringDetails.confirmEmail" data-ng-required="!ctrl.disableHiringForm && !ctrl.hiringPlanAvailable" same-as="ctrl.billingStep2HiringDetails.email" data-ng-disabled="ctrl.disableEmailHiring || ctrl.disableHiringForm || (ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable)" data-ng-class="{'readOnly':ctrl.disableEmailHiring,'serialize-ignore':ctrl.ignoreHiringForm}" />
+                <span class="validate-error" data-ng-if="ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.confirmEmail_F4.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                <span class="validate-error" data-ng-if="ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && !ctrl.billingStep2.confirmEmail_F4.$error.required && ctrl.billingStep2.confirmEmail.$invalid" data-ng-bind="::pullInterNationalization('signup.emperr')"></span>
+            </li>
+            <li class="section-sep-head ele-left" data-ng-bind="::pullInterNationalization('pricing.create.heading9')"></li>
+            <li class="ele-left b30 r30">
+                <label class="label-text" data-ng-bind="::pullInterNationalization('pricing.create.label15')"></label>
+                <div class="select-wrapper brdr" data-ng-class="{'disabled':ctrl.disableHiringForm}">
+                    <span class="ab-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                    <select class="select-option-style" name="planForms_F2_paymentType" data-ng-model="ctrl.billingStep2HiringDetails.paymentType" data-ng-required="ctrl.viewForm==='IntelligentHiring' && !ctrl.disableHiringForm" data-ng-change="ctrl.updatePricing('hiring')" data-ng-disabled="ctrl.disableHiringForm" data-ng-class="{'serialize-ignore':ctrl.ignoreHiringForm}">
+                        <option value="" data-ng-bind="pullInterNationalization('pricing.create.y0')"></option>
+                        <option value="WIRE" data-ng-bind="pullInterNationalization('pricing.create.pay1')"></option>
+                        <option value="SP_INTERNAL" data-ng-bind="pullInterNationalization('pricing.create.pay3')"></option>
+                        <option value="TRIAL" data-ng-bind="pullInterNationalization('pricing.create.pay4')"></option>
+                    </select>
+                </div>
+                <span class="validate-error" data-ng-if="ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.planForms_F2_paymentType.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+            </li>
+            <li class="ele-left b30 r30">
+                <label class="label-text" data-ng-bind="::pullInterNationalization('pricing.create.label16')"></label>
+                <div class="select-wrapper brdr" data-ng-class="{'disabled':ctrl.disableHiringForm}">
+                    <span class="ab-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                    <select class="select-option-style" name="planForms_F2_billingCycleType" data-ng-model="ctrl.billingStep2HiringDetails.billingCycle" data-ng-required="ctrl.viewForm==='IntelligentHiring' && !ctrl.disableHiringForm" data-ng-change="ctrl.updatePricing('hiring')" data-ng-disabled="ctrl.disableHiringForm" data-ng-class="{'serialize-ignore':ctrl.ignoreHiringForm}">
+                        <option value="" data-ng-bind="pullInterNationalization('pricing.create.y0')"></option>
+                        <option value="Monthly" data-ng-bind="pullInterNationalization('pricing.create.bcyc1')"></option>
+                        <option value="Quaterly" data-ng-bind="pullInterNationalization('pricing.create.bcyc2')"></option>
+                        <option value="SemiAnnually" data-ng-bind="pullInterNationalization('pricing.create.bcyc3')"></option>
+                        <option value="Anually" data-ng-bind="pullInterNationalization('pricing.create.bcyc4')"></option>
+                        <option value="Custom" data-ng-bind="pullInterNationalization('pricing.create.bcyc5')"></option>
+                    </select>
+                </div>
+                <span class="validate-error" data-ng-if="ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.planForms_F2_billingCycleType.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+            </li>
+            <li class="ele-left b30" data-ng-if="ctrl.billingStep2HiringDetails.billingCycle==='Custom'">
+                <label class="label-text" data-ng-bind="::pullInterNationalization('pricing.create.label17')"></label>
+                <input min="0" step="1" type="number" name="planForms_F2_noOfMonths" data-ng-model="ctrl.billingStep2HiringDetails.noOfMonths" data-ng-required="ctrl.viewForm==='IntelligentHiring' && !ctrl.disableHiringForm" data-ng-pattern="/[1-9]*/" data-ng-paste="ctrl.updatePricing('hiring')" data-ng-keyup="ctrl.updatePricing('hiring')" data-ng-keydown="ctrl.updatePricing('hiring')" data-ng-keypress="ctrl.updatePricing('hiring')" data-ng-disabled="ctrl.disableHiringForm" data-ng-class="{'serialize-ignore':ctrl.ignoreHiringForm}"/>
+                <span class="validate-error" data-ng-if="ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.planForms_F2_noOfMonths.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                <span class="validate-error" data-ng-if="ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.planForms_F2_noOfMonths.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+            </li>
+            <li class="ele-left b30">
+                <label class="label-text" data-ng-bind="::pullInterNationalization('pricing.create.label18')"></label>
+                <input class="readOnly" readonly type="text" name="planForms_F2_chargeAmount" data-ng-model="ctrl.billingStep2HiringDetails.chargeAmount" data-ng-required="ctrl.viewForm==='IntelligentHiring' && !ctrl.disableHiringForm" data-ng-disabled="ctrl.disableHiringForm" data-ng-class="{'serialize-ignore':ctrl.ignoreHiringForm}"/>
+                <span class="validate-error" data-ng-if="ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.planForms_F2_chargeAmount.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+            </li>
+            <li class="ele-left w100 clearb b30">
+                <label class="label-text" data-ng-bind="::pullInterNationalization('pricing.create.label19')"></label>
+                <textarea name="planForms_F2_comment" data-ng-model="ctrl.billingStep2HiringDetails.comment" data-ng-required="ctrl.viewForm==='IntelligentHiring' && !ctrl.disableHiringForm" data-ng-disabled="ctrl.disableHiringForm" data-ng-class="{'serialize-ignore':ctrl.ignoreHiringForm}"></textarea>
+                <span class="validate-error" data-ng-if="ctrl.viewForm==='IntelligentHiring' && ctrl.step2Submited && ctrl.billingStep2.planForms_F2_comment.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+            </li>
+            <li class="ele-left w100 clearb b30 ctext" data-ng-if="ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable" data-ng-bind="pullInterNationalization('pricing.create.desc18a')+' ('+ctrl.updateRemainingDays(ctrl.planDetailsHiring.remainingChargableDays)+').'">
+            </li>
+            <li class="ele-left w100 clearb b30" data-ng-if="ctrl.step2Mode==='edit' && ctrl.hiringPlanAvailable" >
+                <div class="available-credits-wrapper m0">
+                    <h3>Credit Balance: <span data-ng-bind="ctrl.billingStep2HiringDetails.creditBalance | currency"></span></h3>
+                    <a data-ng-click="ctrl.showAddCredit('IntelligentHiring')" href="javascript:void(0)" class="border-link"> 
+                    	<span class="mock-link" data-ng-bind="pullInterNationalization('pricing.create.btn2')"></span>
+                    </a>
+                </div>
+            </li>           
+            <li class="ele-left w100 clearb">
+                <label class="label-text" data-ng-bind="::pullInterNationalization('pricing.create.label20')"></label>
+                <tags-input name="tags" data-min-length="1" data-ng-model="ctrl.billingStep2HiringDetails.tags" replace-spaces-with-dashes="false" data-ng-required="false" on-tag-added="ctrl.generateTagsList()" on-tag-removed="ctrl.generateTagsList()"></tags-input>
+                <input type="text" name="planForms_F2_tags" class="hideField" data-ng-model="ctrl.billingStep2HiringDetails.tagsList" data-ng-disabled="ctrl.disableHiringForm" data-ng-class="{'serialize-ignore':ctrl.ignoreHiringForm}"/>
+                <input type="text" name="planForms_F2_features" class="hideField no-reset" data-ng-model="ctrl.billingStep2HiringDetails.hiringFeaturesList" data-ng-disabled="ctrl.disableHiringForm" data-ng-class="{'serialize-ignore':ctrl.ignoreHiringForm}"/>
+                <input type="text" name="planForms_F2_planType" class="hideField no-reset" value="{{ctrl.availablePlans[1]}}" data-ng-disabled="ctrl.disableHiringForm" data-ng-class="{'serialize-ignore':ctrl.ignoreHiringForm}" id="hiringPlanType" />
+                <input type="text" name="planForms_F2_isActive" class="hideField no-reset" value="{{ctrl.hiringPlanActive}}" data-ng-disabled="ctrl.disableHiringForm" data-ng-class="{'serialize-ignore':ctrl.ignoreHiringForm}" />
+                <input type="text" name="planForms_F2_newPlan" class="hideField no-reset" value="{{!ctrl.hiringPlanAvailable}}" data-ng-disabled="ctrl.disableHiringForm" data-ng-class="{'serialize-ignore':ctrl.ignoreHiringForm}" />
+				<input type="text" data-ng-if="!ctrl.hiringPlanAvailable" name="existingMember" class="hideField no-reset" value="{{ctrl.billingStep2HiringDetails.existingMember}}" data-ng-disabled="ctrl.disableHiringForm" data-ng-class="{'serialize-ignore':ctrl.ignoreHiringForm}" />
+            </li>
+        </ol>
+    </div>
+    <div class="billing-summary">
+        <h2 data-ng-bind="::pullInterNationalization('pricing.create.label23')"></h2>
+        <div class="billing-details-wrap">
+            <p class="lPrice" data-ng-bind-html="pullInterNationalization('pricing.create.label25')+' '+'<span>'+(ctrl.billingStep2HiringDetails.spPlanLicensePrice | currency)+'</span>'"></p>
+            <div class="summary-table">
+                <div class="summary-row">
+                    <div class="summary-col">
+                        <p class="w60" data-ng-bind="::pullInterNationalization('pricing.create.label7')"></p>
+                        <p class="f700" data-ng-bind="ctrl.billingStep2HiringDetails.numAdmin?ctrl.billingStep2HiringDetails.numAdmin:0"></p>
+                    </div>
+                    <div class="summary-col">
+                        <p class="w60" data-ng-bind="::pullInterNationalization('pricing.create.label8')"></p>
+                        <p class="f700" data-ng-bind="ctrl.billingStep2HiringDetails.unitAdminPrice?ctrl.billingStep2HiringDetails.unitAdminPrice:0"></p>
+                    </div>
+                    <div class="summary-col">
+                        <p class="w60" data-ng-bind="::pullInterNationalization('pricing.create.label26')"></p>
+                        <p class="f700" data-ng-bind="ctrl.monthlyAdminPriceHiring  | currency"></p>
+                    </div>
+                </div>
+                <div class="summary-row">
+                    <div class="summary-col">
+                        <p class="w60" data-ng-bind="ctrl.billingStep2HiringDetails.isBundle?pullInterNationalization('pricing.create.label11'):pullInterNationalization('pricing.create.label4')"></p>
+                        <p class="f700" data-ng-bind="!ctrl.billingStep2HiringDetails.isBundle?(ctrl.billingStep2HiringDetails.numCandidates?ctrl.billingStep2HiringDetails.numCandidates:0):(ctrl.billingStep2HiringDetails.numBundles?ctrl.billingStep2HiringDetails.numBundles:0)"></p>
+                    </div>
+                    <div class="summary-col">
+                        <p class="w60" data-ng-bind="ctrl.billingStep2HiringDetails.isBundle?pullInterNationalization('pricing.create.label12'):pullInterNationalization('pricing.create.label5')"></p>
+                        <p class="f700" data-ng-bind="!ctrl.billingStep2HiringDetails.isBundle?(ctrl.billingStep2HiringDetails.pricePerCandidate?ctrl.billingStep2HiringDetails.pricePerCandidate:0):(ctrl.billingStep2HiringDetails.pricePerBundle?ctrl.billingStep2HiringDetails.pricePerBundle:0)"></p>
+                    </div>
+                    <div class="summary-col">
+                        <p class="w60" data-ng-bind="::pullInterNationalization('pricing.create.label18')"></p>
+                        <p class="f700" data-ng-bind="ctrl.monthlyMemberPriceHiring | currency"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="summary-table">
+                <div class="billing-summary-cycle">
+                    <p class="cycleTxt" data-ng-bind-html="pullInterNationalization('pricing.create.label30')+' '+ctrl.billingStep2HiringDetails.billingCycle"></p>
+                    <p class="priceTxt" data-ng-bind-html="pullInterNationalization('pricing.create.label31')+' '+'<span>'+(ctrl.billingStep2HiringDetails.billingCycleTotal | currency)+'</span>'"></p>
+                </div>
+                <p data-ng-bind="pullInterNationalization('pricing.create.label32')+' '+(ctrl.agreementTotalPriceHiring | currency)"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- IntilligentHiring Ends -->

@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="spApp">
+
+<head>
+    <title>SurePeople</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0" />
+    <meta name="description" content="SurePeople" />
+    <meta name="keywords" content="SurePeople" />
+    <!--[if lte IE 8]>
+    <script type="text/javascript">
+            //Redirecting if the Browser is LEss than IE8
+           window.location="/sp/resources/html/browser.html";       
+    </script>
+<![endif]-->
+    <link rel="icon" type="image/x-icon" href="/resources/css/images/sure_people.ico" />
+    <link type="text/css" rel="stylesheet" href="/resources/css/css-min/vendor.min.css" />
+	<link type="text/css" rel="stylesheet" href="/resources/css/css-min/global.min.121a33343a920d88851affb705780627.css" />
+    <link type="text/css" rel="stylesheet" href="/resources/css/css-min/sp-profile-pdf.min.d6cfd53cdad8e92ade8b723c117c59e6.css">
+    <style type="text/css">
+		body {
+		    margin: 0;
+		    padding: 0;
+		    width: 100%;
+		    -webkit-print-color-adjust: exact; color-adjust: exact;
+		}
+    </style>
+</head>
+
+<body class="hide" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'">
+	<div data-ng-controller="siteHeaderController" data-ng-init="stopSSE=true"></div>
+    <div class="pdfPrintVersion" data-ng-controller="profileMainController as ctrl" data-ng-init="ctrl.setOptions('sharePortraitUser');">
+        <!-- Personality Portrait Starts  -->
+        <div class="personality-profile-wrapper">
+            <div class="">
+                <div class="cover-Page x-container">
+                    <!-- SurePeople Logo -->
+                    <div class="container_1">
+                        <div class="logo">
+                            <img src="https://www.surepeople.com/sp/resources/images/sp-logo.svg" alt="SurePeople™">
+                        </div>
+                        <!-- Detail of the User -->
+                        <div class="fp_cont clearfix" data-ng-init="updatePrintDetails(ctrl.printName);">
+                            <div class="fullname" data-ng-bind-html="sp_name"></div>
+                            <div class="date"><span>{{pullInterNationalization('prismPdfCont.prismPortrait')}}&nbsp;</span> | <span data-ng-bind="currDate"></span></div>
+                            <div class="description col-md-9 col-sm-9 col-xs-9 nopad">
+                                <span data-ng-bind-html="pullInterNationalization('profile.message') | secureHtml"></span><span data-ng-bind-html="pullInterNationalization('profile.part2message') | secureHtml"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pdfStyle">
+            <div class="x-container personality-profile-wrapper">
+                <div class="container container_1">
+                    <div class="info-graph spacingAdjustment oneSeparatePage">
+                        <h2 class="heading sp-header-title-color">{{pullInterNationalization('prismPdfCont.personalityPortrait')}}</h2>
+                        <div class="col-sm-6 col-md-6 col-xs-6 nopad">
+                            <div class="graph-text">
+                                <div class="sec">
+                                    <p class="title_1 primary">
+                                        <span class="box"></span><span> {{pullInterNationalization('prismProfile.label47')}}</span>
+                                    </p>
+                                    <div class="adjust">
+                                        <p class="cont" data-ng-bind="pullInterNationalization('prismPdfCont.primaryDesc')"></p>
+                                    </div>
+                                </div>
+                                <div class="sec">
+                                    <p class="title_1 secondary">
+                                        <span class="box"></span><span> {{pullInterNationalization('prismProfile.label48')}}</span>
+                                    </p>
+                                    <div class="adjust">
+                                        <p class="cont" data-ng-bind="pullInterNationalization('prismPdfCont.pressureDesc')"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-xs-6 graphsSection nopad">
+                            <div class="svg-graph-wrapper personality hide" data-ng-if="ctrl.isAnalysisLoaded" data-ng-class="ctrl.isAnalysisLoaded?'show':'hide'">
+                                <div class="outer-labels">
+                                    <p class="left" data-ng-bind-html="pullInterNationalization('prismPersonality.powerful')"></p>
+                                    <p class="right" data-ng-bind-html="pullInterNationalization('prismPersonality.versatile')"></p>
+                                </div>
+                                <div class="graph-outer mob" style="position: relative">
+                                    <div class="graph" personality-info-graph id="personalityChartPDF" personality-score="ctrl.prismData.personality"></div>
+                                    <div class="graph-labels">
+                                        <div>
+                                            <p class="top">
+                                                <span data-ng-bind-html="pullInterNationalization('prismPersonality.bigpic')"></span>
+                                            </p>
+                                            <div>
+                                                <p class="left">
+                                                    <span data-ng-bind-html="pullInterNationalization('prismPersonality.mission')"></span>
+                                                </p>
+                                                <p class="right">
+                                                    <span data-ng-bind-html="pullInterNationalization('prismPersonality.relationo')"></span>
+                                                </p>
+                                            </div>
+                                            <p class="bottom">
+                                                <span data-ng-bind-html="pullInterNationalization('prismPersonality.detailo')"></span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="outer-labels">
+                                    <p class="left" data-ng-bind-html="pullInterNationalization('prismPersonality.precise')"></p>
+                                    <p class="right" data-ng-bind-html="pullInterNationalization('prismPersonality.adaptable')"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-ng-switch on="ctrl.activeProfileContent">
+                        <div class="clubPage marT">
+                            <div class="nopad marHB">
+                                <span class="f8_3" data-ng-if="pullInterNationalization('profileKeys.'+ctrl.prismData.personality.Primary.personalityType)!=pullInterNationalization('profileKeys.'+ctrl.prismData.personality.UnderPressure.personalityType)">{{pullInterNationalization('prismProfile.label47')}}: <strong class="textUC">{{pullInterNationalization('profileKeys.'+ctrl.prismData.personality.Primary.personalityType)}}</strong></span>
+                                <span class="f8_3" data-ng-if="pullInterNationalization('profileKeys.'+ctrl.prismData.personality.Primary.personalityType)==pullInterNationalization('profileKeys.'+ctrl.prismData.personality.UnderPressure.personalityType)">{{pullInterNationalization('prismProfile.label47')}} & {{pullInterNationalization('prismProfile.label48')}}: <strong class="textUC">{{pullInterNationalization('profileKeys.'+ctrl.prismData.personality.Primary.personalityType)}}</strong></span>
+                            </div>
+                            <div class="borderSeparator"></div>
+                            <div class="generic-content-bg" data-section="p0">
+                                <div class="col-md-12 col-sm-12 col-xs-12 nopad">
+                                    <h2 class="heading_1 sp-header-title-color" data-ng-bind-html="pullInterNationalization('prismProfile.label1')"></h2>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-xs-6 padR">
+                                    <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.summary1']"></p>
+                                    <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.summary2']"></p>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-xs-6 padL">
+                                    <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.summary3']"></p>
+                                    <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.summary4']"></p>
+                                    <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.summary5']"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oneSeparatePage">
+                            <div class="nopad marHB">
+                                <span class="f8_3" data-ng-if="pullInterNationalization('profileKeys.'+ctrl.prismData.personality.Primary.personalityType)!=pullInterNationalization('profileKeys.'+ctrl.prismData.personality.UnderPressure.personalityType)">{{pullInterNationalization('prismProfile.label47')}}: <strong class="textUC">{{pullInterNationalization('profileKeys.'+ctrl.prismData.personality.Primary.personalityType)}}</strong></span>
+                                <span class="f8_3" data-ng-if="pullInterNationalization('profileKeys.'+ctrl.prismData.personality.Primary.personalityType)==pullInterNationalization('profileKeys.'+ctrl.prismData.personality.UnderPressure.personalityType)">{{pullInterNationalization('prismProfile.label47')}} & {{pullInterNationalization('prismProfile.label48')}}: <strong class="textUC">{{pullInterNationalization('profileKeys.'+ctrl.prismData.personality.Primary.personalityType)}}</strong></span>
+                            </div>
+                            <div class="borderSeparator">
+                                <div class="generic-content-bg" data-section="p1">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 nopad">
+                                        <h2 class="heading_1 sp-header-title-color" data-ng-bind-html="pullInterNationalization('prismProfile.label2')"></h2>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-xs-6 padR">
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.WorkEnvironmentContribution']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.WorkEnvironmentContribution']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.EmotionalPosture']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.EmotionalPosture']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.DrivingIdeal']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.DrivingIdeal']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.AssessesOthersBy']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.AssessesOthersBy']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.MotivationalStyle']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.MotivationalStyle']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.MostFavorableWorkEnvironment']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.MostFavorableWorkEnvironment']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.RelationalTaskOrientation']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.RelationalTaskOrientation']"></p>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-xs-6 padL">
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.MobilityPreference']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.MobilityPreference']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.OverUses']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.Over-uses']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.WhenPressured']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.WhenPressured']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.UneasyWhen']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.UneasyWhen']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.Leadership']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.Leadership']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.SummaryOfStrengths']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.SummaryOfStrengths']"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oneSeparatePage">
+                            <div class="nopad marHB">
+                                <span class="f8_3" data-ng-if="pullInterNationalization('profileKeys.'+ctrl.prismData.personality.Primary.personalityType)!=pullInterNationalization('profileKeys.'+ctrl.prismData.personality.UnderPressure.personalityType)">{{pullInterNationalization('prismProfile.label47')}}:   <strong class="textUC">{{pullInterNationalization('profileKeys.'+ctrl.prismData.personality.Primary.personalityType)}}</strong></span>
+                                <span class="f8_3" data-ng-if="pullInterNationalization('profileKeys.'+ctrl.prismData.personality.Primary.personalityType)==pullInterNationalization('profileKeys.'+ctrl.prismData.personality.UnderPressure.personalityType)">{{pullInterNationalization('prismProfile.label47')}} & {{pullInterNationalization('prismProfile.label48')}}: <strong class="textUC">{{pullInterNationalization('profileKeys.'+ctrl.prismData.personality.Primary.personalityType)}}</strong></span>
+                            </div>
+                            <div class="borderSeparator">
+                                <div class="generic-content-bg" data-section="p2">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 nopad">
+                                        <h2 class="heading_1 sp-header-title-color" data-ng-bind-html="pullInterNationalization('prismProfile.label3')"></h2>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-xs-6 padR">
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.JobMatch']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.JobMatch']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.CommunicatingWith.heading']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.CommunicatingWith']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.DisagreeingWith.heading']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.DisagreeingWith']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.NegativePerceptionsMayHaveOfOthers.heading']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.NegativePerceptionsMayHaveOfOthers']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.NegativePerceptionsOthersMayHaveOf.heading']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.NegativePerceptionsOthersMayHaveOf']"></p>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-xs-6 padL">
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.NotableCharacteristics']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.NotableCharacteristics']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.FundamentalDesiresDrive']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.FundamentalDesiresDrive']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.RecommendedImprovements']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.RecommendedImprovements']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.HowToSuperviseAndEncourage']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.primary.HowToSuperviseAndEncourage']"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oneSeparatePage">
+                            <div class="oneSeparatePage" data-ng-if="pullInterNationalization('profileKeys.'+ctrl.prismData.personality.Primary.personalityType)!=pullInterNationalization('profileKeys.'+ctrl.prismData.personality.UnderPressure.personalityType)">
+                                <div class="nopad marHB">
+                                    <span class="f8_3" data-ng-if="pullInterNationalization('profileKeys.'+ctrl.prismData.personality.Primary.personalityType)!=pullInterNationalization('profileKeys.'+ctrl.prismData.personality.UnderPressure.personalityType)">{{pullInterNationalization('prismProfile.label48')}}: <strong class="textUC">{{pullInterNationalization('profileKeys.'+ctrl.prismData.personality.UnderPressure.personalityType)}}</strong></span>
+                                    <span class="f8_3" data-ng-if="pullInterNationalization('profileKeys.'+ctrl.prismData.personality.Primary.personalityType)==pullInterNationalization('profileKeys.'+ctrl.prismData.personality.UnderPressure.personalityType)">{{pullInterNationalization('prismProfile.label47')}} & {{pullInterNationalization('prismProfile.label48')}}: <strong class="textUC">{{pullInterNationalization('profileKeys.'+ctrl.prismData.personality.UnderPressure.personalityType)}}</strong></span>
+                                </div>
+                                <div class="borderSeparator"></div>
+                                <div class="generic-content-bg" data-section="p0">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 nopad">
+                                        <h2 class="heading_1 sp-header-title-color" data-ng-bind-html="pullInterNationalization('prismProfile.label1')"></h2>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-xs-6 padR">
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.summary1']"></p>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.summary2']"></p>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-xs-6 padL">
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.summary3']"></p>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.summary4']"></p>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.summary5']"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-ng-if="pullInterNationalization('profileKeys.'+ctrl.prismData.personality.Primary.personalityType)!=pullInterNationalization('profileKeys.'+ctrl.prismData.personality.UnderPressure.personalityType)">
+                                <div class="nopad marHB marT">
+                                    <span class="f8_3">{{pullInterNationalization('prismProfile.label48')}}: <strong class="textUC">{{pullInterNationalization('profileKeys.'+ctrl.prismData.personality.UnderPressure.personalityType)}}</strong></span>
+                                </div>
+                                <div class="borderSeparator">
+                                    <div class="generic-content-bg" data-section="p1">
+                                        <div class="col-md-12 col-sm-12 col-xs-12 nopad">
+                                            <h2 class="heading_1 sp-header-title-color" data-ng-bind-html="pullInterNationalization('prismProfile.label2')"></h2>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-xs-6 padR">
+                                            <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.WorkEnvironmentContribution']"></h3>
+                                            <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.WorkEnvironmentContribution']"></p>
+                                            <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.EmotionalPosture']"></h3>
+                                            <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.EmotionalPosture']"></p>
+                                            <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.DrivingIdeal']"></h3>
+                                            <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.DrivingIdeal']"></p>
+                                            <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.AssessesOthersBy']"></h3>
+                                            <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.AssessesOthersBy']"></p>
+                                            <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.MotivationalStyle']"></h3>
+                                            <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.MotivationalStyle']"></p>
+                                            <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.MostFavorableWorkEnvironment']"></h3>
+                                            <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.MostFavorableWorkEnvironment']"></p>
+                                            <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.RelationalTaskOrientation']"></h3>
+                                            <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.RelationalTaskOrientation']"></p>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-xs-6 padL">
+                                            <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.MobilityPreference']"></h3>
+                                            <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.MobilityPreference']"></p>
+                                            <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.OverUses']"></h3>
+                                            <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.Over-uses']"></p>
+                                            <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.WhenPressured']"></h3>
+                                            <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.WhenPressured']"></p>
+                                            <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.UneasyWhen']"></h3>
+                                            <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.UneasyWhen']"></p>
+                                            <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.Leadership']"></h3>
+                                            <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.Leadership']"></p>
+                                            <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.SummaryOfStrengths']"></h3>
+                                            <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.SummaryOfStrengths']"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oneSeparatePage" data-ng-if="pullInterNationalization('profileKeys.'+ctrl.prismData.personality.Primary.personalityType)!=pullInterNationalization('profileKeys.'+ctrl.prismData.personality.UnderPressure.personalityType)">
+                            <div class="nopad marHB">
+                                <span class="f8_3">{{pullInterNationalization('prismProfile.label48')}}: <strong class="textUC">{{pullInterNationalization('profileKeys.'+ctrl.prismData.personality.UnderPressure.personalityType)}}</strong></span>
+                            </div>
+                            <div class="borderSeparator">
+                                <div class="generic-content-bg" data-section="p2">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 nopad">
+                                        <h2 class="heading_1 sp-header-title-color" data-ng-bind-html="pullInterNationalization('prismProfile.label3')"></h2>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-xs-6 padR">
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.JobMatch']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.JobMatch']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.CommunicatingWith.heading']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.CommunicatingWith']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.DisagreeingWith.heading']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.DisagreeingWith']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.NegativePerceptionsMayHaveOfOthers.heading']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.NegativePerceptionsMayHaveOfOthers']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.NegativePerceptionsOthersMayHaveOf.heading']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.NegativePerceptionsOthersMayHaveOf']"></p>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-xs-6 padL">
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.NotableCharacteristics']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.NotableCharacteristics']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.FundamentalDesiresDrive']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.FundamentalDesiresDrive']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.RecommendedImprovements']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.RecommendedImprovements']"></p>
+                                        <h3 class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.personality.HowToSuperviseAndEncourage']"></h3>
+                                        <p class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.personality.underPressure.HowToSuperviseAndEncourage']"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 
+                            Personality Portrait Ends 
+                        -->
+            <!-- 
+                            Processing blueprint Starts 
+                        -->
+            <div class="x-container processing-blueprint-wrapper">
+                <div class="container_1">
+                    <div class="oneSeparatePage">
+                        <div class="generic-content-bg">
+                            <h2 class="heading sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.processing.heading']"></h2>
+                            <div class="col-sm-6 col-md-6 col-xs-6 padR">
+                                <div class="detailSection" data-ng-bind-html="ctrl.prismContent['profile.processing.summary']"></div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-xs-6 padL">
+                                <div class="svg-graph-wrapper processing-blueprint hide" data-ng-if="ctrl.isAnalysisLoaded" data-ng-class="ctrl.isAnalysisLoaded?'show':'hide'">
+                                    <div class="labels axis left">
+                                        <p class="top" data-ng-bind-html="pullInterNationalization('prismProfile.label14')"></p>
+                                        <p class="mid" data-ng-bind-html="pullInterNationalization('prismProfile.label15')"></p>
+                                        <p class="bottom" data-ng-bind-html="pullInterNationalization('prismProfile.label14')"></p>
+                                    </div>
+                                    <div class="labels">
+                                        <p class="top">
+                                            <span class="percentage">{{ctrl.prismData.processing.External}}%</span>
+                                            <span data-ng-bind-html="pullInterNationalization('prismProfile.label6')"></span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="top" bar-info-graph data-pdf="true" id="pChartExternalPDF" bar-data="ctrl.prismData.processing" bar-config='{"name":"External","type":"Vertical","dir":"Top"}'></div>
+                                            <div class="bottom" bar-info-graph data-pdf="true" id="pChartInternalPDF" bar-data="ctrl.prismData.processing" bar-config='{"name":"Internal","type":"Vertical","dir":"Bottom"}'></div>
+                                        </div>
+                                        <p class="bottom">
+                                            <span class="percentage">{{ctrl.prismData.processing.Internal}}%</span>
+                                            <span data-ng-bind-html="pullInterNationalization('prismProfile.label7')"></span>
+                                        </p>
+                                    </div>
+                                    <div class="labels">
+                                        <p class="top">
+                                            <span class="percentage">{{ctrl.prismData.processing.Concrete}}%</span>
+                                            <span data-ng-bind-html="pullInterNationalization('prismProfile.label8')"></span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="top" bar-info-graph data-pdf="true" id="pChartConcretePDF" bar-data="ctrl.prismData.processing" bar-config='{"name":"Concrete","type":"Vertical","dir":"Top"}'></div>
+                                            <div class="bottom" bar-info-graph data-pdf="true" id="pChartIntuitivePDF" bar-data="ctrl.prismData.processing" bar-config='{"name":"Intuitive","type":"Vertical","dir":"Bottom"}'></div>
+                                        </div>
+                                        <p class="bottom">
+                                            <span class="percentage">{{ctrl.prismData.processing.Intuitive}}%</span>
+                                            <span data-ng-bind-html="pullInterNationalization('prismProfile.label9')"></span>
+                                        </p>
+                                    </div>
+                                    <div class="labels">
+                                        <p class="top">
+                                            <span class="percentage">{{ctrl.prismData.processing.Cognitive}}%</span>
+                                            <span data-ng-bind-html="pullInterNationalization('prismProfile.label11')"></span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="top" bar-info-graph data-pdf="true" id="pChartCognitivePDF" bar-data="ctrl.prismData.processing" bar-config='{"name":"Cognitive","type":"Vertical","dir":"Top"}'></div>
+                                            <div class="bottom" bar-info-graph data-pdf="true" id="pChartAffectivePDF" bar-data="ctrl.prismData.processing" bar-config='{"name":"Affective","type":"Vertical","dir":"Bottom"}'></div>
+                                        </div>
+                                        <p class="bottom">
+                                            <span class="percentage">{{ctrl.prismData.processing.Affective}}%</span>
+                                            <span data-ng-bind-html="pullInterNationalization('prismProfile.label12')"></span>
+                                        </p>
+                                    </div>
+                                    <div class="labels no-margin">
+                                        <p class="top">
+                                            <span class="percentage">{{ctrl.prismData.processing.Orderly}}%</span>
+                                            <span data-ng-bind-html="pullInterNationalization('prismProfile.label10')"></span>
+                                        </p>
+                                        <div class="bar-graphs">
+                                            <div class="top" bar-info-graph data-pdf="true" id="pChartOrderlyPDF" bar-data="ctrl.prismData.processing" bar-config='{"name":"Orderly","type":"Vertical","dir":"Top"}'></div>
+                                            <div class="bottom" bar-info-graph data-pdf="true" id="pChartSpontaneousPDF" bar-data="ctrl.prismData.processing" bar-config='{"name":"Spontaneous","type":"Vertical","dir":"Bottom"}'></div>
+                                        </div>
+                                        <p class="bottom">
+                                            <span class="percentage">{{ctrl.prismData.processing.Spontaneous}}%</span>
+                                            <span data-ng-bind-html="pullInterNationalization('prismProfile.label13')"></span>
+                                        </p>
+                                    </div>
+                                    <div class="labels axis right">
+                                        <p class="top" data-ng-bind-html="pullInterNationalization('prismProfile.label14')"></p>
+                                        <p class="mid" data-ng-bind-html="pullInterNationalization('prismProfile.label15')"></p>
+                                        <p class="bottom" data-ng-bind-html="pullInterNationalization('prismProfile.label14')"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="spacer"></div>
+                        <div class="borderSeparator">
+                            <div class="generic-content-bg">
+                                <h2 class="heading_1 no-margin sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.processing.internal.external.heading']"></h2>
+                                <div class="col-sm-6 col-md-6 col-xs-6 padR">
+                                    <p class="f9_3 no-margin" data-ng-bind-html="ctrl.prismContent['profile.processing.external.intenral.summary']"></p>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-xs-6 padL">
+                                    <div class="col-sm-12 col-md-12 col-xs-12 nopad marB">
+                                        <h3 class="f8_7 marHB" data-ng-bind-html="ctrl.prismContent['profile.processing.internal.heading']"></h3>
+                                        <ul class="f7_3" data-ng-bind-html="ctrl.prismContent['profile.processing.internal.text']"></ul>
+                                    </div>
+                                    <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                        <h3 class="f8_7 marHB" data-ng-bind-html="ctrl.prismContent['profile.processing.external.heading']"></h3>
+                                        <ul class="f7_3" data-ng-bind-html="ctrl.prismContent['profile.processing.external.text']"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="oneSeparatePage">
+                        <div class="borderSeparator">
+                            <div class="generic-content-bg">
+                                <h2 class="heading_1 no-margin sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.processing.concrete.intutive.heading']"></h2>
+                                <div class="col-sm-6 col-md-6 col-xs-6 padR">
+                                    <p class="f9_3 no-margin" data-ng-bind-html="ctrl.prismContent['profile.processing.concrete.intutive.summary']"></p>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-xs-6 padL">
+                                    <div class="col-sm-12 col-md-12 col-xs-12 nopad marB">
+                                        <h3 class="f8_7 marHB" data-ng-bind-html="ctrl.prismContent['profile.processing.intutive.heading']"></h3>
+                                        <ul class="f7_3" data-ng-bind-html="ctrl.prismContent['profile.processing.intutive.text']"></ul>
+                                    </div>
+                                    <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                        <h3 class="f8_7 marHB" data-ng-bind-html="ctrl.prismContent['profile.processing.concrete.heading']"></h3>
+                                        <ul class="f7_3" data-ng-bind-html="ctrl.prismContent['profile.processing.concrete.text']"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="spacer"></div>
+                        <div class="borderSeparator">
+                            <div class="generic-content-bg">
+                                <h2 class="heading_1 no-margin sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.processing.cognitive.affective.heading']"></h2>
+                                <div class="col-sm-6 col-md-6 col-xs-6 padR">
+                                    <p class="f9_3 no-margin" data-ng-bind-html="ctrl.prismContent['profile.processing.cognitive.affective.summary']"></p>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-xs-6 padL">
+                                    <div class="col-sm-12 col-md-12 col-xs-12 nopad marB">
+                                        <h3 class="f8_7 marHB" data-ng-bind-html="ctrl.prismContent['profile.processing.affective.heading']"></h3>
+                                        <ul class="f7_3" data-ng-bind-html="ctrl.prismContent['profile.processing.affective.text']"></ul>
+                                    </div>
+                                    <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                        <h3 class="f8_7 marHB" data-ng-bind-html="ctrl.prismContent['profile.processing.cognitive.heading']"></h3>
+                                        <ul class="f7_3" data-ng-bind-html="ctrl.prismContent['profile.processing.cognitive.text']"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="oneSeparatePage">
+                        <div class="borderSeparator">
+                            <div class="generic-content-bg">
+                                <h2 class="heading_1 no-margin sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.processing.orderly.spontaneous.heading']"></h2>
+                                <div class="col-sm-6 col-md-6 col-xs-6 padR">
+                                    <p class="f9_3 no-margin" data-ng-bind-html="ctrl.prismContent['profile.processing.orderly.spontaneous.summary']"></p>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-xs-6 padL">
+                                    <div class="col-sm-12 col-md-12 col-xs-12 nopad marB">
+                                        <h3 class="f8_7 marHB" data-ng-bind-html="ctrl.prismContent['profile.processing.spontaneous.heading']"></h3>
+                                        <ul class="f7_3" data-ng-bind-html="ctrl.prismContent['profile.processing.spontaneous.text']"></ul>
+                                    </div>
+                                    <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                        <h3 class="f8_7 marHB" data-ng-bind-html="ctrl.prismContent['profile.processing.orderly.heading']"></h3>
+                                        <ul class="f7_3" data-ng-bind-html="ctrl.prismContent['profile.processing.orderly.text']"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 
+                            Processing blueprint Ends
+                        -->
+            <!-- 
+                            Motivation Starts 
+                        -->
+            <div class="x-container motivation-wrapper oneSeparatePage">
+                <div class="container_1">
+                    <h2 class="heading sp-header-title-color" data-ng-bind-html="pullInterNationalization('prismProfile.label53')"></h2>
+                    <div class="generic-content-bg motivation-why">
+                        <div class="col-sm-4 col-md-4 col-xs-4 padR pad2PT">
+                            <div class="svg-graph-wrapper hide" data-ng-if="ctrl.isAnalysisLoaded" data-ng-class="ctrl.isAnalysisLoaded?'show':'hide'">
+                                <div class="labels">
+                                    <p class="left">
+                                        <span class="percentage">{{ctrl.prismData.motivationWhy.AttainmentOfGoals}}%</span>
+                                        <span data-ng-bind-html="pullInterNationalization('prismProfile.label17')"></span>
+                                    </p>
+                                    <p class="right">
+                                        <span class="percentage">{{ctrl.prismData.motivationWhy.RecognitionForEffort}}%</span>
+                                        <span data-ng-bind-html="pullInterNationalization('prismProfile.label18')"></span>
+                                    </p>
+                                    <div class="bar-graphs">
+                                        <div class="left" bar-info-graph data-pdf="true" id="pChartAttainmentOfGoalsPDF" bar-data="ctrl.prismData.motivationWhy" bar-config='{"name":"AttainmentOfGoals","type":"Horizantal","dir":"Left"}'></div>
+                                        <div class="right" bar-info-graph data-pdf="true" id="pChartRecognitionForEffortPDF" bar-data="ctrl.prismData.motivationWhy" bar-config='{"name":"RecognitionForEffort","type":"Horizantal","dir":"Right"}'></div>
+                                    </div>
+                                </div>
+                                <div class="labels">
+                                    <p class="left">
+                                        <span class="percentage">{{ctrl.prismData.motivationWhy.Power}}%</span>
+                                        <span data-ng-bind-html="pullInterNationalization('prismProfile.label19')"></span>
+                                    </p>
+                                    <p class="right">
+                                        <span class="percentage">{{ctrl.prismData.motivationWhy.Compliance}}%</span>
+                                        <span data-ng-bind-html="pullInterNationalization('prismProfile.label20')"></span>
+                                    </p>
+                                    <div class="bar-graphs">
+                                        <div class="left" bar-info-graph data-pdf="true" id="pChartPowerPDF" bar-data="ctrl.prismData.motivationWhy" bar-config='{"name":"Power","type":"Horizantal","dir":"Left"}'></div>
+                                        <div class="right" bar-info-graph data-pdf="true" id="pChartCompliancePDF" bar-data="ctrl.prismData.motivationWhy" bar-config='{"name":"Compliance","type":"Horizantal","dir":"Right"}'></div>
+                                    </div>
+                                </div>
+                                <div class="labels">
+                                    <p class="left">
+                                        <span class="percentage">{{ctrl.prismData.motivationWhy.Activity}}%</span>
+                                        <span data-ng-bind-html="pullInterNationalization('prismProfile.label21')"></span>
+                                    </p>
+                                    <p class="right">
+                                        <span class="percentage">{{ctrl.prismData.motivationWhy.Affiliation}}%</span>
+                                        <span data-ng-bind-html="pullInterNationalization('prismProfile.label22')"></span>
+                                    </p>
+                                    <div class="bar-graphs">
+                                        <div class="left" bar-info-graph data-pdf="true" id="pChartActivityPDF" bar-data="ctrl.prismData.motivationWhy" bar-config='{"name":"Activity","type":"Horizantal","dir":"Left"}'></div>
+                                        <div class="right" bar-info-graph data-pdf="true" id="pChartAffiliationPDF" bar-data="ctrl.prismData.motivationWhy" bar-config='{"name":"Affiliation","type":"Horizantal","dir":"Right"}'></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-md-8 col-xs-8 padL">
+                            <div class="top-content-wrapper_1 borderSeparator marHB">
+                                <div class="top-content_1">
+                                    <h2 class="top heading_1 no-margin sp-header-title-color padHT lh15 no-bot-padding add-pad-top-10">{{ctrl.prismContent['profile.motivation.why']}} {{ctrl.prismContent['profile.motivation.why.how.message']}}</h2>
+                                    <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                        <div class="col-sm-6 col-md-6 col-xs-6 padR">
+                                            <h2 class="f8_7 sp-header-title-color no-margin pad-top-10" data-ng-bind-html="ctrl.prismContent['profile.motivation.AttainmentOfGoals.headline']"></h2>
+                                            <p class="f7_3" data-ng-bind-html="ctrl.prismContent['profile.motivation.AttainmentOfGoals.text']"></p>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-xs-6 padL">
+                                            <h2 class="f8_7 sp-header-title-color no-margin pad-top-10" data-ng-bind-html="ctrl.prismContent['profile.motivation.Power.headline']"></h2>
+                                            <p class="f7_3" data-ng-bind-html="ctrl.prismContent['profile.motivation.Power.text']"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                        <div class="col-sm-6 col-md-6 col-xs-6 padR">
+                                            <h2 class="f8_7 sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.motivation.Affiliation.headline']"></h2>
+                                            <p class="f7_3" data-ng-bind-html="ctrl.prismContent['profile.motivation.Affiliation.text']"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="generic-content-bg motivation-how">
+                        <div class="col-sm-4 col-md-4 col-xs-4 padR pad2PT">
+                            <div class="svg-graph-wrapper hide" data-ng-if="ctrl.isAnalysisLoaded" data-ng-class="ctrl.isAnalysisLoaded?'show':'hide'">
+                                <div class="labels">
+                                    <p class="left">
+                                        <span class="percentage">{{ctrl.prismData.motivationHow.SelfAffirmed}}%</span>
+                                        <span data-ng-bind-html="pullInterNationalization('prismProfile.label23')"></span>
+                                    </p>
+                                    <p class="right">
+                                        <span class="percentage">{{ctrl.prismData.motivationHow.AffirmedByOthers}}%</span>
+                                        <span data-ng-bind-html="pullInterNationalization('prismProfile.label24')"></span>
+                                    </p>
+                                    <div class="bar-graphs">
+                                        <div class="left" bar-info-graph data-pdf="true" id="pChartSelfAffirmedPDF" bar-data="ctrl.prismData.motivationHow" bar-config='{"name":"SelfAffirmed","type":"Horizantal","dir":"Left"}'></div>
+                                        <div class="right" bar-info-graph data-pdf="true" id="pChartAffirmedByOthersPDF" bar-data="ctrl.prismData.motivationHow" bar-config='{"name":"AffirmedByOthers","type":"Horizantal","dir":"Right"}'></div>
+                                    </div>
+                                </div>
+                                <div class="labels">
+                                    <p class="left">
+                                        <span class="percentage">{{ctrl.prismData.motivationHow.ExchangeOfIdeas}}%</span>
+                                        <span data-ng-bind-html="pullInterNationalization('prismProfile.label25')"></span>
+                                    </p>
+                                    <p class="right">
+                                        <span class="percentage">{{ctrl.prismData.motivationHow.ReceiveDirection}}%</span>
+                                        <span data-ng-bind-html="pullInterNationalization('prismProfile.label26')"></span>
+                                    </p>
+                                    <div class="bar-graphs">
+                                        <div class="left" bar-info-graph data-pdf="true" id="pChartExchangeOfIdeasPDF" bar-data="ctrl.prismData.motivationHow" bar-config='{"name":"ExchangeOfIdeas","type":"Horizantal","dir":"Left"}'></div>
+                                        <div class="right" bar-info-graph data-pdf="true" id="pChartReceiveDirectionPDF" bar-data="ctrl.prismData.motivationHow" bar-config='{"name":"ReceiveDirection","type":"Horizantal","dir":"Right"}'></div>
+                                    </div>
+                                </div>
+                                <div class="labels">
+                                    <p class="left">
+                                        <span class="percentage">{{ctrl.prismData.motivationHow.Freedom}}%</span>
+                                        <span data-ng-bind-html="pullInterNationalization('prismProfile.label27')"></span>
+                                    </p>
+                                    <p class="right">
+                                        <span class="percentage">{{ctrl.prismData.motivationHow.Consistency}}%</span>
+                                        <span data-ng-bind-html="pullInterNationalization('prismProfile.label28')"></span>
+                                    </p>
+                                    <div class="bar-graphs">
+                                        <div class="left" bar-info-graph data-pdf="true" id="pChartFreedomPDF" bar-data="ctrl.prismData.motivationHow" bar-config='{"name":"Freedom","type":"Horizantal","dir":"Left"}'></div>
+                                        <div class="right" bar-info-graph data-pdf="true" id="pChartConsistencyPDF" bar-data="ctrl.prismData.motivationHow" bar-config='{"name":"Consistency","type":"Horizantal","dir":"Right"}'></div>
+                                    </div>
+                                </div>
+                                <div class="labels">
+                                    <p class="left">
+                                        <span class="percentage">{{ctrl.prismData.motivationHow.TaskCompletion}}%</span>
+                                        <span data-ng-bind-html="pullInterNationalization('prismProfile.label29')"></span>
+                                    </p>
+                                    <p class="right">
+                                        <span class="percentage">{{ctrl.prismData.motivationHow.PrefersProcess}}%</span>
+                                        <span data-ng-bind-html="pullInterNationalization('prismProfile.label30')"></span>
+                                    </p>
+                                    <div class="bar-graphs">
+                                        <div class="left" bar-info-graph data-pdf="true" id="pChartTaskCompletionPDF" bar-data="ctrl.prismData.motivationHow" bar-config='{"name":"TaskCompletion","type":"Horizantal","dir":"Left"}'></div>
+                                        <div class="right" bar-info-graph data-pdf="true" id="pChartPrefersProcessPDF" bar-data="ctrl.prismData.motivationHow" bar-config='{"name":"PrefersProcess","type":"Horizantal","dir":"Right"}'></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-md-8 col-xs-8 padL">
+                            <div class="top-content-wrapper_1 borderSeparator marHB">
+                                <div class="top-content_1">
+                                    <h2 class="top heading_1 no-margin sp-header-title-color padHT lh15 no-bot-padding add-pad-top-10">{{ctrl.prismContent['profile.motivation.how']}} {{ctrl.prismContent['profile.motivation.why.how.message']}}</h2>
+                                    <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                        <div class="col-sm-6 col-md-6 col-xs-6 padR">
+                                            <h2 class="f8_7 sp-header-title-color no-margin pad-top-10" data-ng-bind-html="ctrl.prismContent['profile.motivation.AffirmedByOthers.headline']"></h2>
+                                            <p class="f7_3" data-ng-bind-html="ctrl.prismContent['profile.motivation.AffirmedByOthers.text']"></p>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-xs-6 padL">
+                                            <h2 class="f8_7 sp-header-title-color no-margin" data-ng-bind-html="ctrl.prismContent['profile.motivation.ExchangeOfIdeas.headline']"></h2>
+                                            <p class="f7_3" data-ng-bind-html="ctrl.prismContent['profile.motivation.ExchangeOfIdeas.text']"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                        <div class="col-sm-6 col-md-6 col-xs-6 padR">
+                                            <h2 class="f8_7 sp-header-title-color pad-top-10" data-ng-bind-html="ctrl.prismContent['profile.motivation.Freedom.headline']"></h2>
+                                            <p class="f7_3" data-ng-bind-html="ctrl.prismContent['profile.motivation.Freedom.text']"></p>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-xs-6 padL">
+                                            <h2 class="f8_7 sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.motivation.PrefersProcess.headline']"></h2>
+                                            <p class="f7_3" data-ng-bind-html="ctrl.prismContent['profile.motivation.PrefersProcess.text']"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 
+                            Motivation Ends
+                        -->
+            <!-- 
+                            Conflict Management Starts 
+                        -->
+            <div class="x-container conflict-management-wrapper oneSeparatePage">
+                <div class="container_1">
+                    <div class="generic-content-bg">
+                        <div class="col-sm-6 col-md-6 col-xs-6 padR">
+                            <div class="top-content-wrapper_1">
+                                <div class="top-content_1">
+                                    <h2 class="heading sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.cm.heading']"></h2>
+                                    <p class="f11_3" data-ng-bind-html="ctrl.prismContent['profile.cm.heading.summary1']+' '+ctrl.prismContent['profile.cm.heading.summary2']">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-xs-6 padL">
+                            <div class="svg-graph-wrapper hide" data-ng-if="ctrl.isAnalysisLoaded" data-ng-class="ctrl.isAnalysisLoaded?'show':'hide'">
+                                <conflict-management-chart url-src="conflict-management-chart.html" class="conflict-management-chart" trait-info="ctrl.prismData.conflictManagement" trait-priorities="ctrl.prismData.traitPriorities.ConflictManagement"></conflict-management-chart>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="generic-content-bg clearfix">
+                        <div class="col-sm-6 col-md-6 col-xs-6 padR">
+                            <div class='heading_2 marHB text_upper f8_3' data-ng-bind-html="ctrl.prismContent['profile.cm.Primary.subheading']"></div>
+                            <h2 class='heading_1 borderSeparator sp-header-title-color  padR padHT' data-ng-bind-html="ctrl.prismContent['profile.cm.Primary.headline']"></h2>
+                            <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                <div class="content nopadTB">
+                                    <h3 class="f8_7 sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.cm.Primary.posture']"></h3>
+                                    <p>
+                                        <span class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.cm.Primary.posture.quote']"></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                <div class="content">
+                                    <h3 class="f8_7 sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.cm.Primary.attitude']"></h3>
+                                    <p>
+                                        <span class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.cm.Primary.attitude.quote']"></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                <div class="content">
+                                    <h3 class="f8_7 sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.cm.Primary.strategy']"></h3>
+                                    <p>
+                                        <span class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.cm.Primary.strategy.text']"></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                <div class="content">
+                                    <h3 class="f8_7 sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.cm.Primary.goalRelation']"></h3>
+                                    <p>
+                                        <span class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.cm.Primary.goalRelation.quote']"></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                <div class="content">
+                                    <h3 class="f8_7 sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.cm.Primary.interaction']"></h3>
+                                    <p>
+                                        <span class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.cm.Primary.interaction.text']"></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                <div class="content">
+                                    <h3 class="f8_7 sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.cm.Primary.problemAreas']"></h3>
+                                    <p>
+                                        <span class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.cm.Primary.problemAreas.text']"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-xs-6 padL">
+                            <div class='heading_2 marHB text_upper f8_3' data-ng-bind-html="ctrl.prismContent['profile.cm.Secondary.subheading']"></div>
+                            <h2 class="heading_1 borderSeparator sp-header-title-color  padR padHT" data-ng-bind-html="ctrl.prismContent['profile.cm.Secondary.headline']"></h2>
+                            <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                <div class="content nopadTB">
+                                    <h3 class="f8_7 sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.cm.Secondary.posture']"></h3>
+                                    <p>
+                                        <span class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.cm.Secondary.posture.quote']"></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                <div class="content">
+                                    <h3 class="f8_7 sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.cm.Secondary.attitude']"></h3>
+                                    <p>
+                                        <span class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.cm.Secondary.attitude.quote']"></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                <div class="content">
+                                    <h3 class="f8_7 sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.cm.Secondary.strategy']"></h3>
+                                    <p>
+                                        <span class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.cm.Secondary.strategy.text']"></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                <div class="content">
+                                    <h3 class="f8_7 sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.cm.Secondary.goalRelation']"></h3>
+                                    <p>
+                                        <span class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.cm.Secondary.goalRelation.quote']"></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-xs-12 nopad marB">
+                                <div class="content">
+                                    <h3 class="f8_7 sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.cm.Secondary.interaction']"></h3>
+                                    <p>
+                                        <span class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.cm.Secondary.interaction.text']"></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                <div class="content">
+                                    <h3 class="f8_7 sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.cm.Secondary.problemAreas']"></h3>
+                                    <p>
+                                        <span class="f9_7" data-ng-bind-html="ctrl.prismContent['profile.cm.Secondary.problemAreas.text']"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 
+                            Conflict Management Ends
+                        -->
+            <!-- 
+                            Fundamental Needs Starts 
+                        -->
+            <div class="x-container fundamental-needs-wrapper oneSeparatePage">
+                <div class="container_1">
+                    <div class="generic-content-bg">
+                        <div class="col-sm-6 col-md-6 col-xs-6 padR">
+                            <div class="top-content-wrapper_1">
+                                <div class="top-content_1">
+                                    <h2 class="heading sp-header-title-color" data-ng-bind-html="pullInterNationalization('prismProfile.label51')"></h2>
+                                    <p class="f11_3" data-ng-bind-html="ctrl.prismContent['profile.fm.summary']"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-xs-6 padL">
+                            <div class="svg-graph-wrapper fundamental-needs hide" data-ng-if="ctrl.isAnalysisLoaded" data-ng-class="ctrl.isAnalysisLoaded?'show':'hide'">
+                                <div class="svg-info-graph profile-pie-charts pie-pdf" id="pieFundamentalNeedsPDF" piechart-info-graph data-pdf="true" data-piename="fundamentalNeeds" pie-keys="ctrl.prismData.fundamentalNeeds"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="marT">
+                        <div class="generic-content-bg">
+                            <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                <div class="col-sm-4 col-md-4 col-xs-4 padR">
+                                    <div class="borderSeparator padHT"></div>
+                                    <h3 class="heading_1 no-margin sp-header-title-color" data-ng-bind-html="ctrl.prismData.fundamentalNeeds.Control+'% '+ctrl.prismContent['profile.fm.control.heading']"></h3>
+                                    <p class="f9_3 no-margin" data-ng-bind-html="ctrl.prismContent['profile.fm.control.p1']"></p>
+                                </div>
+                                <div class="col-sm-4 col-md-4 col-xs-4 padR">
+                                    <div class="borderSeparator padHT"></div>
+                                    <h3 class="heading_1 no-margin sp-header-title-color" data-ng-bind-html="ctrl.prismData.fundamentalNeeds.Significance+'% '+ctrl.prismContent['profile.fm.significance.heading']"></h3>
+                                    <p class="f9_3 no-margin" data-ng-bind-html="ctrl.prismContent['profile.fm.significance.p1']"></p>
+                                </div>
+                                <div class="col-sm-4 col-md-4 col-xs-4">
+                                    <div class="borderSeparator padHT"></div>
+                                    <h3 class="heading_1 no-margin sp-header-title-color" data-ng-bind-html="ctrl.prismData.fundamentalNeeds.Security+'% '+ctrl.prismContent['profile.fm.security.heading']"></h3>
+                                    <p class="f9_3 no-margin" data-ng-bind-html="ctrl.prismContent['profile.fm.security.p1']"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="borderSeparator mar2T">
+                        <div class="generic-content-bg">
+                            <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                <div class="col-sm-4 col-md-4 col-xs-4 padR">
+                                    <h2 class="f8_7 sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.fm.principles.heading']"></h2>
+                                </div>
+                                <div class="col-sm-4 col-md-4 col-xs-4 padR">
+                                    <ul class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.fm.principles.p1']"></ul>
+                                </div>
+                                <div class="col-sm-4 col-md-4 col-xs-4">
+                                    <ul class="f9_3" data-ng-bind-html="ctrl.prismContent['profile.fm.principles.p2']"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 
+                            Fundamental Needs Ends
+                        -->
+            <!-- 
+                            Decision maing Starts 
+                        -->
+            <div class="x-container decision-making-wrapper oneSeparatePage">
+                <div class="container_1">
+                    <div class="generic-content-bg">
+                        <h2 class="heading sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.dm.heading']"></h2>
+                        <div class="col-sm-6 col-md-6 col-xs-6 padR">
+                            <div class="top-content-wrapper_1">
+                                <div class="top-content_1">
+                                    <p class="f11_3">
+                                        <span data-ng-bind-html="ctrl.prismContent['profile.dm.summary']"></span>
+                                        <span data-ng-bind-html="ctrl.prismContent['profile.dm.summary2']"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-xs-6 padL">
+                            <div class="svg-graph-wrapper decision-making hide" data-ng-if="ctrl.isAnalysisLoaded" data-ng-class="ctrl.isAnalysisLoaded?'show':'hide'">
+                                <div class="svg-info-graph">
+                                    <div class="label top">
+                                        <p>{{pullInterNationalization('prismProfile.label36')}} {{ctrl.prismData.decisionMaking.Outward}}%</p>
+                                    </div>
+                                    <div class="graph-outer">
+                                        <div class="label left">
+                                            <p>{{pullInterNationalization('prismProfile.label37')}}&#160;{{ctrl.prismData.decisionMaking.Careful}}%</p>
+                                        </div>
+                                        <div data-pdf="true" class="graph-inner" id="decisionMakingPDF" decision-info-graph dm-keys="ctrl.prismData.decisionMaking">
+                                            <div class="on-graph-labels">
+                                                <p class="top-label-set">
+                                                    <span data-ng-bind-html="pullInterNationalization('prismProfile.label41')"></span>
+                                                    <span data-ng-bind-html="pullInterNationalization('prismProfile.label42')"></span>
+                                                </p>
+                                                <p class="bottom-label-set">
+                                                    <span data-ng-bind-html="pullInterNationalization('prismProfile.label43')"></span>
+                                                    <span data-ng-bind-html="pullInterNationalization('prismProfile.label44')"></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="label right">
+                                            <p>{{pullInterNationalization('prismProfile.label38')}}&#160;{{ctrl.prismData.decisionMaking.Rapid}}%</p>
+                                        </div>
+                                    </div>
+                                    <div class="label bottom">
+                                        <p>{{pullInterNationalization('prismProfile.label39')}} {{ctrl.prismData.decisionMaking.Inward}}%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="borderSeparator marT">
+                        <div class="generic-content-bg">
+                            <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                <h2 class="heading_1 nopadTB marHB sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.dm.invaward.vs.outward']"></h2>
+                                <p class="f7_3 marB" data-ng-bind-html="ctrl.prismContent['profile.dm.inward.vs.outward.text']"></p>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                <div class="col-sm-6 col-md-6 col-xs-6 padR">
+                                    <h3 class="f9_7 sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.dm.outward.percentage']"></h3>
+                                    <p class="f8_3" data-ng-bind-html="ctrl.prismContent['profile.dm.outward.p1']"></p>
+                                    <p class="f8_3" data-ng-bind-html="ctrl.prismContent['profile.dm.outward.p2']"></p>
+                                    <p class="f8_3" data-ng-bind-html="ctrl.prismContent['profile.dm.outward.p3']"></p>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-xs-6 padL">
+                                    <h3 class="f9_7 sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.dm.inward.percentage']"></h3>
+                                    <p class="f8_3" data-ng-bind-html="ctrl.prismContent['profile.dm.inward.p1']"></p>
+                                    <p class="f8_3" data-ng-bind-html="ctrl.prismContent['profile.dm.inward.p2']"></p>
+                                    <p class="f8_3" data-ng-bind-html="ctrl.prismContent['profile.dm.inward.p3']"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="borderSeparator mar2T">
+                        <div class="generic-content-bg">
+                            <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                <h2 class="heading_1 nopadTB marHB sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.dm.careful.vs.rapid']"></h2>
+                                <p class="f7_3 marB" data-ng-bind-html="ctrl.prismContent['profile.dm.careful.vs.rapid.text']"></p>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-xs-12 nopad">
+                                <div class="col-sm-6 col-md-6 col-xs-6 padR">
+                                    <h3 class="f9_7 sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.dm.careful.percentage']"></h3>
+                                    <p class="f8_3" data-ng-bind-html="ctrl.prismContent['profile.dm.careful.p1']"></p>
+                                    <p class="f8_3" data-ng-bind-html="ctrl.prismContent['profile.dm.careful.p2']"></p>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-xs-6 padL">
+                                    <h3 class="f9_7 sp-header-title-color" data-ng-bind-html="ctrl.prismContent['profile.dm.rapid.percentage']"></h3>
+                                    <p class="f8_3" data-ng-bind-html="ctrl.prismContent['profile.dm.rapid.p1']"></p>
+                                    <p class="f8_3" data-ng-bind-html="ctrl.prismContent['profile.dm.rapid.p2']"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 
+                            Decision maing Ends
+                        -->
+        </div>
+    </div>
+    <script type="text/javascript" src="/resources/js-min/vendor.min.664a6165ba3e3118e03307490eff6621.js"></script>
+    <script type="text/javascript" src="/resources/js-min/prismPrint.min.d504e4df4ab90517658eb22add5233eb.js"></script>
+    <script type="text/javascript" src="/resources/js-min/profileMainControllerCharts.min.js"></script>
+</body>
+</html>

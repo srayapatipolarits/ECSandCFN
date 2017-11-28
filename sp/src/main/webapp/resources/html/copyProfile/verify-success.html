@@ -1,0 +1,24 @@
+
+    <div class="x-container hide" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'">
+        <!-- Extended Container -->
+        <div class="container" >
+            <!-- Bootstrap Container -->
+            <div class="row">
+                <!-- Bootstrap Row -->
+                <div class="col-md-12 visitorContainer">
+                    <div class="return-visitor-wrapper">
+                        <p class="welcome-msg" data-ng-bind="pullInterNationalization('profileCopy.verifySuccess.heading')"></p>
+                        <h2 data-ng-bind="pullInterNationalization('profileCopy.verifySuccess.desc1')"></h2>
+                        <p data-ng-bind-html="pullInterNationalization('profileCopy.verifySuccess.desc2')"></p>
+                        <div class="sp-btn-wrapper sp-red btn-small">
+                            <div class="sp-btn">
+                                <p>
+                                    <a href="/sp/signin" data-ng-bind="pullInterNationalization('profileCopy.verifySuccess.btn1')"></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

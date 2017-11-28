@@ -1,0 +1,719 @@
+<link type="text/css" rel="stylesheet" href="/resources/css/css-min/color-picker/color-picker.min.css" />
+<link type="text/css" rel="stylesheet" href="/resources/css/css-min/dashboard.min.css" />
+<div class="row x-container">
+
+  <div class="wrap-outer container" data-ng-controller="companyThemingController as ctrl"  data-ng-init="ctrl.getThemeData('superAdmin')" data-ng-cloak>
+
+        <div class="wrap-inner theme-normal" data-ng-if="inviteReady && profileReady" data-ng-class="inviteReady?'':'hide'">
+   
+       <div class="lnd-full-box sp-panel-accent lnd-spacer admin-theming-section business-account-details theming-section">
+                   		<div class="actionPlanHeader" data-ng-class="ctrl.selectedCompanyId === 'default'? 'added-margin-bottom':'less-margin-bottom'">
+		           			<h3 data-ng-if="ctrl.selectedCompanyId === 'default'" class="companyName orange" data-ng-bind="pullInterNationalization('admin.theming.update.global.title')"></h3>
+		           			<h3 data-ng-if="ctrl.selectedCompanyId !== 'default'" class="companyName orange" data-ng-bind="ctrl.selectedCompanyName"></h3>
+		           			 <div class="returnLink clearfix admin-theming-links">
+		           			    <a href="javascript:void(0)" data-ng-if="ctrl.selectedCompanyId === 'default'" class="mock-link cloneLink pull-left" data-ng-click="ctrl.resetThemeModal('superAdmin','default')">Reset to Original Theme</a>
+		           				<a href="javascript:void(0)" class="mock-link cloneLink pull-left" data-ng-click="ctrl.selectCompany('clone')">Clone Settings</a>
+		           				<a href="/sp/sysAdmin/company/theming/home" class="mock-link pull-left">Return to settings</a>
+		           			</div>
+		           			<div class="custom_column">
+			           			<ol class="form-list-c form-list-d noMarBottom">
+			           			<li class="type-and-number planStatus noMarBottom">
+	                          	   		<label data-ng-if="ctrl.selectedCompanyId !== 'default'" class="label label-spacing">Access to Admin</label>
+				                     	<ul class="style_radioList style_1 font18" data-ng-if="ctrl.selectedCompanyId !== 'default'">
+	                          				<li class="sp-radio">
+				                                <input id="active" data-ng-value="true" data-ng-model="ctrl.selectedCompanyAdminAccess" type="radio" data-ng-change="ctrl.updateThemeAccess(true)"/>
+				                         		<label for="active">
+				                           		  <span class="title">Enable</span> 
+				                           	  	</label>
+				                            </li>
+				                            <li class="sp-radio">
+				                            	<input id="inactive" data-ng-value="false" data-ng-model="ctrl.selectedCompanyAdminAccess" type="radio" data-ng-change="ctrl.updateThemeAccess(false)"/>
+				                         		<label for="inactive">
+				                           		  <span class="title">Disable</span> 
+				                           	  	</label>
+				                            </li>
+			                       		 </ul>
+			                       		 <input type="submit" value="Full Page Preview" class="admin-theming-button subscribeBtn btn-block btn-15px sp-btn-color" data-ng-click="ctrl.switchThemeView('preview')" />
+	                          	   </li>
+	                          	   <li class="type-and-number planTitle noMarBottom admin-theming-uploader" data-ng-if="ctrl.selectedCompanyId !== 'default'">
+	                 <div class="img-wrapper">
+					    <div class="imgReplacementBigPreview individual-pic" data-ng-if="ctrl.selectedCompanyLogo">
+	                     <img data-ng-src="{{ctrl.selectedCompanyLogo}}" alt="" data-ng-if="ctrl.selectedCompanyLogo" class="logo-preview-pic"/>
+	                     </div>
+					    <div class="imgReplacementBig individual-pic logo-text" data-ng-if="!ctrl.selectedCompanyLogo">Upload Logo</div>
+					    <span class="upload-icon icon-icon_camera sp-icon-color" data-ng-click="ctrl.showImageEdit()"></span>
+					</div>
+					<div class="image-edit-box">
+					    <ul data-ng-if="ctrl.imageEditBox">
+					        <li data-ng-click="ctrl.uploadCompanyLogo()">
+					            <a href="#" class="border-link"><span class="mock-link" data-ng-bind="pullInterNationalization('image.edit.update')"></span></a>
+					        </li>
+					        <li data-ng-if="ctrl.selectedCompanyLogo" data-ng-click="ctrl.deleteImageModal()">
+					            <a href="#" class="border-link"><span class="mock-link" data-ng-bind="pullInterNationalization('image.edit.delete')"></span></a>
+					        </li>
+					    </ul>
+					</div> 
+	                          	   	 
+				                   </li>
+	                          	   
+	                          	    
+	                          	</ol>
+                          	</div>
+                          	
+		           		</div>
+                   </div>
+
+      <div class="admin-theming-section sp-panel-accent">
+        <nav class="nav-support-content">
+
+            <ul class="nav-support-link-list">
+        
+                <li class="nav-technical"><a class="active"  href="javascript:void(0)" data-list="1"><span class="nav-sidebar-text">Top Navigation Style</span></a>
+                </li>
+                <li class="nav-account"><a href="javascript:void(0)"  data-list="2"><span class="nav-sidebar-text">Link/Button/Icon Style</span></a>
+                </li>
+                <li class="nav-training"><a href="javascript:void(0)"  data-list="3"><span class="nav-sidebar-text">Accent Bar Style</span></a>
+                </li>
+                <li class="nav-training"><a href="javascript:void(0)"  data-list="4"><span class="nav-sidebar-text">Secondary Color Style</span></a>
+                </li>
+                <!-- <li class="nav-training"><a href="javascript:void(0)" data-list="5"><span class="nav-sidebar-text">Footer Style</span></a>
+                </li> -->
+            </ul>
+        </nav>
+
+
+    <div class="main-support-content">
+    
+<div class="support-article support-customer local-hide local-show" data-tab = "1">
+
+        <header class="support-article-header">
+            <h1 class="support-article-title sp-header-title-color">TOP NAVIGATION STYLE</h1>
+        </header>
+       <hr/>
+       <div class="section-colors">
+       <ul class="colors-list">
+            <li  class="cb-custom">
+                <input type='text' name='showSignInAccent' id='showSignInAccent' value='' />
+                <label class="color-label">Global Accent bar</label>
+            </li>
+        </ul>
+       </div>
+       <div class="section-preview-content" style="margin-top:60px">
+       <hr/>
+       <h4 class="preview-text" style="margin-top:20px">PREVIEW</h4>
+       <span>Non Signed in version</span>
+            <div class="new-app-header-wrap non-logged">
+				<header class="new-app-header">
+					<div class="header-logo-wrap">
+						<div class="logo-cont header-table-layout">
+				            <h1>
+								<a href="#">
+								<img data-ng-if="!ctrl.selectedCompanyLogo"  src="/resources/images/sp-logo.svg" alt="SurePeople&trade;"/>
+								<img data-ng-src="{{ctrl.selectedCompanyLogo}}" alt="" data-ng-if="ctrl.selectedCompanyLogo" class="logo-preview-pic"/>
+								</a>
+				      		</h1>		
+						</div>
+					</div>
+				</header>
+			</div>
+			<div id="content-container">
+			<div id="content" style="padding:20px 0;">
+			<div class="x-container form-wrapper login-wrapper ng-scope" style="height:40px;">
+				<div class="container">
+					<div class="row">
+						<div class="sign-in-default">
+							
+								<div class="error-msgs no-error" >
+									<h2 class="sign-in-title sp-header-title-color">Sign in to your account</h2>
+			            			
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>          
+       </div>
+       <br/><br/>
+       <span>Signed in version</span>
+       <div class="new-app-header-wrap">
+<header class="new-app-header" >
+	<div class="header-icons-wrap">
+		<div class="i-cont header-table-layout">
+			<div class="i-cont-wrap">
+				<ul>
+					<li class="h-icons i-notifify">
+						<span class="mIcons icon-icon_bell sp-icon-color"></span>
+						<span class="notify-counter"></span>
+					</li>
+					<li class="h-icons i-menu">
+						<span class="mIcons icon-icon_menu sp-icon-color"></span>
+						<span class="menu-txt sp-icon-color">Menu</span>
+					</li>
+				</ul>
+			</div>
+		</div>	
+	</div>
+	
+	<div class="header-logo-wrap">
+		<div class="logo-cont header-table-layout">
+            <h1>
+				<a href="#">
+				<img data-ng-if="!ctrl.selectedCompanyLogo"  src="/resources/images/sp-logo.svg" alt="SurePeople&trade;"/>
+				<img data-ng-src="{{ctrl.selectedCompanyLogo}}" alt="" data-ng-if="ctrl.selectedCompanyLogo" class="logo-preview-pic"/>
+				</a>
+      		</h1>		
+		</div>
+	</div>
+	
+	
+</header>
+</div>           
+   </div> 
+</div>
+
+<article class="support-article support-customer local-hide" data-tab = "2">
+
+   <header class="support-article-header">
+            <h1 class="support-article-title sp-header-title-color">LINK/ BUTTON/ ICON STYLE</h1>
+        </header>
+       <hr/>
+
+            <div class="section-colors">
+       <ul class="colors-list">
+            <li class="cb-custom">
+               <input type='text' name='showButtonColor' id='showButtonColor' value='' />
+                <label class="color-label">Button Color</label>
+            </li>
+            <li  class="cb-custom">
+                <input type='text' name='showLinkColor' id='showLinkColor' value='' />
+                <label class="color-label">Link Color</label>
+            </li>
+            <li  class="cb-custom">
+                <input type='text' name='showIconColor' id='showIconColor' value='' />
+                <label class="color-label">Icon Color</label>
+            </li>
+            <li  class="cb-custom">
+                <input type='text' name='showLinkHoverColor' id='showLinkHoverColor' value='' />
+                <label class="color-label">Link Hover Color</label>
+            </li>
+        </ul>
+       </div>
+       <hr/>
+       <div class="section-preview-content" style="margin-bottom:70px;">
+       <hr/>
+       <h4 class="preview-text">PREVIEW</h4>
+        <ul class="colors-list">
+            <li class="cb-custom align-horizontal">
+                 <input type="submit" value="Preview" class="subscribeBtn btn-block btn-15px sp-btn-color section-preview-button" style="margin-top: 0;">
+            </li>
+            <li  class="cb-custom align-horizontal">
+                <span class="icon-icon_accounts_all-groups sp-icon-color" style="font-size:36px;"></span>
+            </li>
+            <li  class="cb-custom align-horizontal" style="margin-left:-60px;margin-top:27px;">
+                <a href="#" class="border-link"><span class="mock-link" style="font-size:1.3em;" data-ng-bind="::pullInterNationalization('kcContent.playVid')"></span></a>
+            </li>
+            
+        </ul>    
+       </div>
+</article>
+
+<article class="support-article support-customer local-hide" data-tab = "3">
+    
+    <header class="support-article-header">
+            <h1 class="support-article-title sp-header-title-color">ACCENT BAR STYLE</h1>
+        </header>
+       <hr/>
+
+            <div class="section-colors">
+       <ul class="colors-list">
+            <li class="cb-custom">
+               <input type='text' name='showPanelAccent' id='showPanelAccent' value='' />
+                <label class="color-label">Panel accent bar</label>
+            </li>
+            <li class="cb-custom">
+               <input type='text' name='showHeaderTitleColor' id='showHeaderTitleColor' value='' />
+                <label class="color-label">Header title color</label>
+            </li>
+            <li  class="cb-custom">
+                <input type='text' name='showHeaderAccent' id='showHeaderAccent' value='' />
+                <label class="color-label">Header accent bar</label>
+            </li>
+           
+        </ul>
+       </div>
+       <hr/>
+       <div class="section-preview-content">
+       <hr/>
+      <h4 class="preview-text">PREVIEW</h4>
+     <div class="x-container view-switch" style="margin-top:-14px;margin-bottom: 39px;">
+         <div class="container">
+        <div class="row sp-panel-accent header-title-preview" style="margin-left: -14px;">
+            <div class="col-xs-12 col-md-12">
+                            
+                <h2  class="sp-header-title-color">PRISM Portrait</h2>
+                <p class="desc" style="width:100%">The PRISM Portrait reveals comprehensive insights into nearly every aspect of your Emotional, Relational and Team Intelligence<sup>&#174;</sup> (ERT-i<sup>&#174;</sup>). This highly relevant and transformative data will provide you with critical information to impact your personal and professional performance, productivity and success.</p>
+            </div>
+        </div>
+    </div>
+  </div>  
+       <br/>
+       <article class="article-teaser-panel two-col" style="margin-left:0;margin-top: -6px;">
+
+        <div class="book-mark-share">
+            <div class="book-mark-share-title sp-header-accent">Awareness of Others' Needs</div>
+           
+        </div>
+
+    </article>
+</div>
+  </article> <!-- //.support-article -->
+  
+  <article class="support-article support-customer local-hide" data-tab = "4">
+    
+    <header class="support-article-header">
+            <h1 class="support-article-title sp-header-title-color">SECONDARY COLOR STYLE</h1>
+        </header>
+       <hr/>
+
+            <div class="section-colors">
+       <ul class="colors-list">
+            <li  class="cb-custom">
+                <input type='text' name='showSubNavBgColor' id='showSubNavBgColor' value='' />
+                <label class="color-label">Secondary Color</label>
+            </li>
+           
+        </ul>
+       </div>
+      
+       <div class="section-preview-content" style="margin-top:40px;">
+       <hr/>
+      <h4 class="preview-text">PREVIEW</h4>
+     
+       
+    <h4>Dashboard Post Section</h4>
+    <div class="share-update">
+  <!--<h4 class="share-update-box-name" data-ng-bind="::notesCtrl.rootScope('dashboard.shareUpdateBoxName')"></h4>-->
+  <!-- ngIf: !notesCtrl.miniPollsView --><div class="share-update-theme" data-ng-if="!notesCtrl.miniPollsView">
+	  <form name="notesCtrl.postMessageForm" data-ng-init="processing=false" class="ng-pristine ng-invalid ng-invalid-required">
+	  		<article class="closed-textarea normal_true">
+	  			<textarea name="comment" og-directive="" reference="notesCtrl.postMessageObject.comment.contentReference" clear-url="notesCtrl.postMessageObject.comment.comment" og-processing="processing" height="78" id="shareUpdateText" data-ng-model="notesCtrl.postMessageObject.comment.comment" data-ng-attr-placeholder="{{::notesCtrl.rootScope('dashboard.whatonmind')}}" data-ng-required="!notesCtrl.postMessageObject.comment.contentReference.title" file-stack-modal="" fs-pos=".attach-files" override-style="file-stack-dashboard-pos" class="ng-pristine ng-untouched ng-invalid ng-invalid-required" placeholder="What's on your mind?" required="required" style="overflow: hidden; height: 78px;"></textarea>
+				<!-- ngIf: notesCtrl.postMessageObject.comment.contentReference.title -->
+				<!-- ngIf: notesCtrl.postMessageForm.submitted && notesCtrl.postMessageForm.comment.$error.required -->
+				<!-- ngIf: notesCtrl.tagMembers -->
+			</article>
+			<!-- ngIf: notesCtrl.moreOptions --><div class="send-notification pCheckBox" data-ng-if="notesCtrl.moreOptions">
+		        <input type="checkbox" name="sendNotificationEmail" aria-label="Send email notification" data-ng-model="notesCtrl.postMessageObject.sendEmail" id="sendNotificationEmail" class="iCheckBox ng-pristine ng-untouched ng-valid">
+		        <label for="sendNotificationEmail" class="lCheckBox">
+		            <span class="checkedTick icon-icon_dev_strategy_check"></span>
+		        </label>
+		        <span class="lCheckBoxText white-color" data-ng-bind="::notesCtrl.rootScope('dashboard.sendEmailNotification')">Send email notification</span>
+	    	</div><!-- end ngIf: notesCtrl.moreOptions -->
+			<div class="col-container action-container share-with-post">
+	            <ul class="share-action-icons">
+	                <li class="attach-files"><span class="file-attach icon-file_select  file-stack-dashboard-pos"></span></li>    
+	                <li class="width-files tag-members">
+	                    <!--<a href="javascript:void(0)" class="icon-icon_accounts_all-members sp-icon-color" data-ng-click="notesCtrl.tagMembers=!notesCtrl.tagMembers;notesCtrl.tagsAdded = [];"></a>-->
+	                    <span class="icon-icon_accounts_all-members icon-tab-member" data-ng-click="notesCtrl.tagMembers=!notesCtrl.tagMembers;notesCtrl.tagsAdded = [];"></span>
+	                </li>                            
+	                <li class="width-files create-poll" data-ng-click="notesCtrl.pollsView('openPollsView')">
+	                    <span class="icon-icon_poll icon-mini-poll" title="::notesCtrl.rootScope('createPollsCont.pollTip1')"> </span>
+	                </li>
+	            </ul>
+	                <div class="post floatRight desktop-visible-post">
+					<input type="button" value="POST" class="dashPost-btn btn-square-30px sp-background-color" data-ng-click="!processing &amp;&amp; notesCtrl.postMessage(notesCtrl.postMessageObject)">
+				 </div>            		
+				 <!-- ngIf: notesCtrl.moreOptions --><div class="actions-filter w150ipad fr h32" data-ng-init="notesCtrl.actionSelected=notesCtrl.rootScope('dashboard.sharewithall')" data-ng-if="notesCtrl.moreOptions">
+	                 <p class="actions-dropdown-filter leftFilter h32">
+	                     <a href="javascript:void(0)" sp-condition="true" sp-click-outside="show">
+	                     	 <span data-ng-bind="notesCtrl.actionSelected" class="actionSelection util-ellipsiss">Share with All</span>
+	                         <span class="actions-icon icon-icon_dropdown-arrow sp-icon-color h32"></span>
+	                     </a>
+	                 </p>
+	                 <!-- ngIf: show -->
+	             </div><!-- end ngIf: notesCtrl.moreOptions -->
+	             <div class="post ipad-visible-post">
+					<input type="button" value="POST" class="dashPost-btn btn-square-30px sp-background-color" data-ng-click="!processing &amp;&amp; notesCtrl.postMessage(notesCtrl.postMessageObject)">
+				 </div> 
+			</div>
+		</form>
+	</div><!-- end ngIf: !notesCtrl.miniPollsView -->
+		<!-- ngIf: notesCtrl.miniPollsView -->
+</div>
+</div>
+  </article>
+  
+  <article class="support-article support-customer local-hide" data-tab = "5">
+    <header class="support-article-header">
+            <h1 class="support-article-title sp-header-title-color">FOOTER STYLE</h1>
+        </header>
+       <hr/>
+
+         <div class="section-colors">
+       <ul class="colors-list">
+            <li class="cb-custom">
+               <input type='text' name='showFooterBackgroundColor' id='showFooterBackgroundColor' value='' />
+                <label class="color-label">Footer Background Color</label>
+            </li>
+            <li  class="cb-custom">
+                <input type='text' name='showFooterNavTextColor' id='showFooterNavTextColor' value='' />
+                <label class="color-label">Footer Nav Text Color</label>
+            </li>
+            <li  class="cb-custom">
+                <input type='text' name='showFooterNavHoverColor' id='showFooterNavHoverColor' value='' />
+                <label class="color-label">Footer Nav Hover Color</label>
+            </li>
+        </ul>
+       </div>
+       <hr/>
+       <div class="section-preview-content">
+       <hr/>
+      <h4 class="preview-text">PREVIEW</h4>
+           <div class="x-container footer-wrapper">
+	<footer class="container">
+		<div class="row">
+			<div class="leftSec">
+				<ul>
+					<li>
+					<span class="footerMessage sp-footer-text-color">
+					Powered by
+					</span> <br/>
+					<img src="/resources/images/SP_logo_white.svg" alt="SurePeople&trade;">
+					</li>
+				</ul>
+			</div>
+			<div class="rightSec" style="float:right;height:auto;">
+				<div class="lists sp-footer-text-color">
+					<a class="sp-footer-text-color" href="#">+1 855-755-SURE (7873)</a>
+					<span class="spacerTop"></span>			
+					<a class="sp-footer-text-color disp-inline" href="#">Privacy</a>
+					<a class="sp-footer-text-color disp-inline" href="#">User Agreement</a>
+					<span class="copy-text">Copyright &copy; 2016 SurePeople, LLC. All rights reserved.</span>
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>   
+                  
+       </div>
+  </article>
+</div>
+
+        <div class="faux-col-shim"></div>
+      </div>
+    </div>
+    <div class="wrap-inner row theme-preview" data-ng-if="inviteReady && profileReady" data-ng-class="inviteReady?'':'hide'">
+                <div class="col-xs-12">
+                <div class="lnd-full-box sp-panel-accent lnd-spacer">
+                   		<div class="actionPlanHeader">
+                   		    <h3 class="companyName sp-header-title-color">PREVIEW</h3>
+		           			<div class="returnLink clearfix">
+		           				 <input type="submit" value="Apply" class="subscribeBtn btn-block btn-15px sp-btn-color"  data-ng-click="ctrl.updateThemeData('superAdmin')" />
+		           				<input type="button" value="Cancel" class="cancelBtn btn-block btn-15px btn-grey-dark" data-ng-click="ctrl.switchThemeView('normal')" />
+		           			</div>
+		           		</div>
+                   </div>
+                   <div class="section-preview-content">
+                    <div class="new-app-header-wrap" style="background:#fff; margin-top:30px;">
+<header class="new-app-header" >
+	<div class="header-icons-wrap">
+		<div class="i-cont header-table-layout">
+			<div class="i-cont-wrap">
+				<ul>
+					<li class="h-icons i-notifify">
+						<span class="mIcons icon-icon_bell sp-icon-color"></span>
+						<span class="notify-counter"></span>
+					</li>
+					<li class="h-icons i-menu">
+						<span class="mIcons icon-icon_menu sp-icon-color"></span>
+						<span class="menu-txt sp-icon-color">Menu</span>
+					</li>
+				</ul>
+			</div>
+		</div>	
+	</div>
+	
+	<div class="header-logo-wrap">
+		<div class="logo-cont header-table-layout">
+            <h1>
+				<a href="#">
+				<img data-ng-if="!ctrl.selectedCompanyLogo"  src="/resources/images/sp-logo.svg" alt="SurePeople&trade;"/>
+				<img data-ng-src="{{ctrl.selectedCompanyLogo}}" alt="" data-ng-if="ctrl.selectedCompanyLogo" class="logo-preview-pic"/>
+				</a>
+      		</h1>		
+		</div>
+	</div>
+	
+	
+</header>
+</div>
+<br/>
+<div class="header-info-container">                
+				<div class="header-info-content">
+					<div class="header-icon-wrap">
+	                    <p class="hinfo-wrap">
+	                        <span class="hinfo-icons icon-logo-badge sp-icon-color"></span>
+	                    </p>					
+					</div>
+					<div class="header-content-wrap">
+						
+	                    <p class="hinfo-wrap">
+	                        <span class="info-txt ml0 mb8 mt6">PRISM Lens</span>
+	                    </p>
+	                    <p class="header-info-def" data-ng-bind-html="::pullInterNationalization('feedback.headBar.description')"></p>
+	                    <p class="header-info-def mp6" data-ng-bind-html="::pullInterNationalization('feedback.headBar.description1')"></p>										
+					</div>	
+				</div>                 
+            </div>
+</div> <br/> 
+                    <div class="table-flex-cols section-preview-content">
+                    <!-- Left Box Starts -->
+                    <div class="lnd-left-sec sp-panel-accent">
+                        <!-- Box Starts -->
+                        <div class="prism-lens-request-form" style="margin:0 0 30px;">
+                        <p class="pf-head">Request PRISM Lens</p>
+                        <p>Results will be more constructive if the person you choose has worked with you for at least a six-month period.</p>
+                        <div class="tagsEmailInput overrides">
+                            <tags-input data-ng-model="ctrl.tags" display-property="name" max-tags="1" hide-input="true" placeholder="{{::pullInterNationalization('dashboard.enteremail')}}" allowed-name="email" allowed-tags-pattern="^[A-Za-z0-9._-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$" replace-spaces-with-dashes="false" on-tag-removed="ctrl.tagRemoved($tag)" on-tag-added="ctrl.tagAdded($tag)">
+                                <auto-complete max-tags="1" hide-input="true" min-length="1" load-on-focus="false" load-on-empty="true" max-results-to-show="6" source="ctrl.loadTags($query)" class="ng-tags-pos-fix"></auto-complete>
+                            </tags-input>
+                            <span class="validate-error" data-ng-if="ctrl.formErrors.emailCheck" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                        </div>
+                        <div class="show-names" data-ng-if="ctrl.showNames">
+                            <div class="form-styles-override noMargin">
+                                <ol class="form-list-c">
+                                    <li>
+                                        <ul class="cols-2">
+                                            <li>
+                                                <input type="text" data-ng-model="ctrl.nameDataFormfirstName" name="firstName" placeholder="{{pullInterNationalization('signup.firstName')}}" autofocus />
+                                                <!-- Error Messages -->
+                                                <span class="validate-error" data-ng-if="!ctrl.nameDataFormfirstName.length && ctrl.formErrors.firstName" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                                            </li>
+                                            <li>
+                                                <input type="text" data-ng-model="ctrl.nameDataFormlastName" name="lastName" placeholder="{{pullInterNationalization('signup.lastName')}}" />
+                                                <!-- Error Messages -->
+                                                <span class="validate-error" data-ng-if="!ctrl.nameDataFormlastName.length && ctrl.formErrors.lastName" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="form-grop calStyle calStyleW">
+                            <p class="label-block hide" data-ng-bind-html="::pullInterNationalization('manageAccountContent.lensRequestBy')"></p>
+                            <div class="posRel">
+                                <input type="text" class="form-control endInput cursorPointer" data-date-format="MM/dd/yyyy" id="endDateId" name="endDate" data-ng-model="ctrl.untilDate" data-autoclose="1" data-min-date="today" data-max-date="endDate" required placeholder="Set deadline for completion..."/>
+                                <label class="calImg icon-icon_calendar sp-icon-color" for="endDateId"></label>
+                            </div>
+                            <div class="validate-error" data-ng-if="!ctrl.untilDate && ctrl.formErrors.dateCheck" data-ng-bind="::pullInterNationalization('signup.required.error')"></div>
+                        </div>
+                        <div class="pf-btn-wrapper">
+                            <input type="submit" value="{{pullInterNationalization('admin.account.business.members.btn1')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="ctrl.sendRequestFeedbackAdmin(ctrl.untilDate, ctrl.nameDataFormfirstName, ctrl.nameDataFormlastName)" />
+                        </div>
+                    </div>
+                        <nav class="related-article-tools" style="background:#fff;">
+    <section class="related-article-links">
+        <h2>Trending</h2>
+        <ul class="spotlight-related-links">
+            <li class="media-text">
+            <span class="kc-icons-themed sp-icon-color icon-icon_article"></span>
+                <h3>
+                    <span class="border-link" href="#" style="cursor:pointer;">
+                        <span class="mock-link">How To Achieve Success By Admitting You Suck</span>
+                    </span>
+                </h3>
+               <p class="training-tool-info"><span class="author"><span>By</span> <span>Mike Templeman</span></span></p>
+            </li>
+            <li class="media-video">
+            <span class="kc-icons-themed sp-icon-color icon-icon_slideshow"></span>
+                <h3>
+                    <span class="border-link" href="#" style="cursor:pointer;">
+                        <span class="mock-link">Active Listening: The Speaking and Listening Balance</span>
+                    </span>
+                </h3>
+               <p class="training-tool-info"><span class="author"><span>By</span> <span>James Brooks Ph.D.</span></span></p>
+            </li>
+            <li class="media-audio">
+            <span class="kc-icons-themed sp-icon-color icon-icon_audio"></span>
+                <h3>
+                    <span class="border-link" href="#" style="cursor:pointer;">
+                        <span class="mock-link">Ditching Our Distractions: The Importance of Active Listening</span>
+                    </span>
+                </h3>
+                <p class="training-tool-info ng-scope"><span class="author"><span>By</span> <span>SunGardAS Contributor, SunGardAS</span></span></p>
+            </li>
+        </ul>
+    </section>
+   </nav>
+                    </div>
+                    <!-- Left Box Ends -->
+                    <!-- Right Box Starts -->
+                    <div class="lnd-right-sec sp-panel-accent mShowTable section-preview-content">
+                    <div class="prism-lens-wrapper">
+		                <div class="search-filter">
+		                    <p>
+		                        <input type="text" maxlength="28" data-ng-model="ctrl.lensSearch" placeholder="Search by member...">
+		                        <button class="icon-icon_search sp-icon-color"></button>
+		                    </p>
+		                </div>                    
+                        <section class="features-section">
+                            <header class="fs-header-wrap">
+                                <div class="split-cols-wrapper">
+                                    <div class="split-col scol1">
+                                        <div class="member-pic">
+                                            <div class="imgReplacement">DT</div>
+                                        </div>
+                                        <div class="member-details">
+                                            <p class="member-name sp-link-color">dil test</p>
+                                            <p class="member-title">dsad</p>
+                                            <p class="member-email">dil@yopmail.com</p>
+                                            <div class="status-details-responsive">
+                                                <p data-ng-if="member.userStatus==='VALID'">
+                                                    Lens completed on 
+                                                    <span>May 27, 2016</span>
+                                                    <br>
+                                                    <a href="javascript:void(0)" class="border-link">
+                                                        <span class="mock-link">Delete</span>
+                                                    </a>
+                                                </p>
+                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="split-col scol2">
+                                        <p>
+                                            Lens completed on 
+                                            <span>May 27, 2016</span>
+                                            <a href="javascript:void(0)" class="border-link del-link">
+                                                <span class="mock-link">Delete</span>
+                                            </a>
+                                        </p>
+                                        
+                                    </div>
+                                </div>
+                                <div class="icon-toggle">
+                                     <div class="close-it icon-icon_collapse sp-icon-color"></div>
+                                    <div class="open-it icon-icon_expand sp-icon-color"></div>
+                                </div>
+                            </header>
+                        </section>
+                        <section class="features-section">
+                            <header class="fs-header-wrap">
+                                <div class="split-cols-wrapper">
+                                    <div class="split-col scol1">
+                                        <div class="member-pic">
+                                            <div class="imgReplacement">JT</div>
+                                        </div>
+                                        <div class="member-details">
+                                            <p class="member-name sp-link-color">John test</p>
+                                            <p class="member-title">Test</p>
+                                            <p class="member-email">john@yopmail.com</p>
+                                            <div class="status-details-responsive">
+                                                <p data-ng-if="member.userStatus==='VALID'">
+                                                    Lens completed on 
+                                                    <span>May 31, 2016</span>
+                                                    <br>
+                                                    <a href="javascript:void(0)" class="border-link">
+                                                        <span class="mock-link">Delete</span>
+                                                    </a>
+                                                </p>
+                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="split-col scol2">
+                                        <p>
+                                            Lens completed on 
+                                            <span>May 31, 2016</span>
+                                            <a href="javascript:void(0)" class="border-link del-link">
+                                                <span class="mock-link">Delete</span>
+                                            </a>
+                                        </p>
+                                        
+                                    </div>
+                                </div>
+                                <div class="icon-toggle">
+                                     <div class="close-it icon-icon_collapse sp-icon-color"></div>
+                                    <div class="open-it icon-icon_expand sp-icon-color"></div>
+                                </div>
+                            </header>
+                        </section>
+                        
+                        <section class="features-section">
+                            <header class="fs-header-wrap disabled">
+                                <div class="split-cols-wrapper">
+                                    <div class="split-col scol1">
+                                        <div class="member-pic">
+                                            <div class="imgReplacement">HC</div>
+                                        </div>
+                                        <div class="member-details">
+                                            <p class="member-name sp-link-color">Honey Comb</p>
+                                            <p class="member-title"></p>
+                                            <p class="member-email">fifi@yopmail.com</p>
+                                            <div class="status-details-responsive">
+                                                <p>
+                                                    <span class="dbl">Request sent on  (June 23, 2016)</span>
+                                                   
+                                                    <a href="javascript:void(0)" class="border-link">
+                                                        <span class="mock-link">Send Reminder</span>
+                                                    </a>
+                                                    <br>
+                                                    <a href="javascript:void(0)" class="border-link">
+                                                        <span class="mock-link">Delete</span>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="split-col scol2">
+                                        <p>
+                                            <span class="dbl">Request sent on  (June 23, 2016)</span>
+                                            
+                                            <a href="javascript:void(0)" class="border-link">
+                                                <span class="mock-link">Send Reminder</span>
+                                            </a>
+                                            <a href="javascript:void(0)" class="border-link del-link">
+                                                <span class="mock-link">Delete</span>
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </header>
+                        </section>
+                        
+                    </div>
+                    <article class="article-teaser-panel two-col" style="background:#fff;padding:20px 0;">
+
+        <div class="book-mark-share">
+            <div class="book-mark-share-title sp-header-accent">Awareness of Others' Needs</div>
+        </div>
+
+       <div class="article-media" style="padding:0 15px;">
+            <img ng-src="http://images1.newscred.com/cD05NDVlMjIyMjkxZWFlZjNmNTZlMzg4N2YyM2Y2YWE1YyZnPTg2NTM5Nzg2YTM3ZGMxMTlkMzkxOGM4YjE0NGZhNGE0?width=764">
+        </div>
+
+        <div class="article-synopsis" style="padding:0 15px;">
+            <h2 class="synopsis-lede">
+           <div>
+            <a class="border-link" href="#">
+            <span class="mock-link black-link">10 Things I've Learned From Workplace Politics</span>
+            </a>
+            </div>
+            </h2>
+           <p class="article-publisher-info">
+                <span class="article-title"><span class="article-author">Jasmin Nazarian</span></span>
+            </p>
+
+            <p class="article-summary"><span >Multitasking seems like such a great way to get so much done in so little time. Who wouldn't want to knock out some emails, have lunch, and listen in on a phone conference all at the same time?</span>
+            </p>
+            <div>
+            <a class="border-link" href="#">
+            <span class="mock-link bold12-link">READ ARTICLE</span>
+            </a>
+            </div>
+            <p></p>
+        </div>
+    </article>
+                </div>
+                </div>
+                </div>
+            </div>
+  </div>
+</div>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="createPtpMember" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/spMatch/createPtp.html" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/spMatchController.min.js" />
+	    	<add-attribute value="resources/js-min/spMatchHomeController.min.js" />
+	    </put-list-attribute>
+		
+	</definition>
+	<definition name="spMatchHome" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/spMatch/spMatchHome.html" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/spMatchController.min.js" />
+	    	<add-attribute value="resources/js-min/spMatchHomeController.min.js" />
+	    </put-list-attribute>
+	
+	</definition>	
+	<definition name="createCustomPtp" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/spMatch/customPtp.html" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/spMatchController.min.js" />
+	    	<add-attribute value="resources/js-min/spMatchHomeController.min.js" />
+	    </put-list-attribute>
+	
+	</definition>	
+	<definition name="spMatchListing" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/spMatch/spMatchListing.html" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/spMatchController.min.js" />
+	    	<add-attribute value="resources/js-min/spMatchHomeController.min.js" />
+	    </put-list-attribute>
+	
+	</definition>
+	<definition name="spMatchCandidate" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/spMatch/spMatchCandidate.html" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/spMatchController.min.js" />
+	    	<add-attribute value="resources/js-min/spMatchHomeController.min.js" />
+	    </put-list-attribute>
+	
+	</definition>
+	<definition name="spMatchMember" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/spMatch/spMatchMember.html" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/spMatchController.min.js" />
+	    	<add-attribute value="resources/js-min/spMatchHomeController.min.js" />
+	    </put-list-attribute>
+	
+	</definition>		
+	<definition name="spMatchCandidatesDialog" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/spMatch/spMatchCandidatesDialog.html" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/spMatchController.min.js" />
+	    	<add-attribute value="resources/js-min/spMatchHomeController.min.js" />
+	    </put-list-attribute>
+	
+	</definition>
+	<definition name="spMatchMemberDialog" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/spMatch/spMatchMemberDialog.html" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/spMatchController.min.js" />
+	    	<add-attribute value="resources/js-min/spMatchHomeController.min.js" />
+	    </put-list-attribute>
+	
+	</definition>
+	<definition name="spMatchTopHiringProfile" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/spMatch/spMatchTopHiringProfileDialog.html" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/spMatchController.min.js" />
+	    	<add-attribute value="resources/js-min/spMatchHomeController.min.js" />
+	    </put-list-attribute>
+	
+	</definition>
+	<definition name="spMatchAllHiringProfile" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/spMatch/spMatchAllHiringProfileDialog.html" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/spMatchController.min.js" />
+	    	<add-attribute value="resources/js-min/spMatchHomeController.min.js" />
+	    </put-list-attribute>
+	
+	</definition>
+	<definition name="spMatchDeletePtp" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/spMatch/deletePtp.html" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/spMatchController.min.js" />
+	    	<add-attribute value="resources/js-min/spMatchHomeController.min.js" />
+	    </put-list-attribute>
+	
+	</definition>
+	
+</tiles-definitions>

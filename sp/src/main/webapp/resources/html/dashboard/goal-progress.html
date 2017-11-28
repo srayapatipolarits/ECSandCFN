@@ -1,0 +1,116 @@
+<article class="goal-progress-widget" data-ng-cloak data-ng-if="ctrl.goalKeys.length || ctrl.badges.length" data-ng-class="{'progress-height':ctrl.state === 'progress','completed-height':ctrl.state === 'completed'}">
+	<div class="goal-information">
+		<div class="header add-border" data-ng-click="ctrl.switchState('progress')" data-ng-class="{'selected':ctrl.state === 'progress', 'inactive':!ctrl.goalKeys.length}">
+			<div class="left-head">
+		       	<h3 class="title">
+					<span class="textual" data-ng-class="{'inactive':!ctrl.goalKeys.length}" data-ng-bind="::pullInterNationalization('dasboard.pr.goal')"></span>
+			   	</h3>
+		   	</div>
+       	</div>
+       	<div class="header" data-ng-click="ctrl.switchState('completed')" data-ng-class="{'selected':ctrl.state === 'completed', 'inactive':!ctrl.badges.length}">
+		   	<div class="left-head">
+			   	<h3 class="title left-margin">
+					<span class="textual" data-ng-class="{'inactive':!ctrl.badges.length}" data-ng-bind="::pullInterNationalization('dasboard.pr.goalaccomplished')"></span>
+			   	</h3>
+		   	</div>
+       	</div>
+       	<!-- Goals in  Progress -->
+	   	<div class="goals-details" data-ng-class="{'expanded':ctrl.expanded,'panel-fadeInContent':ctrl.state === 'progress', 'hide':ctrl.state === 'completed'}">
+	   	<div class="help-text" data-ng-if="ctrl.state === 'progress' && ctrl.expanded" data-ng-bind="::pullInterNationalization('goals.progress.desc')"></div>
+	    
+       		<div class="graphs clearfix animation_1" data-ng-repeat="(key,value) in ctrl.goalProgress" data-ng-class="{'hide':$index !==0 && !ctrl.expanded}">
+       		        <!-- Collapsed State -->
+     				 <div class="goal-information-detail notExpanded" data-ng-if="!ctrl.expanded" data-ng-repeat="goals in value | limitTo:1">
+     				 <!-- <h5 class="goalName" data-ng-bind="goals.goalName | replaceGoalName"></h5>-->
+	      				<div class="left">
+	      					<div class="badge">
+	      					<span class="badge-icon badge-grey" id="badge-icon_{{goals.goalName}}_{{$index}}" data-ng-mouseover="ctrl.changeHoverColor('on',goals.goalName,$index)" data-ng-mouseleave="ctrl.changeHoverColor('off',goals.goalName, $index)" data-ng-class="{'icon-badge_ertiLevel1':goals.goalName === 'Erti' && goals.badge === 1,
+       				                'icon-badge_ertiLevel2':goals.goalName === 'Erti' && goals.badge === 2,
+       				                'icon-badge_ertiLevel3':goals.goalName === 'Erti' && goals.badge === 3,
+       				                'icon-badge_ertiLevel4':goals.goalName === 'Erti' && goals.badge === 4,
+       				                'icon-badge_ertiLevel5':goals.goalName === 'Erti' && goals.badge === 5,
+       				                'icon-badge_learningprogram':goals.goalName === 'OrgPlan',
+       				                'icon-badge_tutorial':goals.goalName === 'Tutorial'}" badge-info url-src="common/badge-info.html" styles="badge-info-options" module-name="{{goals.goalName}}"></span>
+	      					</div>
+	      				</div>
+	      				<div class="right_area">
+	      					<h4 class="name"><span class="sp-link-color fw300" data-ng-click="ctrl.redirectToModule(goals)">{{goals.title}}</span> ({{goals.percentComplete}})</h4>
+	      					<div class="lp-progress" observe-param="{{goals.completedTasks}}" progress-animation="" ui-progress="{'trailColor':'#ddd'}" remaining-tasks="goals.completedTasks" total-tasks="goals.totalTasks" type="linear"></div>
+	      					<div class="completed-article">
+	      						<span data-ng-if="goals.goalName !== 'Erti'"  data-ng-bind="goals.completedTasks+' '+pullInterNationalization('practiceArea.of')+' '+goals.totalTasks+' '+pullInterNationalization('actionPlan.module.lp.tasksCompleted')"></span>
+	      						<span data-ng-if="goals.goalName === 'Erti'"  data-ng-bind="goals.completedTasks+' '+pullInterNationalization('practiceArea.of')+' '+goals.totalTasks+' '+pullInterNationalization('goals.erti.completed')"></span>
+	      					</div>
+	      				</div>
+     				</div>
+     				
+     				<!-- Expanded State -->
+     				<div class="goal-information-detail expanded" data-ng-if="ctrl.expanded" data-ng-repeat="goals in value" data-repeat-done="ctrl.calculateHeight()">
+     				 <h5 class="goalName" data-ng-bind="key | replaceGoalName"></h5>
+	      				<div class="left">
+	      					<div class="badge">
+	      						<span class="badge-icon badge-grey" id="badge-icon_{{goals.goalName}}_{{$index}}" data-ng-mouseover="ctrl.changeHoverColor('on',goals.goalName,$index)" data-ng-mouseleave="ctrl.changeHoverColor('off',goals.goalName, $index)" data-ng-class="{'icon-badge_ertiLevel1':goals.goalName === 'Erti' && goals.badge === 1,
+       				                'icon-badge_ertiLevel2':goals.goalName === 'Erti' && goals.badge === 2,
+       				                'icon-badge_ertiLevel3':goals.goalName === 'Erti' && goals.badge === 3,
+       				                'icon-badge_ertiLevel4':goals.goalName === 'Erti' && goals.badge === 4,
+       				                'icon-badge_ertiLevel5':goals.goalName === 'Erti' && goals.badge === 5,
+       				                'icon-badge_learningprogram':goals.goalName === 'OrgPlan',
+       				                'icon-badge_tutorial':goals.goalName === 'Tutorial'}" badge-info url-src="common/badge-info.html" styles="badge-info-options" module-name="{{goals.goalName}}"></span>
+	      					</div>
+	      				</div>
+	      				<div class="right_area">
+	      					<h4 class="name"><span class="sp-link-color fw300" data-ng-click="ctrl.redirectToModule(goals)">{{goals.title}}</span> ({{goals.percentComplete}})</h4>
+	      					<div class="lp-progress"  observe-param="{{goals.completedTasks}}" progress-animation="" ui-progress="{'trailColor':'#ddd'}" remaining-tasks="goals.completedTasks" total-tasks="goals.totalTasks" type="linear"></div>
+	      					<div class="completed-article">
+	      						<span data-ng-if="goals.goalName !== 'Erti'"  data-ng-bind="goals.completedTasks+' '+pullInterNationalization('practiceArea.of')+' '+goals.totalTasks+' '+pullInterNationalization('actionPlan.module.lp.tasksCompleted')"></span>
+	      						<span data-ng-if="goals.goalName === 'Erti'"  data-ng-bind="goals.completedTasks+' '+pullInterNationalization('practiceArea.of')+' '+goals.totalTasks+' '+pullInterNationalization('goals.erti.completed')"></span>
+	      					</div>
+	      				</div>
+     				</div>
+			</div>
+       	</div>
+       	<!-- Goal Accomplishments -->
+       	<div class="badges" data-ng-class="{'expanded':ctrl.expanded,'panel-fadeInContent':ctrl.state === 'completed', 'hide':ctrl.state === 'progress'}">
+       	<div class="help-text negative-margin" data-ng-if="ctrl.state === 'completed' && ctrl.expanded" data-ng-bind="::pullInterNationalization('goals.accomplished.desc')"></div>
+       		<div class="badges-information clearfix notExpanded" data-ng-if="!ctrl.expanded" data-ng-repeat="badge in ctrl.badges | limitTo:1">
+       			<div class="left">
+       				<span class="badge-icon sp-icon-color" 
+       				data-ng-class="{'icon-badge_ertiLevel1':badge.badgeType === 'Erti' && badge.level === 1,
+       				                'icon-badge_ertiLevel2':badge.badgeType === 'Erti' && badge.level === 2,
+       				                'icon-badge_ertiLevel3':badge.badgeType === 'Erti' && badge.level === 3,
+       				                'icon-badge_ertiLevel4':badge.badgeType === 'Erti' && badge.level === 4,
+       				                'icon-badge_ertiLevel5':badge.badgeType === 'Erti' && badge.level === 5,
+       				                'icon-badge_learningprogram':badge.badgeType === 'OrgPlan',
+       				                'icon-badge_tutorial':badge.badgeType === 'Tutorial'}" badge-info url-src="common/badge-info.html" styles="badge-info-options" module-name="{{badge.badgeType}}"></span>
+       			</div>
+       			<div class="right">
+       				<h4 class="badge-name" data-ng-bind="badge.contentReference.title"></h4>
+       				<h5 class="badge-description" data-ng-if="badge.badgeType !== 'Erti'" data-ng-bind="badge.badgeType | replaceGoalName"></h5>
+       				<h5 class="badge-description" data-ng-if="badge.badgeType === 'Erti'" data-ng-bind="'ERT-i - '+pullInterNationalization('badge.erti.level')+' '+badge.level""></h5>
+       			</div>
+       		</div>
+       		<div class="badges-information clearfix expanded" data-ng-if="ctrl.expanded" data-ng-repeat="badge in ctrl.badges" data-repeat-done="ctrl.calculateHeight()">
+       			<div class="left">
+       				<span class="badge-icon sp-icon-color" 
+       				data-ng-class="{'icon-badge_ertiLevel1':badge.badgeType === 'Erti' && badge.level === 1,
+       				                'icon-badge_ertiLevel2':badge.badgeType === 'Erti' && badge.level === 2,
+       				                'icon-badge_ertiLevel3':badge.badgeType === 'Erti' && badge.level === 3,
+       				                'icon-badge_ertiLevel4':badge.badgeType === 'Erti' && badge.level === 4,
+       				                'icon-badge_ertiLevel5':badge.badgeType === 'Erti' && badge.level === 5,
+       				                'icon-badge_learningprogram':badge.badgeType === 'OrgPlan',
+       				                'icon-badge_tutorial':badge.badgeType === 'Tutorial'}" badge-info url-src="common/badge-info.html" styles="badge-info-options" module-name="{{badge.badgeType}}"></span>
+       			</div>
+       			<div class="right">
+       				<h4 class="badge-name" data-ng-bind="badge.contentReference.title"></h4>
+       				<h5 class="badge-description" data-ng-if="badge.badgeType !== 'Erti'" data-ng-bind="badge.badgeType | replaceGoalName"></h5>
+       				<h5 class="badge-description" data-ng-if="badge.badgeType === 'Erti'" data-ng-bind="'ERT-i - '+pullInterNationalization('badge.erti.level')+' '+badge.level""></h5>
+       			</div>
+       		</div>
+       	</div>
+       	<div class="bottom-link" data-ng-if="ctrl.state === 'progress' && ctrl.dataCount > 1 && ctrl.toogleEnable">
+       	    <a href="javascript:void(0)" data-ng-click="ctrl.toggle()"><span class="mock-link weight-500 font-12" data-ng-bind="ctrl.expanded ? pullInterNationalization('dashboard.close') : pullInterNationalization('feedback.filters.status.viewAll.label')"></span></a>
+       	</div>
+       	<div class="bottom-link" data-ng-if="ctrl.state === 'completed' && ctrl.badges.length > 1 && ctrl.toogleEnable">
+       	    <a href="javascript:void(0)" data-ng-click="ctrl.toggle()"><span class="mock-link weight-500 font-12" data-ng-bind="ctrl.expanded ? pullInterNationalization('dashboard.close') : pullInterNationalization('feedback.filters.status.viewAll.label')"></span></a>
+       	</div>
+       </div>
+</article>

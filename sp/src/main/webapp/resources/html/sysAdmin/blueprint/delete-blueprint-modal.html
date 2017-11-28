@@ -1,0 +1,33 @@
+<div class="container" id="editGroup">
+    <div class="row">
+        <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+            <div>
+                <section class="wrapper">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar" data-ng-bind="::pullInterNationalization('admin.blueprint.delete.title')"></div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color" data-ng-click="closeThisDialog()"></div>
+                            </div>
+                        </div>
+                        <div class="contentArea">
+                            <div class="detail clearfix">
+                                <div class="conf_message" data-ng-bind="::pullInterNationalization('admin.blueprint.delete.desc')"></div>
+                                <div class="sp-btn-wrapper sp-red btn-small floatLeft spacing">
+                                    <div class="sp-btn">
+                                        <input type="button" value="{{::pullInterNationalization('admin.member.ok')}}" class="btnStyle1 " data-ng-click="ctrl.deleteBlueprint(deleteId)">
+                                    </div>
+                                </div>
+                                <div class="sp-btn-wrapper sp-grey btn-small floatLeft spacing">
+                                    <div class="sp-btn">
+                                        <input type="button" value="{{::pullInterNationalization('admin.member.cancel')}}" class="btnStyle1 " data-ng-click="closeThisDialog()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                </section>
+                </div>
+            </div>
+        </div>
+    </div>

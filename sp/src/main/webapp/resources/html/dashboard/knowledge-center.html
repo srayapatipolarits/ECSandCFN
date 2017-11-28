@@ -1,0 +1,56 @@
+<article class="knowledge-center-widget" data-ng-cloak data-ng-if="ctrl.dashboardArticle">
+
+	<div class="knowledge-section dashboard-accent">
+		<div class="wrapper clearfix">
+			<div class="left-knowledge-section split_width_{{(!!ctrl.dashboardArticle.article.videoUrl)||(!!ctrl.dashboardArticle.article.imageUrl)}}">
+				<div class="article-details">
+               		<div class="article-icon sp-icon-color" data-ng-class="{'icon-icon_audio':ctrl.dashboardArticle.article.articleType=='PODCAST','icon-icon_slideshow':ctrl.dashboardArticle.article.articleType=='SLIDESHARE','icon-icon_video':ctrl.dashboardArticle.article.articleType=='VIDEO','icon-icon_article':ctrl.dashboardArticle.article.articleType=='TEXT'}"></div>
+               	    <div class="event-article">
+               	    	<div class="article-description">
+                           <a href="javascript:void(0)" data-ng-click="ctrl.goToArticlePage(ctrl.dashboardArticle.article.articleLinkUrl)" class="name border-link"> <span class="mock-link" data-ng-bind="ctrl.dashboardArticle.article.articleLinkLabel"></span>
+                           </a>
+                           <div class="articles-info"> 
+                           	<span data-ng-if="ctrl.dashboardArticle.article.author" data-ng-bind="::pullInterNationalization('practice.by')+' '+ctrl.dashboardArticle.article.author[0]"></span>
+                           	<span data-ng-if="ctrl.dashboardArticle.article.articleSource" data-ng-bind="::pullInterNationalization('dashboard.kw.at')+' '+ ctrl.dashboardArticle.article.articleSource"></span>
+                         	</div>
+                         	<div class="articles-info" data-ng-if="ctrl.dashboardArticle.article.articleType !=='VIDEO' && ctrl.dashboardArticle.article.content"> 
+                           		<div class="block-with-text" data-ng-bind-html="ctrl.dashboardArticle.article.content[0]"></div>
+                         	</div>
+                         	<!-- <div class="header-section">
+								<span class="title" data-ng-bind="::pullInterNationalization('dashboard.kw.header')"></span>
+								<a href="/sp/profile" class="title weight-300 sp-link-color" data-ng-bind="::pullInterNationalization('dashboardUserAnalysis.profile')"></a>
+								<div class="clearfix kw-foo">
+									<span data-ng-bind="::pullInterNationalization('dashboard.kw.morearticles')"></span>
+									<a data-ng-href="/sp/trainingLibrary/results#/topicCategory=Themes&topicValue={{ctrl.dashboardArticle.goal.id}}:{{ctrl.dashboardArticle.goal.name}}" class="border-link"> <span class="mock-link" data-ng-bind="ctrl.dashboardArticle.goal.name"></span>
+						            </a>
+					            </div>
+							</div>  -->
+                         </div>
+                      </div>
+                 </div>
+       		</div>
+			<div class="right-knowledge-section">
+				<p class="list-thumb" data-ng-if="ctrl.dashboardArticle.article.videoUrl||ctrl.dashboardArticle.article.imageUrl">
+                     <a href="javascript:void(0)" data-ng-click="ctrl.videoPopUp(ctrl.dashboardArticle.article.videoUrl||ctrl.dashboardArticle.article.imageUrl,ctrl.dashboardArticle.article.articleType)">
+                         <!-- Setting width and height here. -->
+                         <img data-ng-src="{{ctrl.dashboardArticle.article.imageUrl}}" alt="{{ctrl.dashboardArticle.article.dsDescription}}">
+                     </a>
+                 </p>
+			</div>
+		</div>
+	    <div class="footer-section" data-ng-class="{'adjust-margin':ctrl.dashboardArticle.article.articleType !=='VIDEO'}">
+			<div class="clearfix kw-foo">
+				<span class="title" data-ng-bind="::pullInterNationalization('dashboard.kw.header')"></span>
+				<a href="/sp/profile" class="title weight-300 sp-link-color" data-ng-bind="::pullInterNationalization('dashboardUserAnalysis.profile')"></a>
+				<div class="clearfix">
+				<span data-ng-bind="::pullInterNationalization('dashboard.kw.morearticles')"></span>
+				<a data-ng-href="/sp/trainingLibrary/results#/topicCategory=Themes&topicValue={{ctrl.dashboardArticle.goal.id}}:{{ctrl.dashboardArticle.goal.name}}" class="border-link"> <span class="mock-link" data-ng-bind="ctrl.dashboardArticle.goal.name"></span>
+	            </a>
+	            </div>
+            </div>
+		</div>
+	</div>
+	
+	
+
+</article>

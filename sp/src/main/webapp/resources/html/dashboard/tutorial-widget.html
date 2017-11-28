@@ -1,0 +1,15 @@
+<article class="ert-development" data-ng-style="{'background-image':'url('+tutCtrl.dashboardTutorial.imgUrl+')'}" data-ng-if="tutCtrl.tutorialAvailable">
+    <div class="clearfix">
+        <div class="left-ert">
+            <h3 class="ea-title">
+			<span class="ea-setting-icon icon-icon_accounts_settings"></span>
+			<span class="textual" data-ng-bind="tutCtrl.dashboardTutorial.name"></span>
+		</h3>
+            <div class="ea-description" data-ng-bind-html="tutCtrl.dashboardTutorial.description"></div>
+        </div>
+        <div class="right-ert">
+            <div class="lp-progress"  observe-param="{{tutCtrl.dashboardTutorial.completedCount}}" progress-animation="" remaining-tasks="tutCtrl.dashboardTutorial.completedCount" total-tasks="tutCtrl.dashboardTutorial.actionCount" type="radial"></div>
+        </div>
+    </div>
+    <a href="#" data-ng-click="tutCtrl.openStickyTutorial();" data-ng-bind="::pullInterNationalization('dashboard.ra.go')" class="btn-square-30px sp-background-color go-btn"></a>
+</article>

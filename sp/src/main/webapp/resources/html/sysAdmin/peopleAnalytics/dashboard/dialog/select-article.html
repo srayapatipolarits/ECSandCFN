@@ -1,0 +1,56 @@
+<div class="container minimumHeight" id="addMemberScreen">
+     <div class="row competency-article-modal pa-article-modal">
+         <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+		   	<section class="wrapper">
+				<div class="contentBody">
+					<div class="head">
+						<div class="wrap">
+							<div class="headerBar">Add Article(s)</div>
+							<div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+						</div>
+					</div>
+					
+					<div class="container_dialog clearfix">
+					<h5 style="margin-top: -10px;">Search by article name / author / practice area/ Media type</h5>
+						<div class="controlwrap style_search">
+                            <input type="text" class="form-control" maxlength="200" data-ng-model="paArticleText" data-ng-change="getAllArticles(paArticleText)" placeholder="{{pullInterNationalization('sysAdmin.organization.search')}}" data-ng-model-options="{debounce:{'default':500,'blur':0}}">
+                           	<button class="sp-icon-color" data-ng-class="paArticleText.length>2? 'icon-icon_remove':'icon-icon_search'" data-ng-click="clearArticleSearch();paArticleText = '';"></button>
+                      	</div>
+                      	<div class="listArea pa-details">
+                      		<div class="list clearfix">
+			                    <div class="learning-articles-wrapper">
+				<div class="new-article-content" data-ng-repeat="articles in articlesList track by $index">
+					
+					<div class="new-article-details">
+					<span class="new-article-icon sp-icon-color" data-ng-class="{'icon-icon_audio':articles.articleType=='PODCAST','icon-icon_slideshow':articles.articleType=='SLIDESHARE','icon-icon_video':articles.articleType=='VIDEO','icon-icon_article':articles.articleType=='TEXT'}"></span>
+						<p>
+							<a href="#" class="border-link"> <span class="mock-link" data-ng-bind="articles.articleLinkLabel"></span>
+							</a> 
+							<span class="new-articles-info"> 
+							    <span data-ng-if="articles.author" data-ng-bind="pullInterNationalization('practice.by')+' '+articles.author[0]"></span>
+								<span data-ng-if="articles.articleSource && articles.author"> - </span>
+								<span data-ng-if="articles.articleSource" data-ng-bind="articles.articleSource"></span>
+							</span>
+							<div class="col-md-3 col-sm-3 add-article-btn">
+				                    <a data-ng-if="!articles.added" href="javascript:void(0)" role="button" class="buttoncss pull-right" data-ng-click="addArticle(articles)">ADD
+				                    </a>
+				                    <span data-ng-if="articles.added" class="article-done-icon icon-icon_dev_strategy_check sp-icon-color"></span>
+				            </div>
+						</p>
+					</div>
+				</div>
+				
+				</div>
+			                <div align="center" data-ng-if="!articlesList.length"><div class="mock-link">Search Article..</div></div>
+                           </div>
+                           <div class="sp-btn-wrapper btn-esmall floatLeft inviteBtn">
+							 <input type="button" value="Done" class="subscribeBtn btn-block btn-15px sp-btn-color" ng-click="closeThisDialog()">
+						   </div>
+                      	</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>
+

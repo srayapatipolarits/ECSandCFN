@@ -1,0 +1,56 @@
+<section data-ng-controller="accessManager as ctrl" class="sp-access-manager" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'" class="hide" data-ng-init="ctrl.getUserAccess()" data-ng-cloak>
+  <div class="x-container account-pages admin-view">
+        <div class="container">
+
+            <!-- Left Col Starts -->
+            <div class="custom-cols full">
+                <div class="col-wrapper sp-panel-accent">
+                <a class="return-link" href="/sp/sysAdmin/accessManager">Return to User Listing</a>
+                    <div class="profile-img">
+                        <img data-ng-src="{{ctrl.userInfo.smallProfileImage}}" alt="{{ctrl.userInfo.userInitials}}" data-ng-if="ctrl.userInfo.smallProfileImage" class="individual-pic" />
+                        <div class="imgReplacementBig individual-pic" data-ng-if="!ctrl.userInfo.smallProfileImage" data-ng-bind="ctrl.userInfo.userInitials"></div>
+                    </div>
+                    <div class="profile-cont">
+                        
+                        <h2 class="sp-header-title-color">{{ctrl.userInfo.firstName}} {{ctrl.userInfo.lastName}}</h2>
+                        <br/>
+                        <h2 class="sp-header-title-color">{{ctrl.userInfo.title}}</h2>
+                    </div>
+                    <a href="/sp/sysAdmin/accessManager" class="btn-block btn-grey-dark btn-14px sp-btn-color submit-perm">CANCEL</a>
+                    <a href="javascript:void(0)" class="btn-block btn-14px sp-btn-color cancel-perm" data-ng-click="ctrl.updateUserAccess('form')">SUBMIT</a>
+                    <span data-ng-if="ctrl.accessFormError" class="validate-error">Please select atleast one tool..</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="profileReady">
+        <div class="slide-animate-container">
+            <div class="animation">
+                <div class="paddingContainer">
+                    <div class="x-container account-pages admin-view member-profile hide" ng-if="inviteReady" ng-class="inviteReady?'show':'hide'">
+    <div class="container" >
+
+        <!-- Right Col Starts -->
+        <div class="custom-cols right sp-panel-accent">
+          <h2 class="sp-header-title-color permission-title" data-ng-bind="'Assign Permissions'"></h2>
+            <div class="col-wrapper options-permissions" data-ng-repeat="roleGroups in ctrl.accessRoles">
+                <h5 data-ng-bind="roleGroups.roleGroups"></h5>
+                <hr/>
+                <div class="options-wrapper permission-cols" data-ng-repeat="role in roleGroups.roles">
+                    <div class="permission-item">
+							<input type="checkbox" id="{{role.roleType}}" name="{{role.roleType}}" data-ng-click="ctrl.toggleRoleSelection(role.roleType)" data-ng-checked="role.exist"> 
+							<label for="{{role.roleType}}">
+							<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+							<span data-ng-bind="pullInterNationalization('accessManager.' + role.roleType)"></span>
+							</label> 	
+				    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

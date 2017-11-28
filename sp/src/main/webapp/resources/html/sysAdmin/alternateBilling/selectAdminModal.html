@@ -1,0 +1,66 @@
+<div class="container" id="editGroup">
+    <div class="row">
+        <div class="col-xs-offset-2 col-xs-9 members affiliate-listing library-home mob12">
+            <div>
+                <section class="wrapper">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar">Select Member for Admin Access</div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                            </div>
+                        </div>
+                        <div class="contentArea article-select">
+                            <div class="pulse pulse-admin" >
+                                <div class="select-article-modal clearfix">
+                                    <div class="toolbar clearfix">
+                                        <div class="controls clearfix">
+                                            <div class="controlwrap search">
+                                                <input type="text" class="form-control ng-pristine ng-valid pSearchBox" maxlength="28" ng-model="searchText" placeholder="Search">
+                                                <button class="sp-icon-color" ng-class="searchText.length? 'icon-icon_remove':'icon-icon_search'" ng-click="searchText=''"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="filters">
+                                    </div>
+                                    <article class="memberHolder adminMemberHolder">
+                                        <div class="heading row">
+                                            <div class="col-md-4 col-sm-4 tog activeFilter" ng-click="reverse=!reverse;order('name', reverse);active($event)" data-predicate='lastName'>
+                                                <h4 class="on code" data-ng-bind="'Name'"></h4>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4 t-name tog" ng-click="reverse=!reverse;order('title', reverse);active($event)" data-predicate='title'>
+                                                <h4>Role</h4>
+                                            </div>
+                                            <div class="col-md-1 col-sm-1"></div>
+                                        </div>
+                                        <!--<div class="complete-profile" ng-class="{active:show}" ng-repeat="pulseList in filtered=(pulseList | filter:filterByCategory)">-->
+                                        <div infinite-scroll="returnMemberList(pageSize+pageSize)" infinite-scroll-immediate-check="false" infinite-scroll-disabled="disabledInfinite">
+                                            <div class="complete-profile animation_1" ng-class="{active:show}" id='{{$index}}' ng-repeat="selectMemberList in recordField = ((selectMemberList | filter:searchText).slice(0,pageSize))" data-ng-if="selectMemberList.userStatus==='VALID'">
+                                                <div class="table-row clearfix">
+                                                    <div class="col-md-4 col-sm-4">
+                                                        <p class="code">
+                                                            <span class="mock-link" data-ng-bind="selectMemberList.name?selectMemberList.name:selectMemberList.email"></span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4">
+                                                        <div style="padding:2px 0px;" class="admin-rol"> <span data-ng-bind="selectMemberList.title"></span> </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4">
+                                                        <!-- Added inline style for testing. Will be removed or moved to proper Less files -->
+                                                        <a href="#" class="btn-block btn-14px sp-btn-color" data-ng-click="addAdmin(selectMemberList.email, selectMemberList)">Select User</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p ng-show="!recordField.length" class="noMatchFound ng-hide" data-ng-bind="'No Records Found'"></p>
+                                    </article>
+									<a href="#" class="btn-block btn-14px done-btn1" data-ng-click="closeThisDialog()">DONE</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

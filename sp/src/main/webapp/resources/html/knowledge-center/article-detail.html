@@ -1,0 +1,338 @@
+<div class="training-library tl-article-page hide" fix-container data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'">
+    <!-- Knowledge Center Header Starts -->
+    <div class="x-container">
+        <div class="container">
+            <div class="header-info-container">
+                <div class="header-info-content">
+                    <div class="header-icon-wrap adj0">
+                        <p class="hinfo-wrap">
+                            <span class="hinfo-icons icon-logo-badge sp-icon-color"></span>
+                        </p>
+                    </div>
+                    <div class="header-content-wrap mobAdj kc-searc-adj p5">
+                        <p class="hinfo-wrap">
+                            <a class="hinfo-link" href="/sp/trainingLibrary">
+                                <span class="info-txt ml0 mb8" data-ng-bind="::pullInterNationalization('kcContent.title')"></span>
+                            </a>
+                        </p>
+                    </div>
+                    <search-widget data-disable-search="disableClick" url-src="search-widget.html"></search-widget>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Knowledge Center Header Ends -->
+    <div class="x-container article-teasers hide" data-ng-if="articlePageReady" data-ng-class="articlePageReady?'show':'hide'">
+        <div class="container">
+            <div class="table-flex-cols">
+                <div class="available-stories main-content space-adj">
+                    <article class="article-curriculum-panel">
+                        <div class="book-mark-share">
+                            <div class="book-mark-share-title sp-header-accent">
+                                <a data-ng-href="/sp/trainingLibrary/results#/topicCategory=Themes&topicValue={{articlePageDetails.goals[0].id}}:{{articlePageDetails.goals[0].name}}" data-ng-bind="articlePageDetails.goals[0].name"></a>
+                            </div>
+                        </div>
+                        <div class="article-media" data-ng-if="imageAvailable===true && articlePageDetails.articleType === 'TEXT'">
+                            <img data-ng-src="{{articleHeroImage}}?width=764">
+                            <!--  http://placehold.it/784x441  -->
+                        </div>
+                        <div class="article-media videoWrapper" data-ng-if="videoType==='youtube'">
+                            <iframe class="youtube-player" type="text/html" width="952" height="534" data-ng-src="{{videoUrl}}" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <div class="article-media videoWrapper" data-ng-if="videoType==='vimeo'">
+                            <div id="vimeoPlayer"></div>
+                            <!-- <iframe id="player1" src="{{videoUrl}}" width="630" height="354" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>  -->
+                        </div>
+                        <div class="article-media" data-ng-if="videoType==='html5'">
+                            <div class="md-content">
+                                <div class="video-wrapper">
+                                    <video controls width="100%" autoplay>
+                                        <source data-ng-src="{{videoUrl}}" type="video/mp4">
+                                        <span>{{::pullInterNationalization('video.browser')}}</span>
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                        <header class="article-synopsis">
+                            <h2 class="synopsis-lede translate" data-ng-bind="articlePageDetails.articleLinkLabel"></h2>
+                            <p class="article-publisher-info">
+                                <span class="article-author" data-ng-bind="articlePageDetailsAuthors"></span> <span class="article-source" data-ng-bind="articlePageDetails.newsCredSource"></span> &ndash; <span class="article-date" data-ng-bind="articlePageDetails.articleSource"></span>
+                            </p>
+                        </header>
+                        <div class="social_media clearfix space_1">
+                            <div class="share-recommended sp_tooltip">
+                                <a href="javascript:void(0)" class="recommended icon-icon_article-recommend" data-ng-class="!articlePageDetails.articleRecommendedByUser?'default-color':'sp-icon-color'" data-ng-click="recommendBtnDisabled && recommendArtice(articlePageDetails.articleLinkUrl,articlePageDetails.articleRecommendedByUser)" id="event_recommend-article" kc-icon-tool-tip data-desc="{{::pullInterNationalization('kcContent.rec')}}"></a>
+                            </div>
+                            <div class="share-recommendedCount" data-ng-class="!articlePageDetails.recommendationCount?'hide':''">
+                                <a href="javascript:void(0)" class="count" id="event_recommend-article-count" data-ng-bind="articlePageDetails.recommendationCount||0"></a>
+                            </div>
+                            <div class="share-spread sp_tooltip">
+                                <a href="javascript:void(0)" class="spread icon-icon_article-share" id="event_recommend-article" data-ng-class="!shareEnable?'default-color':'sp-icon-color'" kc-icon-tool-tip data-desc="{{::pullInterNationalization('kcContent.share')}}" sp-condition="true" sp-click-outside="showShareMenu"></a>
+                            </div>
+                            <div class="actions-callout-wrappper notes-module article-share" data-ng-if="showShareMenu">
+                                <ul class="action-links notes-links">
+                                    <li>
+                                        <a href="javascript:void(0)" data-ng-click="shareArticle(articlePageDetails.articleLinkUrl, 'share')">
+                                            <span class="action-text sp-inline-block" data-ng-bind="::pullInterNationalization('practiceArea.shareinemail')"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" data-ng-click="shareArticle(articlePageDetails.articleLinkUrl, 'newsfeed')">
+                                            <span class="action-text sp-inline-block" data-ng-bind="::pullInterNationalization('practiceArea.shareinnews')"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="share-bookmark-tools sp_tooltip">
+                                <a href="javascript:void(0)" class="bookmark icon-icon_article-bookmark" data-ng-click="articleBtnDisabled && articleBookmark(articlePageDetails.articleLinkUrl)" data-ng-class="isArticleBookmarked?'sp-icon-color':'default-color'" id="event_article-bookmark-icon" kc-icon-tool-tip data-desc="{{::pullInterNationalization('kcContent.bookm')}}"></a>
+                            </div>
+                            <div class="share-spread sp_tooltip notes-icon">
+                                <a href="javascript:void(0)" class="spread icon-icon_article-postanote default-color" data-ng-class="hover?'sp-icon-color':'default-color'" data-ng-mouseenter="hover = true" data-ng-mouseleave="hover = false" notes-options url-src="notes/notes-options-articles.html" styles="notes-article-options" notes-callback="setContentReferenceArticle()" id="event_article-bookmark-icon" kc-icon-tool-tip data-desc="{{::pullInterNationalization('kcContent.postnote')}}"></a>
+                            </div>
+                            <!-- ReadSpeaker HTML Code -->
+                            <div id="readspeaker_button1" class="rs_skip rsbtn rs_preserve text-voice-icon" data-ng-if="!voiceActive && articlePageDetails.articleType !== 'VIDEO' && articlePageDetails.content[0].length">
+                                <a data-ng-click="startVoice()" rel="nofollow" class="rsbtn_play" accesskey="L" title="{{::pullInterNationalization('trainingLibrary.article.cta.playaudio')}}" href="https://app-na.readspeaker.com/cgi-bin/rsent?customerid=8669&amp;lang=en_us&amp;voice=Sophie&amp;readid=readContent&amp;url=">
+                                    <span class="text-voice-icon icon-icon_article-play sp-icon-color" data-ng-class="voiceAction === 'pause'? 'icon-icon_article-pause':'icon-icon_article-play'"></span>
+                                </a>
+                            </div>
+                            <div id="google_translate_element"></div>
+                            <div data-ng-if="voiceActive" class="voice-initiated">
+                                <span class="text-voice-icon icon-icon_article-pause sp-icon-color" data-ng-click="startVoice()" data-ng-class="voiceAction === 'pause'? 'icon-icon_article-pause':'icon-icon_article-play'"></span>
+                            </div>
+                        </div>
+                        <div class="curriculum-body translate" id="readContent">
+                            <p class="introduction" data-ng-bind-html="articlePageDetails.content[0]"></p>
+                            <!--   && videoAvailable === false  -->
+                            <p data-ng-repeat="a in articlePageDetails.content track by $index" class="import-content" data-ng-bind-html="a" data-ng-if="$index > 0" wol-links></p>
+                        </div>
+                        <!-- //curriculum-body -->
+                    </article>
+                    <!-- //.article-teaser-panel .one-col-->
+                    <!--ul class="clear curriculum-actions">
+                                    <li class="" data-ng-class="showAddToGoalsBtn===false?'hide':''"><a href="javascript:void(0)" class="btn-block btn-15px" data-ng-click="addtoGoals(articlePageDetails.articleLinkUrl)" data-ng-bind="::pullInterNationalization('kcContent.addplan')"></a></li>
+                                    <li class="icon-icon_dev_strategy_check grey-icon" data-ng-if="!articleCompletedBtn && !thanks"></li>
+                                    <li class="complete-btn" data-ng-class="updateBtnDisabled===true?'hide':''"><a href="javascript:void(0)" class="btn-block btn-15px sp-btn-color" data-ng-click="updateDashboard(articlePageDetails.articleLinkUrl, 'page')" id="event_finished-reading" data-ng-bind="::pullInterNationalization('actionPlan.module.todo.actions.markComplete')"></a></li>
+                                    <li class="completed" data-ng-class="articleCompletedBtn===true?'':'hide'"><span data-ng-bind="::pullInterNationalization('actionPlan.module.todo.actions.markInComplete')"></span></li>
+                                    <li class="" data-ng-class="articleHelpFul?'':'hide'"><span class='helpfulArticle clearfix'><span class=''
+                                    data-ng-class="!thanks?'':'hide'" data-ng-bind="::pullInterNationalization('kcContent.helpful')"></span> <a href="javascript:void(0)" class="buttoncss" data-ng-class="!thanks?'':'hide'" id="event_article_helpful_yes" data-ng-click="useful({'articleId':articlePageDetails.articleLinkUrl,'isUseFull':true})" data-ng-bind="::pullInterNationalization('kcContent.yes')"></a><a href="javascript:void(0)" data-ng-class="!thanks?'':'hide'" class="buttoncss" id="event_article_helpful_no" data-ng-click="useful({'articleId':articlePageDetails.articleLinkUrl,'isUseFull':false})" data-ng-bind="::pullInterNationalization('kcContent.no')"></a></span><span class='hide helpfulArticle clearfix' data-ng-class="thanks?'':'hide'">
+                                    <!-- <span class='completed' data-ng-bind="::pullInterNationalization('kcContent.thanksfb')"></span>  -.->
+                                    </span>
+                                    </li>
+                                    <li data-ng-if="articleCompletedBtn" data-ng-init="getBadgeInformation('.lp-progress')" class="lp-progress"></li>
+                                    <li data-ng-if="showBadge" class="sp-icon-color badge-icon" data-ng-class="{'icon-badge_ertiLevel1':badgeObj.completeLevel === 1,
+                                    'icon-badge_ertiLevel2':badgeObj.completeLevel === 2,
+                                    'icon-badge_ertiLevel3':badgeObj.completeLevel === 3,
+                                    'icon-badge_ertiLevel4':badgeObj.completeLevel === 4,
+                                    'icon-badge_ertiLevel5':badgeObj.completeLevel === 5}"></li>
+                                    <li class="progress-desc" data-ng-if="articleCompletedBtn && !showBadge">
+                                     <span class="title-1" data-ng-bind="badgeObj.contentReference.title"></span><br/>
+                                     <span class="title-2" data-ng-bind="badgeObj.completedCount+ ' of '+badgeObj.totalCount+' Articles Completed'"></span>
+                                    </li>
+                                    <li class="progress-desc-badge" data-ng-if="articleCompletedBtn && showBadge">
+                                     <span class="title-1" data-ng-bind="articlePageDetails.goals[0].name"></span><br/>
+                                     <span class="title-2" data-ng-bind="'Level '+badgeObj.completeLevel+' Completed'"></span>
+                                    </li>
+                                    <!-- <li class="" data-ng-if="recommendBtnDisabled===false"><a href="javascript:void(0)" class="btn-block btn-15px" data-ng-click="recommendArtice(articlePageDetails.articleLinkUrl)" id="event_recommend-article">RECOMMEND THIS ARTICLE</a></li>-->
+                    <!-- <li class="completed" data-ng-if="recommendBtnDisabled===true"><span>YOU RECOMMEND THIS ARTICLE</span></li>-.->
+                                    <li class="textRight event-next-article" data-ng-if="articlePageDetails.nextArticleUrl && articleCompletedBtn">
+                                        <a href="/sp/trainingLibrary/article?{{articlePageDetails.nextArticleUrl}}" id="event_view_next_goal" class="view-next-link border-link"><span class="mock-link">{{::pullInterNationalization('kcContent.viewnext')}} <span class="icon-icon_next-article next-icon"></span></span></a>
+                                    </li>
+                                </ul-->
+                    <!-- Article Actions Starts -->
+                    <div class="curriculum-actions-wrapper">
+                        <div class="ca-box">
+                            <!--  Add to my Goals Starts -->
+                            <ul data-ng-if="showAddToGoalsBtn">
+                                <li class="icon-checkmark_fat grey-ic adj1"></li>
+                                <li class="big-btn">
+                                    <a href="javascript:void(0)" data-ng-click="addtoGoals(articlePageDetails.articleLinkUrl)" class="btn-block btn-15px sp-btn-color" data-ng-bind="::pullInterNationalization('kcContent.addplan')"></a>
+                                </li>
+                            </ul>
+                            <!--  Add to my Goals Ends -->
+                            <!--  Mark as complete Starts -->
+                            <ul data-ng-if="!updateBtnDisabled">
+                                <li class="icon-checkmark_fat grey-ic adj1"></li>
+                                <li class="big-btn">
+                                    <a href="javascript:void(0)" data-ng-click="updateDashboard(articlePageDetails.articleLinkUrl, 'page')" class="btn-block btn-15px sp-btn-color" data-ng-bind="::pullInterNationalization('actionPlan.module.todo.actions.markComplete')"></a>
+                                </li>
+                            </ul>
+                            <!--  Mark as complete Ends -->
+                            <!--  Article Helpful Starts -->
+                            <ul data-ng-if="articleHelpFul">
+                                <li class="icon-checkmark_fat sp-icon-color adj2"></li>
+                                <li>
+                                    <span class="helpful-text" data-ng-bind="::pullInterNationalization('kcContent.helpful')"></span>
+                                    <span class="helpful-btns">
+                                                        <span id="event_article_helpful_yes" data-ng-click="useful({'articleId':articlePageDetails.articleLinkUrl,'isUseFull':true})" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('kcContent.yes')"></span>
+                                    <span id="event_article_helpful_no" data-ng-click="useful({'articleId':articlePageDetails.articleLinkUrl,'isUseFull':false})" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('kcContent.no')"></span>
+                                    </span>
+                                </li>
+                            </ul>
+                            <!--  Article Helpful Ends -->
+                            <!--  Article Completed Start -->
+                            <ul data-ng-if="articleCompletedBtn">
+                                <li class="alRight mt17" data-ng-if="articlePageDetails.nextArticleUrl">
+                                    <a href="/sp/trainingLibrary/article?{{articlePageDetails.nextArticleUrl}}" id="event_view_next_goal" class="border-link">
+                                        <span class="mock-link helpful-text m0" data-ng-bind="::pullInterNationalization('kcContent.viewnext')"></span>
+                                    </a>
+                                </li>
+                                <li class="icon-checkmark_fat sp-icon-color adj3"></li>
+                                <li>
+                                    <span class="helpful-text fw700 m0 mt17" data-ng-bind="::pullInterNationalization('actionPlan.module.todo.actions.markInComplete')"></span>
+                                </li>
+                                <li data-ng-init="getBadgeInformation('.lp-progress')" class="lp-progress" data-ng-if="!showBadge"></li>
+                                <li data-ng-if="!showBadge" class="badge-text">
+                                    <span class="b-title-1" data-ng-bind="badgeObj.contentReference.title"></span>
+                                    <span class="b-title-2" data-ng-bind="badgeObj.completedCount+ ' '+pullInterNationalization('practiceArea.of')+' '+badgeObj.totalCount+' '+pullInterNationalization('spectrum.article.completed')"></span>
+                                </li>
+                                <li data-ng-if="showBadge" class="sp-icon-color badgeIco" data-ng-class="setBadgeClass('icon-badge_ertiLevel',badgeObj.completeLevel)"></li>
+                                <li data-ng-if="showBadge" class="badge-text">
+                                    <span class="b-title-1" data-ng-bind="articlePageDetails.goals[0].name"></span>
+                                    <span class="b-title-2" data-ng-bind="pullInterNationalization('badge.erti.level')+' '+badgeObj.completeLevel+' '+pullInterNationalization('spectrum.assessmentCompleted')"></span>
+                                </li>
+                            </ul>
+                            <!--  Article Completed Ends -->
+                        </div>
+                    </div>
+                    <!-- Article Actions Ends -->
+                    <!-- //.article-actions -->
+                    <div class="social_media clearfix space_2" data-ng-if="articlePageDetails.articleType === 'TEXT'">
+                        <div class="share-recommended sp_tooltip">
+                            <a href="javascript:void(0)" class="recommended icon-icon_article-recommend" data-ng-class="!articlePageDetails.articleRecommendedByUser?'default-color':'sp-icon-color'" data-ng-click="recommendBtnDisabled && recommendArtice(articlePageDetails.articleLinkUrl,articlePageDetails.articleRecommendedByUser)" id="event_recommend-article" kc-icon-tool-tip data-desc="{{::pullInterNationalization('kcContent.rec')}}"></a>
+                        </div>
+                        <div class="share-recommendedCount" data-ng-class="!articlePageDetails.recommendationCount?'hide':''">
+                            <a href="javascript:void(0)" class="count" id="event_recommend-article-count" data-ng-bind="articlePageDetails.recommendationCount||0"></a>
+                        </div>
+                        <div class="share-spread sp_tooltip">
+                            <a href="javascript:void(0)" class="spread icon-icon_article-share" id="event_recommend-article" data-ng-class="!shareEnable?'default-color':'sp-icon-color'" kc-icon-tool-tip data-desc="{{::pullInterNationalization('kcContent.share')}}" sp-condition="true" sp-click-outside="showShareMenu1"></a>
+                        </div>
+                        <div class="actions-callout-wrappper notes-module article-share" data-ng-if="showShareMenu1">
+                            <ul class="action-links notes-links">
+                                <li>
+                                    <a href="javascript:void(0)" data-ng-click="shareArticle(articlePageDetails.articleLinkUrl, 'share')">
+                                        <span class="action-text sp-inline-block" data-ng-bind="::pullInterNationalization('practiceArea.shareinemail')"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" data-ng-click="shareArticle(articlePageDetails.articleLinkUrl, 'newsfeed')">
+                                        <span class="action-text sp-inline-block" data-ng-bind="::pullInterNationalization('practiceArea.shareinnews')"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="share-bookmark-tools sp_tooltip">
+                            <a href="javascript:void(0)" class="bookmark icon-icon_article-bookmark" data-ng-click="articleBtnDisabled && articleBookmark(articlePageDetails.articleLinkUrl)" data-ng-class="isArticleBookmarked?'sp-icon-color':'default-color'" id="event_article-bookmark-icon" kc-icon-tool-tip data-desc="{{::pullInterNationalization('kcContent.bookm')}}"></a>
+                        </div>
+                        <div class="share-spread sp_tooltip notes-icon">
+                            <a href="javascript:void(0)" class="spread icon-icon_article-postanote default-color" notes-options url-src="notes/notes-options-articles.html" styles="notes-article-options" notes-callback="setContentReferenceArticle()" id="event_article-bookmark-icon" kc-icon-tool-tip data-desc="{{::pullInterNationalization('kcContent.postnote')}}"></a>
+                        </div>
+                    </div>
+                    <div class="comments-wrapper" data-ng-if="profileReady && commentsReady">
+                        <div class="counts">
+                            <p class="total-comments" data-ng-if="commentList.length > 0">{{commentList.length}} {{::pullInterNationalization('dashboard.comments')}}
+                            </p>
+                            <!-- <p class="total-recommended" data-ng-if="articlePageDetails.recommendationCount > 0">{{articlePageDetails.recommendationCount}} Recommendations</p>-->
+                        </div>
+                        <div class="comment-box">
+                            <div class="user-pic">
+                                <img data-ng-src="{{loggedInUser.member.smallProfileImage}}" alt="{{loggedInUser.member.userInitials}}" data-ng-if="loggedInUser.member.smallProfileImage">
+                                <div class="imgReplacementMedium" data-ng-if="!loggedInUser.member.smallProfileImage" data-ng-bind="loggedInUser.member.userInitials"></div>
+                            </div>
+                            <div class="box">
+                                <p class="details">
+                                    <span class="user-name sp-link-color">{{loggedInUser.first}}
+                                            {{loggedInUser.last}}</span> <span class="current-date">{{today}}</span>
+                                </p>
+                                <form novalidate>
+                                    <p class="text-box">
+                                        <label for="newComment" data-ng-bind="::pullInterNationalization('kcContent.comment')"></label>
+                                        <textarea data-ng-model="topBox.newComment" name="newComment" required></textarea>
+                                        <span class="err-msg" data-ng-if="newCommentBox.submitted">
+                                                    <span class="validate-error" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                                        </span>
+                                    </p>
+                                    <a href="javascript:void(0)" class="btn-square-12px sp-background-color post-btn" data-ng-click="comments.add(topBox.newComment, articlePageDetails.articleLinkUrl)" id="event_post_comment" data-ng-bind="::pullInterNationalization('kcContent.post')"></a>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="comment-content-wrapper" data-ng-if="commentList.length > 0">
+                            <div class="comment-box" data-ng-repeat="c in commentList">
+                                <div class="user-pic">
+                                    <img data-ng-src="{{c.by.smallProfileImage}}" alt="{{c.by.userInitials}}" data-ng-if="c.by.smallProfileImage">
+                                    <div class="imgReplacementMedium" data-ng-if="!c.by.smallProfileImage" data-ng-bind="c.by.userInitials"></div>
+                                </div>
+                                <div class="box">
+                                    <p class="details">
+                                        <span class="user-name sp-link-color">{{c.by.firstName}}
+                                                {{c.by.lastName}}</span> <span class="current-date">{{c.createdOnFormatted}}</span>
+                                    </p>
+                                    <form novalidate name="commentBoxForm_{{$index}}" class="hide">
+                                        <p class="text-box">
+                                            <label for="commentBox_{{$index}}" data-ng-bind="::pullInterNationalization('kcContent.comment')"></label>
+                                            <textarea name="commentBox_{{$index}}" data-comments="{{c.comment}}" data-ng-model="commentBoxes[c.mName]" required></textarea>
+                                            <a href="javascript:void(0)" class="hide comment-btns fLeft" data-ng-click="comments.cancel($index, $event)" data-cancel="cancelBtn_{{$index}}" data-ng-bind="::pullInterNationalization('kcContent.cancel')"></a>
+                                            <a href="javascript:void(0)" class="pill orange fRight comment-btn buttoncss" data-ng-click="comments.update($index, articlePageDetails.articleLinkUrl);" data-ng-bind="::pullInterNationalization('kcContent.update')"></a>
+                                            <span class="err-msg hide error_msg_{{$index}}"><span
+                                                    class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('hiring.profile.details.error.required')"></span></span>
+                                        </p>
+                                    </form>
+                                    <p class="user-comment" data-comment="cBox_{{$index}}">
+                                        <span class="comment-text" data-ng-bind-html="c.comment"></span>
+                                    </p>
+                                    <p class="comment-btns" data-ng-show="c.showOptions" data-btns="cBtns_{{$index}}">
+                                        <a href="javascript:void(0)" data-ng-click="comments.edit($index, articlePageDetails.articleLinkUrl);" data-ng-bind="::pullInterNationalization('kcContent.edit')"></a>
+                                        <a href="javascript:void(0)" data-ng-click="comments.delete($index, articlePageDetails.articleLinkUrl)" data-ng-bind="::pullInterNationalization('kcContent.del')"></a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="notesOptions" class="actions-callout-wrappper notes-module article-notes-options">
+                    <ul class="action-links notes-links" data-ng-if="showNotesMenu">
+                        <li>
+                            <a href="javascript:void(0)" data-ng-click="handleNoteOptionsClick('private')">
+                                <span class="action-text" data-ng-bind="::pullInterNationalization('notes.privateNotes.label')"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" data-ng-click="handleNoteOptionsClick('gd')">
+                                <span class="action-text" data-ng-bind="::pullInterNationalization('notes.gd.label')"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- // .available-stories .main-content -->
+                <aside class="related-content table-col-adj">
+                    <practice-areas-widget data-disable-search="disableClick" url-src="practice-areas-widget.html" data-type="standard"></practice-areas-widget>
+                    <aside class="spotlight bg-grey" data-ng-if="videoAvailable===false">
+                        <header class="spotlight-header">
+                            <h2 class="spotlight-title-2 sp-header-accent">
+                                            <span class="cont" data-ng-bind-html="::pullInterNationalization('kcContent.relatedContent.heading')"></span>
+                                            <span class="cont-name" data-ng-bind-html="articlePageDetails.goals[0].name"></span>
+                                        </h2>
+                        </header>
+                        <div class="spotlight-body">
+                            <ul class="spotlight-related-links event-related-content-articles">
+                                <li data-ng-repeat="a in relatedContent"><span class="kc-icons-themed sp-icon-color" data-ng-class="{'icon-icon_audio':a.articleType=='PODCAST','icon-icon_slideshow':a.articleType=='SLIDESHARE','icon-icon_video':a.articleType=='VIDEO','icon-icon_article':a.articleType=='TEXT'}"></span>
+                                    <h3>
+                                                    <a class="border-link"
+                                                        data-ng-href="/sp/trainingLibrary/article?{{a.articleLinkUrl}}"
+                                                        id=event_type_{{a.articleType}}_{{$index}}> <span
+                                                        class="mock-link" data-ng-bind="a.articleLinkLabel"></span>
+                                                    </a>
+                                                </h3>
+                                    <p class="training-tool-info" data-ng-if="a.author[0]">
+                                        <span class="author"><span>{{::pullInterNationalization('dashboard.by')}}</span> <span data-ng-bind="a.author[0]"></span></span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+                </aside>
+                <!-- // .related-content -->
+            </div>
+        </div>
+    </div>
+    <span class="hidden" id="readability"></span>
+</div>

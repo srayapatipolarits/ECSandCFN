@@ -1,0 +1,15 @@
+<article class="singleRange editable_{{editable}}">
+    <div class="detail clearfix">
+    	  <div class="labels">
+          	  	<span class="minRange" data-ng-bind="minValue"></span>
+          	  	<span class="midRange">|</span>
+          	  	<span class="maxRange" data-ng-bind="maxValue"></span>
+          </div>
+             
+          <div class="bar sp-range-wrapper">
+          	  <span class="sp-range-filler-wrap"><span class="sp-range-filler start-left" data-ng-style="{'width': currentValue + '%' }"></span></span>
+              <input type="range" class="sp-range-slider" data-ng-min="{{minValue}}" data-ng-max="{{maxValue}}" value="{{currentValue}}" data-ng-model='currentValue'/>
+          </div>
+          <div class="sp-range-filler-current" style="width:{{currentValue}}%">{{currentValue}}</div>
+    </div>
+</article>

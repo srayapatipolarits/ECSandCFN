@@ -1,0 +1,45 @@
+<div class="new-cols filters-col full-spanned" data-ng-init="ctrl.initSettings()">
+    <div class="col-content-wrapper mh700 noTopSpace sp-panel-accent">
+        <div class="internal-nav-links-wrapper noMTop">
+            <ul>
+                <li class="nobTop">
+                    <a href="javascript:void(0)" class="profile-links" data-ng-bind="::pullInterNationalization('manageAccountContent.linkAdmins')" data-ng-click="ctrl.setSettingsView('admins');ctrl.themeManagerCleanup();" data-ng-class="ctrl.settingsNav==='admins'?'on':''"></a>
+                    <span data-ng-class="ctrl.settingsNav==='admins'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" class="profile-links" data-ng-bind="::pullInterNationalization('manageAccountContent.linkCompany')" data-ng-click="ctrl.setSettingsView('companyDetails');ctrl.themeManagerCleanup();" data-ng-class="ctrl.settingsNav==='companyDetails'?'on':''"></a>
+                    <span data-ng-class="ctrl.settingsNav==='companyDetails'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" class="profile-links" data-ng-bind="::pullInterNationalization('manageAccountContent.linkBilling')" data-ng-click="ctrl.setSettingsView('billingDetails');ctrl.themeManagerCleanup();" data-ng-class="ctrl.settingsNav==='billingDetails'?'on':''"></a>
+                    <span class="toLines" data-ng-class="ctrl.settingsNav==='billingDetails'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" class="profile-links" data-ng-bind="::pullInterNationalization('manageAccountContent.linkPermissions')" data-ng-click="ctrl.setSettingsView('permissions');ctrl.themeManagerCleanup();" data-ng-class="ctrl.settingsNav==='permissions'?'on':''"></a>
+                    <span data-ng-class="ctrl.settingsNav==='permissions'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                </li>                
+                <li data-ng-if="ctrl.showThemeManager">
+                    <a href="javascript:void(0)" class="profile-links" data-ng-bind="::pullInterNationalization('manageAccountContent.linkTheme')" data-ng-click="ctrl.setSettingsView('themeManager')" data-ng-class="ctrl.settingsNav==='themeManager'?'on':''"></a>
+                    <span data-ng-class="ctrl.settingsNav==='themeManager'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                </li>                                                                                
+            </ul>
+        </div>
+    </div>
+    <div class="filter-col-sham"></div>
+</div>
+<div class="new-cols content-col sp-panel-accent" data-ng-if="ctrl.settingsNav==='admins'">
+ <ng-include src="'/sp/resources/html/admin/manage-account/settings-admins.html'"></ng-include>
+</div>
+<div class="new-cols content-col sp-panel-accent" data-ng-if="ctrl.settingsNav==='companyDetails'">
+ <ng-include src="'/sp/resources/html/admin/manage-account/settings-companyDetails.html'"></ng-include>
+</div>
+<div class="new-cols content-col sp-panel-accent" data-ng-if="ctrl.settingsNav==='billingDetails'">
+ <ng-include src="'/sp/resources/html/admin/manage-account/settings-billingDetails.html'"></ng-include>
+</div>
+<div class="new-cols content-col sp-panel-accent" data-ng-if="ctrl.settingsNav==='permissions'">
+ <ng-include src="'/sp/resources/html/admin/manage-account/settings-permissions.html'"></ng-include>
+</div>
+<div class="new-cols content-col sp-panel-accent" data-ng-if="ctrl.settingsNav==='themeManager'">
+ <ng-include src="'/sp/resources/html/admin/manage-account/settings-themeManager.html'"></ng-include>
+</div>
+

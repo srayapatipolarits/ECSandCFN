@@ -1,0 +1,43 @@
+<div class="content-carousel">
+    <div class="cc-slide sp-panel-accent" data-ng-repeat="portrait in portraitMatchListing" data-ng-class="{'mb0':$last}">
+        <div class="org-slide-wrapper">
+            <div class="org-slide-cont">
+                <span class="icon-idealPortrait sp-icon-color"></span>
+                <span class="portrait-title sp-link-color" data-ng-bind="portrait.name"></span>
+                <div class="block-with-text adjust-min-height">
+                    <p class="matchList-desc adjust-font-size" data-ng-if="portrait.description">
+                        <span>
+							           	  <span class="read-more-wrap-horizontal" data-ng-init="btnRolesView=true;">
+							                    <span class="text text-util" data-ng-bind-html="(btnRolesView?(portrait.description | addEllipsis : 215):portrait.description) | htmlLinky" data-ng-class="{'moreellipses':portrait.description.length>215&&btnRolesView,'inline-block':!ctrl.whiteSpace(portrait.description)}"></span>
+                        </span>
+                        </span>
+                    </p>
+                </div>
+                <a href="javascript:void(0)" class="btn-square-12px sp-background-color slide-selct-btn" data-ng-click="comparePortrait(portrait.id)" data-ng-bind="::pullInterNationalization('spmatch.select')"></a>
+            </div>
+            <hr class="new-separator" />
+            <ul class="result-category">
+                <li class="active">
+                    <span data-ng-bind="::pullInterNationalization('candidates.recordRoles')"></span>
+                </li>
+                <li>
+                    <a class="border-link" href="javascript:void(0)" data-ng-click="addRole(portrait.id,portrait.roles)">
+                        <span class="mock-link" data-ng-bind="::pullInterNationalization('candidates.addCandidates.addRole')"></span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="mpa-pills ip-overrides" data-ng-if="portrait.roles.length">
+                <li class="read-more-wrap-tag" data-ng-repeat="role in record = (portrait.roles) | limitTo:2 track by role.id" data-ng-class="{'no-right':$last}">
+                    <span class="mpa-name sp-background-color" data-ng-bind-html="role.name | unescapeText | addEllipsis : 15"></span>
+                    <span class="mpa-icon sp-background-color" data-ng-click="removeRoleModal(portrait.id, role)">×</span>
+                </li>
+                <li class="mpReset" data-ng-if="portrait.roles.length > 2">
+                    <a class="border-link more-roles" href="javascript:void(0)" data-ng-click="viewAllRoles(portrait.id,portrait.roles)">
+                        <span class="mock-link">+ {{portrait.roles.length - 2}}</span>
+                    </a>
+                </li>
+            </ul>
+            <span class="no-role-listing" data-ng-if="!portrait.roles.length" data-ng-bind="::pullInterNationalization('portrait.match.noRoles')"></span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+<article class="accordian-filter">
+	<ul>
+		<li data-ng-if="ctrl.insights.spectrumFilter.filters.groups.length">
+			<input type="checkbox" class="accordian-checkbox" checked data-ng-click="ctrl.closeRest($event)"/>
+			<span class="clearButon sp-spectrum-color" data-ng-if="ctrl.pageSetting.groupSelected.length" data-ng-click="ctrl.clear('.groupCheckBox','groupSelected','groupSearch')" data-ng-bind="::pullInterNationalization('spectrum.clear')"></span>
+			<span class='expand-collapse'></span>
+			<h3 data-ng-bind="::pullInterNationalization('spectrum.profile.groups')"></h3>
+			<div class='header-related-content' id="group">
+				<div class="controlwrap sp-search-button">
+                    <input type="text" class="form-control" maxlength="28" ng-model="ctrl.pageSetting.groupSearch" placeholder="{{::pullInterNationalization('spectrum.search.group')}}" data-ng-model-options="{ debounce: { 'default': 500, 'blur': 0 } }">
+                    <button ng-class="{'icon-icon_remove':ctrl.pageSetting.groupSearch.length, 'icon-icon_search': !ctrl.pageSetting.groupSearch.length}" class="sp-icon-color" data-ng-click="ctrl.pageSetting.groupSearch=''"></button>
+                </div>
+                <div class="tick-selection clearfix" repeat-done="ctrl.calculateHeight('group')" data-ng-repeat="spectrumFilter in recordField = (ctrl.insights.spectrumFilter.filters.groups | filter:ctrl.pageSetting.groupSearch) track by spectrumFilter">
+					<input type="checkbox" data-ng-checked="ctrl.pageSetting.groupSelected.indexOf(spectrumFilter)!==-1" class="filterCheckBox groupCheckBox" id="group_{{$index}}" data-ng-click="ctrl.includeCheck(spectrumFilter,ctrl.pageSetting.groupSelected)">
+	                <label for="group_{{$index}}" class="filterCheckBox-label pull-left">
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+	                <label for="group_{{$index}}">
+	                	<span class="floLeft font_14_300 sp-spectrum-color right-adjust" data-ng-bind="spectrumFilter"></span>
+	                </label>
+                </div>
+                <p data-ng-if="!recordField.length" class="noMatchFound" data-ng-bind="::pullInterNationalization('spectrum.nouser')"></p>
+            </div>
+		</li>
+		<li>
+			<input type="checkbox" class="accordian-checkbox disabled-{{ctrl.userType!=='Employees'}}" checked data-ng-click="ctrl.closeRest($event)"/>
+			<span class="clearButon sp-spectrum-color" data-ng-if="ctrl.pageSetting.ageSelected.length" data-ng-click="ctrl.clear('.ageCheckbox','ageSelected')" data-ng-bind="::pullInterNationalization('spectrum.clear')"></span>
+			<span class="expand-collapse disabled-{{ctrl.userType!=='Employees'}}"></span>
+			<h3 class="disabled-{{ctrl.userType!=='Employees'}}" data-ng-bind="::pullInterNationalization('spectrum.profile.age')"></h3>
+			<div class='header-related-content'>
+			    <div class="tick-selection" data-ng-repeat="spectrumFilter in ctrl.insights.spectrumFilter.filters.age track by $index">
+					<input type="checkbox" class="filterCheckBox ageCheckbox" id="age_{{$index}}" data-ng-click="ctrl.includeCheck(pullInterNationalization('spectrum.ageRange.'+spectrumFilter),ctrl.pageSetting.ageSelected)">
+	                <label for="age_{{$index}}" class="filterCheckBox-label">
+	                	<span class="floLeft font_14_300 sp-spectrum-color" data-ng-bind="pullInterNationalization('spectrum.piechart.'+spectrumFilter)"></span>
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+                </div>
+            </div>
+		</li>
+		<li>
+			<input type="checkbox" class="accordian-checkbox" checked data-ng-click="ctrl.closeRest($event)"/>
+			<span class="clearButon sp-spectrum-color" data-ng-if="ctrl.pageSetting.genderSelected.length" data-ng-click="ctrl.clear('.genderCheckbox','genderSelected')" data-ng-bind="::pullInterNationalization('spectrum.clear')"></span>
+			<span class='expand-collapse'></span>
+			<h3 data-ng-bind="::pullInterNationalization('spectrum.profile.gender')"></h3>
+			<div class='header-related-content'>
+				 <div class="tick-selection">
+					<input type="checkbox" class="filterCheckBox genderCheckbox" id="gender_male" data-ng-click="ctrl.includeCheck('M',ctrl.pageSetting.genderSelected)">
+	                <label for="gender_male" class="filterCheckBox-label">
+	                	<span class="floLeft font_14_300 sp-spectrum-color" data-ng-bind="::pullInterNationalization('spectrum.gender.male')"></span>
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+                </div>
+                <div class="tick-selection">
+					<input type="checkbox" class="filterCheckBox genderCheckbox" id="gender_female" data-ng-click="ctrl.includeCheck('F',ctrl.pageSetting.genderSelected)">
+	                <label for="gender_female" class="filterCheckBox-label">
+	                	<span class="floLeft font_14_300 sp-spectrum-color" data-ng-bind="::pullInterNationalization('spectrum.gender.female')"></span>
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+                </div>
+			</div>
+		</li>
+		<li data-ng-if="ctrl.insights.spectrumFilter.filters.tags.length">
+			<input type="checkbox" class="accordian-checkbox" checked data-ng-click="ctrl.closeRest($event)"/>
+			<span class="clearButon sp-spectrum-color" data-ng-if="ctrl.pageSetting.tagSelected.length" data-ng-click="ctrl.clear('.tagCheckBox','tagSelected','tagSearch')" data-ng-bind="::pullInterNationalization('spectrum.clear')"></span>
+			<span class='expand-collapse'></span>
+			<h3 data-ng-bind="::pullInterNationalization('spectrum.profile.tags')"></h3>
+			<div class='header-related-content' id="tag">
+				<div class="controlwrap sp-search-button">
+                    <input type="text" class="form-control" maxlength="28" ng-model="ctrl.pageSetting.tagSearch" placeholder="{{::pullInterNationalization('spectrum.search.tags')}}" data-ng-model-options="{ debounce: { 'default': 500, 'blur': 0 } }">
+                    <button ng-class="{'icon-icon_remove':ctrl.pageSetting.tagSearch.length, 'icon-icon_search': !ctrl.pageSetting.tagSearch.length}" class="sp-icon-color" data-ng-click="ctrl.pageSetting.tagSearch=''"></button>
+                </div>
+				<div class="tick-selection" repeat-done="ctrl.calculateHeight('tag')" data-ng-repeat="spectrumFilter in recordField = (ctrl.insights.spectrumFilter.filters.tags | filter:ctrl.pageSetting.tagSearch) track by spectrumFilter">
+					<input type="checkbox" data-ng-checked="ctrl.pageSetting.tagSelected.indexOf(spectrumFilter)!==-1" class="filterCheckBox tagCheckBox" id="tag_{{$index}}" data-ng-click="ctrl.includeCheck(spectrumFilter,ctrl.pageSetting.tagSelected)">
+	                <label for="tag_{{$index}}" class="filterCheckBox-label pull-left">
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+	                 <label for="tag_{{$index}}">
+	                	<span class="floLeft font_14_300 sp-spectrum-color right-adjust" data-ng-bind="spectrumFilter"></span>
+	                </label>
+                </div>
+                <p data-ng-if="!recordField.length" class="noMatchFound" data-ng-bind="::pullInterNationalization('spectrum.nouser')"></p>
+            </div>
+		</li>
+		<li data-ng-if="ctrl.insights.spectrumFilter.filters.trait.length">
+			<input type="checkbox" class="accordian-checkbox" data-ng-click="ctrl.closeRest($event)"/>
+			<span class="clearButon sp-spectrum-color" data-ng-if="ctrl.pageSetting.traitSelected.length" data-ng-click="ctrl.clear('.traitCheckBox','traitSelected','traitSearch')" data-ng-bind="::pullInterNationalization('spectrum.clear')"></span>
+			<span class='expand-collapse'></span>
+			<h3 data-ng-bind="::pullInterNationalization('spectrum.profile.personalityTraitSelected')"></h3>
+			<div class='header-related-content shim' id="trait">
+				<div class="controlwrap sp-search-button">
+                    <input type="text" class="form-control" maxlength="28" ng-model="ctrl.pageSetting.traitSearch" placeholder="{{::pullInterNationalization('spectrum.search.trait')}}" data-ng-model-options="{ debounce: { 'default': 500, 'blur': 0 } }">
+                    <button ng-class="{'icon-icon_remove':ctrl.pageSetting.traitSearch.length, 'icon-icon_search': !ctrl.pageSetting.traitSearch.length}" class="sp-icon-color" data-ng-click="ctrl.pageSetting.traitSearch=''"></button>
+                </div>
+				<div class="tick-selection" repeat-done="ctrl.calculateHeight('trait')" data-ng-repeat="(key,value) in recordField = (ctrl.insights.spectrumFilter.filters.trait | filter: ctrl.pageSetting.traitSearch)" data-ng-class="{'design':value=='MissionOriented'||value=='Spontaneous'||value=='Compete'||value=='Security'}">
+					<input type="checkbox" data-ng-checked="ctrl.pageSetting.traitSelected.indexOf(value)!==-1" class="filterCheckBox traitCheckBox" id="trait_{{$index}}" data-ng-click="ctrl.includeCheck(value,ctrl.pageSetting.traitSelected)">
+	                <label for="trait_{{$index}}" class="filterCheckBox-label">
+	                	<span class="floLeft font_14_300 sp-spectrum-color" data-ng-bind="pullInterNationalization('spectrum.trait.type.'+value)"></span>
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+                </div>
+                <p data-ng-if="!recordField.length" class="noMatchFound" data-ng-bind="::pullInterNationalization('spectrum.nouser')"></p>
+            </div>
+		</li>
+	</ul>
+	
+</article>

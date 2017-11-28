@@ -1,0 +1,79 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-offset-3 col-md-6 col-sm-offset-1 col-sm-10">
+            <div>
+                <section class="wrapper createGroup">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar" data-ng-bind="::pullInterNationalization('manageAccountContent.requestMembers')" data-ng-if="ctrl.requestType === 'members'"></div>
+                                <div class="headerBar" data-ng-bind="::pullInterNationalization('manageAccountContent.requestCandidates')" data-ng-if="ctrl.requestType === 'candidates'"></div>
+                                <div class="headerBar" data-ng-bind="::pullInterNationalization('manageAccountContent.requestAdmins')" data-ng-if="ctrl.requestType === 'admins'"></div>
+                                <div class="headerBar" data-ng-bind="::pullInterNationalization('manageAccountContent.requestHiringAdmins')" data-ng-if="ctrl.requestType === 'hiring'"></div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                            </div>
+                        </div>
+                        <div class="contentArea">
+                            <div class="add-accounts-modal member-accs">
+                            
+                                <h2 data-ng-bind="::pullInterNationalization('manageAccountContent.selectMembers')" data-ng-if="ctrl.requestType === 'members'"></h2>
+                                <h2 data-ng-bind="::pullInterNationalization('manageAccountContent.selectCandidates')" data-ng-if="ctrl.requestType === 'candidates'"></h2>
+                                <h2 data-ng-bind="::pullInterNationalization('manageAccountContent.selectAdmins')" data-ng-if="ctrl.requestType === 'admins'"></h2>
+                                <h2 data-ng-bind="::pullInterNationalization('manageAccountContent.selectHiring')" data-ng-if="ctrl.requestType === 'hiring'"></h2>
+                                
+                                <p data-ng-bind="::pullInterNationalization('admin.account.business.members.desc1')" class="acc-desc"></p>
+                                
+                                <form id="addAccountsFormModal" name="ctrl.addAccountsForm" novalidate autocomplete="off" method="POST" action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" data-ng-submit="ctrl.processAccountRequest($event)">
+                                    <input type=hidden name="orgid" value="00Dj0000001oNf3">
+                                    <input type="hidden" id="retURL" name="retURL" value="{{ctrl.currentPageUrl}}">
+                                    <input type="hidden" id="name" maxlength="80" name="name" size="20" type="text" value="{{ctrl.companyDetails.name}}" />
+                                    <input type="hidden" id="email" maxlength="80" name="email" size="20" type="text" value="{{ctrl.companyEmail}}" />
+                                    <input type="hidden" id="phone" maxlength="40" name="phone" size="20" type="text" value="{{ctrl.companyDetails.phoneNumber}}" />
+                                    
+                                    <input type="hidden" id="subject" name="subject" value="{{pullInterNationalization('manageAccountContent.requestMembers')}}" data-ng-if="ctrl.requestType === 'members'">
+                                    <input type="hidden" id="subject" name="subject" value="{{pullInterNationalization('manageAccountContent.requestCandidates')}}" data-ng-if="ctrl.requestType === 'candidates'">
+                                    <input type="hidden" id="subject" name="subject" value="{{pullInterNationalization('manageAccountContent.requestAdmins')}}" data-ng-if="ctrl.requestType === 'admins'">
+                                    <input type="hidden" id="subject" name="subject" value="{{pullInterNationalization('manageAccountContent.requestHiringAdmins')}}" data-ng-if="ctrl.requestType === 'hiring'">
+                                    
+                                    <input type="hidden" id="description" name="description" value="Member Account(s): {{ctrl.requestAccounts}};" data-ng-if="ctrl.requestType === 'members'">
+                                    <input type="hidden" id="description" name="description" value="Candidate Account(s): {{ctrl.requestAccounts}};" data-ng-if="ctrl.requestType === 'candidates'">
+                                    <input type="hidden" id="description" name="description" value="Administrator License(s): {{ctrl.requestAccounts}};" data-ng-if="ctrl.requestType === 'admins'">
+                                    <input type="hidden" id="description" name="description" value="Hiring Administrator License(s): {{ctrl.requestAccounts}};" data-ng-if="ctrl.requestType === 'hiring'">
+                                    
+                                    <select type="hidden" id="00Nj000000AEzMJ" name="00Nj000000AEzMJ" title="Message Type" class="hide-this">
+                                        <option value="">--None--</option>
+                                        <option selected="selected" value="{{pullInterNationalization('manageAccountContent.requestMembers')}}" data-ng-bind="::pullInterNationalization('manageAccountContent.requestMembers')" data-ng-if="ctrl.requestType === 'members'"></option>
+                                        <option selected="selected" value="{{pullInterNationalization('manageAccountContent.requestCandidates')}}" data-ng-bind="::pullInterNationalization('manageAccountContent.requestCandidates')" data-ng-if="ctrl.requestType === 'candidates'"></option>
+                                        <option selected="selected" value="{{pullInterNationalization('manageAccountContent.requestAdmins')}}" data-ng-bind="::pullInterNationalization('manageAccountContent.requestAdmins')" data-ng-if="ctrl.requestType === 'admins'"></option>
+                                        <option selected="selected" value="{{pullInterNationalization('manageAccountContent.requestHiringAdmins')}}" data-ng-bind="::pullInterNationalization('manageAccountContent.requestHiringAdmins')" data-ng-if="ctrl.requestType === 'hiring'"></option>
+                                    </select>
+                                    <ol class="form-list-c">
+                                        <li class="input-fl">
+                                            <label data-ng-bind="::pullInterNationalization('manageAccountContent.numOfMem')" class="acc-desc" data-ng-if="ctrl.requestType === 'members'"></label>
+                                            <label data-ng-bind="::pullInterNationalization('manageAccountContent.numOfCand')" class="acc-desc" data-ng-if="ctrl.requestType === 'candidates'"></label>
+                                            <label data-ng-bind="::pullInterNationalization('manageAccountContent.numOfAdmins')" class="acc-desc" data-ng-if="ctrl.requestType === 'admins' || ctrl.requestType === 'hiring'"></label>
+                                            <input class="serialize-ignore" type="number" min="0" step="1" autocomplete="off" data-ng-model="ctrl.requestAccounts" name="requestAccounts" data-ng-pattern="/^[0-9][0-9]*$/" data-ng-required="!addAccounts.memberAdminAccounts" />
+                                            <span class="validate-error" ng-show="ctrl.addAccountsForm.submitted && ctrl.addAccountsForm.requestAccounts.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                                            <span class="validate-error" ng-show="ctrl.addAccountsForm.submitted && ctrl.addAccountsForm.requestAccounts.$error.pattern" data-ng-bind="pullInterNationalization('admin.account.business.error.inv')"></span>
+                                            <span class="validate-error" ng-show="ctrl.addAccountsForm.submitted && ctrl.requestAccounts <= 0" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                                        </li>
+                                        <li class="submit-cancel-btns">
+                                            <ul class="submit-cancel-list">
+                                                <li class="submit-charge">
+                                                    <input type="submit" value="{{pullInterNationalization('dashboard.sendRequest')}}" class="subscribeBtn btn-block btn-15px sp-btn-color" />
+                                                </li>
+                                                <li class="cancel-charge">
+                                                    <input type="button" value="{{pullInterNationalization('manageAccountContent.cancel')}}" data-ng-click="closeThisDialog()" class="cancelBtn btn-block btn-15px btn-grey-dark" />
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ol>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

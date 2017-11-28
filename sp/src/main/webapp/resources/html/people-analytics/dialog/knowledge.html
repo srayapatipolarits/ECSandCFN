@@ -1,0 +1,51 @@
+ <link type="text/css" rel="stylesheet" href="/resources/css/css-min/training-library.min.css" />
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color adj0"></div>
+                     <h2 data-ng-bind="::pullInterNationalization('practiceArea.resources')"></h2>
+                </div>
+                <div class="new-modals-wrapper pTop30">
+                	<article class="article-curriculum-panel">
+                		  <div class="article-media videoWrapper" data-ng-if="videoType==='youtube'">
+                              <iframe class="youtube-player" type="text/html" width="952" height="534" data-ng-src="{{videoUrl}}" frameborder="0" allowfullscreen></iframe>
+                          </div>
+                          <div class="article-media videoWrapper" data-ng-if="videoType==='vimeo'">
+                              <div id="vimeoPlayer"></div>
+                          </div>
+                          <div class="article-media" data-ng-if="videoType==='html5'">
+                              <div class="md-content">
+                                  <div class="video-wrapper">
+                                      <video controls width="100%" autoplay>
+                                          <source data-ng-src="{{videoUrl}}" type="video/mp4">
+                                          <span>{{::pullInterNationalization('video.browser')}}</span>
+                                      </video>
+                                  </div>
+                              </div>
+                          </div>
+                          <header class="article-synopsis">
+		                        <h2 class="synopsis-lede" data-ng-bind="articlePageDetails.articleLinkLabel"></h2>
+		                        <p class="article-publisher-info">
+		                            <span class="article-author" data-ng-bind="articlePageDetailsAuthors"></span> <span class="article-source" data-ng-bind="articlePageDetails.newsCredSource"></span> &ndash; <span class="article-date" data-ng-bind="articlePageDetails.articleSource"></span>
+		                        </p>
+		                    </header>
+		                    <div class="curriculum-body" id="readContent">
+                        <p class="introduction" data-ng-bind-html="articlePageDetails.content[0]"></p>
+                        <!--   && videoAvailable === false  -->
+                        <p data-ng-repeat="a in articlePageDetails.content track by $index" class="import-content" data-ng-bind-html="a" data-ng-if="$index > 0" wol-links></p>
+                    </div>
+                	</article>
+                    
+                    
+                    <!-- Buttons Starts -->
+                    <div class="dialog-btns-wrapper">
+                        <input type="button" value="{{::pullInterNationalization('sysadmin.organization.done')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="closeThisDialog();">
+                    </div>
+                    <!-- Buttons Ends -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

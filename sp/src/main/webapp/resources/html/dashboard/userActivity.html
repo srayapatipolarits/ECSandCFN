@@ -1,0 +1,55 @@
+    <div class="news-feed-block Other">
+        <article class="name-information">
+            <header>
+                <div class="profile-style">
+                    <div class="col-container action-container image-detail-part">
+                    <!-- Behalf of Check -->
+                    	<div class="user-detail-block clearfix wrap_block" data-ng-if="!ctrl.profilePageDetail.member">
+	                        <div class="member-pic channels size-50">
+	                            <img data-lazy-img="{{user.smallProfileImage}}" alt="{{user.userInitials}}" data-ng-if="user.smallProfileImage">
+	                            <div class="imgReplacement" data-ng-if="!user.smallProfileImage" data-ng-bind="user.userInitials"></div>
+	                        </div>
+	                        <div class="user-details">
+	                            <a data-ng-if="user.id" data-ng-href="{{ctrl.userInfo.member.id===user.id? '/sp/dashboard/profile' :'/sp/dashboard/profile?userId='+user.id}}" class="border-link lh-14 font-14">
+	                                <span class="sp-link-color lh-14 weight-700" drop-tool-tip data-desc='{{user}}' data-self='{{user.id}}' data-ng-bind="user.name||user.fullNameOrEmail"></span>
+	                            </a>
+	                            <a data-ng-if="!user.id" class="border-link lh-14 font-14">
+	                                <span class="sp-link-color lh-14 weight-700" data-ng-bind="user.name||user.fullNameOrEmail"></span>
+	                            </a>
+	                            <a href="javascript:void(0)" class="border-link display-block cursor-default font-12">
+	                                <span class="mock-text weight-300" data-ng-bind="user.title"></span>
+	                            </a>
+	                        </div>
+	                    </div>
+	                    <div class="user-detail-block clearfix wrap_block" data-ng-if="ctrl.profilePageDetail.member">
+	                        <div class="member-pic channels size-50">
+	                            <img data-lazy-img="{{ctrl.profilePageDetail.member.smallProfileImage}}" alt="{{ctrl.profilePageDetail.member.userInitials}}" data-ng-if="ctrl.profilePageDetail.member.smallProfileImage">
+	                            <div class="imgReplacement" data-ng-if="!ctrl.profilePageDetail.member.smallProfileImage" data-ng-bind="ctrl.profilePageDetail.member.userInitials"></div>
+	                        </div>
+	                        <div class="user-details">
+	                            <a data-ng-if="user.id" data-ng-href="{{ctrl.userInfo.member.id===ctrl.profilePageDetail.member.id? '/sp/dashboard/profile' :'/sp/dashboard/profile?userId='+ctrl.profilePageDetail.member.id}}" class="border-link display-block lh-14 font-14">
+	                                <span class="sp-link-color lh-14 weight-700" drop-tool-tip data-desc='{{ctrl.profilePageDetail.member}}' data-self='{{ctrl.profilePageDetail.member.id}}' data-ng-bind="ctrl.profilePageDetail.member.name||ctrl.profilePageDetail.member.fullNameOrEmail"></span>
+	                            </a>
+	                            <a data-ng-if="!user.id" class="border-link display-block lh-14 font-14">
+	                                <span class="sp-link-color lh-14 weight-700"  data-ng-bind="ctrl.profilePageDetail.member.name||ctrl.profilePageDetail.member.fullNameOrEmail"></span>
+	                            </a>
+	                            <a href="javascript:void(0)" class="border-link display-block cursor-default font-12">
+	                                <span class="mock-text weight-300" data-ng-bind="ctrl.profilePageDetail.member.title"></span>
+	                            </a>
+	                        </div>
+	                    </div>
+                        <div class="duration">
+                        	<span class="sp-label-option" data-ng-bind="::pullInterNationalization('dashboard.durationtime')"></span>
+                        	<span data-ng-bind="news.createdOn | spTimeUpdate"></span>
+                        </div>
+                    </div>
+                    <!--pos0_{{ctrl.viewingPage==='home'}}-->
+                    <div class="default-user-message pos0_true wrap_block" data-ng-bind-html="news.message"></div>
+                </div>
+            </header>
+                     
+          
+        </article>
+    </div>
+  
+    

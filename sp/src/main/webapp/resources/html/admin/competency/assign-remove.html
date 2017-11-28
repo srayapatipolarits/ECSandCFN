@@ -1,0 +1,78 @@
+<div class="container" id="declineGrowthScreen" data-ng-style="ctrl.winWidth<768 && {'height':ctrl.winHeight}">
+    <div class="row" data-ng-class="ctrl.winWidth<768?'row-full-w':''">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8" data-ng-class="ctrl.winWidth<768?'col-full-w':''">
+            <div>
+                <section class="wrapper">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar" data-ng-if="ctrl.competencyActionType === 'ASSIGN'" data-ng-bind="pullInterNationalization('competency.members.assign.title')"></div>
+                                <div class="headerBar" data-ng-if="ctrl.competencyActionType === 'REMOVE'" data-ng-bind="pullInterNationalization('competency.members.remove.title')"></div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                            </div>
+                        </div>
+                        <div class="contentArea clearfix assign-remove-competency">
+                            <form name="formSendNotification" class="sendReminder getNotificationForm">
+                                <div class="messageTitle" data-ng-if="ctrl.competencyActionType === 'ASSIGN' && !ctrl.singleMemberCompetency">{{pullInterNationalization('competency.members.selected')}} ({{ctrl.competencyAssignRemoveOptions.length}}):</div>
+                                <div class="messageTitle" data-ng-if="ctrl.competencyActionType === 'REMOVE' && !ctrl.singleMemberCompetency" data-ng-bind="pullInterNationalization('competency.members.remove.desc')">
+                                </div>
+                                <div class="messageBlock borderarea" data-ng-class="{'newSpace2':ctrl.singleMemberCompetency}">
+                                    <div class="member-details-pic-wrapper" data-ng-if="ctrl.singleMemberCompetency">
+                                        <div class="mem-pic-thumb">
+                                            <img data-ng-src="{{ctrl.competencyAssignRemoveOptions[0].smallProfileImage}}" alt="{{ctrl.competencyAssignRemoveOptions[0].userInitials}}" data-ng-if="ctrl.competencyAssignRemoveOptions[0].smallProfileImage">
+                                            <div class="imgReplacementMedium" data-ng-if="!ctrl.competencyAssignRemoveOptions[0].smallProfileImage" data-ng-bind="ctrl.competencyAssignRemoveOptions[0].userInitials"></div>
+                                        </div>
+                                        <div class="mem-details-info">
+                                            <p class="memName sp-link-color" data-ng-bind="ctrl.competencyAssignRemoveOptions[0].name" data-ng-if="ctrl.competencyAssignRemoveOptions[0].name"></p>
+                                            <p class="memTitle" data-ng-bind="ctrl.competencyAssignRemoveOptions[0].title" data-ng-if="ctrl.competencyAssignRemoveOptions[0].title"></p>
+                                            <p class="memEmail" data-ng-bind="ctrl.competencyAssignRemoveOptions[0].email"></p>
+                                        </div>
+                                    </div>
+                                    <div class="notificationInformationalBlock clearfix" data-ng-if="!ctrl.singleMemberCompetency">
+                                        <div class="name">
+                                            <span class="namePart sp-header-title-color" data-ng-repeat="userList in ctrl.competencyAssignRemoveOptions">
+												{{$first ? '' : ', '}}
+												<span data-ng-if="userList.name !==null && userList.name !== ''">{{userList.name}}</span>
+                                            <span data-ng-if="userList.name ===null || userList.name === ''">{{userList.email}}</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="messageBlock" data-ng-if="ctrl.competencyActionType === 'ASSIGN'">
+                                    <div class="notificationInformationalBlock">
+                                        <div class="messageType clearfix">
+                                            <div class="rolesSelectWrapper">
+                                                <span class="msg-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                                                <select class="form-control rolesSelect" data-ng-model="ctrl.selectedCompetencyDrop" data-ng-change="ctrl.selectedCompetency==='REMOVESINGLE'?ctrl.competencyRemoveAction=true:ctrl.competencyRemoveAction=false">
+                                                    <option value="" data-ng-bind="pullInterNationalization('competency.members.selectCompetency')"></option>
+                                                    <option data-ng-repeat="competencyList in ctrl.competencyList" value="{{competencyList.id}}">{{competencyList.name}}</option>
+                                                </select>
+                                            </div>
+                                            <br/>
+                                            <span class="err-msg" style="padding-top: 5px;" data-ng-if="!ctrl.selectedCompetencyDrop && ctrl.assignClick">
+											<span class="icon">!</span>{{pullInterNationalization('competency.members.selectCompetency.error')}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="messageBlock newSpace" data-ng-if="ctrl.singleMemberCompetency && ctrl.competencyActionType === 'REMOVE'">
+                                    <p data-ng-bind="pullInterNationalization('competency.members.remove.desc')"></p>
+                                </div>
+                                
+                                <div class="btns-wrapper-popup" data-ng-if="ctrl.competencyActionType === 'ASSIGN' && !ctrl.competencyRemoveAction">
+	                                <input type="button" value="{{pullInterNationalization('admin.group.submit')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="ctrl.assignCompetency([ctrl.selectedCompetencyDrop])">
+	                                <input type="button" value="{{pullInterNationalization('admin.group.cancel')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="closeThisDialog();">                                
+                                </div>
+                                
+                                <div class="btns-wrapper-popup" data-ng-if="ctrl.competencyActionType === 'REMOVE' || ctrl.competencyRemoveAction">
+	                                <input type="button" value="{{pullInterNationalization('admin.group.submit')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="ctrl.removeCompetency()">
+	                                <input type="button" value="{{pullInterNationalization('admin.group.cancel')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="closeThisDialog();">                                
+                                </div>  
+                                                              
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

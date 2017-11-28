@@ -1,0 +1,100 @@
+<div class="practive-area-view blueprint-content" data-ng-if="ctrl.createScreenReady">
+    <!-- Description -->
+    <!-- Initial Setup Starts-->
+    <section data-ng-if="!ctrl.blueprint.missionStatement.text" class="blueprint-intro">
+    	<p class="centered fixfont18" data-ng-bind-html="::pullInterNationalization('blueprint.status.edit.message')"></p>
+    </section>
+    <!-- Initial Setup Ends-->
+    <section data-ng-if="ctrl.blueprint.missionStatement.text">
+    <div class="blueprint-intro">
+       <p> 
+			<span data-ng-bind-html="ctrl.dataMap.blueprint.overviewText"></span>
+			<span data-ng-bind-html="::pullInterNationalization('blueprint.blueprintApprovalDesc1')+' '"></span>
+			<span class="mission-statement font300" data-ng-bind="ctrl.dataMap.mission.title+', '"></span>
+			<span class="Objectives font300"><span data-ng-bind="ctrl.dataMap.objective.title +' ('"></span><span data-ng-if="ctrl.bluePrintSetting.minObjectives!==ctrl.bluePrintSetting.maxObjectives" data-ng-bind="ctrl.bluePrintSetting.minObjectives +' - '+ ctrl.bluePrintSetting.maxObjectives+'), '"></span><span data-ng-if="ctrl.bluePrintSetting.minObjectives===ctrl.bluePrintSetting.maxObjectives" data-ng-bind="ctrl.bluePrintSetting.minObjectives+'), '"></span></span>
+			<span class="initiatives font300"><span data-ng-bind="ctrl.dataMap.initiatives.title +' ('"></span><span data-ng-if="ctrl.bluePrintSetting.minInitiatives!==ctrl.bluePrintSetting.maxInitiatives" data-ng-bind="ctrl.bluePrintSetting.minInitiatives +' - '+ ctrl.bluePrintSetting.maxInitiatives+'), '"></span><span data-ng-if="ctrl.bluePrintSetting.minInitiatives===ctrl.bluePrintSetting.maxInitiatives" data-ng-bind="ctrl.bluePrintSetting.minInitiatives+'), '"></span></span>
+			<span class="csm font300"><span data-ng-bind="ctrl.dataMap.csm.title +' ('"></span><span data-ng-if="ctrl.bluePrintSetting.minSuccessMeasures!==ctrl.bluePrintSetting.maxSuccessMeasures" data-ng-bind-html="ctrl.bluePrintSetting.minSuccessMeasures +' - '+ ctrl.bluePrintSetting.maxSuccessMeasures+').'"></span><span data-ng-if="ctrl.bluePrintSetting.minSuccessMeasures===ctrl.bluePrintSetting.maxSuccessMeasures" data-ng-bind-html="ctrl.bluePrintSetting.minSuccessMeasures+').'"></span></span>
+		</p>
+        <a href="javascript:void(0)" data-ng-if="ctrl.dataMap.blueprint.linkUrl" class="border-link" data-ng-click="ctrl.previewLink(ctrl.dataMap.blueprint.linkType,ctrl.dataMap.blueprint.linkUrl)">
+            <span class="mock-link" data-ng-bind="ctrl.dataMap.blueprint.linkText || pullInterNationalization('blueprint.viewblueprintexample')"></span>
+        </a>
+    </div>
+    <div class="create-blueprint" data-ng-init="ctrl.editModeEnabled = false;">
+        <form name="ctrl.bluePrintform" novalidate>
+            <!-- Mission Statement -->
+            <div class="mission-statement-wrapper default-spacing add-mtop15" data-ng-init="ctrl.editObject.missionstatement = !!ctrl.blueprint.missionStatement.text" data-ng-class="{'bg-yellow edit-spacing':!ctrl.editObject.missionstatement}">
+                <div class="mission-title" data-ng-init="show=false">
+                    <h3 class="withBorder" data-ng-bind="ctrl.dataMap.mission.title"></h3>
+                    <span class="bp-comment-btn icon-icon_blueprint-comment fly alignRight" data-ng-class="{'sp-icon-color hover-style' : !!ctrl.blueprint.missionStatement.commentsList.length, 'default-color' : !ctrl.blueprint.missionStatement.commentsList.length, 'hide': !ctrl.editObject.missionstatement}" data-ng-click="missionshow=!missionshow"></span>
+                    <div class="bp-comments-wrap spaceAdj" data-ng-if="missionshow && ctrl.blueprint.missionStatement.commentsList.length">
+                        <div class="bp-comments-details" data-ng-repeat="comments in ctrl.blueprint.missionStatement.commentsList track by $index">
+                            <a class="deleteComment icon-icon_trashbin sp-icon-color border-link disable_{{noSelf}}mem default-color"><span class="mock-link"></span></a>
+                            <p class="name fb-500" data-ng-bind="comments.by.name"></p>
+                            <p class="date" data-ng-bind="comments.createdOnFormatted"></p>
+                            <p class="content" data-ng-bind="comments.comment"></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Ends -->
+                <div class="updateEditSection">
+                    <!-- If Edit Mode Is Disabled -->
+                    <p class="add-mtop30" data-ng-bind-html="ctrl.blueprint.missionStatement.text"></p>
+                    <!-- Ends -->
+                </div>
+            </div>
+            <!-- Mission Statement Ends -->
+            <!-- Development Strategies Starts ctrl.editObject.editEnabled[$index] =false  ctrl.assignKeyWord({'obj1':ctrl.editObject,'key1':'objective','index1':$index,'value':!!devstat.title})-->
+            <!-- Create / Edit Objective Starts -->
+            <div class="develeopmentStrategies enable_{{!ctrl.editObject.objective[$index].value}} add-mtop30 objectives-wrapper" id="obj_{{$index}}" data-ng-init="ctrl.assignKeyWord({'obj1':ctrl.editObject,'key1':'objective','index1':$index,'value':!!devstat.title})" data-ng-repeat="devstat in ctrl.blueprint.devStrategyActionCategoryList track by $index" data-ng-class="{'bg-yellow define-objectives':!ctrl.editObject.objective[$index].value}">
+                <div class="mission-title" data-ng-class="{'obj-title': ctrl.editObject.objective[$index].value}" data-ng-init="show=false;">
+                    <h3 data-ng-bind="ctrl.dataMap.objective.title" class="objective-head"></h3>
+                    <p data-ng-bind-html="devstat.title"></p>
+                    <!-- $parent.editEnabled=!$parent.editEnabled -->
+                    <span class="bp-comment-btn icon-icon_blueprint-comment fly alignRight" data-ng-class="{'sp-icon-color hover-style' : !!devstat.commentsList.length, 'default-color' : !devstat.commentsList.length, 'hide': !ctrl.editObject.objective[$index].value}" data-ng-click="show=!show"></span>
+                    <div class="bp-comments-wrap spaceAdj" data-ng-if="show && devstat.commentsList.length">
+                        <div class="bp-comments-details" data-ng-repeat="comments in devstat.commentsList track by $index">
+                            <a class="deleteComment icon-icon_trashbin sp-icon-color border-link disable_{{noSelf}}mem default-color"><span class="mock-link"></span></a>
+                            <p class="name fb-500" data-ng-bind="comments.by.name"></p>
+                            <p class="date" data-ng-bind="comments.createdOnFormatted"></p>
+                            <p class="content" data-ng-bind="comments.comment"></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Key Initiative Added data-ng-if="objective"-->
+                <div class="keyIntiative">
+                    <!-- Non Edit Mode data-ng-if="!editEnabled"-->
+                    <div class="col-xs-12 clearfix" data-ng-if="ctrl.editObject.objective[$index].value">
+                        <article data-ng-repeat="actionList in devstat.actionList track by $index">
+                            <div class="col-xs-3">
+                                <p class="bp-key" data-ng-bind="$index+1 + '. ' + ctrl.dataMap.initiatives.title"></p>
+                            </div>
+                            <!-- !!devstat.actionList[0].title -->
+                            <div class="col-xs-9" data-ng-init="show=false;">
+                                <div class="listTitle">
+                                    <span class="bp-comment-btn icon-icon_blueprint-comment fly alignRight" data-ng-class="{'sp-icon-color hover-style' : !!actionList.commentsList.length, 'default-color' : !actionList.commentsList.length}" data-ng-click="show=!show"></span>
+                                    <div class="bp-comments-wrap spaceAdj" data-ng-if="show && actionList.commentsList.length">
+                                        <div class="bp-comments-details" data-ng-repeat="comments in actionList.commentsList track by $index">
+                                            <a class="deleteComment icon-icon_trashbin sp-icon-color border-link disable_{{noSelf}}mem default-color"><span class="mock-link"></span></a>
+                                            <p class="name fb-500" data-ng-bind="comments.by.name"></p>
+                                            <p class="date" data-ng-bind="comments.createdOnFormatted"></p>
+                                            <p class="content" data-ng-bind="comments.comment"></p>
+                                        </div>
+                                    </div>
+                                    <p class="add-rpad55 fb-300" data-ng-bind="actionList.title"></p>
+                                    <p class="bp-key add-mtop15" data-ng-if="actionList.actionData.length" data-ng-bind="ctrl.dataMap.csm.title"></p>
+                                    <ol class="clearfix toRomans">
+                                        <li class="col_2" data-ng-repeat="actionData in actionList.actionData track by $index" data-ng-bind="actionData.title"></li>
+                                    </ol>
+                                    <hr class="showBorder eqSpace" />
+                                </div>
+                                <!-- $parent.$parent.editEnabled=true; -->
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <!-- Key Initiative Added -->
+            </div>
+        </form>
+    </div>
+    </section>
+</div>

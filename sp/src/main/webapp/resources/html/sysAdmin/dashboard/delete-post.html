@@ -1,0 +1,68 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color adj0"></div>
+                </div>
+                <div class="new-modals-wrapper">
+                    <!-- Top Message Starts -->
+                    <p class="dialog-message-16px" data-ng-bind="::pullInterNationalization('dashboardAdmin.deletePosts')"></p>
+                    <!-- Top Message Ends -->
+                    <!-- Email List Starts  -->
+                    <div class="multiple-emails-block">
+                        <div class="table-content">
+                            <div class="left-cont">
+                                <p data-ng-bind="::pullInterNationalization('dashboardAdmin.selectedPost')"></p>
+                            </div>
+                            <div class="right-cont">
+                                <p class="email-list">
+                                    <span><span data-ng-bind-html="ctrl.deleteInfo.message.text"></span></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Email List Ends  -->
+                    
+                    <!-- Form Elements -->
+                    <div class="form-elements">
+                        <div class="checkbox-wrap">
+                            <p data-ng-bind="::pullInterNationalization('dashboardAdmin.deletefrom')"></p>
+                            <ul id="postCheckBx">
+                                <li class="pCheckBox default" data-ng-if="!ctrl.deleteInfo.published">
+                                    <input type="radio" name="toggleAll" id="alltoggle" class="iCheckBox" checked/>
+                                    <label for="alltoggle" class="lCheckBox">
+                                        <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color radioStyle"></span>
+                                        <span class="lCheckBoxText" data-ng-bind="::pullInterNationalization('dashboardAdmin.spPosts')"></span>
+                                    </label>
+                                </li>
+				                <li class="pCheckBox default" data-ng-if="ctrl.deleteInfo.published">
+				                    <input type="radio" name="feedOnly" id="selectUser0" class="iCheckBox pBx" value="all" data-ng-model="ctrl.newFeedsOnly" checked>
+				                    <label for="selectUser0" class="lCheckBox">
+				                        <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color radioStyle"></span>
+				                        <span class="lCheckBoxText" data-ng-bind="::pullInterNationalization('dashboardAdmin.spPostsFeeds')"></span>
+				                    </label>
+				                </li>
+				                <li class="pCheckBox" data-ng-if="ctrl.deleteInfo.published">
+				                    <input type="radio" name="feedOnly" id="selectUser1" class="iCheckBox pBx" value="notAll" data-ng-model="ctrl.newFeedsOnly">
+				                    <label for="selectUser1" class="lCheckBox">
+				                        <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color radioStyle"></span>
+				                        <span class="lCheckBoxText" data-ng-bind="::pullInterNationalization('dashboardAdmin.spNewsFeeds')"></span>
+				                    </label>
+				                </li>                                
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Form Elements Ends -->
+                    
+                    <!-- Buttons Starts -->
+                    <div class="dialog-btns-wrapper">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.yes')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="ctrl.deletePostWithOptions(ctrl.deleteInfo, ctrl.newFeedsOnly)">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.no')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="closeThisDialog();">
+                    </div>
+                    <!-- Buttons Ends -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

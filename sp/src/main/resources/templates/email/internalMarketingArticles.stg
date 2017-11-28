@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <!-- If you delete this meta tag, Half Life 3 will never be released. -->
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>SurePeople</title>
+</head>
+
+<body bgcolor="#FFFFFF" style="margin: 0;padding: 0;font-family: Arial;-webkit-font-smoothing: antialiased;-webkit-text-size-adjust: none;height: 100%;width: 100%!important;">
+    <!-- HEADER -->
+    <table class="head-wrap" bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%;">
+        <tr>
+            <td></td>
+            <td class="header" style="margin: 0 auto!important;padding: 0;font-family: Arial;display: block!important;max-width: 600px!important;clear: both!important;">
+                <div class="content" style="padding: 15px 15px 15px 15px;margin: 0 auto;font-family: Arial;max-width: 600px;display: block;">
+                    <table bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%;">
+                        <tr>
+                            <td style="margin: 0;padding: 0;font-family: Arial; border-bottom: 1px solid #acacac">
+                                <h1 style="margin: 0 0 0 0;padding: 0 0 0 0;font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;line-height: 1.1;margin-bottom: 15px;color: #000000;font-weight: 200;font-size: 44px;">
+                                <a style="display: block;margin: 0 0 0 0;padding: 0 0 0 0;border: none;outline: none;font-family: Arial;color: #ff6633;" href="http://www.surepeople.com"><img style="display: block;border: none;outline: none;margin: 0;padding: 0;font-family: Arial;max-width: 100%;" src="$baseUrl$images/logo-sp-215-27.gif" alt="SurePeople&#8482;"></a>
+                            </h1>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <!-- /HEADER -->
+    <!-- INTRO -->
+    <table class="head-wrap" bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%;">
+        <tr>
+            <td></td>
+            <td class="header" style="margin: 0 auto!important;padding: 0;font-family: Arial;display: block!important;max-width: 600px!important;clear: both!important;">
+                <div class="content" style="padding: 0px 15px 15px 15px;margin: 0 auto;font-family: Arial;max-width: 600px;display: block;">
+                    <table bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%;">
+                        <tr>
+                            <td style="margin: 0;padding: 0;font-family: Arial;">
+                                <p style="margin: 0;padding: 0;font-family: Arial; font-weight:bold; font-size: 18px; color: #CB3627;">Hi $forUser.firstName$,</p>
+                                <p style="margin: 10px 0 0 0;padding: 0;font-family: Arial; font-size: 14px; color: #5A5B5D; line-height: 16px;">Today’s lesson from your $goal.name$ practice area is:</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <!-- /INTRO -->
+    <!-- STEP STARTS -->
+    <table class="head-wrap" bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%;">
+        <tr>
+            <td></td>
+            <td class="header" style="margin: 0 auto!important;padding: 0;font-family: Arial;display: block!important;max-width: 600px!important;clear: both!important;">
+                <div class="content" style="padding: 20px 15px 15px 15px;margin: 0 auto;font-family: Arial;max-width: 600px;display: block;">
+                    <table bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%; border-bottom: 1px solid #acacac">
+                        <tr>
+                            <td style="margin: 0;padding: 0;font-family: 'Arial'; width: 460px;">
+                                <p style="margin: 0;padding: 0;font-family: Arial; font-weight:bold; font-size: 18px; color: #CB3627;"><a href="$baseUrl$sp/trainingLibrary/article?$article.articleLinkUrl$" style="color: #CB3627;text-decoration:none;">$article.articleLinkLabel$</a></p>
+                                <p style="margin: 0;padding: 0;font-family: Arial; font-style: italic; font-size: 12px; color: #5A5B5D;">$if(author)$ $author$ -$endif$ $articleSource$ </p>
+                                <p style="margin: 15px 0 0 0;padding: 0 15px 0 0;font-family: Arial; font-size: 14px; color: #5A5B5D; line-height: 16px;">$content$</p>
+                                <p style="margin: 15px 0 20px 0;padding: 0;font-family: Arial; font-size: 14px; line-height: 16px;">
+                                    <a href="$baseUrl$sp/trainingLibrary/article?$article.articleLinkUrl$&utm_source=sp-app-newsletter&utm_medium=email&utm_term=goals&utm_content=goals%20newsletter&utm_campaign=Auto%20Learning%20campaign" style="margin:0;padding:0;color:#cb3627;display:inline-block;font-weight: bold;">$articleLinkName$</a>
+                                </p>
+                            </td>
+                            <td style="margin: 0;padding: 0;font-family: 'Arial'; width: 220px;" align="right" valign="top">
+                                <a href="$baseUrl$sp/trainingLibrary/article?$article.articleLinkUrl$&utm_source=sp-app-newsletter&utm_medium=email&utm_term=goals&utm_content=goals%20newsletter&utm_campaign=Auto%20Learning%20campaign"><img style="display: block;border: none;outline: none;margin: 0;padding: 0;font-family: Arial;max-width: 100%;" src="$articleImage$?width=200" alt="SurePeople&#8482;"></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p style="margin: 0px 0 20px 0;padding: 0;font-family: Arial; font-size: 14px; color: #5A5B5D; line-height: 16px;">You're on the right track to personal development and mastering your emotional, relational and team intelligence (ERT-i). The practice areas in your development plan are adding a wealth of material for your customized learning objectives. We'll continue to send more content based on the practice areas you have set up. Be sure to manage your Development Plan to further customize your learning.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p style="margin: 0px 0 0;padding: 0;font-family: Arial; font-size: 14px; color: #5A5B5D; line-height: 16px;">You received this email because you are signed up for auto learning from SurePeople.</p>
+                                <p style="margin: 0 0 20px;padding: 0;font-family: Arial; font-size: 14px; color: #5A5B5D; line-height: 16px;">If you do not wish to receive auto learning emails, please <a style="color:#cb3627" href="$baseUrl$sp/goals/autoTurnOff">click here</a> to unsubscribe.</p>                                    
+                            </td>
+                        </tr>                          
+                        
+                    </table>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <!-- STEP ENDS -->
+    <!-- STEP STARTS 
+    <table class="head-wrap" bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%;">
+        <tr>
+            <td></td>
+            <td class="header" style="margin: 0 auto!important;padding: 0;font-family: Arial;display: block!important;max-width: 600px!important;clear: both!important;">
+                <div class="content" style="padding: 0px 15px 15px 15px;margin: 0 auto;font-family: Arial;max-width: 600px;display: block;">
+                    <table bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%; border-bottom: 1px solid #acacac">
+                        <tr>
+                            <td style="margin: 0;padding: 0;font-family: 'Arial'; width: 115px;" valign="top">
+                                <img style="display: block;border: none;outline: none;margin: 0;padding: 0;font-family: Arial;max-width: 100%;" src="$tipOfTheDay.iconImage$" alt="SurePeople&#8482;">
+                            </td>
+                            <td style="margin: 0;padding: 0;font-family: 'Arial'; width: 470px;">
+                                <p style="margin: 0;padding: 0;font-family: Arial; font-weight:bold; font-size: 18px; color: #CB3627;">$tipOfTheDay.title$</p>
+                                <p style="margin: 0px 0 0 0;padding: 0;font-family: Arial; font-size: 14px; color: #5A5B5D; line-height: 16px;">$tipOfTheDay.description$</p>
+                                <p style="margin: 15px 0 20px 0;padding: 0;font-family: Arial; font-size: 14px; line-height: 16px;">
+                                    <a href="$tipOfTheDay.linkUrl$" style="margin:0;padding:0;color:#cb3627;display:inline-block;font-weight: bold;">$tipOfTheDay.linkText$</a>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </table>-->
+    <!-- STEP ENDS -->
+    <!-- FOOTER -->
+    <table class="head-wrap" bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%;">
+        <tr>
+            <td></td>
+            <td class="header" style="margin: 0 auto!important;padding: 0;font-family: Arial;display: block!important;max-width: 600px!important;clear: both!important;">
+                <div class="content" style="padding: 0px 15px 15px 15px;margin: 0 auto;font-family: Arial;max-width: 600px;display: block;">
+                    <table bgcolor="#ffffff" style="margin: 0;padding: 0;font-family: Arial;width: 100%;">
+                        <tr>
+                            <td style="margin: 0;padding: 0;font-family: Arial;">
+                                <p style="margin: 0 0 0;padding: 0;font-family: Arial; font-size: 12px; color: #5A5B5D; line-height: 16px;">This is a system generated alert. We request that you not reply to this message.</p>
+                                <p style="margin: 20px 0 0;padding: 0;font-family: Arial; font-size: 14px; color: #5A5B5D; line-height: 16px;">1-855-755-SURE (7873)</p>
+                                <p style="margin: 0 0 0;padding: 0;font-family: Arial; font-size: 12px; color: #5A5B5D; line-height: 16px;">Copyright &copy; 2017 SurePeople LLC. All rights reserved.</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <!-- /FOOTER -->
+</body>
+
+</html>

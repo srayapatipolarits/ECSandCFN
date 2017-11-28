@@ -1,0 +1,100 @@
+<div class="learning-development hide" data-ng-controller="practiceAreasController as ctrl" ng-if="inviteReady && profileReady" ng-class="inviteReady?'show':'hide'">
+    <!-- ERTi New Header Starts -->
+    <div class="x-container" data-ng-if="ctrl.goalsLength">
+        <div class="container">
+            <div class="header-info-container">
+                <div class="header-info-content">
+                    <div class="header-icon-wrap adj0">
+                        <p class="hinfo-wrap">
+                            <span class="hinfo-icons icon-logo-badge sp-icon-color"></span>
+                        </p>
+                    </div>
+                    <div class="header-content-wrap">
+                        <h2 class="hinfo-wrap">
+                            <span class="info-txt ml0 mb8" data-ng-bind="::pullInterNationalization('practiceArea.pagetitle')"></span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ERTi New Header Ends -->
+    <div class="x-container" data-ng-if="ctrl.goalsLength">
+        <div class="container" >
+            <div class="table-flex-cols">
+                <!-- Full Box Starts -->
+                <!--  
+                    <div class="lnd-full-sec sp-panel-accent" data-ng-if="!ctrl.hideFullSection">
+                        <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('practiceArea.newHeading')"></h2>
+                        <p data-ng-bind-html="::pullInterNationalization('practiceArea.newIntro')"></p>
+                    </div>
+                    -->
+                <!-- Full Box Ends -->
+                <!-- Left Box Starts -->
+                <div class="lnd-left-sec" data-ng-class="ctrl.showRightCol?'hide':''">
+                    <!-- Box Starts -->
+                    <div class="lnd-left-box sp-panel-accent">
+                        <h2 class="sp-header-title-color new-hStyle" data-ng-click="ctrl.state()">
+                                <span>ERT-i</span>
+                                <span data-ng-bind="::pullInterNationalization('practiceArea.title')"></span>
+                            </h2>
+                        <ul>
+                            <li class="border-link sp-link-color" data-ng-click="ctrl.getPracticeGoalDetail({'goalId':goal.id,'name':goal.name})" data-ng-class="ctrl.currentActive.goalId===goal.id?'on':''" data-ng-repeat="goal in (ctrl.goalAvailable) track by goal.id">
+                                <span class="mock-link" data-ng-bind="goal.name"></span>
+                                <span class="lnd-focus-arrow" data-ng-class="ctrl.currentActive.goalId===goal.id?'icon-icon_focus-arrow':'hide'"></span>
+                            </li>
+                        </ul>
+                        <p class="manage-pas" data-ng-if="noSelf===''">
+                            <a href="/sp/managePracticeAreas" class="border-link">
+                                <span class="mock-link" data-ng-bind="::pullInterNationalization('practiceCtrl.customizeyourplan')"></span>
+                            </a>
+                            <span class="link-desc" data-ng-bind="::pullInterNationalization('practiceArea.addRemove')"></span>
+                        </p>
+                    </div>
+                    <!-- Box Starts -->
+                    <div class="lnd-left-box sp-panel-accent mTop" data-ng-if="noSelf===''">
+                        <h2>
+                                <span data-ng-bind="::pullInterNationalization('practiceArea.autoLearning')"></span>
+                                <a href="javascript:void(0)" data-ng-click="ctrl.updateAutoLearning(false)" data-ng-class="ctrl.autoLearning?'sp-background-color':'default-bg'">
+                                    <span class="on-mode hide" data-ng-class="ctrl.autoLearning?'show':'hide'"><span class="tiHide">on</span> <span class="rnd-switch icon-icon_switch-dot sp-icon-color pos-r"></span></span>
+                                    <span class="off-mode hide" data-ng-class="!ctrl.autoLearning?'show':'hide'"><span class="rnd-switch icon-icon_switch-dot sp-icon-color pos-l"></span> <span class="tiHide">off</span></span>
+                                </a>                                
+                            </h2>
+                        <p data-ng-bind="::pullInterNationalization('practiceArea.autoLearningdesc')"></p>
+                    </div>
+                    <!-- Box Starts -->
+                    <div class="lnd-left-box sp-panel-accent mTop" data-ng-if="noSelf===''">
+                        <h2 data-ng-bind="::pullInterNationalization('practiceArea.knowledgeCenter')"></h2>
+                        <p data-ng-bind="::pullInterNationalization('practiceArea.knowledgeCenterdesc')"></p>
+                        <p class="link-spacing"><a href="javascript:void(0)" class="border-link" data-ng-click="ctrl.goToKnowledgeCenter()"><span class="mock-link" data-ng-bind="::pullInterNationalization('practiceCtrl.visitKC')"></span></a></p>
+                    </div>
+                </div>
+                <!-- Left Box Ends -->
+                <!-- Right Box Starts -->
+                <div class="lnd-right-sec" data-ng-class="ctrl.showRightCol?'show':''">
+                    <div class="practice-area-detail lnd-right-box sp-panel-accent">
+                        <div class="lnd-req-mobile practice-areas-dd">
+                            <a href="javascript:void(0)" data-ng-click="ctrl.showMobileDD=!ctrl.showMobileDD;" data-ng-bind="ctrl.ddSelectedText"></a>
+                            <ul class="hide" data-ng-class="ctrl.showMobileDD?'show':'hide'">
+                                <li class="border-link" data-ng-click="ctrl.getPracticeGoalDetail({'goalId':goal.id,'name':goal.name});ctrl.showMobileDD=false;ctrl.ddSelectedText=goal.name" data-ng-repeat="goal in (ctrl.goalAvailable) track by goal.id" data-ng-if="ctrl.ddSelectedText !==goal.name" data-ng-class="ctrl.currentActive.goalId===goal.id?'on':''"><span class="mock-link" data-ng-bind="goal.name"></span></li>
+                                <li class="return-link-mobile border-link return-link" data-ng-click="ctrl.showMobileHomePage()" data-ng-bind="::pullInterNationalization('practiceArea.returnToPracticeAreas')"></li>
+                            </ul>
+                        </div>
+                        <div class="title-with-icons">
+                            <h2 data-ng-bind="ctrl.currentActive.name" class="sp-header-title-color"></h2>
+                            <ul class="graph">
+								<!-- <li class="iFeedback icon-icon_feedback sp-icon-color" data-ng-click="ctrl.openFeedbackPanel();" data-ng-if="noSelf===''" title="{{::pullInterNationalization('practiceArea.requestFeedback')}}"></li>-->                            
+                                <li class="iNote icon-icon_editnote sp-icon-color no-margin-right hide" notes-options url-src="notes/notes-options.html" notes-callback="ctrl.setContentReference(ctrl.goalsDetail,'pa')" data-ng-if="noSelf===''" title="{{::pullInterNationalization('practiceArea.postNote')}}"></li>
+                                <li class="iNotification icon-icon_inbox_updated sp-icon-color hide" data-ng-click="ctrl.openState(3,'notification')" title="{{::pullInterNationalization('practiceArea.notesFeedback')}}"></li>
+                               <li data-ng-if="ctrl.progressMap[ctrl.currentActive.goalId].level !== 5 || ctrl.progressMap[ctrl.currentActive.goalId].totalCount !== ctrl.progressMap[ctrl.currentActive.goalId].completedCount" class="lp-progress" progress-animation observe-param="{{ctrl.progressMap[ctrl.currentActive.goalId].name}}" show-icon="true" override-icon="true" icon-level="ctrl.progressMap[ctrl.currentActive.goalId].level" icon-class="icon-icon-badge_level{{ctrl.progressMap[ctrl.currentActive.goalId].level}}" remaining-tasks="ctrl.progressMap[ctrl.currentActive.goalId].completedCount" total-tasks="ctrl.progressMap[ctrl.currentActive.goalId].totalCount" type="radial" badge-progress url-src="common/badge-progress.html" styles="badge-options" badge-object="{{ctrl.progressMap[ctrl.currentActive.goalId]}}" module-name="Erti"></li>
+                               <li data-ng-if="ctrl.progressMap[ctrl.currentActive.goalId].level === 5 && ctrl.progressMap[ctrl.currentActive.goalId].totalCount === ctrl.progressMap[ctrl.currentActive.goalId].completedCount" class="icon-badge_ertiLevel5 sp-icon-color badge-icon adjust-pos"></li>
+                            </ul>
+                        </div>
+                        <article class="slide-right clearfix" ui-view></article>
+                    </div>
+                </div>
+                <!-- Right Box Ends -->
+            </div>
+        </div>
+    </div>
+</div>

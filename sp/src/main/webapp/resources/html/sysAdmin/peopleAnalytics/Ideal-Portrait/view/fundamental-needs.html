@@ -1,0 +1,60 @@
+<section class="keyMatch">
+	<article class="match-holder">
+	    <div class="form-elements">
+	        <div class="clearfix tick-selection display-inline-block margin-right-inline disabled_checkbox_{{!portraitMatch.categoryDataMap.FundamentalNeeds.Primary.matchCriterias.length}}">
+	            <input type="checkbox" class="filterCheckBox groupCheckBox" id="FundamentalNeeds" data-ng-disabled="!portraitMatch.categoryDataMap.FundamentalNeeds.Primary.matchCriterias.length" data-ng-true-value="true" data-ng-false-value="false" data-ng-model="portraitMatch.categoryDataMap.FundamentalNeeds.Primary.enabled" data-ng-change="includeCheckConditional(portraitMatch.categoryDataMap.FundamentalNeeds.Primary,portraitMatch.categoryDataMap.FundamentalNeeds.Secondary,filterSelected.FundamentalNeeds);">
+	            <label for="FundamentalNeeds" class="filterCheckBox-label">
+	                <span class="checkedTick pull-left bpPopFix icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                <span class="font_14_300 pull-left label-text-style" data-ng-bind="::pullInterNationalization('spectrum.trait.FundamentalNeeds')"></span>
+	            </label>
+	        </div>
+	    </div>
+	    <div class="selected-item">
+		    <ol class="sortable-pa-list new-style" data-ng-if="portraitMatch.categoryDataMap.FundamentalNeeds.Primary.matchCriterias.length">
+	            <li class="single">
+	                <div class="new-pawrap">
+	                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.'+portraitMatch.categoryDataMap.FundamentalNeeds.Primary.matchCriterias[0].key)"></span>
+	              	    <span class="icon-close icon-icon_remove sp-icon-color" data-ng-click="removeConflict(portraitMatch.categoryDataMap.FundamentalNeeds,FundamentalNeeds,'Primary');"></span>
+	                </div>
+	            </li>
+	        </ol>
+	        <ol class="sortable-pa-list new-style" data-ng-if="!portraitMatch.categoryDataMap.FundamentalNeeds.Primary.matchCriterias.length">
+	            <li class="normal">
+	                <div class="new-pawrap empties">
+	                    <span class="empty-msg" data-ng-bind="::pullInterNationalization('idealPortrait.portrait.chooseStyle')"></span>
+	                </div>
+	            </li>
+	        </ol> 
+	        <ol class="sortable-pa-list new-style notop" data-ng-if="portraitMatch.categoryDataMap.FundamentalNeeds.Secondary.matchCriterias.length">
+	            <li class="single">
+	                <div class="new-pawrap">
+	                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.'+portraitMatch.categoryDataMap.FundamentalNeeds.Secondary.matchCriterias[0].key)"></span>
+	              	    <span class="icon-close icon-icon_remove sp-icon-color" data-ng-click="removeConflict(portraitMatch.categoryDataMap.FundamentalNeeds,FundamentalNeeds,'Secondary');"></span>
+	                </div>
+	            </li>
+	        </ol>
+	        <ol class="sortable-pa-list new-style notop" data-ng-if="!portraitMatch.categoryDataMap.FundamentalNeeds.Secondary.matchCriterias.length">
+	            <li class="normal">
+	                <div class="new-pawrap" data-ng-class="!portraitMatch.categoryDataMap.FundamentalNeeds.Primary.matchCriterias.length?'':'empties'">
+	                    <span class="empty-msg" data-ng-bind="::pullInterNationalization('idealPortrait.portrait.chooseStyle')"></span>
+	                </div>
+	            </li>
+	        </ol> 
+	    </div>
+	    
+	    <div class="selection-list row clearfix">
+	    	<ul class="mpa-pills col-md-12">
+	    		<li class="inactive-{{!!portraitMatch.categoryDataMap.FundamentalNeeds.Secondary.matchCriterias.length}}" data-ng-repeat="traits in record = FundamentalNeeds.list track by $index">
+	    		    <span class="mpa-name sp-link-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.'+traits.name)"></span>
+	                <span class="mpa-icon icon-erti_plus sp-icon-color" data-ng-if="traits[active.FundamentalNeeds] && FundamentalNeeds.addedList.indexOf(traits.name)===-1 && !(!!portraitMatch.categoryDataMap.FundamentalNeeds.Secondary.matchCriterias.length)" data-ng-click="addConflict(portraitMatch.categoryDataMap.FundamentalNeeds,traits,active.FundamentalNeeds,FundamentalNeeds)"></span>
+	                <span class="mpa-icon icon-erti_plus inactive sp-icon-color" data-ng-if="!(!!portraitMatch.categoryDataMap.FundamentalNeeds.Secondary.matchCriterias.length) && (!traits[active.FundamentalNeeds] || FundamentalNeeds.addedList.indexOf(traits.name)!==-1)" ></span>
+	            </li>
+	        </ul>
+	    </div>
+	    <div class="trait-list-description">
+	    		<div class="trait-listing">
+	    			<p data-ng-bind="::pullInterNationalization('idealPortrait.portrait.conflict.primary')"></p>
+	    		</div>
+	    </div>
+    </article>
+ </section>

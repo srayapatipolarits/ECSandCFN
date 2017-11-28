@@ -1,0 +1,12 @@
+<article class="search-emp-cand sp-panel-accent space-col">
+   <div class="relation-ship clearfix">
+	<h3 class="ra-title">
+		<span class="textual" data-ng-bind="::pullInterNationalization('paDashboard.searchEmpCand')"></span>
+	</h3>
+	<!-- <div class="ra-description" data-ng-bind-html="::pullInterNationalization('dashboard.ra.description')"></div>-->
+	<div class="angucomplete-wrapper">
+       <angucomplete placeholder="{{::pullInterNationalization('paDashboard.enteremail')}}" pause="100" selectedobject="groups" localdata="list" local-search="localSearch" show-search="true" searchfields="email" titlefield="email" minlength="1" inputclass="form-control form-control-small" templatetype="members"/>
+    </div>
+    <input type="submit" value="{{::pullInterNationalization('dashboard.ra.go')}}" class="btn-square-30px ra-go sp-background-color" data-ng-click="groups.originalObject.email && relationShipAdvisorPage(groups.originalObject.email)">
+    </div>
+</article>

@@ -1,0 +1,28 @@
+<section class="bookmark-panel">
+<link rel="stylesheet" href="/resources/css/css-min/training-library.min.css">
+    <div class="profile-detail-widget panel-fadeIn">
+        <div class="notes-tabs additional-height sp-background-color">
+	        <div class="notes-header-title">
+	            <span class="icon-panel-top icon-bookmark"></span>
+	            <div class="top-header-title ml6" data-ng-bind="::pullInterNationalization('goals.bookmarks')"></div>
+	        </div>
+        </div>
+        <nav class="col-header bookmark-height related-article-tools adj" data-ng-init="getAllBookmarks()">
+            <section class="related-article-links">
+                <p class="bookmark-intro hide" data-ng-if="!bookmarks.length" data-ng-class="!bookmarks.length?'show':'hide'" data-ng-bind-html="::pullInterNationalization('kcContent.bookmarksDesc')"></p>
+                <ul class="spotlight-related-links event-trending-articles hide" id="event_sidebar-trending" data-ng-if="bookmarks.length" data-ng-class="bookmarks.length?'show':'hide'">
+                    <li data-ng-repeat="t in bookmarks">
+                        <span class="kc-icons-themed sp-icon-color" data-ng-class="{'icon-icon_audio':t.articleType=='PODCAST','icon-icon_slideshow':t.articleType=='SLIDESHARE','icon-icon_video':t.articleType=='VIDEO','icon-icon_article':t.articleType=='TEXT'}"></span>
+                        <h3>
+                            <a class="border-link sp-link-color" href="/sp/trainingLibrary/article?{{t.articleLinkUrl}}" id=event_type_{{t.articleType}}_{{$index}}>
+                                <span class="mock-link" data-ng-bind="::t.articleLinkLabel"></span>
+                            </a>
+                        </h3>
+                        <p class="training-tool-info" data-ng-if="t.author[0]"><span class="author"><span>{{::pullInterNationalization('dashboard.by')}}</span> <span data-ng-bind="::t.author[0]"></span></span>
+                        </p>
+                    </li>
+                </ul>
+            </section>
+        </nav>
+    </div>
+</section>

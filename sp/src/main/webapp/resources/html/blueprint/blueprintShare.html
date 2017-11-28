@@ -1,0 +1,180 @@
+<div class="learning-development blueprint hide" data-ng-controller="bluePrintController as ctrl" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'" data-ng-init="ctrl.getShareDetails()">
+    <div class="x-container oVisible">
+        <div class="container" >
+            <div class="table-flex-cols" data-ng-if="ctrl.createScreenReady">
+                    <!-- Left Box Starts -->
+                    <div class="lnd-left-sec" ng-if="!ctrl.switchToMobile">
+                        <!-- Box Starts -->
+                        <div class="lnd-left-box posRelative">
+                            <article class="lnd-cancel-approval bp-left-rail-approval bg-yellow botSpace">
+                                <h3 data-ng-bind="ctrl.fullResponse.blueprintApprovalRequest?pullInterNationalization('blueprint.blueApproval'):pullInterNationalization('blueprint.bluefeedback')"></h3>
+                                <p data-ng-bind-html="ctrl.fullResponse.blueprintIntro"></p>
+                                <form name="ctrl.shareResponse" data-ng-if="!ctrl.fullResponse.blueprintApprovalRequest">
+									<div class='comment-section'>
+										<p class="no-bot-space">
+										<label class="sp-label-option" for="commentBlock" data-ng-bind="::pullInterNationalization('blueprint.labelcommentBlock')"></label>
+                        				<textarea id="commentBlock" name="sharecomment" data-ng-model="ctrl.shareCommentList.comment" data-ng-attr-placeholder="{{::pullInterNationalization('blueprint.comment')}}"></textarea>
+										<!-- <span class="validate-error" data-ng-if="ctrl.shareResponseForm.submitted && ctrl.shareResponse.sharecomment.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>-->
+										</p>
+										
+										<p>
+										<a href="javascript:void(0)" class="show_{{ctrl.blueprint.valid}} btn-block btn-14px sp-btn-color btn-iPad-fix1" data-ng-bind="::pullInterNationalization('blueprint.send')" data-ng-click="ctrl.submitComments(false,true)"></a>
+										</p>
+									</div>
+								</form>
+								<form name="ctrl.shareResponse" data-ng-if="ctrl.fullResponse.blueprintApprovalRequest">
+									<div class='comment-section'>
+										<p class="no-bot-space">
+										<label class="sp-label-option" for="commentBlock" data-ng-bind="::pullInterNationalization('blueprint.labelcommentBlock')"></label>
+                        				<textarea id="commentBlock" name="sharecomment" data-ng-model="ctrl.shareCommentList.comment" data-ng-attr-placeholder="{{::pullInterNationalization('blueprint.comment')}}"></textarea>
+										<!-- <span class="validate-error" data-ng-if="ctrl.shareResponseForm.submitted && ctrl.shareResponse.sharecomment.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>-->
+										</p>
+										<!--p data-ng-bind="::pullInterNationalization('blueprint.submitAs')"></p-->
+										<p>
+										<a href="javascript:void(0)" class="show_{{ctrl.blueprint.valid}} btn-block btn-14px sp-btn-color btn-iPad-fix1" data-ng-bind="::pullInterNationalization('blueprint.approve')" data-ng-click="ctrl.submitComments(true)"></a>
+										<a href="javascript:void(0)" class="show_{{ctrl.blueprint.valid}} btn-block btn-14px btn-grey-dark btn-iPad-fix1" data-ng-bind="::pullInterNationalization('blueprint.revise')" data-ng-click="ctrl.submitComments(false,false)"></a>
+										</p>
+										
+									</div>
+								</form>
+                            </article>
+                        </div>
+                    </div>
+                    <!-- Left Box Ends -->
+                    <!-- Right Box Starts -->
+                    <div class="lnd-right-sec minHeightAdded">
+                        <div class="practice-area-detail lnd-right-box lnd-top-border sp-panel-accent">
+                            <article class="slide-right">
+                                <div class="practive-area-view blueprint-content spcAdj1">
+                                    <!-- Description -->
+                                    <div class="blueprint-memberDetail">
+                                        	<h2 data-ng-bind-html="::pullInterNationalization('blueprint.blueprintname')"></h2>
+                                        	<div class="bp-pic">
+                                            	<img data-ng-src="{{ctrl.blueprintMember.smallProfileImage}}" alt="{{ctrl.blueprintMember.userInitials}}" ng-if="ctrl.blueprintMember.smallProfileImage">
+                                            	<div class="imgReplacementBig" ng-if="!ctrl.blueprintMember.smallProfileImage" data-ng-bind="ctrl.blueprintMember.userInitials"></div>
+                                            </div>
+                                            <div class="bp-mem">
+                                            	<h3 data-ng-bind="ctrl.blueprintMember.name"></h3>
+                                            	<p data-ng-bind="ctrl.blueprintMember.title"></p>
+                                            </div>
+                                    </div>
+                                    <div class="create-blueprint">
+                                        <form name="ctrl.bluePrintform" novalidate>
+                                            <!-- Mission Statement -->
+                                            <div class="mission-statement-wrapper default-spacing add-mtop15">
+                                                <div class="mission-title" data-ng-init="missionshow=false;commentListSource = !!ctrl.saveObject.missionStatement.commentsList.length">
+                                                    <h3 class="withBorder" data-ng-bind="ctrl.dataMap.mission.title"></h3>
+                                                    <span class="bp-comment-btn icon-icon_blueprint-comment fly sp-icon-color alignRight" data-ng-click="missionshow=!missionshow;ctrl.saveObject.missionStatement.commentsList = ctrl.blueprint.missionStatement.commentsList" title="{{::pullInterNationalization('dashboard.feedback')}}"></span>
+                                                    <div class="bp-commentBox" data-ng-if="missionshow">
+			                                            	<p data-ng-bind="::pullInterNationalization('blueprint.addcomment')"></p> 
+                                                    		<label class="sp-label-option" for="commentSource" data-ng-bind="::pullInterNationalization('blueprint.labelcommentBlock')"></label>
+                        				                    <textarea data-ng-if="!commentListSource" id="commentSource" data-ng-model="ctrl.saveObject.missionStatement.commentsList"></textarea>
+			                                                <textarea data-ng-if="commentListSource" id="commentSource" data-ng-model="ctrl.saveObject.missionStatement.commentsList[0].comment"></textarea>
+                                                            <a href="javascript:void(0)" class="btn-block btn-14px add-mtop15 sp-btn-color" data-ng-bind="::pullInterNationalization('practiceArea.save')" data-ng-click="$parent.missionshow=false;ctrl.blueprint.missionStatement.commentsList = ctrl.saveObject.missionStatement.commentsList"></a>
+                                                            <a href="javascript:void(0)" class="btn-block btn-14px add-mtop15 btn-grey-dark" data-ng-bind="::pullInterNationalization('practiceArea.cancel')" data-ng-click="$parent.missionshow=false;ctrl.saveObject.missionStatement.commentsList = ctrl.blueprint.missionStatement.commentsList"></a>
+                                                    </div>
+                                                </div>
+                                                <!-- If Edit Mode is Enabled -->
+                                                <p class="fixfont18" data-ng-bind-html="ctrl.blueprint.missionStatement.text"></p>
+                                            </div>
+                                            <!-- Mission Statement Ends -->
+                                            <!-- Development Strategies Starts ctrl.editObject.editEnabled[$index] =false  ctrl.assignKeyWord({'obj1':ctrl.editObject,'key1':'objective','index1':$index,'value':!!devstat.title})-->
+                                            <!-- Create / Edit Objective Starts -->
+                                            <div class="develeopmentStrategies add-mtop50 objectives-wrapper" data-ng-init="show=false;currentIndex = $index;commentListSource = !!ctrl.saveObject.devStrategyActionCategoryList[$index].commentsList.length" data-ng-repeat="devstat in ctrl.blueprint.devStrategyActionCategoryList track by $index" data-ng-class="{'obj_last' : $last}">
+                                                <div class="mission-title obj-title m-obj-title1">
+                                                    <h3 data-ng-bind="ctrl.dataMap.objective.title" class="objective-head add-rpad55"></h3>
+                                                    <span class="bp-comment-btn icon-icon_blueprint-comment fly sp-icon-color alignRight" title="{{::pullInterNationalization('dashboard.feedback')}}" data-ng-click="show=!show; ctrl.saveObject.devStrategyActionCategoryList[currentIndex].commentsList = devstat.commentsList;"></span>
+                                                    <div class="bp-commentBox" data-ng-if="show">
+                                                    		<p data-ng-bind="::pullInterNationalization('blueprint.addcomment')"></p> 
+                                                    		<label class="sp-label-option" for="commentSource" data-ng-bind="::pullInterNationalization('blueprint.labelcommentBlock')"></label>
+                        				                    <textarea data-ng-if="!commentListSource" id="commentSource" data-ng-model="ctrl.saveObject.devStrategyActionCategoryList[currentIndex].commentsList"></textarea>
+                                                            <textarea data-ng-if="commentListSource" id="commentSource" data-ng-model="ctrl.saveObject.devStrategyActionCategoryList[currentIndex].commentsList[0].comment"></textarea>
+                                                            
+                                                            <a href="javascript:void(0)" class="btn-block btn-14px add-mtop15 sp-btn-color" data-ng-bind="::pullInterNationalization('practiceArea.save')" data-ng-click="$parent.show=false;devstat.commentsList = ctrl.saveObject.devStrategyActionCategoryList[currentIndex].commentsList"></a>
+                                                            <a href="javascript:void(0)" class="btn-block btn-14px add-mtop15 btn-grey-dark" data-ng-bind="::pullInterNationalization('practiceArea.cancel')" data-ng-click="$parent.show=false;ctrl.saveObject.devStrategyActionCategoryList[currentIndex].commentsList = devstat.commentsList"></a>
+                                                    </div>
+                                                    <p class="pa-sub-description fixfont18" data-ng-bind-html="devstat.title"></p>
+                                                </div>
+                                                <div class="keyIntiative">
+                                                    <!-- Non Edit Mode data-ng-if="!editEnabled"-->
+                                                    <div class="col-xs-12 add-mbot25 clearfix" data-ng-repeat="actionList in devstat.actionList track by $index" data-ng-init="parentIndex=$parent.$index;currentIndex=$index;" data-ng-class="{'obj_last_ki' : $last}">
+								                        <div class="col-xs-3">
+								                            <p class="bp-key mob-top20 add-rpad30" data-ng-bind="ctrl.dataMap.initiatives.title"></p>
+								                        </div>
+                                                        <div class="col-xs-9">
+                                                            <div class="listTitle" data-ng-init="show=false;commentListSource = !!ctrl.saveObject.devStrategyActionCategoryList[parentIndex].actionList[currentIndex].commentsList.length">
+                                                            	<span class="bp-comment-btn icon-icon_blueprint-comment fly sp-icon-color alignRight editBtnFix1 editBtnFix1a" title="{{::pullInterNationalization('dashboard.feedback')}}" data-ng-click="show=!show;ctrl.saveObject.devStrategyActionCategoryList[parentIndex].actionList[currentIndex].commentsList = actionList.commentsList;"></span>
+                                                    			<div class="bp-commentBox" data-ng-if="show">
+                                                    				<p data-ng-bind="::pullInterNationalization('blueprint.addcomment')"></p> 
+                                                    		        <textarea data-ng-if="!commentListSource" data-ng-model="ctrl.saveObject.devStrategyActionCategoryList[parentIndex].actionList[currentIndex].commentsList"></textarea>
+                                                                    <textarea data-ng-if="commentListSource" data-ng-model="ctrl.saveObject.devStrategyActionCategoryList[parentIndex].actionList[currentIndex].commentsList[0].comment"></textarea>
+                                                                    
+                                                                    <a href="javascript:void(0)" class="btn-block btn-14px add-mtop15 sp-btn-color" data-ng-bind="::pullInterNationalization('practiceArea.save')" data-ng-click="$parent.show=false;actionList.commentsList = ctrl.saveObject.devStrategyActionCategoryList[parentIndex].actionList[currentIndex].commentsList"></a>
+                                                                    <a href="javascript:void(0)" class="btn-block btn-14px add-mtop15 btn-grey-dark" data-ng-bind="::pullInterNationalization('practiceArea.cancel')" data-ng-click="$parent.show=false;ctrl.saveObject.devStrategyActionCategoryList[parentIndex].actionList[currentIndex].commentsList = actionList.commentsList"></a>
+                                                            	</div>                                                            	
+                                                                <p class="add-rpad55 fixfont16" data-ng-bind="actionList.title"></p>
+                                                                <p class="bp-key add-mtop25 mob-top15 mfontfix14" data-ng-bind="ctrl.dataMap.csm.title"></p>
+                                                                <ol class="clearfix toRomans boldOl">
+                                                                    <li class="col_2" data-ng-repeat="actionData in actionList.actionData track by $index">
+                                                                    	<span class="boldLi" data-ng-bind="($index+1)+'. '"></span>
+                                                                    	<span data-ng-bind="actionData.title"></span>
+                                                                    </li>
+                                                                </ol>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Key Initiative Added -->
+                                            </div>
+                                            <!-- Create / Edit Objective Ends -->
+                                            <!-- Develeopment Strategies ends -->
+                                        </form>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <!-- Right Box Ends -->
+                    <!-- Left Box Starts -->
+                    <div class="lnd-left-sec switchMobOn" ng-if="ctrl.switchToMobile">
+                        <!-- Box Starts -->
+                        <div class="lnd-left-box posRelative">
+                            <article class="lnd-cancel-approval bp-left-rail-approval bg-yellow botSpace">
+                                <h3 data-ng-bind="ctrl.fullResponse.blueprintApprovalRequest?pullInterNationalization('blueprint.blueprintapproved'):pullInterNationalization('blueprint.bluefeedback')"></h3>
+                                <p data-ng-bind-html="ctrl.fullResponse.blueprintIntro"></p>
+                                <form name="ctrl.shareResponse" data-ng-if="!ctrl.fullResponse.blueprintApprovalRequest">
+									<div class='comment-section'>
+										<p class="no-bot-space">
+										<label class="sp-label-option" for="commentBlock" data-ng-bind="::pullInterNationalization('blueprint.labelcommentBlock')"></label>
+                        				<textarea id="commentBlock" name="sharecomment" data-ng-model="ctrl.shareCommentList.comment" data-ng-attr-placeholder="{{::pullInterNationalization('blueprint.comment')}}"></textarea>
+										<!-- <span class="validate-error" data-ng-if="ctrl.shareResponseForm.submitted && ctrl.shareResponse.sharecomment.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>-->
+										</p>
+										
+										<p>
+										<a href="javascript:void(0)" class="show_{{ctrl.blueprint.valid}} btn-block btn-14px sp-btn-color btn-iPad-fix1" data-ng-bind="::pullInterNationalization('blueprint.send')" data-ng-click="ctrl.submitComments(false,true)"></a>
+										</p>
+									</div>
+								</form>
+								<form name="ctrl.shareResponse" data-ng-if="ctrl.fullResponse.blueprintApprovalRequest">
+									<div class='comment-section'>
+										<p class="no-bot-space">
+										<label class="sp-label-option" for="commentBlock" data-ng-bind="::pullInterNationalization('blueprint.labelcommentBlock')"></label>
+                        				<textarea id="commentBlock" name="sharecomment" data-ng-model="ctrl.shareCommentList.comment" data-ng-attr-placeholder="{{::pullInterNationalization('blueprint.comment')}}"></textarea>
+										<!-- <span class="validate-error" data-ng-if="ctrl.shareResponseForm.submitted && ctrl.shareResponse.sharecomment.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>-->
+										</p>
+										<!-- <p data-ng-bind="pullInterNationalization('blueprint.submitAs')"></p>-->
+										<p>
+										<a href="javascript:void(0)" class="show_{{ctrl.blueprint.valid}} btn-block btn-14px sp-btn-color btn-iPad-fix1" data-ng-bind="::pullInterNationalization('blueprint.approve')" data-ng-click="ctrl.submitComments(true)"></a>
+										<a href="javascript:void(0)" class="show_{{ctrl.blueprint.valid}} btn-block btn-14px btn-grey-dark btn-iPad-fix1" data-ng-bind="::pullInterNationalization('blueprint.revise')" data-ng-click="ctrl.submitComments(false,false)"></a>
+										</p>
+										
+									</div>
+								</form>
+                            </article>
+                        </div>
+                    </div>
+                    <!-- Left Box Ends -->                    
+            </div>
+        </div>
+    </div>
+</div>

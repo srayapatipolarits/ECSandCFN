@@ -1,0 +1,27 @@
+        <!-- Copy Profile Verify Email Starts -->
+        <div class="x-container login-wrapper" ng-controller="verifyEmailController" ng-init="getVerifyedEmail()">
+            <div class="container" >
+                <div class="row">
+                    <div class="sign-in-default alt-width">
+                        <div class="error-msgs reset-pw">
+                            <h2 class="sign-in-title sp-header-title-color" data-ng-bind="pullInterNationalization('profileCopy.verifyEmailInvite.heading')"></h2>
+                            <p class="sign-in-instruction">
+						{{pullInterNationalization('profileCopy.verifyEmailInvite.desc1')}} <strong>{{vEmail}}</strong>.
+						{{pullInterNationalization('profileCopy.verifyEmailInvite.desc2')}}                            
+                            </p>
+                            
+                            <p class="sign-in-instruction" data-ng-bind="pullInterNationalization('profileCopy.verifyEmailInvite.desc3')"></p>                        
+                        </div>                      
+                        <form name="verifyEmailForm" ng-submit="verifyEmail(user)" novalidate>
+                        <ol class="form-list-c form-list-sign-in">
+                            <li class="sign-in-submit">
+                              <a href="/sp/signin" class="btn-block btn-15px loginBtn sp-btn-color" data-ng-bind="pullInterNationalization('profileCopy.verifyEmailInvite.btn1')"></a>
+                            </li>
+						</ol>                            
+							<p class="password-reset"><a href="/sp/home" class="border-link"><span class="mock-link" data-ng-bind="pullInterNationalization('profileCopy.verifyEmailInvite.btn2')"></span></a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copy Profile Verify Email Ends -->

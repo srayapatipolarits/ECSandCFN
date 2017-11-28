@@ -1,0 +1,24 @@
+<article>
+   <div class="relation-ship version-1" data-ng-if="version === 'A'">
+	<h3 class="ra-title">
+		<span class="ra-setting-icon icon-icon_RelationsAdvisor"></span>
+		<span class="textual" data-ng-bind="::pullInterNationalization('dashboardAdmin.option3')"></span>
+	</h3>
+	<div class="ra-description" data-ng-bind-html="::pullInterNationalization('dashboard.ra.description')"></div>
+	<div class="angucomplete-wrapper">
+       <angucomplete placement="'top'" placeholder="{{::pullInterNationalization('dashboard.ra.inputArea')}}" pause="100" selectedobject="groups" localdata="list" local-search="localSearch" show-search="true" searchfields="name" titlefield="name" minlength="1" inputclass="form-control form-control-small" templatetype="members"/>
+       <input type="submit" value="{{::pullInterNationalization('dashboard.ra.go')}}" class="btn-square-30px ra-go sp-background-color" data-ng-click="!!groups && relationShipAdvisorPage(groups.originalObject.email)">
+    </div>
+    </div>
+    <div class="relation-ship version-2" data-ng-if="version === 'B'">
+	<h3 class="ra-title">
+		<span class="ra-setting-icon icon-icon_RelationsAdvisor"></span>
+		<span class="textual" data-ng-bind="::pullInterNationalization('dashboardAdmin.option3')"></span>
+	</h3>
+	<div class="ra-description" data-ng-bind-html="::pullInterNationalization('dashboard.ra.description1')"></div>
+	<div class="angucomplete-wrapper">
+       <angucomplete placement="'top'" placeholder="{{::pullInterNationalization('dashboard.ra.inputArea')}}" pause="100" selectedobject="groups" localdata="list" local-search="localSearch" show-search="true" searchfields="name" titlefield="name" minlength="1" inputclass="form-control form-control-small" templatetype="members"/>
+       <input type="submit" value="{{::pullInterNationalization('dashboard.ra.go')}}" class="btn-square-30px ra-go sp-background-color" data-ng-click="!!groups && relationShipAdvisorPage(groups.originalObject.email)">
+    </div>
+    </div>
+</article>

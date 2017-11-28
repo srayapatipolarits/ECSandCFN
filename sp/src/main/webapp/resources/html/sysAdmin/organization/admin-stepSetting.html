@@ -1,0 +1,102 @@
+<div class="add-stepSetting">
+    <!-- Setting Column-->
+    <div class="practice-area-detail organization-area-detail lnd-right-box sp-panel-accent">
+        <div class="title-with-icons">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('sysadmin.organization.stepSetting')"></h2>
+        </div>
+        <form name="ctrl.stepSettingForm" class="actionPlanForm">
+	        <div class="radio-options clearfix">
+	            <h3 data-ng-bind="::pullInterNationalization('sysadmin.organization.enableStepOptions')"></h3>
+	            <ul class="style_radioList style_1 disabled_{{ctrl.actionPlan.active}}">
+	                <li class="sp-radio clear-overflow">
+	                    <input id="TimeBased" value="TimeBased" required name="stepTypeRadio" data-ng-model="ctrl.actionPlan.stepType" type="radio" data-ng-change="ctrl.stepTypeChange()" data-ng-disabled="ctrl.actionPlan.active"/>
+	                    <label for="TimeBased"> <span class="title" data-ng-bind="::pullInterNationalization('sysadmin.organization.enableStep')"></span>
+	                    </label>
+	                </li>
+	                <li class="sp-radio clear-overflow">
+	                    <input id="TimeBasedWithCompletion" name="stepTypeRadio" value="TimeBasedWithCompletion" required data-ng-model="ctrl.actionPlan.stepType" type="radio" data-ng-change="ctrl.stepTypeChange()" data-ng-disabled="ctrl.actionPlan.active"/>
+	                    <label for="TimeBasedWithCompletion"> <span class="title" data-ng-bind="::pullInterNationalization('sysadmin.organization.enableStepPrevious')"></span>
+	                    </label>
+	                </li>
+	                <li class="sp-radio clear-overflow">
+	                    <input id="AllWithDuration" name="stepTypeRadio" value="AllWithDuration" required data-ng-model="ctrl.actionPlan.stepType" type="radio" data-ng-change="ctrl.stepTypeChange()" data-ng-disabled="ctrl.actionPlan.active"/>
+	                    <label for="AllWithDuration"> <span class="title" data-ng-bind="::pullInterNationalization('sysadmin.organization.enableStepAll')"></span>
+	                    </label>
+	                </li>
+	                <li class="sp-radio clear-overflow">
+	                    <input id="All" value="All" name="stepTypeRadio" data-ng-model="ctrl.actionPlan.stepType" required type="radio" data-ng-change="ctrl.stepTypeChange()" data-ng-disabled="ctrl.actionPlan.active"/>
+	                    <label for="All"> <span class="title" data-ng-bind="::pullInterNationalization('sysadmin.organization.enableStepManually')"></span>
+	                    </label>
+	                </li>
+	            </ul>
+	        </div>
+	        <div class="clearfix">
+	        	<span class="validate-error" data-ng-if="ctrl.submitted && ctrl.stepSettingForm.stepTypeRadio.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+	        </div>
+	        <div class="steps-available clearfix" data-ng-if="ctrl.actionPlan.stepType">
+	            <section class="account-organization">
+	                <div class="row border-bottom-cl">
+	                    <div class="col-md-5 col-sm-5 p40 row">
+	                        <h4 class="sort-filter">
+				                  <span class="sort-text" data-ng-bind="::pullInterNationalization('sysadmin.organization.steps')"></span>
+				              </h4>
+	                    </div>
+	                    <div class="col-md-7 col-sm-7 groups-info-col row" data-ng-if="ctrl.actionPlan.stepType!=='All'">
+	                        <h4 class="sort-filter">
+			                  <span class="sort-text" data-ng-bind="::pullInterNationalization('sysadmin.organization.duration')"></span>
+			              </h4>
+	                    </div>
+	                    <div class="col-md-7 col-sm-7 groups-info-col row" data-ng-if="ctrl.actionPlan.stepType==='All'">
+	                        <h4 class="sort-filter">
+			                  <span class="sort-text" data-ng-bind="::pullInterNationalization('sysadmin.organization.status')"></span>
+			              </h4>
+	                    </div>
+	                </div>
+	                 <ul class="sortable-pa-list new-style notop" id="sort-practice-area">
+                          <li class="normal styleSetting" data-ng-repeat="section in ctrl.actionPlan.practiceAreaList track by $index" repeat-done="ctrl.practiceAreaSort(ctrl.actionPlan.practiceAreaList.length)">
+                              <div class="row">
+		                    	<div class="col-md-5 col-sm-5">
+		                       		<span class="icon-icon_drag-drop pull-left" data-ng-class="ctrl.actionPlan.active?'practiceHandleDefault':'practiceHandle'"></span>
+		                       		<span class="mock-link pull-left left20" data-ng-bind="section.name||pullInterNationalization('sysadmin.organization.createactionPlan')"></span>
+		                        </div>
+		                        <div class="col-md-7 col-sm-7 durationDays" data-ng-if="ctrl.actionPlan.stepType!=='All'">
+		                            <input autoFocus type="number" min="0" step="1" numbers-only data-ng-pattern="/^[1-9][0-9]*$/" required class="themeName" change-name="durationDays[$index]" data-ng-model="section.durationDays" required />
+		                            <span class="validate-error ng-hide" data-ng-show="ctrl.submitted && ctrl.stepSettingForm['durationDays[{{$index}}]'].$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+		                            <span class="err-msg validate-error ng-hide" data-ng-show="ctrl.submitted && ctrl.stepSettingForm['durationDays[{{$index}}]'].$error.pattern" data-ng-bind="::pullInterNationalization('signup.emperr')"></span>
+		                            <span class="err-msg validate-error ng-hide" data-ng-show="ctrl.submitted && ctrl.stepSettingForm['durationDays[{{$index}}]'].$error.numbersOnly" data-ng-bind="::pullInterNationalization('signup.properdays')"></span>
+		                            
+		                        </div>
+		                         <div class="col-md-7 col-sm-7 groups-info-col" data-ng-if="ctrl.actionPlan.stepType==='All'">
+		                            <ul class="style_radioList">
+		                                <li class="sp-radio leftHide">
+		                                    <input id="planactiveStatus{{$index}}" value="ACTIVE" data-ng-model="section.status" type="radio" data-ng-change="ctrl.activeCheck()"/>
+		                                    <label for="planactiveStatus{{$index}}"> <span class="title" data-ng-bind="::pullInterNationalization('sysadmin.organization.active')"></span>
+		                                    </label>
+		                                </li>
+		                                <li class="sp-radio leftHide">
+		                                    <input id="planinactiveStatus{{$index}}" value="INACTIVE" data-ng-model="section.status" type="radio"/>
+		                                    <label for="planinactiveStatus{{$index}}"> <span class="title" data-ng-bind="::pullInterNationalization('sysadmin.organization.inactive')"></span>
+		                                    </label>
+		                                </li>
+		                            </ul>
+		                        </div>
+	                        </div>
+                          </li>
+                      </ul>
+	                <div class="row">
+                    	<div class="col-md-5 col-sm-5">
+                        </div>
+                        <div class="col-md-7 col-sm-7">
+                        	<div class="program-duration" data-ng-if="ctrl.actionPlan.stepType!=='All'">
+			                	<span class="weight-500" data-ng-bind="::pullInterNationalization('sysadmin.organization.programDuration')"></span> <span data-ng-bind="ctrl.calculateDuration(ctrl.actionPlan.practiceAreaList)"></span>
+			                </div>
+                        </div>
+		            </div>
+	                <div data-ng-if="!ctrl.atleastOneCheck.length">
+				          <span class="validate-error" data-ng-bind="::pullInterNationalization('sysadmin.organization.activeStep')"></span>
+				    </div>
+	            </section>
+	        </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="add-update">
+	<!-- create Column Starts-->
+	<div
+		class="practice-area-detail organization-area-detail lnd-right-box lnd-top-border sp-panel-accent">
+		<div class="title-with-icons">
+			<h2 class="sp-header-title-color"
+				data-ng-bind="::pullInterNationalization('pa.admin.articles.label')"></h2>
+			<a href="javascript:void(0)" class="buttoncss add-article"
+				data-ng-click="selectArticleModal()">Add Article(s)</a>
+		</div>
+			<div class="category parent-cat category-overview pa-details">
+				<div class="header-style-content">
+					<div class="border-faq-content">
+
+						<div class="learning-articles-wrapper sort-practice-area"
+							id="sort-me">
+							<div class="new-article-content"
+								data-ng-repeat="articles in addedArticles"
+								repeat-done="articlesSortable(addedArticles.length)">
+								<span class="dHandle icon-icon_drag-drop sp-icon-color"></span>
+								<div class="new-article-details">
+									<span class="new-article-icon sp-icon-color"
+										data-ng-class="{'icon-icon_audio':articles.articleType=='PODCAST','icon-icon_slideshow':articles.articleType=='SLIDESHARE','icon-icon_video':articles.articleType=='VIDEO','icon-icon_article':articles.articleType=='TEXT'}"></span>
+									<p>
+										<a href="#" class="border-link"> <span class="mock-link"
+											data-ng-bind="articles.articleLinkLabel"></span>
+										</a> <span class="new-articles-info"> <span
+											data-ng-if="articles.author"
+											data-ng-bind="pullInterNationalization('practice.by')+' '+articles.author[0]"></span>
+											<span data-ng-if="articles.articleSource && articles.author">
+												- </span> <span data-ng-if="articles.articleSource"
+											data-ng-bind="articles.articleSource"></span>
+										</span>
+									</p>
+									<span
+										class="icon-close icon-icon_remove sp-icon-color icon-article-remove"
+										data-ng-click="removeArticle(articles.articleLinkUrl);"></span>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+	</div>
+</div>

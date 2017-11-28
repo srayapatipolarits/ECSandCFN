@@ -1,0 +1,42 @@
+<div class="dashboard-feed" data-ng-if="inviteReady && profileReady">
+    <div class="x-container">
+        <div class="container">
+            <section class="position-section col-container">
+                <!-- Admin Listing Page -->
+                <section class="admin-action-plan matchList-overrides">
+                    <div class="admin-section-tabs clearfix">
+                        <ul class="admin-tabs-list">
+                            <li class="sp-panel-accent" data-ng-click="changeTab(0)" data-ng-class="{'selected':selectedTab===0}">
+                                <div class="tabs-option" data-ng-bind="::pullInterNationalization('sysadmin.ppTab1')"></div>
+                            </li>
+                            <li class="sp-panel-accent" data-ng-click="changeTab(1)" data-ng-class="{'selected':selectedTab===1}">
+                                <div class="tabs-option" data-ng-bind="::pullInterNationalization('sysadmin.ppTab2')"></div>
+                            </li>
+                        </ul>
+                        <!-- Admin Listing Page -->
+                    </div>
+                    <div class="layout">
+                    
+						<!-- Listing Page Tab 1 Starts  -->
+						<ng-include src="'/sp/resources/html/sysAdmin/peopleAnalytics/Ideal-Portrait/view/preferredPortraits.html'" data-ng-if="selectedTab===0"></ng-include>
+						<!-- Listing Page Tab 1 Ends  -->
+						
+                    
+						<!-- Listing Page Tab 2 Starts  -->
+						<ng-include src="'/sp/resources/html/sysAdmin/peopleAnalytics/Ideal-Portrait/view/companyList.html'" data-ng-if="selectedTab===1"></ng-include>
+						<!-- Listing Page Tab 2 Ends  -->
+												
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

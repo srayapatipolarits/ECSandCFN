@@ -1,0 +1,174 @@
+<section ng-controller="themeListingController" ng-if="inviteReady" ng-class="inviteReady?'show':'hide'" class="hide">
+    <div class="x-container members hiring-candidates affiliate-listing">
+        <div class="container minimumHeight" >
+            <div class="bgWhiteBord clearfix">
+                <div class="toolbar clearfix">
+                    <div class="title">
+                        <a href="#" role="button" ng-click="resetfilter()">All Practice Areas<span class="blackcolor">({{themesListMaster.length}})</span></a>
+                    </div>
+                    <div class="controls clearfix">
+                        <div class="hiring-list-wrapper">
+                            <p>
+                                <a href="/sp/sysAdmin/goals/createTheme">Create New Theme</a>
+                            </p>
+                        </div>
+                        <div class="controlwrap search">
+                            <input type="text" class="form-control" maxlength="28" ng-model="searchText" placeholder="Search" ng-keyup="searchTextFilter(searchText)">
+                            <button class="sp-icon-color" ng-class="enableCancel(searchText)? 'icon-icon_remove':'icon-icon_search'" ng-click="clearSearch()"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="filters">
+                    <ul class="box clearfix hide">
+                        <li class="first w10">
+                            <p class="title resetPad" data-ng-bind="pullInterNationalization('tools.hiring.filter')"></p>
+                            <a href="javascript:void(0)" class="resetAnchor" ng-click="resetfilter()" data-ng-bind="pullInterNationalization('tools.hiring.reset')"></a>
+                        </li>
+                        <li class="w25">
+                            <p class="title" data-ng-bind="pullInterNationalization('tools.hiring.col2')"></p>
+                            <div class="rolesSelectWrapper">
+                                <select class="form-control rolesSelect" ng-model="selectedSearch.hiringRoles">
+                                    <option value="" data-ng-bind="pullInterNationalization('tools.hiring.opt1')"></option>
+                                    <option ng-repeat="hiringRoles in hiringRoles" value="{{hiringRoles}}">{{hiringRoles}}</option>
+                                </select>
+                            </div>
+                            <!--<select class="form-control" ng-init="selectedSearch = 'default'" ng-model="selectedSearch">
+                        <option value="default">Select Status</option>
+                        <option value="User" >User</option>
+                         <option value="Admin">Admin</option>
+                    </select>-->
+                        </li>
+                        <li class="w45 shorter">
+                            <p class="title" data-ng-bind="pullInterNationalization('tools.hiring.filter1')"></p>
+                            <div class="controlwrap">
+                                <!--<input type="text" class="form-control" value="{{pullInterNationalization('member.placetag')}}">-->
+                                <tags-input ng-model="tags" min-length="1" replace-spaces-with-dashes="false" placeholder="Search a tag(s)/keyword(s)" on-tag-removed="tagRemoved($tag)" on-tag-added="tagAdded($tag)" add-from-autocomplete-only="true">
+                                    <auto-complete min-length="1" load-on-focus="true" load-on-empty="true" source="loadTags($query)" class="ng-tags-pos-fix"></auto-complete>
+                                </tags-input>
+                            </div>
+                        </li>
+                        <li class="w25">
+                            <p class="title" data-ng-bind="pullInterNationalization('tools.hiring.filter2')"></p>
+                            <div class="rolesSelectWrapper">
+                                <select class="form-control rolesSelect" ng-model="selectedSearch.userStatusFormatted">
+                                    <option value="" data-ng-bind="pullInterNationalization('tools.hiring.opt1')"></option>
+                                    <option ng-repeat="userStatus in userStatus" value="{{userStatus}}" data-ng-bind="userStatus"></option>
+                                </select>
+                            </div>
+                            <!--<select class="form-control" ng-init="selectedSearch = 'default'" ng-model="selectedSearch">
+                        <option value="default">Select Status</option>
+                        <option value="User" >User</option>
+                         <option value="Admin">Admin</option>
+                    </select>-->
+                        </li>
+                    </ul>
+                </div>
+                <div class="extras">
+                    <div class="controls clearfix hide">
+                        <!--a href="#" role="button" ng-class="{enabled:userEmail.email.length}" class="icon notifications" ng-click="archiveAllDialog(userEmail.email)"></a-->
+                        <a href="#" role="button" ng-class="{enabled:userEmail.email.length}" class="icon delete" ng-click="userEmail.email.length && certainDelete()" title="Delete"></a>
+                        <!--div class="cssTwickSelect" ng-class="{enabled:userEmail.email.length}">
+                            <!--
+                        <select class="form-control moreOptions" ng-class="{enabled:userEmail.email.length}">
+                            <option>MORE</option>
+                            <option>Relationship Manager</option>
+                        </select>
+                        -.->
+                            
+                        </div-->
+                        <div class="flashMessage" ng-show="deleteUser"><span class="checkmark"></span><span class="messageBody">Candidate(s) deleted successfully!</span>
+                        </div>
+                        <div class="flashMessage" ng-show="deleteUserError"><span class="checkmark err"></span><span class="messageBody"></span>
+                        </div>
+                        <div class="flashMessage" ng-show="updateGroup"><span class="checkmark"></span><span class="messageBody" data-ng-bind="pullInterNationalization('member.updateMessage')"></span>
+                        </div>
+                        <div class="flashMessage" ng-show="updateGroupError"><span class="checkmark err"></span><span class="messageBody" data-ng-bind="updateError"></span>
+                        </div>
+                    </div>
+                    <!--<div class="rControls">
+                <button type="button" class="btn btn-default enabled" ng-show="!showfilter" ng-click="showfilter=true" name="filter">SHOW FILTER</button>
+                <button type="button" class="btn btn-default enabled" ng-show="showfilter" ng-click="showfilter=false" name="filter">HIDE FILTER</button>
+            </div>-->
+                </div>
+                <article class="memberHolder">
+                    <div class="heading row">
+                        <!--div class="col-md-1 col-sm-1 check">
+                            <input type="checkbox" name="toggleAll" ng-model="alltoggle" id="alltoggle" class="memberCheckBox" ng-click="negative=!negative;checkAll()" />
+                            <label for="alltoggle" class="memberCheckBox-label"></label>
+                        </div-->
+                        <div class="col-md-4 col-sm-4 tog activeFilter" ng-click="reverse=!reverse;order('name', reverse);active($event)" data-predicate='name'>
+                            <h4 class="on code" data-ng-bind="'Name'"></h4>
+                        </div>
+                        <div class="col-md-3 col-sm-3 tog col-fix-1 product-title" ng-click="reverse=!reverse;order('category', reverse);active($event)" data-predicate='category'>
+                            <h4 data-ng-bind="'Type'"></h4>
+                        </div>
+                        <div class="col-md-2 col-sm-2 tog col-fix-2" ng-click="reverse=!reverse;order('mandatory', reverse);active($event)" data-predicate='mandatory'>
+                            <h4 data-ng-bind="'Role'"></h4>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-fix-3" ng-click="reverse=!reverse;order('status', reverse);active($event)" data-predicate='status'>
+                            <h4 data-ng-bind="'Status'"></h4>
+                        </div>
+                        <div class="col-md-1 col-sm-1"></div>
+                    </div>
+                    <!--<div class="complete-profile" ng-class="{active:show}" ng-repeat="themesList in filtered=(themesList | filter:filterByCategory)">-->
+                    <div infinite-scroll="returnMemberList(pageSize+pageSize)" infinite-scroll-immediate-check="false" infinite-scroll-disabled="disabledInfinite">
+                        <div class="complete-profile animation_1" ng-class="{active:show}" id='{{$index}}' ng-repeat="themesList in recordField = ((themesList | filter:textSearching).slice(0,pageSize)) track by themesList.id">
+                            <div class="table-row clearfix">
+                                <!--div class="col-md-1 col-sm-1 check">
+                                    <div ng-class="{hidden:show}">
+                                        <input type="checkbox" name="selectUser" ng-click="checkUncheck()" id="selectUser_{{$index}}" class="memberCheckBox" checklist-model="userEmail.email" checklist-value="{'email':themesList.email, 'name' : themesList.code}">
+                                        <label for="selectUser_{{$index}}" class="memberCheckBox-label"></label>
+                                    </div>
+                                </div-->
+                                <div class="col-md-4 col-sm-4">
+                                    <p class="code">
+                                        <a href="/sp/sysAdmin/goals/themeDetails?t={{themesList.id}}" class="border-link">
+                                            <span class="mock-link" data-ng-bind="themesList.name"></span>
+                                        </a>
+                                    </p>
+                                </div>
+                                <div class="col-md-3 col-sm-3 row_title product-title">
+                                    <p class="role_title" data-ng-bind="themesList.category"></p>
+                                </div>
+                                <div class="col-md-2 col-sm-2 row_title">
+                                    <p class="role_title status-text" data-ng-bind="themesList.mandatory==true?'Mandatory':'Optional'"></p>
+                                </div>
+                                <div class="col-md-2 col-sm-2 row_title">
+                                    <p class="role_title status-text" data-ng-bind="themesList.status=='ACTIVE'?'Active':'Inactive'"></p>
+                                </div>
+                                <div class="col-md-1 col-sm-1 btnGroupSp" ng-click="show=!show">
+                                    <button class="fullView adj btn-plus icon-icon_expand sp-icon-color" type="button"></button><button class="fullView adj btn-minus icon-icon_collapse-fill sp-icon-color" type="button"></button>
+                                </div>
+                            </div>
+                            <div class="editable-section clearfix" ng-class="{hidden:!show}">
+                                <div class="col-md-1 col-sm-1 custom_1"></div>
+                                <div class="col-md-11 col-sm-11 custom_2">
+                                    <ul class="clearfix" ng-show="!advance">
+                                        <li>
+                                            <a href="/sp/sysAdmin/goals/themeDetails?t={{themesList.id}}" role="button" class="buttoncss">View Details</a>
+                                        </li>
+                                        <li class='deletePos' ng-if="themesList.status=='ACTIVE'">
+                                            <a href="#" role="button" class="buttoncss" ng-click="deActivateTheme(themesList.id, themesList.name);">Deactivate</a>
+                                        </li>
+                                        <li class='deletePos' ng-if="themesList.status!='ACTIVE'">
+                                            <a href="#" role="button" class="buttoncss" ng-click="activateTheme(themesList.id)">Activate</a>
+                                        </li>
+                                    </ul>
+                                    <div class="advanceSelection" ng-show="moreadvance">
+                                        <span data-ng-bind="pullInterNationalization('tools.hiring.delmsg')"></span>
+                                        <button class="ctaBtn1" ng-click='confirmDelete($event)' data-ng-bind="pullInterNationalization('tools.hiring.delyes')"></button>
+                                        <button class="ctaBtn1" ng-click='moreadvance=!moreadvance;advance=!advance' data-ng-bind="pullInterNationalization('tools.hiring.delno')"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p ng-show="!recordField.length" class="noMatchFound ng-hide" data-ng-bind="'No Practice Areas Found'"></p>
+                    <!-- <div class="more">
+                    <a href="javascript:void(0)" class="ng-hide" role="button" ng-click="returnthemesList(pageSize+pageSize)" ng-hide="alldisplay || recordField.length < intialPageSize" data-ng-bind="pullInterNationalization('tools.hiring.load')"></a>
+                     </div>-->
+                </article>
+            </div>
+        </div>
+    </div>
+</section>

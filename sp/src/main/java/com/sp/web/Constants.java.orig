@@ -1,0 +1,661 @@
+<<<<<<< HEAD
+package com.sp.web;
+
+import com.sp.web.exception.InvalidRequestException;
+import com.sp.web.model.library.ArticleLocation;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * The constants class.
+ * 
+ * @author daxabraham
+ * 
+ */
+public class Constants {
+
+  public static final String KEY_DELIMITTER = ":";
+  public static final String ASSESSMENTS_PROCESSOR = "assessmentsProcessor";
+  public static final double[] ACCURACY_RANGE_HIGH = { 0.6799d, 0.7299d, 0.7599d, 0.8199d, 0.8999d, 0.9499d, 0.9949d,
+      1.0d };
+  public static final double[] ACCURACY_RANGE_LOW = { .5d, .7d, .73d, .76d, .82d, .90d, .95d, 1.0d };
+
+  public static final int PRECISION = 8;
+  public static final int POWER_OF_TEN_SCALE = 2;
+  public static final int POINT_MOVEMENT = 2;
+  public static final RoundingMode ROUNDING_MODE = RoundingMode.HALF_UP;
+  public static final BigDecimal ZERO_VALUE = new BigDecimal(0).setScale(PRECISION, ROUNDING_MODE);
+  public static final double PERSONALITY_MULTIPLIER = (1d / 7d);
+  public static final int PERCENT_PRECISION = 2;
+  public static final int PRICE_PRECISION = 2;
+  public static final int PULSE_PRECISION = 5;
+
+  public static final String PERSONALITY_MOST = "Most";
+  public static final String PERSONALITY_LEAST = "Least";
+
+  public static final Object[] ASSESSMENT_QUESTIONS_MALE_FORMAT = { "he", "He", "him", "himself", "his", "his", "His" };
+  public static final Object[] ASSESSMENT_QUESTIONS_FEMALE_FORMAT = { "she", "She", "her", "herself", "her", "hers",
+      "Her" };
+
+  /**
+   * Default Hiring Product Name.
+   */
+  public static final String HIRING_PRODUCT_NAME = "Hiring";
+  public static final long HIRING_FILE_MAX_SIZE = 1000000;
+
+  public static final int DAYS_OF_MONTHLY_BILLING = 30;
+  public static final int DEFAULT_TRIAL_DAYS = 14;
+  public static final int DEFAULT_EXPIRY_GRACE_TIME_DAYS = 20;
+  public static final int DEFAULT_ACCOUNT_EXPIRY_DAYS = 15;
+
+  /**
+   * Email Templates.
+   */
+  public static final String ADD_MEMBER_TEMPLATE = "templates/email/addMember.stg";
+  public static final String COPY_PROFILE_TEMPLATE = "templates/email/copyProfile.stg";
+  public static final String PAYMENT_RECEIPT_TEMPLATE = "/templates/email/payment/historyReceipt.stg";
+
+  /**
+   * Default values.
+   */
+  public static final long DEFAULT_EXPIRES_TIME = 24;
+  public static final String DEFAULT_EXPIRES_TIME_UNIT_STR = "HOURS";
+  public static final TimeUnit DEFAULT_EXPIRES_TIME_UNIT = TimeUnit.HOURS;
+  public static final String[] SEARCH_FIELDS_LIST = new String[] { "firstName", "lastName", "email", "title",
+      "groupAssociationList", "userStatus", "statusMessage", "tagList", "roles" };
+  public static final String[] SEARCH_PEEK_FIELDS_LIST = new String[] { "firstName", "lastName" };
+
+  /**
+   * Constant definitions for parameters.
+   */
+  public static final String PARAM_USER_ID = "userId";
+  public static final String PARAM_USER_EMAIL = "userEmail";
+  public static final String PARAM_GROWTH_REQUEST_ID = "growthRequestId";
+  public static final String PARAM_GROWTH_MEMB_EMAIL = "memberEmail";
+  public static final String PARAM_TOKEN = "token";
+  public static final String PARAM_ERROR = "error";
+  public static final String PARAM_EXPIRES_TIME = "expiresTime";
+  public static final String PARAM_TIME_UNIT = "timeUnit";
+  public static final String PARAM_MEMBER_LIST = "memberList";
+  public static final String PARAM_USER_PROFILE_FORM = "userProfileForm";
+  public static final String PARAM_QUESTION = "question";
+  public static final String PARAM_ANALYSIS = "Analysis";
+  public static final String PARAM_LAST_ANSWER = "lastAnswer";
+  public static final String PARAM_MEMBER = "member";
+  public static final String PARAM_SUBJECT = "subject";
+  public static final String PARAM_EMAIL_BODY = "emailBody";
+  public static final String PARAM_AVAILABLE_MEMBER_SUBSCRIPTIONS = "availalbeMemberSubscriptions";
+  public static final String PARAM_NAME = "name";
+  public static final String PARAM_NUMBER_OF_MEMBERS = "numberOfMembers";
+  public static final String PARAM_RENEWAL_TOTAL = "renewalTotal";
+  public static final String PARAM_RENEWAL_DATE = "renewalDate";
+  public static final String PARAM_AVAILABLE_HIRING_SUBSCRIPTIONS = "availableHiringSubscripitons";
+  public static final String PARAM_USED_HIRING_SUBSCRIPTIONS = "usedHiringSubscriptions";
+  public static final String PARAM_ACCOUNT = "account";
+  public static final String PARAM_TEMP_PASSWORD = "tempPassword";
+  public static final String PARAM_COMPANY = "company";
+  public static final String PARAM_USER_PROFILE_SETTINGS = "profileSettings";
+  public static final String PARAM_ROLES = "roles";
+  public static final String PARAM_HIRING_PRODUCT = "hiring";
+  public static final String PARAM_PROMOTION = "promotion";
+  public static final String PARAM_PAYMENT_RECORD = "payment";
+  public static final String PARAM_PRODUCT = "product";
+  public static final String PARAM_PAYMENT_HISTORY = "paymentHistory";
+  public static final String PARAM_ACTIVE_MEMBER_COUNT = "activeMembers";
+  public static final String PARAM_PRODUCT_VALIDITY = "validityType";
+  public static final String PARAM_HIRING_MEMBERS = "hiring";
+  public static final String PARAM_DELETE_COUNT = "deleted";
+  public static final String PARAM_ARCHIVE_COUNT = "archived";
+  public static final String PARAM_HIRING_MEMBERS_ARCHIVED = "hiring-archived";
+  public static final String PARAM_HIRING_CANDIDATE_ANALYSIS = "candidateAnalysis";
+  public static final String PARAM_MEMBER_ANALYSIS = "memberAnalysis";
+  public static final String PARAM_HIRING_REFERENCE_USER_ID = "hiringReferenceId";
+  public static final String PARAM_HIRING_USER_ID = "hiringUserId";
+  public static final String PARAM_HIRING_MEMBER_COUNT = "numHiringCandidates";
+  public static final String PARAM_HIRING_ROLES = "hiringRoles";
+  public static final String PARAM_GROWTH_MEMBER_EMAIL = "growthExternalMemberEmail";
+  public static final String PARAM_RELATIONSHIP_MANAGER_REPORT_PRIMARY = "primary";
+  public static final String PARAM_RELATIONSHIP_MANAGER_REPORT_SECONDARY = "secondary";
+  public static final String PARAM_PROFILE_IMAGE_SMALL = "small";
+  public static final String PARAM_PROFILE_IMAGE_MEDIUM = "medium";
+  public static final String PARAM_PROFILE_IMAGE_LARGE = "large";
+  public static final String PARAM_DONE = "done";
+  public static final String PARAM_FAILURE = "failed";
+  public static final String PARAM_ADDRESS = "address";
+  public static final String PARAM_PULSE_REQUEST_ID = "pulseRequestId";
+  public static final String PARAM_PULSE_RESULTS = "pulseResults";
+  public static final String PARAM_PULSE_SCORE = "pulseScore";
+  public static final String PARAM_PULSE_QUESTION = "pulseQuestion";
+  public static final String PARAM_END_DATE = "endDate";
+  public static final String PARAM_TASK_LIST = "tasks";
+  public static final String PARAM_TAG_LIST = "tagList";
+  public static final String PARAM_NOTIFICATION_LOG_MESSAGES = "notifications";
+  public static final String PARAM_ACTIVITY_LOG_MESSAGES = "activityMessages";
+  public static final String PARAM_GROUP_LIST = "groupList";
+  public static final String PARAM_TITLE = "title";
+  public static final String PARAM_MESSAGE = "message";
+  public static final String PARAM_LOG_TYPE = "logType";
+  public static final String PARAM_FOR_USER = "forUser";
+  public static final String PARAM_GROWTH_REQUEST = "growthRequest";
+  public static final String PARAM_USER_TYPE = "userType";
+  public static final String PARAM_EXISTING_USER_ID = "existingUser";
+  public static final String PARAM_EXISTING_USER_TYPE = "existingUserType";
+  public static final String PARAM_USER = "user";
+  public static final String PARAM_RELATED_ARTICLES = "relatedArticles";
+  public static final String PARAM_TRAINING_SPOT_LIGHT = "trainingSpotLight";
+  public static final String PARAM_NAVIGATION = "navigation";
+  public static final String PARAM_NUMBER_OF_ACTIVE_MEMBER = "numActive";  
+  public static final String PARAM_NUMBER_OF_DELETED_MEMBER = "numDeleted";  
+  public static final String PARAM_GROUP_MEMBER_COUNT = "numMembers";
+
+  /**
+   * Constant definitions for views.
+   */
+  public static final String VIEW_ADD_MEMBER = "signupMember";
+  public static final String VIEW_RESET_PASSWORD = "changePassword";
+  public static final String VIEW_GROWTH_EXTERNAL_PROFILE_CONFIRM = "confirmDetails";
+  public static final String VIEW_ERROR = "error";
+  public static final String VIEW_TOKEN_ERROR = "redirect:http://www.surepeople.com/?status=404";
+
+  /**
+   * Constant definitions for messages keys or application properties keys.
+   */
+  public static final String KEY_ADD_MEMBER_EXPIRES_TIME = "token.addMember.expires";
+  public static final String KEY_ADD_MEMBER_EXPIRES_TIME_UNIT = "token.addMember.expires.timeUnit";
+  public static final String KEY_PROFILE_INCOMPLETE = "user.status.profile.incomplete";
+  public static final String KEY_NAME = "user.name";
+  public static final String KEY_PAYMENT_REASON_PREFIX = "payments.reason.";
+  public static final String KEY_PAYMENT_REASON_NEW_ACCOUNT = KEY_PAYMENT_REASON_PREFIX + "newAccount.";
+  public static final String KEY_PAYMENT_REASON_RECHARGE_ACCOUNT = KEY_PAYMENT_REASON_PREFIX + "rechargeAccount.";
+
+  // New Default Profile Image paths
+  public static final String DEFAULT_IMAGE_PATH_KEY = "default.profile.image";
+  public static final String KEY_DEFAULT_TRIAL = "account.trial.expiry.days";
+  public static final String KEY_DEFAULT_PAYMENT_FAILURE_GRACE_TIME = "account.payment.grace.days";
+  public static final String KEY_DEFAULT_ACCOUNT_EXPIRY_GRACE = "account.expiry.grace.days";
+
+  /**
+   * Default Error messages.
+   */
+  public static final String ERROR_MESSAGE_TOKEN_EXPIRED = "Token has expired.";
+
+  /** Bundle base package name. */
+  public static final String MESSAGE_BASE_NAME = "/WEB-INF/messages/messages";
+  public static final String RELATIONSHIP_MESSAGE_BASE_NAME = "/WEB-INF/messages/relationshipMessages";
+  public static final String CM_MESSAGE_BASE_NAME = "/WEB-INF/messages/conflictManagmentMessages";
+  public static final String DM_MESSAGE_BASE_NAME = "/WEB-INF/messages/decisonMessages";
+  public static final String FUNDAMENTAL_MESSAGE_BASE_NAME = "/WEB-INF/messages/fundamentalMessages";
+  public static final String LS_MESSAGE_BASE_NAME = "/WEB-INF/messages/learningstyleMessages";
+  public static final String MOTIVATION_MESSAGE_BASE_NAME = "/WEB-INF/messages/motivationMessages";
+  public static final String PROCESSING_MESSAGE_BASE_NAME = "/WEB-INF/messages/processingMessages";
+  public static final String PROFILE_MESSAGE_BASE_NAME = "/WEB-INF/messages/profileMessages";
+  public static final String GT_MESSAGE_BASE_NAME = "/WEB-INF/messages/growthMessages";
+  public static final String GT_ASSESMENT_QUUESTION_MESSAGE_BASE_NAME = "/WEB-INF/messages/growthAssessmentQuestions";
+  public static final String PROFILE_TRAITS_MESSAGE_BASE_NAME = "/WEB-INF/messages/traitsMessages";
+  public static final String LOG_MESSAGE_BASE_NAME = "/WEB-INF/messages/logMessages";
+  public static final String EXCEPTION_MESSAGE_BASE_NAME = "/WEB-INF/messages/errorMessages";
+  public static final String PERSONALITY_TYPE_BASE_NAME = "/WEB-INF/messages/personalityTypeMessages";
+
+  /**
+   * The Entity Keys.
+   */
+  public static final String ENTITY_USER_ROLES = "roles";
+  public static final String ENTITY_COMPANY_ID = "companyId";
+  public static final String ENTITY_EMAIL = "email";
+  public static final String ENTITY_HIRING_ROLES = "hiringRoles";
+  public static final String ENTITY_USER_STATUS = "userStatus";
+  public static final String ENTITY_TAGS = "tagList";
+  public static final String ENTITY_MEMBER_ID = "memberId";
+  public static final String ENTITY_USER_ID = "userId";
+  public static final String ENTITY_CREATED_ON = "createdOn";
+  public static final String ENTITY_PROFILE_TOKEN = "profileSettings.token";
+  public static final String ENTITY_ACCESS_TIME = "accessTime";
+  public static final String ENTITY_ID = "_id";
+  public static final String ENTITY_CERTIFICATE_NUMBER = "certificateNumber";
+  public static final String ENTITY_ARTICLE_LINK_LABEL = "articleLinkLabel";
+  public static final String ENTITY_ARTICLE_POSITION = "articlePosition";
+  public static final String ENTITY_ARTICLE_LOCATION = "articleLocation";
+
+  public static final String S3_FILE_PREFIX = "s3.file.url.prefix";
+  /* Growth Constants */
+  public static final String GROWTH_ASSESSMENT_QUESTIONS_PREFIX = "growth.assessment.questions.";
+  public static final String GROWTH_ASSESSMENT_QUESTIONS_OPTIONAL_TEXT = ".optionalText";
+  public static final String PARAM_GROWTH_REQ_ACCEPT_SUCCESS_KEY = "growthAccepted";
+  public static final String PARAM_GROWTH_REQ_ACCEPT_FAILURE_KEY = "growthRejected";
+  public static final String PARAM_GROWTH_EMAIL_ACCEPT_SUB = "growth.request.feedback.accepted.email.subject";
+  public static final String PARAM_GROWTH_EMAIL_ACCEPT_BODY = "growth.request.feedback.accepted.email.body.p1";
+  public static final String PARAM_GROWTH_EMAIL_REJECT_BODY = "growth.request.feedback.rejected.email.subject";
+  public static final String PARAM_GROWTH_EMAIL_REJECT_SUB = "growth.request.feedback.rejected.email.subject";
+
+  public static final String PARAM_GROWTH_EMAIL_FEEDBACK_SUBMITTED_BODY = "growth.request.feedback.given.email.body.p1";
+  public static final String PARAM_GROWTH_EMAIL_FEEDBACK_SUBMITTED_SUB = "growth.request.feedback.given.email.subject";
+
+  public static final String GT_MESSAGE_NO_TEAM_HEADING = "growth.invite.nomember.heading";
+
+  public static final String GT_MESSAGE_NO_TEAM_MESSAGE = "growth.invite.nomember.message";
+  public static final String VIEW_GROWTH_EXTERNAL_SET_INTERVAL = "externalDetailRequest";
+  public static final String VIEW_GROWTH_EXTERNAL_FEEDBACK = "externalDetailEditRequest";
+  public static final String PARAM_GROWTH_REQUESTED_BY = "requestedBy";
+  public static final String PARAM_FIRSTNAME = "firstName";
+  public static final String PARAM_LASTNAME = "lastName";
+  public static final String PARAM_LINKEDIN_URL = "linkedin";
+  public static final String PARAM_EMAIL = "email";
+  public static final String PARAM_BASE_SERVER_URL = "baseUrl";
+  
+
+  /* Feedback contatnt */
+  public static final String FB_MESSAGE_NO_TEAM_HEADING = "feedback.invite.nomember.heading";
+
+  public static final String FB_MESSAGE_NO_TEAM_MESSAGE = "feedback.invite.nomember.message";
+  public static final String FB_MESSAGE_BASE_NAME = "/WEB-INF/messages/feedbackMessages";
+  public static final String FB_ERROR_INVALID_PARAMA = "fb.error.invalid.request.params";
+  public static final String PARAM_FEEDBACK_REQUEST_ID = "feedbackRequestId";
+  public static final String PARAM_FEEDBACK_USERID = "feedbackUserId";
+  public static final String PARAM_FEEDBACK_FOR_ID = "feedbackForUserId";
+  public static final String VIEW_FEEDBACK_EXTERNAL_PROFILE_CONFIRM = "externalFeedbackConfirmDetail";
+  public static final String VIEW_FEEDBACK_DETAIL = "feedbackDetail";
+  public static final String PARAM_COMMENT = "comment";
+  public static final String PARAM_FEEDBACK_DEFAULT_COMMENT = "feedback.default.comment";
+  public static final String FB_ERROR_NO_FR_PRESENT = "fb.error.no.requestpresent";
+  public static final String FB_FEEDBACK_NOT_GIVEN = "fb.feedback.notgiven";
+  public static final String FB_FEEDBACK_LAST_DAY = "fb.feedback.lastday";
+  public static final String PARAM_FEEDBACK_REQUESTED_BY = "email";
+  public static final String PARAM_FEEDBACK_USER = "feedbackUser";
+  public static final String PARAM_HIRING_REQUEST = "hiringReferences";
+  public static final String PARAM_FEEDBACK_REQUEST = "feedbackFlow";
+  public static final String NEWS_CRED_URL = "newscred.url";
+  public static final String NEWS_CRED_COLLECTION_URL = "newscred.collection.url";
+  public static boolean isUnderPressureEnabled = false;
+
+  /*
+   * Dashboard limits
+   */
+  public static final int DASHBOARD_LOG_MESSAGE_LIMIT = 10;
+  public static final String NOTIFICATION_SUBJECT_PREFIX = "notification.subject.";
+
+  public static final int DEFAULT_ARTICLES_COUNT = 10;
+  public static final int DEFAULT_DASHBOARD_GOALS_ARTICLE_COUNT = 5;
+  public static final int DEFAULT_GOALS_CURRICULUM_COUNT = 3;
+  public static final long DEFAULT_RELATED_ARTICLE_COUNT = 3;
+  public static final long DEFAULT_TRENDING_ARTICLE_COUNT = 5;
+  public static final int DEFAULT_TOP_RATED_ARTICLE_COUNT = 5;
+
+  /* Payment gateway */
+  public static final boolean PAYMENTGATEWAY_IS_TAX_EXEMPT = Boolean.TRUE;
+  public static final String AUTHROIZED_ENVIORNMENT = "authroized.enviornment";
+  public static final String PAYMENT_GATEWAY = "paymentGateway.";
+  public static final String SUREPEOPLE_AUTHORIZED_NET_TRANSACTION_KEY = "surepeople.authorized.net.transactionKey";
+  public static final String SUREPEOPLE_AUTHORIZED_NET_ACCOUNT_ID = "surepeople.authorized.net.accountId";
+  
+  public static final String USER_MAILING_ADDRESS_FORMAT = "user.mailingAddress.format";
+  public static final String REASON = "reason";
+  public static final String FEDRAL_TAX_ID = "fedralTaxId";
+  public static final String PAYMENT_RECORD = "paymentRecord";
+  
+  
+  /** SP RESUME. */
+  public static final String SPRESUME_PDF_TEMPLATE = "templates/pdf/resume.stg";
+  public static final String SPRESUME_FILE_NAME_PREFIX = "Resume_";
+  public static final String CONTENT_TYPE_PDF = "application/pdf";
+  
+  public static final String DATE_FORMAT_DEFAULT = "date.format.default";
+
+  /**
+   * Ajax timeout to be used for showing error message.
+   */
+  public static final String SESSION_TIMEOUT = "sessionTimeout";
+  
+ /**
+   * Gets the position offset to apply.
+   * 
+   * @param articleLocation
+   *            - article location
+   * @return
+   *      the position offset
+   */
+  public static int getPositionOffset(ArticleLocation articleLocation) {
+    switch (articleLocation) {
+    case Content:
+      return 0;
+    case Hero:
+      return 100;
+    default:
+      throw new InvalidRequestException(articleLocation + ": no offset configured");
+    }
+  }
+}
+=======
+package com.sp.web;
+
+import com.sp.web.exception.InvalidRequestException;
+import com.sp.web.model.library.ArticleLocation;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * The constants class.
+ * 
+ * @author daxabraham
+ * 
+ */
+public class Constants {
+
+  public static final String KEY_DELIMITTER = ":";
+  public static final String ASSESSMENTS_PROCESSOR = "assessmentsProcessor";
+  public static final double[] ACCURACY_RANGE_HIGH = { 0.6799d, 0.7299d, 0.7599d, 0.8199d, 0.8999d, 0.9499d, 0.9949d,
+      1.0d };
+  public static final double[] ACCURACY_RANGE_LOW = { .5d, .7d, .73d, .76d, .82d, .90d, .95d, 1.0d };
+
+  public static final int PRECISION = 8;
+  public static final int POWER_OF_TEN_SCALE = 2;
+  public static final int POINT_MOVEMENT = 2;
+  public static final RoundingMode ROUNDING_MODE = RoundingMode.HALF_UP;
+  public static final BigDecimal ZERO_VALUE = new BigDecimal(0).setScale(PRECISION, ROUNDING_MODE);
+  public static final double PERSONALITY_MULTIPLIER = (1d / 7d);
+  public static final int PERCENT_PRECISION = 2;
+  public static final int PRICE_PRECISION = 2;
+  public static final int PULSE_PRECISION = 5;
+
+  public static final String PERSONALITY_MOST = "Most";
+  public static final String PERSONALITY_LEAST = "Least";
+
+  public static final Object[] ASSESSMENT_QUESTIONS_MALE_FORMAT = { "he", "He", "him", "himself", "his", "his", "His" };
+  public static final Object[] ASSESSMENT_QUESTIONS_FEMALE_FORMAT = { "she", "She", "her", "herself", "her", "hers",
+      "Her" };
+
+  /**
+   * Default Hiring Product Name.
+   */
+  public static final String HIRING_PRODUCT_NAME = "Hiring";
+  public static final long HIRING_FILE_MAX_SIZE = 1000000;
+
+  public static final int DAYS_OF_MONTHLY_BILLING = 30;
+  public static final int DEFAULT_TRIAL_DAYS = 14;
+  public static final int DEFAULT_EXPIRY_GRACE_TIME_DAYS = 20;
+  public static final int DEFAULT_ACCOUNT_EXPIRY_DAYS = 15;
+
+  /**
+   * Email Templates.
+   */
+  public static final String ADD_MEMBER_TEMPLATE = "templates/email/addMember.stg";
+  public static final String COPY_PROFILE_TEMPLATE = "templates/email/copyProfile.stg";
+  public static final String PAYMENT_RECEIPT_TEMPLATE = "/templates/email/payment/historyReceipt.stg";
+
+  /**
+   * Default values.
+   */
+  public static final long DEFAULT_EXPIRES_TIME = 24;
+  public static final String DEFAULT_EXPIRES_TIME_UNIT_STR = "HOURS";
+  public static final TimeUnit DEFAULT_EXPIRES_TIME_UNIT = TimeUnit.HOURS;
+  public static final String[] SEARCH_FIELDS_LIST = new String[] { "firstName", "lastName", "email", "title",
+      "groupAssociationList", "userStatus", "statusMessage", "tagList", "roles" };
+  public static final String[] SEARCH_PEEK_FIELDS_LIST = new String[] { "firstName", "lastName" };
+
+  /**
+   * Constant definitions for parameters.
+   */
+  public static final String PARAM_USER_ID = "userId";
+  public static final String PARAM_USER_EMAIL = "userEmail";
+  public static final String PARAM_GROWTH_REQUEST_ID = "growthRequestId";
+  public static final String PARAM_GROWTH_MEMB_EMAIL = "memberEmail";
+  public static final String PARAM_TOKEN = "token";
+  public static final String PARAM_ERROR = "error";
+  public static final String PARAM_EXPIRES_TIME = "expiresTime";
+  public static final String PARAM_TIME_UNIT = "timeUnit";
+  public static final String PARAM_MEMBER_LIST = "memberList";
+  public static final String PARAM_USER_PROFILE_FORM = "userProfileForm";
+  public static final String PARAM_QUESTION = "question";
+  public static final String PARAM_ANALYSIS = "Analysis";
+  public static final String PARAM_LAST_ANSWER = "lastAnswer";
+  public static final String PARAM_MEMBER = "member";
+  public static final String PARAM_SUBJECT = "subject";
+  public static final String PARAM_EMAIL_BODY = "emailBody";
+  public static final String PARAM_AVAILABLE_MEMBER_SUBSCRIPTIONS = "availalbeMemberSubscriptions";
+  public static final String PARAM_NAME = "name";
+  public static final String PARAM_NUMBER_OF_MEMBERS = "numberOfMembers";
+  public static final String PARAM_RENEWAL_TOTAL = "renewalTotal";
+  public static final String PARAM_RENEWAL_DATE = "renewalDate";
+  public static final String PARAM_AVAILABLE_HIRING_SUBSCRIPTIONS = "availableHiringSubscripitons";
+  public static final String PARAM_USED_HIRING_SUBSCRIPTIONS = "usedHiringSubscriptions";
+  public static final String PARAM_ACCOUNT = "account";
+  public static final String PARAM_COMPANY = "company";
+  public static final String PARAM_USER_PROFILE_SETTINGS = "profileSettings";
+  public static final String PARAM_ROLES = "roles";
+  public static final String PARAM_HIRING_PRODUCT = "hiring";
+  public static final String PARAM_PROMOTION = "promotion";
+  public static final String PARAM_PAYMENT_RECORD = "payment";
+  public static final String PARAM_PRODUCT = "product";
+  public static final String PARAM_PAYMENT_HISTORY = "paymentHistory";
+  public static final String PARAM_ACTIVE_MEMBER_COUNT = "activeMembers";
+  public static final String PARAM_PRODUCT_VALIDITY = "validityType";
+  public static final String PARAM_HIRING_MEMBERS = "hiring";
+  public static final String PARAM_DELETE_COUNT = "deleted";
+  public static final String PARAM_ARCHIVE_COUNT = "archived";
+  public static final String PARAM_HIRING_MEMBERS_ARCHIVED = "hiring-archived";
+  public static final String PARAM_HIRING_CANDIDATE_ANALYSIS = "candidateAnalysis";
+  public static final String PARAM_MEMBER_ANALYSIS = "memberAnalysis";
+  public static final String PARAM_HIRING_REFERENCE_USER_ID = "hiringReferenceId";
+  public static final String PARAM_HIRING_USER_ID = "hiringUserId";
+  public static final String PARAM_HIRING_MEMBER_COUNT = "numHiringCandidates";
+  public static final String PARAM_HIRING_ROLES = "hiringRoles";
+  public static final String PARAM_GROWTH_MEMBER_EMAIL = "growthExternalMemberEmail";
+  public static final String PARAM_RELATIONSHIP_MANAGER_REPORT_PRIMARY = "primary";
+  public static final String PARAM_RELATIONSHIP_MANAGER_REPORT_SECONDARY = "secondary";
+  public static final String PARAM_PROFILE_IMAGE_SMALL = "small";
+  public static final String PARAM_PROFILE_IMAGE_MEDIUM = "medium";
+  public static final String PARAM_PROFILE_IMAGE_LARGE = "large";
+  public static final String PARAM_DONE = "done";
+  public static final String PARAM_FAILURE = "failed";
+  public static final String PARAM_ADDRESS = "address";
+  public static final String PARAM_PULSE_REQUEST_ID = "pulseRequestId";
+  public static final String PARAM_PULSE_RESULTS = "pulseResults";
+  public static final String PARAM_PULSE_SCORE = "pulseScore";
+  public static final String PARAM_PULSE_QUESTION = "pulseQuestion";
+  public static final String PARAM_END_DATE = "endDate";
+  public static final String PARAM_TASK_LIST = "tasks";
+  public static final String PARAM_TAG_LIST = "tagList";
+  public static final String PARAM_NOTIFICATION_LOG_MESSAGES = "notifications";
+  public static final String PARAM_ACTIVITY_LOG_MESSAGES = "activityMessages";
+  public static final String PARAM_GROUP_LIST = "groupList";
+  public static final String PARAM_TITLE = "title";
+  public static final String PARAM_MESSAGE = "message";
+  public static final String PARAM_LOG_TYPE = "logType";
+  public static final String PARAM_FOR_USER = "forUser";
+  public static final String PARAM_GROWTH_REQUEST = "growthRequest";
+  public static final String PARAM_USER_TYPE = "userType";
+  public static final String PARAM_EXISTING_USER_ID = "existingUser";
+  public static final String PARAM_EXISTING_USER_TYPE = "existingUserType";
+  public static final String PARAM_USER = "user";
+  public static final String PARAM_RELATED_ARTICLES = "relatedArticles";
+  public static final String PARAM_TRAINING_SPOT_LIGHT = "trainingSpotLight";
+  public static final String PARAM_NAVIGATION = "navigation";
+  public static final String PARAM_NUMBER_OF_ACTIVE_MEMBER = "numActive";  
+  public static final String PARAM_NUMBER_OF_DELETED_MEMBER = "numDeleted";  
+  public static final String PARAM_GROUP_MEMBER_COUNT = "numMembers";
+
+  /**
+   * Constant definitions for views.
+   */
+  public static final String VIEW_ADD_MEMBER = "signupMember";
+  public static final String VIEW_RESET_PASSWORD = "changePassword";
+  public static final String VIEW_GROWTH_EXTERNAL_PROFILE_CONFIRM = "confirmDetails";
+  public static final String VIEW_ERROR = "error";
+  public static final String VIEW_TOKEN_ERROR = "redirect:http://www.surepeople.com/?status=404";
+
+  /**
+   * Constant definitions for messages keys or application properties keys.
+   */
+  public static final String KEY_ADD_MEMBER_EXPIRES_TIME = "token.addMember.expires";
+  public static final String KEY_ADD_MEMBER_EXPIRES_TIME_UNIT = "token.addMember.expires.timeUnit";
+  public static final String KEY_PROFILE_INCOMPLETE = "user.status.profile.incomplete";
+  public static final String KEY_NAME = "user.name";
+  public static final String KEY_PAYMENT_REASON_PREFIX = "payments.reason.";
+  public static final String KEY_PAYMENT_REASON_NEW_ACCOUNT = KEY_PAYMENT_REASON_PREFIX + "newAccount.";
+  public static final String KEY_PAYMENT_REASON_RECHARGE_ACCOUNT = KEY_PAYMENT_REASON_PREFIX + "rechargeAccount.";
+
+  // New Default Profile Image paths
+  public static final String DEFAULT_IMAGE_PATH_KEY = "default.profile.image";
+  public static final String KEY_DEFAULT_TRIAL = "account.trial.expiry.days";
+  public static final String KEY_DEFAULT_PAYMENT_FAILURE_GRACE_TIME = "account.payment.grace.days";
+  public static final String KEY_DEFAULT_ACCOUNT_EXPIRY_GRACE = "account.expiry.grace.days";
+
+  /**
+   * Default Error messages.
+   */
+  public static final String ERROR_MESSAGE_TOKEN_EXPIRED = "Token has expired.";
+
+  /** Bundle base package name. */
+  public static final String MESSAGE_BASE_NAME = "/WEB-INF/messages/messages";
+  public static final String RELATIONSHIP_MESSAGE_BASE_NAME = "/WEB-INF/messages/relationshipMessages";
+  public static final String CM_MESSAGE_BASE_NAME = "/WEB-INF/messages/conflictManagmentMessages";
+  public static final String DM_MESSAGE_BASE_NAME = "/WEB-INF/messages/decisonMessages";
+  public static final String FUNDAMENTAL_MESSAGE_BASE_NAME = "/WEB-INF/messages/fundamentalMessages";
+  public static final String LS_MESSAGE_BASE_NAME = "/WEB-INF/messages/learningstyleMessages";
+  public static final String MOTIVATION_MESSAGE_BASE_NAME = "/WEB-INF/messages/motivationMessages";
+  public static final String PROCESSING_MESSAGE_BASE_NAME = "/WEB-INF/messages/processingMessages";
+  public static final String PROFILE_MESSAGE_BASE_NAME = "/WEB-INF/messages/profileMessages";
+  public static final String GT_MESSAGE_BASE_NAME = "/WEB-INF/messages/growthMessages";
+  public static final String GT_ASSESMENT_QUUESTION_MESSAGE_BASE_NAME = "/WEB-INF/messages/growthAssessmentQuestions";
+  public static final String PROFILE_TRAITS_MESSAGE_BASE_NAME = "/WEB-INF/messages/traitsMessages";
+  public static final String LOG_MESSAGE_BASE_NAME = "/WEB-INF/messages/logMessages";
+  public static final String EXCEPTION_MESSAGE_BASE_NAME = "/WEB-INF/messages/errorMessages";
+  public static final String PERSONALITY_TYPE_BASE_NAME = "/WEB-INF/messages/personalityTypeMessages";
+
+  /**
+   * The Entity Keys.
+   */
+  public static final String ENTITY_USER_ROLES = "roles";
+  public static final String ENTITY_COMPANY_ID = "companyId";
+  public static final String ENTITY_EMAIL = "email";
+  public static final String ENTITY_HIRING_ROLES = "hiringRoles";
+  public static final String ENTITY_USER_STATUS = "userStatus";
+  public static final String ENTITY_TAGS = "tagList";
+  public static final String ENTITY_MEMBER_ID = "memberId";
+  public static final String ENTITY_USER_ID = "userId";
+  public static final String ENTITY_CREATED_ON = "createdOn";
+  public static final String ENTITY_PROFILE_TOKEN = "profileSettings.token";
+  public static final String ENTITY_ACCESS_TIME = "accessTime";
+  public static final String ENTITY_ID = "_id";
+  public static final String ENTITY_CERTIFICATE_NUMBER = "certificateNumber";
+  public static final String ENTITY_ARTICLE_LINK_LABEL = "articleLinkLabel";
+  public static final String ENTITY_ARTICLE_POSITION = "articlePosition";
+  public static final String ENTITY_ARTICLE_LOCATION = "articleLocation";
+  public static final String ENTITY_ACCOUNT_ID = "accountId";
+  public static final String ENTITY_IS_FOR_ALL = "isForAll";
+  public static final String ENTITY_STATUS = "status";
+
+  public static final String S3_FILE_PREFIX = "s3.file.url.prefix";
+  /* Growth Constants */
+  public static final String GROWTH_ASSESSMENT_QUESTIONS_PREFIX = "growth.assessment.questions.";
+  public static final String GROWTH_ASSESSMENT_QUESTIONS_OPTIONAL_TEXT = ".optionalText";
+  public static final String PARAM_GROWTH_REQ_ACCEPT_SUCCESS_KEY = "growthAccepted";
+  public static final String PARAM_GROWTH_REQ_ACCEPT_FAILURE_KEY = "growthRejected";
+  public static final String PARAM_GROWTH_EMAIL_ACCEPT_SUB = "growth.request.feedback.accepted.email.subject";
+  public static final String PARAM_GROWTH_EMAIL_ACCEPT_BODY = "growth.request.feedback.accepted.email.body.p1";
+  public static final String PARAM_GROWTH_EMAIL_REJECT_BODY = "growth.request.feedback.rejected.email.subject";
+  public static final String PARAM_GROWTH_EMAIL_REJECT_SUB = "growth.request.feedback.rejected.email.subject";
+
+  public static final String PARAM_GROWTH_EMAIL_FEEDBACK_SUBMITTED_BODY = "growth.request.feedback.given.email.body.p1";
+  public static final String PARAM_GROWTH_EMAIL_FEEDBACK_SUBMITTED_SUB = "growth.request.feedback.given.email.subject";
+
+  public static final String GT_MESSAGE_NO_TEAM_HEADING = "growth.invite.nomember.heading";
+
+  public static final String GT_MESSAGE_NO_TEAM_MESSAGE = "growth.invite.nomember.message";
+  public static final String VIEW_GROWTH_EXTERNAL_SET_INTERVAL = "externalDetailRequest";
+  public static final String VIEW_GROWTH_EXTERNAL_FEEDBACK = "externalDetailEditRequest";
+  public static final String PARAM_GROWTH_REQUESTED_BY = "requestedBy";
+  public static final String PARAM_FIRSTNAME = "firstName";
+  public static final String PARAM_LASTNAME = "lastName";
+  public static final String PARAM_LINKEDIN_URL = "linkedin";
+  public static final String PARAM_EMAIL = "email";
+  public static final String PARAM_BASE_SERVER_URL = "baseUrl";
+  
+
+  /* Feedback contatnt */
+  public static final String FB_MESSAGE_NO_TEAM_HEADING = "feedback.invite.nomember.heading";
+
+  public static final String FB_MESSAGE_NO_TEAM_MESSAGE = "feedback.invite.nomember.message";
+  public static final String FB_MESSAGE_BASE_NAME = "/WEB-INF/messages/feedbackMessages";
+  public static final String FB_ERROR_INVALID_PARAMA = "fb.error.invalid.request.params";
+  public static final String PARAM_FEEDBACK_REQUEST_ID = "feedbackRequestId";
+  public static final String PARAM_FEEDBACK_USERID = "feedbackUserId";
+  public static final String PARAM_FEEDBACK_FOR_ID = "feedbackForUserId";
+  public static final String VIEW_FEEDBACK_EXTERNAL_PROFILE_CONFIRM = "externalFeedbackConfirmDetail";
+  public static final String VIEW_FEEDBACK_DETAIL = "feedbackDetail";
+  public static final String PARAM_COMMENT = "comment";
+  public static final String PARAM_FEEDBACK_DEFAULT_COMMENT = "feedback.default.comment";
+  public static final String FB_ERROR_NO_FR_PRESENT = "fb.error.no.requestpresent";
+  public static final String FB_FEEDBACK_NOT_GIVEN = "fb.feedback.notgiven";
+  public static final String FB_FEEDBACK_LAST_DAY = "fb.feedback.lastday";
+  public static final String PARAM_FEEDBACK_REQUESTED_BY = "email";
+  public static final String PARAM_FEEDBACK_USER = "feedbackUser";
+  public static final String PARAM_HIRING_REQUEST = "hiringReferences";
+  public static final String PARAM_FEEDBACK_REQUEST = "feedbackFlow";
+  public static final String NEWS_CRED_URL = "newscred.url";
+  public static final String NEWS_CRED_COLLECTION_URL = "newscred.collection.url";
+  public static boolean isUnderPressureEnabled = false;
+  public static DecimalFormat promoFormatter = new DecimalFormat("000000");
+
+  /*
+   * Dashboard limits
+   */
+  public static final int DASHBOARD_LOG_MESSAGE_LIMIT = 10;
+  public static final String NOTIFICATION_SUBJECT_PREFIX = "notification.subject.";
+
+  public static final int DEFAULT_ARTICLES_COUNT = 10;
+  public static final int DEFAULT_DASHBOARD_GOALS_ARTICLE_COUNT = 5;
+  public static final int DEFAULT_GOALS_CURRICULUM_COUNT = 3;
+  public static final long DEFAULT_RELATED_ARTICLE_COUNT = 3;
+  public static final long DEFAULT_TRENDING_ARTICLE_COUNT = 5;
+  public static final int DEFAULT_TOP_RATED_ARTICLE_COUNT = 5;
+
+  /* Payment gateway */
+  public static final boolean PAYMENTGATEWAY_IS_TAX_EXEMPT = Boolean.TRUE;
+  public static final String AUTHROIZED_ENVIORNMENT = "authroized.enviornment";
+  public static final String PAYMENT_GATEWAY = "paymentGateway.";
+  public static final String SUREPEOPLE_AUTHORIZED_NET_TRANSACTION_KEY = "surepeople.authorized.net.transactionKey";
+  public static final String SUREPEOPLE_AUTHORIZED_NET_ACCOUNT_ID = "surepeople.authorized.net.accountId";
+  
+  public static final String USER_MAILING_ADDRESS_FORMAT = "user.mailingAddress.format";
+  public static final String REASON = "reason";
+  public static final String FEDRAL_TAX_ID = "fedralTaxId";
+  public static final String PAYMENT_RECORD = "paymentRecord";
+  
+  
+  /** SP RESUME. */
+  public static final String SPRESUME_PDF_TEMPLATE = "templates/pdf/resume.stg";
+  public static final String SPRESUME_FILE_NAME_PREFIX = "Resume_";
+  public static final String CONTENT_TYPE_PDF = "application/pdf";
+  
+  public static final String DATE_FORMAT_DEFAULT = "date.format.default";
+
+  /**
+   * Ajax timeout to be used for showing error message.
+   */
+  public static final String SESSION_TIMEOUT = "sessionTimeout";
+  
+ /**
+   * Gets the position offset to apply.
+   * 
+   * @param articleLocation
+   *            - article location
+   * @return
+   *      the position offset
+   */
+  public static int getPositionOffset(ArticleLocation articleLocation) {
+    switch (articleLocation) {
+    case Content:
+      return 0;
+    case Hero:
+      return 100;
+    default:
+      throw new InvalidRequestException(articleLocation + ": no offset configured");
+    }
+  }
+}
+>>>>>>> master

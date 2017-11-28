@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-offset-1 col-xs-6 col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+            <div>
+                <section class="add-credit-pop">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar" data-ng-bind-html="pullInterNationalization('viewAccountDetails.credit')"></div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                            </div>
+                        </div>
+                        <div class="contentArea">
+                            <div class="x-container account-recharge addCreditSection">
+                                <div class="cont-wrapper new-contianer">
+                                    <div class="module-head">
+                                        <p><span class="b-500" data-ng-bind-html="pullInterNationalization('viewAccountDetails.accNum')"></span> <span class="b-300" data-ng-bind-html="ctrl.accountDetails.accountNumber"></span></p>
+                                        <p><span class="b-500" data-ng-bind-html="pullInterNationalization('viewAccountDetails.company')"></span> <span class="b-300" data-ng-bind-html="ctrl.companyDetails.name"></span></p>
+                                        <p><span data-ng-bind-html="(12*ctrl.currentPlanInfo.term)+' '+pullInterNationalization('admin.account.add.memberaccounts.monthlysubscriptions')"></span>
+                                            <span class="highlight" data-ng-bind-html="ctrl.currentPlanInfo.expiry"></span>
+                                        </p>
+                                        <div class="separateSection mp0">
+                                            <h3 data-ng-bind-html="pullInterNationalization('viewAccountDetails.payDetails')"></h3>
+                                            <p><span class="b-500" data-ng-bind-html="pullInterNationalization('viewAccountDetails.pType')"></span> <span class="b-300" data-ng-bind-html="ctrl.currentPlanInfo.paymentType"></span></p>
+                                            <p><span class="b-500" data-ng-bind-html="pullInterNationalization('viewAccountDetails.cBal')"></span> <span class="b-300" data-ng-bind-html="(ctrl.currentPlanInfo.balance?ctrl.currentPlanInfo.balance:0) | currency"></span></p>
+                                            <form name="ctrl.addCreditForm" novalidate autocomplete="off" data-ng-submit="ctrl.processCredit()">
+                                                <ol class="form-list-billing mtop30">
+                                                    <li class="ele-left r30 b15 w30">
+                                                        <label class="label-text" for="cpt" data-ng-bind-html="pullInterNationalization('viewAccountDetails.pType')"></label>
+                                                        <div class="select-wrapper brdr">
+                    										<span class="dd-ico-fix icon-icon_dropdown-arrow sp-icon-color"></span>
+                                                            <select class="select-option-style" name="cpt" id="cpt" data-ng-model="ctrl.creditInfo.cpt" data-ng-required="true">
+                                                                <option value="">Select</option>
+                                                                <option value="SP_INTERNAL">SP Internal</option>
+                                                                <option value="WIRE">Wire Transfer</option>
+                                                                <option value="TRIAL">Trial</option>
+                                                                <option value="CREDIT_CARD">Existing Credit Card</option>
+                                                            </select>
+                                                        </div>
+                                                        <span class="validate-error" data-ng-if="ctrl.creditFormSubmit && ctrl.addCreditForm.cpt.$error.required" data-ng-bind-html="pullInterNationalization('signup.required.error')"></span>
+                                                    </li>
+                                                    <li class="ele-left b15 w30">
+                                                        <label class="label-text" for="camount" data-ng-bind-html="pullInterNationalization('viewAccountDetails.cAmount')"></label>
+                                                        <input type="number" autocomplete="off" name="camount" data-ng-pattern="/^[1-9][0-9]{0,9}(?:,?[0-9]{3}){0,3}(?:\.[0-9]{1,2})?$/" data-ng-model="ctrl.creditInfo.amount" placeholder="Amount" data-ng-required="true" />
+                                                        <span class="validate-error" data-ng-if="ctrl.creditFormSubmit && ctrl.addCreditForm.camount.$error.required" data-ng-bind-html="pullInterNationalization('signup.required.error')"></span>
+                                                        <span class="validate-error" data-ng-if="ctrl.creditFormSubmit && ctrl.addCreditForm.camount.$error.pattern" data-ng-bind-html="'Please enter valid amount'"></span>
+                                                    </li>
+                                                    <li class="ele-left w100 clearb b30">
+                                                        <label class="label-text" for="ccomment" data-ng-bind-html="pullInterNationalization('pricing.create.label19')"></label>
+                                                        <textarea class="textArea" autocomplete="off" name="ccomment" data-ng-model="ctrl.creditInfo.ccomment" data-ng-attr-placeholder="Comment" required></textarea>
+                                                        <span class="validate-error" data-ng-if="ctrl.creditFormSubmit && ctrl.addCreditForm.ccomment.$error.required" data-ng-bind-html="pullInterNationalization('signup.required.error')"></span>
+                                                    </li>
+					                                <li class="ele-left w100">
+					                                    <ul class="sub-list">
+					                                        <li class="ele-left wAuto r15">
+					                                            <input type="submit" value="{{::pullInterNationalization('admin.member.submit')}}" class="btn-block btn-15px sp-btn-color" />
+					                                        </li>
+					                                        <li class="ele-left wAuto">
+					                                            <input type="button" value="{{::pullInterNationalization('admin.member.cancel')}}" class="btn-block btn-grey-dark btn-15px" data-ng-click="closeThisDialog()"/>
+					                                        </li>					                                        
+					                                    </ul>
+					                                    <span class="validate-error" data-ng-if="ctrl.creditSubmitErrors" data-ng-bind-html="ctrl.creditErrors"></span>
+					                                </li>                                                    
+                                                </ol>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

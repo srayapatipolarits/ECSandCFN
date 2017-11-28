@@ -1,0 +1,919 @@
+<div class="x-container">
+    <div class="container adjust-margins">
+        <div class="table-flex-cols">
+            <!-- Left Box Starts -->
+            <div class="lnd-left-sec">
+                <!-- Box Starts -->
+                <div class="lnd-left-box sp-panel-accent">
+                    <div class="pf-head" data-ng-bind-html="::pullInterNationalization('portrait.matchbyRole.label')"></div>
+                    <ul>
+                        <li class="border-link sp-link-color" data-ng-click="matchByRole(role)" data-ng-class="selectedRoleId===role.id?'on':''" data-ng-repeat="role in (selectedPortrait.roles) track by role.id">
+                            <span class="mock-link" data-ng-bind="role.name | unescapeText"></span> <span class="lnd-focus-arrow" data-ng-class="selectedRoleId===role.id?'icon-icon_focus-arrow':'hide'"></span>
+                        </li>
+                        <li class="border-link" data-ng-if="!selectedPortrait.roles.length"><span class="no-role" data-ng-bind="::pullInterNationalization('portrait.match.noRoles')"></span></li>
+                    </ul>
+                </div>
+                <div class="lnd-left-box sp-panel-accent mTop">
+                    <div class="pf-head no-border" data-ng-bind-html="::pullInterNationalization('portrait.matchbyTalent.label')"></div>
+                    <div class="all-content-wrapper">
+                        <div class="angucomplete-wrapper">
+                            <angucomplete id="gl2" placeholder="{{::pullInterNationalization('portrait.matchbyTalent.placeholder')}}" pause="100" selectedobject="selectedObj" localdata="matchTalentList" searchfields="name" titlefield="name" minlength="2" inputclass="form-control form-control-small" templatetype="default" update-fn="addToMatchList(callback)" />
+                        </div>
+                        <ul class="mpa-pills ip-overrides" data-ng-if="selectedMatchList.length">
+                            <li data-ng-repeat="match in selectedMatchList track by $index">
+                                <span data-ng-if="match.type === 'users'" class="icon-icon_accounts_all-members sp-background-color talent-icon"></span>
+                                <span data-ng-if="match.type === 'groups'" class="icon-icon_accounts_all-groups sp-background-color talent-icon"></span>
+                                <span class="mpa-name sp-background-color" data-ng-bind="match.name"></span>
+                                <span class="mpa-icon sp-background-color" data-ng-click="removeFromMatchList(match)">×</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pf-btn-wrapper">
+                        <input type="submit" data-ng-disabled="!selectedMatchList.length" value="{{::pullInterNationalization('portrait.match.action')}}" class="btn-square-12px sp-background-color pointer-cursor" data-ng-click="matchPortrait()" />
+                    </div>
+                </div>
+            </div>
+            <!-- Left Box Ends -->
+            <!-- Right Box Starts -->
+            <div class="lnd-right-sec">
+                <div class="practice-area-detail lnd-right-box sp-panel-accent">
+                    <div class="title-with-icons" data-ng-if="pageView !== 'portraitUsersReport'">
+                        <span class="portrait-icon icon-idealPortrait sp-icon-color"></span>
+                        <h2 data-ng-bind="selectedPortrait.name" class="sp-header-title-color"></h2>
+                    </div>
+                    <article class="slide-right clearfix">
+                        <div class="practive-area-view">
+                            <div class="pa-desc-wrapper posRel">
+                                <span class="report-section-close icon-icon_remove sp-icon-color added-top" data-ng-click="closeReportView('default')" data-ng-if="pageView === 'portraitUsers'"></span>
+                                <p class="height-fix pa-description-new" data-ng-if="selectedPortrait.description && pageView !== 'portraitUsersReport'" data-ng-class="(selectedPortrait.companyDocUrl !== null && pageView === 'portraitDetail')?'':'adj'">
+                                    <span>
+                                      <input type="checkbox" class="read-more-state" id="descriptionView"/>
+                                      <span class="read-more-wrap-horizontal" data-ng-init="btnRolesView=true;">
+                                            <span class="text text-util" data-ng-bind-html="(btnRolesView?(selectedPortrait.description | addEllipsis : 350):selectedPortrait.description) | htmlLinky" data-ng-class="{'moreellipses':selectedPortrait.description.length>350&&btnRolesView,'inline-block':!ctrl.whiteSpace(selectedPortrait.description)}"></span>
+                                    </span>
+                                    <label for="descriptionView" data-readMore="{{::pullInterNationalization('spectrum.more')}}" data-readLess="{{::pullInterNationalization('label.readless')}}" data-ng-click="btnRolesView=!btnRolesView" class="read-more-trigger-horizontal sp-link-color" data-ng-class="{'sp-label-option':!(selectedPortrait.description.length>350)}"></label>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="display-doc" data-ng-if="selectedPortrait.companyDocUrl !== null && pageView === 'portraitDetail'">
+                                <a class="doc-link" data-ng-click="openDocument(selectedPortrait.companyDocUrl)">
+                                    <span data-ng-bind="::pullInterNationalization('portrait.docLabel')"></span>
+                                </a>
+                                <span data-ng-if="selectedPortrait.companyDocUrl !== null && pageView === 'portraitDetail'" data-ng-click="openDocument(selectedPortrait.companyDocUrl)" class="download-icon icon-download sp-icon-color"></span>
+                            </div>
+                            <div class="portrait-match-report-wrapper" data-ng-if="pageView === 'portraitDetail'">
+                                <!-- Report Starts -->
+                                <div class="match-report-table">
+                                    <!-- Report Row: PRIMARY PERSONALITY Starts -->
+                                    <div class="match-report-table-trow" data-ng-if="selectedPortrait.portraitMatchReportData.Personality && selectedPortrait.portraitMatchReportData.Personality.Primary">
+                                        <div class="match-report-table-tcol tcol1 tcol-br a-top">
+                                            <p class="section-name" data-ng-bind="::pullInterNationalization('prismTab1')"></p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol2 tcol-br a-top">
+                                            <p class="report-traits-col" data-ng-repeat="primaryPersonality in selectedPortrait.portraitMatchReportData.Personality.Primary">
+                                                <span class="report-traits-num-adj text-lc" data-ng-bind="primaryPersonality.matchPercent+'%'"></span>
+                                                <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab1'), 1, primaryPersonality.key)" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization(primaryPersonality.key)"></a>
+                                            </p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol3">&#160;</div>
+                                    </div>
+                                    <!-- Report Row: PRIMARY PERSONALITY Ends -->
+                                    <!-- Report Row: PERSONALITY UNDER PRESSURE Starts -->
+                                    <div class="match-report-table-trow" data-ng-if="selectedPortrait.portraitMatchReportData.Personality && selectedPortrait.portraitMatchReportData.Personality.UnderPressure">
+                                        <div class="match-report-table-tcol tcol1 tcol-br a-top">
+                                            <p class="section-name" data-ng-bind="::pullInterNationalization('prismTab2')"></p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol2 tcol-br a-top">
+                                            <p class="report-traits-col" data-ng-repeat="underPressure in selectedPortrait.portraitMatchReportData.Personality.UnderPressure">
+                                                <span class="report-traits-num-adj text-lc" data-ng-bind="underPressure.matchPercent+'%'"></span>
+                                                <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab2'), 2, underPressure.key)" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization(underPressure.key)"></a>
+                                            </p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol3">&#160;</div>
+                                    </div>
+                                    <!-- Report Row: PERSONALITY UNDER PRESSURE Ends -->
+                                    <!-- Report Row: PROCESSING Starts -->
+                                    <div class="match-report-table-trow" data-ng-if="selectedPortrait.portraitMatchReportData.Processing">
+                                        <div class="match-report-table-tcol tcol1 tcol-br a-top">
+                                            <p class="section-name" data-ng-bind="::pullInterNationalization('prismTab3')"></p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol2 tcol-br a-top">
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'External'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Processing">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab3'), 3, 'External')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.External')"></a>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab3'), 3, 'External')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.Internal')"></a>
+                                                </p>
+                                            </div>
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'Concrete'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Processing">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab3'), 3, 'Concrete')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.Concrete')"></a>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab3'), 3, 'Concrete')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.Intuitive')"></a>
+                                                </p>
+                                            </div>
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'Cognitive'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Processing">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab3'), 3, 'Cognitive')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.Cognitive')"></a>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab3'), 3, 'Cognitive')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.Affective')"></a>
+                                                </p>
+                                            </div>
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'Orderly'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Processing">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab3'), 3, 'Orderly')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.Orderly')"></a>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab3'), 3, 'Orderly')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.Spontaneous')"></a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol3">
+                                            &#160;
+                                        </div>
+                                    </div>
+                                    <!-- Report Row: PROCESSING Ends -->
+                                    <!-- Report Row: Conflit Management Starts -->
+                                    <div class="match-report-table-trow" data-ng-if="selectedPortrait.portraitMatchReportData.ConflictManagement">
+                                        <div class="match-report-table-tcol tcol1 tcol-br a-top">
+                                            <p class="section-name" data-ng-bind="::pullInterNationalization('prismTab5')"></p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol2 tcol-br a-top">
+                                            <p class="report-traits-col" data-ng-if="key === 'Primary'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.ConflictManagement">
+                                                <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab5'), 5, value[0].key)" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('profileKeys.'+value[0].key)"></a>
+                                                <span class="report-traits-num" data-ng-bind="'('+pullInterNationalization('spectrum.primary')+')'"></span>
+                                            </p>
+                                            <p class="report-traits-col" data-ng-if="key === 'Secondary'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.ConflictManagement">
+                                                <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab5'), 5, value[0].key)" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('profileKeys.'+value[0].key)"></a>
+                                                <span class="report-traits-num" data-ng-bind="'('+pullInterNationalization('spectrum.secondary')+')'"></span>
+                                            </p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol3">
+                                            &#160;
+                                        </div>
+                                    </div>
+                                    <!-- Report Row: Conflit Management Ends -->
+                                    <!-- Report Row: Decision Making Starts -->
+                                    <div class="match-report-table-trow" data-ng-if="selectedPortrait.portraitMatchReportData.DecisionMaking">
+                                        <div class="match-report-table-tcol tcol1 tcol-br a-top">
+                                            <p class="section-name" data-ng-bind="::pullInterNationalization('prismTab7')"></p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol2 tcol-br a-top">
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'Careful'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.DecisionMaking">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab7'), 7, 'Careful')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.Careful')"></a>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab7'), 7, 'Careful')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.Rapid')"></a>
+                                                </p>
+                                            </div>
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'Outward'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.DecisionMaking">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab7'), 7, 'Outward')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.Outward')"></a>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab7'), 7, 'Outward')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.Inward')"></a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol3">
+                                            &#160;
+                                        </div>
+                                    </div>
+                                    <!-- Report Row: Decision Making Ends -->
+                                    <!-- Report Row: Motivation Starts -->
+                                    <div class="match-report-table-trow" data-ng-if="selectedPortrait.portraitMatchReportData.Motivation">
+                                        <div class="match-report-table-tcol tcol1 tcol-br a-top">
+                                            <p class="section-name" data-ng-bind="::pullInterNationalization('prismTab4')"></p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol2 tcol-br a-top">
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'AttainmentOfGoals'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Motivation">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'AttainmentOfGoals')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.AttainmentOfGoals')"></a>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'AttainmentOfGoals')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.RecognitionForEffort')"></a>
+                                                </p>
+                                            </div>
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'ExchangeOfIdeas'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Motivation">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'ExchangeOfIdeas')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.ExchangeOfIdeas')"></a>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'ExchangeOfIdeas')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.ReceiveDirection')"></a>
+                                                </p>
+                                            </div>
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'SelfAffirmed'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Motivation">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'SelfAffirmed')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.SelfAffirmed')"></a>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'SelfAffirmed')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.AffirmedByOthers')"></a>
+                                                </p>
+                                            </div>
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'Activity'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Motivation">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'Activity')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.Activity')"></a>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'Activity')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.Affiliation')"></a>
+                                                </p>
+                                            </div>
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'Freedom'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Motivation">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'Freedom')" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.Freedom')"></a>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'Freedom')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.Consistency')"></a>
+                                                </p>
+                                            </div>
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'Power'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Motivation">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'Power')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.Power')"></a>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'Power')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.Compliance')"></a>
+                                                </p>
+                                            </div>
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'TaskCompletion'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Motivation">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'TaskCompletion')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.TaskCompletion')"></a>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'TaskCompletion')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.PrefersProcess')"></a>
+                                                </p>
+                                            </div>
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'Hygiene'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Motivation">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'Hygiene')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.Hygiene')"></a>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'Hygiene')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.Accomplishment')"></a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol3">
+                                            &#160;
+                                        </div>
+                                    </div>
+                                    <!-- Report Row: Motivation Ends -->
+                                    <!-- Report Row: Fundamental Needs Starts -->
+                                    <div class="match-report-table-trow" data-ng-if="selectedPortrait.portraitMatchReportData.FundamentalNeeds">
+                                        <div class="match-report-table-tcol tcol1 tcol-br a-top">
+                                            <p class="section-name" data-ng-bind="::pullInterNationalization('prismTab6')"></p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol2 tcol-br a-top">
+                                            <p class="report-traits-col" data-ng-if="key === 'Primary'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.FundamentalNeeds">
+                                                <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab6'), 6, value[0].key)" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('profileKeys.'+value[0].key)"></a>
+                                                <span class="report-traits-num" data-ng-bind="'('+pullInterNationalization('spectrum.primary')+')'"></span>
+                                            </p>
+                                            <p class="report-traits-col" data-ng-if="key === 'Secondary'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.FundamentalNeeds">
+                                                <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab6'), 6, value[0].key)" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('profileKeys.'+value[0].key)"></a>
+                                                <span class="report-traits-num" data-ng-bind="'('+pullInterNationalization('spectrum.secondary')+')'"></span>
+                                            </p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol3">
+                                            &#160;
+                                        </div>
+                                    </div>
+                                    <!-- Report Row: Fundamental Needs Ends -->
+                                    <!-- Report Row: Leraning Style Starts -->
+                                    <div class="match-report-table-trow noBotBrd" data-ng-if="selectedPortrait.portraitMatchReportData.LearningStyle">
+                                        <div class="match-report-table-tcol tcol1 tcol-br a-top">
+                                            <p class="section-name" data-ng-bind="::pullInterNationalization('prismTab8')"></p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol2 tcol-br a-top">
+                                            <div class="report-traits-col-multiple" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.LearningStyle">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab8'), 8, 'LearningStyle')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.Global')"></a>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab8'), 8, 'LearningStyle')" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization('spectrum.trait.type.Analytical')"></a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol3">
+                                            &#160;
+                                        </div>
+                                    </div>
+                                    <!-- Report Row: Leraning Style Ends -->
+                                </div>
+                                <!-- Report Ends -->
+                            </div>
+                            <!-- Portrait Basic Detail Ends -->
+                            <!-- Portrait User Listing View -->
+                            <div class="pa-details insightProfileUser" data-ng-if="pageView === 'portraitUsers'">
+                                <p class="match-label" data-ng-if="selectedRoleId !==null">{{pullInterNationalization('portrait.matchbyRole.label')}}:
+                                    <a href="javascript:void(0)" data-ng-click="viewRoleModal()" data-ng-bind="selectedRole.name | unescapeText"></a>
+                                </p>
+                                <p class="match-label" data-ng-if="selectedRoleId ===null">{{pullInterNationalization('portrait.matchbyTalent.label')}}: <span class="match-by-talent-label" data-ng-repeat="match in selectedMatchList track by $index">{{match.name}}<span data-ng-show="!$last && selectedMatchList.length > 1">,&nbsp;&nbsp;</span></span>
+                                </p>
+                                <div class="blueprint-sort">
+                                    <div class="sort-area clearfix">
+                                        <!-- <h5 data-ng-bind="::pullInterNationalization('spectrum.sort')"></h5>-->
+                                        <div class="left-filter-drop">
+                                            <div class="filter-dropdown">
+                                                <span class="naf-theme-icon_style1 icon-icon_dropdown-arrow sp-icon-color"></span>
+                                                <select data-ng-model="sort" data-ng-change="orderBy(sort)" data-ng-options="v.value as pullInterNationalization('spectrum.sort.'+v.name) for (k,v) in [{'name':'asc_1','value':'plus'},{'name':'desc_1','value':'minus'}]">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="search-area clearfix adjust-right-margin">
+                                        <!-- <h5 data-ng-bind="::pullInterNationalization('spectrum.search')"></h5>-->
+                                        <div class="left-search-area">
+                                            <div class="controlwrap sp-search-button">
+                                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-maxlength" maxlength="28" data-ng-model="memberSearchText" placeholder="{{::pullInterNationalization('admin.member.search')}}" data-ng-model-options="{ debounce: { 'default': 500, 'blur': 0 } }">
+                                                <button data-ng-class="{'icon-icon_remove':memberSearchText.length, 'icon-icon_search': !memberSearchText.length}" class="sp-icon-color icon-icon_search" data-ng-click="memberSearchText='';"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="category-hr-list clearfix" style="height:auto" data-ng-init="orderBy('plus')">
+                                    <ul class="category-hr-list" style="height:auto">
+                                        <li data-ng-repeat="member in recordField = (portraitUsers | filter:memberSearchText) track by $index" data-ng-if="member.matchResult !==null">
+                                            <a class="view-report-link" href="javascript:void(0)" data-ng-click="viewUserReport(member)" data-ng-bind="::pullInterNationalization('portrait.viewReport')"></a>
+                                            <div class="left-member-detail" data-ng-if="member.type === 'Member'">
+                                                <img data-ng-src="{{member.smallProfileImage}}" alt="{{member.userInitials}}" data-ng-if="member.smallProfileImage">
+                                                <div class="imgReplacement pad10" data-ng-if="!member.smallProfileImage" data-ng-bind="member.userInitials"></div>
+                                            </div>
+                                            <div class="left-member-detail" data-ng-if="member.type === 'HiringCandidate'">
+                                                <div class="member-pic">
+			                                        <div class="imgReplacement icon-candidates bg-small"></div>
+			                                    </div>
+                                            </div>
+                                            <div class="right-member-detail">
+                                                <a class="category-hr-percent" href="javascript:void(0)" title="{{member.matchResult.matchPercent}}" data-ng-bind="member.matchResult.matchPercent+'%'"></a>
+                                                <a class="category-hr-name sp-link-color" href="javascript:void(0)" title="{{member.firstName}}" data-ng-bind="member.firstName +' '+member.lastName"></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div data-ng-if="!recordField.length" class="noMatchFound" data-ng-bind="::pullInterNationalization('spectrum.nouser')"></div>
+                                </div>
+                            </div>
+                            <!-- Portrait User Listing View Ends -->
+
+                            <div class="portrait-match-report-wrapper" data-ng-if="pageView === 'portraitUsersReport'">
+                                <a href="javascript:void(0)" class="report-section-close icon-icon_remove sp-icon-color" data-ng-click="closeReportView('users')"></a>
+                                <!-- Report Starts -->
+                                <div class="match-report-table">
+                                    <!-- Report Header Starts -->
+                                    <div class="match-report-table-thead">
+                                        <div class="match-report-table-tcol tcol1">
+                                            <p class="match-num-big sp-link-color" data-ng-bind="selectedUserPortrait.matchResult.matchPercent+'% '"></p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol2">&#160;</div>
+                                        <div class="match-report-table-tcol tcol3">&#160;</div>
+                                    </div>
+                                    <div class="match-report-table-thead">
+                                        <div class="match-report-table-tcol tcol1">
+                                            <p class="match-num-text" data-ng-bind="::pullInterNationalization('portraitMatch.label')"></p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol2">
+                                            <p class="select-portrait-name">
+                                                <span class="spn-ic icon-idealPortrait sp-icon-color"></span>
+                                                <span class="spn-desc" data-ng-bind="selectedPortrait.name"></span>
+                                            </p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol3">
+                                            <p class="match-header-name" data-ng-bind="selectedUserPortrait.firstName +' '+selectedUserPortrait.lastName"></p>
+                                        </div>
+                                    </div>
+                                    <!-- Report Header Ends -->
+                                    <!-- Report Row: PRIMARY PERSONALITY Starts -->
+                                    <div class="match-report-table-trow" data-ng-if="selectedPortrait.portraitMatchReportData.Personality && selectedPortrait.portraitMatchReportData.Personality.Primary">
+                                        <div class="match-report-table-tcol tcol1 tcol-br a-top">
+                                            <p class="section-name" data-ng-bind="::pullInterNationalization('prismTab1')"></p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol2 tcol-br a-top">
+                                            <p class="report-traits-col" data-ng-repeat="primaryPersonality in selectedPortrait.portraitMatchReportData.Personality.Primary">
+                                                <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab1'), 1, primaryPersonality.key)" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization(primaryPersonality.key)"></a>
+                                                <span class="report-traits-num text-lc" data-ng-bind="' ('+primaryPersonality.matchPercent+'%'+' '+pullInterNationalization('spmatch.match')+')'"></span>
+                                            </p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol3">
+                                            <p class="report-user-traits-col bBrd">
+                                                <span class="match-bar" data-ng-class="selectedUserPortrait.matchResult.details.Personality.Primary.matchPercent !== 0?'sp-background-color':'match-default-bg'">&#160;</span>
+                                                <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab1'), 1, selectedUserPortrait.matchResult.details.Personality.Primary.portraitData)" href="javascript:void(0)" data-ng-bind="pullInterNationalization(selectedUserPortrait.matchResult.details.Personality.Primary.portraitData)"></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- Report Row: PRIMARY PERSONALITY Ends -->
+                                    <!-- Report Row: PERSONALITY UNDER PRESSURE Starts -->
+                                    <div class="match-report-table-trow" data-ng-if="selectedPortrait.portraitMatchReportData.Personality && selectedPortrait.portraitMatchReportData.Personality.UnderPressure">
+                                        <div class="match-report-table-tcol tcol1 tcol-br a-top">
+                                            <p class="section-name" data-ng-bind="::pullInterNationalization('prismTab2')"></p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol2 tcol-br a-top">
+                                            <p class="report-traits-col" data-ng-repeat="underPressure in selectedPortrait.portraitMatchReportData.Personality.UnderPressure">
+                                                <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab2'), 2, underPressure.key)" href="javascript:void(0)" class="report-traits-key" data-ng-bind="pullInterNationalization(underPressure.key)"></a>
+                                                <span class="report-traits-num text-lc" data-ng-bind="'('+underPressure.matchPercent+'%'+' '+pullInterNationalization('spmatch.match')+')'"></span>
+                                            </p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol3">
+                                            <p class="report-user-traits-col bBrd">
+                                                <span class="match-bar" data-ng-class="selectedUserPortrait.matchResult.details.Personality.UnderPressure.matchPercent !== 0?'sp-background-color':'match-default-bg'">&#160;</span>
+                                                <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab2'), 2, selectedUserPortrait.matchResult.details.Personality.UnderPressure.portraitData)" href="javascript:void(0)" data-ng-bind="pullInterNationalization(selectedUserPortrait.matchResult.details.Personality.UnderPressure.portraitData)"></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- Report Row: PERSONALITY UNDER PRESSURE Ends -->
+                                    <!-- Report Row: PROCESSING Starts -->
+                                    <div class="match-report-table-trow" data-ng-if="selectedPortrait.portraitMatchReportData.Processing">
+                                        <div class="match-report-table-tcol tcol1 tcol-br a-top">
+                                            <p class="section-name" data-ng-bind="::pullInterNationalization('prismTab3')"></p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol2 tcol-br a-top">
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'External'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Processing">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.External')"></span>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.Internal')"></span>
+                                                </p>
+                                            </div>
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'Concrete'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Processing">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.Concrete')"></span>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.Intuitive')"></span>
+                                                </p>
+                                            </div>
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'Cognitive'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Processing">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.Cognitive')"></span>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.Affective')"></span>
+                                                </p>
+                                            </div>
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'Orderly'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Processing">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.Orderly')"></span>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.Spontaneous')"></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol3">
+                                            <div class="report-traits-col-user-multiple" data-ng-if="selectedUserPortrait.matchResult.details.Processing.External">
+                                                <span class="match-bar" data-ng-class="selectedUserPortrait.matchResult.details.Processing.External.matchPercent > 0?'sp-background-color':'match-default-bg'">&#160;</span>
+                                                <div class="match-cont-wrap">
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Processing.External.matchPercent > 0}" data-ng-bind="selectedUserPortrait.matchResult.details.Processing.External.portraitData+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab3'), 3, 'External')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.External')"></a>
+                                                    </p>
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Processing.External.matchPercent > 0}" data-ng-bind="(100 - selectedUserPortrait.matchResult.details.Processing.External.portraitData)+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab3'), 3, 'External')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.Internal')"></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="report-traits-col-user-multiple" data-ng-if="selectedUserPortrait.matchResult.details.Processing.Concrete">
+                                                <span class="match-bar" data-ng-class="selectedUserPortrait.matchResult.details.Processing.Concrete.matchPercent > 0?'sp-background-color':'match-default-bg'">&#160;</span>
+                                                <div class="match-cont-wrap">
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Processing.Concrete.matchPercent > 0}" data-ng-bind="selectedUserPortrait.matchResult.details.Processing.Concrete.portraitData+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab3'), 3, 'Concrete')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.Concrete')"></a>
+                                                    </p>
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Processing.Concrete.matchPercent > 0}" data-ng-bind="(100 - selectedUserPortrait.matchResult.details.Processing.Concrete.portraitData)+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab3'), 3, 'Concrete')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.Intuitive')"></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="report-traits-col-user-multiple" data-ng-if="selectedUserPortrait.matchResult.details.Processing.Cognitive">
+                                                <span class="match-bar" data-ng-class="selectedUserPortrait.matchResult.details.Processing.Cognitive.matchPercent > 0?'sp-background-color':'match-default-bg'">&#160;</span>
+                                                <div class="match-cont-wrap">
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Processing.Cognitive.matchPercent > 0}" data-ng-bind="selectedUserPortrait.matchResult.details.Processing.Cognitive.portraitData+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab3'), 3, 'Cognitive')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.Cognitive')"></a>
+                                                    </p>
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Processing.Cognitive.matchPercent > 0}" data-ng-bind="(100 - selectedUserPortrait.matchResult.details.Processing.Cognitive.portraitData)+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab3'), 3, 'Cognitive')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.Affective')"></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="report-traits-col-user-multiple" data-ng-if="selectedUserPortrait.matchResult.details.Processing.Orderly">
+                                                <span class="match-bar" data-ng-class="selectedUserPortrait.matchResult.details.Processing.Orderly.matchPercent > 0?'sp-background-color':'match-default-bg'">&#160;</span>
+                                                <div class="match-cont-wrap">
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Processing.Orderly.matchPercent > 0}" data-ng-bind="selectedUserPortrait.matchResult.details.Processing.Orderly.portraitData+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab3'), 3, 'Orderly')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.Orderly')"></a>
+                                                    </p>
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Processing.Orderly.matchPercent > 0}" data-ng-bind="(100 - selectedUserPortrait.matchResult.details.Processing.Orderly.portraitData)+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab3'), 3, 'Orderly')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.Spontaneous')"></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Report Row: PROCESSING Ends -->
+                                    <!-- Report Row: Conflit Management Starts -->
+                                    <div class="match-report-table-trow" data-ng-if="selectedPortrait.portraitMatchReportData.ConflictManagement">
+                                        <div class="match-report-table-tcol tcol1 tcol-br a-top">
+                                            <p class="section-name" data-ng-bind="::pullInterNationalization('prismTab5')"></p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol2 tcol-br a-top">
+                                            <p class="report-traits-col" data-ng-if="key === 'Primary'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.ConflictManagement">
+                                                <span data-ng-bind="pullInterNationalization('profileKeys.'+value[0].key)"></span>
+                                                <span class="report-traits-num" data-ng-bind="'('+pullInterNationalization('spectrum.primary')+')'"></span>
+                                            </p>
+                                            <p class="report-traits-col" data-ng-if="key === 'Secondary'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.ConflictManagement">
+                                                <span data-ng-bind="pullInterNationalization('profileKeys.'+value[0].key)"></span>
+                                                <span class="report-traits-num" data-ng-bind="'('+pullInterNationalization('spectrum.secondary')+')'"></span>
+                                            </p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol3">
+                                            <p class="report-user-traits-col" data-ng-if="selectedPortrait.portraitMatchReportData.ConflictManagement.Primary">
+                                                <span class="match-bar" data-ng-class="selectedUserPortrait.matchResult.details.ConflictManagement.Primary.matchPercent > 0?'sp-background-color':'match-default-bg'">&#160;</span>
+                                                <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.ConflictManagement.Primary.matchPercent > 0}" data-ng-bind="selectedUserPortrait.matchResult.details.ConflictManagement.Primary.portraitData.value+'%'"></span>
+                                                <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab5'), 5, selectedUserPortrait.matchResult.details.ConflictManagement.Primary.portraitData.key)" href="javascript:void(0)" data-ng-bind="pullInterNationalization('profileKeys.'+selectedUserPortrait.matchResult.details.ConflictManagement.Primary.portraitData.key);"></a>
+                                            </p>
+                                            <p class="report-user-traits-col" data-ng-if="selectedPortrait.portraitMatchReportData.ConflictManagement.Secondary">
+                                                <span class="match-bar" data-ng-class="selectedUserPortrait.matchResult.details.ConflictManagement.Secondary.matchPercent > 0?'sp-background-color':'match-default-bg'">&#160;</span>
+                                                <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.ConflictManagement.Secondary.matchPercent > 0}" data-ng-bind="selectedUserPortrait.matchResult.details.ConflictManagement.Secondary.portraitData.value+'%'"></span>
+                                                <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab5'), 5, selectedUserPortrait.matchResult.details.ConflictManagement.Secondary.portraitData.key)" href="javascript:void(0)" data-ng-bind="pullInterNationalization('profileKeys.'+selectedUserPortrait.matchResult.details.ConflictManagement.Secondary.portraitData.key)"></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- Report Row: Conflit Management Ends -->
+                                    <!-- Report Row: Decision Making Starts -->
+                                    <div class="match-report-table-trow" data-ng-if="selectedPortrait.portraitMatchReportData.DecisionMaking">
+                                        <div class="match-report-table-tcol tcol1 tcol-br a-top">
+                                            <p class="section-name" data-ng-bind="::pullInterNationalization('prismTab7')"></p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol2 tcol-br a-top">
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'Careful'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.DecisionMaking">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.Careful')"></span>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.Rapid')"></span>
+                                                </p>
+                                            </div>
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'Outward'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.DecisionMaking">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.Outward')"></span>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.Inward')"></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol3">
+                                            <div class="report-traits-col-user-multiple" data-ng-if="selectedUserPortrait.matchResult.details.DecisionMaking.Careful">
+                                                <span class="match-bar" data-ng-class="selectedUserPortrait.matchResult.details.DecisionMaking.Careful.matchPercent > 0?'sp-background-color':'match-default-bg'">&#160;</span>
+                                                <div class="match-cont-wrap">
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.DecisionMaking.Careful.matchPercent > 0}" data-ng-bind="selectedUserPortrait.matchResult.details.DecisionMaking.Careful.portraitData+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab7'), 7, 'Careful')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.Careful')"></a>
+                                                    </p>
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.DecisionMaking.Careful.matchPercent > 0}" data-ng-bind="(100 - selectedUserPortrait.matchResult.details.DecisionMaking.Careful.portraitData)+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab7'), 7, 'Careful')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.Rapid')"></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="report-traits-col-user-multiple" data-ng-if="selectedUserPortrait.matchResult.details.DecisionMaking.Outward">
+                                                <span class="match-bar" data-ng-class="selectedUserPortrait.matchResult.details.DecisionMaking.Outward.matchPercent > 0?'sp-background-color':'match-default-bg'">&#160;</span>
+                                                <div class="match-cont-wrap">
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.DecisionMaking.Outward.matchPercent > 0}" data-ng-bind="selectedUserPortrait.matchResult.details.DecisionMaking.Outward.portraitData+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab7'), 7, 'Outward')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.Outward')"></a>
+                                                    </p>
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.DecisionMaking.Outward.matchPercent > 0}" data-ng-bind="(100 - selectedUserPortrait.matchResult.details.DecisionMaking.Outward.portraitData)+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab7'), 7, 'Outward')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.Inward')"></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Report Row: Decision Making Ends -->
+                                    <!-- Report Row: Motivation Starts -->
+                                    <div class="match-report-table-trow" data-ng-if="selectedPortrait.portraitMatchReportData.Motivation">
+                                        <div class="match-report-table-tcol tcol1 tcol-br a-top">
+                                            <p class="section-name" data-ng-bind="::pullInterNationalization('prismTab4')"></p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol2 tcol-br a-top">
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'AttainmentOfGoals'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Motivation">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.AttainmentOfGoals')"></span>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.RecognitionForEffort')"></span>
+                                                </p>
+                                            </div>
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'ExchangeOfIdeas'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Motivation">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.ExchangeOfIdeas')"></span>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.ReceiveDirection')"></span>
+                                                </p>
+                                            </div>
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'SelfAffirmed'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Motivation">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.SelfAffirmed')"></span>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.AffirmedByOthers')"></span>
+                                                </p>
+                                            </div>
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'Activity'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Motivation">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.Activity')"></span>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.Affiliation')"></span>
+                                                </p>
+                                            </div>
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'Freedom'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Motivation">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.Freedom')"></span>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.Consistency')"></span>
+                                                </p>
+                                            </div>
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'Power'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Motivation">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.Power')"></span>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.Compliance')"></span>
+                                                </p>
+                                            </div>
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'TaskCompletion'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Motivation">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.TaskCompletion')"></span>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.PrefersProcess')"></span>
+                                                </p>
+                                            </div>
+                                            <div class="report-traits-col-multiple" data-ng-if="key === 'Hygiene'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.Motivation">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.Hygiene')"></span>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.Accomplishment')"></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol3">
+                                            <div class="report-traits-col-user-multiple" data-ng-if="selectedUserPortrait.matchResult.details.Motivation.AttainmentOfGoals">
+                                                <span class="match-bar" data-ng-class="selectedUserPortrait.matchResult.details.Motivation.AttainmentOfGoals.matchPercent > 0?'sp-background-color':'match-default-bg'">&#160;</span>
+                                                <div class="match-cont-wrap">
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Motivation.AttainmentOfGoals.matchPercent > 0}" data-ng-bind="selectedUserPortrait.matchResult.details.Motivation.AttainmentOfGoals.portraitData+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'AttainmentOfGoals')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.AttainmentOfGoals')"></a>
+                                                    </p>
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Motivation.AttainmentOfGoals.matchPercent > 0}" data-ng-bind="(100 - selectedUserPortrait.matchResult.details.Motivation.AttainmentOfGoals.portraitData)+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'AttainmentOfGoals')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.RecognitionForEffort')"></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="report-traits-col-user-multiple" data-ng-if="selectedUserPortrait.matchResult.details.Motivation.ExchangeOfIdeas">
+                                                <span class="match-bar" data-ng-class="selectedUserPortrait.matchResult.details.Motivation.ExchangeOfIdeas.matchPercent > 0?'sp-background-color':'match-default-bg'">&#160;</span>
+                                                <div class="match-cont-wrap">
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Motivation.ExchangeOfIdeas.matchPercent > 0}" data-ng-bind="selectedUserPortrait.matchResult.details.Motivation.ExchangeOfIdeas.portraitData+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'ExchangeOfIdeas')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.ExchangeOfIdeas')"></a>
+                                                    </p>
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Motivation.ExchangeOfIdeas.matchPercent > 0}" data-ng-bind="(100 - selectedUserPortrait.matchResult.details.Motivation.ExchangeOfIdeas.portraitData)+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'ExchangeOfIdeas')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.ReceiveDirection')"></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="report-traits-col-user-multiple" data-ng-if="selectedUserPortrait.matchResult.details.Motivation.SelfAffirmed">
+                                                <span class="match-bar" data-ng-class="selectedUserPortrait.matchResult.details.Motivation.SelfAffirmed.matchPercent > 0?'sp-background-color':'match-default-bg'">&#160;</span>
+                                                <div class="match-cont-wrap">
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Motivation.SelfAffirmed.matchPercent > 0}" data-ng-bind="selectedUserPortrait.matchResult.details.Motivation.SelfAffirmed.portraitData+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'SelfAffirmed')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.SelfAffirmed')"></a>
+                                                    </p>
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Motivation.SelfAffirmed.matchPercent > 0}" data-ng-bind="(100 - selectedUserPortrait.matchResult.details.Motivation.SelfAffirmed.portraitData)+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'SelfAffirmed')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.AffirmedByOthers')"></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="report-traits-col-user-multiple" data-ng-if="selectedUserPortrait.matchResult.details.Motivation.Activity">
+                                                <span class="match-bar" data-ng-class="selectedUserPortrait.matchResult.details.Motivation.Activity.matchPercent > 0?'sp-background-color':'match-default-bg'">&#160;</span>
+                                                <div class="match-cont-wrap">
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Motivation.Activity.matchPercent > 0}" data-ng-bind="selectedUserPortrait.matchResult.details.Motivation.Activity.portraitData+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'Activity')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.Activity')"></a>
+                                                    </p>
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Motivation.Activity.matchPercent > 0}" data-ng-bind="(100 - selectedUserPortrait.matchResult.details.Motivation.Activity.portraitData)+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'Activity')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.Affiliation')"></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="report-traits-col-user-multiple" data-ng-if="selectedUserPortrait.matchResult.details.Motivation.Freedom">
+                                                <span class="match-bar" data-ng-class="selectedUserPortrait.matchResult.details.Motivation.Freedom.matchPercent > 0?'sp-background-color':'match-default-bg'">&#160;</span>
+                                                <div class="match-cont-wrap">
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Motivation.Freedom.matchPercent > 0}" data-ng-bind="selectedUserPortrait.matchResult.details.Motivation.Freedom.portraitData+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'Freedom')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.Freedom')"></a>
+                                                    </p>
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Motivation.Freedom.matchPercent > 0}" data-ng-bind="(100 - selectedUserPortrait.matchResult.details.Motivation.Freedom.portraitData)+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'Freedom')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.Consistency')"></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="report-traits-col-user-multiple" data-ng-if="selectedUserPortrait.matchResult.details.Motivation.Power">
+                                                <span class="match-bar" data-ng-class="selectedUserPortrait.matchResult.details.Motivation.Power.matchPercent > 0?'sp-background-color':'match-default-bg'">&#160;</span>
+                                                <div class="match-cont-wrap">
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Motivation.Power.matchPercent > 0}" data-ng-bind="selectedUserPortrait.matchResult.details.Motivation.Power.portraitData+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'Power')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.Power')"></a>
+                                                    </p>
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Motivation.Power.matchPercent > 0}" data-ng-bind="(100 - selectedUserPortrait.matchResult.details.Motivation.Power.portraitData)+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'Power')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.Compliance')"></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="report-traits-col-user-multiple" data-ng-if="selectedUserPortrait.matchResult.details.Motivation.TaskCompletion">
+                                                <span class="match-bar" data-ng-class="selectedUserPortrait.matchResult.details.Motivation.TaskCompletion.matchPercent > 0?'sp-background-color':'match-default-bg'">&#160;</span>
+                                                <div class="match-cont-wrap">
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Motivation.TaskCompletion.matchPercent > 0}" data-ng-bind="selectedUserPortrait.matchResult.details.Motivation.TaskCompletion.portraitData+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'TaskCompletion')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.TaskCompletion')"></a>
+                                                    </p>
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Motivation.TaskCompletion.matchPercent > 0}" data-ng-bind="(100 - selectedUserPortrait.matchResult.details.Motivation.TaskCompletion.portraitData)+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'TaskCompletion')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.PrefersProcess')"></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="report-traits-col-user-multiple" data-ng-if="selectedUserPortrait.matchResult.details.Motivation.Hygiene">
+                                                <span class="match-bar" data-ng-class="selectedUserPortrait.matchResult.details.Motivation.Hygiene.matchPercent > 0?'sp-background-color':'match-default-bg'">&#160;</span>
+                                                <div class="match-cont-wrap">
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Motivation.Hygiene.matchPercent > 0}" data-ng-bind="selectedUserPortrait.matchResult.details.Motivation.Hygiene.portraitData+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'Hygiene')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.Hygiene')"></a>
+                                                    </p>
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.Motivation.Hygiene.matchPercent > 0}" data-ng-bind="(100 - selectedUserPortrait.matchResult.details.Motivation.Hygiene.portraitData)+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab4'), 4, 'Hygiene')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.Accomplishment')"></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Report Row: Motivation Ends -->
+                                    <!-- Report Row: Fundamental Needs Starts -->
+                                    <div class="match-report-table-trow" data-ng-if="selectedPortrait.portraitMatchReportData.FundamentalNeeds">
+                                        <div class="match-report-table-tcol tcol1 tcol-br a-top">
+                                            <p class="section-name" data-ng-bind="::pullInterNationalization('prismTab6')"></p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol2 tcol-br a-top">
+                                            <p class="report-traits-col" data-ng-if="key === 'Primary'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.FundamentalNeeds">
+                                                <span data-ng-bind="pullInterNationalization('profileKeys.'+value[0].key)"></span>
+                                                <span class="report-traits-num" data-ng-bind="'('+pullInterNationalization('spectrum.primary')+')'"></span>
+                                            </p>
+                                            <p class="report-traits-col" data-ng-if="key === 'Secondary'" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.FundamentalNeeds">
+                                                <span data-ng-bind="pullInterNationalization('profileKeys.'+value[0].key)"></span>
+                                                <span class="report-traits-num" data-ng-bind="'('+pullInterNationalization('spectrum.secondary')+')'"></span>
+                                            </p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol3">
+                                            <p class="report-user-traits-col" data-ng-if="selectedPortrait.portraitMatchReportData.FundamentalNeeds.Primary">
+                                                <span class="match-bar" data-ng-class="selectedUserPortrait.matchResult.details.FundamentalNeeds.Primary.matchPercent > 0?'sp-background-color':'match-default-bg'">&#160;</span>
+                                                <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.FundamentalNeeds.Primary.matchPercent > 0}" data-ng-bind="selectedUserPortrait.matchResult.details.FundamentalNeeds.Primary.portraitData.value+'%'"></span>
+                                                <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab6'), 6, selectedUserPortrait.matchResult.details.FundamentalNeeds.Primary.portraitData.key)" href="javascript:void(0)" data-ng-bind="pullInterNationalization('profileKeys.'+selectedUserPortrait.matchResult.details.FundamentalNeeds.Primary.portraitData.key)"></a>
+                                            </p>
+                                            <p class="report-user-traits-col" data-ng-if="selectedPortrait.portraitMatchReportData.FundamentalNeeds.Secondary">
+                                                <span class="match-bar" data-ng-class="selectedUserPortrait.matchResult.details.FundamentalNeeds.Secondary.matchPercent > 0?'sp-background-color':'match-default-bg'">&#160;</span>
+                                                <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.FundamentalNeeds.Secondary.matchPercent > 0}" data-ng-bind="selectedUserPortrait.matchResult.details.FundamentalNeeds.Secondary.portraitData.value+'%'"></span>
+                                                <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab6'), 6, selectedUserPortrait.matchResult.details.FundamentalNeeds.Secondary.portraitData.key)" href="javascript:void(0)" data-ng-bind="pullInterNationalization('profileKeys.'+selectedUserPortrait.matchResult.details.FundamentalNeeds.Secondary.portraitData.key)"></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- Report Row: Fundamental Needs Ends -->
+                                    <!-- Report Row: Leraning Style Starts -->
+                                    <div class="match-report-table-trow" data-ng-if="selectedPortrait.portraitMatchReportData.LearningStyle">
+                                        <div class="match-report-table-tcol tcol1 tcol-br a-top">
+                                            <p class="section-name" data-ng-bind="::pullInterNationalization('prismTab8')"></p>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol2 tcol-br a-top">
+                                            <div class="report-traits-col-multiple" data-ng-repeat="(key,value) in selectedPortrait.portraitMatchReportData.LearningStyle">
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="value[0].matchPercent+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.Global')"></span>
+                                                </p>
+                                                <p class="report-traits-col-info">
+                                                    <span class="report-traits-num" data-ng-bind="(100 - value[0].matchPercent)+'%'"></span>
+                                                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.Analytical')"></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="match-report-table-tcol tcol3">
+                                            <div class="report-traits-col-user-multiple">
+                                                <span class="match-bar" data-ng-class="selectedUserPortrait.matchResult.details.LearningStyle.Global.matchPercent > 0?'sp-background-color':'match-default-bg'">&#160;</span>
+                                                <div class="match-cont-wrap">
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.LearningStyle.Global.matchPercent > 0}" data-ng-bind="selectedUserPortrait.matchResult.details.LearningStyle.Global.portraitData+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab8'), 8, 'LearningStyle')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.Global')"></a>
+                                                    </p>
+                                                    <p class="report-user-traits-col-info">
+                                                        <span class="match-trait-percent" data-ng-class="{'fw700': selectedUserPortrait.matchResult.details.LearningStyle.Global.matchPercent > 0}" data-ng-bind="(100 - selectedUserPortrait.matchResult.details.LearningStyle.Global.portraitData)+'%'"></span>
+                                                        <a data-ng-click="viewTraitDesc(pullInterNationalization('prismTab8'), 8, 'LearningStyle')" href="javascript:void(0)" data-ng-bind="pullInterNationalization('spectrum.trait.type.Analytical')"></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Report Row: Leraning Style Ends -->
+                                    <div class="match-report-table-trow noBotBrd">
+                                        <div class="match-report-table-tcol tcol1 a-top">&#160;</div>
+                                        <div class="match-report-table-tcol tcol2 a-top">&#160;</div>
+                                        <div class="match-report-table-tcol tcol3 a-mid">
+                                            <p class="match-tnc" data-ng-bind="::pullInterNationalization('portrait.match.highlight')"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Report Ends -->
+                            </div>
+                            <!-- Portrait User Report View Ends -->
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <!-- Right Box Ends -->
+        </div>
+    </div>
+</div>

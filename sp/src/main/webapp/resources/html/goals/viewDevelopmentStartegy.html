@@ -1,0 +1,44 @@
+<link type="text/css" rel="stylesheet" href="/resources/css/css-min/drop-theme-arrows.min.css" />
+<div class="container" id="declineGrowthScreen">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+            <div>
+                <section class="wrapper">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar" data-ng-bind="ctrl.viewStrategyName"></div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                            </div>
+                        </div>
+                        <div class="contentArea clearfix">
+                            <p class="devDesc" data-ng-bind="ctrl.viewGoalsObj.description"></p>
+                            <p class="devDescRec" data-ng-if="ctrl.sourceList.Prism || ctrl.sourceList.PrismLens">
+                                <span data-ng-bind="pullInterNationalization('practiceArea.suggestedBy')"></span>
+                                <span class="sp-link-color" data-eclass="managePaPop0" recommended-tool-tip data-desc="{{ctrl.prismList}}" data-ng-if="ctrl.sourceList.Prism" data-ng-bind="pullInterNationalization('practiceArea.prism')"></span>
+                                <span class="sp-link-color" data-eclass="managePaPop1" recommended-tool-tip data-desc="{{ctrl.nameList}}" data-ng-if="ctrl.sourceList.PrismLens" data-ng-bind-html="', '+pullInterNationalization('practiceArea.prismLens')"></span>
+                            </p>
+                            <ul class="viewDevelopmentStrategy">
+                                <li class="title">
+                                    <div data-ng-bind="pullInterNationalization('practiceArea.devStartegy')"></div>
+                                </li>
+                                <li class="tl" data-ng-repeat="goals in ctrl.viewStrategy track by $index">
+                                    <span class="number" data-ng-bind="($index+1)+'. '"></span>
+                                    <span class="text" data-ng-bind="goals.dsDescription"></span>
+                                </li>
+                            </ul>
+                            <ul class="mpa-pills extraPad">
+                                <li data-ng-class="{'dark':ctrl.selectedGoalsObj.selected}">
+                                    <span class="mpa-name sp-link-color" data-ng-bind="ctrl.viewStrategyName"></span>
+                                    <span class="mpa-icon icon-erti_plus sp-icon-color" data-ng-if="!ctrl.selectedGoalsObj.selected && !ctrl.disableAddButton" data-ng-click="ctrl.selectedGoalsObj.selected = !ctrl.selectedGoalsObj.selected;ctrl.addGoal(ctrl.selectedGoalsObj, true);"></span>
+                                    <span class="mpa-icon icon-erti_plus inactive" data-ng-if="!ctrl.selectedGoalsObj.selected && ctrl.disableAddButton"></span>
+                                    <span class="mpa-icon icon-erti_minus sp-icon-color" data-ng-if="ctrl.selectedGoalsObj.selected" data-ng-click="ctrl.selectedGoalsObj.selected = !ctrl.selectedGoalsObj.selected;ctrl.removeGoal(ctrl.selectedGoalsObj,'rightRail', true);"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

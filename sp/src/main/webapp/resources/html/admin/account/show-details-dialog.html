@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-9 col-md-offset-2 col-md-7">
+            <div>
+                <section class="wrapper">
+                    <div class="contentBody width-auto">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar">{{showDetails.title}}</div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                            </div>
+                        </div>
+                        <div class="contentArea">
+                            <div class="detail clearfix conf">
+                                <div class="conf_message" ng-bind-html="showDetails.total"></div>
+                                <div class="account-nos">
+                                	<p class="a-details col-sm-4 col-md-4">
+                                		<span class="a-details-head" data-ng-bind="pullInterNationalization('viewAccountDetails.aAcc')"></span>
+                                		<span class="a-details-no">{{showDetails.active}}</span>
+                                	</p>
+                                	<p class="a-details col-sm-4 col-md-4">
+                                		<span class="a-details-head" data-ng-bind="pullInterNationalization('viewAccountDetails.dAcc')"></span>
+                                		<span class="a-details-no">{{showDetails.deleted}}</span>
+                                	</p>
+                                	<p class="a-details col-sm-4 col-md-4 last">
+                                		<span class="a-details-head" data-ng-bind="pullInterNationalization('viewAccountDetails.vAcc')"></span>
+                                		<span class="a-details-no">{{showDetails.available}}</span>
+                                	</p>                                	                                	
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

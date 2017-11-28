@@ -1,0 +1,37 @@
+<div class="lnd-content-dialog full-overlay-mobile">
+    <div class="x-container" style="height:{{ctrl.winHeight}}">
+        <div class="notes-feedback-overlay">
+            <div class="dialog-header-closeBtn">
+                <h2 class="dialog-heading" data-ng-bind="::pullInterNationalization('blueprint.sharereview')"></h2>
+                <div class="ngdialog-close close-btn-icon icon-icon_remove sp-icon-color"></div>
+            </div>
+        </div>
+        <form name="ctrl.shareApprovalForm" class="sendReminder sideSpacer">
+                <div class="message" data-ng-bind="::pullInterNationalization('blueprint.sharecontentBlue')"></div>
+                <div class="message popBot5" data-ng-bind="::pullInterNationalization('blueprint.sendto')"></div>
+                <div class="tagsEmailInput" style="margin-bottom: 10px;">
+                    <tags-input ng-model="tags" display-property="name" placeholder="{{::pullInterNationalization('dashboard.enteremail')}}" display-name="email" allowed-tags-pattern="^[A-Za-z0-9._-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$" replace-spaces-with-dashes="false" on-tag-removed="ctrl.tagRemovedPublish($tag)" on-tag-added="ctrl.tagAddedPublish($tag)">
+                        <auto-complete min-length="1" load-on-focus="false" load-on-empty="false" max-results-to-show="10" source="ctrl.loadTags($query)" class="ng-tags-pos-fix"></auto-complete>
+                    </tags-input>
+                </div>
+                <span class="validate-error" data-ng-if="ctrl.inputPublishRequired" data-ng-bind="::pullInterNationalization('trainingLibrary.required.error')"></span>
+                
+                <div class="textarea">
+                	<label class="sp-label-option" for="commentBlock" data-ng-bind="::pullInterNationalization('blueprint.labelcommentBlock')"></label>
+                    <textarea id="commentBlock" class="style_1" data-ng-model='ctrl.shareApproval.comment' rows="3" maxlength="300" data-ng-attr-placeholder="{{::pullInterNationalization('blueprint.commentoptional')}}" name="comment"></textarea>
+                </div>
+                <header class="header-box bp-share-progress-box clearfix">
+                    <input type="checkbox" data-ng-model="ctrl.progress" class="filterCheckBox" id="progress">
+                    <label for="progress" class="filterCheckBox-label header-title">
+                        <span class="floLeft checkedTick icon-icon_dev_strategy_check sp-icon-color bpPopFix"></span>
+                        <span class="floLeft" data-ng-bind="::pullInterNationalization('blueprint.showblueprintprogress')"></span>
+                    </label>
+                </header>
+                
+            <div class="btns-wrp">
+                <input type="button" value="{{::pullInterNationalization('trainingLibrary.share.send')}}" class="btn-block btn-14px sp-btn-color" ng-click="ctrl.publishShare(ctrl.progress)">
+                <input type="button" value="{{::pullInterNationalization('trainingLibrary.share.cancel')}}" class="btn-block btn-14px btn-grey-dark" ng-click="closeThisDialog()">
+            </div>
+        </form>
+    </div>
+</div>

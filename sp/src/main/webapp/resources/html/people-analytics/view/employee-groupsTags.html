@@ -1,0 +1,69 @@
+<div class="col-content-wrapper mh700" data-ng-init="updateUserSelectedProfileTags()">
+    <div class="members-content-wrapper" data-ng-if="!archivedUser">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('admin.account.member.details.title3')"></h2>
+        </div>
+    </div>
+    <div class="all-content-wrapper group-tab-theme" data-ng-if="!archivedUser">
+    	<div class="clearfix">
+	        <div class="angucomplete-wrapper s500 lmar" data-ng-if="!showCreateGroupSection">
+	            <angucomplete id="gl2" placeholder="{{::pullInterNationalization('manageAccountContent.addToGroup')}}" pause="100" selectedobject="selectedObj" localdata="allGroups" searchfields="name" titlefield="name" minlength="1" inputclass="form-control form-control-small" templatetype="default" update-fn="userSelectGroup(callback)" />
+	        </div>
+	        <p class="create-new-group-link-outside posAbLink" data-ng-if="!showCreateGroupSection">
+	            <a href="javascript:void(0)" data-ng-click="newGroupFlow()" class="border-link display-inline-block">
+	                <span class="mock-link" data-ng-bind="::pullInterNationalization('manageAccountContent.createNewGroup')"></span>
+	            </a>
+	        </p>
+        </div>
+        <div class="create-group-wrapper newStyle w500 m15 animation_1" data-ng-if="showCreateGroupSection">
+            <p>
+                <input type="text" data-ng-model="createGroupName" placeholder="{{::pullInterNationalization('admin.group.createstatus')}}" />
+                
+            </p>
+            
+            <p class="btns-wrapper">
+                <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('manageAccountContent.create')" data-ng-click="saveNewGroup(createGroupName)"></a>
+                <a href="javascript:void(0)" class="btn-square-12px btn-darker-grey" data-ng-bind="::pullInterNationalization('manageAccountContent.cancel')" data-ng-click="defaultGroupsView()"></a>
+            </p>
+        </div>
+        <div class="selected-group-List-wrapper">
+            <span class="validate-error groups-error" data-ng-bind="::pullInterNationalization('admin.group.noname')" data-ng-if="errornewEmptyGroup"></span>
+            <span class="validate-error groups-error" data-ng-bind="::pullInterNationalization('admin.group.samename')" data-ng-if="errornewGroup"></span>
+            <p class="group-default-message" data-ng-if="!userGroups.length" data-ng-bind="::pullInterNationalization('manageAccountContent.noGroups')"></p>
+            <div class="group-row style2" data-ng-repeat="group in userGroups track by $index">
+                <p class="selected-group-listing">
+                    <a href="javascript:void(0)" class="border-link">
+                        <span class="icon-icon_accounts_text" data-ng-bind="group.name" data-ng-click="redirectToGroup(group.id)"></span>
+                        <span class=icon-icon_accounts_remove data-ng-click="removeUserFromGroupPop(group)"></span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="members-content-wrapper" data-ng-class="{'mtop90': !archivedUser}">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('admin.account.member.details.title4')"></h2>
+        </div>
+    </div>
+    <div class="all-content-wrapper">
+        <div class="mTop45 tagsEmailInput brdr0 pa-tags profile-tags" data-ng-if="!archivedUser">
+                <tags-input min-length="1" data-type="tags" data-ng-model="profileDetail.tagList" replace-spaces-with-dashes="false" placeholder="{{::pullInterNationalization('candidates.addCandidates.step3Place')}}" on-tag-removed="removedProfileTag($tag)" on-tag-added="addedProfileTag($tag)">
+                    <auto-complete min-length="1" load-on-focus="false" debounce-delay="500" load-on-empty="false" max-results-to-show="5" source="loadSourceTags($query)" class="ng-tags-pos-fix"></auto-complete>
+                 </tags-input> 
+                 <div class="selected-group-List-wrapper">
+	                 <div class="group-row style2" data-ng-repeat="group in profileDetail.tagList track by $index">
+	                    <p class="selected-group-listing">
+		                    <a href="javascript:void(0)" class="border-link">
+		                        <span class="icon-icon_accounts_text" data-ng-bind="group.text"></span>
+		                        <span class=icon-icon_accounts_remove data-ng-click="removedProfileTag(group)"></span>
+		                    </a>
+		                </p>
+		            </div>
+	            </div>
+         </div>
+         <div class="mTop45 tagsEmailInput brdr0 pa-tags" data-ng-if="archivedUser">
+                <span data-ng-if="profileDetail.tagList.length" class="display-tags" data-ng-repeat="tags in profileDetail.tagList" data-ng-bind="tags"></span>
+                <p data-ng-if="!profileDetail.tagList.length" data-ng-bind="::pullInterNationalization('admin.emails.noRecord')"></p>
+         </div>
+    </div>
+</div>

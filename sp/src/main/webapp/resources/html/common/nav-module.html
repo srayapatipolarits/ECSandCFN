@@ -1,0 +1,74 @@
+<nav class="flyout-global-nav hide" flyout-nav data-ng-class="{'show':navLoaded && showMenu}" data-show="navLoaded && showMenu">
+       <!-- Right Section of the Global Navigation Starts -->
+		<div class="global-nav-cols nav-col1 oFlowY">
+			<span class="icon-icon_remove nav-close-btn sp-icon-color"><span data-ng-bind="::pullInterNationalization('accessibility.labelClose')" class="iconLabel"></span></span>
+			<ul data-ng-class="{'home-link':navCtrl.userNav !== 'superAdmin' && $first, 'links-with-headers':!$first || navCtrl.userNav === 'superAdmin' }" data-ng-repeat="rightSection in navCtrl.globalNav.right">
+			    <li data-ng-bind-html="rightSection.nodes[0].name" data-ng-if="rightSection.nodes[0].children"></li>
+				<li  data-ng-if="rightSection.nodes[0].children" data-ng-repeat="node in rightSection.nodes[0].children" data-ng-class="{'hideOnMobile':node.hideOnMobile}">
+				    <a data-ng-href="{{node.url}}" data-ng-bind-html="node.name"></a>
+				</li>
+				<li data-ng-if="!rightSection.nodes[0].children" data-ng-repeat="node in rightSection.nodes" data-ng-class="{'hideOnMobile':node.hideOnMobile}">
+				    <a data-ng-href="{{node.url}}" data-ng-bind-html="node.name"></a>
+				</li>
+			</ul>																			
+		</div>
+		<!-- Right Section of the Global Navigation Ends-->
+		
+		<!-- Left Section of the Global Navigation Starts -->
+		<div class="global-nav-cols nav-col2">
+		  <!-- Lang Selection Dropdowns Starts -->
+			<div class="nav-langOpts-wrapper">
+				<h2 sp-condition="true" sp-click-outside="show">
+					<span class="nav-lang desc-icn icon-icon_language"></span>
+					<span class="nav-lang desc-text">
+						<span class="mob-text-ellip adj" data-ng-bind-html="pullInterNationalization('navigation.lang.'+selectedLang.replace('_',''))"></span>
+					</span>
+					<span class="nav-lang desc-dd icon-icon_dropdown-arrow cWhite"></span>
+				</h2>
+				<div class="actions-callout-wrappper lang-module" data-ng-if="show">
+					<ul class="lang-links" data-ng-if="!fireFox">
+						<li>
+							<a href="javascript:void(0)" data-ng-click="updateLang('en-US');" data-ng-bind-html="::pullInterNationalization('navigation.lang.enUS')"></a>
+						</li>
+						<li>
+							<a href="javascript:void(0)" data-ng-click="updateLang('es-LA');" data-ng-bind-html="::pullInterNationalization('navigation.lang.esLA')"></a>
+						</li>						
+					</ul>
+					<ul class="lang-links" data-ng-if="fireFox">
+						<li>
+							<a data-ng-href="{{enLangURL}}"  data-ng-bind-html="::pullInterNationalization('navigation.lang.enUS')"></a>
+						</li>
+						<li>
+							<a data-ng-href="{{esLangURL}}" data-ng-bind-html="::pullInterNationalization('navigation.lang.esLA')"></a>
+						</li>						
+					</ul>
+				</div>
+			</div>
+			<!-- Lang Selection Dropdowns Ends -->	
+			<!-- Profile Info Display Starts -->	
+			<div class="nav-col-top-sec nc2">
+				<div class="nav-user-with-pic">
+					<div class="new-masked-pic">
+						<img data-ng-src="{{userProfile.smallProfileImage}}" data-ng-if="userProfile.smallProfileImage" alt="{{userProfile.name}}" />
+						<p class="user-initials-pic" data-ng-if="!userProfile.smallProfileImage">
+							<span data-ng-bind-html="userProfile.userInitials"></span>
+						</p>
+					</div>
+					<div class="nav-name-title-info">
+						<p>
+							<span class="ni-name" data-ng-bind-html="userProfile.name"></span>
+							<span class="ni-title" data-ng-bind-html="userProfile.title"></span>
+						</p>
+					</div>
+				</div>
+			</div>
+			<!-- Profile Info Display Ends -->		
+			<ul data-ng-class="{'last-sep': !$last}" data-ng-repeat="leftSection in navCtrl.globalNav.left">			
+				<li data-ng-repeat="node in leftSection.nodes" data-ng-class="{'hideOnMobile':node.hideOnMobile}">
+				    <a data-ng-if="node.name === pullInterNationalization('navigation.profile')" data-ng-click="openProfileModal()" data-ng-href="{{node.url}}" data-ng-bind-html="node.name"></a>
+				    <a data-ng-if="node.name !== pullInterNationalization('navigation.profile')" data-ng-href="{{node.url}}" data-ng-bind-html="node.name"></a>
+				</li>				
+			</ul>
+		</div>
+		<!-- Left Section of the Global Navigation Ends -->
+	</nav>

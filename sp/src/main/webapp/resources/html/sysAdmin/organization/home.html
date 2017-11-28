@@ -1,0 +1,26 @@
+<div class="dashboard-feed" data-ng-controller="orgAdminListingController as ctrl"  ng-if="inviteReady && profileReady" data-ng-init="ctrl.startPoint('SurePeople')">
+    <div class="x-container">
+        <div class="container">
+            <section class="position-section col-container">
+                <!-- Admin Listing Page -->
+                <section class="admin-action-plan">
+                    <div class="admin-section-tabs clearfix" data-ng-if="!ctrl.viewMode.preview">
+                        <ul class="admin-tabs-list">
+                            <li data-ng-class="{'selected':ctrl.type==='SurePeople'}" class="sp-panel-accent" data-ng-click="ctrl.changeType('SurePeople')">
+                                <div class="tabs-option" data-ng-bind="::pullInterNationalization('sysadmin.organization.spprogram')"></div>
+                            </li>
+                            <li data-ng-class="{'selected':ctrl.type==='Company'}" class="sp-panel-accent" data-ng-click="ctrl.changeType('Company')">
+                                <div class="tabs-option" data-ng-bind="::pullInterNationalization('sysadmin.organization.accountprogram')"></div>
+                            </li>
+                        </ul>
+                        <!-- Admin Listing Page -->
+                    </div>
+                    <div class="layout" ui-view data-ng-if="!ctrl.viewMode.preview"></div>
+                    <section class="slide-right preview-org" data-ng-if="ctrl.viewMode.preview">
+                        <ng-include src="'/sp/resources/html/sysAdmin/organization/organization-preview.html'"></ng-include>
+                    </section>
+                </section>
+            </section>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                    <h2 data-ng-bind="::pullInterNationalization('manageHiringContent.hirec')"></h2>
+                </div>
+                <div class="selected-user-obj">
+                    <div class="m-pic">
+                        <img data-ng-src="{{ctrl.deleteMemberInfo.smallProfileImage}}" alt="{{ctrl.deleteMemberInfo.userInitials}}" data-ng-if="ctrl.deleteMemberInfo.smallProfileImage">
+                        <div class="imgReplacement" data-ng-if="!ctrl.deleteMemberInfo.smallProfileImage" data-ng-bind="ctrl.deleteMemberInfo.userInitials"></div>
+                    </div>
+                    <div class="m-info1">
+                        <p class="f500" data-ng-bind="ctrl.deleteMemberInfo.name"></p>
+                        <p class="nm" data-ng-bind="ctrl.deleteMemberInfo.title"></p>
+                    </div>
+                    <div class="m-info2">
+                        <p data-ng-bind="ctrl.deleteMemberInfo.email"></p>
+                        <p data-ng-bind="ctrl.deleteMemberInfo.phoneNumber"></p>
+                    </div>
+                </div>
+                <div class="new-modals-wrapper">
+                    <p class="hire-desc-msg mt30" data-ng-bind-html="::pullInterNationalization('manageHiringContent.noMem')"></p>
+                    
+                    s
+                    <!-- Buttons Starts -->
+                    <div class="dialog-btns-wrapper">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.done')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="closeThisDialog();">
+                    </div>
+                    <!-- Buttons Ends -->                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="assessment-question-template std_container clear_both clearfix mostLeast-wrapper width_100p assessment-animation-container">
+    <div class="assessment-options-container std_container clear_both clearfix width_100p mTop40">
+        <div class="answer-wrapper">
+            <ul id="answer-mostLeast-container">
+                <li data-ng-repeat="opt in randomAnswersList" class="assessment-answer mostLeastAdj drag-enabled" id="{{opt.id}}" repeat-done="templateActions('answer-mostLeast-container', true, (leftAnimation?1000:0))">
+                    <span class="drag-dots left mostLeastAdj"></span>
+                    <span class="answer-content-wrapper spaceAdj answer-drag">
+                        <span class="answer-text" data-ng-bind="opt.text"></span>
+                    <span class="answer-desc mostLeastAdj" data-ng-bind="getDefinition(opt.key)"></span>
+                    </span>
+                    <span class="drag-dots right mostLeastAdj"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="drag-labels adj" draggable="false">
+            <ol class="most-least-labels" draggable="false">
+                <li draggable="false" data-ng-bind="pullInterNationalization('assessment.label1')"></li>
+                <li class="noBg" draggable="false"></li>
+                <li class="noBg" draggable="false"></li>
+                <li draggable="false" data-ng-bind="pullInterNationalization('assessment.label4')"></li>
+            </ol>
+        </div>
+        <a href="javascript:void(0)" class="answer-next-btn" data-ng-click="nextEnable && callToActions('next', 'answer-mostLeast-container', true)" data-ng-bind="pullInterNationalization('assessment.btn1')" data-ng-class="{'disable':!nextEnable}"></a>
+        <!--a href="javascript:void(0)" class="answer-next-btn" data-ng-click="nextEnable && callToActions('next', 'answer-mostLeast-container', true)" data-ng-bind="!isFinish?pullInterNationalization('assessment.btn1'):pullInterNationalization('assessment.bnt3')" data-ng-class="{'disable':!nextEnable}"></a -->
+    </div>
+</div>

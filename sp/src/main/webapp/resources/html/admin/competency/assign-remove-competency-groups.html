@@ -1,0 +1,98 @@
+
+
+<div class="container" id="declineGrowthScreen">
+	<div class="row">
+		<div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+			<div>
+				<section class="wrapper">
+					<div class="contentBody">
+						<div class="head">
+							<div class="wrap">
+
+								<div class="headerBar" data-ng-if="ctrl.competencyActionType === 'ASSIGN'" data-ng-bind="pullInterNationalization('competency.members.assign.title')"></div>
+								<div class="headerBar" data-ng-if="ctrl.competencyActionType === 'REMOVE'" data-ng-bind="pullInterNationalization('competency.members.remove.title')"></div>
+
+								<div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+							</div>
+						</div>
+						<div class="contentArea clearfix assign-remove-competency">
+							<form name="formSendNotification"
+								class="sendReminder getNotificationForm">
+								<div class="messageTitle" data-ng-if="ctrl.competencyActionType === 'ASSIGN'">{{pullInterNationalization('competency.members.selected')}} ({{ctrl.competencyAssignRemoveOptions.length}}):</div>
+								<div class="messageTitle" data-ng-if="ctrl.competencyActionType === 'REMOVE'" data-ng-bind="pullInterNationalization('competency.members.remove.desc')">
+								</div>
+								<div class="messageBlock borderarea">
+									<div class="notificationInformationalBlock clearfix">
+										<div class="name">
+											<span class="namePart sp-header-title-color"
+												data-ng-repeat="userList in ctrl.competencyAssignRemoveOptions">
+												{{$first ? '' : ', '}}
+												<span data-ng-if="userList.name !==null && userList.name !== ''">{{userList.name}}</span>
+												<span data-ng-if="userList.name ===null || userList.name === ''">{{userList.email}}</span>
+												</span>
+										</div>
+									</div>
+								</div>
+								<div class="messageBlock" data-ng-if="ctrl.competencyActionType === 'ASSIGN'">
+									<div class="notificationInformationalBlock">
+										<div class="messageType clearfix">
+											<div class="rolesSelectWrapper">
+											<span class="msg-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+											<select class="form-control rolesSelect" data-ng-model="ctrl.selectedCompetency">
+					                	     <option value="" data-ng-bind="pullInterNationalization('competency.members.selectCompetency')"></option>
+                                             <option data-ng-repeat="competencyList in ctrl.competencyList" 
+                                              value="{{competencyList.id}}">{{competencyList.name}}</option>
+					                        </select>
+											</div>
+											<br/>
+											<span class="err-msg" style="padding-top: 5px;" data-ng-if="ctrl.selectedCompetency === '' && ctrl.assignClick">
+											<span class="icon">!</span>{{pullInterNationalization('competency.members.selectCompetency.error')}}</span>
+										</div>
+										</div>
+								</div>
+								<div data-ng-if="ctrl.competencyActionType === 'ASSIGN'" class="assign-btn-competency">
+								<div
+									class="sp-btn-wrapper sp-red btn-esmall floatLeft inviteBtn">
+									<div class="sp-btn">
+										<input  type="button"
+											value="{{pullInterNationalization('competency.members.actions.assign')}}"
+											class="btnStyle1"
+											data-ng-click="ctrl.assignCompetency();">
+									</div>
+								</div>
+								<div class="sp-btn-wrapper sp-grey btn-esmall floatLeft">
+									<div class="sp-btn">
+										<input  type="button"
+											value="{{pullInterNationalization('admin.group.notification.cancel')}}"
+											class="btnStyle1" data-ng-click="closeThisDialog()">
+									</div>
+								</div>
+								</div>
+								<div data-ng-if="ctrl.competencyActionType === 'REMOVE'">
+								<div
+									class="sp-btn-wrapper sp-red btn-esmall floatLeft inviteBtn">
+									<div class="sp-btn">
+										<input  type="button"
+											value="Yes"
+											class="btnStyle1"
+											data-ng-click="ctrl.removeCompetency();">
+									</div>
+								</div>
+								<div class="sp-btn-wrapper sp-grey btn-esmall floatLeft">
+									<div class="sp-btn">
+										<input  type="button"
+											value="No"
+											class="btnStyle1" data-ng-click="closeThisDialog()">
+									</div>
+								</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</section>
+			</div>
+		</div>
+	</div>
+</div>
+

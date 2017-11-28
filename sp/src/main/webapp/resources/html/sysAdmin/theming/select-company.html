@@ -1,0 +1,55 @@
+<div class="container minimumHeight select-company" id="addMemberScreen">
+     <div class="row">
+         <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+		   	<section class="wrapper">
+				<div class="contentBody">
+					<div class="head">
+						<div class="wrap">
+							<div class="headerBar" data-ng-bind="pullInterNationalization('admin.blueprint.selectCompany.title')"></div>
+							<div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+						</div>
+					</div>
+					<div class="container_dialog clearfix">
+                      	<div class="controlwrap style_search" data-ng-if="ctrl.masterCompanyNonCustomizedList.length">
+                            <input type="text" class="form-control" maxlength="20" data-ng-model="ctrl.companySearchText" placeholder="{{pullInterNationalization('sysAdmin.organization.search')}}" data-ng-model-options="{debounce:{'default':500,'blur':0}}">
+                           	<button class="sp-icon-color" data-ng-class="ctrl.companySearchText.length>2? 'icon-icon_remove':'icon-icon_search'" data-ng-click="ctrl.companySearchText =''"></button>
+                      	</div>
+                      	<div class="listArea">
+                      		<div class="list clearfix">
+                      			<div class="blueprint-heading heading row" data-ng-if="ctrl.masterCompanyNonCustomizedList.length">
+                      				<div class="col-md-1 col-sm-1"></div>
+			                        <div class="col-md-7 col-sm-7">
+			                            <h4 class="hideHandIcon" data-ng-bind="pullInterNationalization('admin.member.name')"></h4>
+			                        </div>
+			                        <div class="col-md-3 col-sm-3">
+			                        </div>
+			                    </div>
+			                    <div class="complete-profile animation_1 row" data-ng-repeat="list in record=(ctrl.masterCompanyNonCustomizedList|filter:ctrl.companySearchText) track by $index">
+			                    	<div class="table_row clearfix">
+			                    	   <div class="col-md-1 col-sm-1"></div>
+			                        
+			                    		<div class="col-md-7 col-sm-7">
+				                            <div class="blueprint-name" data-ng-bind="list.name"></div>
+				                           <span class="blueprint-address"> {{list.address.city}}, {{list.address.country}} </span>
+				                        </div>
+				                        <div class="col-md-3 col-sm-3">
+				                           <a href="#" data-ng-click="ctrl.cloneOrCreateNewSettings({'id':list.id,'name':list.name,'hasThemeAccess':list.hasThemeAccess,'logo':list.logoURL,'mode': ctrl.createMode})" role="button" class="buttoncss pull-right"  data-ng-bind="pullInterNationalization('sysAdmin.organization.selectcap')"></a>
+				                        </div>
+			                    	</div>
+			                    	
+			                    </div>
+			                    <p data-ng-show="!record.length && ctrl.responseAvailableForModal" class="noMatchFound ng-hide" data-ng-bind="pullInterNationalization('admin.blueprint.noRecord')"></p>
+			                    <p data-ng-show="!record.length && !ctrl.responseAvailableForModal" class="noMatchFound ng-hide" data-ng-bind="pullInterNationalization('practiceArea.loading')"></p>
+                           </div>
+                           <div class="sp-btn-wrapper sp-grey btn-esmall floatLeft inviteBtn">
+								<div class="sp-btn">
+									<input type="button" value="{{pullInterNationalization('admin.member.cancel')}}" class="btnStyle1" data-ng-click="closeThisDialog()">
+								</div>
+						   </div>
+                      	</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,230 @@
+<div class="notes-section" data-ng-init="actionCtrl.init();">
+    <div class="notes-tabs panel-fadeIn sp-background-color">
+	    <div class="notes-header-title"> 
+	     <span class="icon-panel-top icon-icon_actionplan"></span>
+	     <div class="top-header-title ml6" data-ng-bind="::pullInterNationalization('actionPlan.header.title')"></div>
+	   </div>        
+    </div>
+    <section data-ng-if="actionCtrl.selectedTab === 'tasks'">
+        <div class="notes-list panel-fadeIn panel-notes-slide-1 max-height" data-ng-class="{'in':actionCtrl.pageView === 'listing','forward':actionCtrl.pageView === 'detail'}">
+            <div class="private-notes-list notify-section" data-ng-if="actionCtrl.pulseNotification">
+                <p class="note-list-header sp-link-color">
+                    <a href="javascript:void(0)" data-ng-click="actionCtrl.redirectToPulse(actionCtrl.pulseNotification)" data-ng-bind="::pullInterNationalization('actionPlan.module.pulse.title')+' - '+actionCtrl.pulseNotification.text"></a>
+                </p>
+                <p class="notes-sub-title">{{::pullInterNationalization('actionPlan.module.pulse.message')}} {{actionCtrl.pulseNotification.dueBy | spDateFormat}}</p>
+            </div>
+            <div class="private-notes-list notify-section" data-ng-if="actionCtrl.competencyNotification">
+                <p class="note-list-header sp-link-color">
+                    <a href="javascript:void(0)" data-ng-click="actionCtrl.redirectToCompetency(actionCtrl.competencyNotification)" data-ng-bind="actionCtrl.competencyNotification.title"></a>
+                </p>
+                <p class="notes-sub-title" data-ng-bind="actionCtrl.competencyNotification.description"></p>
+            </div>
+            <!-- Learning Program -->
+            <div data-ng-if="actionCtrl.actionPlanMap['OrgPlan'].length">
+                <span class="erti-text" data-ng-bind="::pullInterNationalization('manageAccountContent.orgPlans')"></span>
+                <div class="private-notes-list notify-section org-section" data-ng-class="{'extra-margin':$first}" data-ng-click="actionCtrl.displayDetail(actionCtrl.actionPlanMap['OrgPlan'][$index], 'OrgPlan')" data-ng-repeat="list in actionCtrl.actionPlanMap['OrgPlan'] track by $index">
+                    <p class="note-list-dt" data-ng-class="{'invisible': list.actionList[0].dueBy ===null,'past-due':list.actionList[0].dueBy === 'Past Due'}">
+                        <span class="clock-display" data-ng-if="list.actionList[0].dueBy !==null" data-ng-bind="list.actionList[0].dueBy"></span>
+                        <span class="clock-display" data-ng-if="list.actionList[0].dueBy ===null" data-ng-bind="::pullInterNationalization('actionPlan.module.feedback.noduedate')"></span>
+                    </p>
+                    <div class="lp-progress" progress-animation observe-param="{{list.completedCount}}" remaining-tasks="list.completedCount" total-tasks="list.actionCount" type="radial"></div>
+                    <p class="note-list-header sp-link-color org-name wrap-ellipsis">
+                        <a href="javascript:void(0)" data-ng-bind="list.name"></a>
+                    </p>
+                    <span class="lp-tasks" data-ng-bind="(list.actionCount - list.completedCount) + ' '+pullInterNationalization('actionPlan.tasksRemaining')"></span>
+                    <span class="icon-triangle-right sp-icon-color action-icon"></span>
+                </div>
+            </div>
+            <span class="erti-text" data-ng-bind="::pullInterNationalization('actionPlan.module.erti.paText')" data-ng-if="actionCtrl.ertiListing.length"></span>
+            <!-- <div class="erti-counter" data-ng-if="actionCtrl.ertiListing.length">
+                <a href="#" data-ng-if="actionCtrl.currentSlide !== 0" data-ng-click="actionCtrl.prevErti();" class="tSize12 tWeight700 tAlignR sp-link-color prev-next"><span class="icon-icon_home-arrow back-ic topAdj ic-flip dirArrows al sp-background-color"></span></a>
+                <a href="#" data-ng-if="actionCtrl.currentSlide === 0" class="tSize12 tWeight700 tAlignR last-state-color prev-next"><span class="icon-icon_home-arrow back-ic topAdj grey ic-flip dirArrows al"></span></a>
+                <span class="counter topAdj">{{actionCtrl.currentSlide + 1}}/{{actionCtrl.ertiListing.length}}</span>
+                <a href="#" data-ng-if="actionCtrl.currentSlide + 1 !== actionCtrl.ertiListing.length" data-ng-click="actionCtrl.nextErti();" class="tSize12 tWeight700 tAlignR sp-link-color prev-next mRight"> <span class="icon-icon_home-arrow back-ic topAdj dirArrows sp-background-color"></span></a>
+                <a href="#" data-ng-if="actionCtrl.currentSlide + 1 === actionCtrl.ertiListing.length" class="tSize12 tWeight700 tAlignR last-state-color prev-next mRight"> <span class="icon-icon_home-arrow back-ic topAdj grey dirArrows"></span></a>
+            </div> -->
+		
+            <div class="private-notes-list notify-section erti-section adjust-padding-listing" data-ng-class="{'adjust-margin-first': $first}" data-ng-repeat="list in actionCtrl.ertiListing track by list.id" data-ng-click="actionCtrl.displayErtiDetail(list.id, list.name)">
+                <div data-ng-if="actionCtrl.progressMap[list.id].level !== 5 || actionCtrl.progressMap[list.id].totalCount !== actionCtrl.progressMap[list.id].completedCount" class="lp-progress" progress-animation progress-graph="actionCtrl.progressBar" show-icon="true" icon-class="icon-icon-badge_level{{actionCtrl.progressMap[list.id].level}}" remaining-tasks="actionCtrl.progressMap[list.id].completedCount" total-tasks="actionCtrl.progressMap[list.id].totalCount" type="radial"></div><!-- custom-text="{{actionCtrl.progressMap[list.id].level}}  Level" -->
+                <div data-ng-if="actionCtrl.progressMap[list.id].level === 5 && actionCtrl.progressMap[list.id].totalCount === actionCtrl.progressMap[list.id].completedCount" class="icon-badge_ertiLevel5 sp-icon-color grey badge-erti-icon"></div>
+                <p class="note-list-header sp-link-color">
+                    <a href="javascript:void(0)" data-ng-bind="list.name"></a>
+                </p>
+                <p class="notes-sub-title reduced-width" data-ng-bind-html="list.description | secureHtml"></p>
+                <span class="icon-triangle-right sp-icon-color action-icon"></span>
+            </div>
+            
+            <div class="private-notes-list notify-section erti-section erti-default" data-ng-if="!actionCtrl.ertiListing.length && actionCtrl.responseAvailable">
+                <p class="default-text" data-ng-bind-html="::pullInterNationalization('actionPlan.module.erti.defaultText1') | secureHtml"></p>
+                <a class="customize-pa-link" href="/sp/managePracticeAreas" data-ng-bind="::pullInterNationalization('actionPlan.module.erti.defaultLink1')"></a>
+             </div>
+            <!-- Feedback -->
+            <div data-ng-if="actionCtrl.actionPlanMap['Feedback'].length">
+                <span class="erti-text" data-ng-bind="::pullInterNationalization('actionPlan.module.feedback.requests')"></span>
+                <div class="private-notes-list notify-section org-section feedback-section" data-ng-class="{'added-height':list.type === 'Feedback', 'extra-margin':$first}" data-ng-click="actionCtrl.feedbackRequestAction(list)" data-ng-repeat="list in actionCtrl.actionPlanMap['Feedback']">
+                    <p class="note-list-dt">
+                        <span class="clock-display" data-ng-bind="list.createdOn"></span>
+                    </p>
+                    <span class="imgReplacement initials" data-ng-if="!list.user.smallProfileImage" data-ng-bind="list.user.userInitials"></span>
+                    <span class="imgReplacement" data-ng-if="list.user.smallProfileImage"><img width="45" height="45" title="" alt="" data-ng-src="{{list.user.smallProfileImage}}"></span>
+                    <p class="note-list-header feedback-user-name" data-ng-if="list.type !== 'Feedback'">
+                        <a href="javascript:void(0)" data-ng-bind="list.text"></a>
+                    </p>
+                    <p class="note-list-header feedback-user-name" data-ng-if="list.type === 'Feedback'">
+                        <a href="javascript:void(0)" data-ng-bind="list.user.name"></a>
+                    </p>
+                    <span class="feedback-user-title" data-ng-if="list.user.title" data-ng-bind="list.user.title"></span>
+                    <span class="feedback-request-type sp-link-color" data-ng-if="list.type !== 'Feedback'" data-ng-bind="list.type +' '+pullInterNationalization('dashboard.Request')"></span>
+                    <span class="feedback-request-type sp-link-color" data-ng-if="list.type === 'Feedback'" data-ng-bind="pullInterNationalization('actionPlan.tasks.feedback') +' '+pullInterNationalization('dashboard.Request')"></span>
+                    <br/>
+                    <span class="feedback-request-erti" data-ng-if="list.type === 'Feedback'" data-ng-bind="list.text"></span>
+                    <span class="icon-triangle-right sp-icon-color action-icon adjust-icon-top-pos" data-ng-if="list.type !== 'Feedback'"></span>
+                </div>
+            </div>
+            <!-- Todo Tasks -- commented in 2.1 release>    
+            <!--  <div class="private-notes-list last-entry initial-panel" data-ng-class="{'less-height': actionCtrl.todoObj.incompleteTasks.length ===1,'default-height':!actionCtrl.todoObj.incompleteTasks.length}" data-ng-click="actionCtrl.displayDetail(actionCtrl.todoObj, 'TODO')">
+                    <p class="note-list-header sp-link-color added-margin-top">{{::pullInterNationalization('actionPlan.module.todo.title')}}
+                    <span class="icon-triangle-right sp-icon-color action-icon my-tasks-icon"></span></p>
+                    <div class="notes-sub-title" data-ng-class="{'added-margin-top': $first}" data-ng-repeat="list in actionCtrl.todoObj.incompleteTasks | limitTo:2" data-ng-bind="list.text"></div>
+                    <span class="more-tasks-display sp-icon-color mock-link" data-ng-click="actionCtrl.displayDetail(actionCtrl.todoObj, 'TODO')" data-ng-if="actionCtrl.todoObj.incompleteTasks.length && actionCtrl.todoObj.remainingTasks !== 0">+ {{actionCtrl.todoObj.remainingTasks}} {{::pullInterNationalization('actionPlan.tasks')}}</span>
+                    <span class="more-tasks-display-default"  data-ng-if="!actionCtrl.todoObj.incompleteTasks.length">0 {{::pullInterNationalization('actionPlan.tasksUp')}}</span>
+            </div> -->
+            <p data-ng-show="!actionCtrl.actionPlanMap && !actionCtrl.responseAvailable" class="noMatchFound ng-hide" data-ng-bind="pullInterNationalization('practiceArea.loading')"></p>
+        </div>
+        <!-- Detail View -->
+        <div class="note-entry-details panel-notes-slide-2" data-ng-class="{'out':actionCtrl.pageView === 'listing','in':actionCtrl.pageView === 'detail'}">
+            <!-- header sec -->
+            <div class="note-entry-header sp-background-color">
+                <div class="notes-header-title" data-ng-if="!ertiDetailView">
+                    <span class="icon-back-link icon-triangle-left" data-ng-click="actionCtrl.goBackToListing();">
+           </span>
+                    <!-- Inline style will be removed once the image is converted to an icon -->
+                </div>
+                <div class="text-icons text-icon-margin" data-ng-if="!ertiDetailView">
+                    <p>
+                        <span class="top-task-title wrap-ellipsis" data-ng-click="actionCtrl.goBackToListing();" data-ng-bind="actionCtrl.taskData.name"></span>
+                    </p>
+                </div>
+            </div>
+            <!-- content sec -->
+            <div data-ng-if="actionCtrl.taskType === 'ert-i'">
+                <erti-panel url-src="common/erti-panel.html" class="erti-panel"></erti-panel>
+            </div>
+            <div class="notes-list max-height">
+                <!-- Learning Program -->
+                <div data-ng-if="actionCtrl.taskType === 'OrgPlan'">
+                    <div class="private-notes-list notify-section org-section section-1">
+                        <span class="lp-tasks-linear" data-ng-bind="actionCtrl.completedTaskCount +' '+pullInterNationalization('practiceArea.of')+' '+ actionCtrl.learningProgram.actionCount +' '+pullInterNationalization('actionPlan.module.lp.tasksCompleted')+' ('+actionCtrl.completedPercent+'%)'"></span>
+                        <div class="lp-progress-linear" progress-animation progress-graph="actionCtrl.progressBar" remaining-tasks="actionCtrl.taskData.completedCount" total-tasks="actionCtrl.taskData.actionCount" type="linear"></div>
+                        <span class="icon-badge_learningprogram badge-grey action-icon"></span>
+                    </div>
+                    <div class="private-notes-list notify-section org-section section-2">
+                        <p class="next-task hide" data-ng-bind="::pullInterNationalization('actionPlan.lp.nextTask')"></p>
+                        <div class="lp-slide" id="actionTask_{{$index}}" data-ng-class="{'forward':$index=== actionCtrl.completedActionTask,'in':$index=== actionCtrl.currentActionTask}" data-ng-repeat="list in actionCtrl.taskList track by list.taskData.uid">
+                            <div class="lp-task-check-wrap">
+                                <span class="lp-check-icons icon-lp-uncheck" data-ng-click="actionCtrl.displayConfirmBox()"></span>
+                                <span class="sub-title" data-ng-bind="list.taskData.title"></span>
+                            </div>
+                            <input type="checkbox" class="read-more-state" id="readMoreToggleLPAction_{{$index}}" />
+                            <span class="read-more-wrap-horizontal read-more-wrap-tag" data-ng-init="btnCont=true">
+    <span class="disp-block preserve-line-break" data-ng-bind-html="btnCont?list.taskData.description.substr(0, 150):list.taskData.description | secureHtml" data-ng-class="{'moreellipses':list.taskData.description.length>150&&btnCont}"></span></span>
+                            <label for="readMoreToggleLPAction_{{$index}}" data-readMore="{{pullInterNationalization('label.readmore')}}" data-readLess="{{pullInterNationalization('label.readless')}}" data-ng-click="$parent.btnCont=!$parent.btnCont" class="read-more-trigger-horizontal sp-link-color hide" data-ng-if="list.taskData.description.length>150"></label>
+                            <ul class="panel-tools posRelative clearfix">
+                                <li data-ng-repeat="actionData in list.taskData.actionData track by $index" class="clearfix" id="actId_{{actionData.uid}}">
+                                    <section class="singleVideo">
+                                        <article class="link-action clearfix">
+                                            <div>
+                                                <a href="javascript:void(0)" data-ng-click="actionCtrl.previewMedia(actionData.type,actionData.url,actionList.title,actionList.uid)" class="border-link">
+                                                    <span class="media-icon icon-icon_{{actionData.type | lowercase}} sp-icon-color"></span>
+                                                    <span class="media-link mock-link" data-ng-bind="actionData.linkText"></span></a>
+                                            </div>
+                                        </article>
+                                    </section>
+                                </li>
+                                <li class="clearfix" data-ng-if="list.taskData.permissions.Note">
+                                    <section class="singleVideo">
+                                        <article class="link-action clearfix">
+                                            <div class="marg5">
+                                                <a href="javascript:void(0)" class="border-link" notes-options url-src="notes/notes-options.html" styles="notes-sub-options" notes-callback="ctrl.setContentReference(actionList,'orgPlanTasks')">
+                                                    <span class="media-icon icon-icon_editnote sp-icon-color"></span>
+                                                    <span class="media-link mock-link" data-ng-bind="::pullInterNationalization('practiceArea.postNote')"></span></a>
+                                            </div>
+                                        </article>
+                                    </section>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="task-confirm-box-wrap animation_1" data-ng-if="actionCtrl.showConfirmBox">
+                            <p data-ng-bind="pullInterNationalization('learningProg.confirmHead')"></p>
+                            <p class="fsmall" data-ng-bind="pullInterNationalization('learningProg.confirmDesc')"></p>
+                            <div class="task-box-btns">
+                                <a href="javascript:void(0)" data-ng-bind="pullInterNationalization('manageAccountContent.yes')" class="btn-square-12px sp-background-color" data-ng-click="actionCtrl.markCompletion(actionCtrl.taskList[actionCtrl.currentActionIndex].taskData.uid, actionCtrl.taskList[actionCtrl.currentActionIndex].stepId); $parent.actionCtrl.showConfirmBox=false"></a>
+                                <a href="javascript:void(0)" data-ng-bind="pullInterNationalization('manageAccountContent.no')" class="btn-square-12px btn-darker-grey" data-ng-click="$parent.actionCtrl.showConfirmBox=false"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="private-notes-list notify-section org-section section-3">
+                        <p class="note-list-dt" data-ng-class="{'invisible': list.actionList[0].dueBy ===null,'past-due':list.actionList[0].dueBy === 'Past Due'}">
+                            <span class="clock-display" data-ng-if="list.actionList[0].dueBy !==null" data-ng-bind="list.actionList[0].dueBy"></span>
+                            <span class="clock-display" data-ng-if="list.actionList[0].dueBy ===null" data-ng-bind="::pullInterNationalization('actionPlan.module.feedback.noduedate')"></span>
+                        </p>
+                        <p class="note-list-header sp-link-color org-name">
+                            <a href="javascript:void(0)" data-ng-bind="list.name"></a>
+                        </p>
+                        <span class="remaining-task sp-link-color" data-ng-if="actionCtrl.remainingTaskCount > 0" data-ng-click="actionCtrl.redirectToLP('specific')">+ {{actionCtrl.remainingTaskCount}} {{pullInterNationalization('actionPlan.tasks')}}</span>
+                        <span class="view-all sp-link-color" data-ng-click="actionCtrl.redirectToLP('all')" data-ng-bind="::pullInterNationalization('feedback.filters.status.viewAll.label')"></span>
+                    </div>
+                </div>
+                <!-- Feedback -->
+                <!-- Todo Tasks -->
+                <div data-ng-if="actionCtrl.taskType === 'TODO'">
+                    <div class="notes-header">
+                        <div class="todo-input">
+                            <p>
+                                <input type="text" data-ng-model="actionCtrl.newTodoEntry" data-ng-enter="actionCtrl.saveTodo();" placeholder="{{::pullInterNationalization('actionPlan.module.todo.form.placeholder')}}" />
+                            </p>
+                            <a href="javascript:void(0)" class="add-todo-btn btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('actionPlan.module.todo.actions.add')" data-ng-click="actionCtrl.saveTodo();"></a>
+                        </div>
+                        <span class="err-msg validate-error" data-ng-if="actionCtrl.inputRequired" data-ng-bind="::pullInterNationalization('practiceArea.required.error')"></span>
+                    </div>
+                    <!-- Incomplete Task Listing -->
+                    <div data-ng-class="$index === 0?'todo-first-entry':''" class="notes-header todo-entry" data-ng-repeat="incompleteList in actionCtrl.todoObj.incompleteTasks track by $index">
+                        <div class="todo-input">
+                            <p class="full-width">
+                                <input type="text" class="notes-ta sp-link-color todo-task-entry" id="list_{{$index}}" data-ng-model="incompleteList.text" />
+                            </p>
+                        </div>
+                        <ul class="top-filters align-left">
+                            <li>
+                                <input type="checkbox" name="includeRefCheck" id="incomplete_{{$index}}" class="iCheckBox" data-ng-click="actionCtrl.markTodo(incompleteList)" />
+                                <label for="incomplete_{{$index}}" class="lCheckBox">
+                                    <span class="checkedTick icon-checkmark_fat sp-icon-color"></span>
+                                    <span class="lCheckBoxText sp-icon-color" data-ng-bind="::pullInterNationalization('actionPlan.module.todo.actions.markComplete')"></span>
+                                </label>
+                                <span class="deleteLink sp-icon-color" data-ng-click="actionCtrl.deleteModal({'refId':incompleteList.refId,'completed':false})" data-ng-bind="::pullInterNationalization('actionPlan.module.todo.actions.delete')"></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Completed Task Listing -->
+                    <div data-ng-class="$index === 0 && !actionCtrl.todoObj.incompleteTasks.length?'todo-first-entry':''" class="notes-header todo-entry" data-ng-repeat="completedList in actionCtrl.todoObj.completedTasks">
+                        <div class="todo-input">
+                            <p class="full-width">
+                                <input type="text" class="notes-ta completed" id="list_{{$index}}" data-ng-model="completedList.text" readonly/>
+                            </p>
+                        </div>
+                        <ul class="top-filters align-left">
+                            <li>
+                                <input type="checkbox" name="includeRefCheck" id="completed_{{$index}}" class="iCheckBox" checked data-ng-click="actionCtrl.markTodo(completedList)" />
+                                <label for="completed_{{$index}}" class="lCheckBox">
+                                    <span class="checkedTick icon-checkmark_fat sp-icon-color"></span>
+                                    <span class="lCheckBoxText sp-icon-color" data-ng-bind="::pullInterNationalization('actionPlan.module.todo.actions.markInComplete')"></span>
+                                </label>
+                                <span class="deleteLink sp-icon-color" data-ng-click="actionCtrl.deleteModal({'refId':completedList.refId,'completed':true})" data-ng-bind="::pullInterNationalization('actionPlan.module.todo.actions.delete')"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

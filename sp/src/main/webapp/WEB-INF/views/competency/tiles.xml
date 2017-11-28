@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+  <definition name="competencyDetailsHome" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/competency/competencies-home.html" />
+			<put-attribute name="styles" value="resources/css/css-min/competencies.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/competenciesController.min.js" />
+	    	<add-attribute value="resources/js/rangeslider.min.js" />
+	    </put-list-attribute>
+	</definition>
+	
+	 <definition name="competencyEvaluation" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/resources/html/competency/competency-evaluation.html" />
+			<put-attribute name="styles" value="resources/css/css-min/competencies.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/competencyManager.min.js" />
+	    	<add-attribute value="resources/js/rangeslider.min.js" />
+	    </put-list-attribute>
+	</definition>
+
+  <definition name="competencyManagerResult" extends="dashboardAngular-noroute">
+    <put-attribute name="content"
+      value="/resources/html/admin/competency/competency-manager-view.html" />
+    <put-attribute name="styles"
+      value="resources/css/css-min/competencies-new.min.css" cascade="true" />
+    <put-list-attribute name="javascripts">
+      <add-attribute value="resources/js-min/competencyManager.min.js" />
+      <add-attribute value="resources/js/rangeslider.min.js" />
+    </put-list-attribute>
+  </definition>
+	
+	<definition name="initiateEvaluationModal" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/competency/initiate-evaluation.html" />
+	</definition>
+	
+	<definition name="ratingModal" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/competency/rating.html" />
+	</definition>
+	
+	<definition name="evaluationDetailsModal" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/competency/evaluation-details.html" />
+	</definition>
+	
+	<definition name="sendReminderModal" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/competency/send-reminder-modal.html" />
+	</definition>	
+	
+</tiles-definitions>

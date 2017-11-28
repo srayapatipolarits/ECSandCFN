@@ -1,0 +1,49 @@
+<div class="contentArea nobrr clearfix">
+    <div class="messageBlock bb0">
+    	<div class="angucomplete-wrapper">
+    		<p class="custom-search-wrapper">
+    			<input type="text" placeholder="{{::notesCtrl.rootScope('dashboard.searchComp')}}" data-ng-model="notesCtrl.pageSetting.competencySearch" class="custom-search" />
+      			<button data-ng-class="{'icon-icon_remove':notesCtrl.pageSetting.competencySearch.length, 'icon-icon_search': !notesCtrl.pageSetting.competencySearch.length}" class="sp-icon-color noLabel" data-ng-click="notesCtrl.pageSetting.competencySearch=''"></button>
+      		</p>
+    	</div>
+    	<div class="totalRecord">
+	      	<span data-ng-if="notesCtrl.clonePostMessageObject.competencyIds.length">
+	      		<span class="number" data-ng-bind="notesCtrl.clonePostMessageObject.competencyIds.length"></span><span class="text" data-ng-bind="::notesCtrl.rootScope('dashboard.recordCompetency')"></span> <span class="text" data-ng-bind="::notesCtrl.rootScope('manageAccountContent.recordSelected')"></span>
+	      	</span>
+	  	</div>
+    </div>
+    
+    <div class="messageBlock" style="padding-top:0;margin-bottom:15px">
+        <div class="selected-group-List-wrapper pad0">
+            <div class="group-row" data-ng-repeat="list in recordField = (notesCtrl.allCompetency | filter : notesCtrl.pageSetting.competencySearch) track by list.id">
+            	<div class="group-col w80 lang-change">
+           <div class="member-details-pic-wrapper">
+                <div class="mem-details-info m0">
+                     <p class="memNameOne">
+                     	<span class="sp-link-color" data-ng-bind="::list.name"></span> 
+                     </p>
+                 </div>
+           </div>                                    	
+            	</div>
+            	<div class="group-col-custom lang-change">
+            		<p data-ng-if="notesCtrl.clonePostMessageObject.competencyIds.indexOf(list.id) === -1">
+            			<a href="javascript:void(0)" class="btn-square-12px sp-background-color fixedWidth" data-ng-click="notesCtrl.includeCheck(list.id,'competencyIds')" data-ng-bind="::notesCtrl.rootScope('manageAccountContent.select')"></a>
+            		</p>
+            		<p class="added-msg-btn" data-ng-if="notesCtrl.clonePostMessageObject.competencyIds.indexOf(list.id) !== -1">
+            			<a href="javascript:void(0)" class="btn-square-12px fixedWidth" data-ng-click="notesCtrl.includeCheck(list.id,'competencyIds')" data-ng-bind="::notesCtrl.rootScope('manageAccountContent.selected')"></a>
+            		</p>                                    		
+            	</div>
+            </div>
+            <div class="custom-row-5 col-container" data-ng-if="!recordField.length">
+	                   <div class="custom-new-cols s100">
+	                      <p class="no-data-msgs" data-ng-bind="::notesCtrl.rootScope('manageAccountContent.noGroupAvailable')"></p>
+	                  </div>
+	           </div>
+        </div>                            
+    </div>
+     <div class="btns-wrapper-popup">
+  		   <input type="button" value="{{::notesCtrl.rootScope('manageAccountContent.done')}}" class="btn-block btn-14px sp-btn-color" class="btn-block btn-14px sp-btn-color" data-ng-click="notesCtrl.saveCustomize();">
+           <input type="button" value="{{::notesCtrl.rootScope('manageAccountContent.cancel')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="notesCtrl.closeMortal()">
+    </div>
+</div>
+                     

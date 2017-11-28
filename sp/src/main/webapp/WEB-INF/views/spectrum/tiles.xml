@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="printCharts" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/spectrum/spectrum.html" />
+		<put-attribute name="styles" value="resources/css/css-min/spectrum.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js/_d3-charts/d3/d3.min.js" />
+	    	<add-attribute value="resources/js-min/prismCharts.min.js" />
+	    	<add-attribute value="resources/js/dragdealer.js" />
+	    	<add-attribute value="resources/js/date-range-picker/date-range-picker.min.js" />
+	    	<add-attribute value="resources/js-min/sp-spectrum.min.js" />
+	    </put-list-attribute>
+	</definition>
+</tiles-definitions>

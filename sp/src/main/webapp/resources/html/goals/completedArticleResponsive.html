@@ -1,0 +1,29 @@
+<div class="lnd-content-dialog">
+    <div class="x-container" style="height:{{ctrl.winHeight}}">
+        <div class="completed-article">
+            <div class="dialog-header-closeBtn">
+                <h2 class="dialog-heading" data-ng-bind="::pullInterNationalization('practice.carticle')"></h2>
+                <div class="ngdialog-close close-btn-icon icon-icon_remove"></div>
+            </div>
+            <div class="pa-details pa-extra-spacing">
+                <div class="copy-suggestion"><span data-ng-bind="::pullInterNationalization('practiceArea.copyDetailCompletedArticle')"></span></div>
+                <hr class="dark-border" />
+                <ul class="training-materials-list db-materials-list">
+                    <li data-ng-class="{'media-audio':articles.articleType=='PODCAST','media-slideshare':articles.articleType=='SLIDESHARE','media-video':articles.articleType=='VIDEO','media-text':articles.articleType=='TEXT'}" data-ng-repeat="articles in recordField = (ctrl.goalsCompleted) track by $index">
+                        <h3>
+							<a data-ng-href="/sp/trainingLibrary/article?{{articles.url}}" class="border-link" id="event_type_{{articles.articleType}}_{{$index}}">
+								<span class="mock-link" data-ng-bind="::articles.anchorLabel"></span>
+							</a>
+						</h3>
+                        <span class='task-completed' data-ng-bind="::pullInterNationalization('goals.recent.completed')" title="{{::pullInterNationalization('practiceArea.completed')}}"></span>
+                        <p class="training-tool-info" data-ng-if="articles.authors.length">
+                            <span class="author" data-ng-bind="pullInterNationalization('practice.by')+' '+articles.authors[0]"></span>
+                        </p>
+                    </li>
+                </ul>
+                <div class="noMessageFound" data-ng-if="!recordField.length && ctrl.goalsCompleted.length" data-ng-bind="::pullInterNationalization('practiceArea.empty.completed')"></div>
+                <div class="noMessageFound" data-ng-if="!recordField.length && !ctrl.goalsCompleted.length" data-ng-bind="::pullInterNationalization('practiceArea.loading')"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+<div class="custom-overlay-wrapper posRel" data-ng-init="ctrl.initAddMembers()" style="min-height:{{ctrl.overlayDim.height}}px">
+    <a href="javascript:void(0)" class="close-custom-overlay icon-icon_remove sp-icon-color" data-ng-click="ctrl.closeAddMemberScreen()"></a>
+    <div class="members-content-wrapper">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('manageAccountContent.addMembers')"></h2>
+            <p class="full-desc f14w300lh18" data-ng-bind="::pullInterNationalization('manageAccountContent.addMembers.description')"></p>
+        </div>
+        <div class="subscriptions-information">
+            <h3 class="countLeft">
+            	<span class="weight-700 available_{{!!ctrl.subscriptionCount}}"><span data-ng-bind="ctrl.subscriptionCount+' '+pullInterNationalization('candidates.addCandidates.prismportrait')"></span><span data-ng-if="ctrl.subscriptionCount>1" data-ng-bind="pullInterNationalization('candidates.addCandidates.s')"></span></span> <span data-ng-bind="::pullInterNationalization('candidates.invitation')"></span>
+           		<a class="border-link ipadRequest" data-ng-if="ctrl.isAccountAdmin" data-ng-click="ctrl.requestForAccounts('members')" href="javascript:void(0)">
+           		 	<span class="mock-link" data-ng-bind="::pullInterNationalization('candidates.addCandidates.requestmore')+'.'"></span>
+           		</a>
+            </h3>
+        </div>
+        <form name="ctrl.addMultipleMembers" novalidate class="form-styles-override add-new-candidate-form manage-account mx100" data-ng-submit="ctrl.addNewMembers()" autocomplete="off">
+            <ol class="form-list-c">
+            	<li class="allTags emailTags">
+            		 <div class="heading-select mx560">
+            		 	<div class="stepHeading"><span class="weight-700" data-ng-bind="::pullInterNationalization('candidates.addCandidates.step1')"></span> <span data-ng-bind="::pullInterNationalization('manageAccountContent.addMember.step1Detail')"></span> <span data-ng-show="ctrl.csvFile!==null" class="ng-hide" data-ng-bind="::pullInterNationalization('manageAccountContent.addMember.step1Detaillink')"></span><span class="file-btn" data-ng-show="ctrl.csvFile===null" class="ng-hide" data-ng-init="ctrl.attachEvent()"><label for="mediaFormUpload" class="fileUpload file-anchor sp-icon-color" data-ng-bind="::pullInterNationalization('manageAccountContent.addMember.step1Detaillink')"></label><input id="mediaFormUpload" type="file" accept=".csv"/></span></div>
+            		 	<div class="buttonHeading group-add-btn">
+            		 		<div data-ng-if="ctrl.csvFile===null">
+	            		 		<a data-ng-href="/resources/csv/SurePeople_add_member-sample.csv" download target="_blank" class="border-link font-14">
+	            		 			<span class="icon-download adjustIcon"></span>
+	            		 			<span class="mock-link" data-ng-bind="::pullInterNationalization('candidates.addCandidates.samplecsv')"></span>
+	            		 		</a>
+            		 		</div>
+            		 	</div>
+            		 </div>
+            		 <!-- data-ng-style="{ 'width': ctrl.uploadWidth + 'px' }" -->
+            		 <div class="heading-select mx100">
+            		 	<div class="stepHeading" data-ng-if="ctrl.csvFile.users.length"><span data-ng-bind="::pullInterNationalization('manageAccountContent.addMembers.found')"></span> <a class="weight-700 border-link" href="javascript:void(0)" data-ng-click="ctrl.filterEnabledRecord()"><span class="mock-link sp-link-color" data-ng-bind="ctrl.csvFile.users.length+' '+pullInterNationalization('manageAccountContent.addMembers.records')"></span></a> <span data-ng-bind="::pullInterNationalization('manageAccountContent.addMembers.with')"></span> <span class="weight-700"><a href="javascript:void(0)" class="border-link mock-red default_{{ctrl.successUpload.length}}" data-ng-click="ctrl.successUpload.length && ctrl.filterEnableUpload()"><span class="mock-link" data-ng-bind="(ctrl.successUpload.length||0)+' '+pullInterNationalization('manageAccountContent.addMembers.conflicts')"></span></a></span> <span data-ng-bind="::pullInterNationalization('manageAccountContent.addMembers.resolveconflicts')"></span></div>
+            		 	<div data-ng-show="ctrl.csvFile!==null" class="ng-hide pull-right">
+            		 		<a href="javascript:void(0)" class="mock-black font-12 weight-300 border-link" data-ng-click="ctrl.resetMediaForm()" class="border-link font-14 weight-300">
+            		 			<span class="mock-link sp-link-color"  data-ng-bind="::pullInterNationalization('tools.hiring.compare.link3')"></span>
+            		 		</a>
+            		 	</div>
+            		 </div>
+            		 <div class="tagsEmailInput brdr0 tagsTextarea mx560" data-ng-if="ctrl.csvFile===null">
+            		 	<tags-input data-ng-model="ctrl.candidateEmails" add-on-paste="true" template-input="ngTagsInput/tags-textarea.html" display-property="name" max-tags="{{ctrl.subscriptionCount}}" min-tags="1" add-on-paste="true"  placeholder="{{::pullInterNationalization('admin.member.add.multiple.memberList')}}" display-name="email" allowed-tags-pattern="^[A-Za-z0-9._-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$" replace-spaces-with-dashes="false" on-tag-removed="ctrl.tagRemoved($tag,'email')" on-tag-added="ctrl.tagAdded($tag,'email')"></tags-input>
+            		 	</div>
+            		 	<div class="tagsEmailInput brdr0 tagsTextarea" data-ng-if="ctrl.csvFile">
+            		 	<!-- data-ng-style="{ 'width': ctrl.uploadWidth + 'px' }" -->
+            		 	<div class="csv-container clearfix">
+                     		<div class="csv-header clearfix">
+                     			<div class="custom-new-cols s30 m30 csv-title" data-ng-bind="::pullInterNationalization('tools.hiring.profile.details.email')"></div>
+                     			<div class="custom-new-cols s15 csv-title" data-ng-bind="::pullInterNationalization('tools.hiring.profile.details.FirstN')"></div>
+                     			<div class="custom-new-cols s15 csv-title" data-ng-bind="::pullInterNationalization('tools.hiring.profile.details.LastN')"></div>
+                     			<div class="custom-new-cols s15 csv-title" data-ng-bind="::pullInterNationalization('tools.hiring.profile.details.Title')"></div>
+                     			<div class="custom-new-cols s20 m15"></div>
+                     			<div class="custom-new-cols s5 m10"></div>
+                     		</div>
+                     		<div class="csv-body clearfix">
+                     		<!-- data-ng-style="{ 'width': ctrl.uploadWidth + 'px' }" -->
+                     			<div class="csv-scroll-bar clearfix">
+	                        		<div class="csv-content" id="{{csv.id}}" data-ng-repeat="csv in recordField = (ctrl.csvFile.users | filter:{'validUser':ctrl.validUserFilter}) track by $index">
+		                     			<div class="custom-new-cols s30 m30 csv-text">
+		                     				<textarea class="editable-text" data-ng-model="csv.email"></textarea>
+		                     			</div>
+		                     			<div class="custom-new-cols s15 csv-text" data-ng-bind="csv.firstName"></div>
+		                     			<div class="custom-new-cols s15 csv-text" data-ng-bind="csv.lastName"></div>
+		                     			<div class="custom-new-cols s15 csv-text" data-ng-bind="csv.title"></div>
+		                     			<div class="custom-new-cols s20 m15 csv-text">
+		                     				 <span data-ng-if="!csv.validUser" class="err-msg"><span class="icon">!</span> <span class="err-text" data-ng-bind="csv.message"></span></span>
+		                     			</div>
+		                     			<div class="custom-new-cols s5 m10" data-ng-if="ctrl.csvFile.users.length>1">
+		                     				<a href="javascript:void(0)" class="csv-cross icon-icon_remove sp-icon-color" data-ng-click="ctrl.removeName(csv.id)"></a>
+		                     			</div>
+		                     		</div>
+		                     		<div class="col-md-12 csv-content" data-ng-if="!recordField.length">
+		          						<div class="csv-text" data-ng-bind="::pullInterNationalization('manageAccountContent.noMatchesFound')"></div>
+		                     		</div>
+	                     		</div>
+                     		</div>
+                     	</div>
+                     </div>
+                     <span class="validate-error" data-ng-if="ctrl.emailErrors.required" data-ng-bind="::pullInterNationalization('admin.member.add.multiple.error.required')"></span>
+                     <span class="validate-error" data-ng-if="ctrl.emailErrors.isExisting" data-ng-bind="::pullInterNationalization('admin.member.add.multiple.error.existingemail')"></span>
+                     <span class="validate-error" data-ng-if="ctrl.emailErrors.countExceed" data-ng-bind="::pullInterNationalization('admin.member.add.multiple.error.emailexceed')"></span>
+                </li>
+                <li class="mTop45 tagsEmailInput brdr0 mx560">
+                    <label for="tagList" data-ng-bind="pullInterNationalization('admin.member.add.multiple.tags')" class="hide"></label>
+                    <tags-input min-length="1" data-type="tags" data-ng-model="ctrl.memberTags" replace-spaces-with-dashes="false" placeholder="{{::pullInterNationalization('mediaManager.upload.placeholder3')}}" on-tag-removed="ctrl.tagRemoved($tag,'tag')" on-tag-added="ctrl.tagAdded($tag,'tag')"></tags-input> 
+                </li>
+                <li class="mTop45 tagsEmailInput brdr0 mx560">
+                	<div class="stepHeading"><span class="weight-700" data-ng-bind="::pullInterNationalization('manageAccountContent.addMember.step2')"></span> <span data-ng-bind="::pullInterNationalization('manageAccountContent.addMember.step2Detail')"></span></div>
+                    <tags-input min-length="1" data-ng-model="ctrl.selectedGroupsList" replace-spaces-with-dashes="false" placeholder="{{::pullInterNationalization('dashboard.selectGroup')}}" on-tag-removed="ctrl.groupRemove($tag)" on-tag-added="ctrl.groupSelect($tag)" display-property="name" display-name="name" add-from-autocomplete-only="true">
+                        <auto-complete min-length="1" load-on-focus="false" debounce-delay="500" load-on-empty="false" max-results-to-show="5" source="ctrl.loadGroups($query)" class="ng-tags-pos-fix"></auto-complete>
+                    </tags-input>                
+                </li>
+                <!-- Form Button Starts -->
+                <li class="submit-cancel-btns mx560">
+                    <ul class="submit-cancel-list">
+                        <li>
+                            <input type="submit" value="{{::pullInterNationalization('admin.member.submit')}}" class="btn-block btn-15px sp-btn-color" />
+                        </li>
+                        <li>
+                            <input type="button" value="{{::pullInterNationalization('admin.member.cancel')}}" class="btn-block btn-grey-dark btn-15px" data-ng-click="ctrl.closeAddMemberScreen()" />
+                        </li>
+                    </ul>
+                </li>
+                <!-- Form Button Ends -->
+            </ol>
+        </form>
+    </div>
+</div>

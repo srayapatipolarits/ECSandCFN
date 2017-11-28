@@ -1,0 +1,87 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-offset-1 col-sm-9 col-md-offset-2 col-md-7">
+            <div>
+                <section class="wrapper">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar" data-ng-bind="pullInterNationalization('upload.user.image.title')"></div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                            </div>
+                        </div>
+                        <div class="contentArea">
+                            <div class="clearfix">
+
+                                <div class="uploader">
+
+                                    <div class="x-container">
+                                        <!-- Extended Container -->
+                                        <div class="container">
+                                            <!-- Bootstrap Container -->
+                                            <div class="row">
+                                                <!-- Bootstrap Row -->
+                                                <div class="col-md-12">
+
+                                                    <div class="profile-image-tool" profile-pic-uploader>
+                                                        <form class="pic-uploader">
+                                                            <div class="image-editor">
+                                                                <div class="select-image">
+                                                                    <a href="#" class="btn-block select-image-btn btn-14px sp-btn-color">{{::pullInterNationalization('spectrum.select')}}</a>
+                                                                    <input id="pick_image" type="file" class="cropit-image-input">
+                                                                    <input type="hidden" name="image-data" class="hidden-image-data" />
+                                                                </div>
+
+                                                                <div class="avatar-upload">
+                                                                    <div class="cropit-image-preview-container">
+                                                                        <div class="cropit-image-preview"></div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <ol class="upload-list">
+                                                                    <li class="scale-bar">
+                                                                        <input type="range" class="cropit-image-zoom-input">
+                                                                    </li>
+
+                                                                    <li class="actions">
+                                                                        <ul class="action-list">
+                                                                            <li class="submit-reset">
+                                                                                <input class="btn-block btn-14px process-pic sp-btn-color" ng-class="enableBtns?'':'disabled'" type="submit" value="{{::pullInterNationalization('mediaManager.action.upload')}}" />
+                                                                            </li>
+                                                                            <li><a href="#" class="btn-block reset-image btn-14px btn-grey-dark sp-btn-color" ng-class="enableBtns?'':'disabled'" >{{::pullInterNationalization('admin.member.reset')}}</a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </ol>
+                                                            </div>
+                                                            <!-- //.image-editor -->
+                                                            <ol class="editor-instructions">
+                                                                <li>
+                                                                    <h3 class="sp-header-title-color">{{::pullInterNationalization('sysadmin.organization.steps')}} 1</h3>
+                                                                    <p data-ng-bind="pullInterNationalization('upload.step1.instructions')"></p>
+                                                                </li>
+                                                                <li>
+                                                                    <h3 class="sp-header-title-color">{{::pullInterNationalization('sysadmin.organization.steps')}} 2</h3>
+                                                                    <p data-ng-bind="pullInterNationalization('upload.step2.instructions')"></p>
+                                                                </li>
+                                                                <li>
+                                                                    <h3 class="sp-header-title-color">{{::pullInterNationalization('sysadmin.organization.steps')}} 3</h3>
+                                                                    <p data-ng-bind="pullInterNationalization('upload.step3.instructions')"></p>
+                                                                </li>
+                                                            </ol>
+                                                        </form>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

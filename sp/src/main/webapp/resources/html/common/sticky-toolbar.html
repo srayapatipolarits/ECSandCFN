@@ -1,0 +1,32 @@
+<section class="sticky-bottom" data-ng-if="inviteReady">
+    <tutorial-widget parent-page="sticky" class="sticky-tutorial" data-ng-if="showStickyFooter && showStickyTutorial" data-ng-click="handleStickyTabs('tutorial','fadeTutorial')"></tutorial-widget>
+    <div class="cta sticky-toolbar sp-background-color" data-ng-show="showStickyFooter && !showFeedbackOverlay && !showMediaManager && !showImageModal">
+        <div class="footer-icons-wrap">
+            <ul>
+                <li class="rBorder" data-ng-class="{'selected':selectedNotesTab === 'action'}" data-ng-click="handleStickyTabs('action')" title="{{::pullInterNationalization('sticky.iconPlan')}}">
+                    <span class="mIcons icon-icon_actionplan icon-color" data-ng-if="taskCount===0"></span>
+                    <span class="unread-counter sp-link-color" data-ng-bind-html="taskCount" data-ng-if="taskCount!==0"></span>
+                </li>
+                <li class="rBorder" data-ng-class="{'selected':selectedNotesTab === 'private'}" data-ng-click="handleStickyTabs('private')" title="{{::pullInterNationalization('sticky.iconNote')}}">
+                    <span class="mIcons iNote icon-icon_editnote icon-color"></span>
+                </li>
+                <li class="rBorder" data-ng-class="{'selected':selectedNotesTab === 'gd'}" data-ng-click="handleStickyTabs('gd')" title="{{::pullInterNationalization('sticky.iconChat')}}">
+                    <span class="mIcons icon-icon_feedback groups-icon" data-ng-if="unreadCount===0"></span>
+                    <div class="infinite-fade-container" data-ng-if="unreadCount!==0">
+                    	<div class="shadow">
+                    		<div class="face">
+	                    	 	<span class="mIcons icon-icon_feedback groups-icon"></span>
+	                    	 </div>
+	                    	 <div class="face fademe">
+	                    	 	<span class="unread-counter sp-link-color" data-ng-bind-html="unreadCount"></span>
+	                    	 </div>
+                    	</div>
+                    </div>
+                </li>
+                <li data-ng-class="{'selected':selectedNotesTab === 'profile' || selectedNotesTab === 'support' || selectedNotesTab === 'tutorial'|| selectedNotesTab === 'bookmark'}" notes-options url-src="common/sticky-submenu.html" styles="sticky-sub-options" notes-callback="setTutorialObject()" title="{{::pullInterNationalization('sticky.iconSettings')}}">
+                    <span class="mIcons icon-icon_accounts_settings link-icons icon-color"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>

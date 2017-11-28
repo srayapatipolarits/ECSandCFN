@@ -1,0 +1,205 @@
+<div class="learning-development hide competencies"  data-ng-controller="competenciesController as ctrl" ng-if="inviteReady && profileReady" ng-class="inviteReady?'show':'hide'">
+    <!-- Message Box Starts -->
+    <!--
+    <div class="x-container" data-ng-if="ctrl.competencyTask">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="mod-cta-start-task hide" data-ng-class="ctrl.competencyTask?'show':'hide'">
+                        <div class="mod-wrapper">
+                            <div class="mod-btn-wrapper offMob">
+                                <h2 class="btn-block btn-18px sp-btn-color competency-task-font" data-ng-click="ctrl.handleCompetencyAction(ctrl.competencyTask.type)" data-ng-bind="ctrl.competencyTask.title"></h2>
+                            </div>
+                            <div class="start-pulse-lede clear-float">
+                                <p data-ng-bind="ctrl.competencyTask.description"></p>
+                            </div>
+                            <div class="mod-btn-wrapper onMob">
+                                <h2 class="btn-block btn-18px sp-btn-color competency-task-font" data-ng-click="ctrl.handleCompetencyAction(ctrl.competencyTask.type)" data-ng-bind="ctrl.competencyTask.title"></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    -->
+    <!-- Message Box Ends -->
+    <!-- Competencies Home New Header Starts -->
+    <div class="x-container" data-ng-if="!ctrl.competencyDefaultView && ctrl.responseAvailable">
+        <div class="container">
+            <div class="header-info-container">
+                <div class="header-info-content">
+                    <div class="header-icon-wrap">
+                        <p class="hinfo-wrap">
+                            <span class="hinfo-icons icon-icon_spectrum_competency sp-icon-color"></span>
+                        </p>
+                    </div>
+                    <div class="header-content-wrap">
+                        <h2 class="hinfo-wrap">
+                            <span class="info-txt ml0 mb8 mt6" data-ng-bind-html="::pullInterNationalization('competency.users.title')"></span>
+                        </h2>
+                        <p class="header-info-def" data-ng-bind-html="ctrl.competencyProfileDetails.description | secureHtml"></p>
+                        <ul class="iconLinks-wrap floats" data-ng-if="ctrl.competencyProfileDetails.mediaList.length">
+                            <li data-ng-repeat="cLinks in ctrl.competencyProfileDetails.mediaList" data-ng-if="cLinks.url">
+                                <a href="{{cLinks.url}}" class="icoLinksList" data-ng-if="cLinks.type!='Video'" target="_blank"> <span class="listIcon" data-ng-class="{'icon-icon_video':cLinks.type=='VideoTab','icon-icon_slideshow':cLinks.type=='PPT','icon-icon_pdf':cLinks.type=='PDF','icon-icon_web':cLinks.type=='Web'}"></span> <span class="iconDesc" data-ng-bind="::cLinks.linkText"></span></a>
+                                <a href="javascript:void(0)" class="icoLinksList" data-ng-if="cLinks.type=='Video'" data-ng-click="ctrl.videoPopUp(cLinks.url, 'Description')"> <span class="listIcon" data-ng-class="{'icon-icon_video':cLinks.type=='Video'}"></span> <span class="iconDesc" data-ng-bind="::cLinks.linkText"></span></a>
+                            </li>
+                        </ul>
+                        <a href="javascript:void(0)" data-ng-click="ctrl.viewRatingsHistory()" class="user-history-ratings-link" data-ng-bind-html="::pullInterNationalization('competency.user.selfRatings')"></a>
+                    </div>
+                </div>
+                <div class="generic-info-msgs mAdj p20" data-ng-if="ctrl.competencyTask">
+                    <div class="generic-btn-box-wrap">
+                        <div class="generic-btn-wrap">
+                            <p>
+                                <a href="javascript:void(0)" class="btn-block btn-18px sp-btn-color" data-ng-click="ctrl.handleCompetencyAction(ctrl.competencyTask.type)" data-ng-bind="ctrl.competencyTask.title"></a>
+                            </p>
+                        </div>
+                        <div class="generic-box-cont-wrap">
+                            <p data-ng-bind="ctrl.competencyTask.description"></p>
+                            <a href="javascript:void(0)" class="btn-block btn-14px sp-btn-color mobile-eval-btn" data-ng-click="ctrl.handleCompetencyAction(ctrl.competencyTask.type)" data-ng-bind="ctrl.competencyTask.title"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Competencies Home New Header Ends -->
+    <!-- Competencies Content Ends -->
+    <div class="x-container" data-ng-if="!ctrl.competencyDefaultView && ctrl.responseAvailable">
+        <div class="container">
+            <div class="table-flex-cols">
+                <!-- Full Box Starts -->
+                <!--div class="lnd-full-sec sp-panel-accent">
+                        <div class="fDesc" data-ng-class="{'fw100':!ctrl.competencyProfileDetails.mediaList.length}">
+                            <h2 class="sp-header-title-color" data-ng-bind="pullInterNationalization('competency.users.title')"></h2>
+                            <p class="competency-profile-desc" data-ng-bind-html="ctrl.competencyProfileDetails.description | secureHtml"></p>
+                        </div>
+                        <div class="fActions" data-ng-if="ctrl.competencyProfileDetails.mediaList.length">
+                            <p data-ng-repeat="cLinks in ctrl.competencyProfileDetails.mediaList" data-ng-class="ctrl.competencyProfileDetails.mediaList.length===1?'ptopCenter':''">
+                                <a href="{{cLinks.url}}" class="border-link" data-ng-if="cLinks.type!='Video'" target="_blank"> <span data-ng-class="{'icon-icon_video':cLinks.type=='VideoTab','icon-icon_slideshow':cLinks.type=='PPT','icon-icon_pdf':cLinks.type=='PDF','icon-icon_web':cLinks.type=='Web'}"></span> <span class="mock-link" data-ng-bind="cLinks.linkText"></span></a>
+                                <a href="javascript:void(0)" class="border-link" data-ng-if="cLinks.type=='Video'" data-ng-click="ctrl.videoPopUp(cLinks.url, 'Description')"> <span data-ng-class="{'icon-icon_video':cLinks.type=='Video'}"></span> <span class="mock-link" data-ng-bind="cLinks.linkText"></span></a>
+                            </p>
+                        </div>
+                    </div-->
+                <!-- Full Box Ends -->
+                <!-- Left Box Starts -->
+                <div class="lnd-left-sec" data-ng-class="ctrl.showRightCol?'hide':''" data-ng-if="!ctrl.ratingsHistoryView">
+                    <!-- Box Starts -->
+                    <div class="lnd-left-box sp-panel-accent">
+                        <h2 class="new-hStyle" data-ng-bind="ctrl.competencyProfileDetails.name" data-ng-click="ctrl.state()"></h2>
+                        <ul>
+                            <li class="border-link sp-link-color" data-ng-click="ctrl.showCompetencyProfileDetails({'id':goal.id,'name':goal.name})" data-ng-class="ctrl.activeProfile.id===goal.id?'on':''" data-ng-repeat="goal in (ctrl.competencyProfileList) track by goal.id">
+                                <span class="mock-link" data-ng-bind="goal.name"></span>
+                                <span class="lnd-focus-arrow" data-ng-class="ctrl.activeProfile.id===goal.id?'icon-icon_focus-arrow':'hide'"></span>
+                            </li>
+                        </ul>
+                        <!--p class="manage-pas" data-ng-if="noSelf===''">
+                                <span class="link-desc" data-ng-bind="pullInterNationalization('practiceArea.addRemove')"></span>
+                                <a href="/sp/managePracticeAreas" class="border-link">
+                                    <span class="mock-link" data-ng-bind="pullInterNationalization('ctrl.customizeyourplan')"></span>
+                                </a>
+                            </p-->
+                    </div>
+                    <!-- Box Starts 
+                        <div class="lnd-left-box sp-panel-accent mTop" data-ng-if="noSelf===''">
+                            <h2>
+                                <span data-ng-bind="pullInterNationalization('practiceArea.autoLearning')"></span>
+                                <a href="javascript:void(0)" data-ng-click="ctrl.updateAutoLearning()">
+                                    <span class="on-mode hide" data-ng-class="ctrl.autoLearning?'show':'hide'">on <span class="rnd-switch icon-icon_switch-dot sp-icon-color pos-r"></span></span>
+                                    <span class="off-mode show" data-ng-class="!ctrl.autoLearning?'show':'hide'"><span class="rnd-switch icon-icon_switch-dot sp-icon-color pos-l"></span> off</span>
+                                </a>                                
+                            </h2>
+                            <p data-ng-bind="pullInterNationalization('practiceArea.autoLearningdesc')"></p>
+                        </div>
+                        -->
+                    <!-- Box Starts 
+                        <div class="lnd-left-box sp-panel-accent mTop" data-ng-if="noSelf===''">
+                            <h2 data-ng-bind="pullInterNationalization('practiceArea.knowledgeCenter')"></h2>
+                            <p data-ng-bind="pullInterNationalization('practiceArea.knowledgeCenterdesc')"></p>
+                            <p class="link-spacing"><a href="/sp/trainingLibrary" class="border-link"><span class="mock-link" data-ng-bind="pullInterNationalization('ctrl.visitKC')"></span></a></p>
+                        </div>
+                        -->
+                </div>
+                <!-- Left Box Ends -->
+                <!-- Right Box Starts -->
+                <div class="lnd-right-sec" data-ng-class="ctrl.showRightCol?'show':''" data-ng-if="!ctrl.ratingsHistoryView">
+                    <div class="practice-area-detail lnd-right-box sp-panel-accent minH">
+                        <div class="lnd-req-mobile practice-areas-dd">
+                            <a href="javascript:void(0)" data-ng-click="ctrl.showMobileDD=!ctrl.showMobileDD;" data-ng-bind="ctrl.ddSelectedText"></a>
+                            <ul class="hide" data-ng-class="ctrl.showMobileDD?'show':'hide'">
+                                <li class="border-link" data-ng-click="ctrl.showCompetencyProfileDetails({'id':goal.id,'name':goal.name});ctrl.showMobileDD=false;ctrl.ddSelectedText=goal.name" data-ng-repeat="goal in (ctrl.competencyProfileList) track by goal.id" data-ng-if="ctrl.ddSelectedText !==goal.name" data-ng-class="ctrl.activeProfile.id===goal.id?'on':''"><span class="mock-link" data-ng-bind="goal.name"></span></li>
+                                <li class="return-link-mobile border-link return-link" data-ng-click="ctrl.showMobileHomePage()" data-ng-bind="::pullInterNationalization('practiceArea.competencyreturn')"></li>
+                            </ul>
+                        </div>
+                        <div class="title-with-icons">
+                            <h2 data-ng-bind="ctrl.activeProfile.name" class="sp-header-title-color"></h2>
+                            <ul>
+                                <!--<li class="iFeedback icon-icon_feedback sp-icon-color" data-ng-click="ctrl.openFeedbackPanel();" data-ng-if="noSelf===''" title="{{::pullInterNationalization('practiceArea.requestFeedback')}}"></li>-->
+                                <li class="iNote icon-icon_editnote sp-icon-color no-margin-right hide" notes-options url-src="notes/notes-options.html" notes-callback="ctrl.setContentReference(ctrl.activeProfileDetails,'competency')" data-ng-if="noSelf===''" title="{{::pullInterNationalization('practiceArea.postNote')}}"></li>
+                                <li class="iNotification icon-icon_inbox_updated sp-icon-color hide" data-ng-click="ctrl.openState(3,'notification')" title="{{::pullInterNationalization('practiceArea.notesFeedback')}}"></li>
+                            </ul>
+                        </div>
+                        <article class="slide-right clearfix" ui-view></article>
+                    </div>
+                </div>
+                <div class="lnd-right-sec sp-panel-accent" data-ng-if="ctrl.ratingsHistoryView">
+                <!-- User Self Ratings History -->
+	             <ng-include src="'/sp/resources/html/competency/user-ratings-history.html'"></ng-include>
+
+			    </div>
+                <!-- Right Box Ends -->
+            </div>
+        </div>
+    </div>
+    <!-- Competencies Content Ends -->
+    <!-- Competencies Default Page Starts -->
+    <div class="admin-org"  data-ng-if="ctrl.competencyDefaultView && ctrl.responseAvailable">
+        <div class="x-container">
+            <!-- Extended Container -->
+            <div class="container">
+                <!-- Bootstrap Container -->
+                <div class="resumeContainer locatedSubNavRelative padTop30 bgWhiteBord sp-panel-accent">
+                    <!--  When No resume is in database -->
+                    <div class="noResume">
+                        <!-- UpperBody -->
+                        <div class="upperBody clearfix">
+                            <div class="row">
+                                <div class="title col-sm-12 col-md-12 sp-header-title-color" data-ng-bind="::pullInterNationalization('competency.users.title')"></div>
+                                <div class="col-xs-12">
+                                    <div class="description" data-ng-bind="::pullInterNationalization('competency.users.desc')"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  Lower Body -->
+                        <div class="borderSeparator"></div>
+                        <div class="lowerBody clearfix">
+                            <div class="title sp-header-title-color" data-ng-bind="::pullInterNationalization('admin.organization.features')"></div>
+                            <div class="row colArea">
+                                <div class="col-sm-4 col-md-4 gap">
+                                    <div class="title_1" data-ng-bind="::pullInterNationalization('competency.users.default.features.title1')"></div>
+                                    <div class="thumbnail"><img src="/resources/css/images/Resume_1.jpg"></div>
+                                    <div class="desciption" data-ng-bind="::pullInterNationalization('competency.users.default.features.desc1')">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 col-md-4 gap">
+                                    <div class="title_1" data-ng-bind="::pullInterNationalization('competency.users.default.features.title2')"></div>
+                                    <div class="thumbnail"><img src="/resources/css/images/Resume_2.jpg"></div>
+                                    <div class="desciption" data-ng-bind="::pullInterNationalization('competency.users.default.features.desc2')">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 col-md-4 gap">
+                                    <div class="title_1" data-ng-bind="::pullInterNationalization('competency.users.default.features.title3')"></div>
+                                    <div class="thumbnail"><img src="/resources/css/images/Resume_3.jpg"></div>
+                                    <div class="desciption" data-ng-bind="::pullInterNationalization('competency.users.default.features.desc3')">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Competencies Default Page Ends -->
+</div>

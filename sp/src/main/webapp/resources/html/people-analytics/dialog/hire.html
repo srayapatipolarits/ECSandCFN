@@ -1,0 +1,85 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                    <h2 data-ng-bind="::pullInterNationalization('manageHiringContent.hirec')"></h2>
+                </div>
+                <div class="selected-user-obj">
+                    <div class="m-pic">
+                        <img data-ng-src="{{deleteMemberInfo.smallProfileImage}}" alt="{{deleteMemberInfo.userInitials}}" data-ng-if="deleteMemberInfo.smallProfileImage">
+                        <div class="imgReplacement" data-ng-if="!deleteMemberInfo.smallProfileImage" data-ng-bind="deleteMemberInfo.userInitials"></div>
+                    </div>
+                    <div class="m-info1">
+                        <p class="f500" data-ng-bind="deleteMemberInfo.name"></p>
+                        <p class="nm" data-ng-bind="deleteMemberInfo.title"></p>
+                    </div>
+                    <div class="m-info2">
+                        <p data-ng-bind="deleteMemberInfo.email"></p>
+                        <p data-ng-bind="deleteMemberInfo.phoneNumber"></p>
+                    </div>
+                </div>
+                <div class="new-modals-wrapper">
+                    <p class="hire-desc-msg mt30" data-ng-bind="::pullInterNationalization('candidates.hireDesc1')"></p>
+                    <form name="hireCandidateForm" novalidate class="form-styles-override" autocomplete="off">
+                        <ol class="form-list-c">
+                            <li>
+                                <ul class="cols-2">
+                                    <li>
+                                        <label for="firstName" data-ng-bind="::pullInterNationalization('signup.firstName')"></label>
+                                        <input type="text" data-ng-model="addCandidate.hiringValues.firstName" name="firstName" placeholder="{{pullInterNationalization('signup.firstName')}}" data-ng-required="true" data-ng-pattern="/^[a-zA-Z0-9-,' ]+$/" />
+                                        <!-- Error Messages -->
+                                        <span class="validate-error" data-ng-if="hireSubmitted && hireCandidateForm.firstName.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                                        <span class="validate-error" data-ng-if="hireSubmitted && hireCandidateForm.firstName.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+                                    </li>
+                                    <li>
+                                        <label for="lastName" data-ng-bind="::pullInterNationalization('signup.lastName')"></label>
+                                        <input type="text" data-ng-model="addCandidate.hiringValues.lastName" name="lastName" placeholder="{{pullInterNationalization('signup.lastName')}}" data-ng-required="true" data-ng-pattern="/^[a-zA-Z0-9-,' ]+$/" />
+                                        <!-- Error Messages -->
+                                        <span class="validate-error" data-ng-if="hireSubmitted && hireCandidateForm.lastName.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                                        <span class="validate-error" data-ng-if="hireSubmitted && hireCandidateForm.lastName.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <label for="title" data-ng-bind="::pullInterNationalization('signup.Title')"></label>
+                                <input type="text" data-ng-model="addCandidate.hiringValues.title" data-ng-pattern="/^[a-zA-Z0-9-,' ]+$/" name="title" placeholder="{{pullInterNationalization('signup.Title')}}" data-ng-required="true" />
+                                <!-- Error Messages -->
+                                <span class="validate-error" data-ng-if="hireSubmitted && hireCandidateForm.title.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                                <span class="validate-error" data-ng-if="hireSubmitted && hireCandidateForm.title.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+                            </li>
+                            <li>
+                                <label for="email" data-ng-bind="::pullInterNationalization('signup.email')"></label>
+                                <input type="text" data-ng-model="addCandidate.hiringValues.email" name="email" placeholder="{{pullInterNationalization('signup.email')}}" data-ng-required="true" data-ng-pattern="emailRegex"/>
+                                <span class="validate-error" data-ng-if="hireSubmitted && hireCandidateForm.email.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                                <span class="validate-error" data-ng-if="hireSubmitted && hireCandidateForm.email.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+                                <span class="validate-error" data-ng-if="hireSubmitted && existingCandidate" data-ng-bind-html="existingCandidateMessage"></span>
+	                        </li>
+                            <li class="tagsEmailInput brdr0">
+                                <label for="tags" class="l-hide" data-ng-bind="::pullInterNationalization('candidates.addCandidates.step3PlaceOptional')"></label>
+                                <tags-input min-length="1" data-type="tags" data-ng-model="addCandidate.hiringValues.Tags" replace-spaces-with-dashes="false" placeholder="{{::pullInterNationalization('candidates.addCandidates.step3Place')}}" on-tag-removed="tagRemoved($tag,{'obj':'text','store':'tags'})" on-tag-added="tagAdded($tag,{'obj':'text','store':'tags'})">
+			                        <auto-complete min-length="1" load-on-focus="false" debounce-delay="100" load-on-empty="false" max-results-to-show="5" source="loadSource($query,'tagList')" class="ng-tags-pos-fix"></auto-complete>
+			                    </tags-input> 
+                            </li>
+                            <li class="hire-desc-msg mt15" data-ng-bind="::pullInterNationalization('candidates.hireDesc2')">
+                            </li>
+                            <!-- Form Button Starts -->
+                            <li class="submit-cancel-btns">
+                                <ul class="submit-cancel-list">
+                                    <li>
+                                        <input type="button" value="{{::pullInterNationalization('admin.member.submit')}}" class="btn-block btn-15px sp-btn-color" data-ng-click="hireCandidate()"/>
+                                    </li>
+                                    <li>
+                                        <input type="button" value="{{::pullInterNationalization('admin.member.cancel')}}" class="btn-block btn-grey-dark btn-15px" data-ng-click="closeThisDialog();"/>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Form Button Ends -->
+                        </ol>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

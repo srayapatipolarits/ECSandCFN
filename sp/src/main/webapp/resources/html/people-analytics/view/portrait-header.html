@@ -1,0 +1,54 @@
+<div class="learning-development hide" data-ng-if="inviteReady && profileReady" data-ng-class="inviteReady?'show':'hide'">
+    <div class="x-container">
+        <div class="container">
+            <div class="header-info-container page-orgplan" data-ng-if="portraitMatchListing.length && responseAvailable">
+                <section class="features-section">
+                    <header class="fs-header-wrap pbAdj">
+                        <div class="split-cols-wrapper">
+                            <div class="split-col scol1">
+                                <h2 class="hinfo-wrap">
+                                    <span class="hinfo-icons icon-idealPortrait sp-icon-color"></span>
+                                    <span class="info-txt mobAdj" data-ng-bind="::pullInterNationalization('portraitMatch.label')"></span>
+                                </h2>
+                            </div>
+                            <a href="javascript:void(0)" data-ng-if="showRequestFlag" class="btn-square-12px sp-background-color request-portrait" data-ng-click="requestNewPortraitModal()" data-ng-bind="::pullInterNationalization('portrait.requestNew')"></a>
+                            <div class="split-col scol2" data-ng-if="portraitMatchListing.length && activeView === 'portrait-compare'">
+                                <div class="rolesSelectWrapper">
+                                    <span class="mg-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                                    <label class="sp-label-option" for="portraitMatchSelect" data-ng-bind="::pullInterNationalization('learningProg.labelall')"></label>
+                                    <select id="portraitMatchSelect" data-ng-options="portrait.id as portrait.name for portrait in portraitMatchListing" class="form-control rolesSelect" data-ng-model="selectedPortraitId" data-ng-change="comparePortrait(selectedPortraitId)">
+                                        <option value="" data-ng-bind="::pullInterNationalization('portraitMatch.allLabel')"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+                    <div class="fs-content">
+                        <p class="fs-def" data-ng-bind-html="::pullInterNationalization('portraitMatch.desc')"></p>
+                    </div>
+                    
+                </section>
+                <div  ui-view></div>
+            </div>
+            <div class="col-md-offset-0 feedback-response-widget" data-ng-if="!portraitMatchListing.length && responseAvailable">
+            <div class="modal-bg-wrap">
+                <div class="header-info-container page-orgplan">
+                <section class="features-section">
+                    <header class="fs-header-wrap">
+                        <div class="split-cols-wrapper">
+                            <div class="split-col scol1">
+                                <h2 class="hinfo-wrap">
+                                    <span class="hinfo-icons icon-idealPortrait sp-icon-color"></span>
+                                    <span class="info-txt mobAdj" data-ng-bind="::pullInterNationalization('portraitMatch.label')"></span>
+                                </h2>
+                            </div>
+                        </div>
+                    </header>
+                </section>
+            </div>
+                <ng-include src="'/sp/resources/html/people-analytics/view/new-portrait-request.html'"></ng-include>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

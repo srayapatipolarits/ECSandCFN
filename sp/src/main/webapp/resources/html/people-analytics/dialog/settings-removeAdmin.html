@@ -1,0 +1,40 @@
+<div class="container" id="declineGrowthScreen" data-ng-style="winWidth<768 && {'height':winHeight}">
+    <div class="row" data-ng-class="winWidth<768?'row-full-w':''">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8" data-ng-class="winWidth<768?'col-full-w':''">
+            <div>
+                <section class="wrapper">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar" data-ng-bind="::pullInterNationalization('pricing.create.desc20')"></div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                            </div>
+                        </div>
+                        <div class="contentArea clearfix">
+                            <div class="messageBlock newSpace1">
+                                <div class="member-details-pic-wrapper">
+                                    <div class="mem-pic-thumb">
+                                        <img data-ng-src="{{deleteMemberInfo.smallProfileImage}}" alt="{{deleteMemberInfo.userInitials}}" data-ng-if="deleteMemberInfo.smallProfileImage">
+                                        <div class="imgReplacementMedium" data-ng-if="!deleteMemberInfo.smallProfileImage" data-ng-bind="deleteMemberInfo.userInitials"></div>
+                                    </div>
+                                    <div class="mem-details-info">
+                                        <p class="memName sp-link-color" data-ng-bind="deleteMemberInfo.name" data-ng-if="deleteMemberInfo.name"></p>
+                                        <p class="memTitle" data-ng-bind="deleteMemberInfo.title" data-ng-if="deleteMemberInfo.title"></p>
+                                        <p class="memEmail" data-ng-bind="deleteMemberInfo.email"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="messageBlock newSpace btop">
+								<p data-ng-bind="::pullInterNationalization('pricing.create.desc19')"></p>
+                            </div>
+                            <div class="btns-wrapper-popup">
+                            	<input type="button" value="{{pullInterNationalization('admin.member.yes')}}" class="btn-block btn-14px sp-btn-color" ng-click="removeAdmin(deleteMemberInfo.id)">
+                            	<input type="button" value="{{pullInterNationalization('admin.member.no')}}" class="btn-block btn-14px btn-grey-dark" ng-click="closeThisDialog();">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

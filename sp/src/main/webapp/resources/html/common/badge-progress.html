@@ -1,0 +1,29 @@
+<div class="goal-information">
+	   	<div class="goals-details panel-fadeInContent">
+       		<div class="graphs clearfix animation_1">
+       		        <!-- Collapsed State -->
+     			<div class="goal-information-detail">
+     				 <h5 class="goalName" data-ng-bind="badge.moduleLabel"></h5>
+	      				<div class="left">
+	      					<div class="badge-icon badge-grey icon-badge_ertiLevel1" 
+	      					    	data-ng-class="{'icon-badge_ertiLevel1':badge.module === 'Erti' && badge.level === 1,
+       				                'icon-badge_ertiLevel2':badge.module === 'Erti' && badge.level === 2,
+       				                'icon-badge_ertiLevel3':badge.module === 'Erti' && badge.level === 3,
+       				                'icon-badge_ertiLevel4':badge.module === 'Erti' && badge.level === 4,
+       				                'icon-badge_ertiLevel5':badge.module === 'Erti' && badge.level === 5,
+       				                'icon-badge_learningprogram':badge.module === 'LP'}">
+	      					</div>
+	      				</div>
+	      				<div class="right">
+	      					<h4 class="name" data-ng-if="badge.module === 'Erti'" data-ng-bind="badge.name+' ('+pullInterNationalization('badge.erti.level')+' '+badge.level+')'"></h4>
+	      					<h4 class="name" data-ng-if="badge.module === 'LP'" data-ng-bind="badge.name"></h4>
+	      					<div class="completed-article">
+	      						<span data-ng-if="badge.module === 'LP'" data-ng-bind="badge.completedCount+' '+pullInterNationalization('practiceArea.of')+' '+badge.totalCount+' '+pullInterNationalization('actionPlan.module.lp.tasksCompleted')"></span>
+	      						<span data-ng-if="badge.module === 'Erti'" data-ng-bind="badge.completedCount+' '+pullInterNationalization('practiceArea.of')+' '+badge.totalCount+' '+pullInterNationalization('goals.erti.completed')"></span>
+	      					</div>
+	      					<div class="lp-progress" progress-animation observe-param="{{badge.completedCount}}" remaining-tasks="badge.completedCount" total-tasks="badge.totalCount" type="linear"></div>
+	      				</div>
+     			</div>
+		 </div>
+      </div>
+</div>

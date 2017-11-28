@@ -1,0 +1,38 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color" data-ng-click="notesCtrl.closeMortal(notesCtrl.postMessageObject.groupIds.length)"></div>
+                    <h2 data-ng-bind="::notesCtrl.rootScope('dashboard.selectGroup')"></h2>
+                </div>
+                <div class="new-modals-wrapper">
+                    <!-- Form Elements -->
+                    <div class="form-elements">
+                        <div class="angucomplete-wrapper">
+                            <angucomplete id="gl1" placeholder="{{::notesCtrl.rootScope('spectrum.search.group')}}" pause="100" selectedobject="notesCtrl.groups" localdata="notesCtrl.groupAvailable" searchfields="name" titlefield="name" minlength="1" inputclass="form-control form-control-small" templatetype="default" update-fn="notesCtrl.groupList(callback)" />
+                        </div>
+                    </div>
+                    <!-- Form Elements Ends -->
+                    <!-- Selected Items List Start -->
+                    <div class="selected-group-List-wrapper">
+                        <p class="group-default-message" data-ng-if="!notesCtrl.groupsList.length" data-ng-bind="::notesCtrl.rootScope('manageAccountContent.noGroups')"></p>
+                        <div class="group-row" data-ng-repeat="group in notesCtrl.groupsList track by $index" data-ng-if="notesCtrl.groupsList.length">
+                            <p class="group-col selected-group-name" data-ng-bind="group.name"></p>
+                            <p class="group-col group-remove-selection">
+                                <a href="javascript:void(0)" class="r-icon icon-icon_remove" data-ng-click="notesCtrl.groupList(group.id||group.groupId,true)"></a>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Selected Items List End -->
+                    <!-- Buttons Starts -->
+                    <div class="dialog-btns-wrapper">
+                        <input type="button" value="{{::notesCtrl.rootScope('manageAccountContent.done')}}" class="btn-block btn-14px sp-btn-color" data-ng-class="!notesCtrl.groupsList.length?'submit-btn-disabled':''" class="btn-block btn-14px sp-btn-color" data-ng-click="notesCtrl.saveGroup(notesCtrl.groupsList.length);">
+                        <input type="button" value="{{::notesCtrl.rootScope('manageAccountContent.cancel')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="notesCtrl.closeMortal(notesCtrl.postMessageObject.groupIds.length)">
+                    </div>
+                    <!-- Buttons Ends -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="goals" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/goals/practiceAreas.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/curriculumNavigationLinks.jsp" cascade="true" />
+			<put-attribute name="styles" value="resources/css/css-min/ert-i.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/practiceAreaController.min.js" cascade="true" />
+	</definition>
+	<definition name="demoVideo" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/goals/demo.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/curriculumNavigationLinks.jsp" cascade="true" />
+			<put-attribute name="styles" value="resources/css/css-min/ert-i.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/practiceAreaController.min.js" cascade="true" />
+	</definition>
+	<definition name="goalsOrg" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/goals/orgAreas.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/curriculumNavigationLinks.jsp" cascade="true" />
+			<put-attribute name="styles" value="resources/css/css-min/learning-program.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js-min/organizationController.min.js" />
+			<add-attribute value="resources/js/date-range-picker/date-range-picker.min.js" />		
+		</put-list-attribute>
+	</definition>
+	<definition name="reviewGoals" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/goals/goalThemeView.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/curriculumNavigationLinks.jsp" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/feedbackSection.min.js" cascade="true" />
+	</definition>
+	<!-- View Mapping for Notes and Feedback Landing Page -->
+	<definition name="notesAndFeedbackHome" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/goals/notesAndFeedback/notesAndFeedback.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/curriculumNavigationLinks.jsp" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/notesAndFeedbackController.min.js" cascade="true" />
+	</definition>
+	<definition name="managePracticeAreas" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/goals/managerPracticeAreas.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/curriculumNavigationLinks.jsp" cascade="true" />
+			<put-attribute name="styles" value="resources/css/css-min/manage-practice-areas.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/practiceAreaController.min.js" cascade="true" />
+	</definition>
+	<definition name="viewDevelopmentStrategy" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/goals/viewDevelopmentStartegy.html" />
+	</definition>		
+	<definition name="submitRequestFeedback" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/resources/html/feedback/feedback-reply-main.html" />
+	</definition>
+	<definition name="submitRequestFeedbackLogged" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/feedback/feedback-reply-main.html" />
+	</definition>
+	<definition name="feedbackCompleted" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/WEB-INF/views/goals/feedbackThankYou.jsp" />
+			<put-attribute name="styles" value="resources/css/css-min/ert-i.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/externalFeedbackController.min.js" cascade="true" />
+	</definition>	
+</tiles-definitions>

@@ -1,0 +1,279 @@
+
+<div class="add-edit" data-ng-class="{'error-prone':ctrl.errorClass()}">
+	<!-- Edit Column Starts-->
+	<div
+		class="practice-area-detail organization-area-detail lnd-right-box lnd-top-border sp-panel-accent">
+		<div class="title-with-icons">
+			<h2 class="sp-header-title-color" 
+				data-ng-bind="ctrl.actionPlan.steps[ctrl.currentActionPlan].name||pullInterNationalization('sysadmin.organization.createactionPlan')"></h2>
+			
+		</div>
+
+		<form name="ctrl.actionPlanForm" class="actionPlanForm">
+			<a href="javascript:void(0)" data-ng-if="ctrl.actionPlan.steps.length > 1" class="delete-action-step" data-ng-click="ctrl.deleteTaskModal(ctrl.currentPracticeAreaId)">
+				<span class="icon-style-position20 icon-icon_trashbin sp-icon-color"></span>
+			</a>
+			
+			<div class="name-section">
+				<ol class="form-list-c form-list-d">
+					<li class="type-and-number actionPlanName"><input
+						type="hidden" value=""
+						data-ng-model="ctrl.actionPlan.steps[ctrl.currentActionPlan].id" />
+						<input autoFocus type="text" class="themeName" name="actionname"
+						placeholder="{{::pullInterNationalization('sysadmin.organization.actionPlanName')}}"
+						data-ng-model="ctrl.actionPlan.steps[ctrl.currentActionPlan].name"
+						required /> <span class="validate-error"
+						data-ng-if="ctrl.submitted && ctrl.actionPlanForm.actionname.$error.required"
+						data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+					</li>
+				</ol>
+			</div>
+			<input type="hidden" data-ng-class="{'ng-invalid-required': !list.actionList.length && list.status=='ACTIVE'}"/>
+			
+							<div class="dragChild" id="sort-me">
+								<!-- repeat-done="ctrl.childInit($parent.$index)" -->
+								<div class="category children-category noshow"
+									data-ng-class="{'show':actionOpenState}"
+									data-ng-repeat="actionList in ctrl.actionPlan.steps[ctrl.currentActionPlan].devStrategyActionCategoryList[0].actionList track by $index"
+									data-ng-init="currentIndex = $index;superIndex = $parent.$index;actionOpenState = ctrl.pageSetting.actions && ($index == (ctrl.actionPlan.steps[ctrl.currentActionPlan].devStrategyActionCategoryList[0].actionList.length -1))"
+									repeat-done="ctrl.initialize()">
+									<header class="header-position">
+										<div class="header-style">
+										<div class="checkBox">
+											<span class="task-title" data-ng-bind="actionList.title|| 'NEW TASK'"></span>
+										</div>
+										<div class="click left40"
+											data-ng-click="ctrl.openCloseSiblingContent($event);ctrl.pageSetting.actions=false;"></div>
+										<div class="icon-toggle">
+											<div class="close-it">
+												<div class="hz"></div>
+											</div>
+											<div class="open-it">
+												<div class="hz"></div>
+												<div class="vl"></div>
+											</div>
+										</div>
+										<span class="dHandle"></span>
+										</div>
+									</header>
+									<div class="header-style-content" data-ng-style="actionOpenState ? { 'height':'auto'} : { 'height': '0px' }">
+										<div class="border-faq-content">
+											<div class="deleteActionList">
+												<a href="javascript:void(0)" data-ng-if="ctrl.actionPlan.steps[ctrl.currentActionPlan].devStrategyActionCategoryList[0].actionList.length > 1"
+													data-ng-click="ctrl.deleteActionList(ctrl.actionPlan.steps[ctrl.currentActionPlan].devStrategyActionCategoryList[0].actionList,$index)">
+													<span class="icon-style-position20 icon-icon_trashbin sp-icon-color"></span>
+													</a>
+											</div>
+											<ol class="form-list-c form-list-d clearfix heading-action">
+												<li class="col_2cust">
+													<input type="text" focus-if="actionOpenState"
+													change-name="input[ctrl.currentActionPlan]_superIndex_listaction[$index]"
+													class="themeName"
+													placeholder="'Task Title'"
+													data-ng-model="actionList.title"
+													data-ng-required="true" />
+													<span class="validate-error ng-hide"
+													data-ng-show="ctrl.submitted && actionList.title === undefined"
+													data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+												</li>
+												<li class="col_2cust">
+													<input type="text" focus-if="actionOpenState"
+													change-name="input[ctrl.currentActionPlan]_superIndex_listaction[$index]"
+													class="themeName"
+													placeholder="Task Link (Optional)"
+													data-ng-model="actionList.mediaUrl"
+													data-ng-required="false" />
+													<span class="validate-error ng-hide"
+													data-ng-show="ctrl.submitted && actionList.title === undefined"
+													data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+												</li>
+											</ol>
+											<ol class="form-list-c form-list-d clearfix">
+												<li class="type-and-number">
+													<textarea class="themeName" data-ui-tinymce data-ui-tinymce data-custom-overrides="ctrl.tinymceOptions" data-height="125"
+														data-ng-model="actionList.description"
+														data-ng-attr-placeholder="{{::pullInterNationalization('sysadmin.organization.actionDescription')}}"></textarea></li>
+											</ol>
+											
+											<!-- Group Permission Required -->
+											<ol class="form-list-c form-list-d clearfix">
+												 <li class="crop-it-image">
+								                    <div class="img-wrapper-admin">
+								                        <img data-ng-src="{{actionList.mediaImageLink}}" alt="" data-ng-if="actionList.mediaImageLink" class="org-admin-image-preview" />
+								                        <div class="admin-section-pic" data-ng-if="!actionList.mediaImageLink" data-ng-bind="::pullInterNationalization('sysadmin.organization.uploadImage')"></div>
+								                        <span class="upload-icon icon-icon_camera sp-icon-color" data-ng-click="ctrl.selectThumbImage(actionList,'taskImage');"></span>
+								                        <span class="upload-icon remove-icon icon-icon_accounts_remove sp-icon-color" data-ng-if="actionList.mediaImageLink" data-ng-click="actionList.mediaImageLink=''"></span>
+								                    </div>
+								                </li>
+											</ol>
+											<!-- Group Section -->
+
+
+											<!-- Group Section Ends -->
+											<!-- Action Data -->
+											<ol class="form-list-c form-list-d clearfix"
+												data-ng-class="actionList.type=='Group'?'group':'single'"
+												data-ng-repeat="actionData in actionList.actionData track by $index"
+												data-ng-init="parentIndex = $parent.$index;group = actionList.type=='Group';single = actionList.type=='Single'">
+												<li class="type-and-number">
+													<div class="deleteActionList" data-ng-if="single || (group && $index>0)">
+														<a class="mock-link" href="javascript:void(0)"
+															data-ng-click="ctrl.deleteActionList(actionList.actionData,$index)"><span class="icon-style-position20 icon-icon_trashbin sp-icon-color"></span></a>
+													</div>
+												</li>
+												
+												<!-- Add Link -->
+												<li class="type-and-number">
+													<!--  -->
+													<ol class="form-list-c form-list-d clearfix">
+														<li class="type-and-number"><label
+															data-ng-if="!group" class="label-spacing small-label"
+															data-ng-bind="pullInterNationalization('sysadmin.organization.actionlink')+' - '+{{$index+1}}"></label>
+															<label data-ng-if="group"
+															class="label-spacing small-label"
+															data-ng-bind="::pullInterNationalization('sysadmin.organization.actionlink')"></label>
+														</li>
+														<li class="col_3">
+															<div class="select-wrapper select-border-color">
+																<span class="org-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+																<select class="select-option-style"
+																	change-name="input[ctrl.currentActionPlan]_superIndex_parentIndex_linktype[$index]_actionList.type"
+																	data-ng-model="actionData.type"
+																	data-ng-options="value.value as value.name for (key,value) in ctrl.linkType"
+																	data-ng-required="(single || (actionData.url||actionData.linkText))" data-ng-change="ctrl.clearOption(actionData)">
+																	<option value=""
+																		data-ng-bind="::pullInterNationalization('sysadmin.organization.linkselect')"></option>
+																</select>
+															</div> <span class="err-msg validate-error ng-hide"
+															data-ng-show="ctrl.submitted && ctrl.actionPlanForm['input[{{ctrl.currentActionPlan}}]_{{superIndex}}_{{parentIndex}}_linktype[{{$index}}]_{{actionList.type}}'].$error.required"
+															data-ng-bind="::pullInterNationalization('signup.emperr')"></span>
+														</li>
+														<li class="col_3">
+															<input type="text" class="themeName"
+															change-name="input[ctrl.currentActionPlan]_superIndex_parentIndex_linkText[$index]_actionList.type"
+															placeholder="{{::pullInterNationalization('sysadmin.organization.actionLinkText')}}"
+															data-ng-model="actionData.linkText"
+															data-ng-required="(single || (actionData.url||actionData.type))" data-ng-disabled="actionData.type===null||actionData.type===undefined"/>
+															<span class="err-msg validate-error ng-hide"
+															data-ng-show="ctrl.submitted && (actionData.linkText === '' || actionData.linkText === undefined || actionData.linkText === null) && (actionData.url||actionData.type)"
+															data-ng-bind="::pullInterNationalization('signup.emperr')"></span>
+														</li>
+														<li class="col_3 noright">
+															<input type="text" class="themeName input-text-overflow"
+															change-name="input[ctrl.currentActionPlan]_superIndex_parentIndex_linkurl[$index]_actionList.type"
+															data-ng-pattern="/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/"
+															placeholder="{{::pullInterNationalization('sysadmin.organization.actionLinkUrl')}}"
+															data-ng-model="actionData.url"
+															data-ng-required="(single || (actionData.type||actionData.linkText)) && actionData.type!=='Schedule' && actionData.type!=='ActionPlan' && actionData.type!=='Private' && actionData.type!=='GD'" data-ng-disabled="actionData.type===null||actionData.type===undefined||actionData.type==='Schedule'||actionData.type==='ActionPlan'||actionData.type==='Private'||actionData.type==='GD'"/>
+															<div data-ng-if="actionData.type ==='PDF' || actionData.type ==='PPT'" class="select-media-btn sp-background-color" data-ng-click="ctrl.selectThumbImage(actionData,'linkAction')">+</div>
+															<span class="err-msg validate-error ng-hide"
+															data-ng-show="ctrl.submitted && ctrl.actionPlanForm['input[{{ctrl.currentActionPlan}}]_{{superIndex}}_{{parentIndex}}_linkurl[{{$index}}]_{{actionList.type}}'].$error.pattern"
+															data-ng-bind="::pullInterNationalization('signup.emperr')"></span>
+															<span class="err-msg validate-error ng-hide"
+															data-ng-show="ctrl.submitted && (actionData.url === '' || actionData.url === undefined || actionData.url === null) && (actionData.linkText||actionData.type)""
+															data-ng-bind="::pullInterNationalization('signup.emperr')"></span>
+															<a class="mock-link"
+															href="javascript:void(0)"
+															data-ng-if="(actionData.type==='Video'||actionData.type==='VideoTab') && actionData.url"
+															data-ng-click="ctrl.previewVideo(actionData.type,actionData.url)"
+															data-ng-bind="::pullInterNationalization('sysadmin.organization.preview')"></a>
+														</li>
+													</ol>
+													<!-- <ol class="form-list-c form-list-d clearfix" data-ng-if="$index<1||group">
+														<li class="col_3">
+															<input type="text" class="themeName input-text-overflow"
+															change-name="input[ctrl.currentActionPlan]_superIndex_parentIndex_linkthumb[$index]_actionList.type"
+															data-ng-pattern="/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/"
+															placeholder="{{::pullInterNationalization('sysadmin.organization.actionThumbImg')}}"
+															data-ng-model="actionData.imageLink" data-ng-disabled="actionData.type===null||actionData.type===undefined"/> 
+															<div data-ng-if="actionData.type!==null&&actionData.type!==undefined" class="select-media-btn sp-background-color" data-ng-click="ctrl.selectThumbImage(actionData,'thumbnailURL')">+</div>
+                                                            <span
+															class="err-msg validate-error ng-hide"
+															data-ng-show="ctrl.submitted && ctrl.actionPlanForm['input[{{ctrl.currentActionPlan}}]_{{superIndex}}_{{parentIndex}}_linkthumb[{{$index}}]_{{actionList.type}}'].$error.pattern"
+															data-ng-bind="::pullInterNationalization('signup.emperr')"></span>
+														</li>
+														<li class="col_3">
+															<input type="text" class="themeName" name="keyTitle"
+															placeholder="{{::pullInterNationalization('sysadmin.organization.actionAltImgText')}}"
+															data-ng-model="actionData.altText" data-ng-disabled="actionData.type===null||actionData.type===undefined"/></li>
+													</ol> -->
+												</li>
+												<!-- add link ends -->
+												<li class="type-and-number" data-ng-if="group">
+													<ol
+														class="form-list-c form-list-d clearfix groupsPermission">
+														<li class="type-and-number"><label
+															class="label label-spacing small-label"
+															data-ng-bind="::pullInterNationalization('sysadmin.organization.permission')"></label>
+														</li>
+														<li class="col_3_nw"><input type="checkbox"
+															data-ng-model="actionData.permissions.Note"
+															class="filterCheckBox"
+															id="actionData_{{superIndex}}_{{parentIndex}}_note_{{$index}}">
+															<label
+															for="actionData_{{superIndex}}_{{parentIndex}}_note_{{$index}}"
+															class="filterCheckBox-label header-title">
+															
+															<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color spAdmnOrg"></span>
+															<span data-ng-bind="::pullInterNationalization('sysadmin.organization.note')"></span>
+															</label>
+														</li>
+														<li class="col_3_nw"><input type="checkbox"
+															data-ng-model="actionData.permissions.Feedback"
+															class="filterCheckBox"
+															id="actionData_{{superIndex}}_{{parentIndex}}_request_{{$index}}">
+															<label
+															for="actionData_{{superIndex}}_{{parentIndex}}_request_{{$index}}"
+															class="filterCheckBox-label header-title">
+															
+															<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color spAdmnOrg"></span>
+															<span data-ng-bind="::pullInterNationalization('sysadmin.organization.request')"></span>
+															</label>
+														</li>
+														<li class="col_3_nw noright"><input type="checkbox"
+															data-ng-model="actionData.permissions.Completion"
+															class="filterCheckBox"
+															id="actionData_{{superIndex}}_{{parentIndex}}_completion_{{$index}}"
+															data-ng-disabled="actionList.permissions.Completion">
+															<label
+															for="actionData_{{superIndex}}_{{parentIndex}}_completion_{{$index}}"
+															class="filterCheckBox-label header-title"
+															data-ng-class="actionList.permissions.Completion?'block':''">
+															
+															<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color spAdmnOrg"></span>
+															<span data-ng-bind="::pullInterNationalization('sysadmin.organization.compeltion')"></span>
+															</label>
+														</li>
+
+													</ol>
+												</li>
+											</ol>
+											<ol class="form-list-c form-list-d clearfix">
+												<li><a
+													href="javascript:void(0)"
+													data-ng-bind="::pullInterNationalization('sysadmin.organization.addLink')"
+													class="mock-link-2" data-ng-if="actionList.type!='Group'"
+													data-ng-click="ctrl.addLink(actionList.actionData)"></a></li>
+											</ol>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							
+
+			<ol class="form-list-c form-list-d clearfix">
+				<li class="add-categpry"><a href="javascript:void(0)"
+					class="buttoncss"
+					data-ng-bind="'ADD TASK'"
+					data-ng-click="ctrl.singleAction(ctrl.actionPlan.steps[ctrl.currentActionPlan].devStrategyActionCategoryList[0].actionList)"></a></li>
+				<li data-ng-if="ctrl.errorCat && !ctrl.result.length">
+                  	<span class="validate-error" data-ng-bind="::pullInterNationalization('sysAdmin.organization.errre')"></span>
+                </li>
+                <li data-ng-if="ctrl.errorCat && ctrl.emptyCheck">
+               		<span class="validate-error" data-ng-bind="::pullInterNationalization('sysAdmin.organization.errcat')"></span>
+               	</li>
+			</ol>
+		</form>
+	</div>
+</div>

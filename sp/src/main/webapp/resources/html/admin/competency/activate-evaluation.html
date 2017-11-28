@@ -1,0 +1,77 @@
+<div class="container" id="declineGrowthScreen" data-ng-style="ctrl.winWidth<768 && {'height':ctrl.winHeight}">
+    <div class="row" data-ng-class="ctrl.winWidth<768?'row-full-w':''">
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8" data-ng-class="ctrl.winWidth<768?'col-full-w':''">
+            <section class="wrapper bp-popups activate-evaluation" data-ng-style="ctrl.winWidth<768 && {'width':(ctrl.winWidth+'px')}">
+                <div class="contentBody">
+                    <div class="head">
+                        <div class="wrap">
+                            <div class="headerBar" data-ng-bind="pullInterNationalization('competency.admin.activateEvaluation')"></div>
+                            <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color" data-ng-click="closeThisDialog()"></div>
+                        </div>
+                    </div>
+                    <div class="contentArea clearfix">
+                        <form name="ctrl.shareApprovalForm" class="sendReminder">
+                            <div class="messageBlock">
+                                <div class="approval-content" data-ng-bind="pullInterNationalization('competency.admin.actions.startEvaluation.desc')"></div>
+                                <div class='message' style="padding-bottom:3px;"><strong data-ng-bind="pullInterNationalization('competency.admin.setEvaluationPeriod')"></strong></div>
+                                <hr class="hr-uLine" />
+                                <div class="cbot"></div>
+                                <div class="cal-float-wrap">
+                                    <div class="clearfix calStyle">
+                                        <div class="lastDateCalendar">
+                                        	<label data-ng-bind="::pullInterNationalization('pulse.startNewPulse.startdate')"></label>
+                                            <input type="text" readonly class="form-control endInput grey-bg" id="fromDateId" value="{{ctrl.currentDate | date:'MM/dd/yyyy'}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cal-float-wrap calMleft">
+                                    <div class="clearfix calStyle calPosAbs">
+                                        <div class="lastDateCalendar">
+                                        	<label data-ng-bind="::pullInterNationalization('pulse.startNewPulse.endDate')"></label>
+                                        	<input autofocus type="text" id="endDateId" name="endDate" class="endInput cursorPointer endDateInput" readonly data-ng-model="ctrl.evaluationEndDate">
+                                            <label class="calImg icon-icon_calendar sp-icon-color leftAdj" for="endDateId"></label>
+                                            <span class="err-msg blockGroup" data-ng-show="false"><span class="icon">!</span> {{::pullInterNationalization('required.error')}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cbot"></div>
+                            </div>
+                            <div class="cbot"></div>
+                            <div class="messageBlock">
+                                <div class='message' style="padding-bottom:3px;"><strong data-ng-bind="pullInterNationalization('competency.admin.selectEvaluators')"></strong></div>
+                                <hr class="hr-uLine" />
+                                <header class="header-box bp-share-progress-box clearfix boxFloat">
+                                    <input type="checkbox" data-ng-model="ctrl.evaluationChecks.manager" class="filterCheckBox" id="managerCheck" data-ng-disabled="true">
+                                    <label for="managerCheck" class="filterCheckBox-label header-title">
+                                        <span class="floLeft checkedTick icon-icon_dev_strategy_check sp-icon-color bpPopFix"></span>
+                                        <span class="floLeft" data-ng-bind="::pullInterNationalization('competency.admin.manager')"></span>
+                                    </label>
+                                </header>
+                                <header class="header-box bp-share-progress-box clearfix boxFloat">
+                                    <input type="checkbox" data-ng-model="ctrl.evaluationChecks.self" class="filterCheckBox" id="selfCheck" data-ng-true-value="true" data-ng-false-value="false">
+                                    <label for="selfCheck" class="filterCheckBox-label header-title">
+                                        <span class="floLeft checkedTick icon-icon_dev_strategy_check sp-icon-color bpPopFix"></span>
+                                        <span class="floLeft" data-ng-bind="::pullInterNationalization('competency.admin.self')"></span>
+                                    </label>
+                                </header>
+                                <header class="header-box bp-share-progress-box clearfix boxFloat">
+                                    <input type="checkbox" data-ng-model="ctrl.evaluationChecks.peer" class="filterCheckBox" id="peerCheck">
+                                    <label for="peerCheck" class="filterCheckBox-label header-title">
+                                        <span class="floLeft checkedTick icon-icon_dev_strategy_check sp-icon-color bpPopFix"></span>
+                                        <span class="floLeft" data-ng-bind="::pullInterNationalization('competency.admin.peer')"></span>
+                                    </label>
+                                </header>
+                            </div>
+                            <div class="cbot"></div>
+                            <div class="floatLeft inviteBtn">
+                                <input type="button" value="{{pullInterNationalization('competency.admin.activate')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="ctrl.activateEvaluation()">
+                                <input type="button" value="{{pullInterNationalization('trainingLibrary.share.cancel')}}" class="btn-block btn-14px btn-grey-dark" ng-click="closeThisDialog()">
+                            </div>
+                            <div class="messageBlock"></div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

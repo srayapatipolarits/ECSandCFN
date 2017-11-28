@@ -1,0 +1,154 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                    <h2 data-ng-bind="::(portraitMatch.name||pullInterNationalization('idealPortrait.portrait.title'))"></h2>
+                </div>
+                <div class="new-modals-wrapper portrait-view-box">
+                    <p class="hire-desc-msg mt30" data-ng-bind="::pullInterNationalization('idealPortrait.portrait.preview.description')"></p>
+                    <div class="result-set" data-ng-bind="totalSelected +' '+pullInterNationalization('idealPortrait.portrait.of')+' '+totalTraits +' '+pullInterNationalization('idealPortrait.portrait.trait')"></div>
+                    <form name="portraitForm" novalidate class="form-styles-override" autocomplete="off">
+                        <ol class="form-list-c">
+                        	<li data-ng-if="filterSelected.Personality.length && filterSelected.Personality.indexOf('Primary')!==-1">
+                            	<div class="left-section">
+                            		<h4 class="filter-seleted-name" data-ng-bind="::pullInterNationalization('idealPortrait.portrait.preview.Personality')"></h4>
+                            	</div>
+                            	<div class="right-section">
+                            		<div class="detail">
+                            			<span class="comma" data-ng-if="portraitMatch.categoryDataMap.Personality.Primary.enabled" data-ng-repeat="criteria in portraitMatch.categoryDataMap.Personality.Primary.matchCriterias" data-ng-bind="pullInterNationalization('spectrum.'+criteria.key)+' ('+ criteria.matchPercent +'%)'"></span>
+                            		</div>
+                            </div>
+                            </li>
+                            <li data-ng-if="filterSelected.Personality.length && filterSelected.Personality.indexOf('UnderPressure')!==-1">
+                            	<div class="left-section">
+                            		<h4 class="filter-seleted-name" data-ng-bind="::pullInterNationalization('idealPortrait.portrait.preview.UnderPressure')"></h4>
+                            	</div>
+                            	<div class="right-section">
+                            		<div class="detail">
+                            			<span class="comma" data-ng-if="portraitMatch.categoryDataMap.Personality.UnderPressure.enabled" data-ng-repeat="criteria in portraitMatch.categoryDataMap.Personality.UnderPressure.matchCriterias" data-ng-bind="pullInterNationalization('spectrum.'+criteria.key)+' ('+ criteria.matchPercent +'%)'"></span>
+                            		</div>
+                            </div>
+                            </li>
+                            <li data-ng-if="filterSelected.Processing.length">
+                            	<div class="left-section">
+                            		<h4 class="filter-seleted-name" data-ng-bind="::pullInterNationalization('idealPortrait.portrait.preview.Processing')"></h4>
+                            	</div>
+                            	<div class="right-section">
+                            		<div class="detail" data-ng-if="portraitMatch.categoryDataMap.Processing.External.enabled">
+                            			<span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.External')+' ('+ portraitMatch.categoryDataMap.Processing.External.matchCriterias[0].matchPercent +'%)'"></span><span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.Internal')+' ('+ (100 - portraitMatch.categoryDataMap.Processing.External.matchCriterias[0].matchPercent) +'%)'"></span>
+                            		</div>
+                            		<div class="detail" data-ng-if="portraitMatch.categoryDataMap.Processing.Concrete.enabled">
+                            			<span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.Concrete')+' ('+ portraitMatch.categoryDataMap.Processing.Concrete.matchCriterias[0].matchPercent +'%)'"></span><span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.Intuitive')+' ('+ (100 - portraitMatch.categoryDataMap.Processing.Concrete.matchCriterias[0].matchPercent) +'%)'"></span>
+                            		</div>
+                            		<div class="detail" data-ng-if="portraitMatch.categoryDataMap.Processing.Cognitive.enabled">
+                            			<span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.Cognitive')+' ('+ portraitMatch.categoryDataMap.Processing.Cognitive.matchCriterias[0].matchPercent +'%)'"></span><span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.Affective')+' ('+ (100 - portraitMatch.categoryDataMap.Processing.Cognitive.matchCriterias[0].matchPercent) +'%)'"></span>
+                            		</div>
+                            		<div class="detail" data-ng-if="portraitMatch.categoryDataMap.Processing.Orderly.enabled">
+                            			<span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.Orderly')+' ('+ portraitMatch.categoryDataMap.Processing.Orderly.matchCriterias[0].matchPercent +'%)'"></span><span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.Spontaneous')+' ('+ (100 - portraitMatch.categoryDataMap.Processing.Orderly.matchCriterias[0].matchPercent) +'%)'"></span>
+                            		</div>
+                            	</div>
+                            </li>
+                            <li data-ng-if="filterSelected.DecisionMaking.length">
+                            	<div class="left-section">
+                            		<h4 class="filter-seleted-name" data-ng-bind="::pullInterNationalization('idealPortrait.portrait.preview.DecisionMaking')"></h4>
+                            	</div>
+                            	<div class="right-section">
+                            		<div class="detail" data-ng-if="portraitMatch.categoryDataMap.DecisionMaking.Outward.enabled">
+									    <span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.Outward')+' ('+ portraitMatch.categoryDataMap.DecisionMaking.Outward.matchCriterias[0].matchPercent +'%)'"></span><span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.Inward')+' ('+ (100 - portraitMatch.categoryDataMap.DecisionMaking.Outward.matchCriterias[0].matchPercent) +'%)'"></span>
+									</div>
+									<div class="detail" data-ng-if="portraitMatch.categoryDataMap.DecisionMaking.Careful.enabled">
+									    <span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.Careful')+' ('+ portraitMatch.categoryDataMap.DecisionMaking.Careful.matchCriterias[0].matchPercent +'%)'"></span><span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.Rapid')+' ('+ (100 - portraitMatch.categoryDataMap.DecisionMaking.Careful.matchCriterias[0].matchPercent) +'%)'"></span>
+									</div>
+
+								</div>
+                            </li>
+                            <li data-ng-if="filterSelected.ConflictManagement.length">
+                            	<div class="left-section">
+                            		<h4 class="filter-seleted-name" data-ng-bind="::pullInterNationalization('idealPortrait.portrait.preview.ConflictManagement')"></h4>
+                            	</div>
+                            	<div class="right-section">
+                            		<div class="detail">
+                            			<span class="dash" data-ng-if="portraitMatch.categoryDataMap.ConflictManagement.Primary.enabled" data-ng-bind="portraitMatch.categoryDataMap.ConflictManagement.Primary.matchCriterias[0].key"></span><span class="dash" data-ng-if="portraitMatch.categoryDataMap.ConflictManagement.Secondary.enabled" data-ng-bind="portraitMatch.categoryDataMap.ConflictManagement.Secondary.matchCriterias[0].key"></span>
+                            		</div>
+                            	</div>
+                            </li>
+                            <li data-ng-if="filterSelected.Motivation.length">
+                            	<div class="left-section">
+                            		<h4 class="filter-seleted-name" data-ng-bind="::pullInterNationalization('idealPortrait.portrait.preview.Motivation')"></h4>
+                            	</div>
+                            	<div class="right-section">
+                            		<div class="detail" data-ng-if="portraitMatch.categoryDataMap.Motivation.AttainmentOfGoals.enabled">
+									    <span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.AttainmentOfGoals')+' ('+ portraitMatch.categoryDataMap.Motivation.AttainmentOfGoals.matchCriterias[0].matchPercent +'%)'"></span><span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.RecognitionForEffort')+' ('+ (100 - portraitMatch.categoryDataMap.Motivation.AttainmentOfGoals.matchCriterias[0].matchPercent) +'%)'"></span>
+									</div>
+									<div class="detail" data-ng-if="portraitMatch.categoryDataMap.Motivation.Power.enabled">
+									    <span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.Power')+' ('+ portraitMatch.categoryDataMap.Motivation.Power.matchCriterias[0].matchPercent +'%)'"></span><span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.Compliance')+' ('+ (100 - portraitMatch.categoryDataMap.Motivation.Power.matchCriterias[0].matchPercent) +'%)'"></span>
+									</div>
+									<div class="detail" data-ng-if="portraitMatch.categoryDataMap.Motivation.Activity.enabled">
+									    <span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.Activity')+' ('+ portraitMatch.categoryDataMap.Motivation.Activity.matchCriterias[0].matchPercent +'%)'"></span><span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.Affiliation')+' ('+ (100 - portraitMatch.categoryDataMap.Motivation.Activity.matchCriterias[0].matchPercent) +'%)'"></span>
+									</div>
+									<div class="detail" data-ng-if="portraitMatch.categoryDataMap.Motivation.SelfAffirmed.enabled">
+									    <span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.SelfAffirmed')+' ('+ portraitMatch.categoryDataMap.Motivation.SelfAffirmed.matchCriterias[0].matchPercent +'%)'"></span><span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.AffirmedByOthers')+' ('+ (100 - portraitMatch.categoryDataMap.Motivation.SelfAffirmed.matchCriterias[0].matchPercent) +'%)'"></span>
+									</div>
+									<div class="detail" data-ng-if="portraitMatch.categoryDataMap.Motivation.ExchangeOfIdeas.enabled">
+									    <span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.ExchangeOfIdeas')+' ('+ portraitMatch.categoryDataMap.Motivation.ExchangeOfIdeas.matchCriterias[0].matchPercent +'%)'"></span><span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.ReceiveDirection')+' ('+ (100 - portraitMatch.categoryDataMap.Motivation.ExchangeOfIdeas.matchCriterias[0].matchPercent) +'%)'"></span>
+									</div>
+									<div class="detail" data-ng-if="portraitMatch.categoryDataMap.Motivation.Freedom.enabled">
+									    <span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.Freedom')+' ('+ portraitMatch.categoryDataMap.Motivation.Freedom.matchCriterias[0].matchPercent +'%)'"></span><span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.Consistency')+' ('+ (100 - portraitMatch.categoryDataMap.Motivation.Freedom.matchCriterias[0].matchPercent) +'%)'"></span>
+									</div>
+									<div class="detail" data-ng-if="portraitMatch.categoryDataMap.Motivation.TaskCompletion.enabled">
+									    <span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.TaskCompletion')+' ('+ portraitMatch.categoryDataMap.Motivation.TaskCompletion.matchCriterias[0].matchPercent +'%)'"></span><span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.PrefersProcess')+' ('+ (100 - portraitMatch.categoryDataMap.Motivation.TaskCompletion.matchCriterias[0].matchPercent) +'%)'"></span>
+									</div>
+									<div class="detail" data-ng-if="portraitMatch.categoryDataMap.Motivation.Hygiene.enabled">
+									    <span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.Hygiene')+' ('+ portraitMatch.categoryDataMap.Motivation.Hygiene.matchCriterias[0].matchPercent +'%)'"></span><span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.Accomplishment')+' ('+ (100 - portraitMatch.categoryDataMap.Motivation.Hygiene.matchCriterias[0].matchPercent) +'%)'"></span>
+									</div>
+									                            		
+                            	</div>
+                            </li>
+                            <li data-ng-if="filterSelected.LearningStyle.length">
+                            	<div class="left-section">
+                            		<h4 class="filter-seleted-name" data-ng-bind="::pullInterNationalization('idealPortrait.portrait.preview.LearningStyle')"></h4>
+                            	</div>
+                            	<div class="right-section">
+                            		<div class="detail" data-ng-if="portraitMatch.categoryDataMap.LearningStyle.Global.enabled">
+									    <span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.Global')+' ('+ portraitMatch.categoryDataMap.LearningStyle.Global.matchCriterias[0].matchPercent +'%)'"></span><span class="dash" data-ng-bind="pullInterNationalization('spectrum.trait.type.Analytical')+' ('+ (100 - portraitMatch.categoryDataMap.LearningStyle.Global.matchCriterias[0].matchPercent) +'%)'"></span>
+									</div>
+                            	</div>
+                            </li>
+                            <li  data-ng-if="filterSelected.FundamentalNeeds.length">
+                            	<div class="left-section">
+                            		<h4 class="filter-seleted-name" data-ng-bind="::pullInterNationalization('idealPortrait.portrait.preview.FundamentalNeeds')"></h4>
+                            	</div>
+                            	<div class="right-section">
+                            		<div class="detail">
+                            			<span class="comma" data-ng-if="portraitMatch.categoryDataMap.FundamentalNeeds.Primary.enabled" data-ng-bind="portraitMatch.categoryDataMap.FundamentalNeeds.Primary.matchCriterias[0].key"></span><span class="comma" data-ng-if="portraitMatch.categoryDataMap.FundamentalNeeds.Secondary.enabled" data-ng-bind="portraitMatch.categoryDataMap.FundamentalNeeds.Secondary.matchCriterias[0].key"></span>
+                            		</div>
+                            		</div>
+                            </li>
+                            <li class="weight-factor" data-ng-if="pageType!=='create'&&pageType!=='clone'">
+                            	<div class="left-section">
+                            		<h4 class="filter-seleted-name" data-ng-bind="::pullInterNationalization('idealPortrait.portrait.preview.weightFactor')"></h4>
+                            	</div>
+                            	<div class="right-section">
+                            		<div class="detail">
+                            			<span class="comma" data-ng-bind="pullInterNationalization('dashboard.publicchannel.title.Personality')+' ('+(lastcategoryPriorityWeightMap.Essential)+'%)'"></span><span class="comma" data-ng-bind="pullInterNationalization('idealPortrait.portrait.preview.other')+' ('+(lastcategoryPriorityWeightMap.Secondary)+'%)'"></span>
+                            		</div>
+                            		</div>
+                            </li>
+                            <!-- Form Button Starts -->
+                            <li class="submit-cancel-btns">
+                                <ul class="submit-cancel-list">
+                                    <li>
+                                        <input type="button" value="{{::pullInterNationalization('idealPortrait.portrait.preview.ok')}}" class="btn-block btn-15px sp-btn-color" data-ng-click="closeThisDialog();"/>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Form Button Ends -->
+                        </ol>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

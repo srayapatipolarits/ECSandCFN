@@ -1,0 +1,47 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                    <h2 data-ng-bind="ctrl.orgUserGroupData.groupName +'('+ctrl.orgUserGroupData.userActivities.length+')'"></h2>
+                </div>
+                <div class="new-modals-wrapper">
+                <div class="insightProfileUser">
+	  			   <div class="list-view-content profile-balance-list-view">
+			        <h4 data-ng-bind="ctrl.orgUserGroupData.planName"></h4>
+			        <div class="category-hr-expand row modal-height">
+			     	   <div class="category-hr-list clearfix adjust-modal-padding">
+			     	  	   <ol class="category-individual-list adjust-modal-padding" data-ng-if="ctrl.orgUserGroupData.userActivities.length">
+					        	<li class="modal-list-width" data-ng-repeat="member in ctrl.orgUserGroupData.userActivities track by $index">
+					        	  <div class="wrapper clearfix">
+					        	  	  <div class="number" data-ng-bind="$index+1"></div>
+					        	  	  <div class="left-member-detail">
+					        	  	  <img data-ng-src="{{member.smallProfileImage}}" alt="{{member.userInitials}}" data-ng-if="member.smallProfileImage">
+					        	  	  	<div class="imgReplacement pad10" data-ng-if="!member.smallProfileImage" data-ng-bind="member.userInitials"></div>
+						        	  </div>
+						        	  <div class="right-member-detail">
+						        	  	<div class="hr-title">
+						        	  		<a class="category-hr-name" href="javascript:void(0)" title="{{member.name}}" data-ng-bind="member.name"></a>
+						             	 	<a class="category-hr-title" href="javascript:void(0)" title="{{member.title}}" data-ng-bind="member.title"></a>
+						             	 	<a class="category-hr-task" href="javascript:void(0)"><span class="bold" data-ng-bind="member.completedLKpi"></span><span data-ng-bind="' '+pullInterNationalization('spectrum.of')+' '"> </span><span class="bold" data-ng-bind="member.totalKpi"></span><span data-ng-bind="' '+pullInterNationalization('spectrum.taskcompelted')"></span></a>
+						              	</div>
+						              	<div class="hr-percent">
+						              		<a class="category-hr-percent" href="javascript:void(0)" data-ng-bind="ctrl.percentCalc(member.totalKpi,member.completedLKpi)+'%'"></a>
+						              	</div>
+						        	  </div>
+					        	   </div>
+					            </li>
+					        </ol> 
+				      </div>
+			        </div>
+			        <section data-ng-if="!ctrl.orgUserGroupData.userActivities.length">
+								<div class="noMatchFound" data-ng-bind="::pullInterNationalization('spectrum.noInfo')"></div>
+					</section>
+			         </div>
+	  		      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

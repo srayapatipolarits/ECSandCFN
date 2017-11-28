@@ -1,0 +1,267 @@
+ <div class="news-feed-block no-border" data-ng-if="!ctrl.currentNews.hide" data-ng-init="ctrl.hexHoverIndex[ctrl.currentNews.id]=-1;ctrl.hexSelectedIndex[ctrl.currentNews.id]=-1;ctrl.endPollCheck(ctrl.currentNews.id,ctrl.currentNews.message.miniPoll.endDate);ctrl.viewPollResult[ctrl.currentNews.id]=false;ctrl.pollVotingError[ctrl.currentNews.id]=false;ctrl.pollHideResult[ctrl.currentNews.id]=ctrl.currentNews.message.miniPoll.hideResults">
+    <article class="name-information">
+        <header>
+            <div class="profile-style">
+                <div class="col-container action-container image-detail-part">
+                    <!-- Behalf of Check -->
+                    	<div>
+	                        <div class="member-pic channels size-50" data-ng-if="!ctrl.currentNews.message.onBehalfUser.name">
+	                            <img data-lazy-img="{{ctrl.currentNews.message.user.smallProfileImage}}" alt="{{ctrl.currentNews.message.user.userInitials}}" data-ng-if="ctrl.currentNews.message.user.smallProfileImage">
+	                            <div class="imgReplacement" data-ng-if="!ctrl.currentNews.message.user.smallProfileImage" data-ng-bind="ctrl.currentNews.message.user.userInitials"></div>
+	                        </div>
+	                        <div class="member-pic channels size-50" data-ng-if="ctrl.currentNews.message.onBehalfUser.name && !ctrl.currentNews.message.onBehalfUser.smallProfileImage">
+	                        	<a href="javascript:void(0)" class="cursor-default border-link">
+	                        		<span class="sp-label-option" data-ng-bind="pullInterNationalization('dashboard.announcement') +' '+pullInterNationalization('dashboard.image')"></span>
+					        	    <span class="action-icon icon-icon_dashboard-announcment sp-annoucement-icon sp-icon-color"></span>
+						        </a>
+	                        </div>
+	                        <div class="member-pic channels size-50" data-ng-if="ctrl.currentNews.message.onBehalfUser.name && ctrl.currentNews.message.onBehalfUser.smallProfileImage">
+	                        	<img data-lazy-img="{{ctrl.currentNews.message.onBehalfUser.smallProfileImage}}" alt="{{ctrl.currentNews.message.onBehalfUser.name}}" data-ng-if="ctrl.currentNews.message.onBehalfUser.smallProfileImage">
+	                        </div>
+	                        <div class="member-details posL0" data-ng-if="!ctrl.currentNews.edit">
+	                            <a data-ng-if="!ctrl.currentNews.message.onBehalfUser.name" data-ng-href="{{ctrl.userInfo.member.id===ctrl.currentNews.message.user.id? '/sp/dashboard/profile' :'/sp/dashboard/profile?userId='+ctrl.currentNews.message.user.id}}" class="border-link display-block lh-14">
+	                                <span class="mock-text weight-700" drop-tool-tip data-desc='{{user}}' data-self='{{ctrl.userInfo.member.id}}' data-ng-bind="ctrl.currentNews.message.user.name"></span>
+	                            </a>
+	                            <a data-ng-if="ctrl.currentNews.message.onBehalfUser.name" href="javascript:void(0)" class="default_true border-link display-block lh-14">
+	                                <span class="mock-text weight-700" data-ng-bind="ctrl.currentNews.message.onBehalfUser.name"></span>
+	                            </a>
+	                            <a href="javascript:void(0)" class="border-link display-block cursor-default">
+	                                <span data-ng-if="!ctrl.currentNews.message.onBehalfUser.name" class="mock-text weight-300" data-ng-bind="ctrl.currentNews.message.user.title"></span>
+	                                <span data-ng-if="ctrl.currentNews.message.onBehalfUser.name" class="mock-text weight-300" data-ng-bind="ctrl.currentNews.message.onBehalfUser.title||ctrl.currentNews.type"></span>
+	                            </a>
+	                        </div>
+                        </div>
+                    <div class="actions-dropdown" data-ng-if="!ctrl.currentNews.edit && ctrl.currentNews.type!=='UserActivity' && ctrl.currentNews.owner && ctrl.profilePage===null">
+                            <a href="javascript:void(0)" class="noHover" sp-condition="true" sp-click-outside="show">
+                            	<span class="sp-label-option" data-ng-bind="::pullInterNationalization('dashboard.options')"></span>
+                                <span class="action-link icon-icon_sort sp-icon-color"></span>
+                            </a>
+                            <div class="actions-callout-wrappper_style1 pos7 mob7" data-ng-if="show">
+                                <ul class="action-links" data-ng-if="ctrl.currentNews.owner">
+                                    <li data-ng-if="ctrl.currentNews.owner && ctrl.currentNews.message.miniPoll.hideResults">
+                                        <a href="javascript:void(0)" data-ng-click="ctrl.pollActions( 'view', ctrl.currentNews.id)">
+                                            <span class="action-icon icon-icon_poll-view-results sp-icon-color"></span>
+                                            <span class="action-text" data-ng-bind="pullInterNationalization( 'createPollsCont.btnView')"></span>
+                                        </a>
+                                    </li>
+                                    <li data-ng-if="ctrl.currentNews.owner && ctrl.viewPollResult[ctrl.currentNews.id] && !ctrl.currentNews.hasCompleted">
+                                        <a href="javascript:void(0)" data-ng-click="ctrl.pollActions( 'vote', ctrl.currentNews.id)">
+                                            <span class="action-icon icon-icon_poll-view-results sp-icon-color"></span>
+                                            <span class="action-text" data-ng-bind="pullInterNationalization( 'createPollsCont.btnVote')"></span>
+                                        </a>
+                                    </li>                                    
+                                    <li data-ng-if="ctrl.currentNews.owner && ctrl.pollHideResult[ctrl.currentNews.id]">
+                                        <a href="javascript:void(0)" data-ng-click="ctrl.pollActions( 'share', ctrl.currentNews.id)">
+                                            <span class="action-icon icon-icon_poll-share-results sp-icon-color"></span>
+                                            <span class="action-text" data-ng-bind="pullInterNationalization( 'createPollsCont.btnShare')"></span>
+                                        </a>
+                                    </li>        
+                                    <li data-ng-if="ctrl.currentNews.owner && !ctrl.pollEnded[ctrl.currentNews.id]">
+                                        <a href="javascript:void(0)" data-ng-click="ctrl.pollActions( 'end', ctrl.currentNews.id)">
+                                            <span class="action-icon icon-icon_poll-close-voting sp-icon-color"></span>
+                                            <span class="action-text" data-ng-bind="pullInterNationalization( 'createPollsCont.btnEnd')"></span>
+                                        </a>
+                                    </li>                                                                                                        
+                                    <li>
+                                        <a href="javascript:void(0)" data-ng-click="ctrl.deletePostModal(ctrl.currentNews.id)">
+                                            <span class="action-icon icon-icon_trashbin sp-icon-color"></span>
+                                            <span class="action-text" data-ng-bind="pullInterNationalization( 'dashboard.edit.delete')"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" data-ng-click="ctrl.blockPostModal(ctrl.currentNews)">
+                                            <span class="action-icon icon-icon_accounts_block-members sp-icon-color"></span>
+                                            <span class="action-text" data-ng-bind="!ctrl.currentNews.blockCommenting?pullInterNationalization( 'dashboard.edit.block'):pullInterNationalization( 'dashboard.edit.nonblock')"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="actions-dropdown" data-ng-if="!ctrl.currentNews.edit && (ctrl.currentNews.type==='UserActivity' || !ctrl.currentNews.owner) && ctrl.profilePage===null">
+                            <a href="javascript:void(0)" class="noHover" sp-condition="true" sp-click-outside="show">
+                            	<span class="sp-label-option" data-ng-bind="::pullInterNationalization('dashboard.options')"></span>
+                                <span class="action-link icon-icon_sort sp-icon-color"></span>
+                            </a>
+                            <div class="actions-callout-wrappper_style1 pos6 mob5" data-ng-if="show">
+                                <ul class="action-links">
+                                    <li>
+                                        <a href="javascript:void(0)" data-ng-click="ctrl.follow(ctrl.currentNews,false);">
+                                            <span class="action-icon icon-icon_accounts_remove sp-icon-color"></span>
+                                            <span class="action-text" data-ng-bind="::pullInterNationalization('dashboard.edit.hide')"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="duration" data-ng-if="!ctrl.currentNews.edit">
+                        	<span class="sp-label-option" data-ng-bind="::pullInterNationalization('dashboard.durationtime')"></span>
+                        	<span data-ng-bind="ctrl.currentNews.updatedOn | spTimeUpdate"></span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+                     
+            <!-- Header With No Edit Mode Ends -->
+            <div class="content-news-section">
+            
+            	<!-- Polls HTML Starts -->
+			    <div class="poll-questions-wrapper miniPollsPCheck mtop30" id="miniPoll_{{ctrl.currentNews.id}}" data-ng-init="(ctrl.currentNews.message.miniPoll.hideResults && ctrl.currentNews.hasCompleted)?ctrl.assignPollCheck(ctrl.currentNews.userNewsFeedSelection, ctrl.currentNews.id, false): ''">
+			    	<h3 data-ng-bind="ctrl.currentNews.message.miniPoll.question"></h3>
+			    	<p class="instruction-txt" data-ng-bind="ctrl.currentNews.message.miniPoll.instructionStr" data-ng-if="ctrl.currentNews.message.miniPoll.instructionStr"></p>
+			    
+			    	<!-- Polls Question HTML Starts -->	
+				    <ol class="multiPollList" data-ng-if="((!ctrl.currentNews.hasCompleted && !ctrl.pollEnded[ctrl.currentNews.id]) || (ctrl.currentNews.hasCompleted && ctrl.currentNews.message.miniPoll.hideResults) || (ctrl.pollEnded[ctrl.currentNews.id] && ctrl.currentNews.message.miniPoll.hideResults)) && ctrl.currentNews.message.miniPoll.type==='MultipleOptions' && ctrl.currentNews.message.miniPoll.selectionType==='MultipleSelect' && !ctrl.viewPollResult[ctrl.currentNews.id]">
+				        <li data-ng-repeat="opts in ctrl.currentNews.message.miniPoll.options track by $index" class="miniPollsOptsInput brdr-grey">
+				            <p class="pCheckBox removeAbs cNone posAdj01">
+				                <input type="checkbox" data-ng-model="ctrl.pollVotingDetails[ctrl.currentNews.id][$index]" name="pollOptionsListingMulti_{{ctrl.currentNews.id}}[]" id="pollOptsMulti_{{ctrl.currentNews.id}}_{{$index}}" class="iCheckBox" value="{{$index}}" data-ng-disabled="(ctrl.currentNews.hasCompleted && ctrl.currentNews.message.miniPoll.hideResults) || ctrl.pollEnded[ctrl.currentNews.id]" />
+				                <label for="pollOptsMulti_{{ctrl.currentNews.id}}_{{$index}}" class="lCheckBox" data-ng-class="{ 'disabledCheck':(ctrl.currentNews.hasCompleted && ctrl.currentNews.message.miniPoll.hideResults) || ctrl.pollEnded[ctrl.currentNews.id]}">
+				                    <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+				                    <span class="lCheckBoxText addBrdr"><span class="addElps" data-ng-bind="opts"></span></span>
+				                </label>
+				            </p>
+				        </li>
+		                <li class="poll-vote-err" data-ng-if="ctrl.pollVotingError[ctrl.currentNews.id]">
+		                	<span class="validate-error" data-ng-bind="pullInterNationalization( 'signup.required.error')"></span>
+		                </li>				        
+				        <li class="poll-vote-btn" data-ng-if="!ctrl.currentNews.hasCompleted && !ctrl.pollEnded[ctrl.currentNews.id]">
+				        	<a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-click="ctrl.processVote(ctrl.currentNews.id)" data-ng-bind="pullInterNationalization( 'createPollsCont.btnVote')"></a>
+				        </li>
+				    </ol>
+				    
+				    <ol class="multiPollList" data-ng-if="((!ctrl.currentNews.hasCompleted && !ctrl.pollEnded[ctrl.currentNews.id]) || (ctrl.currentNews.hasCompleted && ctrl.currentNews.message.miniPoll.hideResults) || (ctrl.pollEnded[ctrl.currentNews.id] && ctrl.currentNews.message.miniPoll.hideResults)) && ctrl.currentNews.message.miniPoll.type==='MultipleOptions' && ctrl.currentNews.message.miniPoll.selectionType==='SingleSelect' && !ctrl.viewPollResult[ctrl.currentNews.id]">
+				         <li data-ng-repeat="opts in ctrl.currentNews.message.miniPoll.options track by $index" class="miniPollsOptsInput brdr-grey">
+				            <p class="pCheckBox removeAbs cNone posAdj01">
+				                <input data-ng-model="ctrl.pollVotingDetails[ctrl.currentNews.id]" type="radio" name="pollOptionsListing_{{ctrl.currentNews.id}}" id="pollOpts_{{ctrl.currentNews.id}}_{{$index}}" class="iCheckBox" value="{{$index}}" data-ng-disabled="(ctrl.currentNews.hasCompleted && ctrl.currentNews.message.miniPoll.hideResults) || ctrl.pollEnded[ctrl.currentNews.id]" />
+				                <label for="pollOpts_{{ctrl.currentNews.id}}_{{$index}}" class="lCheckBox" data-ng-class="{ 'disabledCheck':(ctrl.currentNews.hasCompleted && ctrl.currentNews.message.miniPoll.hideResults) || ctrl.pollEnded[ctrl.currentNews.id]}">
+				                    <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color radioStyle"></span>
+				                    <span class="lCheckBoxText addBrdr"><span class="addElps" data-ng-bind="opts"></span></span>
+				                </label>
+				            </p>
+				        </li>
+		                <li class="poll-vote-err" data-ng-if="ctrl.pollVotingError[ctrl.currentNews.id]">
+		                	<span class="validate-error" data-ng-bind="pullInterNationalization( 'signup.required.error')"></span>
+		                </li>				        				        
+				        <li class="poll-vote-btn" data-ng-if="!ctrl.currentNews.hasCompleted && !ctrl.pollEnded[ctrl.currentNews.id]">
+				        	<a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-click="ctrl.processVote(ctrl.currentNews.id)" data-ng-bind="pullInterNationalization( 'createPollsCont.btnVote')"></a>
+				        </li>				        
+				    </ol>
+				    <ol class="multiPollScale" data-ng-if="((!ctrl.currentNews.hasCompleted && !ctrl.pollEnded[ctrl.currentNews.id]) || (ctrl.currentNews.hasCompleted && ctrl.currentNews.message.miniPoll.hideResults) || (ctrl.pollEnded[ctrl.currentNews.id] && ctrl.currentNews.message.miniPoll.hideResults)) && ctrl.currentNews.message.miniPoll.type==='Scale' && !ctrl.viewPollResult[ctrl.currentNews.id]">
+				        <li data-ng-repeat="opts in ctrl.currentNews.message.miniPoll.options track by $index" class="rBtns-box miniPollsOptsInput" data-ng-class="{ 'bl1':$index===0}">
+				            <!--span class="opt-num" data-ng-bind="$index+1" data-ng-class="{ 'disabledCheck':(ctrl.currentNews.hasCompleted && ctrl.currentNews.message.miniPoll.hideResults) || ctrl.pollEnded[ctrl.currentNews.id]}"></span-->
+				            <p class="pCheckBox removeAbs cNone">
+				                <input data-ng-model="ctrl.pollVotingDetails[ctrl.currentNews.id]" type="radio" name="pollOptionsListingScale_{{ctrl.currentNews.id}}" id="pollOptsScale_{{ctrl.currentNews.id}}_{{$index}}" class="iCheckBox" value="{{$index}}" data-ng-disabled="(ctrl.currentNews.hasCompleted && ctrl.currentNews.message.miniPoll.hideResults) || ctrl.pollEnded[ctrl.currentNews.id]" />
+				                <label for="pollOptsScale_{{ctrl.currentNews.id}}_{{$index}}" class="lCheckBox" data-ng-class="{ 'disabledCheck':ctrl.currentNews.hasCompleted && ctrl.currentNews.message.miniPoll.hideResults}" data-ng-click="((ctrl.currentNews.hasCompleted && ctrl.currentNews.message.miniPoll.hideResults) || ctrl.pollEnded[ctrl.currentNews.id])? '':ctrl.miniPollHexOps(ctrl.currentNews.id, $index, false)" data-ng-mouseover="((ctrl.currentNews.hasCompleted && ctrl.currentNews.message.miniPoll.hideResults) || ctrl.pollEnded[ctrl.currentNews.id])? '':ctrl.miniPollHexOps(ctrl.currentNews.id, $index, true)" data-ng-mouseout="((ctrl.currentNews.hasCompleted && ctrl.currentNews.message.miniPoll.hideResults) || ctrl.pollEnded[ctrl.currentNews.id])? '':ctrl.miniPollHexOps(ctrl.currentNews.id, -1, true)">
+				                    <!--span class="checkedTick icon-icon_dev_strategy_check sp-icon-color radioStyle"></span-->
+				                    <span class="empty-hex miniPollsAdj" data-rating="{{ctrl.hexChar}}" data-ng-class="{'hex-default-grey': ((ctrl.hexHoverIndex[ctrl.currentNews.id]===-1 || $index>ctrl.hexHoverIndex[ctrl.currentNews.id]) && (ctrl.hexSelectedIndex[ctrl.currentNews.id] === -1 || $index>ctrl.hexSelectedIndex[ctrl.currentNews.id])), 'sp-icon-color': ($index<=ctrl.hexSelectedIndex[ctrl.currentNews.id] || $index<=ctrl.hexHoverIndex[ctrl.currentNews.id]), 'disabledCheck':ctrl.currentNews.hasCompleted && ctrl.currentNews.message.miniPoll.hideResults}"></span>
+				                </label>
+				            </p>
+				        </li>
+		                <li class="poll-vote-err" data-ng-if="ctrl.pollVotingError[ctrl.currentNews.id]">
+		                	<span class="validate-error" data-ng-bind="pullInterNationalization( 'signup.required.error')"></span>
+		                </li>				        				        
+				        <li class="poll-vote-btn" data-ng-if="!ctrl.currentNews.hasCompleted && !ctrl.pollEnded[ctrl.currentNews.id]">
+				        	<a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-click="ctrl.processVote(ctrl.currentNews.id)" data-ng-bind="pullInterNationalization( 'createPollsCont.btnVote')"></a>
+				        </li>				        
+				    </ol>
+				    
+				    <p class="poll-msg-txt" data-ng-if="ctrl.currentNews.hasCompleted && ctrl.currentNews.message.miniPoll.hideResults && !ctrl.pollEnded[ctrl.currentNews.id] && !ctrl.viewPollResult[ctrl.currentNews.id]" data-ng-bind="pullInterNationalization( 'createPollsCont.pollMsg')"></p>
+				    <p class="poll-msg-txt" data-ng-if="ctrl.currentNews.message.miniPoll.hideResults && ctrl.pollEnded[ctrl.currentNews.id] && !ctrl.viewPollResult[ctrl.currentNews.id]" data-ng-bind="pullInterNationalization( 'createPollsCont.pollMsgEnd')"></p>
+				    <!-- Polls Questions HTML Ends -->	  
+				
+					<!-- Polls Results HTML Starts -->
+					<div class="polls-results-options" data-ng-if="(ctrl.currentNews.hasCompleted && ctrl.currentNews.message.miniPoll.result && !ctrl.currentNews.message.miniPoll.hideResults) || (!ctrl.currentNews.message.miniPoll.hideResults && ctrl.pollEnded[ctrl.currentNews.id]) || ctrl.viewPollResult[ctrl.currentNews.id]">
+						<ol class="pollsResults-list" data-ng-if="ctrl.currentNews.message.miniPoll.type==='MultipleOptions'" id="miniPollResult_{{ctrl.currentNews.id}}" data-ng-init="ctrl.currentNews.userNewsFeedSelection?ctrl.assignPollCheck(ctrl.currentNews.userNewsFeedSelection, ctrl.currentNews.id, true): ''">
+							<li data-ng-repeat="opts1 in ctrl.currentNews.message.miniPoll.options track by $index" class="miniPollsOptsInput">
+								<span class="poll-result-input-wrap">
+						            <span class="pCheckBox removeAbs cNone darkBg" data-ng-if="ctrl.currentNews.message.miniPoll.selectionType !=='SingleSelect'">
+						                <input type="checkbox" data-ng-model="ctrl.pollVotingDetailsResult[ctrl.currentNews.id][$index]" name="pollOptionsListingMultiResult_{{ctrl.currentNews.id}}[]" id="pollOptsMultiResult_{{ctrl.currentNews.id}}_{{$index}}" class="iCheckBox" value="{{$index}}" data-ng-disabled="true" />
+						                <label for="pollOptsMultiResult_{{ctrl.currentNews.id}}_{{$index}}" class="lCheckBox">
+						                    <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+						                </label>
+						            </span>											
+						            <span class="pCheckBox removeAbs cNone darkBg" data-ng-if="ctrl.currentNews.message.miniPoll.selectionType==='SingleSelect'">
+						                <input type="radio" data-ng-model="ctrl.pollVotingDetailsResult[ctrl.currentNews.id][$index]" name="pollOptionsListingMultiResult_{{ctrl.currentNews.id}}[]" id="pollOptsMultiResult_{{ctrl.currentNews.id}}_{{$index}}" class="iCheckBox" value="{{$index}}" data-ng-disabled="true" />
+						                <label for="pollOptsMultiResult_{{ctrl.currentNews.id}}_{{$index}}" class="lCheckBox">
+						                    <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color radioStyle"></span>
+						                </label>
+						            </span>		
+					            </span>						
+								<span class="results-bar-num">
+									<span class="results-grey-bar">
+										<span class="results-theme-bar" data-ng-style="{ 'width':(ctrl.currentNews.message.miniPoll.result.results[$index]>0?((((ctrl.currentNews.message.miniPoll.result.results[$index])/(ctrl.getPollTotal(ctrl.currentNews.message.miniPoll.result.results)))*100)+'%'):'0%')}"></span>
+                        <span class="result-label" data-ng-bind="opts1"></span>
+                        </span>
+                        </span>
+                        <span class="result-num sp-icon-color" data-ng-bind="ctrl.currentNews.message.miniPoll.result.results[$index]"></span>
+                        </li>
+                        </ol>
+                        <ol class="pollsResults-list" data-ng-if="ctrl.currentNews.message.miniPoll.type !== 'MultipleOptions'">
+                            <li data-ng-repeat="opts1 in ctrl.currentNews.message.miniPoll.options track by $index">
+                            	<span class="result-num spcFix" data-ng-bind="$index+1" data-ng-if="ctrl.currentNews.userNewsFeedSelection && ctrl.currentNews.userNewsFeedSelection.indexOf($index) === -1"></span>
+                                <span class="result-num spcFix empty-hex miniPollsAdj0 sp-background-color result-hex adj"  data-ng-if="ctrl.currentNews.userNewsFeedSelection && ctrl.currentNews.userNewsFeedSelection.indexOf($index) !== -1">
+                                	<span data-ng-bind="$index+1" class="hexNum"></span>
+                                </span>
+                                <span class="results-bar-num">
+									<span class="results-grey-bar">
+										<span class="results-theme-bar" data-ng-style="{'width':(ctrl.currentNews.message.miniPoll.result.results[$index]>0?((((ctrl.currentNews.message.miniPoll.result.results[$index])/(ctrl.getPollTotal(ctrl.currentNews.message.miniPoll.result.results)))*100)+'%'):'0%')}"></span>
+                                <!--
+										<span data-ng-if="$first" class="result-label" data-ng-bind="ctrl.currentNews.message.miniPoll.options[0]"></span>
+										<span data-ng-if="$last" class="result-label" data-ng-bind="ctrl.currentNews.message.miniPoll.options[ctrl.currentNews.message.miniPoll.options.length-1]"></span>
+										-->
+                                </span>
+                                </span>
+                                <span class="result-num sp-icon-color" data-ng-bind="ctrl.currentNews.message.miniPoll.result.results[$index]"></span>
+                                <!--span class="empty-hex miniPollsAdj0 sp-icon-color result-hex" data-rating="{{ctrl.hexChar}}" data-ng-if="ctrl.currentNews.userNewsFeedSelection && ctrl.currentNews.userNewsFeedSelection.indexOf($index) !== -1"></span-->
+                            </li>
+                        </ol>
+                        <p class="poll-msg-txt" data-ng-if="ctrl.currentNews.message.miniPoll.type === 'MultipleOptions' && !ctrl.pollEnded[ctrl.currentNews.id] && !ctrl.viewPollResult[ctrl.currentNews.id]" data-ng-bind="pullInterNationalization('createPollsCont.pollMsg')"></p>
+                        <p class="poll-msg-txt" data-ng-if="ctrl.pollEnded[ctrl.currentNews.id] && !ctrl.viewPollResult[ctrl.currentNews.id]" data-ng-bind="pullInterNationalization('createPollsCont.pollMsgEnd')"></p>
+                        <h4 data-ng-if="ctrl.currentNews.message.miniPoll.type !== 'MultipleOptions'">
+							<span data-ng-bind="pullInterNationalization('createPollsCont.txtAvg')"></span>
+							<span class="avg-score-numb sp-link-color" data-ng-bind="ctrl.currentNews.message.miniPoll.result.averageScore"></span>
+						</h4>
+                        <div data-ng-if="ctrl.currentNews.message.miniPoll.type !== 'MultipleOptions'" class="miniPolls-avg-wrapper">
+                            <p class="hex-width">
+                                <span class="empty-hex miniPollsAdj hex-avg empty-fill default-grey" data-rating="{{ctrl.hexAvg}}"></span>
+                                <span class="empty-hex miniPollsAdj hex-avg sp-icon-color" data-rating="{{ctrl.hexAvg}}" data-ng-style="{'width':(((ctrl.currentNews.message.miniPoll.result.averageScore?ctrl.currentNews.message.miniPoll.result.averageScore:0)/5)*100)+'%'}"></span>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Polls Results HTML Ends -->
+                </div>
+                <!-- Polls HTML Ends -->
+                <div class="social-media">
+                	<div class="icons-media">
+                		<a href="javascript:void(0)" class="border-link" data-ng-click="ctrl.likePost({'news':ctrl.currentNews,'comment':-1,'childComment':-1})">
+                    		<span class="mock-link link-media uppercase weight-300" data-ng-bind="ctrl.currentNews.likedByUser?pullInterNationalization('dashboard.unlike'):pullInterNationalization('dashboard.like')"></span>
+	                    </a>
+	                    <a href="javascript:void(0)" class="border-link" data-ng-if="!ctrl.currentNews.blockCommenting" data-ng-click="ctrl.hideFocus(ctrl.currentNews.id)">
+	                    	<span class="mock-link link-media weight-300" data-ng-bind="::pullInterNationalization('dashboard.comment')"></span>
+	                    </a>
+	            	</div>
+                	<div class="count-media-like">
+				        <a href="javascript:void(0)" class="default_{{!(!!ctrl.currentNews.likeCount)}}" data-ng-click="ctrl.currentNews.likeCount && ctrl.likedUserName({'news':ctrl.currentNews,'comment':-1,'childComment':-1,'count':ctrl.currentNews.likeCount},$event)">
+				            <span class="action-icon icon-dashboard_like" data-ng-class="ctrl.currentNews.likeCount?'sp-icon-color':'sp-not-active-color'"></span>
+				            <span class="action-text" data-ng-bind="ctrl.currentNews.likeCount"></span>
+				        </a>
+				        <a href="javascript:void(0)" class="border-link" data-ng-click="ctrl.hideFocus(ctrl.currentNews.id);">
+				            <span class="action-icon icon-dashboard_comment" data-ng-class="ctrl.currentNews.commentCount?'sp-icon-color':'sp-not-active-color'"></span>
+				            <span class="action-text" data-ng-bind="ctrl.currentNews.commentCount"></span>
+				        </a>
+				    </div>
+				    
+                </div>
+            </div>
+    </article>
+    <div data-ng-include="'/sp/resources/html/dashboard/commentResponsive.html'"></div>
+</div>
+<div class="hide-message" data-ng-if="ctrl.currentNews.hide">
+    <div data-ng-if="ctrl.currentNews.delete!=true">
+        <span class="default" data-ng-bind="pullInterNationalization('dashboard.message.hide')"></span>
+        <span><a href="javascript:void(0)" class="weight-500 undo" data-ng-click="ctrl.follow(ctrl.currentNews,true);" data-ng-bind="pullInterNationalization('dashboard.message.undo')"></a></span>
+    </div>
+    <div data-ng-if="ctrl.currentNews.delete">
+        <span class="default" data-ng-bind="pullInterNationalization('dashboard.deletedPost')"></span>
+    </div>
+    <!-- <a href="javascript:void(0)" class="weight-700" data-ng-click="ctrl.deleteIndex(ctrl.currentNews.id);"><span class="action-icon icon-icon_accounts_remove sp-icon-color"></span></a> -->
+</div>

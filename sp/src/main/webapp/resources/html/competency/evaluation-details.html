@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+            <section class="wrapper createGroup">
+                <div class="contentBody">
+                    <div class="head">
+                        <div class="wrap">
+                            <div class="headerBar" data-ng-bind="::pullInterNationalization('competency.evaluationDetails.title')"></div>
+                            <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="cm-rating-popup competency-manager evaluation-details-modal">
+                <div class="col-xs-12">
+                    <div class="cm-evaluation-rating-table">
+                        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <thead class="noBrd">
+                                <tr class="noBrd">
+                                    <td class="vTop pTopLef0 tdw60">
+                                        <div class="cmr-mem-details clearfix mpReset">
+                                            <div class="cm-pic-details mpReset">
+                                                <span data-ng-if="memberDetails.smallProfileImage ===null" class="imgReplacementBig s80" data-ng-bind="memberDetails.userInitials"></span>
+                                                <img data-ng-if="memberDetails.smallProfileImage !==null" width="80" height="80" title="" alt="" data-ng-src="{{memberDetails.smallProfileImage}}">
+                                            </div>
+                                            <div class="cmm-details mpReset mgTop23">
+                                                <p class="tWeight700 sp-link-color" data-ng-bind="memberDetails.name"></p>
+                                                <p class="tWeight300"data-ng-bind="memberDetails.title"></p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="bTop1 vTop pBotAdd tdw35">
+                                        <div class="cme-reviewer-details">
+                                            <p class="rv-title" data-ng-if="reviewerRole==='m'" data-ng-bind="::pullInterNationalization('competency.evaluationDetails.managerEvaluation')"></p>
+                                            <p class="rv-title" data-ng-if="reviewerRole==='s'" data-ng-bind="::pullInterNationalization('competency.evaluationDetails.selfEvaluation')"></p>
+                                            <p class="rv-title" data-ng-if="reviewerRole==='p'" data-ng-bind="::pullInterNationalization('competency.evaluationDetails.peerEvaluation')"></p>
+                                            <div class="cmrc-details clearfix mpReset">
+                                              <div class="tUpperCase tSize12 tWeight500"><span class="tWeight700" data-ng-bind="ctrl.scoreDetails.score"></span>
+                                                    <div class="ratings-hex hexPop">
+                                                        <div class="empty-hex lh25" data-rating="{{ctrl.ratingChar}}"></div>
+                                                        <div data-rating="{{ctrl.ratingChar}}" data-ng-style="{width:(ctrl.scoreDetails.score/ctrl.ratingScalePercent)*10+ '%'}" class="full-hex lh25" ></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p class="rv-detail" data-ng-if="ctrl.scoreDetails.reviewer.name ===null || ctrl.scoreDetails.reviewer.name ===''" data-ng-bind="ctrl.scoreDetails.reviewer.email"></p>
+                                            <p class="rv-detail" data-ng-if="ctrl.scoreDetails.reviewer.name !==null && ctrl.scoreDetails.reviewer.name !==''">{{ctrl.scoreDetails.reviewer.name}} <span data-ng-if="ctrl.scoreDetails.reviewer.title !==null && ctrl.scoreDetails.reviewer.title !==''">, {{ctrl.scoreDetails.reviewer.title}}</span></p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody class="noBrd">
+                                <tr data-ng-repeat="list in record=(ctrl.scoreDetails.competencyScoreList) track by $index" data-ng-class="{'noBrd':($index===0)}">
+                                    <td data-ng-bind="list.name" class="fs12 tdw60" data-ng-class="{'bLef1':($index===0)}"></td>
+                                    <td class="tdw35">
+                                        <div class="cmrc-details clearfix mpReset">
+                                            <p class="tUpperCase tSize12 tWeight700">
+                                                <span class="hScore" data-ng-bind="list.score"></span>
+                                                <div class="ratings-hex hexMtop">
+                                                    <div class="empty-hex lh25" data-rating="{{ctrl.ratingChar}}"></div>
+                                                    <div data-rating="{{ctrl.ratingChar}}" data-ng-style="{width:(list.score/ctrl.ratingScalePercent)*10+ '%'}" class="full-hex lh25" ></div>
+                                                </div>
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="cmrc-action-btns clearfix mpReset pdBot40 nob">
+                        <a href="javascript:void(0)" class="btn-block btn-15px sp-btn-color" data-ng-click="closeThisDialog()" data-ng-bind="::pullInterNationalization('competency.manager.managerEvaluation.done')"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

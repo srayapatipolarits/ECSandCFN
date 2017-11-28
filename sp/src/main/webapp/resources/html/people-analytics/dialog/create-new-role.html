@@ -1,0 +1,59 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                    <h2>
+                    	<a href="javascript:void(0)" class="border-link default_true">
+                    		<span class="sp-header-title-color" data-ng-bind="::pullInterNationalization('candidate.createRole.create')"></span>
+                    	</a>
+                    </h2>
+                </div>
+                <div class="new-modals-wrapper">
+                    <div class="custom-overlay-wrapper posRel">
+    <div class="members-content-wrapper">
+       <!--  <p class="dialog-message-16px" data-ng-bind="::pullInterNationalization('peopleAnalytics.roles.roleDesc')"></p>-->
+        <form name="newRole.form" novalidate class="form-styles-override peopleAnalyticsOverrides" data-ng-submit="createNewRole(isUpdate)" autocomplete="off" id="newRoleForm">
+            <ol class="form-list-c">
+            	<li>
+                    <label for="name" data-ng-bind="::pullInterNationalization('peopleAnalytics.roles.enterRole')"></label>
+                    <input type="text" data-ng-minlength="3" maxlength="50" name="name" data-ng-model="newRole.details.name" placeholder="{{::pullInterNationalization('peopleAnalytics.roles.rolePh')}}" data-ng-required="true" />
+                    <span class="validate-error" data-ng-if="formSubmit && newRole.form.name.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                    <span class="validate-error" data-ng-if="formSubmit && newRole.form.name.$error.minlength" data-ng-bind="::pullInterNationalization('signup.minimum3')"></span>
+                </li>
+                <li class="mar10">
+                    <label for="description" data-ng-bind="::pullInterNationalization('peopleAnalytics.roles.enterRole')" class="hide"></label>
+                    <textarea rows=7 cols=50 placeholder="{{::pullInterNationalization('peopleAnalytics.roles.roleDescPh')}}" data-ng-model="newRole.details.description" name="description"></textarea>                
+                </li>
+                <li class="tagsEmailInput brdr0 ideal-portrait sp-search-button">
+     				<span class="portrait-remove-icon-style icon-icon_remove sp-icon-color" data-ng-if="newRole.details.portraitId" data-ng-click="clearPortraitInputBox()"></span>
+                	<span class="portrait-remove-icon-style icon-icon_search s-ico" data-ng-if="!newRole.details.portraitId"></span>
+                    <div class="angucomplete-wrapper">
+                        <angucomplete  placeholder="{{::pullInterNationalization('peopleAnalytics.roles.prefPortraitPh')}}" pause="100" selectedobject="newRole.details.portraitId" localdata="portraitsListing"  show-search="true" searchfields="name" titlefield="name" minlength="2" inputclass="form-control form-control-small" templatetype="default" update-fn="updateInputBox(callback)"/>
+				    </div>
+                </li>
+                <li data-ng-if="submitError">
+                	<span class="validate-error" data-ng-bind="submitError"></span>
+                </li>
+                <!-- Form Button Starts -->
+                <li class="submit-cancel-btns">
+                    <ul class="submit-cancel-list">
+                        <li>
+                            <input type="submit" value="{{::pullInterNationalization('admin.member.submit')}}" class="btn-block btn-15px sp-btn-color" />
+                        </li>
+                        <li>
+                            <input type="button" value="{{::pullInterNationalization('admin.member.cancel')}}" class="btn-block btn-grey-dark btn-15px" data-ng-click="closeNewRoleView();" />
+                        </li>
+                    </ul>
+                </li>
+                <!-- Form Button Ends -->
+            </ol>
+        </form>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

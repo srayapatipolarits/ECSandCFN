@@ -1,0 +1,51 @@
+<div class="lnd-content-dialog">
+    <div class="x-container" style="height:{{ctrl.winHeight}}">
+        <div class="dialog-header-closeBtn customErtiHeader">
+            <h2 class="dialog-heading" data-ng-bind="::pullInterNationalization('practiceArea.addRemove')"></h2>
+            <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('manageAccountContent.done')" data-ng-click="closeThisDialog();"></a>
+        </div>
+        <div class="table-flex-cols">
+            <div class="mpa-right-sec m0">
+                <div class="mpa-right-box">
+                    <div class="mpa-new-cols-wrap">
+                        <div class="mpa-new-cols mpa-right enable">
+                            <div class="mpa-right-filters">
+                                <p class="fh" data-ng-bind="::pullInterNationalization('manageAccountContent.filterpracticearea')"></p>
+                                <p class="pCheckBox mr15 floatLeft">
+                                    <input type="checkbox" name="prismFilter" id="prismFilter" class="iCheckBox" data-ng-model="ctrl.optPrism" data-ng-click="ctrl.applyFilter('prism',ctrl.optPrism)" />
+                                    <label for="prismFilter" class="lCheckBox">
+                                        <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                                        <span class="lCheckBoxText" data-ng-bind-html="::pullInterNationalization('managePA.prism')"></span>
+                                    </label>
+                                </p>
+                                <p class="pCheckBox mr15 floatLeft">
+                                    <input type="checkbox" name="prismLensFilter" id="prismLensFilter" class="iCheckBox" data-ng-model="ctrl.optPrismLens" data-ng-click="ctrl.prismLensExists?ctrl.applyFilter('prismlens',ctrl.optPrismLens):''" data-ng-disabled="!ctrl.prismLensExists" />
+                                    <label for="prismLensFilter" class="lCheckBox" data-ng-class="{'disabled':!ctrl.prismLensExists}">
+                                        <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                                        <span class="lCheckBoxText" data-ng-bind-html="::pullInterNationalization('managePA.prismLens')" data-ng-class="{'disabled':!ctrl.prismLensExists}"></span>
+                                    </label>
+                                </p>
+                            </div>
+                            <div class="mpa-right-search">
+                                <p class="search-filter">
+                                    <input type="text" data-ng-model="ctrl.pageOptions.searchText" data-ng-init="ctrl.pageOptions.searchText=''" data-ng-model-options="{ debounce: { 'default': 500, 'blur': 0 } }" placeholder="{{::pullInterNationalization('practiceArea.search')}}" data-ng-change="ctrl.sortList()" />
+                                    <button class="search-icon sp-icon-color" data-ng-class="{'icon-icon_remove' : ctrl.pageOptions.searchText.length, 'icon-icon_search': !ctrl.pageOptions.searchText.length}" data-ng-click="ctrl.pageOptions.searchText='';ctrl.sortList();"></button>
+                                </p>
+                            </div>
+                            <ul class="mpa-pills">
+                                <li data-ng-repeat="goals in record = (ctrl.listGoals) track by goals.goal.id" data-ng-class="{'dark':goals.selected}">
+                                    <span class="mpa-name sp-link-color" data-ng-bind="goals.goal.name" data-ng-click="ctrl.viewDevelopmentStartegy(goals.goal.developmentStrategyList,goals.goal.name,goals.goal,goals.sourceList,goals)"></span>
+                                    <span class="mpa-icon icon-erti_plus sp-icon-color" data-ng-if="!goals.selected && !ctrl.disableAddButton" data-ng-click="goals.selected = !goals.selected;ctrl.addGoal(goals);"></span>
+                                    <span class="mpa-icon icon-erti_plus inactive" data-ng-if="!goals.selected && ctrl.disableAddButton"></span>
+                                    <span class="mpa-icon icon-erti_minus sp-icon-color" data-ng-if="goals.selected" data-ng-click="goals.selected = !goals.selected;ctrl.removeGoal(goals,'rightRail');"></span>
+                                </li>
+                            </ul>
+                            <div data-ng-if="!record.length && ctrl.masterlistGoals.length" class="noMatchFound" data-ng-bind="::pullInterNationalization('practiceArea.noMatch')"></div>
+                            <div data-ng-if="!record.length && !ctrl.masterlistGoals.length" class="noMatchFound" data-ng-bind="::pullInterNationalization('practiceArea.informationLoading')"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

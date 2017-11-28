@@ -1,0 +1,56 @@
+<div class="custom-overlay-wrapper posRel" data-ng-init="getTransactionsHistory()" style="width:100%;overflow:hidden;" data-ng-style="{'height':overlayDim.height1}">
+    <a href="javascript:void(0)" class="close-custom-overlay icon-icon_remove sp-icon-color" data-ng-click="closeTransactionsView(false)"></a>
+    <div class="members-content-wrapper">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('admin.account.payment.history.title')"></h2>
+        </div>
+        <div class="payment-history" style="width:100%;overflow-y:auto;" data-ng-style="{'height':overlayDim.height0}">
+            <div class="payment-details-list">
+                <div class="tData">
+                    <div class="tRow tHeader">
+                        <div class="tCol">
+                            <p data-ng-bind="::pullInterNationalization('admin.account.payment.history.date')"></p>
+                        </div>
+                        <div class="tCol">
+                            <p data-ng-bind="::pullInterNationalization('admin.account.payment.history.order')"></p>
+                        </div>
+                        <div class="tCol desc">
+                            <p data-ng-bind="::pullInterNationalization('admin.account.payment.history.orderdetails')"></p>
+                        </div>
+                        <div class="tCol last">
+                            <p data-ng-bind="::pullInterNationalization('admin.account.payment.history.price')"></p>
+                        </div>
+                        <div class="tCol pdf">
+                            <!--p data-ng-bind="::pullInterNationalization('admin.account.payment.history.pdf')"></p-->
+                        </div>
+                    </div>
+                </div>
+                <div class="tData">
+                    <div class="tRow" data-ng-repeat="r in paymentDetails">
+                        <div class="tCol">
+                            <p data-ng-bind-html="r.createdOnFormatted"></p>
+                        </div>
+                        <div class="tCol">
+                            <p class="txnFix" data-ng-bind-html="r.txnId"></p>
+                        </div>
+                        <div class="tCol desc">
+                            <p data-ng-bind-html="r.reason"></p>
+                        </div>
+                        <div class="tCol last">
+                            <p data-ng-bind-html="r.amount | currency"></p>
+                        </div>
+                        <div class="tCol pdf">
+                            <p class="pdf-no-link"><a target="_blank" class="pdf-icon icon-icon_pdf sp-icon-color" href="/sp/admin/account/paymentHistory/invoice/{{r.id}}" title="Download PDF"></a></p>
+                            <p class="pdf-full-link">
+                            	<a target="_blank" class="border-link" href="/sp/admin/account/paymentHistory/invoice/{{r.id}}">
+                            		<span class="icon-icon_pdf sp-icon-color link-icon-pdf"></span>
+                            		<span class="mock-link" data-ng-bind="::pullInterNationalization('admin.profilePdf.title')"></span>
+                            	</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

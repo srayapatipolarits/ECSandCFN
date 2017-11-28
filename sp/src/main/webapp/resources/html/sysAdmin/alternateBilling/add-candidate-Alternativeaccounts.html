@@ -1,0 +1,292 @@
+<div id="content-container">
+    <div class="x-container sign-up-wrapper subscribe-wrapper alternate-billing hide" ng-controller="candidateAccountsController as ctrl" ng-init="ctrl.initAddMemberAccoutns('HIRING','admin')" ng-if="inviteReady" ng-class="inviteReady?'show':'hide'">
+        <div class="container minimumHeight" >
+            <div class="row">
+                <div class="section-custon-header">
+                	<a href="/sp/sysAdmin/alternateBilling/viewDetailAccount?accountId={{ctrl.account.account.id}}" class="border-link accv-link">
+                		<span class="mock-link" data-ng-bind="pullInterNationalization('pricing.desc6')"></span>
+                	</a>                
+                    <p ng-if="ctrl.serverError"><span class="validate-error" data-ng-bind="ctrl.errorMessage"></span></p>
+                    <h2 data-ng-bind="pullInterNationalization('pricing.create.desc4')"></h2>
+		                <p><span class="b-500" data-ng-bind="pullInterNationalization('pricing.create.desc3')"></span> <span class="b-300" data-ng-bind="ctrl.account.company.name"></span></p>                    
+		                <p><span class="b-500" data-ng-bind="pullInterNationalization('pricing.create.desc2')"></span> <span class="b-300" data-ng-bind="ctrl.account.account.accountNumber"></span></p>                    
+                    <hr class="half-line" />
+                </div>
+                <div class="payment-page sign-up-product payment-page-business product_leftSection">
+                    <form id="accountsBillingStep2" name="spSubscribe" novalidate autocomplete="off" data-ng-submit="ctrl.validateSendResponse(spSubscribe)">
+                        <input type="hidden" class="totalPrice" name="name" value="Intelligent Hiring" />
+                        <input type="hidden" class="totalPrice" name="planType" value="IntelligentHiring" />
+                        <input type="hidden" name="accountId" value="{{ctrl.account.account.id}}" />
+                        <section class="numberPad employee-calculator paymentDropDown">
+                            <h3 class="headBold" data-ng-bind="pullInterNationalization('pricing.create.label35')"></h3>
+                            <div class="clearfix col-wrap1 shorten margin-top-class">
+                                <div class="col-fleft shorten">
+                                    <h3 class="calculator-title" data-ng-bind="pullInterNationalization('pricing.create.label7')"></h3>
+                                    <div class="totamount">
+                                        <input type="number" min="0" step="1" class="totalPrice" name="numAdmin" data-ng-model="ctrl.signup.hiringAdminCount" data-ng-pattern="/^[1-9][0-9]*$/" data-ng-keyup="ctrl.updateHiringAccountSummary('Admin')" data-ng-class="{'serialize-ignore':!ctrl.signup.hiringAdminCount}" />
+                                        <span class="err-msg validate-error" data-ng-show="ctrl.formSubmitted && spSubscribe.numAdmin.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                                        <span class="err-msg validate-error" data-ng-show="ctrl.formSubmitted && spSubscribe.numAdmin.$error.pattern" data-ng-bind="pullInterNationalization('signup.invalid.email')"></span>
+                                    </div>
+                                </div>
+                                <div class="col-fleft">
+                                    <h3 class="calculator-title" data-ng-bind="pullInterNationalization('pricing.create.label8')"></h3>
+                                    <div class="totamount">
+                                        <input type="text" class="totalPrice" name="unitAdminPrice" data-ng-model="ctrl.signup.hiringAdminPrice" data-ng-keyup="ctrl.updateHiringAccountSummary('Admin')" data-ng-required="ctrl.signup.hiringAdminCount > 0 && ctrl.hiringAdminOverrideCheckbox === false" data-ng-disabled="true" ng-pattern="/^\s*(?=.*[0-9])\d*(?:\.\d{1,2})?\s*$/" data-ng-class="{'disabled':true,'serialize-ignore':!ctrl.signup.hiringAdminCount}" />
+                                        <span class="sub-msg" data-ng-bind="pullInterNationalization('pricing.create.desc17')"></span>
+                                        <span class="err-msg validate-error" data-ng-show="ctrl.formSubmitted && spSubscribe.unitAdminPrice.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                                        <span class="err-msg validate-error" data-ng-show="ctrl.formSubmitted && !spSubscribe.unitAdminPrice.$error.required && spSubscribe.unitAdminPrice.$error.pattern" data-ng-bind="pullInterNationalization('signup.invalid.email')"></span>
+                                    </div>
+                                </div>
+                                <div class="col-fleft no-right-margins">
+                                    <h3 class="calculator-title cb-custom no-paddings one-line-fix">
+                                                    <input id="cb_hiringAdmin" type="checkbox"
+                                                        name="isOverrideAdminAmount"
+                                                        data-ng-model="ctrl.hiringAdminOverrideCheckbox"
+                                                        data-ng-click="ctrl.toggleHiringOverrideField('Admin')"
+                                                         value="{{ctrl.hiringAdminOverrideCheckbox}}" data-ng-disabled="true">
+                                                        <label for="cb_hiringAdmin">
+				                                        	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+				                                        	<span data-ng-bind="pullInterNationalization('pricing.create.label6')"></span>                                                        
+                                                        </label>
+                                                </h3>
+                                    <div class="totamount">
+                                        <input type="number" min="0" step="1" class="totalPrice" name="overrideAdminPrice" data-ng-model="ctrl.signup.overrideHiringAdminAmount" data-ng-disabled="ctrl.hiringAdminOverrideCheckbox === false" data-ng-keyup="ctrl.updateHiringAccountSummary('Admin')" data-ng-required="ctrl.signup.hiringAdminCount > 0 && (ctrl.hiringAdminOverrideCheckbox === true || ctrl.signup.hiringAdminPrice === 0)" ng-pattern="/^\s*(?=.*[0-9])\d*(?:\.\d{1,2})?\s*$/" data-ng-class="{'disabled':!ctrl.hiringAdminOverrideCheckbox}" />
+                                        <span class="sub-msg" data-ng-bind="pullInterNationalization('pricing.create.desc17')"></span>
+                                        <span class="err-msg validate-error" data-ng-show="ctrl.formSubmitted && spSubscribe.overrideAdminPrice.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                                        <span class="err-msg validate-error" data-ng-show="ctrl.formSubmitted && !spSubscribe.overrideAdminPrice.$error.required && spSubscribe.overrideAdminPrice.$error.pattern" data-ng-bind="pullInterNationalization('signup.invalid.email')"></span>
+                                    </div>
+                                </div>
+                                <!-- Using These Hidden Inputs for correct serilization DATA Starts -->
+                                <div class="hide-this" ng-if="!ctrl.signup.hiringAdminCount">
+                                    <input type="hidden" name="numAdmin" value="0" />
+                                </div>
+                                <div class="hide-this" ng-if="ctrl.hiringAdminOverrideCheckbox===false">
+                                    <input type="hidden" name="isOverrideAdminAmount" value="false" />
+                                    <input type="hidden" name="overrideAdminPrice" value="0" />
+                                    <input type="hidden" name="unitAdminPrice" value="{{ctrl.signup.hiringAdminPrice}}" />
+                                </div>
+                                <div class="hide-this" ng-if="ctrl.hiringAdminOverrideCheckbox===true">
+                                    <input type="hidden" name="unitAdminPrice" value="{{ctrl.signup.hiringAdminPrice}}" />
+                                </div>
+                                <!-- Using These Hidden Inputs for correct serilization DATA Ends -->
+                            </div>
+                        </section>
+						<section class="numberPad employee-calculator paymentDropDown">
+                            <h3 class="headBold no-top-margins" data-ng-bind="pullInterNationalization('pricing.create.heading10')"></h3>
+                            <div class="bundle-info">
+                                <p><span data-ng-bind="pullInterNationalization('admin.account.business.candidates.desc2')"></span> {{ctrl.hiringBundle}}</p>
+                                <p>1 bundle = {{ctrl.hiringBundle}} portraits</p>
+                            </div>
+                            <ol class="form-list clearfix">
+                                <li class="floatList radio">
+                                    <input class="serialize-ignore" type="radio" checked value="Bundles" name="bundlesCheck" data-ng-model="ctrl.hiringPackageType" data-ng-click="ctrl.hiringPackageChange('Bundles')">{{pullInterNationalization('pricing.create.label33')}}
+                                </li>
+                                <li class="floatList radio">
+                                    <input class="serialize-ignore" type="radio" value="Candidates" name="bundlesCheck" data-ng-model="ctrl.hiringPackageType" data-ng-click="ctrl.hiringPackageChange('Candidates')">{{pullInterNationalization('pricing.create.label34')}}
+                                </li>
+                            </ol>
+                            <input type="hidden" name="isBundle" value="{{ctrl.hiringPackageType === 'Bundles'}}" />
+                            <div class="clearfix col-wrap1 shorten margin-top-class" data-ng-if="ctrl.hiringPackageType === 'Bundles'">
+                                <div class="col-fleft">
+                                    <h3 class="calculator-title" data-ng-bind="pullInterNationalization('pricing.create.label11')"></h3>
+                                    <div class="totamount">
+                                        <input type="number" min="0" step="1" class="totalPrice serialize-ignore" name="bundleCount" data-ng-model="ctrl.signup.bundleCount" placeholder="" data-ng-keyup="ctrl.updateHiringAccountSummary('Bundle')" ng-pattern="/^[0-9][0-9]*$/" data-ng-required="!ctrl.signup.hiringAdminCount && ctrl.hiringPackageType !== 'Candidates'"/>
+                                        <input type="hidden" name="numCandidates" value="{{ctrl.signup.bundleCount?ctrl.signup.bundleCount*ctrl.hiringBundle:0}}" />
+                                        <span class="err-msg validate-error" data-ng-show="ctrl.formSubmitted && spSubscribe.bundleCount.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                                        <span class="err-msg validate-error" data-ng-show="ctrl.formSubmitted && spSubscribe.bundleCount.$error.pattern" data-ng-bind="pullInterNationalization('signup.invalid.email')"></span>
+                                    </div>
+                                </div>
+                                <div class="col-fleft">
+                                    <h3 class="calculator-title" data-ng-bind="pullInterNationalization('pricing.create.label12')"></h3>
+                                    <div class="totamount">
+                                        <input type="number" min="0" step="1" class="totalPrice serialize-ignore" name="bundlePrice" data-ng-model="ctrl.signup.bundlePrice" data-ng-keyup="ctrl.updateHiringAccountSummary('Bundle')" ng-pattern="/^\s*(?=.*[0-9])\d*(?:\.\d{1,2})?\s*$/" data-ng-disabled="true" data-ng-class="{'disabled':true}" data-ng-required="ctrl.signup.bundleCount && ctrl.hiringPackageType === 'Bundles'" />
+                                        <input type="hidden" name="pricePerCandidate" value="{{ctrl.signup.candidatePrice?ctrl.signup.candidatePrice:0}}" />
+                                        <span class="err-msg validate-error" data-ng-show="ctrl.formSubmitted && spSubscribe.bundlePrice.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                                        <span class="err-msg validate-error" data-ng-show="ctrl.formSubmitted && !spSubscribe.bundlePrice.$error.required && spSubscribe.bundlePrice.$error.pattern" data-ng-bind="pullInterNationalization('signup.invalid.email')"></span>
+                                    </div>
+                                </div>
+                                <div class="col-fleft no-right-margins">
+                                    <h3 class="calculator-title cb-custom no-paddings one-line-fix">
+                                                    <input id="cb_bundleOverride" type="checkbox"
+                                                        name="isOverrideAmount"
+                                                        data-ng-model="ctrl.bundleOverrideCheckbox"
+                                                        data-ng-click="ctrl.toggleHiringOverrideField('Bundle')"
+                                                         value="{{ctrl.bundleOverrideCheckbox}}" data-ng-disabled="true"/>
+                                                    <label for="cb_bundleOverride">
+			                                        	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+			                                        	<span data-ng-bind="pullInterNationalization('pricing.create.label6')"></span>                                                    
+                                                    </label>
+                                                </h3>
+                                    <div class="totamount">
+                                        <input type="number" min="0" step="1" class="totalPrice" name="overrideCandidatePrice" data-ng-model="ctrl.signup.overrideBundleAmount" data-ng-disabled="ctrl.bundleOverrideCheckbox === false" data-ng-class="ctrl.bundleOverrideCheckbox === false?'disabled':''" data-ng-keyup="ctrl.updateHiringAccountSummary('Bundle')" ng-pattern="/^\s*(?=.*[0-9])\d*(?:\.\d{1,2})?\s*$/" data-ng-required="ctrl.hiringPackageType === 'Bundles' && ctrl.bundleOverrideCheckbox===true && !ctrl.signup.hiringAdminCount" />
+                                        <span class="err-msg validate-error" data-ng-show="ctrl.formSubmitted && spSubscribe.overrideCandidatePrice.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                                        <span class="err-msg validate-error" data-ng-show="ctrl.formSubmitted && !spSubscribe.overrideCandidatePrice.$error.required && spSubscribe.overrideCandidatePrice.$error.pattern" data-ng-bind="pullInterNationalization('signup.invalid.email')"></span>
+                                    </div>
+                                </div>
+                                <!-- Using These Hidden Inputs for correct serilization DATA Starts -->
+                                <div class="hide-this" ng-if="ctrl.bundleOverrideCheckbox===false">
+                                    <input type="hidden" name="isOverrideAmount" value="false" />
+                                    <input type="hidden" name="overrideCandidatePrice" value="0" />
+                                </div>
+                                <!--div class="hide-this" ng-if="ctrl.bundleOverrideCheckbox===true">
+                                    <input type="hidden" name="pricePerCandidate" value="{{ctrl.signup.candidatePrice}}" />
+                                </div-->
+                                <!-- Using These Hidden Inputs for correct serilization DATA Ends -->
+                            </div>
+                            <div class="clearfix col-wrap1 shorten margin-top-class" data-ng-if="ctrl.hiringPackageType === 'Candidates'">
+                                <div class="col-fleft">
+                                    <h3 class="calculator-title" data-ng-bind="pullInterNationalization('pricing.create.label13')"></h3>
+                                    <div class="totamount">
+                                        <input type="number" min="0" step="1" class="totalPrice" name="numCandidates" data-ng-model="ctrl.signup.candidateCount" data-ng-keyup="ctrl.updateHiringAccountSummary('Candidate')" ng-pattern="/^[0-9][0-9]*$/"  data-ng-required="!ctrl.signup.hiringAdminCount && ctrl.hiringPackageType === 'Candidates'" />
+                                        <span class="err-msg validate-error" data-ng-show="ctrl.formSubmitted && spSubscribe.numCandidates.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                                        <span class="err-msg validate-error" data-ng-show="ctrl.formSubmitted && spSubscribe.numCandidates.$error.pattern" data-ng-bind="pullInterNationalization('signup.invalid.email')"></span>
+                                    </div>
+                                </div>
+                                <div class="col-fleft">
+                                    <h3 class="calculator-title" data-ng-bind="pullInterNationalization('pricing.create.label14')"></h3>
+                                    <div class="totamount">
+                                        <input type="number" min="0" step="1" class="totalPrice" name="pricePerCandidate" data-ng-model="ctrl.signup.candidatePrice" data-ng-keyup="ctrl.updateHiringAccountSummary('Candidate')" ng-pattern="/^\s*(?=.*[0-9])\d*(?:\.\d{1,2})?\s*$/" data-ng-required="ctrl.hiringPackageType !== 'Bundles' && ctrl.bundleOverrideCheckbox===false" data-ng-disabled="true" data-ng-class="{'disabled':true}" />
+                                        <span class="err-msg validate-error" data-ng-show="ctrl.formSubmitted && spSubscribe.pricePerCandidate.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                                        <span class="err-msg validate-error" data-ng-show="ctrl.formSubmitted && !spSubscribe.pricePerCandidate.$error.required && spSubscribe.pricePerCandidate.$error.pattern" data-ng-bind="pullInterNationalization('signup.invalid.email')"></span>
+                                    </div>
+                                </div>
+                                <div class="col-fleft  no-right-margins">
+                                    <h3 class="calculator-title cb-custom no-paddings one-line-fix">
+                                                    <input id="cb_candiOverride" type="checkbox"
+                                                        name="isOverrideAmount"
+                                                        data-ng-model="ctrl.candidateOverrideCheckbox"
+                                                        data-ng-click="ctrl.toggleHiringOverrideField('Candidate')" value="{{ctrl.candidateOverrideCheckbox}}" data-ng-disabled="true">
+                                                        <label for="cb_candiOverride">
+				                                        	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+				                                        	<span data-ng-bind="pullInterNationalization('pricing.create.label6')"></span>                                                        
+                                                        </label>
+                                                </h3>
+                                    <div class="totamount">
+                                        <input type="number" min="0" step="1" class="totalPrice" name="overrideCandidatePrice" data-ng-model="ctrl.signup.overrideCandidateAmount" data-ng-disabled="!ctrl.candidateOverrideCheckbox" data-ng-class="{'disabled':!ctrl.candidateOverrideCheckbox}" data-ng-keyup="ctrl.updateHiringAccountSummary('Candidate')" ng-pattern="/^\s*(?=.*[0-9])\d*(?:\.\d{1,2})?\s*$/" data-ng-required="ctrl.hiringPackageType !== 'Bundles' && ctrl.candidateOverrideCheckbox===true && !ctrl.signup.hiringAdminCount" />
+                                        <span class="err-msg validate-error" data-ng-show="ctrl.formSubmitted && spSubscribe.overrideCandidatePrice.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                                        <span class="err-msg validate-error" data-ng-show="ctrl.formSubmitted && !spSubscribe.overrideCandidatePrice.$error.required && spSubscribe.overrideCandidatePrice.$error.pattern" data-ng-bind="pullInterNationalization('signup.invalid.email')"></span>
+                                    </div>
+                                </div>
+                                <!-- Using These Hidden Inputs for correct serilization DATA Starts -->
+                                <div class="hide-this" ng-if="ctrl.candidateOverrideCheckbox===false">
+                                    <input type="hidden" name="isOverrideAmount" value="false" />
+                                    <input type="hidden" name="overrideCandidatePrice" value="0" />
+                                </div>
+                                <div class="hide-this" ng-if="ctrl.candidateOverrideCheckbox===true">
+                                    <input type="hidden" name="pricePerCandidate" value="{{ctrl.signup.candidatePrice}}" />
+                                </div>
+                                <!-- Using These Hidden Inputs for correct serilization DATA Ends -->
+                            </div>
+                        </section>                        
+                        <section class="numberPad employee-calculator paymentDropDown mtop">
+                            <ol class="form-list-c form-list-d clearfix">
+                            	<li class="clear rDaysTxt" data-ng-bind="pullInterNationalization('pricing.create.desc18a')+' ('+ctrl.updateRemainingDays(ctrl.account.account.spPlans.IntelligentHiring.remainingChargableDays)+').'">
+                                <li class="clear"><!-- ng-if="isEditMode" -->
+                                	<div class="available-credits-wrapper">
+                                		<h3>Credit Balance: <span data-ng-bind="ctrl.account.account.spPlans.IntelligentHiring.creditBalance | currency"></span></h3>
+                                		<a data-ng-click="ctrl.showAddCredit('IntelligentHiring')" href="#" class="border-link">
+                                			<span class="mock-link" data-ng-bind="pullInterNationalization('pricing.create.btn2')"></span>
+                                		</a>                                		
+                                	</div>
+                                </li>                            
+                                <li ng-show="ctrl.sfailure"><span class="err-msg validate-error" ng-repeat="(key, value) in ctrl.failure" data-ng-bind="value"></span>
+                                </li>
+                                <li class="exceededUser alternateBillingBtn">
+                                    <input type="submit" ng-model="contactClick" value="SUBMIT" class="contactBtn btn-block btn-15px sp-btn-color" />
+                                </li>
+                                <li class="exceededUser alternateBillingBtn">
+                                    <input type="button" ng-model="contactClick" ng-click="ctrl.cancelRedirect()" value="CANCEL" class="contactBtn btn-block btn-grey-dark btn-15px" />
+                                </li>
+                            </ol>
+                        </section>
+                    </form>
+                </div>
+					<!--  Order summary Section Starts  -->
+					<div class="pricing-summary-wrapper">
+						<h2 class="order-sum"
+							data-ng-bind="pullInterNationalization('pricing.create.label23')"></h2>
+						<div class="price-box">
+							<hr class="nobg" />
+							<ul>
+								<li>
+									<div
+										data-ng-bind="pullInterNationalization('pricing.create.label7')"></div>
+									<div data-ng-bind="ctrl.signup.hiringAdminCount" class="pricing-units"></div>
+								</li>
+								<li>
+									<div
+										data-ng-bind="pullInterNationalization('pricing.create.label8')"></div>
+									<div data-ng-bind="ctrl.signup.hiringAdminPrice | currency"
+										class="pricing-units"></div>
+								</li>
+								<li>
+									<div
+										data-ng-bind="pullInterNationalization('pricing.create.label26')"></div>
+									<div data-ng-bind="ctrl.signup.hiringAdminTotalAmount | currency"
+										class="pricing-units"></div>
+								</li>
+							</ul>							
+							<ul data-ng-if="ctrl.hiringPackageType === 'Bundles'">
+								<li>
+									<div
+										data-ng-bind="pullInterNationalization('pricing.create.label11')"></div>
+									<div data-ng-bind="ctrl.signup.bundleCount" class="pricing-units"></div>
+								</li>
+								<li>
+									<div
+										data-ng-bind="pullInterNationalization('pricing.create.label12')"></div>
+									<div data-ng-bind="ctrl.signup.bundlePrice | currency" class="pricing-units">0</div>
+								</li>
+								<li>
+									<div
+										data-ng-bind="'Amount'"></div>
+									<div data-ng-bind="ctrl.signup.bundleTotalAmount | currency"
+										class="pricing-units"></div>
+								</li>
+							</ul>
+							<ul data-ng-if="ctrl.hiringPackageType === 'Candidates'">
+								<li>
+									<div
+										data-ng-bind="pullInterNationalization('pricing.create.label13')"></div>
+									<div data-ng-bind="ctrl.signup.candidateCount" class="pricing-units"></div>
+								</li>
+								<li>
+									<div
+										data-ng-bind="pullInterNationalization('pricing.create.label14')"></div>
+									<div data-ng-bind="ctrl.signup.candidatePrice | currency" class="pricing-units">0</div>
+								</li>
+								<li>
+									<div data-ng-bind="'Amount'"></div>
+									<div data-ng-bind="ctrl.signup.candidateTotalAmount | currency"
+										class="pricing-units"></div>
+								</li>
+							</ul>
+						</div>
+						<div class="price-box no-border bill-cyc">						
+							<h2>
+								<span data-ng-bind="pullInterNationalization('pricing.create.label36')"></span>
+								<span data-ng-bind="ctrl.proRatedFinalPrice | currency"></span>
+							</h2>
+						</div>
+					</div>
+					<!--  Order summary Section Ends  -->
+                <div class="pricing_column product_rightSection mtop">
+                    <div class="list clearfix">
+                        <div class="totalCharge">
+                            <h3 class="section_title" data-ng-bind="pullInterNationalization('pricing.create.label37')"></h3>
+                            <p class="bill-date">
+                                {{pullInterNationalization('pricing.create.label38')}}
+                                <span data-ng-bind="ctrl.account.account.spPlans.IntelligentHiring.planInfo.renewalDate"></span>
+                            </p>
+                            <p class="bill-date">
+                                {{pullInterNationalization('pricing.create.label39')}}
+                                <span data-ng-bind="(ctrl.account.account.spPlans.IntelligentHiring.planInfo.renewalTotal+(ctrl.totalChargesPerMonth * ctrl.cycleMultiplier)) | currency"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Subscribe Enterprise Template / Partial Ends -->
+</div>

@@ -1,0 +1,51 @@
+
+
+    <div class="container minimumHeight" id="archiveGrowthScreen">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+<div>
+    	<section class="wrapper">
+	<div class="contentBody">
+		<div class="head">
+			<div class="wrap">
+				<div class="headerBar" data-ng-bind="pullInterNationalization('feedback.feedbackListing.archive.title')"></div>
+				<div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+			</div>
+		</div>
+		<div class="contentArea clearfix">
+			<div class="memberInfo">
+				<div class="via" data-ng-bind="pullInterNationalization('feedback.feedbackListing.archive.from')" ></div>
+				<div class="clearfix">
+					<div class="memberName sp-header-title-color" data-ng-bind="archiveMember.name"></div>
+					<div class="memberEmail" data-ng-bind="archiveMember.email"></div>
+					<div class="date" ng-if="archiveMember.formattedStartDate"><span data-ng-bind="archiveMember.formattedStartDate|date"></span> - <span data-ng-bind="archiveMember.formattedEndDate|date"></span></div>
+				</div>
+				<div class="memberTitle" data-ng-bind="archiveMember.title"></div>
+			</div>
+			<div class="confirmationBLock">
+				<div class="message" data-ng-bind="pullInterNationalization('feedback.feedbackListing.archive.confirmation')"></div>
+				<!-- <div class="makeGlView" ng-hide="getAllMembersToInvite.userType=='individual'">
+				<input type="checkbox" name="selectGrowth" ng-model="groupLead"  id="selectLead" class="filterCheckBox">
+		        <label for="selectLead" class="filterCheckBox-label" data-ng-bind="pullInterNationalization('feedback.feedbackListing.gl.info')"></label>
+		        </div>-->
+			</div>
+			
+		
+			<div class="sp-btn-wrapper sp-red btn-esmall floatLeft inviteBtn">
+				<div class="sp-btn">
+					<input type="button" value="{{pullInterNationalization('feedback.feedbackListing.yes')}}" class="btnStyle1" ng-click="sendToArchive(archiveMember.id,archiveMember.email,groupLead)">
+				</div>
+			</div>
+			<div class="sp-btn-wrapper sp-grey btn-esmall floatLeft spacing">
+				<div class="sp-btn">
+					<input type="button" value="{{pullInterNationalization('feedback.feedbackListing.no')}}" class="btnStyle1" ng-click="closeThisDialog()">
+				</div>
+			</div>
+			
+		 	</div>
+	</div>
+
+	</section>
+</div></div>
+</div></div>
+

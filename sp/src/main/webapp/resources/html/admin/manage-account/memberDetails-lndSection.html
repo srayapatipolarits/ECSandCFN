@@ -1,0 +1,79 @@
+<link type="text/css" rel="stylesheet" href="/resources/css/css-min/drop-theme-arrows.min.css" />
+<div class="col-content-wrapper mh700 posRel mh500" data-ng-init="ctrl.getERTiDetails()" style="min-height:{{ctrl.heightAdj.height}}px">
+    <div class="members-content-wrapper" data-ng-if="!ctrl.competencyPreview && !ctrl.actionPlan.preview">
+        <div class="members-header">
+            <h2 class="sp-header-title-color no-text-transform" data-ng-bind="::pullInterNationalization('manageAccountContent.erti')"></h2>
+            <p class="alStatus right-content">
+                <span data-ng-bind="::pullInterNationalization('practiceArea.autoLearning')+': '"></span>
+                <span class="fw500" data-ng-if="ctrl.autoLearningStatus" data-ng-bind="::pullInterNationalization('admin.account.business.permissions.btn.on')"></span>
+                <span class="fw500" data-ng-if="!ctrl.autoLearningStatus" data-ng-bind="::pullInterNationalization('admin.account.business.permissions.btn.off')"></span>
+            </p>
+        </div>
+    </div>
+    <div class="erti-content-wrap" data-ng-if="!ctrl.competencyPreview && !ctrl.actionPlan.preview">
+    	<p class="erti-msg hide" data-ng-class="!ctrl.goalsList.length?'show':'hide'" data-ng-if="!ctrl.goalsList.length" data-ng-bind="::pullInterNationalization('manageAccountContent.memberisyet')"></p>
+        <ul data-ng-if="ctrl.goalsList.length">
+            <li data-ng-repeat="goalDetails in ctrl.goalsList" class="goalsListing">
+                <p>
+                    <span class="goal-name" data-ng-bind="goalDetails.name"></span>
+                    <span class="help-info-icon icon-icon_help_i sp-icon-color" lnd-tool-tip data-desc="{{goalDetails.description}}"></span>
+                </p>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- Competency Starts -->
+    <div class="members-content-wrapper mtop90" data-ng-if="ctrl.companyFeatures.isCompetency && ctrl.competencyProfile && !ctrl.competencyPreview && !ctrl.actionPlan.preview">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('manageAccountContent.headingcompetency')"></h2>
+        </div>
+    </div>
+    <div class="erti-content-wrap" data-ng-if="ctrl.companyFeatures.isCompetency && ctrl.competencyProfile && !ctrl.competencyPreview && !ctrl.actionPlan.preview">
+        <ul>
+            <li class="goalsListing">
+                <p>
+                    <span class="goal-name" data-ng-bind="ctrl.competencyProfile.name"></span>
+                    <span class="help-info-icon icon-icon_preview sp-icon-color" data-ng-click="ctrl.previewCompetency(ctrl.competencyProfile.id)"></span>
+                </p>
+            </li>
+        </ul>    
+    </div>
+    <!-- Competency Ends -->
+    
+    <!-- OrgPlans Starts -->
+    <div class="members-content-wrapper mtop90" data-ng-if="ctrl.companyFeatures.isOrganizationPlan && !ctrl.competencyPreview && !ctrl.actionPlan.preview">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('manageAccountContent.headingorganization')"></h2>
+            <p class="group-add-btn right-content">
+                <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('manageAccountContent.editOrgPlan')" data-ng-click="ctrl.editActionPlan(ctrl.memberProfile,'ASSIGN',true)"></a>
+             </p>
+        </div>
+    </div>
+    <div class="erti-content-wrap" data-ng-if="ctrl.companyFeatures.isOrganizationPlan && ctrl.userActionPlansList.length && !ctrl.competencyPreview && !ctrl.actionPlan.preview">
+        <ul>
+            <li data-ng-repeat="plan in ctrl.userActionPlansList" class="goalsListing">
+                <p>
+                    <span class="goal-name">
+                    	<span data-ng-bind="plan.name"></span>
+                    	<span class="f100" data-ng-bind="plan.completedKpi+'/'+plan.totalKpi"></span>
+                    	<span class="f100" data-ng-bind="::pullInterNationalization('manageAccountContent.completed')"></span>
+                    	<span data-ng-bind="'('+ ctrl.percentCalc(plan.totalKpi,plan.completedKpi) +')'"></span>
+                    </span>
+                    <span class="help-info-icon icon-icon_preview sp-icon-color" data-ng-click="ctrl.previewOrgPlan(plan)"></span>
+                    <span class="help-info-icon icon-icon_remove sp-icon-color adjustRight" data-ng-click="ctrl.removeActionPlan(plan,ctrl.memberProfile)"></span>
+                </p>
+            </li>
+        </ul>    
+    </div>
+    <!-- OrgPlans Ends -->
+    <!-- Competency Overlay Starts  -->
+    <div class="custom-overlay-template noAbs" data-ng-if="ctrl.competencyPreview">
+        <ng-include src="'/sp/resources/html/admin/manage-account/memberDetails-competencyPreview.html'"></ng-include>
+    </div>
+    <!-- Competency OVerlay Ends  -->
+    <!-- Org Plans Overlay Starts  -->
+    <div class="custom-overlay-template noAbs" data-ng-if="ctrl.actionPlan.preview">
+        <ng-include src="'/sp/resources/html/admin/manage-account/account-admin-organization-preview.html'"></ng-include>
+    </div>
+    <!-- Org Plans Overlay Ends  -->
+</div>

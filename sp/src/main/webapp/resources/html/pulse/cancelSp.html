@@ -1,0 +1,38 @@
+    <div class="container"  id="editGroup">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
+<div>
+    	<section class="wrapper">
+	<div class="contentBody">
+		<div class="head">
+			<div class="wrap">
+				<div class="headerBar" data-ng-bind="::pullInterNationalization('pulse.cancel.status')"></div>
+				<div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+			</div>
+		</div>
+		<div class="contentArea">
+			<div class="detail clearfix lang-change">
+				<div class="conf_message"><span data-ng-bind="::pullInterNationalization('pulse.cancel.cancelMessage')"></span></div>
+				<div class="sp-btn-wrapper sp-red btn-small floatLeft spacing pulse-lang">
+					<div class="sp-btn">
+						<input type="button" id="event_popup-cancel-pulse_add-data_yes-save" value="{{::pullInterNationalization('pulse.cancel.save')}}" class="btnStyle1 " data-ng-click="pulseCtrl.cancelPulse(pulseCtrl.idToCancel,true)">
+					</div>
+				</div>
+				<div class="sp-btn-wrapper sp-red btn-small floatLeft spacing pulse-lang">
+					<div class="sp-btn">
+						<input type="button" id="event_popup-cancel-pulse_add-data_yes-disregard" value="{{::pullInterNationalization('pulse.cancel.discard')}}" class="btnStyle1 " data-ng-click="pulseCtrl.cancelPulse(pulseCtrl.idToCancel,false)">
+					</div>
+				</div>
+				<div class="sp-btn-wrapper sp-grey btn-small floatLeft spacing pulse-lang">
+					<div class="sp-btn">
+						<input type="button" id="event_popup-cancel-pulse_cancel_cancel" value="{{::pullInterNationalization('pulse.cancel.cancel')}}" class="btnStyle1 " data-ng-click="closeThisDialog()">
+					</div>
+				</div>
+			</div>
+			
+	</div>
+
+	</section>
+</div>
+</div></div>
+

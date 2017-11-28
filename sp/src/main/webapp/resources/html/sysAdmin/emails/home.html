@@ -1,0 +1,87 @@
+<section data-ng-controller="emailManagerController as ctrl" data-ng-init="ctrl.getAllCompaniesWithEmailSettings()" data-ng-cloak>
+    <div class="x-container members hiring-candidates affiliate-listing blueprint-home admin-theming-home">
+        <div class="container minimumHeight" >
+        <section class="blueprint-home-section sp-panel-accent">
+            <div class="custom-cols left results-content">
+                <div class="blueprint-home-column">
+                    
+                    <div class="results-wrapper">
+                        
+                        <div class="rel-content top">
+                            <div class="global-title" data-ng-bind="pullInterNationalization('admin.emails.defaultText')"></div>
+                            <span data-ng-bind="pullInterNationalization('admin.emails.defaultDesc')"></span>
+                        </div>
+                        <a href="/sp/sysAdmin/emailManagement/update" class="subscribeBtn btn-block btn-15px sp-btn-color" data-ng-bind="pullInterNationalization('admin.emails.update')"></a>
+                        
+                    </div>
+                </div>
+            </div>
+            </section>
+            <div class="bgWhiteBord clearfix">
+                <div class="toolbar clearfix">
+                    <div class="title">
+                        <a href="#" role="button" data-ng-click="ctrl.resetResults()">{{pullInterNationalization('admin.emails.allAccounts')}}<span class="blackcolor">({{ctrl.companiesWithEmailCustomization.length}})</span></a>
+                    </div>
+                     
+                    <div class="controls clearfix">
+                        <div class="hiring-list-wrapper">
+                            <p>
+                                <a href="#" data-ng-click="ctrl.selectCompany()" data-ng-bind="pullInterNationalization('admin.emails.createNew')"></a>
+                            </p>
+                        </div>
+                        <div class="controlwrap search">
+                            <input type="text" class="form-control" maxlength="28" data-ng-model="ctrl.searchText" placeholder="Search">
+                            <button class="sp-icon-color" data-ng-class="ctrl.searchText.length>2? 'icon-icon_remove':'icon-icon_search'" data-ng-click="ctrl.searchText =''"></button>
+                        </div>
+                    </div>
+                </div>
+              
+                <article class="memberHolder">
+                    <div class="heading row">
+                       
+                        <div class="col-md-4 col-sm-4 tog activeFilter" data-ng-click="ctrl.active($event,{'predicate':'company.name', 'reverse':reverse=!reverse})" data-predicate='name'>
+                            <h4 class="on code" data-ng-bind="pullInterNationalization('admin.blueprint.sortCompany.header')"></h4>
+                        </div>
+                         <div class="col-md-3 col-sm-3 t-name tog" data-ng-click="ctrl.active($event,{'predicate':'company.address.city', 'reverse':reverse=!reverse})" data-predicate='address'>
+                            <h4 data-ng-bind="pullInterNationalization('admin.blueprint.sortAddress.header')"></h4>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            <h4 data-ng-bind="pullInterNationalization('admin.emails.sortAccess.header')"></h4>
+                        </div>
+                       
+                       
+                        
+                    </div>
+                     <div class="complete-profile animation_1" data-ng-class="{active:show}" id='{{$index}}' data-ng-repeat="list in recordField = (ctrl.companiesWithEmailCustomization|filter:ctrl.searchText) track by list.id">
+                            <div class="table-row clearfix">
+                               
+                                <div class="col-md-4 col-sm-4">
+                                    <p class="code">
+                                        <a href="/sp/sysAdmin/emailManagement/update?id={{list.company.id}}" class="border-link">
+                                            <span class="mock-link" data-ng-bind="list.company.name"></span>
+                                        </a>
+                                    </p>
+                                </div>
+                                
+                             <div class="col-md-3 col-sm-3">
+								<div class="column-city-padding"> <span data-ng-bind="list.company.address.city"></span>  <span data-ng-bind="list.company.address.state"></span> , <span data-ng-bind="list.company.address.country"></span></div>
+							</div>
+							 <div class="col-md-3 col-sm-3">
+								<div class="column-status-padding">
+								  <span data-ng-if="list.companyAllowed" data-ng-bind="pullInterNationalization('admin.emails.access.true')"></span> 
+								  <span data-ng-if="!list.companyAllowed" data-ng-bind="pullInterNationalization('admin.emails.access.false')"></span> 
+								 </div>
+							</div>
+							<div class="col-md-1 col-sm-1 remove-btn">
+							 <a href="#" role="button" class="buttoncss" data-ng-click="ctrl.deleteEmailsModal({'id':list.company.id,'deleteAll':true,'mode':'SuperAdmin',emailTemplate:null})">REMOVE</a>
+                           </div>
+                           </div>
+                            
+                        </div>
+                    <p data-ng-show="!recordField.length && ctrl.responseAvailable" class="noMatchFound ng-hide" data-ng-bind="pullInterNationalization('admin.blueprint.noRecord')"></p>
+			        <p data-ng-show="!recordField.length && !ctrl.responseAvailable" class="noMatchFound ng-hide" data-ng-bind="pullInterNationalization('practiceArea.loading')"></p>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>

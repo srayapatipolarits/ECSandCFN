@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="resetForm" extends="nonLoggedAngular">
+		<put-attribute name="title" value="Change Password | SurePeople" />
+		<put-attribute name="description" value="The SurePeople Change password page." />
+		<put-attribute name="keywords" value="Change Password, SurePeople Change Password, ChangePassword" />
+		<put-attribute name="javascripts" value="resources/js-min/loginFormController.min.js" cascade="true" />
+	</definition>
+
+
+	<definition name="changePassword" extends="pageNotLoggedIn">
+		<put-attribute name="title" value="Change Password | SurePeople" />
+		<put-attribute name="description" value="The SurePeople Change password page." />
+		<put-attribute name="keywords" value="Change Password, SurePeople Change Password, ChangePassword" />
+		<put-attribute name="content" value="/resources/html/reset/changePassword.html" />
+		<put-attribute name="javascripts" value="resources/js-min/loginFormController.min.js" cascade="true" />
+	</definition>
+	
+	<definition name="enableCookie" extends="pageNotLoggedIn">
+		<put-attribute name="title" value="Enable Cookie | SurePeople" />
+		<put-attribute name="description" value="Please Enable Cookie to visit the Page" />
+		<put-attribute name="keywords" value="Enable Cookie, SurePeople Enable Cookie, CookieEnable" />
+		<put-attribute name="content" value="/resources/html/reset/enable-cookie.html" />
+	</definition>
+
+</tiles-definitions>

@@ -1,0 +1,30 @@
+<link type="text/css" rel="stylesheet" href="/resources/css/css-min/assessment-new.min.css" />
+    <!--div class="x-container hide" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'">
+        <div class="container" >
+            <div class="row">
+                <div class="col-md-12 visitorContainer">
+                    <div class="return-visitor-wrapper">
+                        <p class="welcome-msg" data-ng-bind="pullInterNationalization('external.thankyou.member.title')"></p>
+                        <h2 data-ng-bind-html="pullInterNationalization('external.thankyou.member.detail')"></h2>
+                        <p class="less-spacing" ng-bind-html="pullInterNationalization('external.thankyou.member.subMessage')"></p>
+                        <p class="less-spacing" ng-bind-html="pullInterNationalization('external.thankyou.member.subMessage2')"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div-->
+
+
+<div class="assessment-start-page-wrapper hide" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'">
+	<div class="assessment-start-cols">
+		<div class="start-left adj" fix-assessment-border>
+            <p class="tick-icon">
+                <img src="/resources/images/success.png" alt="" />
+            </p>        
+			<h2 data-ng-bind="pullInterNationalization('external.thankyou.member.title')"></h2>
+			<p class="desc" data-ng-bind-html="pullInterNationalization('external.thankyou.member.detail')"></p>
+			<p class="desc" data-ng-bind-html="pullInterNationalization('external.thankyou.member.subMessage')"></p>
+			<p class="desc" data-ng-bind-html="pullInterNationalization('external.thankyou.member.subMessage2')"></p>
+		</div>
+	</div>
+</div>

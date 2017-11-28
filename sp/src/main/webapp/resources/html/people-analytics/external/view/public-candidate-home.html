@@ -1,0 +1,142 @@
+<section>
+    <section class="view-switch externalCustom" data-ng-if="!viewPortraitFlag">
+        <div class="user-information">
+            <!-- hiringUserFeedBack.length -->
+            <article class="left-section-holder full_{{!(!!rolesList.length)}} mobile_{{(!selectedTabText && !viewPortraitFlag)}}">
+                <div class="clearfix">
+                    <div class="users-section">
+                        <div class="member-pic">
+                            <img data-ng-src="{{profileDetail.smallProfileImage}}" alt="{{profileDetail.userInitials}}" data-ng-if="profileDetail.smallProfileImage && profileDetail.type!=='HiringCandidate'">
+                            <div class="imgReplacementMedium icon-candidates bg-medium lh60" data-ng-if="profileDetail.type==='HiringCandidate'"></div>
+                            <div class="imgReplacementMedium topSpace lh60" data-ng-if="profileDetail.smallProfileImage && profileDetail.type!=='HiringCandidate'" data-ng-bind="profileDetail.userInitials"></div>
+                        </div>
+                        <div class="member-details">
+                            <a href="javascript:void(0)" class="border-link cursor-default">
+								<span class="mock-text weight-700 font-18"
+								data-ng-bind="profileDetail.firstName+' '+profileDetail.lastName"></span>
+							</a><a href="javascript:void(0)" class="border-link display-block cursor-default"> <span
+								class="mock-text weight-300 util-word-wrap inline-block"
+								data-ng-bind="::profileDetail.title"></span>
+							</a> <a href="mailto:{{::profileDetail.email}}" class="border-link display-block weight-300"> <span
+								class="mock-text weight-300 util-word-wrap inline-block"
+								data-ng-bind="::profileDetail.email"></span>
+							</a> <a class="border-link display-block phoneanchor" data-ng-href="tel:{{::profilePageDetail.member.phoneNumber}}">
+								<span class="mock-text weight-300"
+								data-ng-bind="::profileDetail.phoneNumber"></span>
+							</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <!-- hiringUserFeedBack.length -->
+            <article class="right-section-holder" data-ng-if="rolesList.length && !selectedTabText && !viewPortraitFlag">
+                <div class="roles">
+                    <a href="javascript:void(0)" class="border-link cursor-default">
+						<span class="mock-text weight-500 font-14 uppercase"
+						data-ng-bind="::pullInterNationalization('shareportrait.roles')"></span>
+					</a> <a href="javascript:void(0)" class="border-link cursor-default portrait-label" data-ng-if="roles.matchResult"> <span
+						class="mock-text weight-700 font-14"
+						data-ng-bind="::pullInterNationalization('navigation.preferred.portrait')"></span>
+					</a>
+                    <div class="roles-view">
+                        <div class="roles-available" data-ng-repeat="roles in rolesList track by roles.id">
+                            <div class="role-name">
+                                <span class="role-match-name" data-ng-bind="roles.name | unescapeText"></span>
+                            </div>
+                            <div class="roles-details" data-ng-if="!archivedUser && roles.matchResult">
+                                <span class="role-match-percent sp-icon-color" data-ng-bind="roles.matchResult.matchPercent+'%'" data-ng-click="viewMatchReport(roles)"></span>
+                                <div class="role-match-portrait-list">
+                                    <span class="icon-idealPortrait sp-icon-color"></span> <span class="role-match-portrait" data-ng-bind="roles.portrait? roles.portrait.name : pullInterNationalization('portrait.notAssigned')"></span>
+                                    <!-- <br/>
+						       		      	<span class="role-view-link sp-link-color" data-ng-if="roles.portrait && !archivedUser"  data-ng-bind="::pullInterNationalization('portrait.viewReport')" data-ng-click="viewMatchReport(roles)"></span>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+    <section class="employees-list-container posRel">
+        <!-- Default View When Nothing IS Selected Starts-->
+        <article class="sp-mobile lnd-left-box sp-panel-accent" data-ng-if="!selectedTabText && !viewPortraitFlag">
+            <ul>
+                <li class="border-link sp-link-color">
+                    <a href="javascript:void(0)" id="event_sidebar_switch-view_product-support_mobile" data-list="1" data-ng-click="setActiveView('prismPortrait');$parent.selectedTabText='manageAccountContent.linksPrism'" data-ng-bind-html="::pullInterNationalization('manageAccountContent.linksPrism')"></a>
+                </li>
+                <li class="border-link sp-link-color">
+                    <a href="javascript:void(0)" id="event_sidebar_switch-view_account-support_mobile" data-list="2" data-ng-click="setActiveView('references');$parent.selectedTabText='manageHiringContent.refText'" data-ng-bind-html="::pullInterNationalization('manageHiringContent.refText')"></a>
+                </li>
+                <li class="border-link sp-link-color">
+                    <a href="javascript:void(0)" id="event_sidebar_switch-view_definitions_mobile" data-list="3" data-ng-click="setActiveView('profileDetails');$parent.selectedTabText='candidate.details'" data-ng-bind-html="::pullInterNationalization('candidate.details')"></a>
+                </li>
+                <li class="border-link sp-link-color">
+                    <a href="javascript:void(0)" id="event_sidebar_switch-view_get-more-help_mobile" data-list="4" data-ng-click="setActiveView('notes');$parent.selectedTabText='spectrum.notes'" data-ng-bind="pullInterNationalization('spectrum.notes')+' ( '+profileDetail.comments.length+' )'"></a>
+                </li>
+            </ul>
+        </article>
+        <!-- Default View When Nothing IS Selected Ends -->
+        <!-- Profile Navigation Starts -->
+        <div class="lnd-req-mobile practice-areas-dd sp-mobile sp-panel-accent" data-ng-if="selectedTabText && !viewPortraitFlag">
+            <a href="javascript:void(0)" data-ng-click="tabOpen=!tabOpen" data-ng-bind="pullInterNationalization(selectedTabText)"></a>
+            <ul class="hide" data-ng-class="tabOpen?'show':'hide'">
+                <li data-ng-if="selectedTabText !=='manageAccountContent.linksPrism'" class="border-link" data-ng-click="setActiveView('prismPortrait');$parent.selectedTabText='manageAccountContent.linksPrism';$parent.tabOpen=false;">
+                    <span class="mock-link" data-ng-bind="::pullInterNationalization('manageAccountContent.linksPrism')"></span>
+                </li>
+                <li data-ng-if="selectedTabText !=='manageHiringContent.refText'" class="border-link" data-ng-click="setActiveView('references');$parent.selectedTabText='manageHiringContent.refText';$parent.tabOpen=false;">
+                    <span class="mock-link" data-ng-bind="::pullInterNationalization('manageHiringContent.refText')"></span>
+                </li>
+                <li data-ng-if="selectedTabText !=='candidate.details'" class="border-link" data-ng-click="setActiveView('profileDetails');$parent.selectedTabText='candidate.details';$parent.tabOpen=false;">
+                    <span class="mock-link" data-ng-bind-html="::pullInterNationalization('candidate.details')"></span>
+                </li>
+                <li data-ng-if="selectedTabText !=='spectrum.notes'" class="border-link" data-ng-click="setActiveView('notes');$parent.selectedTabText='spectrum.notes';$parent.tabOpen=false;">
+                    <span class="mock-link" data-ng-bind-html="pullInterNationalization('spectrum.notes')+' ( '+profileDetail.comments.length+' )'"></span>
+                </li>
+                <li class="return-link-mobile border-link return-link" data-ng-click="setActiveView('return');$parent.selectedTabText=null;$parent.tabOpen=false;viewPortraitFlag=false" data-ng-bind="::pullInterNationalization('dashboard.profile')"></li>
+            </ul>
+        </div>
+        <!-- Profile Navigation Ends -->
+        <div class="new-cols filters-col full-spanned col-shrink-mob sp-desktop" data-ng-if="!viewPortraitFlag" style="margin-left:0px">
+            <div class="sp-panel-accent">
+                <div class="col-content-wrapper mh700 noTopSpace">
+                    <div class="internal-nav-links-wrapper noMTop">
+                        <ul>
+                            <li class="nobTop" data-ng-if="profileDetail.userStatus === 'VALID'">
+                                <a href="javascript:void(0)" class="profile-links" data-ng-bind-html="pullInterNationalization('manageAccountContent.linksPrism')" data-ng-click="setActiveView('prismPortrait')" data-ng-class="memberNav==='prismPortrait'?'on':''"></a>
+                                <span data-ng-class="memberNav==='prismPortrait'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                            </li>
+                            <li data-ng-if="profileDetail.type === 'HiringCandidate' && profileDetail.userStatus === 'VALID'">
+                                <a href="javascript:void(0)" class="profile-links" data-ng-bind-html="pullInterNationalization('manageHiringContent.refText')" data-ng-click="setActiveView('references')" data-ng-class="memberNav==='references'?'on':''"></a>
+                                <span data-ng-class="memberNav==='references'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" class="profile-links" data-ng-bind-html="profileDetail.type === 'HiringCandidate'?pullInterNationalization('candidate.details'):pullInterNationalization('pa.employee.modules.details')" data-ng-click="setActiveView('profileDetails')" data-ng-class="memberNav==='profileDetails'?'on':''"></a>
+                                <span data-ng-class="memberNav==='profileDetails'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" class="profile-links" data-ng-click="setActiveView('notes')" data-ng-class="memberNav==='notes'?'on':''">{{pullInterNationalization('spectrum.notes')}} ({{profileDetail.comments.length}})</a>
+                                <span data-ng-class="memberNav==='notes'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-col-sham posBot0 left0 full-spanned"></div>
+        </div>
+        <div class="new-cols content-col noSpace mobile-view" data-ng-class="isMobile?'':'sp-panel-accent'" data-ng-if="memberNav==='prismPortrait' && !viewPortraitFlag">
+            <data-ng-include src="'/sp/resources/html/people-analytics/external/view/employee-portrait-external.html'"></data-ng-include>
+        </div>
+        <div class="new-cols content-col mobile-view" data-ng-class="isMobile?'':'full-width-fix sp-panel-accent'" data-ng-if="memberNav==='references' && !viewPortraitFlag">
+            <data-ng-include src="'/sp/resources/html/people-analytics/external/view/employee-referenceLens-external.html'"></data-ng-include>
+        </div>
+        <div class="new-cols content-col mobile-view" data-ng-class="isMobile?'':'full-width-fix sp-panel-accent'" data-ng-if="memberNav==='profileDetails' && !viewPortraitFlag">
+            <data-ng-include src="'/sp/resources/html/people-analytics/external/view/employee-profileDetails-external.html'"></data-ng-include>
+        </div>
+        <div class="new-cols content-col mobile-view" data-ng-class="isMobile?'':'full-width-fix sp-panel-accent'" data-ng-if="memberNav==='notes' && !viewPortraitFlag">
+            <data-ng-include src="'/sp/resources/html/people-analytics/external/view/employee-notes-ext.html'"></data-ng-include>
+        </div>
+        <div class="portrait-report-ext" data-ng-if="viewPortraitFlag">
+            <data-ng-include src="'/sp/resources/html/people-analytics/external/view/ideal-portrait-view-ext.html'"></data-ng-include>
+        </div>
+    </section>
+</section>

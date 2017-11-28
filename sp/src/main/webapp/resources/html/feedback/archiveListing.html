@@ -1,0 +1,111 @@
+<section ng-controller="feedBackarchiveController"  ng-init="getAllArchiveRequests()" ng-if="inviteReady" class="hide" ng-class="inviteReady?'show':'hide'">
+	<div class="x-container requestmodular">
+		<div class="container minimumHeight">
+			<div class="requestwrap nowraplr bgWhiteBord sp-panel-accent">
+				<article class="headerSection wraplr">
+					<div class="wrapper clearfix">
+						<div class="rightFloat" ng-if="noSelf==''">
+							<a href="/sp/feedback" data-ng-bind-html="pullInterNationalization('feedback.archive.sp360')" id="event_360_return"></a>
+						</div>
+						<div class="rightFloat" ng-if="noSelf!=''">
+							<a href="javascript:void(0)" ng-click="callSwitchChange('sp360')" data-ng-bind="pullInterNationalization('feedback.archive.sp360')"></a>
+						</div>
+						<div class="leftFloat">
+							<div class="heading sp-header-title-color" data-ng-bind-html="pullInterNationalization('feedback.archive.headTitle')"></div>
+						</div>
+					</div>
+					<div class="information" data-ng-bind-html="pullInterNationalization('feedback.archive.information')"></div>
+					<p class="noMatchStyle" ng-if="masterarchiveMembers && !masterarchiveMembers.length" data-ng-bind="pullInterNationalization('feedback.archive.nomatch')">  </p>
+				</article>
+				<article class="bodyPart" ng-if="masterarchiveMembers && masterarchiveMembers.length">	
+					<div class="inviteMember">
+						<div class="inviteMemberHeader wraplr clearfix">
+							<div class="rightPanel clearfix">
+								<div class="controlwrap search"><input type="text" class="form-control" maxlength="28" ng-model="searchText" placeholder="{{pullInterNationalization('feedback.archive.search')}}" ng-keyup="searchTextFilter(searchText)" id="event_search_360_archive"><button class="sp-icon-color" ng-class="{'icon-icon_remove':enableCancel(searchText), 'icon-icon_search': !searchText.length}" ng-click="clearSearch()"></button></div>
+								<div class="rolesSelectWrapper" ng-if="archiveFilter.length > 1">
+									<span class="icon-icon_dropdown-arrow sp-icon-color select-position"></span>
+				                    <select class="form-control rolesSelect" ng-model="$parent.selectedSearch.requestStatus" ng-init="$parent.selectedSearch.requestStatus = ''">
+									    <option value="" data-ng-bind="pullInterNationalization('feedback.archive.placestatus')"></option>
+									  <!-- <option value="{{pullInterNationalization('feedback.archive.completed')}}" data-ng-bind="pullInterNationalization('feedback.archive.active')"></option>
+									    <option value="{{pullInterNationalization('feedback.archive.deactivated')}}" data-ng-bind="pullInterNationalization('feedback.archive.notcompleted')"></option>-->
+									    <option value="{{archive}}" data-ng-repeat="archive in archiveFilter" data-ng-bind="archive"></option>
+									</select>
+								</div>
+								
+							</div>
+						</div>
+						<div class="contentArea">
+							<div class="heading row">
+								<div class="col-md-3 col-sm-3 m-name tog activeFilter" ng-click="reverse=!reverse;order('feedbackUser.firstName', reverse);active($event)" data-predicate='name'>
+									<h4 class="name on">
+										<span data-ng-bind="pullInterNationalization('feedback.archive.name')"></span>
+		                            	<span class="col-sort-icon icon-icon_sort sp-icon-color col-sort-down"></span>
+		                            	<span class="col-sort-icon icon-icon_sort default-color col-sort-down"></span>
+		                            	<span class="col-sort-icon icon-icon_sort-up sp-icon-color col-sort-up"></span>        									
+									</h4>
+								</div>
+								<div class="col-md-2 col-sm-2 t-name tog" ng-click="reverse=!reverse;order('feedbackUser.title', reverse);active($event)" data-predicate='title'>
+									<h4>
+										<span data-ng-bind="pullInterNationalization('feedback.archive.title')"></span>
+		                            	<span class="col-sort-icon icon-icon_sort sp-icon-color col-sort-down"></span>
+		                            	<span class="col-sort-icon icon-icon_sort default-color col-sort-down"></span>
+		                            	<span class="col-sort-icon icon-icon_sort-up sp-icon-color col-sort-up"></span>									
+									</h4>
+								</div>
+								<div class="col-md-3 col-sm-3 fd-name tog" ng-click="reverse=!reverse;order('archivedOnFormatted', reverse);active($event)" data-predicate='start'>
+									<h4>
+										<span data-ng-bind="pullInterNationalization('feedback.archive.feedbackDate')"></span>
+		                            	<span class="col-sort-icon icon-icon_sort sp-icon-color col-sort-down"></span>
+		                            	<span class="col-sort-icon icon-icon_sort default-color col-sort-down"></span>
+		                            	<span class="col-sort-icon icon-icon_sort-up sp-icon-color col-sort-up"></span>									
+									</h4>
+								</div>
+								<div class="col-md-2 col-sm-2 s-name tog" ng-click="reverse=!reverse;order('requestStatus', reverse);active($event)" data-predicate='status'>
+									<h4>
+										<span data-ng-bind="pullInterNationalization('feedback.archive.status')"></span>
+		                            	<span class="col-sort-icon icon-icon_sort sp-icon-color col-sort-down"></span>
+		                            	<span class="col-sort-icon icon-icon_sort default-color col-sort-down"></span>
+		                            	<span class="col-sort-icon icon-icon_sort-up sp-icon-color col-sort-up"></span>									
+									</h4>
+								</div>
+								<div class="col-md-2 col-sm-2 b-name tog"></div>
+							</div>
+							<div infinite-scroll="loadMore(pageSize+pageSize)" infinite-scroll-immediate-check="false" infinite-scroll-disabled="disabledInfinite">
+							<div class="complete-profile animation_1" id='{{$index}}' ng-class="{'lastProfile':$first}" ng-repeat="memberList in recordField = ((archiveMembers | filter : selectedSearch).slice(0,pageSize)) track by memberList.feedbackUser.id">
+								<div class="table-row clearfix">
+									<div class="col-md-3 col-sm-3 name clearfix">
+										<img ng-src="{{memberList.feedbackUser.smallProfileImage}}" ng-if="memberList.feedbackUser.smallProfileImage" alt="{{memberList.feedbackUser.firstName}}">
+										<div class="imgReplacement" style="margin-right:15px;" ng-if="!memberList.feedbackUser.smallProfileImage" ng-bind="memberList.feedbackUser.userInitials"></div>
+						
+										<p>
+											<a href="javascript:void(0)" data-ng-if="memberList.requestStatus!=pullInterNationalization('feedback.archive.deactivated')" ng-click="viewDetail(memberList.feedbackUser.id,noSelf)" class="fname" data-ng-bind="memberList.feedbackUser.name"></a>
+											<a href="javascript:void(0)" data-ng-if="memberList.requestStatus==pullInterNationalization('feedback.archive.deactivated')" class="fname" data-ng-bind="memberList.feedbackUser.name"></a>
+											
+											<a href="mailto:{{memberList.feedbackUser.email}}" class="email" data-ng-bind="memberList.feedbackUser.email"></a>
+										</p>
+									</div>
+									<div class="col-md-2 col-sm-2 row_title" data-ng-bind="memberList.feedbackUser.title"></div>
+									<div class="col-md-3 col-sm-3 row_title"> <span class="dateText" data-ng-bind="pullInterNationalization('feedback.archive.dateText')"></span> <span data-ng-bind="memberList.archivedOnFormatted|date|uppercase"></span></div>
+									<div class="col-md-2 col-sm-2 row_title"><span class="statusText" data-ng-bind="pullInterNationalization('feedback.archive.statusText')"></span> <span data-ng-bind="memberList.requestStatus"></span></div>
+									<div class="col-md-2 col-sm-2 switchButton" data-ng-if="memberList.requestStatus!=pullInterNationalization('feedback.archive.deactivated')">
+										<a href="javascript:void(0)"  class='buttoncss' ng-click="viewDetail(memberList.feedbackUser.id,noSelf)" data-ng-bind="pullInterNationalization('feedback.archive.view')"></a>
+									</div>
+								</div>
+				
+							</div>
+							</div>
+						</div>
+						<p ng-show="!recordField.length && responseRecieved" class="noMatchFound ng-hide" data-ng-bind="pullInterNationalization('feedback.archive.nomatch')"></p>
+						 <p ng-show="!recordField.length && !responseRecieved" class="noMatchFound ng-hide" data-ng-bind="pullInterNationalization('admin.member.informationLoading')"></p>
+					</div>
+					<!--  <div class="more ng-hide" ng-hide="alldisplay || recordField.length < initPageSize"><a href="javascript:void(0)" role="button" ng-click="loadMore(pageSize+pageSize)" data-ng-bind="pullInterNationalization('feedback.archive.showmore')"></a></div>-->
+				</article>
+				
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+

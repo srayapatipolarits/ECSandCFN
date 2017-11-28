@@ -1,0 +1,117 @@
+<div class="custom-overlay-wrapper posRel" style="min-height:{{overlayDim.height}}px">
+    <a href="javascript:void(0)" class="close-custom-overlay icon-icon_remove sp-icon-color" data-ng-click="addCandidateview();"></a>
+    <div class="members-content-wrapper">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('candidates.addCandidatesheader')"></h2>
+            <p class="full-desc descriptionAddNew" data-ng-bind="::pullInterNationalization('candidates.addCandidates.description')"></p>
+        </div>
+        <div class="subscriptions-information">
+            <h3 class="countLeft">
+            	<span class="weight-700 available_{{!!subscriptionCount}}" data-ng-bind="subscriptionCount+' '+ pullInterNationalization('candidates.addCandidates.prismportrait')+' '"></span>
+            	<span data-ng-bind="::pullInterNationalization('candidates.addCandidates.invitation')"></span>
+            	<a class="border-link" data-ng-click="requestForAccounts('candidates')" href="javascript:void(0)" data-ng-bind="::pullInterNationalization('candidates.addCandidates.requestmore')"></a>
+            </h3>
+        </div>
+        <form name="addMultipleCandidate" novalidate class="form-styles-override add-new-candidate-form" data-ng-submit="addNewCandidate()" autocomplete="off">
+            <ol class="form-list-c">
+            	<li class="allTags emailTags">
+            		 <div class="stepHeading"><span class="weight-700" data-ng-bind="::pullInterNationalization('candidates.addCandidates.step1')"></span> <span data-ng-bind="::pullInterNationalization('candidates.addCandidates.step1Detail')"></span></div>
+            		 <div class="tagsEmailInput brdr0 tagsTextarea">
+            		 	<tags-input data-ng-model="candidateEmails" add-on-paste="true" template-input="ngTagsInput/tags-textarea.html" display-property="name" max-tags="{{subscriptionCount}}" min-tags="1" add-on-paste="true"  placeholder="{{::pullInterNationalization('admin.member.add.multiple.memberList')}}" display-name="email" allowed-tags-pattern="^[A-Za-z0-9._-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$" replace-spaces-with-dashes="false" on-tag-removed="tagRemoved($tag,{'obj':'email','store':'emails'})" on-tag-added="tagAdded($tag,{'obj':'email','store':'emails'})">
+                     	</tags-input>
+                     </div>
+                     <span data-ng-if="addCandidate.emailErrors.isExisting">
+                     	<!-- data-ng-bind="::pullInterNationalization('admin.member.add.multiple.error.existingemail')" -->
+                     	<span class="validate-error" data-ng-repeat="existing in existingUserEmailError track by $index">
+                     		<span data-ng-bind="existing.name +' : '+existing.msg"></span>
+                     	</span>
+                     </span>
+                      
+                     <span class="validate-error" data-ng-if="addCandidate.emailErrors.required" data-ng-bind="::pullInterNationalization('admin.member.add.multiple.error.required')"></span>
+                     <span class="validate-error" data-ng-if="addCandidate.emailErrors.countExceed" data-ng-bind="::pullInterNationalization('admin.member.add.multiple.error.emailexceed')"></span>
+                     <span class="validate-error" data-ng-if="addCandidate.emailErrors.subscriptionCount" data-ng-bind="addCandidate.emailErrors.subscriptionCount"></span>
+                </li>
+              	<li class="col-two-third" data-ng-init="dateMortal()">
+            		<div class="form-grop calStyle calStyleW">
+                          <div class="posRel">
+                              <input type="text" id="endDateId" name="endDate" class="form-control endInput cursorPointer" readonly data-ng-model="addCandidate.formValues.dueDisplayed" required placeholder="{{::pullInterNationalization('candidates.addCandidates.prismCompletionDate')}}">
+                              <label class="calImg icon-icon_calendar sp-icon-color v-align" for="endDateId"></label>
+                          </div>
+                          <div class="validate-error" data-ng-if="!addCandidate.formValues.dueDisplayed && addCandidate.emailErrors.dateCheck" data-ng-bind="::pullInterNationalization('signup.required.error')"></div>
+                      </div>
+            	</li>
+            	<li>&nbsp;</li>
+                <li class="tagsEmailInput brdr0">
+                	<div class="stepHeading"><span class="weight-700" data-ng-bind="::pullInterNationalization('candidates.addCandidates.step2')"></span> <span data-ng-bind="::pullInterNationalization('candidates.addCandidates.step2Detail')"></span></div>
+                	<a class="create-role border-link" href="javascript:void(0)" data-ng-bind="::pullInterNationalization('candidate.createRole.create')" data-ng-click="showNewRoleView(false);"></a>
+                	<tags-input min-length="1" data-type="roles" data-ng-model="candidateRoles" replace-spaces-with-dashes="false" placeholder="{{::pullInterNationalization('candidates.addCandidates.step2Place')}}" on-tag-removed="tagRemoved($tag,{'obj':'id','store':'roleIds'})" display-property="name" add-from-autocomplete-only="true" display-name="name" single-mode="false" on-tag-added="tagAdded($tag,{'obj':'id','store':'roleIds'})">
+                        <auto-complete min-length="1" load-on-focus="false" debounce-delay="100" load-on-empty="false" max-results-to-show="5" source="loadSource($query,'masterHiringRole','name')" class="ng-tags-pos-fix"></auto-complete>
+                    </tags-input>  
+                     <span class="validate-error" data-ng-if="addCandidate.emailErrors.roleRequired" data-ng-bind="::pullInterNationalization('admin.member.add.multiple.error.required')"></span>              
+                </li>
+                 <li class="mTop45 tagsEmailInput brdr0">
+                 	<div class="stepHeading"><span class="weight-700" data-ng-bind="::pullInterNationalization('candidates.addCandidates.step3')"></span> <span data-ng-bind="::pullInterNationalization('candidates.addCandidates.step3Detail')"></span></div>
+                    <tags-input min-length="1" data-type="tags" data-ng-model="candidateTags" replace-spaces-with-dashes="false" placeholder="{{::pullInterNationalization('candidates.addCandidates.step3Place')}}" on-tag-removed="tagRemoved($tag,{'obj':'text','store':'tags'})" on-tag-added="tagAdded($tag,{'obj':'text','store':'tags'})">
+                        <auto-complete min-length="1" load-on-focus="false" debounce-delay="100" load-on-empty="false" max-results-to-show="5" source="loadSource($query,'masterTagList')" class="ng-tags-pos-fix"></auto-complete>
+                    </tags-input> 
+                </li>
+                <!-- Reference Start new Logic Starts -->
+                <li class="mTop45 tagsEmailInput brdr0">
+                 	<div class="stepHeading"><span class="weight-700" data-ng-bind="::pullInterNationalization('candidates.addCandidates.step4')"></span> <span data-ng-bind="::pullInterNationalization('candidates.addCandidates.step4Detail')"></span></div>
+                 	<div class="referenceBlock" data-ng-repeat="reference in ((reference = []) && (reference.length=addCandidate.referenceRequest.start) && reference) track by $index">
+                 		<div class="checkBoxBlock">
+                 			  <div class="pCheckBox pCheckBoxLeft-2 s100 rel">
+                 			 	  <input type="checkbox" class="iCheckBox" data-ng-true-value="true" data-ng-false-value="false" data-ng-change="referenceSelection($index)" data-ng-model="addCandidate.referenceRequest.value[$index]" dynamic-name="request[$index]" aria-label="{{::pullInterNationalization('candidates.addCandidates.reference')}}" id="request{{$index}}">
+			                      <label for="request{{$index}}" class="lCheckBox mp block indent">
+				                      <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+				                      <span class="lCheckBoxText">
+				                      		<span class="bp-txts" data-ng-bind="pullInterNationalization('candidates.addCandidates.reference'+ $index)"></span>
+				                      </span> 
+			                      </label>
+			                  </div>
+                 		</div>
+                 		 <div class="radioBlock form-list-d">
+                 			<div class="radioHead" data-ng-bind="::pullInterNationalization('candidates.addCandidates.radioHeading')"></div>
+                 			<div class="disabled_{{!(addCandidate.referenceRequest.value[$index])}} clear-overflow">
+                 				<div class="pCheckBox s50 rel" data-ng-repeat="list in addCandidate.referenceArray">
+                 				  <input type="checkbox" data-ng-disabled="( (!addCandidate.referenceRequest.value[$parent.$index]) || (addCandidate.formValues.referenceTypes[$parent.$index].length===1 && addCandidate.formValues.referenceTypes[$parent.$index].indexOf(list)!==-1) )" id="{{$parent.$index}}{{list}}" class="iCheckBox" value="{{list}}" data-ng-checked="addCandidate.formValues.referenceTypes[$parent.$index].indexOf(list) > -1" data-ng-click="addCandidate.referenceRequest.value[$parent.$index] && referenceToggleSelection(list,$parent.$index,addCandidate.referenceRequest.value[$parent.$index])">
+				                  <label for="{{$parent.$index}}{{list}}" class="lCheckBox mp">
+		                		  	  <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+				                      <span class="lCheckBoxText">
+				                      		<span class="bp-txts" data-ng-bind="::pullInterNationalization('hiring.reference.'+list)"></span>
+				                      </span> 
+			                      </label>
+			                  </div>
+			                </div>
+                 		</div>
+                 	</div>
+                 	<a href="javascript:void(0)" class="border-link font-14" data-ng-if="showAddReference" data-ng-bind="::pullInterNationalization('candidates.addCandidates.addReferenceRequest')" data-ng-click="addMoreRequest()"></a>
+                </li>
+                <!-- Reference Start new Logic Ends -->
+                 <li>
+                	<div class="pCheckBox pCheckBoxLeft-2 s100 rel">
+                		  <input type="checkbox" class="iCheckBox" data-ng-true-value="true" data-ng-false-value="false" name="prismLens" aria-label="{{::pullInterNationalization('candidates.addCandidates.sendImmediatePrsimLensRequest')}}" data-ng-model="addCandidate.formValues.referenceCheck" id="prismLens">
+	                      <label for="prismLens" class="lCheckBox mp block indent">
+		                      <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+		                      <span class="lCheckBoxText">
+		                      		<span class="bp-txts" data-ng-bind="::pullInterNationalization('candidates.addCandidates.sendImmediatePrsimLensRequest')"></span>
+		                      </span> 
+	                      </label>
+	                  </div>
+                </li>
+                <!-- Form Button Starts -->
+                <li class="submit-cancel-btns">
+                    <ul class="submit-cancel-list">
+                        <li>
+                            <input type="submit" value="{{::pullInterNationalization('admin.member.submit')}}" class="btn-block btn-15px sp-btn-color" />
+                        </li>
+                        <li>
+                            <input type="button" value="{{::pullInterNationalization('admin.member.cancel')}}" class="btn-block btn-grey-dark btn-15px" data-ng-click="addCandidateview();" />
+                        </li>
+                    </ul>
+                </li>
+                <!-- Form Button Ends -->
+            </ol>
+        </form>
+    </div>
+</div>

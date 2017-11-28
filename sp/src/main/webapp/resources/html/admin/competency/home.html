@@ -1,0 +1,83 @@
+<section data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'" class="hide">
+<div class="admin-org" >
+	<div class="x-container">
+			<!-- Extended Container -->
+		<div class="container">
+			<!-- Bootstrap Container -->
+	<div class="resumeContainer locatedSubNavRelative padTop30 bgWhiteBord sp-panel-accent">
+		<!--  When No resume is in database -->
+		<div class="noResume">
+			<!-- UpperBody -->
+			<div class="upperBody clearfix">
+				<div class="row">
+					<div class="title col-sm-12 col-md-12 sp-header-title-color">Competencies</div>
+					<div class="col-xs-12">
+						<div class="description">Competency Manager provides a clear understanding of expectations for every member in your organization. Competencies are the measurable skills, attitudes, or attributes that distinguish an individual's level of performance. For anyone to excel in their position, they need a clear understanding of how organizational strategy ties to individual achievement. Through SurePeople's intelligent platform, competencies bring organizational strategy to life through a scaleable, automated system that provides true benchmarking for each individual's performance. </div>
+						<!-- 
+						<a href="javascript:void(0)" class="buttoncss_1 sp-btn-color less-padding" alt="{{pullInterNationalization('spResume.getStarted')}}" data-ng-click="ctrl.createOrgPlan({'id':ctrl.companyInfo.id,'name':ctrl.companyInfo.name,'mode':'AccountAdmin'})">CREATE NEW PLAN</a>
+						-->
+						<!-- <div class="boldDescription" data-ng-bind-html="pullInterNationalization('admin.organization.bolddesc')"></div>
+						<ul class="col-md-12 col-sm-12 clearfix orgPlanList">
+							<li class="col-md-6 col-sm-6"><span data-ng-bind="pullInterNationalization('admin.organization.list1')"></span></li>
+							<li class="col-md-6 col-sm-6"><span data-ng-bind="pullInterNationalization('admin.organization.list2')"></span></li>
+							<li class="col-md-6 col-sm-6"><span data-ng-bind="pullInterNationalization('admin.organization.list3')"></span></li>
+							<li class="col-md-6 col-sm-6"><span data-ng-bind="pullInterNationalization('admin.organization.list4')"></span></li>
+							<li class="col-md-6 col-sm-6"><span data-ng-bind="pullInterNationalization('admin.organization.list5')"></span></li>
+							<li class="col-md-6 col-sm-6"><span data-ng-bind="pullInterNationalization('admin.organization.list6')"></span></li>
+							<li class="col-md-6 col-sm-6"><span data-ng-bind="pullInterNationalization('admin.organization.list7')"></span></li>
+							<li class="col-md-6 col-sm-6"><span data-ng-bind="pullInterNationalization('admin.organization.list8')"></span></li>
+								
+						</ul> -->
+					</div>
+					<!--div class="col-sm-4 col-md-4 leftPad">
+						<div class="boldDescription" data-ng-bind-html="pullInterNationalization('admin.organization.noactionPlan')"  data-ng-if="!ctrl.companyActionPlanList.length"></div>
+						 <form class="search-select-tool" data-ng-if="ctrl.companyActionPlanList.length">
+						 	<div class="boldDescription" data-ng-bind="pullInterNationalization('admin.organization.actionPlan.editTitle')"></div>
+						    <ul>
+					            <li class="select-content">
+					            	<span class="org-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+					                <select  data-ng-model="ctrl.selectedActionPlan">
+					                	<option value="" data-ng-bind="pullInterNationalization('admin.organization.actionPlan.choose')"></option>
+                                        <option value="{{list.id}}" data-ng-repeat="list in ctrl.companyActionPlanList">{{list.name}}</option>
+					                </select>
+					            </li>
+					            <li class="search-select-submit-narrow" data-ng-if="noSelf===''">
+					                <a href="javascript:void(0)" class="buttoncss_1 sp-btn-color less-padding" alt="{{pullInterNationalization('account.admin.actionPlan.edit')}}" data-ng-click="ctrl.updateOrgPlan({'id':ctrl.companyInfo.id,'name':ctrl.companyInfo.name,'actionPlan':ctrl.selectedActionPlan,'mode':'AccountAdmin'});ctrl.editClick=true;" data-ng-bind="pullInterNationalization('account.admin.actionPlan.edit')"></a>
+					            </li>
+					        </ul>
+					        <span class="validate-error" data-ng-if="ctrl.selectedActionPlan === '' && ctrl.editClick" data-ng-bind="pullInterNationalization('account.admin.select.actionPlan')"></span>
+					    </form>
+						
+					</div-->
+				</div>
+			</div>
+			<!--  Lower Body -->
+			<div class="borderSeparator"></div>
+			<div class="lowerBody clearfix">
+				<div class="title sp-header-title-color" data-ng-bind="pullInterNationalization('admin.organization.features')"></div>
+				<div class="row colArea">
+					<div class="col-sm-4 col-md-4 gap">
+						<div class="title_1">Automated Scalability</div>
+						<div class="thumbnail"><img src="/resources/css/images/Resume_1.jpg"></div>
+						<div class="desciption">Create trackable competency profiles that assign to individuals at every level of the organization. Automation tools allow for a scalable approach to organizational strategy, with API integration tools necessary for shared data management.
+						</div>
+					</div>
+					<div class="col-sm-4 col-md-4 gap">
+						<div class="title_1">Measurable Alignment </div>
+						<div class="thumbnail"><img src="/resources/css/images/Resume_2.jpg"></div>
+						<div class="desciption">Let your talent rise up by using automated evaluation tools to gather proficiency feedback from managers, peers and individuals alike. Use instant data analysis to identify high-potentials and mentors to help lead initiatives and others in the organization.
+						</div>
+					</div>
+					<div class="col-sm-4 col-md-4 gap">
+						<div class="title_1">Empowered Growth</div>
+						<div class="thumbnail"><img src="/resources/css/images/Resume_3.jpg"></div>
+						<div class="desciption">Place your core values in the hands of your people by giving them a roadmap to success. Use role-specific competency profiles and evaluations to administer individualized growth plans for every level of performance.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div></div></div>
+</section>

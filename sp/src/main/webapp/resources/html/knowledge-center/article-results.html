@@ -1,0 +1,74 @@
+<div class="x-container">
+    <div class="container">
+        <div class="table-flex-cols minH600">
+            <aside class="related-content table-col-hide">
+                <practice-areas-widget data-pause-search="false" url-src="practice-areas-widget.html" data-type="results"></practice-areas-widget>
+                <spotlight-widget url-src="spotlight-widget.html" data-goal="true"></spotlight-widget>
+            </aside>
+            <div class="main-content search-results space-adj">
+                <header class="results-header">
+                    <!-- <span class="static">Showing <span class="search-category" data-ng-bind="currentArticleCount.length"></span> results for</span>  -->
+                    <h1 class="search-result-title fw700"><span class="search-category black" data-ng-bind-html="searchParams.name?searchParams.name:pullInterNationalization('practiceArea.all')"></span></h1>
+                    <p class="pa-def" data-ng-bind="searchPaDef"></p>
+                    <div class="sort-controller">
+                        <h2 class="filter-by-title" data-ng-bind="::pullInterNationalization('kcContent.filterBy')"></h2>
+                        <!--  data-ng-if="articleFilters.length > 1" -->
+                        <ul class="result-category">
+                            <!--li data-ng-repeat="f in articleFilters" data-ng-class="tab === $index?'active':'no-active'"><a class="border-link" href="javascript:void(0)" data-ng-click="filterResults(f, $index, $event)"><span class="mock-link">{{f}}</span></a></li><!--  $parent.searchFilterVal=f;$parent.tab=$index;$event.preventDefault(); -->
+                            <li data-ng-class="tab == 0?'active':'no-active'"><a class="border-link" href="javascript:void(0)" data-ng-click="filterResults(null, 0, $event)" id="event_filter-by_all"><span class="mock-link" data-ng-bind="::pullInterNationalization('kcContent.filterAll')"></span> ({{articleResultData.totalArticlesCount}})</a></li>
+                            <li data-ng-class="articleFilters.indexOf('Article') === -1?'in-active':(tab == 1?'active':'no-active')"><a class="border-link" href="javascript:void(0)" data-ng-click="filterResults('Article', 1, $event)" id="event_filter-by_article"><span class="mock-link" data-ng-bind="::pullInterNationalization('kcContent.filterArticle')"></span></a></li>
+                            <li data-ng-class="articleFilters.indexOf('Video') === -1?'in-active':(tab == 2?'active':'no-active')"><a class="border-link" href="javascript:void(0)" data-ng-click="filterResults('Video', 2, $event)" id="event_filter-by_video"><span class="mock-link" data-ng-bind="::pullInterNationalization('kcContent.filterVid')"></span></a></li>
+                            <!--
+                                            <li data-ng-class="articleFilters.indexOf('Podcast') === -1?'in-active':(tab == 3?'active':'no-active')"><a class="border-link" href="javascript:void(0)" data-ng-click="filterResults('Podcast', 3, $event)" id="event_filter-by_podcast"><span class="mock-link" data-ng-bind="::pullInterNationalization('kcContent.filterPod')"></span></a></li>
+                                            <li data-ng-class="articleFilters.indexOf('Slideshare') === -1?'in-active':(tab == 4?'active':'no-active')"><a class="border-link" href="javascript:void(0)" data-ng-click="filterResults('Slideshare', 4, $event)" id="event_filter-by_slideshare"><span class="mock-link" data-ng-bind="::pullInterNationalization('kcContent.filterShare')"></span></a></li>
+                                            -->
+                        </ul>
+                    </div>
+                </header>
+                <div infinite-scroll="responseRecieved && loadMoreResults()" infinite-scroll-immediate-check="false" infinite-scroll-disabled="disabledInfinite" data-ng-if="responseRecieved">
+                    <section class="search-result" data-ng-repeat="a in currentArticleCount=(articleResults | filter:searchFilterVal) track by a.articleLinkUrl" data-ng-if="$index < pageSize">
+                        <!-- h2 class="theme-topic-title">PROFILE THEME TOPIC: {{a.articleType}}</h2-->
+                        <h3 class="content-of-theme-title">
+                                        <a href="/sp/trainingLibrary/article?{{a.articleLinkUrl}}" class="border-link" id="event_title_category-results">
+                                            <span data-ng-bind-html="a.articleLinkLabel"></span>
+                                        </a>
+                                    </h3>
+                        <p class="content-source-url" data-ng-if="a.goals.length > 0">
+                            <span data-ng-bind="pullInterNationalization('search.results.pa.title')"></span>
+                            <a href="javascript:void(0)" class="border-link" data-ng-click="updateResults({'category':'Themes','id':g.id,'name':g.name})" data-ng-repeat="g in a.goals track by $index" data-ng-class="$last?'last':''" id="event_category_category-results">
+                                <span><span class="content-seperation" data-ng-class="$first?'hide':''">,&#160;</span><span class="mock-link" data-ng-bind="g.name"></span></span>
+                            </a>
+                        </p>
+                        <p class="publisher-info">
+                            <a class="border-link" href="javascript:void(0)" data-ng-if="formattedAuthor(a.author)" id="event_source_category-results">{{::pullInterNationalization('dashboard.by')}} <span class="mock-link" data-ng-bind="formattedAuthor(a.author)"></span></a>
+                            <!--span class="pub-date">{{a.formattedDate}}</span-->
+                            <!--a class="border-link" href="javascript:void(0)" data-ng-click="refreshSearch('Source', a.articleSourceTypes, false)"-->
+                            <span class="pub-date source" data-ng-class="formattedAuthor(a.author)?'':'adjustSpace'" data-ng-bind-html="a.articleSourceTypes"></span>
+                            <!-- </a>  -->
+                            <span class="pub-date shares" data-ng-if="a.recommendationCount > 0" data-ng-bind="a.recommendationCount+' '+pullInterNationalization('traininglibrary.article.Recommendations')"></span>
+                            <span class="pub-date completed" data-ng-if="a.canAddToUserGoals===false && a.userArticleStatus == 'COMPLETED'"><span
+                                    class="article-done-icon icon-icon_dev_strategy_check sp-icon-color"></span><span data-ng-bind="::pullInterNationalization('kcContent.completed')"></span></span>
+                            <!-- <span class="pub-date" data-ng-if="a.canAddToUserGoals===false && a.userArticleStatus == 'NOT_STARTED'">Added to Plan</span>
+                                        <a class="border-link sp-orange" data-ng-if="a.canAddToUserGoals===true" href="javascript:void(0)" data-ng-click="addtoGoals(a.articleLinkUrl, true);"><span class="mock-link">Add to Plan</span></a> -->
+                        </p>
+                    </section>
+                    <p class="no-match" data-ng-if="responseRecieved && !currentArticleCount.length" data-ng-bind="::pullInterNationalization('practiceArea.noMatch0')"></p>
+                </div>
+                <!-- 
+                        <ul class="curriculum-actions" data-ng-if="btn.hideLoadMore===false">
+                            <li class=""><a href="javascript:void(0)"
+                                class="btn-block btn-15px btn-grey-lighter orange-txt util-ellipsiss noboxShadow" data-ng-click="loadMoreResults()">Load
+                                    More Results</a></li>
+                        </ul>
+                         -->
+                <!-- //.article-actions -->
+            </div>
+            <!-- //.main-content -->
+            <!-- // .related-content -->
+            <aside class="related-content table-col-show" data-ng-if="showResponsivePanel">
+                <practice-areas-widget data-pause-search="false" url-src="practice-areas-widget.html" data-type="results"></practice-areas-widget>
+                <spotlight-widget url-src="spotlight-widget.html" data-goal="true"></spotlight-widget>
+            </aside>
+        </div>
+    </div>
+</div>

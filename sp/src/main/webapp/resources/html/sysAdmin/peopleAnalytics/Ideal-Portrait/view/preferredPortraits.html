@@ -1,0 +1,86 @@
+<link type="text/css" rel="stylesheet" href="/resources/css/css-min/drop-theme-arrows.min.css" />
+<section class="listing-action-plan">
+    <div class="members-filters">
+        <div class="search-filter">
+            <p>
+                <input type="text" maxlength="28" data-ng-model="pageSetting.textSearching" placeholder="{{::pullInterNationalization('sysadmin.organization.search')}}" data-ng-model-options="{ debounce: { 'default': 300, 'blur': 0 } }" data-ng-change="pageSetting.pageSize=originalPageSetting.pageSize;" data-ng-minlength="3">
+                <button data-ng-class="{'icon-icon_remove':pageSetting.textSearching.length, 'icon-icon_search': !pageSetting.textSearching.length}" class="sp-icon-color" data-ng-click="pageSetting.textSearching='';pageSetting.pageSize=originalPageSetting.pageSize;"></button>
+            </p>
+        </div>
+        <a href="/sp/sysAdmin/idealPortrait/create" class="btn-square-12px sp-background-color fRight" data-ng-bind="::pullInterNationalization('sysadmin.createPortrait')"></a>
+    </div>
+    <section class="account-organization">
+        <div class="custom-row row-header row">
+            <div class="col-md-4 col-sm-4">
+                <h4 class="sort-filter on">
+					<span class="sort-text" data-ng-bind="::pullInterNationalization('sysadmin.ppHeading1')"></span>
+				</h4>
+            </div>
+            <div class="col-md-2 col-sm-2"></div>
+            <div class="col-md-2 col-sm-2"></div>
+            <div class="col-md-4 col-sm-4"></div>
+        </div>
+        <div infinite-scroll="infinteScroll(pageSetting.pageSize+pageSetting.pageSize, 'idealPortraits')" infinite-scroll-immediate-check="false">
+            <div class="complete-profile" data-ng-repeat="matchList in recordField = ((portraitMatchListing | filter:{name:pageSetting.textSearching}).slice(0,pageSetting.pageSize)) track by matchList.id">
+                <div class="table-row clearfix">
+                    <div class="col-md-4 col-sm-4">
+                        <p class="matchList-name">
+                            <a href="/sp/sysAdmin/idealPortrait/update?pid={{matchList.id}}" class="border-link">
+                                <span class="mock-link" data-ng-bind-html="matchList.name"></span>
+                            </a>
+                        </p>
+                        <p class="matchList-desc">
+                            <input type="checkbox" class="read-more-state" id="matchListDesc_{{matchList.id}}" />
+                            <span class="read-more-wrap-horizontal" data-ng-init="btn=true;">
+								<span class="text" data-ng-bind-html="(btn?(matchList.description | addEllipsis : 200):matchList.description) | htmlLinky" data-ng-class="{'moreellipses':matchList.description.length>200&&btn,'inline-block':!ctrl.whiteSpace(matchList.description)}"></span>
+                            </span>
+                            <label for="matchListDesc_{{matchList.id}}" data-readMore="{{::pullInterNationalization('spectrum.more')}}" data-readLess="{{::pullInterNationalization('label.readless')}}" data-ng-click="btn=!btn" class="read-more-trigger-horizontal sp-link-color" data-ng-class="{'sp-label-option':!(matchList.description.length>200)}"></label>
+                        </p>
+                    </div>
+                    <div class="col-md-2 col-sm-2 role_title" data-ng-init="listShow=false">
+	                    <p class="companies-nameList" data-ng-if="!listShow">
+	                    	<span data-ng-repeat="n in getCompanyNames(matchList.companies).namesList track by $index" data-ng-bind="n"></span>
+	                    </p>              
+	                    <p class="companies-rList" data-ng-show="getCompanyNames(matchList.companies).remainingListCount && !listShow" data-ng-click="listShow=true;">
+	                    	<a href="javascript:void(0)" class="border-link" company-tool-tip data-desc="{{getCompanyNames(matchList.companies).remainingList.join(', ')}}">
+	                    		<span class="mock-link" data-ng-bind="'+'+getCompanyNames(matchList.companies).remainingListCount+' '+pullInterNationalization('spectrum.more')"></span>
+	                    	</a>
+	                    </p>
+	                    
+	                    <p class="companies-nameList" data-ng-show="getCompanyNames(matchList.companies).remainingListCount && listShow">
+	                    	<span data-ng-repeat="r in getCompanyNames(matchList.companies).remainingList track by $index" data-ng-bind="r"></span>
+	                    </p>      	                    
+	                    <p class="companies-rList" data-ng-show="getCompanyNames(matchList.companies).remainingListCount && listShow" data-ng-click="listShow=false;">
+	                    	<a href="javascript:void(0)" class="border-link">
+	                    		<span class="mock-link" data-ng-bind="pullInterNationalization('dashboard.edit.hide')"></span>
+	                    	</a>
+	                    </p>	                                        
+                    </div>
+                    <div class="col-md-2 col-sm-2">
+                        <p data-ng-bind-html="'Last edited on '+(matchList.updatedOn | spDateFormat)"></p>
+                        <p data-ng-bind-html="'by '+matchList.updatedBy.fullNameOrEmail"></p>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="button-links">
+                            <div class="buttons">
+                                <a href="javascript:void(0)" class="btn-square-12px sp-background-color fixedWidth left" data-ng-bind="::pullInterNationalization('sysadmin.organization.prev')" data-ng-click="getDetails(matchList.id)"></a>
+                                <a href="/sp/sysAdmin/idealPortrait/update?pid={{matchList.id}}" class="btn-square-12px sp-background-color fixedWidth left" data-ng-bind="::pullInterNationalization('sysadmin.organization.edit')"></a>
+                            </div>
+                            <div class="buttons m20">
+                                <a href="/sp/sysAdmin/idealPortrait/clone?pid={{matchList.id}}" class="fixedWidthText left p7">
+                                    <span class="icon-style-position16 icon-learning-programs_clone sp-icon-color"></span>
+                                    <span class="action-text" data-ng-bind="::pullInterNationalization('sysadmin.organization.clone')"></span>
+                                </a>
+                                <a href="javascript:void(0)" class="fixedWidthText left" data-ng-click="deletePopup(matchList)">
+                                    <span class="icon-style-position20 icon-icon_trashbin sp-icon-color"></span>
+                                    <span class="action-text" data-ng-bind="::pullInterNationalization('sysadmin.organization.delete')"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p data-ng-if="!recordField.length" class="noMatchF" data-ng-bind="::pullInterNationalization('sysadmin.noPortraitsCreated')"></p>
+    </section>
+</section>

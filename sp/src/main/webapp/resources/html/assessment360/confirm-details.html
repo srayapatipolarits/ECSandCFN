@@ -1,0 +1,63 @@
+<div class="x-container sign-up-wrapper sign-up-individual-wrapper confirm-details" ng-controller="confirmDetailsController">
+    <div class="container minimumHeight" >
+        <div class="row">
+
+            <div class="col-md-7">
+                <h2>Confirm your details</h2>
+                <p class="indi_head">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+
+                <form name="confirmDetails" ng-submit="confirmDetailsSubmit(refDetails)" novalidate>
+                    <p class="float ">
+                        <label for="firstName">First Name</label>
+                        <input autoFocus type="text" name="firstName" ng-pattern="/^[a-zA-Z0-9]*$/" placeholder="First Name" ng-model="refDetails.firstName" required />
+                        <span class="err-msg" ng-show="confirmDetails.submitted && confirmDetails.firstName.$error.required">
+                                    <span class="icon">!</span> This field is required</span>
+                        <span class="err-msg" ng-show="confirmDetails.submitted && confirmDetails.firstName.$error.pattern">
+                                    <span class="icon">!</span>Please enter valid name</span>
+                    </p>
+                    <div class="clearfix"></div>
+                    <p class="float top">
+                        <label for="lastName">Last Name</label>
+                        <input autoFocus type="text" name="lastName" ng-pattern="/^[a-zA-Z0-9]*$/" placeholder="Last Name" ng-model="refDetails.lastName" required />
+                        <span class="err-msg" ng-show="confirmDetails.submitted && confirmDetails.lastName.$error.required">
+                                    <span class="icon">!</span> This field is required</span>
+                        <span class="err-msg" ng-show="confirmDetails.submitted && confirmDetails.lastName.$error.pattern">
+                                    <span class="icon">!</span>Please enter valid name</span>
+                    </p>
+                    <div class="clearfix"></div>
+                    <p class="float top">
+                        <label for="email">E-mail</label>
+                        <input type="email" name="email" placeholder="E-mail" ng-model="refDetails.email" required ng-pattern="emailRegex" ng-disabled=true />
+                        <span class="err-msg" ng-show="confirmDetails.submitted && confirmDetails.email.$error.required">
+                                    <span class="icon">!</span> This field is required</span>
+                        <span class="err-msg" ng-show="confirmDetails.submitted && confirmDetails.email.$error.pattern">
+                                    <span class="icon">!</span> {{pullInterNationalization('signup.invalid.email.msg')}}</span>
+                    </p>
+                    <div class="clearfix"></div>
+                    <p class="float top">
+                        <label for="webURL">Linkedin URL (Optional)</label>
+                        <input type="text" name="webURL" placeholder="Linkedin URL (Optional)" ng-model="refDetails.webURL" />
+                    </p>
+                    <div class="clearfix"></div>
+                    <hr class="dark" />
+                    <div class="clearfix"></div>
+                    <p class="tnc">
+                        <input type="checkbox" required ng-model="refDetails.tnc" value="yes" name="tnc" />
+                        <span>I agree to the <a href="#">SurePeople Terms &amp; Conditions</a>.</span>
+                        <span ng-show="confirmDetails.submitted && confirmDetails.tnc.$error.required" class="err-msg"><span class="icon">!</span> Please accept SurePeople terms and conditions to proceed</span>
+                    </p>
+
+                    <div class="clearfix"></div>
+                    <div class="sperator"></div>
+                    <div class="sp-btn-wrapper sp-red">
+                        <div class="sp-btn">
+                            <input type="submit" value="submit" class="continueBtn" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

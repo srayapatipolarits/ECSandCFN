@@ -1,0 +1,32 @@
+<div>
+    <div class="x-container oVisible" >
+        <div class="col-container" id="paColCont">
+            <div class="icons-col labels-enabled">
+                <div class="col-content-wrapper sp-panel-accent">
+                	<ul class="icons-list-sec">
+	                	<li class="icon-icon_accounts_all-members link-icons sp-icon-color" data-ng-click="updateView('employeesModule')" data-ng-class="{'active': activeView === 'employeesModule'}">
+	                		<span data-ng-bind="pullInterNationalization('manageAccountContent.employees')" class="hover-animate"></span>
+	                	</li>
+	                	<li class="icon-candidates link-icons sp-icon-color" data-ng-click="updateView('candidatesModule')" data-ng-class="{'active': activeView === 'candidatesModule'}">
+	                		<span data-ng-bind="pullInterNationalization('manageAccountContent.candidates')" class="hover-animate"></span>
+	                	</li>
+	                	<li class="icon-icon_accounts_all-groups link-icons sp-icon-color" data-ng-click="updateView('groupsPAModule')" data-ng-class="{'active': activeView === 'groupsPAModule'}">
+	                		<span data-ng-bind="pullInterNationalization('manageAccountContent.groups')" class="hover-animate"></span>
+	                	</li>
+	                	<li class="icon-Roles link-icons sp-icon-color" data-ng-click="updateView('rolesPAModule')" data-ng-class="{'active': activeView === 'rolesPAModule'}">
+	                		<span data-ng-bind="pullInterNationalization('manageAccountContent.roles1')" class="hover-animate"></span>
+	                	</li>
+	                	<li class="icon-icon_archive link-icons sp-icon-color" data-ng-click="updateView('archivesPAModule')" data-ng-class="{'active': activeView === 'archivesPAModule'}">
+	                		<span data-ng-bind="pullInterNationalization('manageAccountContent.archives')" class="hover-animate"></span>
+	                	</li>
+	                	<li class="icon-icon_accounts_settings link-icons sp-icon-color" data-ng-click="updateView('settingsPAModule')" data-ng-class="{'active': activeView === 'settingsPAModule'}">
+	                		<span data-ng-bind="pullInterNationalization('manageAccountContent.settings')" class="hover-animate"></span>
+	                	</li>	                		                	
+                	</ul>            	
+                </div>
+            </div>
+            <div class="other-cols extra-margins" ui-view>
+		    </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+
+        <!-- Copy Profile Verify Email Starts -->
+        <div class="x-container login-wrapper hide" ng-controller="verifyEmailController" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'">
+            <div class="container" >
+                <div class="row">
+                    <div class="sign-in-default alt-width">
+                        <div class="error-msgs reset-pw">
+                            <h2 class="sign-in-title sp-header-title-color">{{pullInterNationalization('profileCopy.verifyEmail.heading')}}</h2>
+                            <p class="sign-in-instruction">{{pullInterNationalization('profileCopy.verifyEmail.p1')}}</p>                        
+                        </div>                      
+                        <form name="verifyEmailForm" ng-submit="verifyEmail(user)" novalidate>
+                        <ol class="form-list-c form-list-sign-in">
+                            <li>
+                                <label for="email">{{pullInterNationalization('profileCopy.verifyEmail.email')}}</label>
+                                <input autoFocus type="email" name="email" placeholder="{{pullInterNationalization('profileCopy.verifyEmail.email')}}" ng-model="user.email" required ng-pattern="emailRegex" />
+                                <span class="validate-error" ng-show="verifyEmailForm.submitted && verifyEmailForm.email.$error.required">{{pullInterNationalization('profileCopy.verifyEmail.error.empty')}}</span>
+                                <span class="validate-error" ng-show="verifyEmailForm.submitted && verifyEmailForm.email.$error.pattern">{{pullInterNationalization('signup.invalid.email.msg')}}</span>
+                                <span class="validate-error" ng-show="verifyEmailError">{{pullInterNationalization('profileCopy.verifyEmail.error.notassociated')}}</span>
+                            </li>
+                            <li class="sign-in-submit">
+                              <input type="submit" value="{{pullInterNationalization('profileCopy.verifyEmail.submit')}}" class="btn-block btn-15px loginBtn sp-btn-color" />
+                            </li>
+						</ol>                            
+							<p class="password-reset"><a href="/sp/logout" class="border-link" ng-click="returnHome();$event.preventDefault()"><span class="mock-link" data-ng-bind="pullInterNationalization('reset.confirm.returnsign')"></span></a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Reset Password Ends -->

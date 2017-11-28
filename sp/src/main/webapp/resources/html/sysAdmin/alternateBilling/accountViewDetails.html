@@ -1,0 +1,55 @@
+<link type="text/css" rel="stylesheet" href="/resources/css/css-min/drop-theme-arrows.min.css" />
+<div class="x-container account-pages hide business-account-details alternate-billing" data-ng-controller="accountViewDetail" data-ng-init="getAccountValue('',true);stateCheck.forSelectedCountry=companyDetail.address.country" data-ng-if="inviteReady && profileReady" data-ng-class="inviteReady?'show':'hide'">
+    <div class="container">
+        <div class="spBillingLayout">
+            <div class="billing-header-wrap">
+                <a href="/sp/sysAdmin/alternateBilling/business" class="border-link af12 rightTop">
+                    <span class="mock-link" data-ng-bind="pullInterNationalization('viewAccountDetails.rLink')"></span>
+                </a>
+                <h2 data-ng-bind="companyDetail.name"></h2>
+                <ol class="bh-links">
+                    <li data-ng-if="planDetails.Primary.planName || planDetails.IntelligentHiring.planName">
+                        <span class="detail-title" data-ng-bind="pullInterNationalization('viewAccountDetails.Plan')">Plan</span>
+                        <span class="detail-info" data-ng-bind="planDetails.Primary.planName || planDetails.IntelligentHiring.planName"></span>
+                    </li>
+                    <li>
+                        <span class="detail-title" data-ng-bind="pullInterNationalization('viewAccountDetails.Acc')"></span>
+                        <span class="detail-info" data-ng-bind="accountDetails.accountNumber"></span>
+                    </li>
+                    <li data-ng-if="!accountDetails.deactivated">
+                        <span class="detail-title" data-ng-bind="pullInterNationalization('pricing.create.desc6')"></span>
+                        <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('pricing.create.desc16')" data-ng-click="deleteConfirm(accountDetails.id, 'business')"></a>
+                    </li>
+                    <li data-ng-if="accountDetails.deactivated">
+                        <span class="detail-title" data-ng-bind="pullInterNationalization('pricing.create.desc7')"></span>
+                        <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('pricing.create.desc15')" data-ng-click="activateAccount(accountDetails.id, 'ACTIVE', 'business')"></a>
+                    </li>
+                </ol>
+            </div>            
+            <div class="billing-tabs-wrap">
+                <ol class="bil-tabs">
+                    <li>
+                        <a href="javascript:void(0)" class="border-link" data-ng-click="switchView('erti')" data-ng-class="{'on':activeView === 'erti'}">
+                            <span class="mock-link" data-ng-bind="pullInterNationalization('viewAccountDetails.erti')"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="border-link" data-ng-click="switchView('hiring')" data-ng-class="{'on':activeView === 'hiring'}">
+                            <span class="mock-link" data-ng-bind="pullInterNationalization('viewAccountDetails.pa')"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="border-link" data-ng-click="switchView('company')" data-ng-class="{'on':activeView === 'company'}">
+                            <span class="mock-link" data-ng-bind="pullInterNationalization('viewAccountDetails.companyDetails')"></span>
+                        </a>
+                    </li>
+                </ol>
+            </div>
+                        
+           	<ng-include src="'/sp/resources/html/sysAdmin/alternateBilling/ertiAccountDetails.html'" data-ng-show="activeView === 'erti'"></ng-include>
+           	<ng-include src="'/sp/resources/html/sysAdmin/alternateBilling/paAccountDetails.html'" data-ng-show="activeView === 'hiring'"></ng-include>
+           	<ng-include src="'/sp/resources/html/sysAdmin/alternateBilling/companyDetails.html'" data-ng-show="activeView === 'company'"></ng-include>
+
+        </div>
+    </div>
+</div>

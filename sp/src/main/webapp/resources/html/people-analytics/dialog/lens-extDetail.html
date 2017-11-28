@@ -1,0 +1,120 @@
+  <link type="text/css" rel="stylesheet" href="/resources/css/css-min/prism-lens.min.css" />
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                    <h2 data-ng-bind-html="::pullInterNationalization('navigation.prism.360Rep')"></h2>
+                </div>
+                <div class="selected-user-obj">
+                    <div class="m-pic">
+                        <img data-ng-src="{{ctrl.hiringUserDetails.smallProfileImage}}" alt="{{ctrl.hiringUserDetails.userInitials}}" data-ng-if="ctrl.hiringUserDetails.smallProfileImage">
+                        <div class="imgReplacement" data-ng-if="!ctrl.hiringUserDetails.smallProfileImage" data-ng-bind="ctrl.hiringUserDetails.userInitials"></div>
+                    </div>
+                    <div class="m-info1">
+                        <p class="f500" data-ng-bind="ctrl.hiringUserDetails.firstName+' '+ctrl.hiringUserDetails.lastName"></p>
+                        <p class="nm" data-ng-bind="ctrl.hiringUserDetails.title"></p>
+                    </div>
+                    <div class="m-info2">
+                        <p data-ng-bind="ctrl.hiringUserDetails.email"></p>
+                        <p data-ng-bind="ctrl.hiringUserDetails.phoneNumber"></p>
+                    </div>
+                </div>
+                <div class="new-modals-wrapper">
+                    <div class="prism-lens-request-form noPaddingRL">
+			           <div class="fs-content">
+                <div class="inviteMemberView feedback-overrides">
+                    <div class="contentArea teamView">
+                        <div class="feedback_Additional_comments">
+                            <div class="feedbackCommentSection">
+                                <div class="title" data-ng-bind-html="pullInterNationalization('feedback.additional.title')"></div>
+                                <div class="description" data-ng-bind-html="ctrl.getInviteMemberDetail.profileStatment"></div>
+                            </div>
+                            <div class="feedbackCommentSection">
+                                <div class="title" data-ng-bind-html="ctrl.getInviteMemberDetail['notablechar.text']"></div>
+                                <div class="description" data-ng-bind-html="ctrl.getInviteMemberDetail['notablechar.desc']"></div>
+                            </div>
+                            <div class="feedbackCommentSection mar40">
+                                <div class="title" data-ng-bind-html="ctrl.getInviteMemberDetail['workEnviornment.text']"></div>
+                                <div class="description" data-ng-bind-html="ctrl.getInviteMemberDetail['workEnviornment.desc']"></div>
+                            </div>
+                        </div>
+                        <div data-ng-repeat="(key,value) in ctrl.getInviteMemberDetail.feedbackGoals track by $index" class="clearfix separatePad">
+                            <div class="headTitle noTopAddBottom" data-ng-bind="pullInterNationalization('feedback.feedbackListing.'+key)"></div>
+                            <div class="col-sm-12 col-md-12 clearfix row equalsSize clearfix">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-6 equalHeight clearfix" data-ng-repeat="area in value track by $index">
+                                        <div class="orangeBarBorder">
+                                            <div class="title" data-ng-bind="area.goal.name"></div>
+                                            <div class="desc" dd-text-collapse dd-text-collapse-max-length="pullInterNationalization('feedback.feedbackListing.count')" dd-text-collapse-text="{{area.goal.description}}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swot-analysis-wrapper">
+                        <h2 data-ng-bind="pullInterNationalization('personality.swotAnalysis')"></h2>
+                        <p class="lens-desc" data-ng-bind-html="pullInterNationalization('personality.swotAnalysisDescPA')"></p>
+                        <div class="swot-details">
+                            <div class="swot-top hide">
+                                <p>&#160;</p>
+                                <!--p data-ng-bind="pullInterNationalization('personality.internal')"></p-->
+                            </div>
+                            <div class="swot-mid">
+                                <table class="swot-data expand">
+                                    <tr class="top-swot">
+                                        <td class="swot-left-label hide" rowspan="2">
+                                            <!--p class="nowrap-text" label-adjust swot-mid="{{ctrl.swotMemId}}" data-ng-bind="pullInterNationalization('personality.helpful')"></p-->
+                                        </td>
+                                        <td class="b-r b-b">
+                                            <h3 data-ng-bind="pullInterNationalization('personality.opportunities')"></h3>
+                                            <p class="swot-labelDesc" data-ng-bind="pullInterNationalization('prismLens.swotDD3')"></p>
+                                            <ul>
+                                                <li data-ng-repeat="strength in ctrl.swotanalysis.Opportunities" data-ng-bind="strength"></li>
+                                            </ul>
+                                        </td>
+                                        <td class="b-b b-r-w">
+                                            <h3 data-ng-bind="pullInterNationalization('personality.threats')"></h3>
+                                            <p class="swot-labelDesc" data-ng-bind="pullInterNationalization('prismLens.swotDD4')"></p>
+                                            <ul>
+                                                <li data-ng-repeat="weakness in ctrl.swotanalysis.Threats" data-ng-bind="weakness"></li>
+                                            </ul>
+                                        </td>
+                                        <td class="swot-right-label hide" rowspan="2">
+                                            <!--p class="nowrap-text" label-adjust swot-mid="{{ctrl.swotMemId}}" data-ng-bind="pullInterNationalization('persoanlity.harmful')"></p-->
+                                        </td>
+                                    </tr>
+                                    <tr class="bottom-swot">
+                                        <td class="b-r">
+                                            <h3 data-ng-bind="pullInterNationalization('personality.weakness')"></h3>
+                                            <p class="swot-labelDesc" data-ng-bind="pullInterNationalization('prismLens.swotDD2')"></p>
+                                            <ul>
+                                                <li data-ng-repeat="oppurtunity in ctrl.swotanalysis.Weakness" data-ng-bind="oppurtunity"></li>
+                                            </ul>
+                                        </td>
+                                        <td class="b-r-w">
+                                            <h3 data-ng-bind="pullInterNationalization('personality.strengths')"></h3>
+                                            <p class="swot-labelDesc" data-ng-bind="pullInterNationalization('prismLens.swotDD1')"></p>
+                                            <ul>
+                                                <li data-ng-repeat="threats in ctrl.swotanalysis.Strengths" data-ng-bind="threats"></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="swot-bottom hide">
+                                <p>&#160;</p>
+                                <!--p data-ng-bind="pullInterNationalization('personality.external')"></p-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

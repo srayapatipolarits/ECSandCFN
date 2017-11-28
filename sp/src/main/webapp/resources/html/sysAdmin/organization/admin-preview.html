@@ -1,0 +1,259 @@
+<div class="add-preview organization-preview account-admin-previw">
+    <div class="practive-area-view">
+        <div class="title-with-icons padding-right">
+			<h2 class="sp-header-title-color" data-ng-bind="ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].name||pullInterNationalization('sysadmin.organization.createactionPlan')"></h2>
+			<ul>
+				<li class="icon-close icon-icon_remove sp-icon-color" title="{{::pullInterNationalization('sysadmin.organization.closetitle')}}" data-ng-click="ctrl.viewMode.preview=false;ctrl.viewMode.editCreate=true;"></li>
+			</ul>
+		</div>
+        <div class="pa-details">
+            <!-- Introduction Area Video Starts-->
+            <div class="introduction-area" data-ng-if="ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].introVideo.type==='VIDEO'">
+                <div class="left" data-ng-if="ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].introVideo.status==='ACTIVE'">
+                    <div class="thumbnail-view">
+                        <div class="image">
+                            <a href="javascript:void(0)" data-ng-click="ctrl.previewVideo('Video',ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].introVideo.url,'introVideo')" class="Video"><img ng-src="{{ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].introVideo.thumbnailURL}}" alt="intro video" /></a>
+                        </div>
+                        <div class="detail">
+                            <div class="title" data-ng-bind="ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].introVideo.title"></div>
+                            <h4 class="pa-sechead_light top-margin preserve-line-break" data-ng-bind="ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].introVideo.description"></h4>
+                            <a href="javascript:void(0)" data-ng-click="ctrl.previewVideo('Video',ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].introVideo.url,'introVideo')" class="border-link" alt="intro video"><span class="mock-link" data-ng-bind="::pullInterNationalization('kcContent.playVid')"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="right" data-ng-class="ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].introVideo.status!=='ACTIVE'?'noVideo':''">
+                    <h4 class="pa-sechead top-margin lh" data-ng-bind="::pullInterNationalization('admin.organization.overview')"></h4>
+                    <div class="description sp-text-editor" data-ng-bind-html="ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].description | secureHtml"></div>
+                    <div class="keyOutcome" data-ng-if="ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].keyOutcomes.active">
+                        <h4 class="pa-sechead" data-ng-bind="::pullInterNationalization('admin.organization.keyOutcomes')"></h4>
+                        <div class="description preserve-line-break" data-ng-bind-html="ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].keyOutcomes.description"></div>
+                        <ol class="formatting">
+                            <li data-ng-repeat="outcome in ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].keyOutcomes.outcomesList track by $index"><span class="text" data-ng-bind="outcome"></span></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <!--Introduction Area Video Ends-->
+            <!--Introduction Area Image Starts-->
+            <div class="introduction-area" data-ng-if="ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].introVideo.type==='IMAGE'">
+                <div class="left" data-ng-style="{width:ctrl.imageSize}" data-ng-if="ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].introVideo.status==='ACTIVE'">
+                    <div class="thumbnail-view">
+                        <div class="image_intro">
+                            <a href="javascript:void(0)" class="Image" alt="{{ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].introVideo.imageAltText}}"><img ng-src="{{ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].introVideo.imageUrl}}" alt="{{ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].introVideo.imageAltText}}" /></a>
+                        </div>
+                        <div class="detail">
+                            <div class="title"></div>
+                            <h4 class="pa-sechead_light top-margin preserve-line-break bottom-margin" data-ng-bind="ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].introVideo.imageDescription"></h4>
+                            <article class="link-action clearfix">
+                                <div>
+                                    <a href="javascript:void(0)" data-ng-click="ctrl.previewVideo(ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].introVideo.linkType,ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].introVideo.linkurl,ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].introVideo.linkText)" class="border-link">
+                                        <span class="icon-icon_{{ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].introVideo.linkType | lowercase}} sp-icon-color"></span>
+                                        <span class="mock-link" data-ng-bind="ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].introVideo.linkText"></span></a>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+                <div class="right" data-ng-style="{width:ctrl.adjustedWidth}" data-ng-class="ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].introVideo.status!=='ACTIVE'?'noVideo':''">
+                    <h4 class="pa-sechead top-margin lh" data-ng-bind="::pullInterNationalization('admin.organization.overview')"></h4>
+                    <div class="description sp-text-editor" data-ng-bind-html="ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].description | secureHtml"></div>
+                    <div class="keyOutcome" data-ng-if="ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].keyOutcomes.active">
+                        <h4 class="pa-sechead" data-ng-bind="::pullInterNationalization('admin.organization.keyOutcomes')"></h4>
+                        <div class="description preserve-line-break" data-ng-bind-html="ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].keyOutcomes.description"></div>
+                        <ol class="formatting">
+                            <li data-ng-repeat="outcome in ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].keyOutcomes.outcomesList track by $index"><span class="text" data-ng-bind="outcome"></span></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <!--Introduction Area Image Ends-->
+            <!-- Action and Group Action Content Starts -->
+            <div class="org-develeopment-strat" data-ng-repeat="list in ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].devStrategyActionCategoryList track by $index">
+                <div class="header" data-ng-if="list.actionList.length">
+                    <div class="left">
+                        <div class="pa-subhead_2 top-margin" data-ng-bind-html="list.title"></div>
+                    </div>
+                    <div class="right hide">
+                        <span data-ng-bind="'('+(list.completedActions||0)+' '+pullInterNationalization('admin.organization.of')+' '+list.totalActions+' '+pullInterNationalization('admin.organization.completed')+')'"></span>
+                    </div>
+                </div>
+                <div class="action-list-user clearfix" data-ng-class="actionList.type==='Group'?'group':'single'" data-ng-repeat="actionList in list.actionList track by actionList.uid" data-ng-init="parentIndex=$parent.$index">
+                    <div class="area clearfix">
+                        <header class="header-check splitWidth clearfix">
+                            <div class="checkBox clearfix" data-ng-init="time = ctrl.converTime(actionList.timeInMins)">
+                                <div class="left">
+                                    <div class="lp-task-check-wrap">
+	                            		<!-- Single Checks -->
+	                            		<span class="lp-check-icons" data-ng-show="!actionList.completed && actionList.type!=='Group'" data-ng-class="{'disabled-action icon-lp-check':!actionList.permissions.Completion, 'icon-lp-uncheck default':actionList.permissions.Completion}"></span>
+	                            		<span class="lp-check-icons icon-lp-check sp-icon-color" data-ng-show="actionList.completed && actionList.type!=='Group'"></span>
+	                            		
+	                            		<!-- Group Checks -->
+	                            		<span class="lp-check-icons" data-ng-show="!actionList.completed && actionList.type==='Group' && (actionList.completedActions !== actionList.totalActions)" data-ng-class="{'disabled-action icon-lp-check':!actionList.permissions.Completion, 'icon-lp-uncheck default':actionList.permissions.Completion}"></span>
+	                            		<span class="lp-check-icons icon-lp-check sp-icon-color" data-ng-show="(actionList.completed && actionList.type==='Group') || (actionList.type==='Group' && (actionList.completedActions === actionList.totalActions))"></span>                            		
+	                            	</div>
+                                    <!--  
+                                <input type="checkbox" data-ng-if="noSelf===''" data-ng-model="actionList.completed" data-ng-disabled="!actionList.permissions.Completion && actionList.type==='Group'" class="filterCheckBox" id="devStrategyActionCategoryList_{{parentIndex}}_{{$index}}" name="devStrategyActionCategoryList_{{parentIndex}}_{{$index}}" data-ng-click="ctrl.changeStatus({'actionPlanId':ctrl.actionPlan.id,'completed':actionList.completed,'uid':actionList.uid,'stepId':ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].id},actionList,list)">
+                                <input type="checkbox" data-ng-if="noSelf!==''" data-ng-model="actionList.completed" data-ng-disabled="true" class="filterCheckBox" id="devStrategyActionCategoryList_{{parentIndex}}_{{$index}}" name="devStrategyActionCategoryList_{{parentIndex}}_{{$index}}">
+                                <label for="devStrategyActionCategoryList_{{parentIndex}}_{{$index}}" class="filterCheckBox-label header-title" data-ng-if="!actionList.permissions.Completion &&  actionList.type==='Group'" data-ng-class="ctrl.stateControl(actionList)?'block':'blockCHeck'">
+                                    <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color orgCheckFix"></span>
+                                </label>
+                                <label for="devStrategyActionCategoryList_{{parentIndex}}_{{$index}}" class="filterCheckBox-label header-title" data-ng-if="(actionList.permissions.Completion &&  actionList.type==='Group') || actionList.type==='Single'" data-ng-class="{'cursorHand':noSelf!==''}">
+                                    <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color orgCheckFix"></span>
+                                </label>
+                                -->
+                                </div>
+                                <div class="right posnRel">
+                                    <div class="task-confirm-box-wrap animation_1" data-ng-if="confirmBoxShow">
+                                        <p data-ng-bind="::pullInterNationalization('learningProg.confirmHead')"></p>
+                                        <p class="fsmall" data-ng-bind="::pullInterNationalization('learningProg.confirmDesc')"></p>
+                                        <div class="task-box-btns">
+                                            <a href="javascript:void(0)" data-ng-bind="::pullInterNationalization('manageAccountContent.yes')" class="btn-square-12px sp-background-color"></a>
+                                            <a href="javascript:void(0)" data-ng-bind="::pullInterNationalization('manageAccountContent.no')" class="btn-square-12px btn-darker-grey"></a>
+                                        </div>
+                                    </div>
+                                    <span class="header-title"><span class="label-text" data-ng-bind="actionList.title"></span><span class="count" data-ng-if="time.min||time.hour"> (<span data-ng-if="time.hour" data-ng-bind="time.hour+' '+pullInterNationalization('admin.organization.hr')"></span><span data-ng-if="time.min&&time.hour"> </span><span data-ng-if="time.min" data-ng-bind="time.min+' '+pullInterNationalization('admin.organization.min')"></span>) </span>
+                                    </span>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="descriptor sp-text-editor" data-ng-if="actionList.description" data-ng-bind-html="actionList.description | secureHtml"></div>
+                            </div>
+                            <article class="single_block clearfix" data-ng-if="actionList.type==='Single'">
+                                <ul class="panel-tools col-container-rest-disable clearfix">
+                                    <li data-ng-repeat="actionData in actionList.actionData track by $index" class="clearfix">
+                                        <section class="singleVideo">
+                                            <article class="link-action clearfix">
+                                                <div>
+                                                    <a href="javascript:void(0)" data-ng-click="ctrl.previewVideo(actionData.type,actionData.url,actionData.title,actionData.uid)" class="border-link">
+                                                        <span class="icon-icon_{{actionData.type | lowercase}} sp-icon-color"></span>
+                                                        <span class="mock-link" data-ng-bind="actionData.linkText"></span></a>
+                                                </div>
+                                            </article>
+                                        </section>
+                                    </li>
+                                    <li class="clearfix" data-ng-if="actionList.permissions.Note && noSelf===''">
+                                        <section class="singleVideo">
+                                            <article class="link-action clearfix">
+                                                <div class="marg5">
+                                                    <a href="javascript:void(0)" class="border-link" styles="notes-sub-options">
+                                                        <span class="icon-icon_editnote sp-icon-color"></span>
+                                                        <span class="mock-link" data-ng-bind="::pullInterNationalization('practiceArea.postNote')"></span></a>
+                                                </div>
+                                            </article>
+                                        </section>
+                                    </li>
+                                    <li class="clearfix" data-ng-if="actionList.permissions.Feedback && noSelf===''">
+                                        <section class="singleVideo">
+                                            <article class="link-action clearfix">
+                                                <div>
+                                                    <a href="javascript:void(0)" class="border-link">
+                                                        <span class="icon-icon_feedback sp-icon-color"></span>
+                                                        <span class="mock-link" data-ng-bind="::pullInterNationalization('practiceArea.requestFeedback')"></span></a>
+                                                </div>
+                                            </article>
+                                        </section>
+                                    </li>
+                                </ul>
+                            </article>
+                            <ul class="panel-tools col-container-rest-disable clearfix" data-ng-if="actionList.permissions && actionList.type==='Group'" data-ng-init="permission = !!actionList.permissions.Completion">
+                                <li>
+                                    <section>
+                                        <article class="link-action clearfix">
+                                            <div data-ng-if="!permission">
+                                                <span class="mock-link completedAction" data-ng-bind="(actionList.completedActions||0) +' '+pullInterNationalization('admin.organization.of')+' '+ actionList.totalActions +' '+pullInterNationalization('admin.organization.completed')"></span></a>
+                                            </div>
+                                            <div data-ng-if="actionList.permissions.Note && noSelf===''">
+                                                <a href="javascript:void(0)" class="border-link">
+                                                    <span class="icon-icon_editnote sp-icon-color"></span>
+                                                    <span class="mock-link" data-ng-bind="::pullInterNationalization('practiceArea.postNote')"></span></a>
+                                            </div>
+                                            <div data-ng-if="actionList.permissions.Feedback && noSelf===''">
+                                                <a href="javascript:void(0)" class="border-link">
+                                                    <span class="icon-icon_feedback sp-icon-color"></span>
+                                                    <span class="mock-link" data-ng-bind="::pullInterNationalization('practiceArea.requestFeedback')"></span></a>
+                                            </div>
+                                        </article>
+                                    </section>
+                                </li>
+                            </ul>
+                        </header>
+                        <div class="singleTime" data-ng-if="actionList.imageLink">
+                            <div class="image">
+                                <a href="javascript:void(0)" data-ng-click="ctrl.previewVideo(actionList.actionDataType,actionList.url,actionList.title,actionList.uid)" class="{{actionList.actionDataType}}"><img ng-src="{{actionList.imageLink}}" alt="{{actionList.altText}}" /></a>
+                            </div>
+                        </div>
+                        <article class="singleTime clearfix bot0" data-ng-if="actionList.type==='Group' && (actionList.mediaUrl || actionList.mediaImageLink)">
+                            <div class="image" data-ng-if="!!actionList.mediaType">
+                                <a href="javascript:void(0)" data-ng-click="ctrl.previewVideo(actionList.mediaType,actionList.mediaUrl,actionList.mediaAltText,actionList.uid)" class="{{actionList.mediaType}}"><img ng-src="{{actionList.mediaImageLink}}" alt="{{actionList.mediaAltText}}" /></a>
+                            </div>
+                            <div class="image" data-ng-if="!(!!actionList.mediaType)">
+                                <a href="javascript:void(0)" class="cursorDefault"><img ng-src="{{actionList.mediaImageLink}}" alt="{{actionList.mediaAltText}}" /></a>
+                            </div>
+                        </article>
+                    </div>
+                    <article class="group_block" data-ng-if="actionList.type==='Group'">
+                        <ul class="panel-tools col-container-rest-disable clearfix">
+                            <li data-ng-repeat="actionData in actionList.actionData track by $index" class="clearfix topBorder" data-ng-init="childParIndex = $parent.$index">
+                                <section class="posRelative">
+                                    <div class="area clearfix" data-ng-class="!$last?'border-bottom':''">
+                                        <header class="header-check splitWidth clearfix">
+                                            <div class="checkBox">
+                                                <div class="lp-task-check-wrap inl1">
+                                                    <span class="lp-check-icons" data-ng-show="!actionData.completed && (actionList.completedActions !== actionList.totalActions)" data-ng-class="{'disabled-action icon-lp-check':!actionData.permissions.Completion, 'icon-lp-uncheckDefault':actionData.permissions.Completion}"></span>
+                                                    <span class="lp-check-icons icon-lp-check sp-icon-color" data-ng-show="actionData.completed || (actionList.completedActions === actionList.totalActions) || (!actionData.permissions.Completion && actionList.completed)"></span>
+                                                </div>
+                                                <div class="task-confirm-box-wrap animation_1 group-pop" data-ng-if="confirmBoxShowGroup">
+                                                    <p data-ng-bind="::pullInterNationalization('learningProg.confirmHead')"></p>
+                                                    <p class="fsmall" data-ng-bind="::pullInterNationalization('learningProg.confirmDesc')"></p>
+                                                    <div class="task-box-btns">
+                                                        <a href="javascript:void(0)" data-ng-bind="::pullInterNationalization('manageAccountContent.yes')" class="btn-square-12px sp-background-color"></a>
+                                                        <a href="javascript:void(0)" data-ng-bind="::pullInterNationalization('manageAccountContent.no')" class="btn-square-12px btn-darker-grey"></a>
+                                                    </div>
+                                                </div>
+                                                <!--  
+                                            <input type="checkbox" data-ng-if="noSelf===''" data-ng-model="actionData.completed" data-ng-disabled="!actionData.permissions.Completion" class="filterCheckBox" id="groupActionCategoryList_{{$index}}_{{childParIndex}}_{{parentIndex}}" data-ng-click="ctrl.changeStatus({'group':true,'actionPlanId':ctrl.actionPlan.id,'completed':actionData.completed,'uid':actionData.uid,'stepId':ctrl.actionPlan.practiceAreaList[ctrl.currentActionPlan].id},actionData,list,actionList)">
+                                            <input type="checkbox" data-ng-if="noSelf!==''" data-ng-model="actionData.completed" data-ng-disabled="true" class="filterCheckBox" id="groupActionCategoryList_{{$index}}_{{childParIndex}}_{{parentIndex}}">
+                                            <label for="groupActionCategoryList_{{$index}}_{{childParIndex}}_{{parentIndex}}" class="filterCheckBox-label header-title" data-ng-class="{'block':!actionData.permissions.Completion,'cursorHand':noSelf!==''}">
+                                                <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color absPos orgCheckFix"></span>
+                                            </label>
+                                            -->
+                                                <span class="header-title ml15"><span class="label-text" data-ng-bind="actionData.title"></span></span>
+                                                <div class="clear"></div>
+                                                <div class="descriptor_1 adj sp-text-editor" data-ng-if="actionData.description" data-ng-bind-html="actionData.description | secureHtml"></div>
+                                            </div>
+                                            <div class="clearfix">
+                                                <article class="link-action group adj clearfix">
+                                                    <div data-ng-if="actionData.linkText">
+                                                        <a href="javascript:void(0)" data-ng-click="ctrl.previewVideo(actionData.type,actionData.url,actionData.title,actionData.uid)" class="border-link">
+                                                            <span class="icon-icon_{{actionData.type | lowercase}} sp-icon-color"></span>
+                                                            <span class="mock-link" data-ng-bind="actionData.linkText"></span></a>
+                                                    </div>
+                                                    <div data-ng-if="actionData.permissions.Note && noSelf===''">
+                                                        <a href="javascript:void(0)" class="border-link">
+                                                            <span class="icon-icon_editnote sp-icon-color"></span>
+                                                            <span class="mock-link" data-ng-bind="::pullInterNationalization('practiceArea.postNote')"></span></a>
+                                                    </div>
+                                                    <div data-ng-if="actionData.permissions.Feedback && noSelf===''">
+                                                        <a href="javascript:void(0)" class="border-link">
+                                                            <span class="icon-icon_feedback sp-icon-color"></span>
+                                                            <span class="mock-link" data-ng-bind="::pullInterNationalization('practiceArea.requestFeedback')"></span></a>
+                                                    </div>
+                                                </article>
+                                            </div>
+                                        </header>
+                                        <article class="singleTime clearfix" data-ng-if="actionData.imageLink">
+                                            <div class="image">
+                                                <a href="javascript:void(0)" data-ng-click="ctrl.previewVideo(actionData.type,actionData.url,actionData.title,actionData.uid)" class="{{actionData.type}}"><img ng-src="{{actionData.imageLink}}" alt="{{actionData.altText}}" /></a>
+                                            </div>
+                                        </article>
+                                    </div>
+                                </section>
+                            </li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+            <!-- Action and Group Action Content Ends -->
+        </div>
+        <!-- Content for the step ends-->
+    </div>
+</div>

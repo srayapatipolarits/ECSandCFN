@@ -1,0 +1,46 @@
+<article data-ng-if="!comment.fileStack" class="holder-og">
+    <div class="left-reference" data-ng-if="comment.imageUrl" data-ng-init="imageLoop = ctrl.imageUrl(comment)">
+        <div class="image-video" data-ng-repeat="media in imageLoop">
+            <a href="javascript:void(0)" class="{{media.mediaType}}" data-ng-click="ctrl.videoPopUp(media.url||comment.url,media.mediaType,comment.newTab)">
+            	<span class="icon-triangle-right traingle-back" data-ng-if="media.mediaType==='Video'"></span>
+                <img data-lazy-img="{{comment.imageUrl}}">
+            </a>
+        </div>
+    </div>
+    <div class="right-reference web{{comment.imageUrl}}">
+        <a data-ng-href="{{comment.url}}" class="title href_{{comment.url}}" data-ng-attr-target="{{comment.newTab ? '_blank' : '_self'}}" data-ng-bind-html="comment.title"></a>
+        <div class="article" data-ng-if="comment.authorSource" data-ng-bind-html="pullInterNationalization('practice.by')+comment.authorSource"></div>
+        <div class="description" data-ng-bind-html="comment.description | addEllipsis:140"></div>
+        <div class="media-links">
+            <a href="javascript:void(0)" class="link-action" data-ng-click="ctrl.videoPopUp(media.url,media.mediaType)" data-ng-repeat="media in comment.media track by $index" data-ng-if="media.linkText">
+                <span class="icon-icon_{{media.mediaType|lowercase}} sp-icon-color"></span>
+                <span class="mock-link" data-ng-bind="::media.linkText"></span>
+            </a>
+        </div>
+    </div>
+</article>
+<article data-ng-if="comment.fileStack" class="holder-og-image_true">
+    <div class="file-stack-reference" data-ng-repeat="media in comment.media track by $index">
+    <div class="clearfix" data-ng-if="media.mediaType !== 'IMAGE'">
+      <div class="left-reference">
+	        <div class="image-video">
+	            <!-- <a data-ng-click="ctrl.videoPopUp(media.url||comment.url,media.mediaType,comment.newTab)" href="javascript:void(0)" class="border-link {{media.mediaType}}">
+					 <img alt="{{comment.title}}" data-lazy-img="{{comment.imageUrl}}">
+				</a>-->
+				<a data-ng-click="ctrl.videoPopUp(media.url||comment.url,media.mediaType,comment.newTab)" href="javascript:void(0)" class="border-link">
+				<span class="icon-icon_{{media.mediaType}} preview-icon sp-icon-color"></span>
+				</a>
+	        </div>
+	    </div>
+	    <div class="right-reference web{{comment.imageUrl}}">
+	        <a data-ng-href="{{comment.url}}" class="title href_{{comment.url}}" data-ng-attr-target="{{comment.newTab ? '_blank' : '_self'}}" data-ng-bind-html="comment.title"></a>
+	        <div class="description" data-ng-bind-html="comment.description | addEllipsis:140"></div>
+	      </div>
+    </div>
+      <div class="image-video-file" data-ng-if="media.mediaType === 'IMAGE'" >
+      		<a data-ng-click="imagePop(comment.imageUrl,comment.title)" href="javascript:void(0)" class="border-link {{media.mediaType}}">
+			        <img alt="{{comment.title}}" data-lazy-img="{{comment.imageUrl}}">
+			</a>
+		</div>
+    </div>
+</article>

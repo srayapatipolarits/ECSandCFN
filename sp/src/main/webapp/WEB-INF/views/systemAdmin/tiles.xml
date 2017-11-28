@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="updateTL" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/trainingLibrary/updateTL.html" />
+	</definition>
+	<definition name="homeList" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/home.html" />
+		<put-attribute name="javascripts" value="resources/js-min/systemAdmin.min.js" cascade="true" />
+	</definition>
+	<definition name="sysAdminMemberHome" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/home.html" />
+		<put-attribute name="styles" value="resources/css/css-min/ert-i.min.css" cascade="true" />
+	</definition>
+	<definition name="loggedInUser" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/loggedInUser.html" />
+		<put-attribute name="javascripts" value="resources/js-min/systemAdmin.min.js" cascade="true" />
+	</definition>
+	<definition name="getUserList" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/getUserList.html" />
+		<put-attribute name="javascripts" value="resources/js-min/systemAdmin.min.js" cascade="true" />
+	</definition>
+	<definition name="getCompanyList" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/getCompanyList.html" />
+		<put-attribute name="javascripts" value="resources/js-min/systemAdmin.min.js" cascade="true" />
+	</definition>
+	<definition name="partners" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/partners/listing.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/partnersAdmin.min.js" cascade="true" />
+	</definition>
+	<definition name="createPulse" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/pulse/createPulse.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js-min/angular-file-upload.min.js" />
+			<add-attribute value="resources/js-min/createPulseController.min.js" />
+		</put-list-attribute>
+	</definition>
+	<definition name="pulseListings" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/pulse/pulseListing.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/pulseListingController.min.js" cascade="true" />
+	</definition>
+	<definition name="pulseDetails" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/pulse/pulseDetails.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js-min/angular-file-upload.min.js" />
+			<add-attribute value="resources/js-min/pulseDetailsController.min.js" />
+		</put-list-attribute>		
+
+	</definition>	
+	<definition name="createCode" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/affiliateCode/createCode.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/createAffiliateCodeController.min.js" cascade="true" />
+	</definition>	
+	<definition name="affiliateCodes" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/affiliateCode/codeListing.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/affiliateCodeListingController.min.js" cascade="true" />
+	</definition>		
+	<definition name="codeDetails" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/affiliateCode/codeDetails.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/affiliateCodeDetailsController.min.js" cascade="true" />
+	</definition>
+		<definition name="businessAB" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/alternateBilling/abBusinessListing.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/alternateBilling.min.js" cascade="true" />
+	</definition>
+	<definition name="individualAB" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/alternateBilling/abIndividualListing.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/alternateBilling.min.js" cascade="true" />
+	</definition>
+	<definition name="businessStep1" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/alternateBilling/businessStep1.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/spBillingCtrl.min.js" cascade="true" />
+	</definition>
+	<definition name="individualStep1" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/alternateBilling/individualStep1.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/signUpController.min.js" cascade="true" />
+	</definition>
+	<definition name="businessStep2" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/alternateBilling/businessStep2.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/spBillingCtrl.min.js" cascade="true" />
+	</definition>
+	<definition name="individualStep2" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/alternateBilling/individualStep2.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/signUpController.min.js" cascade="true" />
+	</definition>
+	<definition name="viewDetailAccount" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/alternateBilling/accountViewDetails.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/alternateBilling.min.js" cascade="true" />
+	</definition>	
+	<definition name="viewDetailAccountIndividual" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/alternateBilling/accountViewIndividualDetails.html" />
+		<put-attribute name="javascripts" value="resources/js-min/alternateBilling.min.js" cascade="true" />
+	</definition>	
+	
+	<definition name="createTheme" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/learning-library/createTheme.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/createThemeController.min.js" cascade="true" />
+	</definition>		
+	<definition name="themeListings" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/learning-library/themeListing.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/themeListingController.min.js" cascade="true" />
+	</definition>	
+	<definition name="themeDetails" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/learning-library/viewTheme.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/themeDetailsController.min.js" cascade="true" />
+	</definition>
+		<!-- Learning Library Admin Interface -->
+	<definition name="libraryHome" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/curriculam/libraryHome.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/adminLibraryHomeController.min.js" cascade="true" />
+	</definition>	
+	<definition name="libraryHome" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/curriculam/libraryHome.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/adminLibraryHomeController.min.js" cascade="true" />
+	</definition>
+	<definition name="createLibraryHome" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/curriculam/createLibraryHome.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/createLibraryHomeController.min.js" cascade="true" />
+	</definition>
+	<definition name="libraryHomeDetails" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/curriculam/libraryHomeDetails.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/libraryHomeDetailsController.min.js" cascade="true" />
+	</definition>
+	<definition name="abImportContacts" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/alternateBilling/importContacts.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/alternateBilling.min.js" cascade="true" />
+	</definition>
+	<definition name="archivedBusinessContacts" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/alternateBilling/archivedBusinessContacts.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/alternateBilling.min.js" cascade="true" />
+	</definition>
+	<definition name="archivedIndividualContacts" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/alternateBilling/archivedIndividualContacts.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/alternateBilling.min.js" cascade="true" />
+	</definition>
+	<definition name="abImportContactsIndi" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/alternateBilling/importContactsIndividual.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/alternateBilling.min.js" cascade="true" />
+	</definition>
+	<definition name="practiveAreaList" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/goals/practiceListing.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/practiceAdminController.min.js" cascade="true" />
+	</definition>
+	<definition name="practiceAreaViewDetail" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/goals/practiceDetail.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/practiceAdminController.min.js" />
+	    	<add-attribute value="resources/js-min/adminMediaListingController.min.js" />
+	    	<add-attribute value="resources/js-min/adminMediaController.min.js" />
+	    </put-list-attribute>
+	</definition>
+	<definition name="createPracticeAreaViewDetail" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/goals/createPracticeDetail.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/practiceAdminController.min.js" />
+	    	<add-attribute value="resources/js-min/adminMediaListingController.min.js" />
+	    	<add-attribute value="resources/js-min/adminMediaController.min.js" />
+	    </put-list-attribute>
+	</definition>
+	<definition name="goalsPersonalityMapping" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/goals/personalityMapping.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/goalsPersonalityMapping.min.js" cascade="true" />
+	</definition>	
+	
+	<!-- AudtiLogViews -->
+	<definition name="auditHome" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/audit/auditHome.html" />
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js-min/auditLogController.min.js" />
+			<add-attribute value="resources/js/date-range-picker/date-range-picker.min.js" /> 	
+	    </put-list-attribute>
+	</definition>
+	<definition name="auditDetail" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/audit/auditDetailHome.html" />
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js-min/auditLogController.min.js" />
+			<add-attribute value="resources/js/date-range-picker/date-range-picker.min.js" /> 	
+	    </put-list-attribute>
+	</definition>
+	<definition name="auditAdvancedPopup" extends="popup">
+		<put-attribute name="content" value="/resources/html/sysAdmin/audit/advancedFilter.html" />
+	</definition>
+	
+	<!-- Organization -->
+	<definition name="adminActionPlan" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/organization/home.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/organizationAdminController.min.js" cascade="true" />
+	</definition>
+	<definition name="createOrgPlan" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/organization/createOrgPlan.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/organizationAdminController.min.js" />
+	    	<add-attribute value="resources/js-min/adminMediaListingController.min.js" />
+	    	<add-attribute value="resources/js-min/adminMediaController.min.js" />
+	    </put-list-attribute>
+	</definition>
+	<definition name="updateOrgPlan" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/organization/updateOrgPlan.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/organizationAdminController.min.js" />
+	    	<add-attribute value="resources/js-min/adminMediaListingController.min.js" />
+	    	<add-attribute value="resources/js-min/adminMediaController.min.js" />
+	    </put-list-attribute>
+	</definition>
+	
+	<definition name="selectCompany" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/sysAdmin/organization/company.html" />
+	</definition>
+	<definition name="clonePlan" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/sysAdmin/organization/clonePlan.html" />
+	</definition>
+	<definition name="clonePlanSP" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/sysAdmin/organization/clonePlanSP.html" />
+	</definition>
+	<definition name="selectGroup" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/sysAdmin/organization/group.html" />
+	</definition>
+	<definition name="videoPop" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/common/videoPopUp.html" />
+	</definition>
+	<definition name="schedulePop" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/sysAdmin/organization/schedule.html" />
+	</definition>
+	
+	<definition name="publishPlan" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/sysAdmin/organization/publishMortal.html" />
+	</definition>
+	<definition name="publishPlanAccount" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/sysAdmin/organization/publishMortalAccount.html" />
+	</definition>
+	<definition name="addFromSurePeople" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/sysAdmin/organization/addFromSurePeople.html" />
+	</definition>
+	
+	<!-- Media Manager Views -->
+	<definition name="uploadPage" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/media/upload.html" />
+	</definition>
+	<definition name="listingPage" extends="dashboardAngular-noroute">
+	    <put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="content" value="/resources/html/sysAdmin/media/list.html" />
+	</definition>
+	<definition name="editPage" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/media/edit.html" />
+	</definition>
+	
+	<!-- Blueprint Admin Views -->
+	<definition name="blueprintHome" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/blueprint/home.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/blueprintAdminController.min.js" cascade="true" />
+	</definition>
+	<definition name="blueprintUpdate" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/blueprint/update.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/blueprintAdminController.min.js" />
+	    	<add-attribute value="resources/js-min/adminMediaListingController.min.js" />
+	    	<add-attribute value="resources/js-min/adminMediaController.min.js" />
+	    </put-list-attribute>
+	</definition>
+	<definition name="openCompanyModal" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/sysAdmin/blueprint/select-company.html" />
+	</definition>
+	
+		<!-- Theming Admin Views -->
+	<definition name="sysAdminThemingHome" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/theming/home.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/companyThemingController.min.js" />
+	    	<add-attribute value="resources/js/color-picker/color-picker.min.js" />
+	    </put-list-attribute>
+	</definition>
+	<definition name="themingUpdate" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/theming/update.html" />
+		<put-list-attribute name="styles">
+	    	<add-attribute value="resources/css/css-min/sp-admin.min.css" />
+	    	<add-attribute value="resources/css/css-min/support.min.css" />
+	    	<add-attribute value="resources/css/css-min/prism-lens.min.css" />
+	    	<add-attribute value="resources/css/css-min/ert-i.min.css" />
+	    	<add-attribute value="resources/css/css-min/training-library.min.css" />
+	    </put-list-attribute>
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/companyThemingController.min.js" />
+	    	<add-attribute value="resources/js/color-picker/color-picker.min.js" />
+	    </put-list-attribute>
+	</definition>
+	<definition name="themingOpenCompanyModal" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/sysAdmin/theming/select-company.html" />
+	</definition>
+	
+	   <!-- Email Manager Admin Views -->
+	<definition name="sysAdminEmailsHome" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/emails/home.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/emailManagerController.min.js" cascade="true" />
+	</definition>
+	<definition name="adminEmailsHome" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/admin/emailManagement/home.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/emailManagerController.min.js" cascade="true" />
+	</definition>
+	<definition name="emailsUpdate" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/emails/update.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/emailManagerController.min.js" cascade="true" />
+	</definition>
+	<definition name="emailsOpenCompanyModal" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/sysAdmin/emails/select-company.html" />
+	</definition>
+	<definition name="selectEmailModal" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/sysAdmin/emails/select-email.html" />
+	</definition>
+	
+
+	<definition name="penCompanyModal" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/sysAdmin/manageUsers/select-company.html" />
+    </definition>
+	<!-- Competency Admin Views -->
+	<definition name="competencyHome" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/competency/home.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/competencyAdminController.min.js" cascade="true" />
+	</definition>
+	<definition name="createCompetencyProfile" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/competency/createPage.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/competencyAdminController.min.js" />
+	    	<add-attribute value="resources/js/rangeslider.min.js" />
+	    	<add-attribute value="resources/js-min/adminMediaListingController.min.js" />
+	    	<add-attribute value="resources/js-min/adminMediaController.min.js" />
+	    </put-list-attribute>
+	</definition>
+	<definition name="updateCompetencyProfile" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/competency/updatePage.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/competencyAdminController.min.js" />
+	    	<add-attribute value="resources/js/rangeslider.min.js" />
+	    	<add-attribute value="resources/js-min/adminMediaListingController.min.js" />
+	    	<add-attribute value="resources/js-min/adminMediaController.min.js" />
+	    </put-list-attribute>
+	</definition>
+	
+	<definition name="dashboardHome" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/dashboard/home.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js-min/adminMediaListingController.min.js" />
+			<add-attribute value="resources/js-min/adminMediaController.min.js" />
+	    	<add-attribute value="resources/js-min/adminDashboardCtrl.min.js" />
+	    </put-list-attribute>
+	</definition>	
+	
+	<definition name="selectCompanyCompetency" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/sysAdmin/competency/select-company.html" />
+	</definition>
+	<definition name="cloneCompetencyProfile" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/sysAdmin/competency/clone.html" />
+	</definition>
+	<definition name="adminAssignRemoveModal" extends="popup">
+		<put-attribute name="content" value="/resources/html/admin/competency/assign-remove.html" />
+	</definition>
+	
+	<!--  Access Manager Super Admin Views  -->
+	<definition name="accessManager" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/accessManager/userAccessListing.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/accessManager.min.js" cascade="true" />
+	</definition>
+	<definition name="updateAccess" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/accessManager/updateUserAccess.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/accessManager.min.js" cascade="true" />
+	</definition>
+	<definition name="selectCompanyAndUser" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/sysAdmin/accessManager/selectUser.html" />
+	</definition>
+	
+	<!--  Tone Analyzer Views  -->
+	<definition name="home" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/toneAnalyzer/home.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/systemAdmin.min.js" cascade="true" />
+	</definition>
+	<definition name="detail" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/toneAnalyzer/detail.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/toneAnalyzer.min.js" cascade="true" />
+	</definition>
+	
+	<!-- Tutorial Sp-Admin Basic Landing Page-->
+	<definition name="base" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/tutorial/base.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/tutorialAdmin.min.js" />
+	    </put-list-attribute>
+	</definition>
+	
+	
+	<!-- People Analytics Ideal Portrait -->
+	<definition name="createIdealPortrait" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/peopleAnalytics/Ideal-Portrait/create.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="type" value="pa" />
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js/dragdealer.js" />
+	    	<add-attribute value="resources/js-min/idealPortraitAdmin.min.js" />
+	    	<add-attribute value="resources/js-min/idealPortraitAdminService.min.js" />
+	    	<add-attribute value="resources/js-min/peopleAnalyticsServices.min.js" />
+	    </put-list-attribute>
+	</definition>
+	<definition name="updateIdealPortrait" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/peopleAnalytics/Ideal-Portrait/edit.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="type" value="pa" />
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js/dragdealer.js" />
+	    	<add-attribute value="resources/js-min/idealPortraitAdmin.min.js" />
+	    	<add-attribute value="resources/js-min/idealPortraitAdminService.min.js" />
+	    	<add-attribute value="resources/js-min/peopleAnalyticsServices.min.js" />
+	    </put-list-attribute>
+	</definition>
+	<definition name="cloneIdealPortrait" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/peopleAnalytics/Ideal-Portrait/clone.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="type" value="pa" />
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js/dragdealer.js" />
+	    	<add-attribute value="resources/js-min/idealPortraitAdmin.min.js" />
+	    	<add-attribute value="resources/js-min/idealPortraitAdminService.min.js" />
+	    	<add-attribute value="resources/js-min/peopleAnalyticsServices.min.js" />
+	    </put-list-attribute>
+	</definition>	
+	<definition name="listingIdealPortrait" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/peopleAnalytics/Ideal-Portrait/idealPortraitListing.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="type" value="pa" />
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js-min/idealPortraitAdminService.min.js" />
+			<add-attribute value="resources/js-min/peopleAnalyticsServices.min.js" />
+			<add-attribute value="resources/js-min/idealPortraitAdminListing.min.js" />
+	    </put-list-attribute>
+	</definition>
+	
+	<definition name="paDashboardSettings" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/sysAdmin/peopleAnalytics/dashboard/base.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="type" value="pa" />
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js-min/paDashboardSetting.min.js" />
+			<add-attribute value="resources/js-min/peopleAnalyticsServices.min.js" />
+			<add-attribute value="resources/js-min/paDashboardService.min.js" />
+	    </put-list-attribute>
+	</definition>
+	
+	<!-- People Analytics -->
+	
+	
+	
+</tiles-definitions>

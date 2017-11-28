@@ -1,0 +1,184 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/security
+                           http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+    <bean id="authenticationProvider" class="com.sp.web.mvc.signin.MongoAuthenticationProvider" />
+    <bean id="userDetailService" class="com.sp.web.mvc.signin.SPUserDetailService" />
+    <bean id="authenticationEntryPoint" class="com.sp.web.mvc.signin.AjaxAwareAuthenticationEntryPoint">
+        <constructor-arg name="loginUrl" value="/signin" />
+    </bean>
+    <security:http auto-config="false" use-expressions="true" entry-point-ref="authenticationEntryPoint" disable-url-rewriting="true">
+        <!-- Restrict URLs based on role -->
+        
+        <security:intercept-url pattern="/signup/**" access="permitAll" />
+        <security:intercept-url pattern="/reset/**" access="permitAll" />
+        <security:intercept-url pattern="/signin/**" access="permitAll" />
+        <security:intercept-url pattern="/messages/**" access="permitAll" />
+        <security:intercept-url pattern="/message" access="permitAll" />
+        <security:intercept-url pattern="/sendResetEmail" access="permitAll" />
+        <security:intercept-url pattern="/processToken/**" access="permitAll" />
+        <security:intercept-url pattern="/partner/**" access="permitAll" />
+        <security:intercept-url pattern="/newPassword" access="permitAll" />
+        <security:intercept-url pattern="/changePasword/expired" access="permitAll" />
+        <security:intercept-url pattern="/growth/external/*" access="permitAll" />
+        <security:intercept-url pattern="/favicon.ico" access="permitAll" />
+        <security:intercept-url pattern="/resources/**" access="permitAll"  />
+        <security:intercept-url pattern="/profileCopy/**" access="permitAll"  />
+        <security:intercept-url pattern="/profilePublic/**" access="permitAll"  />
+        <security:intercept-url pattern="/spCertificate/**" access="permitAll"  />
+        <security:intercept-url pattern="/getCountries" access="permitAll" />
+        <security:intercept-url pattern="/enable/cookie" access="permitAll" />
+        <security:intercept-url pattern="/template/**" access="permitAll" />
+        <security:intercept-url pattern="/translation/**" access="permitAll" />
+          
+        <!-- Allow permission for demo account  -->
+        
+        
+        <!-- security:intercept-url pattern="/**" access="ROLE_USER" / -->
+        <security:intercept-url pattern="/goals/feedback/external/**" access="hasAnyRole('FeedbackUser', 'User')" />
+        <security:intercept-url pattern="/goals/token/feedback/blueprint/details" access="hasAnyRole('FeedbackUser','User')" />
+        <security:intercept-url pattern="/blueprint/getSettings" access="hasAnyRole('FeedbackUser','User') and @webUserSecurity.checkUserStatus(authentication)" />
+        <security:intercept-url pattern="/competency/evaluation/manager/**" access="hasAnyRole('User')" />
+        <security:intercept-url pattern="/competency/evaluation/feedback/**" access="hasAnyRole('FeedbackUser','Competency', 'CompetencyAdmin')" />
+        <security:intercept-url pattern="/competency/manager/**" access="hasAnyRole('CompetencyAdmin','AccountAdministrator')" />
+        <security:intercept-url pattern="/competency/**" access="hasAnyRole('Competency') and @webUserSecurity.checkUserStatus(authentication)" />
+        <security:intercept-url pattern="/actionPlan/**" access="hasAnyRole('OrganizationPlan') and @webUserSecurity.checkUserStatus(authentication)" />
+        <security:intercept-url pattern="/goalsOrg/**" access="hasAnyRole('OrganizationPlan') and @webUserSecurity.checkUserStatus(authentication)" />
+        <security:intercept-url pattern="/dashboard/**" access="hasAnyRole('User') and @webUserSecurity.checkUserStatus(authentication)" />
+        <security:intercept-url pattern="/managePracticeAreas" access="hasAnyRole('Erti') and @webUserSecurity.checkUserStatus(authentication)" />
+        <security:intercept-url pattern="/goals/**" access="hasAnyRole('Erti') and @webUserSecurity.checkUserStatus(authentication)" />
+        <security:intercept-url pattern="/allUsers" access="hasAnyRole('FeedbackUser','User')" />
+        <security:intercept-url pattern="/admin/competency/**" access="hasAnyRole('CompetencyAdmin','AccountAdministrator')" />
+        <security:intercept-url pattern="/admin/account/profile/**" access="hasAnyRole('User','Demo')" />
+        <security:intercept-url pattern="/profileCopy/copyAssessment" access="hasAnyRole('User', 'HiringEmployee', 'HiringCandidate')" />
+        <security:intercept-url pattern="/admin/account/individualGenerateToken" access="hasAnyRole('IndividualAccountAdministrator', 'SuperAdministrator')" />
+        <security:intercept-url pattern="/admin/account/individualAccountDetails" access="hasAnyRole('IndividualAccountAdministrator', 'SuperAdministrator')" />
+        <security:intercept-url pattern="/admin/account/individual" access="hasAnyRole('IndividualAccountAdministrator', 'SuperAdministrator','Demo')" />
+        <security:intercept-url pattern="/admin/account/updateIndividualProfile/**" access="hasAnyRole('IndividualAccountAdministrator', 'SuperAdministrator')" />
+        <security:intercept-url pattern="/admin/account/getCurrentIndividualProductInfo" access="hasAnyRole('IndividualAccountAdministrator', 'SuperAdministrator','Demo')" />        
+        <security:intercept-url pattern="/admin/account/renewAccount" access="hasAnyRole('Hiring','IndividualAccountAdministrator', 'AccountAdministrator', 'SuperAdministrator')" />
+        <security:intercept-url pattern="/admin/account/reActivate" access="hasAnyRole('Hiring','IndividualAccountAdministrator', 'AccountAdministrator', 'SuperAdministrator')" />
+        <security:intercept-url pattern="/admin/account/renew/individual" access="hasAnyRole('Hiring','IndividualAccountAdministrator', 'SuperAdministrator')" />
+        <security:intercept-url pattern="/admin/account/updatePaymentInstrument" access="hasAnyRole('Hiring','IndividualAccountAdministrator', 'AccountAdministrator', 'SuperAdministrator')" />
+        <security:intercept-url pattern="/admin/account/edit/creditcard" access="hasAnyRole('Hiring','IndividualAccountAdministrator', 'AccountAdministrator', 'SuperAdministrator')" />
+        <security:intercept-url pattern="/admin/account/paymentHistory/**" access="hasAnyRole('Hiring','IndividualAccountAdministrator', 'AccountAdministrator', 'SuperAdministrator','Demo')" />
+        <security:intercept-url pattern="/admin/account/payment/history/**" access="hasAnyRole('Hiring','IndividualAccountAdministrator', 'AccountAdministrator', 'SuperAdministrator')" />
+        <security:intercept-url pattern="/admin/account/actionPlan/**" access="hasAnyRole('Hiring','AccountAdministrator', 'OrganizationPlan', 'SuperAdministrator', 'SysOrgPlans')" />
+        <security:intercept-url pattern="/admin/account/cancel" access="hasAnyRole('Hiring','IndividualAccountAdministrator', 'AccountAdministrator', 'SuperAdministrator')" />
+        <security:intercept-url pattern="/admin/user" access="hasAnyRole('Hiring','User', 'IndividualAccountAdministrator','Administrator', 'AccountAdministrator', 'SuperAdministrator','Demo')" />
+        <security:intercept-url pattern="/admin/user/deleteImage" access="hasAnyRole('User', 'IndividualAccountAdministrator','Administrator', 'AccountAdministrator', 'SuperAdministrator','Demo')" />
+        <security:intercept-url pattern="/admin/account/member/details" access="hasAnyRole('Hiring','Administrator', 'AccountAdministrator', 'SuperAdministrator','Demo')" />
+        
+        <security:intercept-url pattern="/admin/member/availalbeMemberSubscriptions" access="hasAnyRole('Hiring','Administrator', 'AccountAdministrator', 'SuperAdministrator','Demo')" />
+        <security:intercept-url pattern="/admin/member/addSingle" access="hasAnyRole('Hiring','Administrator', 'AccountAdministrator', 'SuperAdministrator','Demo')" />
+        <security:intercept-url pattern="/admin/account/**" access="hasAnyRole('Hiring','AccountAdministrator', 'SuperAdministrator','Demo')" />
+        <security:intercept-url pattern="/admin/group/all" access="hasAnyRole('Hiring','Pulse','AccountAdministrator','Administrator','SuperAdministrator')" />
+        <security:intercept-url pattern="/admin/videoPop" access="hasAnyRole('User')" />
+        <security:intercept-url pattern="/admin/**" access="hasAnyRole('Hiring','Administrator', 'AccountAdministrator', 'SuperAdministrator','Demo')" />
+        <security:intercept-url pattern="/trainingLibrary/admin/**" access="hasAnyRole('SuperAdministrator', 'SysKnowledgeCenter')" />
+        <security:intercept-url pattern="/hiring/ext/portrait/**" access="hasAnyRole('HiringPortraitShare')" />
+        <security:intercept-url pattern="/hiring/lens/get" access="hasAnyRole('Hiring','HiringCandidate', 'HiringEmployee','User','HiringPortraitShare')" />
+        <security:intercept-url pattern="/pdf/generatePdf" access="hasAnyRole('Hiring', 'User', 'HiringPortraitShare')" />
+        <security:intercept-url pattern="/pdf/getPdf/**" access="hasAnyRole('Hiring', 'User', 'HiringPortraitShare')" />
+        <security:intercept-url pattern="/hiring/ext/**" access="hasAnyRole('Hiring', 'HiringCandidate', 'HiringEmployee')" />
+        <security:intercept-url pattern="/hiring/admin/**" access="hasAnyRole('SuperAdministrator', 'SysPeopleAnalytics')" />
+        <security:intercept-url pattern="/sysAdmin/hiring/dashboard/**" access="hasAnyRole('SuperAdministrator', 'SysPeopleAnalytics')" />
+        <security:intercept-url pattern="/pa/**" access="hasAnyRole('Hiring')" />
+        <security:intercept-url pattern="/hiring/**" access="hasAnyRole('Hiring')" />
+        <security:intercept-url pattern="/tools/hiring/**" access="hasAnyRole('Hiring','AccountAdministrator', 'SuperAdministrator')" />
+        <security:intercept-url pattern="/pulse/getQuestions" access="hasAnyRole('User') and @webUserSecurity.checkUserStatus(authentication)" />
+        <security:intercept-url pattern="/pulseUser/saveAssessment" access="hasAnyRole('User') and @webUserSecurity.checkUserStatus(authentication)" />
+        <security:intercept-url pattern="/pulseUser/pulseStartAssessment" access="hasAnyRole('User') and @webUserSecurity.checkUserStatus(authentication)" />
+        <security:intercept-url pattern="/pulse/**" access="hasAnyRole('Pulse', 'AccountAdministrator', 'SuperAdministrator')" />
+        <security:intercept-url pattern="/blueprint/share/**" access="hasAnyRole('FeedbackUser','User')" />
+        <security:intercept-url pattern="/blueprint/**" access="hasAnyRole('Blueprint') and @webUserSecurity.checkUserStatus(authentication)" />
+        <security:intercept-url pattern="/assessment360/**" access="hasAnyRole('FeedbackUser','User')" />
+        <security:intercept-url pattern="/assessment/**" access="hasAnyRole('User', 'HiringCandidate', 'HiringEmployee','Hiring')" />
+        <security:intercept-url pattern="/groupLead/getMembersAndGroups" access="hasAnyRole('User', 'GroupLead', 'AccountAdministrator', 'SuperAdministrator')" />
+        <security:intercept-url pattern="/groupLead/getMemberPortraits" access="hasAnyRole('User', 'GroupLead', 'AccountAdministrator','Hiring', 'SuperAdministrator')" />
+        <security:intercept-url pattern="/groupLead/**" access="hasAnyRole('GroupLead', 'AccountAdministrator', 'SuperAdministrator')" />
+        <security:intercept-url pattern="/external/thankYou" access="hasAnyRole('FeedbackUser', 'HiringCandidate', 'HiringEmployee', 'User')" />
+        <security:intercept-url pattern="/thankYou" access="hasAnyRole('FeedbackUser', 'HiringCandidate', 'HiringEmployee', 'User')" />
+        <security:intercept-url pattern="/feedback/external/**" access="hasAnyRole('FeedbackUser')" />
+        <security:intercept-url pattern="/feedback/**" access="hasAnyRole('PrismLens') and @webUserSecurity.checkUserStatus(authentication)" />
+        <security:intercept-url pattern="/developmentfeedback/update/**" access="hasAnyRole('FeedbackUser','User')" />
+        <security:intercept-url pattern="/developmentfeedback/getAllFeedbackRequest/**" access="hasAnyRole('FeedbackUser','User')" />
+        <security:intercept-url pattern="/developmentfeedback/get/**" access="hasAnyRole('FeedbackUser','User')" />
+        <security:intercept-url pattern="/spectrum/**" access="hasAnyRole('Spectrum') and @webUserSecurity.checkUserStatus(authentication)" />
+        <security:intercept-url pattern="/toneAnalysis/**" access="hasAnyRole('SuperAdministrator')" />
+        <security:intercept-url pattern="/sysAdmin/home" access="hasAnyRole('SuperAdministrator','SysAccount')" />
+        <security:intercept-url pattern="/media/**" access="hasAnyRole('SuperAdministrator','SysAdminMemberRole','AccountAdministrator')" />
+        <security:intercept-url pattern="/sysAdmin/media/**" access="hasAnyRole('SuperAdministrator','SysMedia')" />
+        <security:intercept-url pattern="/sysAdmin/company/theming/**" access="hasAnyRole('SuperAdministrator','SysThemes')" />
+        <security:intercept-url pattern="/sysAdmin/emailManagement/**" access="hasAnyRole('SuperAdministrator','SysEmails')" />
+        <security:intercept-url pattern="/emailManagement/**" access="hasAnyRole('SuperAdministrator','SysEmails','AccountAdministrator')" />
+        <security:intercept-url pattern="/sysAdmin/audit/**" access="hasAnyRole('SuperAdministrator','SysLogs')" />
+        <security:intercept-url pattern="/sysAdmin/logs" access="hasAnyRole('SuperAdministrator','SysLogs')" />
+        <security:intercept-url pattern="/sysAdmin/personalityMapping/**" access="hasAnyRole('SuperAdministrator','SysPrism')" />
+        <security:intercept-url pattern="/sysAdmin/practiceArea/getAll" access="hasAnyRole('SuperAdministrator','SysPrism','SysErti')" />
+        <security:intercept-url pattern="/sysAdmin/practiceArea/**" access="hasAnyRole('SuperAdministrator','SysErti')" />
+        <security:intercept-url pattern="/sysAdmin/goals/**" access="hasAnyRole('SuperAdministrator','SysErti')" />
+        <security:intercept-url pattern="/sysAdmin/learning/**" access="hasAnyRole('SuperAdministrator','SysKnowledgeCenter')" />
+        <security:intercept-url pattern="/sysAdmin/actionPlan/**" access="hasAnyRole('SuperAdministrator','SysOrgPlans')" />
+        <security:intercept-url pattern="/sysAdmin/pulse/**" access="hasAnyRole('SuperAdministrator','SysPulse')" />
+        <security:intercept-url pattern="/sysAdmin/competency/**" access="hasAnyRole('SuperAdministrator','SysCompetency')" />
+        <security:intercept-url pattern="/sysAdmin/dashboardHome" access="hasAnyRole('SuperAdministrator','SysMessagePost')" />
+        <security:intercept-url pattern="/sysAdmin/message/**" access="hasAnyRole('SuperAdministrator','SysMessagePost')" />
+        <security:intercept-url pattern="/sysAdmin/posts/**" access="hasAnyRole('SuperAdministrator','SysMessagePost')" />
+        <security:intercept-url pattern="/sysAdmin/activityFeeds/**" access="hasAnyRole('SuperAdministrator','SysMessagePost')" />
+        <security:intercept-url pattern="/sysAdmin/alternateBilling/**" access="hasAnyRole('SuperAdministrator','BillingAdmin')" />
+        <security:intercept-url pattern="/sysAdmin/blueprint/**" access="hasAnyRole('SuperAdministrator','SysBluePrint')" />
+        <security:intercept-url pattern="/sysAdmin/hk/getCompanyList" access="hasAnyRole('SuperAdministrator', 'SysAdminMemberRole')" />
+        <security:intercept-url pattern="/sysAdmin/hk/**" access="hasAnyRole('SuperAdministrator', 'SysAccount', 'SysMembers')" />
+        <security:intercept-url pattern="/sysAdmin/users/**" access="hasAnyRole('SuperAdministrator', 'SysMembers')" />
+        <security:intercept-url pattern="/sysAdmin/paDashboardSettings" access="hasAnyRole('SuperAdministrator', 'SysPeopleAnalytics')" />
+        <security:intercept-url pattern="/sysAdmin/idealPortrait/**" access="hasAnyRole('SuperAdministrator', 'SysPeopleAnalytics')" />
+        <security:intercept-url pattern="/sysAdmin/**" access="hasAnyRole('SuperAdministrator')" />
+        <security:intercept-url pattern="/profile/hiring/getHiringPersonalityAnalysis" access="hasAnyRole('PartnerCandidate')" />
+        <security:intercept-url pattern="/**" access="isAuthenticated() and hasAnyRole('User','SuperAdministrator','BillingAdmin', 'Hiring')"  />
+
+ <security:access-denied-handler ref="customAccessDeniedHandler" />
+         <!-- Override default login and logout pages -->
+        <security:form-login login-page="/signin" 
+                             login-processing-url="/loginProcess" 
+                             default-target-url="/home"
+                             authentication-failure-handler-ref="customAuthenticationFailureHandler" authentication-success-handler-ref="customAuthenticationSuccessHandler"
+                             password-parameter="password" always-use-default-target="false" username-parameter="email" />
+        
+        <security:session-management session-fixation-protection="migrateSession" session-authentication-error-url="/signin"> 
+            <security:concurrency-control max-sessions="100" error-if-maximum-exceeded="true" expired-url="/signin" session-registry-alias="sessionRegistry"/>
+        </security:session-management>
+                             
+        <security:logout logout-url="/logout" logout-success-url="/signin" invalidate-session="true" />
+        
+        <security:remember-me services-ref="rememberMeServices" key="SurePeople!@112212"/>
+    </security:http>
+
+    <bean name="customAccessDeniedHandler" class="com.sp.web.mvc.signin.CustomAccessDeniedHandler">
+        <property name="errorPage" value="/doLogout"/>
+    </bean> 
+    <bean name="customAuthenticationFailureHandler" class="com.sp.web.mvc.signin.CustomAuthenticationFailureHandler">
+        <property name="defaultFailureUrl" value="/signin?login_error=1"/>
+    </bean>
+    <bean id="rememberMeServices" class="com.sp.web.mvc.signin.SPPersistedTokenRememberMeServices">
+        <constructor-arg name="key" value="SurePeople!@112212" />
+        <constructor-arg ref="userDetailService" />
+        <constructor-arg ref="mongoDBTokenRepository" />
+        <property name="tokenRepository" ref="mongoDBTokenRepository" />
+        <property name="userDetailsService" ref="userDetailService" />
+        <property name="key" value="SurePeople!@112212" />
+        <property name="parameter" value="remember-me" />
+        <property name="cookieName" value="sprememberme" />
+    </bean>
+    <bean name="customAuthenticationSuccessHandler" class="com.sp.web.mvc.signin.CustomAuthenticationSuccessHandler">
+    	<property name="cidCookieMaxTime" value="1209600"></property>
+    </bean>
+
+    <security:authentication-manager alias="authenticationManager">
+        <security:authentication-provider ref="authenticationProvider" />
+    </security:authentication-manager> 
+</beans>

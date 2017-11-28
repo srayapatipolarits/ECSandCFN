@@ -1,0 +1,63 @@
+<div data-ng-init="lpCtrl.getLearningProgram();" data-ng-cloak>
+    <article class="learning-program-widget" data-ng-if="lpCtrl.taskList.length">
+        <!-- <div class="header-section">
+        <span class="title" data-ng-bind="lpCtrl.messages('navigation.organization')"></span>
+    </div> -->
+        <div class="lp-section dashboard-accent">
+        	<div class="header-lp-section">
+        		<div class="image-detail-section">
+        			  <span class="icon-LearningProgram_new sp-icon-color action-icon"></span>
+            		  <a href="/sp/goalsOrg?parentId={{lpCtrl.learningProgram.id}}" class="title" data-ng-bind="lpCtrl.learningProgram.name"></a>
+                      <div class="next-task" data-ng-bind="::lpCtrl.messages('feedback.listing.filter.lp.label')" data-ng-if="lpCtrl.completedTaskCount !== lpCtrl.learningProgram.actionCount"></div>
+             	</div>
+        		<div class="radial-section">
+        			<div class="lp-progress" progress-animation observe-param="{{lpCtrl.completedTaskCount}}" remaining-tasks="lpCtrl.completedTaskCount" total-tasks="lpCtrl.learningProgram.actionCount" type="radial"></div>
+            	</div>
+        	</div>
+            <div class="lp-slide" id="task_{{$index}}" data-ng-class="{'forward':$index=== lpCtrl.completedTask,'in':$index=== lpCtrl.currentTask}" data-ng-repeat="list in lpCtrl.taskList track by list.taskData.uid" data-ng-if="lpCtrl.completedTaskCount !==lpCtrl.learningProgram.actionCount">
+                <p class="sub-title" data-ng-bind="list.taskData.title"></p>
+                <input type="checkbox" class="read-more-state" id="readMoreToggleLP_{{$index}}" />
+                <span class="read-more-wrap-horizontal" data-ng-init="lpCtrl.btnCont[list.taskData.uid]=true">
+        <span class="disp-block sp-text-editor" data-ng-bind-html="lpCtrl.btnCont[list.taskData.uid]?list.taskData.description.substr(0, 200):list.taskData.description | secureHtml" data-ng-class="{'moreellipses':list.taskData.description.length>200&&lpCtrl.btnCont[list.taskData.uid]}"></span></span>
+                <label for="readMoreToggleLP_{{$index}}" data-ng-click="lpCtrl.showMore(list.taskData.uid);" class="sp-lp-icon-before sp-link-color" data-ng-class="lpCtrl.btnCont[list.taskData.uid]?'icon-icon-more':'icon-icon-less'" data-ng-if="list.taskData.description.length>200"></label>
+                <ul class="panel-tools posRelative clearfix" data-ng-if="(list.taskData.actionData.length || list.taskData.permissions.Note)">
+                    <li data-ng-repeat="actionData in list.taskData.actionData track by $index" class="clearfix" id="actId_{{actionData.uid}}">
+                        <section class="singleVideo">
+                            <article class="link-action clearfix">
+                                <div>
+                                    <a href="javascript:void(0)" data-ng-click="lpCtrl.previewMedia(actionData.type,actionData.url,actionList.title,actionList.uid)" class="border-link">
+                                        <span class="media-icon icon-icon_{{actionData.type | lowercase}} sp-icon-color"></span>
+                                        <span class="media-link mock-link" data-ng-bind="actionData.linkText"></span></a>
+                                </div>
+                            </article>
+                        </section>
+                    </li>
+                    <li class="clearfix" data-ng-if="list.taskData.permissions.Note">
+                        <section class="singleVideo">
+                            <article class="link-action clearfix">
+                                <div class="marg5">
+                                    <a href="javascript:void(0)" class="border-link" notes-options url-src="notes/notes-options.html" styles="notes-sub-options">
+                                        <span class="media-icon icon-icon_editnote sp-icon-color"></span>
+                                        <span class="media-link mock-link" data-ng-bind="lpCtrl.messages('practiceArea.postNote')"></span></a>
+                                </div>
+                            </article>
+                        </section>
+                    </li>
+                </ul>
+            </div>
+            <div class="lp-task-check-wrap" data-ng-if="lpCtrl.completedTaskCount !==lpCtrl.learningProgram.actionCount">
+                <span class="lp-check-icons icon-checkmark_fat" data-ng-click="lpCtrl.displayConfirmBox()"></span>
+                <span class="lCheckBoxText sp-link-color" data-ng-bind="lpCtrl.messages('actionPlan.module.todo.actions.markComplete')" data-ng-click="lpCtrl.displayConfirmBox()"></span>
+            </div>
+            <div class="task-complete" data-ng-bind="lpCtrl.messages('actionPlan.tasksCompleted')"></div>
+            <div class="task-confirm-box-wrap animation_1" data-ng-if="lpCtrl.showConfirmBox">
+                <p data-ng-bind="lpCtrl.messages('learningProg.confirmHead')"></p>
+                <p class="fsmall" data-ng-bind="lpCtrl.messages('learningProg.confirmDesc')"></p>
+                <div class="task-box-btns">
+                    <a href="javascript:void(0)" data-ng-bind="lpCtrl.messages('manageAccountContent.yes')" class="btn-square-12px sp-background-color" data-ng-click="lpCtrl.markCompletion(lpCtrl.taskList[lpCtrl.currentIndex].taskData.uid, lpCtrl.taskList[lpCtrl.currentIndex].stepId); $parent.lpCtrl.showConfirmBox=false"></a>
+                    <a href="javascript:void(0)" data-ng-bind="lpCtrl.messages('manageAccountContent.no')" class="btn-square-12px btn-darker-grey" data-ng-click="$parent.lpCtrl.showConfirmBox=false"></a>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>

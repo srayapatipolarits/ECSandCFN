@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/integration/mail http://www.springframework.org/schema/integration/mail/spring-integration-mail.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:int-mail="http://www.springframework.org/schema/integration/mail"
+	xmlns:util="http://www.springframework.org/schema/util">
+	<int:channel id="outboundMailChannel" />
+<!-- 	<int:channel id="inputMailChannel" /> -->
+
+	<!-- Gateway that publishes signed up messages -->
+	<int:gateway id="gateway"
+		service-interface="com.sp.web.service.email.CommunicationGateway"
+		default-request-channel="inputMailChannel" />
+
+	<!-- Asynchronously dispatches welcome mails -->
+	<int:channel id="inputMailChannel">
+		<int:dispatcher task-executor="taskExecutor" />
+	</int:channel>
+
+	<!-- Transforms a new Account to a welcome SimpleMailMessage -->
+	<int:transformer input-channel="inputMailChannel"
+		output-channel="outboundMailChannel">
+		<bean id="mailTranformer" class="com.sp.web.service.email.transform.EmailTransformer"></bean>
+	</int:transformer>
+
+	<!-- Sends the welcome SimpleMailMessage -->
+	<int-mail:outbound-channel-adapter
+		id="outboundMailChannel" mail-sender="mailSender" />
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.sendgrid.net" />
+		<property name="port" value="587" />
+		<property name="username" value="dax@surepeople.com" />
+		<property name="password" value="SurePeopleIndia" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">false</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="taskExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="5" />
+		<property name="maxPoolSize" value="10" />
+		<property name="queueCapacity" value="100" />
+	</bean>
+</beans>

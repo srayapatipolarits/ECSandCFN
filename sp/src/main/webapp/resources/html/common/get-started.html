@@ -1,0 +1,71 @@
+<link type="text/css" rel="stylesheet" href="/resources/css/css-min/get-started-widget.min.css?fetch=true" />
+<div class="get-started-widget panel-fadeIn" data-ng-init="ctrl.getTutorial()">
+    <div class="gs-header-with-bg">
+    	<div class="gsh-contnet" data-ng-style="{'background-image':'url('+ctrl.tutorial.imgUrl+')'}">
+	    	<div class="gsh-contnet-wrap">
+	    		<div class="gshc-content">
+	    			<div class="gshcc-wrap">
+	    				<p class="gshcc-title">
+	    					<!--span class="ea-setting-icon icon-icon_accounts_settings"></span-->
+	    					<span class="title-name" data-ng-bind="ctrl.tutorial.name"></span>
+	    				</p>
+	    				<p class="gshcc-desc" data-ng-bind="ctrl.tutorial.description+pullInterNationalization('sticky.getStartedIntro')"></p>
+	    			</div>
+	    		</div>
+	    	</div>
+    	</div>
+    </div>
+    <div class="col-header">
+    <div class="gs-progress-wrapper">
+    <span class="tasks-linear" data-ng-bind="ctrl.tutorial.completedCount +' '+pullInterNationalization('practiceArea.of')+' '+ ctrl.tutorial.actionCount +' '+pullInterNationalization('actionPlan.module.lp.tasksCompleted')+' ('+ctrl.tutorial.completed+'%)'"></span>
+    <div class="progress-linear" observe-param="{{ctrl.tutorial.completedCount}}" progress-animation="" remaining-tasks="ctrl.tutorial.completedCount" total-tasks="ctrl.tutorial.actionCount" type="linear"></div>
+     <span class="icon-badge_tutorial badge-icon" data-ng-class="{'grey-badge-icon':ctrl.tutorial.completedCount !== ctrl.tutorial.actionCount, 'sp-icon-color':ctrl.tutorial.completedCount === ctrl.tutorial.actionCount}"></span>
+    </div>
+    <div class="gs-toggle-wrapper">
+        <!-- Toggle Block Starts -->
+        <section class="gs-step-section" data-ng-repeat="tasks in ctrl.tutorial.steps track by $index">
+            <header class="gs-step-header sp-background-color" data-ng-class="{'on':tasks.defaultOpen}" data-ng-click="ctrl.toggle($index);">
+                <div class="gs-header-content">
+                    <!--p class="tick-widget">
+                     <div class="tut-progress" observe-param="{{tasks.completedCount}}" progress-animation="" show-icon="true" icon-class="icon-checkmark_fat" ui-progress="{'trailColor':'#fff','textColor':'#fff'}" remaining-tasks="tasks.completedCount" total-tasks="tasks.count" type="radial"></div>
+                    </p-->
+                    <div class="gs-step-head-wrap">
+                        <p class="gs-step">
+                            <span>{{pullInterNationalization('sysadmin.organization.steps')}} {{$index+1}}:</span> {{tasks.name}}
+                        </p>
+                        <p class="gs-step-desc">
+                            {{tasks.devStrategyActionCategoryList[0].totalActions}} {{pullInterNationalization('actionPlan.tasks')}}
+                        </p>
+                    </div>
+                </div>
+                <div class="icon-toggle">
+                    <div class="close-it icon-icon_collapse"></div>
+                    <div class="open-it icon-icon_expand"></div>
+                </div>
+            </header>
+            <div class="gs-step-content" data-ng-class="tasks.defaultOpen?'show':'hide'">
+                <div class="gs-cont-box" data-ng-class= "{'bg-grey': action.completed, 'bg-white': !action.completed}" data-ng-repeat="action in tasks.devStrategyActionCategoryList[0].actionList track by $index">
+                	<div class="gs-box-left">
+                		<span data-ng-click="ctrl.markComplete(tasks.id,action.uid,action.completed,$parent.$index,ctrl.tutorial.steps[$parent.$index].completedCount,ctrl.tutorial.steps[$parent.$index].count);" class="icon-checkmark_fat" data-ng-class= "{'sp-icon-color': action.completed, 'grey-icon': !action.completed}"></span>
+                	</div>
+                	<div class="gs-box-right">
+                		<div class="gsb-cont">
+	                		<p class="f700" data-ng-bind="action.title | replacePlaceholder" data-ng-if="action.mediaUrl === null || action.mediaUrl === undefined || action.mediaUrl === ''"></p>
+	                		<a data-ng-href="{{action.mediaUrl}}" data-ng-if="action.mediaUrl !== null && action.mediaUrl !== undefined && action.mediaUrl !== ''"><p class="f700" data-ng-bind="action.title | replacePlaceholder"></p></a>
+	                		<p data-ng-bind-html="action.description | secureHtmlAndReplace"></p>
+	                		<a href="#" data-ng-click="ctrl.imagePop(action.mediaImageLink)" data-ng-if="action.mediaImageLink !== null"><img class="task-image" data-ng-src="{{action.mediaImageLink}}"></a>
+	                		<p class="link-ico" data-ng-repeat="link in action.actionData track by $index">
+	                			<a href="javascript:void(0)" data-ng-click="ctrl.handleLinks(link.url,link.type,false,tasks.id,action.uid,action.completed)">
+	                				<span class="icon-icon_{{link.type}} sp-icon-color ico-adj"></span>
+	                				<span data-ng-bind="link.linkText | replacePlaceholder"></span>
+	                			</a>
+	                		</p>
+                		</div>
+                	</div>
+                </div>            
+            </div>
+        </section>
+        <!-- Toggle Block Ends -->        
+    </div>
+    </div>
+</div>

@@ -1,0 +1,481 @@
+<div class="col-content-wrapper mh700">
+    <div class="members-content-wrapper members-experience-resume" data-ng-if="profileDetail.type === 'HiringCandidate'">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('tools.hiring.profile.details.title4')"></h2>
+        </div>
+        <div class="all-content-wrapper mt20 linked-to">
+        	<div class="linkedInUrl">
+        		<div class="head" data-ng-bind-html="::pullInterNationalization('candidates.addLinkUrl')"></div>
+        			<article class="link-update-section" data-ng-if="profileDetail.profileUrls.length">
+        				<div class="form-list-c" data-ng-repeat="profileUrl in profileDetail.profileUrls">
+	        				<form name="candidateExp" novalidate class="form-styles-override floatLeft noMargin mx600" autocomplete="off" data-ng-submit="updateWebLink(candidateExp,true,$index)">
+	        					<ol class="form-list-c">
+				                    <li class="noMarBottom">
+				                        <ul class="split-section">
+				                           <li class="noMarBottom">
+				                            	<div class="update-screen clearfix"  data-ng-if="$parent.candidateExp.index!==$index">
+				                            		<a data-ng-href="{{profileUrl.url}}" class="linkedInUrlLink" target="_blank" data-ng-bind="profileUrl.url" ></a>
+						        					<a href="javascript:void(0)" data-ng-if="!archivedUser" class="icon-icon_accounts_edit adjustIcon border-link" data-ng-click="linkEdit($index,profileUrl.url)"></a>
+						        					<a href="javascript:void(0)" data-ng-if="!archivedUser" class="icon-icon_remove adjustIcon close-icon" data-ng-click="removeWebLink(true,profileUrl.url)"></a>
+				                            	</div>
+				                            	<div class="edit-only mar10" data-ng-if="$parent.candidateExp.index===$index" data-ng-init="webLink = profileUrl.url">
+					                                <input type="text" placeholder="{{::pullInterNationalization('candidates.addLinkBtnPlaceholder')}}" data-ng-model="webLink" name="webLink" data-ng-required="true" />
+					                                <!-- Error Messages -->
+					                                <span class="validate-error" data-ng-if="$parent.$parent.candidateExp.linkSubmitted && candidateExp.webLink.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+				                                </div>
+				                            </li>
+				                            <li class="noMarBottom mar10" data-ng-if="$parent.candidateExp.index===$index">
+				                                <input type="submit" value="{{::pullInterNationalization('manageAccountContent.save')}}" class="btn-square-12px sp-background-color noboxShadow asBtn" />
+				                                <input type="button" value="{{::pullInterNationalization('manageAccountContent.cancel')}}" class="btn-square-12px sp-background-color noboxShadow psBtn" data-ng-click="cancelEdit()"/>
+				                            </li>
+				                        </ul>
+				                    </li>
+					            </ol>
+	        				</form>
+	        			</div>
+        			</article>
+        		
+        			<div class="linkedInUrlLink clearfix length-{{!!profileDetail.profileUrls.length}}" data-ng-if="candidateExp.linkEditing">
+	        			 <form name="candidateExp" novalidate class="form-styles-override floatLeft noMargin mx600 mar10" autocomplete="off" data-ng-submit="updateWebLink(candidateExp,true)">
+	        		        <ol class="form-list-c">
+			                    <li class="noMarBottom marB0">
+			                        <ul class="split-section">
+			                            <li class="noMarBottom">
+			                                <input type="text" placeholder="{{::pullInterNationalization('candidates.addLinkBtnPlaceholder')}}" data-ng-model="webLink" name="webLink" data-ng-required="true" />
+			                                <!-- Error Messages -->
+			                                <span class="validate-error" data-ng-if="$parent.candidateExp.linkSubmitted && candidateExp.webLink.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+			                            </li>
+			                            <li class="noMarBottom">
+			                                <input type="submit" value="{{::pullInterNationalization('manageAccountContent.save')}}" class="btn-square-12px sp-background-color noboxShadow asBtn" />
+			                                <input type="button" value="{{::pullInterNationalization('manageAccountContent.cancel')}}" class="btn-square-12px sp-background-color noboxShadow psBtn" data-ng-click="$parent.candidateExp.linkEditing=!$parent.candidateExp.linkEditing"/>
+			                            </li>
+			                        </ul>
+			                    </li>
+			                </ol>
+			            </form>
+	        		</div>
+        			<div class="link-update-section form-list-c link-button" data-ng-if="!archivedUser">
+        				<a href="javascript:void(0)" data-ng-bind="::pullInterNationalization('candidates.addLinkBtn')" class="link-edit btn-square-12px sp-background-color border-link" data-ng-click="cancelEdit();candidateExp.linkEditing=!candidateExp.linkEditing"></a>
+        			</div>
+        	</div>
+        	<div class="linkedInUrl">
+        		<div class="head" data-ng-bind="::pullInterNationalization('candidates.addDocument')"></div>
+        		<div class="uploaded-document" data-ng-if="profileDetail.urls.length" data-ng-repeat="profile in profileDetail.urls">
+        			<div class="inline-block">
+	        			<div class="document">
+	        				<span class="icon-icon_{{profile.mediaType}} document-icon isSafari-{{isSafari}} sp-icon-color"></span><span class="document-name" data-ng-bind="profile.name"></span> <a href="javascript:void(0)" data-ng-if="!archivedUser" class="icon-icon_remove close-icon" data-ng-click="removeWebLink(false,profile.url)"></a> <a data-ng-href="{{profile.url}}" download target="_blank" class="icon-download adjustIcon isSafari-{{isSafari}} border-link"></a>
+	        			</div>
+        			</div>
+        		</div>
+        		<a href="javascript:void(0)" data-ng-if="!archivedUser" class="link-edit top-space btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('candidates.addDocumentBtn')" data-ng-click="handleFileStack(true);"></a>
+        	</div>
+        </div>
+    </div>
+    <div class="members-content-wrapper">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="profileDetail.type !== 'HiringCandidate'?pullInterNationalization('admin.account.profile.details.title1'):pullInterNationalization('candidate.profile.details')"></h2>
+            <span data-ng-if="!editProfile && !archivedUser" class="profile-edit-icon icon-icon_accounts_edit sp-icon-color" data-ng-click="toggleProfileView()"></span>
+        </div>
+    </div>
+    <div class="mem-personal-details profile-display" data-ng-if="!editProfile">
+        <br/>
+        <p class="mem-name">
+            <span data-ng-bind="profileDetail.firstName +' '+ profileDetail.lastName" data-ng-if="profileDetail.firstName"></span>
+            <span data-ng-if="userPermissions.isAccountAdministrator">
+                    <span class="thin mt4" data-ng-bind="::pullInterNationalization('dashboard.groups.admin')"></span>
+            </span>
+            <span data-ng-if="userPermissions.isHiringToolAllowed">
+                    <span class="thin mt4" data-ng-bind="::pullInterNationalization('dashboard.groups.hiring')"></span>
+            </span>
+        </p>
+        <p class="mem-title" data-ng-bind="profileDetail.title" data-ng-if="profileDetail.title"></p>
+        <h3 class="mem-label" data-ng-bind="::pullInterNationalization('paHiring.contact.details')"></h3>
+        <p class="mem-email">
+            <a href="mailto:{{profileDetail.email}}" class="border-link">
+                <span class="mock-link" data-ng-bind="profileDetail.email"></span>
+            </a>
+        </p>
+        <p class="mem-title" data-ng-bind="profileDetail.phoneNumber" data-ng-if="profileDetail.phoneNumber"></p>
+        <br/>
+        <h3 class="mem-label" data-ng-if="!dobEmpty && profileDetail.type !== 'HiringCandidate'" data-ng-bind="::pullInterNationalization('admin.account.profile.details.dob')+':'"></h3>
+        <p class="mem-phone modeCand marginBottom12" data-ng-bind="profileDetail.dob | spLocaleDate" data-ng-if="!dobEmpty && profileDetail.type !== 'HiringCandidate'"></p>
+        <h3 class="mem-label" data-ng-bind="::pullInterNationalization('admin.account.profile.details.gender')+':'"></h3>
+        <p class="mem-phone modeCand marginBottom12" data-ng-bind="::pullInterNationalization('home.male')" data-ng-if="profileDetail.gender === 'M'"></p>
+        <p class="mem-phone modeCand marginBottom12" data-ng-bind="::pullInterNationalization('home.female')" data-ng-if="profileDetail.gender === 'F'"></p>
+        <br/>
+        <h3 class="mem-label" data-ng-bind="::pullInterNationalization('paHiring.contact.address')"></h3>
+        <p class="mem-address mem-phone modeCand" data-ng-bind="profileDetail.address.addressLine1" data-ng-if="profileDetail.address.addressLine1"></p>
+        <p class="mem-phone modeCand" data-ng-bind="profileDetail.address.addressLine2" data-ng-if="profileDetail.address.addressLine2"></p>
+        <p class="mem-phone modeCand">{{profileDetail.address.city}} {{profileDetail.address.state}} {{profileDetail.address.zipCode}}</p>
+        <!-- <p class="mem-phone" data-ng-bind="profileDetail.address.country" data-ng-if="profileDetail.address.country"></p> -->
+    </div>
+    <form name="profileDetailForm" novalidate class="form-styles-override mx600" data-ng-submit="updateProfileData(profileDetailForm)" autocomplete="off" data-ng-if="editProfile">
+        <ol class="form-list-c">
+            <li>
+                <ul class="cols-2">
+                    <li>
+                        <label for="firstName" data-ng-bind="::pullInterNationalization('signup.firstName')"></label>
+                        <input type="text" data-ng-model="profileDetail.firstName" name="firstName" placeholder="{{pullInterNationalization('signup.firstName')}}" data-ng-required="editProfile" data-ng-disabled="!editProfile" data-ng-class="{'disabled':!editProfile}" data-ng-pattern="/^[a-zA-Z0-9-,' ]+$/" />
+                        <!-- Error Messages -->
+                        <span class="validate-error" data-ng-if="editProfile && profileSubmitted && profileDetailForm.firstName.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                        <span class="validate-error" data-ng-if="editProfile && profileSubmitted && profileDetailForm.firstName.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+                    </li>
+                    <li>
+                        <label for="lastName" data-ng-bind="::pullInterNationalization('signup.lastName')"></label>
+                        <input type="text" data-ng-model="profileDetail.lastName" name="lastName" placeholder="{{pullInterNationalization('signup.lastName')}}" data-ng-required="editProfile" data-ng-disabled="!editProfile" data-ng-class="{'disabled':!editProfile}" data-ng-pattern="/^[a-zA-Z0-9-,' ]+$/" />
+                        <!-- Error Messages -->
+                        <span class="validate-error" data-ng-if="editProfile && profileSubmitted && profileDetailForm.lastName.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                        <span class="validate-error" data-ng-if="editProfile && profileSubmitted && profileDetailForm.lastName.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <label for="title" data-ng-bind="::pullInterNationalization('signup.Title')"></label>
+                <input type="text" data-ng-model="profileDetail.title" name="title" placeholder="{{pullInterNationalization('signup.Title')}}" data-ng-required="editProfile" data-ng-disabled="!editProfile" data-ng-class="{'disabled':!editProfile}" />
+                <!-- Error Messages -->
+                <span class="validate-error" data-ng-if="editProfile && profileSubmitted && profileDetailForm.title.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+            </li>
+            <li>
+                <label for="email" data-ng-bind="::pullInterNationalization('signup.email')"></label>
+                <input type="text" data-ng-model="profileDetail.email" name="email" placeholder="{{pullInterNationalization('signup.email')}}" data-ng-disabled="true" data-ng-class="{'disabled':true}" />
+            </li>
+            <li class="mTop45" data-ng-if="profileDetail.type !== 'HiringCandidate'">
+                <!-- <p class="label-text" data-ng-bind="::pullInterNationalization('admin.account.profile.details.dob')"></p>-->
+                <ul class="dob-cols-3">
+                    <li class="month">
+                        <div class="select-wrapper" data-ng-class="{'disabled':!editProfile}">
+                            <span class="select-dd-icon icon-icon_dropdown-arrow" data-ng-class="editProfile?'sp-icon-color':'disabled-color'"></span>
+                            <label for="month" data-ng-bind="::pullInterNationalization('signup.month')" class="hide"></label>
+                            <select name="month" convert-to-number data-ng-model="profileDetail.dob[1]" data-ng-required="editProfile" data-ng-disabled="!editProfile">
+                                <option value="" data-ng-bind="::pullInterNationalization('home.month')"></option>
+                                <option value="1" data-ng-bind="::pullInterNationalization('sysadmin.organization.month.1')"></option>
+                                <option value="2" data-ng-bind="::pullInterNationalization('sysadmin.organization.month.2')"></option>
+                                <option value="3" data-ng-bind="::pullInterNationalization('sysadmin.organization.month.3')"></option>
+                                <option value="4" data-ng-bind="::pullInterNationalization('sysadmin.organization.month.4')"></option>
+                                <option value="5" data-ng-bind="::pullInterNationalization('sysadmin.organization.month.5')"></option>
+                                <option value="6" data-ng-bind="::pullInterNationalization('sysadmin.organization.month.6')"></option>
+                                <option value="7" data-ng-bind="::pullInterNationalization('sysadmin.organization.month.7')"></option>
+                                <option value="8" data-ng-bind="::pullInterNationalization('sysadmin.organization.month.8')"></option>
+                                <option value="9" data-ng-bind="::pullInterNationalization('sysadmin.organization.month.9')"></option>
+                                <option value="10" data-ng-bind="::pullInterNationalization('sysadmin.organization.month.10')"></option>
+                                <option value="11" data-ng-bind="::pullInterNationalization('sysadmin.organization.month.11')"></option>
+                                <option value="12" data-ng-bind="::pullInterNationalization('sysadmin.organization.month.12')"></option>
+                            </select>
+                        </div>
+                        <span class="validate-error" data-ng-if="editProfile && profileSubmitted && profileDetailForm.month.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                    </li>
+                    <li class="day">
+                        <div class="select-wrapper" data-ng-class="{'disabled':!editProfile}">
+                            <span class="select-dd-icon icon-icon_dropdown-arrow" data-ng-class="editProfile?'sp-icon-color':'disabled-color'"></span>
+                            <label for="day" data-ng-bind="::pullInterNationalization('signup.day')" class="hide"></label>
+                            <select name="day" convert-to-number data-ng-model="profileDetail.dob[2]" data-ng-required="editProfile" data-ng-disabled="!editProfile">
+                                <option value="" data-ng-bind="::pullInterNationalization('home.day')"></option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                            </select>
+                        </div>
+                        <span class="validate-error" data-ng-if="editProfile && profileSubmitted && profileDetailForm.day.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                    </li>
+                    <li class="year">
+                        <div class="select-wrapper" data-ng-class="{'disabled':!editProfile}">
+                            <span class="select-dd-icon icon-icon_dropdown-arrow" data-ng-class="editProfile?'sp-icon-color':'disabled-color'"></span>
+                            <label for="year" data-ng-bind="::pullInterNationalization('signup.year')" class="hide"></label>
+                            <select name="year" convert-to-number data-ng-model="profileDetail.dob[0]" data-ng-required="editProfile" data-ng-disabled="!editProfile">
+                                <option value="" data-ng-bind="::pullInterNationalization('home.year')"></option>
+                                <option value="1998">1998</option>
+                                <option value="1997">1997</option>
+                                <option value="1996">1996</option>
+                                <option value="1995">1995</option>
+                                <option value="1994">1994</option>
+                                <option value="1993">1993</option>
+                                <option value="1992">1992</option>
+                                <option value="1991">1991</option>
+                                <option value="1990">1990</option>
+                                <option value="1989">1989</option>
+                                <option value="1988">1988</option>
+                                <option value="1987">1987</option>
+                                <option value="1986">1986</option>
+                                <option value="1985">1985</option>
+                                <option value="1984">1984</option>
+                                <option value="1983">1983</option>
+                                <option value="1982">1982</option>
+                                <option value="1981">1981</option>
+                                <option value="1980">1980</option>
+                                <option value="1979">1979</option>
+                                <option value="1978">1978</option>
+                                <option value="1977">1977</option>
+                                <option value="1976">1976</option>
+                                <option value="1975">1975</option>
+                                <option value="1974">1974</option>
+                                <option value="1973">1973</option>
+                                <option value="1972">1972</option>
+                                <option value="1971">1971</option>
+                                <option value="1970">1970</option>
+                                <option value="1969">1969</option>
+                                <option value="1968">1968</option>
+                                <option value="1967">1967</option>
+                                <option value="1966">1966</option>
+                                <option value="1965">1965</option>
+                                <option value="1964">1964</option>
+                                <option value="1963">1963</option>
+                                <option value="1962">1962</option>
+                                <option value="1961">1961</option>
+                                <option value="1960">1960</option>
+                                <option value="1959">1959</option>
+                                <option value="1958">1958</option>
+                                <option value="1957">1957</option>
+                                <option value="1956">1956</option>
+                                <option value="1955">1955</option>
+                                <option value="1954">1954</option>
+                                <option value="1953">1953</option>
+                                <option value="1952">1952</option>
+                                <option value="1951">1951</option>
+                                <option value="1950">1950</option>
+                                <option value="1949">1949</option>
+                                <option value="1948">1948</option>
+                                <option value="1947">1947</option>
+                                <option value="1946">1946</option>
+                                <option value="1945">1945</option>
+                                <option value="1944">1944</option>
+                                <option value="1943">1943</option>
+                                <option value="1942">1942</option>
+                                <option value="1941">1941</option>
+                                <option value="1940">1940</option>
+                                <option value="1939">1939</option>
+                                <option value="1938">1938</option>
+                                <option value="1937">1937</option>
+                                <option value="1936">1936</option>
+                                <option value="1935">1935</option>
+                                <option value="1934">1934</option>
+                                <option value="1933">1933</option>
+                                <option value="1932">1932</option>
+                                <option value="1931">1931</option>
+                                <option value="1930">1930</option>
+                                <option value="1929">1929</option>
+                                <option value="1928">1928</option>
+                                <option value="1927">1927</option>
+                                <option value="1926">1926</option>
+                                <option value="1925">1925</option>
+                                <option value="1924">1924</option>
+                                <option value="1923">1923</option>
+                                <option value="1922">1922</option>
+                                <option value="1921">1921</option>
+                                <option value="1920">1920</option>
+                                <option value="1919">1919</option>
+                                <option value="1918">1918</option>
+                                <option value="1917">1917</option>
+                                <option value="1916">1916</option>
+                                <option value="1915">1915</option>
+                                <option value="1914">1914</option>
+                                <option value="1913">1913</option>
+                                <option value="1912">1912</option>
+                                <option value="1911">1911</option>
+                                <option value="1910">1910</option>
+                                <option value="1909">1909</option>
+                                <option value="1908">1908</option>
+                                <option value="1907">1907</option>
+                                <option value="1906">1906</option>
+                                <option value="1905">1905</option>
+                            </select>
+                        </div>
+                        <span class="validate-error" data-ng-if="editProfile && profileSubmitted && profileDetailForm.year.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                    </li>
+                </ul>
+            </li>
+            <li data-ng-class="profileDetail.type === 'HiringCandidate'?'mTop45':''">
+                <!-- <p class="label-text" data-ng-bind="::pullInterNationalization('admin.account.profile.details.gender')"></p>-->
+                <div class="select-wrapper" data-ng-class="{'disabled':!editProfile}">
+                    <span class="select-dd-icon icon-icon_dropdown-arrow" data-ng-class="editProfile?'sp-icon-color':'disabled-color'"></span>
+                    <label for="gender" data-ng-bind="::pullInterNationalization('admin.account.profile.details.gender')" class="hide"></label>
+                    <select name="gender" data-ng-model="profileDetail.gender" data-ng-required="editProfile" data-ng-disabled="!editProfile">
+                        <option value="" data-ng-bind="::pullInterNationalization('home.selectGender')"></option>
+                        <option value="M" data-ng-bind="::pullInterNationalization('home.male')"></option>
+                        <option value="F" data-ng-bind="::pullInterNationalization('home.female')"></option>
+                    </select>
+                </div>
+                <span class="validate-error" data-ng-if="editProfile && profileSubmitted && profileDetailForm.gender.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+            </li>
+            <li class="mTop45">
+                <!-- <p class="label-text" data-ng-bind="::pullInterNationalization('home.selectCountry')"></p> -->
+                <div class="select-wrapper" data-ng-class="{'disabled':!editProfile}">
+                    <span class="select-dd-icon icon-icon_dropdown-arrow" data-ng-class="editProfile?'sp-icon-color':'disabled-color'"></span>
+                    <label for="country" data-ng-bind="::pullInterNationalization('admin.account.individual.country')" class="hide"></label>
+                    <select name="country" data-ng-model="profileDetail.address.country" data-ng-required="editProfile" data-ng-disabled="!editProfile" data-ng-change="stateCheck(profileDetail.address.country);resetAddress();">
+                        <option value="" data-ng-bind="::pullInterNationalization('home.selectCountry')"></option>
+                        <option value="{{cList.code}}" data-ng-if="cList.code === 'US'" data-ng-repeat="cList in countries" data-ng-bind="cList.name"></option>
+                        <option value="{{cList.code}}" data-ng-if="cList.code === 'CA'" data-ng-repeat="cList in countries" data-ng-bind="cList.name"></option>
+                        <option value="">--------------------------------------------------</option>
+                        <option value="{{cList.code}}" data-ng-if="cList.code !== 'US' && cList.code !== 'CA'" data-ng-repeat="cList in countries" data-ng-bind="cList.name"></option>
+                    </select>
+                </div>
+                <span class="validate-error" data-ng-if="editProfile && profileSubmitted && profileDetailForm.country.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+            </li>
+            <li>
+                <ul class="cols-2">
+                    <li>
+                        <label for="addressLine1" data-ng-bind="::pullInterNationalization('admin.account.member.details.address1')"></label>
+                        <input type="text" data-ng-model="profileDetail.address.addressLine1" name="addressLine1" placeholder="{{pullInterNationalization('admin.account.member.details.address1')}}" data-ng-required="editProfile" data-ng-disabled="!editProfile" data-ng-class="{'disabled':!editProfile}" />
+                        <!-- Error Messages -->
+                        <span class="validate-error" data-ng-if="editProfile && profileSubmitted && profileDetailForm.addressLine1.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                    </li>
+                    <li>
+                        <label for="addressLine2" data-ng-bind="::pullInterNationalization('admin.account.member.details.address2')"></label>
+                        <input type="text" data-ng-model="profileDetail.address.addressLine2" name="addressLine2" placeholder="{{pullInterNationalization('admin.account.member.details.address2')}}" data-ng-required="false" data-ng-disabled="!editProfile" data-ng-class="{'disabled':!editProfile}" />
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <label for="city" data-ng-bind="::pullInterNationalization('signup.city')"></label>
+                <input type="text" data-ng-model="profileDetail.address.city" name="city" placeholder="{{pullInterNationalization('signup.city')}}" data-ng-required="editProfile" data-ng-disabled="!editProfile" data-ng-class="{'disabled':!editProfile}" />
+                <!-- Error Messages -->
+                <span class="validate-error" data-ng-if="editProfile && profileSubmitted && profileDetailForm.city.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+            </li>
+            <li>
+                <ul class="cols-2">
+                    <li data-ng-if="showStatesOthers">
+                        <label for="state" data-ng-bind="::pullInterNationalization('admin.account.member.details.region')"></label>
+                        <input type="text" data-ng-model="profileDetail.address.state" name="state" placeholder="{{pullInterNationalization('admin.account.member.details.region')}}" data-ng-required="editProfile" data-ng-disabled="!editProfile" data-ng-class="{'disabled':!editProfile}" />
+                        <!-- Error Messages -->
+                        <span class="validate-error" data-ng-if="editProfile && profileSubmitted && profileDetailForm.state.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                    </li>
+                    <li data-ng-if="showStatesCanada">
+                        <label for="state" data-ng-bind="::pullInterNationalization('admin.account.member.details.province')"></label>
+                        <input type="text" data-ng-model="profileDetail.address.state" name="state" placeholder="{{pullInterNationalization('admin.account.member.details.province')}}" data-ng-required="editProfile" data-ng-disabled="!editProfile" data-ng-class="{'disabled':!editProfile}" />
+                        <!-- Error Messages -->
+                        <span class="validate-error" data-ng-if="editProfile && profileSubmitted && profileDetailForm.state.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                    </li>
+                    <li data-ng-if="showStatesUS">
+                        <div class="select-wrapper" data-ng-class="{'disabled':!editProfile}">
+                            <span class="select-dd-icon icon-icon_dropdown-arrow" data-ng-class="editProfile?'sp-icon-color':'disabled-color'"></span>
+                            <label for="state" data-ng-bind="::pullInterNationalization('admin.account.individual.state')" class="hide"></label>
+                            <select name="state" data-ng-model="profileDetail.address.state" data-ng-required="editProfile" data-ng-disabled="!editProfile">
+                                <option value="" data-ng-bind="::pullInterNationalization('home.selectState')"></option>
+                                <option value="AL" label="Alabama"> Alabama</option>
+                                <option value="AK" label="Alaska">Alaska</option>
+                                <option value="AS" label="American Samoa">American Samoa</option>
+                                <option value="AZ" label="Arizona">Arizona</option>
+                                <option value="AR" label="Arkansas">Arkansas</option>
+                                <option value="AE" label="Armed Forces Middle East">Armed Forces Middle East</option>
+                                <option value="AA" label="Armed Forces Americas (not Canada)">Armed Forces Americas (not Canada)</option>
+                                <option value="AP" label="Armed Forces Pacific">Armed Forces Pacific</option>
+                                <option value="CA" label="California">California</option>
+                                <option value="CO" label="Colorado">Colorado</option>
+                                <option value="CT" label="Connecticut">Connecticut</option>
+                                <option value="DE" label="Delaware">Delaware</option>
+                                <option value="DC" label="District of Columbia">District of Columbia</option>
+                                <option value="FL" label="Florida">Florida</option>
+                                <option value="GA" label="Georgia">Georgia</option>
+                                <option value="GU" label="Guam">Guam</option>
+                                <option value="HI" label="Hawaii">Hawaii</option>
+                                <option value="ID" label="Idaho">Idaho</option>
+                                <option value="IL" label="Illinois">Illinois</option>
+                                <option value="IN" label="Indiana">Indiana</option>
+                                <option value="IA" label="Iowa">Iowa</option>
+                                <option value="KS" label="Kansas">Kansas</option>
+                                <option value="KY" label="Kentucky">Kentucky</option>
+                                <option value="LA" label="Louisiana">Louisiana</option>
+                                <option value="ME" label="Maine">Maine</option>
+                                <option value="MD" label="Maryland">Maryland</option>
+                                <option value="MA" label="Massachusetts">Massachusetts</option>
+                                <option value="MI" label="Michigan">Michigan</option>
+                                <option value="MN" label="Minnesota">Minnesota</option>
+                                <option value="MS" label="Mississippi">Mississippi</option>
+                                <option value="MO" label="Missouri">Missouri</option>
+                                <option value="MT" label="Montana">Montana</option>
+                                <option value="NE" label="Nebraska">Nebraska</option>
+                                <option value="NV" label="Nevada">Nevada</option>
+                                <option value="NH" label="New Hampshire">New Hampshire</option>
+                                <option value="NJ" label="New Jersey">New Jersey</option>
+                                <option value="NM" label="New Mexico">New Mexico</option>
+                                <option value="NY" label="New York">New York</option>
+                                <option value="NC" label="North Carolina">North Carolina</option>
+                                <option value="ND" label="North Dakota">North Dakota</option>
+                                <option value="MP" label="Northern Mariana Islands">Northern Mariana Islands</option>
+                                <option value="OH" label="Ohio">Ohio</option>
+                                <option value="OK" label="Oklahoma">Oklahoma</option>
+                                <option value="OR" label="Oregon">Oregon</option>
+                                <option value="PA" label="Pennsylvania">Pennsylvania</option>
+                                <option value="PR" label="Puerto Rico">Puerto Rico</option>
+                                <option value="RI" label="Rhode Island">Rhode Island</option>
+                                <option value="SC" label="South Carolina">South Carolina</option>
+                                <option value="SD" label="South Dakota">South Dakota</option>
+                                <option value="TN" label="Tennessee">Tennessee</option>
+                                <option value="TX" label="Texas">Texas</option>
+                                <option value="UT" label="Utah">Utah</option>
+                                <option value="VT" label="Vermont">Vermont</option>
+                                <option value="VI" label="Virgin Islands">Virgin Islands</option>
+                                <option value="VA" label="Virginia">Virginia</option>
+                                <option value="WA" label="Washington">Washington</option>
+                                <option value="WV" label="West Virginia">West Virginia</option>
+                                <option value="WI" label="Wisconsin">Wisconsin</option>
+                                <option value="WY" label="Wyoming">Wyoming</option>
+                            </select>
+                        </div>
+                        <span class="validate-error" data-ng-if="editProfile && profileSubmitted && profileDetailForm.state.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                    </li>
+                    <li data-ng-if="showStatesCanada || showStatesOthers">
+                        <label for="zip" data-ng-bind="::pullInterNationalization('admin.account.member.details.postal')"></label>
+                        <input type="text" data-ng-model="profileDetail.address.zipCode" name="zip" placeholder="{{pullInterNationalization('admin.account.member.details.postal')}}" data-ng-required="editProfile" data-ng-disabled="!editProfile" data-ng-class="{'disabled':!editProfile}" />
+                        <!-- Error Messages -->
+                        <span class="validate-error" data-ng-if="editProfile && profileSubmitted && profileDetailForm.zip.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                    </li>
+                    <li data-ng-if="showStatesUS">
+                        <label for="zip" data-ng-bind="::pullInterNationalization('admin.account.member.details.zipcode')"></label>
+                        <input type="text" data-ng-model="profileDetail.address.zipCode" name="zip" placeholder="{{pullInterNationalization('admin.account.member.details.zipcode')}}" data-ng-required="editProfile" data-ng-disabled="!editProfile" data-ng-class="{'disabled':!editProfile}" ng-pattern="/(^\d{5}$)|(^\d{5}-\d{4}$)/" />
+                        <!-- Error Messages -->
+                        <span class="validate-error" data-ng-if="editProfile && profileSubmitted && profileDetailForm.zip.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                        <span class="validate-error" data-ng-if="editProfile && profileSubmitted && profileDetailForm.zip.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <label for="phone" data-ng-bind="::pullInterNationalization('admin.account.member.details.phonenumber')"></label>
+                <input type="text" data-ng-model="profileDetail.phoneNumber" name="phone" placeholder="{{pullInterNationalization('admin.account.member.details.phonenumber')}}" data-ng-required="editProfile" data-ng-disabled="!editProfile" data-ng-class="{'disabled':!editProfile}" data-ng-pattern="/^\+?([-.\s\d]){10,16}$/" />
+                <!-- Error Messages -->
+                <span class="validate-error" data-ng-if="editProfile && profileSubmitted && profileDetailForm.phone.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                <span class="validate-error" data-ng-if="editProfile && profileSubmitted && profileDetailForm.phone.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+            </li>
+            <!-- Form Button Starts -->
+            <li class="submit-cancel-btns" data-ng-if="editProfile">
+                <ul class="submit-cancel-list">
+                    <li>
+                        <input type="submit" value="{{::pullInterNationalization('admin.member.save')}}" class="btn-block btn-15px sp-btn-color" />
+                    </li>
+                    <li>
+                        <input type="button" value="{{::pullInterNationalization('admin.member.cancel')}}" class="btn-block btn-grey-dark btn-15px" data-ng-click="toggleProfileView()" />
+                    </li>
+                </ul>
+            </li>
+            <!-- Form Button Ends -->
+        </ol>
+    </form>
+</div>

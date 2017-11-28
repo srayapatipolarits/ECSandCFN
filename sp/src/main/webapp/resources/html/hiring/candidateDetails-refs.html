@@ -1,0 +1,25 @@
+<div class="col-content-wrapper mh700">
+    <div class="members-content-wrapper">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('manageHiringContent.refText')"></h2>
+        </div>
+    </div>
+    <div class="all-content-wrapper">
+		<div class="refs-wrapper">
+			<div class="ref-list-wrap" data-ng-repeat="ref in ctrl.memberProfileBackup.referencesDetails">
+				<div class="ref-lef">
+					<p>
+						<span class="ref-name" data-ng-bind="ref.name"></span>
+						<span data-ng-bind="::pullInterNationalization('tools.hiring.profile.details.'+ref.referenceType)"></span>
+						<a href="mailto:{{ref.email}}" class="border-link ref-email"><span class="mock-link" data-ng-bind="ref.email"></span></a>
+					</p>
+				</div>
+				<div class="ref-right">
+					<p class="ref-ph">
+						<span data-ng-bind="ref.phoneNumber"></span>
+					</p>
+				</div>
+			</div>
+		</div>
+    </div>
+</div>

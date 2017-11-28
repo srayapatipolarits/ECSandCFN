@@ -1,0 +1,168 @@
+
+<section ng-controller="adminLibraryHomeController" ng-cloak>
+              <div class="article-buttons">
+					<a href="javascript:void(0)" class="sp-background-color" ng-click="articleWorkFlow('/sp/sysAdmin/learning/trainingLibraryReload','articleReload')">Reload Articles</a>   
+					<a href="javascript:void(0)" class="sp-background-color" ng-click="articleWorkFlow('/sp/sysAdmin/learning/messagesReload','messageReload')">Reload Message</a> 
+					<a href="javascript:void(0)" class="sp-background-color" ng-click="articleWorkFlow('/sp/sysAdmin/learning/trainingLibrary/RemoveDuplicateArticles','removeDuplicates')">Remove Duplicate Articles</a>  
+					<a href="#" class="sp-background-color" ng-click="getReadabilityScore()">Readability Score</a>
+				</div>
+
+    <div class="x-container members hiring-candidates affiliate-listing library-home">
+        <div class="container minimumHeight" >
+        <section class="library-home-section">
+            <div class="custom-cols left results-content">
+                <div class="library-home-column">
+                    
+                    <div class="results-wrapper">
+                        
+                        <div class="rel-content top">
+                            <div class="global-title sp-header-title-color" >Learning Library Global Home - Business</div>
+                            <span>Update learning library global home page articles, updating this will affect all the learning library home page for all the accounts using SurePeople recommended home</span>
+                        </div>
+<input type="submit" value="Update Home" class="subscribeBtn btn-block btn-15px sp-btn-color" ng-click="createLibraryHomeLink('business')">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="custom-cols right results-content">
+                <div class="library-home-column">
+                    
+                    <div class="results-wrapper">
+                        
+                        <div class="rel-content top">
+                            <div class="global-title sp-header-title-color"> Learning Library Global Home - Individual</div>
+                            <span>Update learning library global home page articles, updating this will affect all the learning library home page for all the accounts using SurePeople recommended home</span>
+                        </div>
+<input type="submit" value="Update Home" class="subscribeBtn btn-block btn-15px sp-btn-color" ng-click="createLibraryHomeLink('individual')">
+                        
+                    </div>
+                </div>
+            </div>
+            </section>
+            <div class="bgWhiteBord clearfix">
+                <div class="toolbar clearfix">
+                    <div class="title">
+                        <a href="#" role="button" ng-click="resetfilter()">All Home<span class="blackcolor" ng-cloak>({{libraryHomeList.length}})</span></a>
+                    </div>
+                    <div class="controls clearfix">
+                        <div class="hiring-list-wrapper">
+                            <p>
+                                <a href="/sp/sysAdmin/learning/curriculam/createLibraryHome">Create New Home</a>
+                            </p>
+                        </div>
+                        <div class="controlwrap search">
+                            <input type="text" class="form-control" maxlength="28" ng-model="searchText" placeholder="Search" ng-keyup="searchTextFilter(searchText)">
+                            <button class="sp-icon-color" ng-class="enableCancel(searchText)? 'icon-icon_remove':'icon-icon_search'" ng-click="clearSearch()"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="filters">
+                    <ul class="box clearfix hide">
+                        <li class="first w10">
+                            <p class="title resetPad" data-ng-bind="pullInterNationalization('tools.hiring.filter')"></p>
+                            <a href="javascript:void(0)" class="resetAnchor" ng-click="resetfilter()" data-ng-bind="pullInterNationalization('tools.hiring.reset')"></a>
+                        </li>
+                        <li class="w25">
+                            <p class="title" data-ng-bind="pullInterNationalization('tools.hiring.col2')"></p>
+                            <div class="rolesSelectWrapper">
+                                <select class="form-control rolesSelect" ng-model="selectedSearch.hiringRoles">
+                                    <option value="" data-ng-bind="pullInterNationalization('tools.hiring.opt1')"></option>
+                                    <option ng-repeat="hiringRoles in hiringRoles" value="{{hiringRoles}}">{{hiringRoles}}</option>
+                                </select>
+                            </div>
+                            <!--<select class="form-control" ng-init="selectedSearch = 'default'" ng-model="selectedSearch">
+                        <option value="default">Select Status</option>
+                        <option value="User" >User</option>
+                         <option value="Admin">Admin</option>
+                    </select>-->
+                        </li>
+                        <li class="w45 shorter">
+                            <p class="title" data-ng-bind="pullInterNationalization('tools.hiring.filter1')"></p>
+                            <div class="controlwrap">
+                                <!--<input type="text" class="form-control" value="{{pullInterNationalization('member.placetag')}}">-->
+                                <tags-input ng-model="tags" min-length="1" replace-spaces-with-dashes="false" placeholder="Search a tag(s)/keyword(s)" on-tag-removed="tagRemoved($tag)" on-tag-added="tagAdded($tag)" add-from-autocomplete-only="true">
+                                    <auto-complete min-length="1" load-on-focus="true" load-on-empty="true" source="loadTags($query)" class="ng-tags-pos-fix"></auto-complete>
+                                </tags-input>
+                            </div>
+                        </li>
+                        <li class="w25">
+                            <p class="title" data-ng-bind="pullInterNationalization('tools.hiring.filter2')"></p>
+                            <div class="rolesSelectWrapper">
+                                <select class="form-control rolesSelect" ng-model="selectedSearch.userStatusFormatted">
+                                    <option value="" data-ng-bind="pullInterNationalization('tools.hiring.opt1')"></option>
+                                    <option ng-repeat="userStatus in userStatus" value="{{userStatus}}" data-ng-bind="userStatus"></option>
+                                </select>
+                            </div>
+                            <!--<select class="form-control" ng-init="selectedSearch = 'default'" ng-model="selectedSearch">
+                        <option value="default">Select Status</option>
+                        <option value="User" >User</option>
+                         <option value="Admin">Admin</option>
+                    </select>-->
+                        </li>
+                    </ul>
+                </div>
+              
+                <article class="memberHolder">
+                    <div class="heading row">
+                       
+                        <div class="col-md-4 col-sm-4 tog activeFilter" ng-click="reverse=!reverse;order('name', reverse);active($event)" data-predicate='name'>
+                            <h4 class="on code" data-ng-bind="'Company Name'"></h4>
+                        </div>
+                         <div class="col-md-4 col-sm-4 t-name tog" ng-click="reverse=!reverse;order('address.city', reverse);active($event)" data-predicate='title'>
+                            <h4>Location</h4>
+                        </div>
+                       
+                        <div class="col-md-1 col-sm-1"></div>
+                    </div>
+                    <!--<div class="complete-profile" ng-class="{active:show}" ng-repeat="pulseList in filtered=(pulseList | filter:filterByCategory)">-->
+                     <div class="complete-profile animation_1" ng-class="{active:show}" id='{{$index}}' ng-repeat="libraryHomeList in recordField = ((libraryHomeList | filter:textSearching).slice(0,pageSize)) track by libraryHomeList.id">
+                            <div class="table-row clearfix">
+                               
+                                <div class="col-md-4 col-sm-4">
+                                    <p class="code">
+                                        <a href="/sp/sysAdmin/learning/curriculam/libraryHomeDetails?cid={{libraryHomeList.id}}" class="border-link">
+                                            <span class="mock-link" data-ng-bind="libraryHomeList.name"></span>
+                                        </a>
+                                    </p>
+                                </div>
+                                
+                               <div class="col-md-4 col-sm-4">
+								<div style="padding:2px 0px;"> <span data-ng-bind="libraryHomeList.address.city"></span>  <span data-ng-bind="libraryHomeList.address.state"></span> , <span data-ng-bind="libraryHomeList.address.country"></span></div>
+							</div>
+                               
+                                <div class="col-md-4 col-sm-4 btnGroupSp" ng-click="show=!show">
+                                    <button class="fullView btn-plus icon-icon_expand sp-icon-color noSpace" type="button"></button><button class="fullView btn-minus icon-icon_collapse-fill sp-icon-color noSpace" type="button"></button>
+                                </div>
+                            </div>
+                            <div class="editable-section clearfix" ng-class="{hidden:!show}">
+                                <div class="col-md-1 col-sm-1 custom_1"></div>
+                                <div class="col-md-11 col-sm-11 custom_2">
+                                    <ul class="clearfix" ng-show="!advance">
+                                       <li>
+                                            <a href="/sp/sysAdmin/learning/curriculam/libraryHomeDetails?cid={{libraryHomeList.id}}" role="button" class="buttoncss">View Details</a>
+                                        </li>
+                                        <li>
+                                            <a href="/sp/sysAdmin/learning/curriculam/createLibraryHome?cid={{libraryHomeList.id}}" role="button" class="buttoncss">Clone</a>
+                                        </li>
+                                        <li class='deletePos'>
+                                            <a href="#" role="button" class="buttoncss" ng-click="deleteConfirm(libraryHomeList.id,libraryHomeList.name);">Delete</a>
+                                        </li>
+                                    </ul>
+                                    <div class="advanceSelection" ng-show="moreadvance">
+                                        <span data-ng-bind="pullInterNationalization('tools.hiring.delmsg')"></span>
+                                        <button class="ctaBtn1" ng-click='confirmDelete($event)' data-ng-bind="pullInterNationalization('tools.hiring.delyes')"></button>
+                                        <button class="ctaBtn1" ng-click='moreadvance=!moreadvance;advance=!advance' data-ng-bind="pullInterNationalization('tools.hiring.delno')"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    <p ng-show="!recordField.length" class="noMatchFound ng-hide" data-ng-bind="'No Records Found'"></p>
+                    <!-- <div class="more">
+                    <a href="javascript:void(0)" class="ng-hide" role="button" ng-click="returnaffiliateCodeList(pageSize+pageSize)" ng-hide="alldisplay || recordField.length < intialPageSize" data-ng-bind="pullInterNationalization('tools.hiring.load')"></a>
+                     </div>-->
+                </article>
+            </div>
+        </div>
+    </div>
+</section>

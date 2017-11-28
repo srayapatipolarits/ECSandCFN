@@ -1,0 +1,54 @@
+<style type="text/css">
+.calStyle .form-control {
+  width: 70%;
+}
+.calImg {
+ right: 125px;
+ top: 6px;
+}
+
+</style>
+
+    <div class="container minimumHeight" id="addMemberScreen">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+<div>
+    	<section class="wrapper">
+	<div class="contentBody">
+		<div class="head">
+			<div class="wrap">
+				<div class="headerBar" data-ng-bind="pullInterNationalization('sysAdmin.audit.advancedFilter')"></div>
+				<div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+			</div>
+		</div>
+		<div class="contentArea clearfix">
+			<form name="audit.auditLog">
+			<div class="growthAssessment noborder">
+				<div class="description" data-ng-bind="pullInterNationalization('sysAdmin.audit.selectdate')"></div>
+					  <div class="form-group clearfix calStyle">
+					     <div class="form-group col-md-5 col-sm-6">
+					      <input type="text" readonly id="dateRangeFilter" name="dateRangeFilter" class="form-control cursorPointer"  data-ng-model="ctrl.dateRangeFilter">
+                                    <label for="dateRangeFilter" class="calImg icon-icon_calendar sp-icon-color"></label>
+					    </div>
+					    
+					  </div>
+	 		</div>
+			<div class="sp-btn-wrapper sp-red btn-esmall floatLeft inviteBtn">
+				<div class="sp-btn">
+					<input type="button" value="{{pullInterNationalization('pulse.startNewPulse.submit')}}" class="btnStyle1" ng-click="audit.advanceSearch(fromDate,endDate)">
+				</div>
+			</div>
+			<div class="sp-btn-wrapper sp-grey btn-esmall floatLeft spacing">
+				<div class="sp-btn">
+					<input type="button" value="{{pullInterNationalization('pulse.startNewPulse.cancel')}}" class="btnStyle1" ng-click="closeThisDialog()">
+				</div>
+			</div>
+			</form>
+			
+		 	</div>
+	</div>
+
+	</section>
+</div></div>
+</div></div>
+

@@ -1,0 +1,16 @@
+<link type="text/css" rel="stylesheet" href="/resources/css/css-min/miniPolls.min.css" />
+<div class="modal right fade" id="notesModal" role="dialog" data-ng-init="notesCtrl.init();">
+    <div class="sticky-footer" role="document">
+        <div class="notes-section" data-ng-if="selectedNotesTab !== 'action'">
+            <!-- Notes Private -->
+            <notes-private data-ng-if="selectedNotesTab === 'private'" url-src="notes/private-notes.html" note-source="sidePanel"></notes-private>
+            <!-- Notes Group Discussions -->
+            <notes-group-discussion data-ng-if="selectedNotesTab === 'gd'" url-src="notes/group-discussion.html" note-source="sidePanel"></notes-group-discussion>
+            <edit-profile-widget  data-ng-if="selectedNotesTab === 'profile'"></edit-profile-widget>
+            <sp-tutorial  url-src="common/get-started.html" data-ng-if="selectedNotesTab === 'tutorial'"></sp-tutorial>
+            <bookmark-panel  url-src="common/bookmark-panel.html" data-ng-if="selectedNotesTab === 'bookmark'"></bookmark-panel>
+            <support-panel  url-src="common/support-panel.html" data-ng-if="selectedNotesTab === 'support'"></support-panel>
+        </div>
+        <action-plan url-src="common/action-plan.html" data-ng-if="selectedNotesTab === 'action'" parent-page="sidePanel" class="action-plan-section-panel"></action-plan>
+    </div>
+</div>

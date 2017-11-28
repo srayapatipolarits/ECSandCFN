@@ -1,0 +1,108 @@
+<section data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'" class="hide" data-ng-init="ctrl.getDetail()">
+    <div class="x-container learning-development pm-admin org-admin tutorial-admin">
+        <div class="container minimumHeight" >
+            <div class="table-flex-cols">
+                    <!-- Left Box Starts -->
+                    <div class="flex-cols-caption">
+                    <div class="lnd-full-box sp-panel-accent lnd-spacer20" data-ng-if="ctrl.actionPlan">
+                        <div class="actionPlanHeader">
+                        	<div class="company-and-return">
+                        		<h3 class="companyName sp-header-title-color" data-ng-bind="ctrl.actionPlan.name"></h3>
+                        		
+                        	</div>
+                        	<div class="published-created-save">
+	                        	<div class="published-created" data-ng-if="ctrl.mode === 'update'">
+		                            <div class="lastUpdatedOn" data-ng-class="ctrl.mode==='update'?'extraMargin':'noMargin'">
+		                                <span class="label" data-ng-bind="::pullInterNationalization('sysadmin.organization.lastUpdatedon')"></span> <span class="detail" data-ng-bind="::pullInterNationalization('sysadmin.organization.on')"></span> <span class="detail" data-ng-bind="ctrl.actionPlan.updatedOn | spDateFormat"></span><span class="detail" data-ng-bind="', '+pullInterNationalization('sysadmin.organization.by') + ' ' + ctrl.actionPlan.updatedBy.name"></span>
+		                            </div>
+	                            </div>
+	                            <div class="custom_column custom_column_space">
+	                                <ol class="form-list-c form-list-d noMarBottom">
+		                          	 
+	                                    <li class="submit-cancel-btns space-box planAction">
+	                                        <ul class="submit-cancel-list">
+	                                            <li class="submit-charge">
+	                                                <input type="submit" value="{{::pullInterNationalization('practiceArea.save')}}" class="subscribeBtn btn-block btn-15px sp-btn-color" data-ng-disabled="ctrl.disabled" data-ng-click="ctrl.submitObject()" />
+	                                            </li>
+	                                            <li class="cancel-charge">
+	                                                <input type="button" value="{{::pullInterNationalization('admin.member.cancel')}}" class="cancelBtn btn-block btn-15px btn-grey-dark" data-ng-click="ctrl.redirectToListing()" />
+	                                            </li>
+	                                        </ul>
+	                                        <ul class="clear submit-cancel-error">
+	                                            <li data-ng-if="ctrl.submitted || (ctrl.errorCat && (!ctrl.result.length || ctrl.emptyCheck)) || (!ctrl.atleastOneCheck.length)">
+				                         			<span class="validate-error" data-ng-bind="::pullInterNationalization('sysAdmin.organization.errch')"></span>
+				                         		</li>
+					                        </ul>
+					                    </li> 
+	                                </ol>
+	                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="preview-title">Dashboard Preview</h4>
+                    <article class="ert-development" data-ng-style="{'background-image':'url('+ctrl.actionPlan.imgUrl+')'}">
+    <div class="clearfix">
+        <div class="left-ert">
+            <h3 class="ea-title">
+			<span class="ea-setting-icon icon-icon_accounts_settings"></span>
+			<span class="textual" data-ng-bind="ctrl.actionPlan.name"></span>
+		</h3>
+            <div class="ea-description" data-ng-bind-html="ctrl.actionPlan.description"></div>
+        </div>
+        <div class="right-ert">
+            <div class="lp-progress" progress-animation="" ui-progress="{'trailColor':'#fff','textColor':'#fff'}" remaining-tasks="3" total-tasks="10" type="radial"></div>
+        </div>
+    </div>
+    <a href="#" data-ng-click="ctrl.previewTutorial()" data-ng-bind="'PREVIEW'" class="btn-square-12px sp-background-color" style="position:relative;"></a>
+</article>
+
+                    </div>
+                    <div class="lnd-left-sec">
+                   	   
+                        <div class="lnd-left-box lnd-top-border lnd-spacer sp-panel-accent">
+                   	       <h2 class="icon-style-realtive">
+                   	       		<span class="sans" data-ng-bind="'TUTORIAL'"></span>
+                           </h2>
+                            <ul>
+                                <li class="word-wrap" data-ng-class="ctrl.viewMode.setting?'on':''" data-ng-click="ctrl.changeActionPlan(-1)">
+                           	   		<span class="icon-style-position icon-icon_accounts_settings sp-icon-color"></span>
+                                    <span class="mock-link sp-link-color" data-ng-bind="'Tutorial Settings'"></span>
+                                    <span class="icon-style-position-error validate-error sp-icon-color" data-ng-if="ctrl.errorSetting.setting"></span>
+                           	   		<span class="lnd-focus-arrow icon-icon_focus-arrow sp-icon-color" data-ng-class="ctrl.viewMode.setting?'icon-icon_focus-arrow':'hide'"></span>
+                                </li>
+                            </ul>
+                        </div>
+                       
+                        <div class="lnd-left-box lnd-top-border lnd-spacer sp-panel-accent">
+                           <h2 class="icon-style-realtive">
+                           		<span class="sans" data-ng-bind="::pullInterNationalization('sysadmin.organization.actionPlan')"></span>
+                           </h2>
+                             <ul>
+                                <li data-ng-click="ctrl.changeActionPlan($index)" class="word-wrap count_{{ctrl.actionPlan.steps.length}}" data-ng-repeat="section in ctrl.actionPlan.steps track by $index" data-ng-class="ctrl.currentActionPlan===$index&&ctrl.viewMode.editCreate?'on':''">
+                                    <span class="mock-link sp-link-color" data-ng-bind="section.name||pullInterNationalization('sysadmin.organization.stepPlan')"></span>
+                           	   		<span class="icon-style-position-error validate-error sp-icon-color" data-ng-if="ctrl.errorSetting.step && ctrl.currentActionPlan===$index"></span>
+                           	   		<span class="lnd-focus-arrow icon-icon_focus-arrow sp-icon-color" data-ng-class="ctrl.currentActionPlan===$index&&ctrl.viewMode.editCreate?'icon-icon_focus-arrow':'hide'"></span>
+                                </li>
+                            </ul>
+                            <ul class="top-border">
+                                <li class="border-link create-action-plan" data-ng-click="ctrl.createNewSection(ctrl.actionPlan.steps.length)">
+                                    <a href="javascript:void(0)" data-ng-bind="::pullInterNationalization('sysadmin.organization.createactionPlan')"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    <!-- Left Box Ends -->
+                    <!-- Right Box Starts -->
+                    <div class="lnd-right-sec">
+                        <div class="holder">
+                            <div class="view-editCreate">
+                                <div ui-view="setting" data-ng-class="{'show':ctrl.viewMode.setting}" class="hide"></div>
+                                <div ui-view="edit" data-ng-class="{'show':ctrl.viewMode.editCreate}" class="hide"></div>
+                                <div ui-view="preview" data-ng-if="ctrl.viewMode.preview"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,88 @@
+<div data-ng-if="inviteReady && profileReady" class="hide" data-ng-class="inviteReady?'show':'hide'" data-ng-controller="competencyManager as ctrl" data-ng-init="ctrl.getCompetencyProfile()" data-ng-cloak>
+
+    <!-- Competency Manager Header Starts -->
+    <div class="x-container" data-ng-if="!ctrl.competencyAdminDefaultView && ctrl.responseAvailable">
+        <div class="container">
+            <div class="header-info-container">                
+				<div class="header-info-content">
+					<div class="header-icon-wrap">
+	                    <p class="hinfo-wrap">
+	                        <span class="hinfo-icons icon-icon_spectrum_competency sp-icon-color"></span>
+	                    </p>					
+					</div>
+					<div class="header-content-wrap">
+	                    <p class="hinfo-wrap">
+	                        <span class="info-txt ml0 mb8 mt6 textCapitalize" data-ng-bind-html="::pullInterNationalization('competency.admin.dashboard.title')"></span>
+	                    </p>
+	                    <p class="header-info-def" data-ng-bind-html="::pullInterNationalization('competency.admin.dashboard.desc')"></p>
+                        <div class="fs-btns-wrap">
+                            <a data-ng-class="{'hide':ctrl.competencyEvaluationInProgress || ctrl.activateView}" data-ng-click="ctrl.prepareUserListForCompetency()" href="javascript:void(0)" class="btn-block btn-15px sp-btn-color" data-ng-bind="pullInterNationalization('competency.admin.activateEvaluation')"></a>
+                        </div>	                    										
+					</div>	
+				</div>                 
+            </div>
+        </div>
+    </div>
+    <!-- Competency Manager Header Ends -->
+
+
+    <!-- Notification HTML -->
+	<ng-include src="'/sp/resources/html/admin/competency/competency-notifications.html'" data-ng-if="!ctrl.activateView && ctrl.competencyEvaluationInProgress && ctrl.responseAvailable && !ctrl.competencyAdminDefaultView"></ng-include>
+
+    <!-- Evaluation HTML -->
+    <ng-include src="'/sp/resources/html/admin/competency/setup-competency-evaluation.html'" data-ng-if="ctrl.activateView && ctrl.responseAvailable && !ctrl.competencyAdminDefaultView"></ng-include>
+
+    <!-- Listing HTML -->
+    <ng-include src="'/sp/resources/html/admin/competency/competency-manager-listing.html'" data-ng-if="!ctrl.activateView && ctrl.responseAvailable && !ctrl.competencyAdminDefaultView"></ng-include> 
+    
+    <div class="admin-org"  data-ng-if="ctrl.competencyAdminDefaultView && ctrl.responseAvailable">
+        <div class="x-container">
+            <!-- Extended Container -->
+            <div class="container">
+                <!-- Bootstrap Container -->
+                <div class="resumeContainer locatedSubNavRelative padTop30 bgWhiteBord sp-panel-accent">
+                    <!--  When No resume is in database -->
+                    <div class="noResume">
+                        <!-- UpperBody -->
+                        <div class="upperBody clearfix">
+                            <div class="row">
+                                <div class="title col-sm-12 col-md-12 sp-header-title-color" data-ng-bind="::pullInterNationalization('competency.users.title')"></div>
+                                <div class="col-xs-12">
+                                    <div class="description" data-ng-bind="::pullInterNationalization('competency.users.desc')"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  Lower Body -->
+                        <div class="borderSeparator"></div>
+                        <div class="lowerBody clearfix">
+                            <div class="title sp-header-title-color" data-ng-bind="::pullInterNationalization('admin.organization.features')"></div>
+                            <div class="row colArea">
+                                <div class="col-sm-4 col-md-4 gap">
+                                    <div class="title_1" data-ng-bind="::pullInterNationalization('competency.users.default.features.title1')"></div>
+                                    <div class="thumbnail"><img src="/resources/css/images/Resume_1.jpg"></div>
+                                    <div class="desciption" data-ng-bind="::pullInterNationalization('competency.users.default.features.desc1')">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 col-md-4 gap">
+                                    <div class="title_1" data-ng-bind="::pullInterNationalization('competency.users.default.features.title2')"></div>
+                                    <div class="thumbnail"><img src="/resources/css/images/Resume_2.jpg"></div>
+                                    <div class="desciption" data-ng-bind="::pullInterNationalization('competency.users.default.features.desc2')">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 col-md-4 gap">
+                                    <div class="title_1" data-ng-bind="::pullInterNationalization('competency.users.default.features.title3')"></div>
+                                    <div class="thumbnail"><img src="/resources/css/images/Resume_3.jpg"></div>
+                                    <div class="desciption" data-ng-bind="::pullInterNationalization('competency.users.default.features.desc3')">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    
+      
+
+</div>    

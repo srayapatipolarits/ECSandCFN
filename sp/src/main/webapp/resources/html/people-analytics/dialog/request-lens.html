@@ -1,0 +1,49 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                    <h2 data-ng-bind="::pullInterNationalization('manageAccountContent.requestPrism')"></h2>
+                </div>
+                <div class="new-modals-wrapper pa-lens">
+                    <div class="prism-lens-request-form">
+                    <p class="lens-desc" data-ng-bind="::pullInterNationalization('lens.modal.description')"></p>
+			            <div class="tagsEmailInput overrides">
+			                <tags-input data-ng-model="tags" max-tags="1" placeholder="{{::pullInterNationalization('dashboard.enteremail')}}" display-name="email" display-property="name" hide-input="true" allowed-tags-pattern="^[A-Za-z0-9._-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$" replace-spaces-with-dashes="false" on-tag-removed="ctrl.tagRemoved($tag)" on-tag-added="ctrl.tagAdded($tag)">
+			                    <auto-complete min-length="1" load-on-focus="false" load-on-empty="false" max-results-to-show="6" source="ctrl.loadTags($query)" class="ng-tags-pos-fix"></auto-complete>
+			                </tags-input>
+			                <span class="validate-error" data-ng-if="!ctrl.emailExists && !ctrl.currentUser && ctrl.formErrors.emailCheck" data-ng-bind="::pullInterNationalization('lens.email.error')"></span>
+			                <span class="validate-error" data-ng-if="ctrl.emailExists && !ctrl.currentUser && ctrl.formErrors.emailCheck" data-ng-bind="::pullInterNationalization('lens.duplicateReq.error')"></span>
+			                <span class="validate-error" data-ng-if="ctrl.currentUser && !ctrl.emailExists && ctrl.formErrors.emailCheck" data-ng-bind="::pullInterNationalization('lens.sameUser.error')"></span>
+			            </div>
+			            <div class="show-names" data-ng-if="ctrl.showNames">
+			                <div class="form-styles-override noMargin">
+			                    <ol class="form-list-c">
+			                        <li>
+			                            <ul class="cols-2">
+			                                <li>
+			                                    <input type="text" data-ng-model="ctrl.nameDataFormfirstName" name="firstName" placeholder="{{pullInterNationalization('signup.firstName')}}" />
+			                                    <!-- Error Messages -->
+			                                    <span class="validate-error" data-ng-if="ctrl.formErrors.firstName" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+			                                </li>
+			                                <li class="added-margin">
+			                                    <input type="text" data-ng-model="ctrl.nameDataFormlastName" name="lastName" placeholder="{{pullInterNationalization('signup.lastName')}}" />
+			                                    <!-- Error Messages -->
+			                                    <span class="validate-error" data-ng-if="ctrl.formErrors.lastName" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+			                                </li>
+			                            </ul>
+			                        </li>
+			                    </ol>
+			                </div>
+			            </div>
+			            <div class="btn-wrapper" data-ng-class="{'remove-margin':ctrl.showNames}">
+			                <input type="submit" value="{{pullInterNationalization('manageAccountContent.submit')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="ctrl.sendRequestFeedbackAdmin(ctrl.nameDataFormfirstName, ctrl.nameDataFormlastName)" />
+			                <input type="button" value="{{pullInterNationalization('manageAccountContent.cancel')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="closeThisDialog();" />
+			            </div>
+			        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

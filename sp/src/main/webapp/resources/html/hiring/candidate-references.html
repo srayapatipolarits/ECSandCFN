@@ -1,0 +1,65 @@
+<div data-ng-controller="candidateReferenceController as ctrl" class="x-container candiate-reference hide" ng-if="inviteReady" ng-class="inviteReady?'show':'hide'">
+    <div  class="container minimumHeight">
+        <div class="row">
+            <form novalidate name="candidateRefList">
+                <div class="col-xs-12">
+                    <h2 class="sp-header-title-color" data-ng-bind="pullInterNationalization('hiring.reference.heading')"></h2>
+                    <p class="m-top" data-ng-bind="pullInterNationalization('hiring.reference.desc')"></p>
+                </div>
+
+                <div class="clear"></div>
+                <p data-ng-show="uniqueEmailError" data-ng-bind-html="pullInterNationalization('hiring.reference.err1')"></p>
+                <p data-ng-show="selfEmailAdded" data-ng-bind-html="pullInterNationalization('hiring.reference.err4')"></p>
+                
+                <div class="col-xs-12 col-sm-4 col-md-3 m-right" data-ng-repeat="detail in ctrl.candidateReference.referenceList track by $index">
+                    <p class="num" data-ng-bind="$index+1"></p>
+                    <p class="input">
+                        <label for="firstName{{$index}}" data-ng-bind="pullInterNationalization('hiring.reference.label1')"></label>
+                        <input type="text" data-ng-required="true" data-ng-model="detail.firstName" name="firstName{{$index}}" placeholder="{{pullInterNationalization('hiring.reference.label1')}}" data-ng-pattern="/^[a-zA-Z0-9-,’ ]+$/" />
+                        <span data-ng-show="candidateRefList.submitted && candidateRefList.firstName{{$index}}.$error.required" class="err-msg" data-ng-bind-html="pullInterNationalization('hiring.reference.err2')"></span>
+                        <span data-ng-show="candidateRefList.submitted && candidateRefList.firstName{{$index}}.$error.pattern" class="err-msg" data-ng-bind-html="pullInterNationalization('hiring.reference.err3')"></span>
+                    </p>
+                    <p class="input m-top">
+                        <label for="lastName{{$index}}" data-ng-bind="pullInterNationalization('hiring.reference.label2')"></label>
+                        <input type="text" data-ng-required="true" data-ng-model="detail.lastName" name="lastName{{$index}}" placeholder="{{pullInterNationalization('hiring.reference.label2')}}" data-ng-pattern="/^[a-zA-Z0-9-,’ ]+$/" />
+                        <span data-ng-show="candidateRefList.submitted && candidateRefList.lastName{{$index}}.$error.required" class="err-msg" data-ng-bind-html="pullInterNationalization('hiring.reference.err2')"></span>
+                        <span data-ng-show="candidateRefList.submitted && candidateRefList.lastName{{$index}}.$error.pattern" class="err-msg" data-ng-bind-html="pullInterNationalization('hiring.reference.err3')"></span>
+                    </p>
+                    <p class="input m-top">
+                        <label for="email{{$index}}" data-ng-bind="pullInterNationalization('hiring.reference.label3')"></label>
+                        <input type="text" data-ng-required="true" data-ng-model="detail.email" name="email{{$index}}" placeholder="{{pullInterNationalization('hiring.reference.label3')}}" data-ng-pattern="emailRegex" />
+                        <span data-ng-show="candidateRefList.submitted && candidateRefList.email{{$index}}.$error.required" class="err-msg" data-ng-bind-html="pullInterNationalization('hiring.reference.err2')"></span>
+                        <span data-ng-show="candidateRefList.submitted && candidateRefList.email{{$index}}.$error.pattern" class="err-msg" data-ng-bind-html="pullInterNationalization('signup.invalid.email.msg')"></span>
+                    </p>
+                    <p class="input m-top">
+                        <label for="phoneNumber{{$index}}" data-ng-bind="pullInterNationalization('hiring.reference.label4')"></label>
+                        <input type="text" data-ng-required="true" data-ng-model="detail.phoneNumber" name="phoneNumber{{$index}}" placeholder="{{pullInterNationalization('hiring.reference.label4')}}" data-ng-pattern="/^\+?([-.\s\d]){10,16}$/" />
+                        <span data-ng-show="candidateRefList.submitted && candidateRefList.phoneNumber{{$index}}.$error.required" class="err-msg" data-ng-bind-html="pullInterNationalization('hiring.reference.err2')"></span>
+                        <span data-ng-show="candidateRefList.submitted && candidateRefList.phoneNumber{{$index}}.$error.pattern" class="err-msg" data-ng-bind-html="pullInterNationalization('hiring.reference.err3')"></span>
+                    </p>                    
+ 					
+                    <div class="clear"></div>
+                    <p class="select" data-ng-if="ctrl.candidateReferenceDetail.reference[$index].length>1"> 
+						<select data-ng-model="detail.referenceType" name="referenceType{{$index}}" data-ng-required="true">
+							<option value="" data-ng-bind="pullInterNationalization('hiring.reference.label5')"></option>
+							<option value="{{reference}}" data-ng-repeat="reference in ctrl.candidateReferenceDetail.reference[$index] track by $index" data-ng-bind="pullInterNationalization('hiring.reference.'+reference)"></option>
+						</select>
+                    </p>
+                    <p class="input m-top" data-ng-if="ctrl.candidateReferenceDetail.reference[$index].length===1" data-ng-init="modelName= ( pullInterNationalization('hiring.reference.'+ ctrl.candidateReferenceDetail.reference[$index][0]) )"> 
+						<input type="text" data-ng-required="true" data-ng-model="modelName" data-ng-init="detail.referenceType = ctrl.candidateReferenceDetail.reference[$index][0]" name="referenceType{{$index}}" placeholder="{{pullInterNationalization('hiring.reference.label5')}}" disabled="disabled"/>
+                    </p>
+                    <p>
+                        <span data-ng-show="candidateRefList.submitted && candidateRefList.referenceType{{$index}}.$error.required" class="err-msg" data-ng-bind-html="pullInterNationalization('hiring.reference.err2')"></span>
+                    </p>
+                </div>
+		                <div class="col-xs-12">
+                    <div class="sp-btn-wrapper sp-red">
+                        <div class="sp-btn">
+                            <input type="button" value="{{::pullInterNationalization('admin.member.continue')}}" data-ng-click="processRefList(candidateRef)" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,122 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color adj0"></div>
+                    <h2 data-ng-bind="traitDesc.section"></h2>
+                </div>
+                <div class="new-modals-wrapper">
+                	<div class="trait-description-wrapper" data-ng-if="traitDesc.id===1">
+                		<p class="trait-desc-header" data-ng-bind="pullInterNationalization(traitDesc.traitName)"></p>
+                		<p class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.'+traitDesc.trait)"></p>	
+                	</div>
+                	<div class="trait-description-wrapper" data-ng-if="traitDesc.id===2">
+						<p class="trait-desc-header" data-ng-bind="pullInterNationalization(traitDesc.traitName)"></p>
+						<p class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.'+traitDesc.trait)"></p>	                	
+                	</div>                	
+                    <div class="trait-description-wrapper" data-ng-if="traitDesc.id===3">
+                        <p data-ng-if="traitDesc.trait==='External'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.External')"></p>
+                        <p data-ng-if="traitDesc.trait==='External'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.External')"></p>
+                        <p data-ng-if="traitDesc.trait==='External'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Internal')"></p>
+                        <p data-ng-if="traitDesc.trait==='External'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Internal')"></p>
+                        <p data-ng-if="traitDesc.trait==='Concrete'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Concrete')"></p>
+                        <p data-ng-if="traitDesc.trait==='Concrete'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Concrete')"></p>
+                        <p data-ng-if="traitDesc.trait==='Concrete'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Intuitive')"></p>
+                        <p data-ng-if="traitDesc.trait==='Concrete'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Intuitive')"></p>
+                        <p data-ng-if="traitDesc.trait==='Cognitive'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Cognitive')"></p>
+                        <p data-ng-if="traitDesc.trait==='Cognitive'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Head')"></p>
+                        <p data-ng-if="traitDesc.trait==='Cognitive'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Affective')"></p>
+                        <p data-ng-if="traitDesc.trait==='Cognitive'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Heart')"></p>
+                        <p data-ng-if="traitDesc.trait==='Orderly'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Orderly')"></p>
+                        <p data-ng-if="traitDesc.trait==='Orderly'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Orderly')"></p>
+                        <p data-ng-if="traitDesc.trait==='Orderly'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Spontaneous')"></p>
+                        <p data-ng-if="traitDesc.trait==='Orderly'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Spontaneous')"></p>
+                    </div>
+                    <div class="trait-description-wrapper" data-ng-if="traitDesc.id===4">
+                        <p data-ng-if="traitDesc.trait==='AttainmentOfGoals'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.AttainmentOfGoals')"></p>
+                        <p data-ng-if="traitDesc.trait==='AttainmentOfGoals'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.AttainmentOfGoals')"></p>
+                        <p data-ng-if="traitDesc.trait==='AttainmentOfGoals'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.RecognitionForEffort')"></p>
+                        <p data-ng-if="traitDesc.trait==='AttainmentOfGoals'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.RecognitionForEfforts')"></p>
+                        <p data-ng-if="traitDesc.trait==='Power'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Power')"></p>
+                        <p data-ng-if="traitDesc.trait==='Power'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Power')"></p>
+                        <p data-ng-if="traitDesc.trait==='Power'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Compliance')"></p>
+                        <p data-ng-if="traitDesc.trait==='Power'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Compliance')"></p>
+                        <p data-ng-if="traitDesc.trait==='Activity'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Activity')"></p>
+                        <p data-ng-if="traitDesc.trait==='Activity'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Activity')"></p>
+                        <p data-ng-if="traitDesc.trait==='Activity'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Affiliation')"></p>
+                        <p data-ng-if="traitDesc.trait==='Activity'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Affiliation')"></p>
+                        <p data-ng-if="traitDesc.trait==='SelfAffirmed'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.SelfAffirmed')"></p>
+                        <p data-ng-if="traitDesc.trait==='SelfAffirmed'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.SelfAffirmed')"></p>
+                        <p data-ng-if="traitDesc.trait==='SelfAffirmed'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.AffirmedByOthers')"></p>
+                        <p data-ng-if="traitDesc.trait==='SelfAffirmed'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.AffirmedByOthers')"></p>
+                        <p data-ng-if="traitDesc.trait==='ExchangeOfIdeas'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.ExchangeOfIdeas')"></p>
+                        <p data-ng-if="traitDesc.trait==='ExchangeOfIdeas'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.ExchangeOfIdeas')"></p>
+                        <p data-ng-if="traitDesc.trait==='ExchangeOfIdeas'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.ReceiveDirection')"></p>
+                        <p data-ng-if="traitDesc.trait==='ExchangeOfIdeas'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.ReceiveDirection')"></p>
+                        <p data-ng-if="traitDesc.trait==='Freedom'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Freedom')"></p>
+                        <p data-ng-if="traitDesc.trait==='Freedom'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Freedom')"></p>
+                        <p data-ng-if="traitDesc.trait==='Freedom'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Consistency')"></p>
+                        <p data-ng-if="traitDesc.trait==='Freedom'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Consistency')"></p>
+                        <p data-ng-if="traitDesc.trait==='TaskCompletion'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.TaskCompletion')"></p>
+                        <p data-ng-if="traitDesc.trait==='TaskCompletion'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.TaskCompletion')"></p>
+                        <p data-ng-if="traitDesc.trait==='TaskCompletion'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.PrefersProcess')"></p>
+                        <p data-ng-if="traitDesc.trait==='TaskCompletion'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.PrefersProcess')"></p>
+                        <p data-ng-if="traitDesc.trait==='Hygiene'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Hygiene')"></p>
+                        <p data-ng-if="traitDesc.trait==='Hygiene'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.WorkConditions')"></p>
+                        <p data-ng-if="traitDesc.trait==='Hygiene'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Accomplishment')"></p>
+                        <p data-ng-if="traitDesc.trait==='Hygiene'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.WorkFunction')"></p>
+                    </div>
+                    <div class="trait-description-wrapper" data-ng-if="traitDesc.id===5">
+                        <p data-ng-if="traitDesc.trait==='Accommodate'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Accommodate')"></p>                    
+                        <p data-ng-if="traitDesc.trait==='Accommodate'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Accommodating')"></p>
+                        
+                        <p data-ng-if="traitDesc.trait==='Avoid'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Avoid')"></p>                        
+                        <p data-ng-if="traitDesc.trait==='Avoid'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Avoiding')"></p>
+                        
+                        <p data-ng-if="traitDesc.trait==='Collaborate'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Collaborate')"></p>                        
+                        <p data-ng-if="traitDesc.trait==='Collaborate'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Collaborating')"></p>
+                        
+                        <p data-ng-if="traitDesc.trait==='Compete'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Compete')"></p>                        
+                        <p data-ng-if="traitDesc.trait==='Compete'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Competing')"></p>
+                        
+                        <p data-ng-if="traitDesc.trait==='Compromise'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Compromise')"></p>                        
+                        <p data-ng-if="traitDesc.trait==='Compromise'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Compromising')"></p>
+                    </div>
+                    <div class="trait-description-wrapper" data-ng-if="traitDesc.id===6">
+                        <p data-ng-if="traitDesc.trait==='Control'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Control')"></p>                    
+                        <p data-ng-if="traitDesc.trait==='Control'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Control')"></p>
+                        
+                        <p data-ng-if="traitDesc.trait==='Security'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Security')"></p>                        
+                        <p data-ng-if="traitDesc.trait==='Security'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Security')"></p>
+                        
+                        <p data-ng-if="traitDesc.trait==='Significance'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Significance')"></p>                        
+                        <p data-ng-if="traitDesc.trait==='Significance'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Significance')"></p>
+                    </div>
+                    <div class="trait-description-wrapper" data-ng-if="traitDesc.id===7">
+                        <p data-ng-if="traitDesc.trait==='Outward'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Outward')"></p>                    
+                        <p data-ng-if="traitDesc.trait==='Outward'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Outward')"></p>
+                        <p data-ng-if="traitDesc.trait==='Outward'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Inward')"></p>                        
+                        <p data-ng-if="traitDesc.trait==='Outward'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Inward')"></p>
+
+                        <p data-ng-if="traitDesc.trait==='Careful'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Careful')"></p>                        
+                        <p data-ng-if="traitDesc.trait==='Careful'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Careful')"></p>
+                        <p data-ng-if="traitDesc.trait==='Careful'" class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Rapid')"></p>                        
+                        <p data-ng-if="traitDesc.trait==='Careful'" class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Rapid')"></p>
+                    </div>
+                    <div class="trait-description-wrapper" data-ng-if="traitDesc.id===8">
+                        <p class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Global')"></p>                    
+                        <p class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Global')"></p>
+                        <p class="trait-desc-header" data-ng-bind="pullInterNationalization('spectrum.trait.type.Analytical')"></p>                        
+                        <p class="trait-desc" data-ng-bind-html="pullInterNationalization('portraitMatchReport.Analytical')"></p>
+                    </div>
+                    <!-- Buttons Starts -->
+                    <div class="dialog-btns-wrapper">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.done')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="closeThisDialog();">
+                    </div>
+                    <!-- Buttons Ends -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,135 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                    <h2 class="hide" data-ng-bind="::pullInterNationalization('competency.admin.peer.evaluations')"></h2>
+                    <ol>
+                    	<li>
+                    		<a href="javascript:void(0)" class="on" data-ng-bind="::pullInterNationalization('competency.admin.peer.evaluations')"></a>
+                    	</li>                   	
+                    </ol>
+                </div>
+                <div class="new-modals-wrapper competency-fixed-height plr0">
+                
+                	<!-- Top User Details Starts -->
+                	<div class="cp-user-info">
+	                    <p class="ev-member-details">
+	                        <span class="pop-competency-info">
+	                        <span class="cp-nm" data-ng-bind="ctrl.competencyProfileMap[ctrl.peerViewUser.competencyProfileId].name"></span>
+	                        <span class="cp-dt" data-ng-bind="ctrl.competencyEvaluation.startDate"></span>
+	                        </span>
+	                        <span class="ev-mem-pic-holder">
+	                                <span class="imgReplacement" data-ng-if="ctrl.peerViewUser.smallProfileImage === null" data-ng-bind="ctrl.peerViewUser.userInitials"></span>
+                        <span data-ng-if="ctrl.peerViewUser.smallProfileImage !== null">
+                                            <img data-ng-src="{{ctrl.peerViewUser.smallProfileImage}}">
+                                        </span>
+	                        </span>
+	                        <span class="ev-mem-info">
+	                                <span class="ev-name sp-link-color" data-ng-bind="ctrl.peerViewUser.name"></span>
+	                        <span class="ev-title" data-ng-bind="ctrl.peerViewUser.title"></span>
+	                        </span>
+	                    </p>
+                    </div>
+                    <!-- Top User Details Ends -->
+                   
+					<!-- Ratings Table Starts -->                    
+                    <div class="cp-user-ratings-wrap">
+                    
+                    	<!-- Left Listing Starts -->
+                        <div class="cp-user-ratings-left">
+                            <div class="cp-ratings-list" data-ng-repeat="peerList in ctrl.peerEvaluations" data-ng-click="ctrl.selectedLeftIndex!==$index?ctrl.viewPeerRatingDetails($index):''" data-ng-class="{'active':ctrl.selectedLeftIndex===$index}">
+                               <span class="active-arrow icon-icon_focus-arrow sp-icon-color" data-ng-class="ctrl.selectedLeftIndex===$index?'show':'hide'"></span>
+                                <p class="ev-member-details">
+                                    <span class="ev-mem-pic-holder">
+                                            <span class="imgReplacement" data-ng-if="peerList.reviewer.name !== '' && peerList.reviewer.smallProfileImage === null" data-ng-bind="peerList.reviewer.userInitials"></span>
+                        <span data-ng-if="peerList.reviewer.smallProfileImage !== null && peerList.reviewer.name !== ''">
+                                            <img data-ng-src="{{peerList.reviewer.smallProfileImage}}">
+                                        </span>
+                                        <span data-ng-if="peerList.reviewer.smallProfileImage !== null && peerList.reviewer.name === ''">
+                                            <img data-ng-src="{{peerList.reviewer.smallProfileImage}}">
+                                        </span>
+                                    </span>
+                                    <span class="ev-mem-info">
+                                                <span class="ev-name sp-link-color" data-ng-bind="peerList.reviewer.fullNameOrEmail"></span>
+                                    <span class="ev-title" data-ng-bind="peerList.reviewer.title"></span>
+                                    </span>
+                                </p>
+                                <div class="ev-rating-box">
+                                    <p class="rating-val sp-link-color mb2" data-ng-if="peerList.score !== 0" data-ng-bind="peerList.score"></p>
+                                        <p class="rating-val" data-ng-if="peerList.score === 0" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                    <div class="ratings-hex">
+                                        <div class="empty-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(ctrl.competencyProfileMap[ctrl.peerViewUser.competencyProfileId].ratingConfiguration.size)}}"></div>
+                                        <div class="full-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(ctrl.competencyProfileMap[ctrl.peerViewUser.competencyProfileId].ratingConfiguration.size)}}" data-ng-style="{width:(peerList.score/((ctrl.competencyProfileMap[ctrl.peerViewUser.competencyProfileId].ratingConfiguration.size)/10))*10+ '%'}"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Left Listing Ends -->
+                        
+                        
+                        <!-- Right Details Starts -->
+                        <div class="cp-user-ratings-right">
+                            <div class="cp-ratings-details">
+                                <div class="cp-user-info info-side">
+                                    <div class="ev-rating-box no-margin posAbs">
+                                        <p class="rating-val sp-link-color mb2" data-ng-if="ctrl.peerRatingInfo.scoreArray !== null" data-ng-bind="ctrl.peerRatingInfo.score"></p>
+                                        <p class="rating-val mb2" data-ng-if="ctrl.peerRatingInfo.scoreArray === null" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                        <div class="ratings-hex" data-ng-if="ctrl.peerRatingInfo.scoreArray !== null">
+                                           <div class="empty-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(ctrl.competencyProfileMap[ctrl.peerViewUser.competencyProfileId].ratingConfiguration.size)}}"></div>
+                                        <div class="full-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(ctrl.competencyProfileMap[ctrl.peerViewUser.competencyProfileId].ratingConfiguration.size)}}" data-ng-style="{width:(ctrl.peerRatingInfo.score/((ctrl.competencyProfileMap[ctrl.peerViewUser.competencyProfileId].ratingConfiguration.size)/10))*10+ '%'}"></div>
+                                        </div>
+                                    </div>                                
+                                    <p class="ev-member-details">
+                                        <span class="ev-mem-pic-holder">
+                                            <span class="imgReplacement" data-ng-if="ctrl.peerRatingInfo.reviewer.name !== '' && ctrl.peerRatingInfo.reviewer.smallProfileImage === null" data-ng-bind="ctrl.peerRatingInfo.reviewer.userInitials"></span>
+                        <span data-ng-if="ctrl.peerRatingInfo.reviewer.smallProfileImage !== null && ctrl.peerRatingInfo.reviewer.name !== ''">
+                                            <img data-ng-src="{{ctrl.peerRatingInfo.reviewer.smallProfileImage}}">
+                                        </span>
+                                        <span data-ng-if="ctrl.peerRatingInfo.reviewer.smallProfileImage !== null && ctrl.peerRatingInfo.reviewer.name === ''">
+                                            <img data-ng-src="{{ctrl.peerRatingInfo.reviewer.smallProfileImage}}">
+                                        </span>
+                                    </span>
+                                        <span class="ev-mem-info">
+                                            <span class="ev-name sp-link-color" data-ng-bind="ctrl.peerRatingInfo.reviewer.fullNameOrEmail"></span>
+                                    <span class="ev-title" data-ng-bind="ctrl.peerRatingInfo.reviewer.title"></span>
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="pop-ratings-wrap">
+                                    <div class="pop-ratings-table">
+                                        <div class="prt-header">
+                                        </div>
+                                        <div class="prt-row" data-ng-repeat="competency in ctrl.competencyProfileMap[ctrl.peerViewUser.competencyProfileId].competencyList track by $index" data-ng-init="loopIndex=$index">
+                                            <div class="prt-col left">
+                                                <p class="cp-txt" data-ng-bind="competency.name"></p>
+                                            </div>
+                                            <div class="prt-col right">
+                                                <div class="ev-rating-box no-margin">
+                                                    <p class="rating-val sp-link-color mb2" data-ng-if="ctrl.peerRatingInfo.scoreArray !== null" data-ng-bind="ctrl.peerRatingInfo.scoreArray[loopIndex]"></p>
+                                                    <p class="rating-val mb2" data-ng-if="ctrl.peerRatingInfo.scoreArray === null" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                                    <div class="ratings-hex" data-ng-if="ctrl.peerRatingInfo.scoreArray !== null">
+                                                        <div class="empty-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(ctrl.competencyProfileMap[ctrl.peerViewUser.competencyProfileId].ratingConfiguration.size)}}"></div>
+                                        <div class="full-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(ctrl.competencyProfileMap[ctrl.peerViewUser.competencyProfileId].ratingConfiguration.size)}}" data-ng-style="{width:(ctrl.peerRatingInfo.scoreArray[loopIndex]/((ctrl.competencyProfileMap[ctrl.peerViewUser.competencyProfileId].ratingConfiguration.size)/10))*10+ '%'}"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Right Details Ends -->
+                        
+                        
+                    </div>
+                    <!-- Ratings Table Ends -->
+                      <div class="clearfix plr20 mtop20">
+                        <a href="javascript:void(0)" class="btn-block btn-15px sp-btn-color" data-ng-click="closeThisDialog()" data-ng-bind="::pullInterNationalization('competency.manager.managerEvaluation.done')"></a>
+                    </div>                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

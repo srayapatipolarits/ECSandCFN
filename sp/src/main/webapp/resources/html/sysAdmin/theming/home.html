@@ -1,0 +1,94 @@
+<section data-ng-controller="companyThemingController as ctrl" data-ng-init="ctrl.getAllCustomizedCompanies()" data-ng-cloak>
+    <div class="x-container members hiring-candidates affiliate-listing blueprint-home admin-theming-home">
+        <div class="container minimumHeight" >
+        <section class="blueprint-home-section sp-panel-accent">
+            <div class="custom-cols left results-content">
+                <div class="blueprint-home-column">
+                    
+                    <div class="results-wrapper">
+                        
+                        <div class="rel-content top">
+                            <div class="global-title" data-ng-bind="pullInterNationalization('admin.theming.defaultText')"></div>
+                            <span data-ng-bind="pullInterNationalization('admin.theming.defaultDesc')"></span>
+                        </div>
+                        <a href="/sp/sysAdmin/company/theming/update" class="subscribeBtn btn-block btn-15px sp-btn-color" data-ng-bind="pullInterNationalization('admin.theming.update')"></a>
+                        
+                    </div>
+                </div>
+            </div>
+            </section>
+            <div class="bgWhiteBord clearfix">
+                <div class="toolbar clearfix">
+                    <div class="title">
+                        <a href="#" role="button" data-ng-click="ctrl.resetResults()">{{pullInterNationalization('admin.theming.allAccounts')}}<span class="blackcolor">({{ctrl.companyList.length}})</span></a>
+                    </div>
+                     
+                    <div class="controls clearfix">
+                        <div class="hiring-list-wrapper">
+                            <p>
+                                <a href="#" data-ng-click="ctrl.selectCompany('new')">Create new Settings</a>
+                            </p>
+                        </div>
+                        <div class="controlwrap search">
+                            <input type="text" class="form-control" maxlength="28" data-ng-model="ctrl.searchText" placeholder="Search" data-ng-change="ctrl.filterResults()">
+                            <button class="sp-icon-color" data-ng-class="ctrl.searchText.length>2? 'icon-icon_remove':'icon-icon_search'" data-ng-click="ctrl.clearSearch()"></button>
+                        </div>
+                    </div>
+                   <!--  <div class="filter-dropdown">
+                                    <select data-ng-model="ctrl.filterType" data-ng-change="ctrl.filterResults()" data-ng-disabled="ctrl.masterCompanyList.length === 0">
+                                       <option value="all">All</option>
+                                       <option value="adminAccess">Admin Access</option>
+                                       <option value="customization">Customization</option>
+                                     </select>
+                         </div> -->
+                </div>
+              
+                <article class="memberHolder">
+                    <div class="heading row">
+                       
+                        <div class="col-md-4 col-sm-4 tog activeFilter" data-ng-click="ctrl.active($event,{'predicate':'name', 'reverse':reverse=!reverse})" data-predicate='name'>
+                            <h4 class="on code" data-ng-bind="pullInterNationalization('admin.blueprint.sortCompany.header')"></h4>
+                        </div>
+                         <div class="col-md-3 col-sm-3 t-name tog" data-ng-click="ctrl.active($event,{'predicate':'address.city', 'reverse':reverse=!reverse})" data-predicate='address'>
+                            <h4 data-ng-bind="pullInterNationalization('admin.blueprint.sortAddress.header')"></h4>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            <h4 data-ng-bind="pullInterNationalization('admin.theming.sortAccess.header')"></h4>
+                        </div>
+                       
+                       
+                        
+                    </div>
+                     <div class="complete-profile animation_1" data-ng-class="{active:show}" id='{{$index}}' data-ng-repeat="list in recordField = (ctrl.companyList) track by list.id">
+                            <div class="table-row clearfix">
+                               
+                                <div class="col-md-4 col-sm-4">
+                                    <p class="code">
+                                        <a href="/sp/sysAdmin/company/theming/update?id={{list.id}}" class="border-link">
+                                            <span class="mock-link" data-ng-bind="list.name"></span>
+                                        </a>
+                                    </p>
+                                </div>
+                                
+                             <div class="col-md-3 col-sm-3">
+								<div class="column-city-padding"> <span data-ng-bind="list.address.city"></span>  <span data-ng-bind="list.address.state"></span> , <span data-ng-bind="list.address.country"></span></div>
+							</div>
+							 <div class="col-md-3 col-sm-3">
+								<div class="column-status-padding">
+								  <span data-ng-if="list.hasThemeAccess" data-ng-bind="pullInterNationalization('admin.theming.access.true')"></span> 
+								  <span data-ng-if="!list.hasThemeAccess" data-ng-bind="pullInterNationalization('admin.theming.access.false')"></span> 
+								 </div>
+							</div>
+							<div class="col-md-1 col-sm-1 remove-btn">
+							 <a href="#" role="button" class="buttoncss" data-ng-click="ctrl.resetThemeModal('superAdmin',list.id)">REMOVE</a>
+                           </div>
+                           </div>
+                            
+                        </div>
+                    <p data-ng-show="!recordField.length && ctrl.responseAvailable" class="noMatchFound ng-hide" data-ng-bind="pullInterNationalization('admin.blueprint.noRecord')"></p>
+			        <p data-ng-show="!recordField.length && !ctrl.responseAvailable" class="noMatchFound ng-hide" data-ng-bind="pullInterNationalization('practiceArea.loading')"></p>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>

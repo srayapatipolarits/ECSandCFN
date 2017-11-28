@@ -1,0 +1,124 @@
+<section ng-controller="alternateBilling" ng-init="getResponse('Individual',false)" ng-if="inviteReady" ng-class="inviteReady?'show':'hide'" class="hide">
+    <div class="x-container members hiring-candidates affiliate-listing pulse-listing ">
+        <div class="container minimumHeight" >
+            <div class="bgWhiteBord clearfix">
+                <div class="toolbar clearfix">
+                    <div class="title">
+                        <a href="#" role="button" ng-click="resetfilter()">All Accounts<span class="blackcolor">({{abMasterList.length}})</span></a>
+                    </div>
+                    <div class="controls clearfix">
+                        <div class="hiring-list-wrapper">
+                            <p class='iea'>
+                                <a href="/sp/sysAdmin/alternateBilling/individualStep1Form">Create Account</a>
+                            </p>
+                        </div>
+                        <div class="hiring-list-wrapper">
+                            <p class='iea'>
+                                <a href="/sp/sysAdmin/alternateBilling/importContactsIndividual">Import Account</a>
+                            </p>
+                        </div>
+                        <div class="hiring-list-wrapper">
+                            <p class='iea'>
+                                <a href="/sp/sysAdmin/alternateBilling/archivedIndividualContacts?type=Individual">Archives</a>
+                            </p>
+                        </div>
+                        <div class="controlwrap search">
+                            <input type="text" class="form-control" maxlength="28" ng-model="searchText" placeholder="Search" ng-keyup="searchTextFilter(searchText)">
+                            <button class="sp-icon-color" ng-class="enableCancel(searchText)? 'icon-icon_remove':'icon-icon_search'" ng-click="clearSearch()"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="filters"></div>
+                <div class="extras">
+                    <div class="controls clearfix hide">
+                        <a href="#" role="button" ng-class="{enabled:userEmail.email.length}" class="icon delete" ng-click="userEmail.email.length && certainDelete()" title="Delete"></a>
+                </div>
+                <article class="memberHolder">
+                    <div class="heading row">
+                        <div class="col-md-2 col-sm-2 tog activeFilter" ng-click="reverse=!reverse;order('memberName', reverse);active($event)" data-predicate='memberName'>
+                            <h4 class="on code" data-ng-bind="'Member Name'"></h4>
+                        </div>
+                        <div class="col-md-2 col-sm-2 tog col-fix-1">
+                            <h4 class="no-arrow" data-ng-bind="'City & Country'"></h4>
+                        </div>
+                        <div class="col-md-2 col-sm-2 tog col-fix-2" ng-click="reverse=!reverse;order('terms', reverse);active($event)" data-predicate='terms'>
+                            <h4 data-ng-bind="'Terms'"></h4>
+                        </div>
+                        <div class="col-md-2 col-sm-2 tog col-fix-2" ng-click="reverse=!reverse;order('accountType', reverse);active($event)" data-predicate='accountType'>
+                            <h4 data-ng-bind="'Type'"></h4>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-fix-3" ng-click="reverse=!reverse;order('endDate', reverse);active($event)" data-predicate='endDate'>
+                            <h4 data-ng-bind="'End Date'"></h4>
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-fix-2" ng-click="reverse=!reverse;order('accountStatus', reverse);active($event)" data-predicate='status'>
+                            <h4 data-ng-bind="'Status'"></h4>
+                        </div>
+                        <div class="col-md-1 col-sm-1"></div>
+                    </div>
+                    
+                    <div infinite-scroll="returnMemberList(pageSize+pageSize)" infinite-scroll-immediate-check="false" infinite-scroll-disabled="disabledInfinite">
+                        <div class="complete-profile animation_1" ng-class="{active:show}" id='{{$index}}' ng-repeat="abList in recordField = ((abList | filter:textSearching).slice(0,pageSize)) track by abList.id">
+                            <div class="table-row clearfix">
+                                <div class="col-md-2 col-sm-2">
+                                <p class="code">
+                                    <a href="/sp/sysAdmin/alternateBilling/viewDetailAccountIndividual?accountId={{abList.id}}" class="border-link">
+                                         <span class="mock-link wordWrap" data-ng-bind="abList.memberName"></span>
+                                         <span class="mock-link wordWrap" data-ng-bind="abList.memberEmail"></span>
+                                     </a>
+                                 </p>
+                                </div>
+                                <div class="col-md-2 col-sm-2 row_title">
+                                    <p class="role_title"><span data-ng-bind="abList.city"></span></p>
+                                    <p class="role_title"><span data-ng-bind="abList.country"></span></p>
+                                </div>
+                                <div class="col-md-2 col-sm-2 row_title">
+                                    <p class="role_title" data-ng-bind="abList.terms"></p>
+                                </div>
+                                <div class="col-md-2 col-sm-2 row_title">
+                                    <p class="role_title" data-ng-bind="abList.accountType"></p>
+                                </div>
+                                <div class="col-md-2 col-sm-2 row_title">
+                                    <p class="role_title" data-ng-bind="abList.endDate"></p>
+                                </div>
+                                <div class="col-md-1 col-sm-1 row_title col-fix-3">
+                                    <p class="role_title status-text" data-ng-bind="abList.deactivated?'Inactive':'Active'"></p>
+                                </div>
+                                <div class="col-md-1 col-sm-1 btnGroupSp" ng-click="show=!show">
+                                    <button class="fullView btn-plus icon-icon_expand sp-icon-color noSpace" type="button"></button><button class="fullView btn-minus icon-icon_collapse-fill sp-icon-color noSpace" type="button"></button>
+                                </div>
+                            </div>
+                            <div class="editable-section clearfix" ng-class="{hidden:!show}">
+                                <div class="col-md-1 col-sm-1 custom_1"></div>
+                                <div class="col-md-11 col-sm-11 custom_2">
+                                    <ul class="clearfix" ng-show="!advance">
+                                        <li>
+                                            <a href="/sp/sysAdmin/alternateBilling/viewDetailAccountIndividual?accountId={{abList.id}}" role="button" class="buttoncss">View Details</a>
+                                        </li>
+                                        <li class='deletePos' ng-if="!abList.deactivated">
+                                            <a href="#" role="button" class="buttoncss" ng-click="deleteConfirm(abList.id);">Deactivate</a>
+                                        </li>
+                                        <li class='deletePos' ng-if="abList.deactivated">
+                                            <a href="#" role="button" class="buttoncss" ng-click="activateAccount(abList.id,'ACTIVE')">Activate</a>
+                                        </li>
+                                        <li class='deletePos'>
+                                            <a href="#" role="button" class="buttoncss" data-ng-class="{grey:!abList.deactivated}" ng-click="abList.deactivated && archiveAccount({'id':abList.id});">Archive</a>
+                                        </li>
+                                    </ul>
+                                    <div class="advanceSelection" ng-show="moreadvance">
+                                        <span data-ng-bind="pullInterNationalization('tools.hiring.delmsg')"></span>
+                                        <button class="ctaBtn1" ng-click='confirmDelete($event)' data-ng-bind="pullInterNationalization('tools.hiring.delyes')"></button>
+                                        <button class="ctaBtn1" ng-click='moreadvance=!moreadvance;advance=!advance' data-ng-bind="pullInterNationalization('tools.hiring.delno')"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p ng-show="!recordField.length" class="noMatchFound ng-hide" data-ng-bind="'No Record Found'"></p>
+                    <!-- <div class="more">
+                    <a href="javascript:void(0)" class="ng-hide" role="button" ng-click="returnaffiliateCodeList(pageSize+pageSize)" ng-hide="alldisplay || recordField.length < intialPageSize" data-ng-bind="pullInterNationalization('tools.hiring.load')"></a>
+                     </div>-->
+                </article>
+            </div>
+        </div>
+    </div>
+</section>

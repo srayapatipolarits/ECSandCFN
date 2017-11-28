@@ -1,0 +1,93 @@
+<style type="text/css">
+.ngdialog-content .col-md-offset-1 {
+   margin-left: 32.333333%;
+}
+.ngdialog-content .col-md-10 {
+  width: 35.333333%;
+}
+.ngdialog-overlay {
+  background: rgba(0,0,0,.8);
+}
+.ngdialog-content .get-started-widget {
+  height: auto;
+}
+
+</style>
+<div class="container" data-ng-style="winWidth<768 && {'height':winHeight}">
+     <div class="row">
+		<div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10" data-ng-class="winWidth<768?'col-full-w':''">
+			<section class="wrapper">
+				<div class="contentBody">
+					<div class="contentArea clearfix get-started-widget panel-fadeIn">
+						<div class="gs-header-with-bg">
+    <span class="ea-setting-icon icon-icon_accounts_settings sp-icon-color"></span>
+    	
+    	<div class="gsh-contnet" data-ng-style="{'background-image':'url('+ctrl.actionPlan.imgUrl+')'}">
+	    	<div class="gsh-contnet-wrap">
+	    		<div class="gshc-icon"></div>
+	    		<div class="gshc-content">
+	    			<div class="gshcc-wrap">
+	    				<p class="gshcc-title" data-ng-bind="ctrl.actionPlan.name"></p>
+	    				<p class="gshcc-desc" data-ng-bind="ctrl.actionPlan.description"></p>
+	    			</div>
+	    		</div>
+	    	</div>
+    	</div>
+    </div>
+    <div class="gs-progress-wrapper">
+    <span class="tasks-linear" data-ng-bind="'0 of '+ ctrl.actionPlan.actionCount +' Tasks Completed (0%)'"></span>
+    <div class="progress-linear" progress-animation  remaining-tasks="0" total-tasks="6" type="linear" style="top:34px;right:90px;"></div>
+     <span class="icon-badge_tutorial badge-icon" style="color:#999"></span>
+    </div>
+    <div class="gs-toggle-wrapper">
+        <!-- Toggle Block Starts -->
+        <section class="gs-step-section" data-ng-repeat="tasks in ctrl.actionPlan.steps track by $index">
+            <header class="gs-step-header" data-ng-class="{'on':view}" data-ng-click="view=!view">
+                <div class="gs-header-content">
+                    <p class="tick-widget">
+                     <div class="tut-progress" progress-animation progress-graph="ctrl.progressBar"  remaining-tasks="0" total-tasks="10" type="radial"></div>
+                    </p>
+                    <div class="gs-step-head-wrap">
+                        <p class="gs-step">
+                            <span>Step {{$index+1}}:</span> {{tasks.name}}
+                        </p>
+                        <p class="gs-step-desc">
+                            {{tasks.devStrategyActionCategoryList[0].totalActions}} tasks
+                        </p>
+                    </div>
+                </div>
+                <div class="icon-toggle">
+                    <div class="close-it icon-icon_collapse"></div>
+                    <div class="open-it icon-icon_expand"></div>
+                </div>
+            </header>
+            <div class="gs-step-content" data-ng-class="view?'show':'hide'">
+                <div class="gs-cont-box" data-ng-class= "{'bg-grey': action.completed, 'bg-white': !action.completed}" data-ng-repeat="action in tasks.devStrategyActionCategoryList[0].actionList track by $index">
+                	<div class="gs-box-left">
+                		<span data-ng-click="ctrl.markComplete(tasks.id,action.uid,action.completed,$parent.$index,ctrl.tutorial.steps[$parent.$index].completedCount,ctrl.tutorial.steps[$parent.$index].count);" class="icon-icon_dev_strategy_check" data-ng-class= "{'sp-icon-color': action.completed, 'grey-icon': !action.completed}"></span>
+                	</div>
+                	<div class="gs-box-right">
+                		<div class="gsb-cont">
+	                		<p class="f700" data-ng-bind="action.title" data-ng-if="action.mediaUrl === null || action.mediaUrl === undefined || action.mediaUrl === ''"></p>
+	                		<a data-ng-href="{{action.mediaUrl}}" data-ng-if="action.mediaUrl !== null && action.mediaUrl !== undefined && action.mediaUrl !== ''"><p class="f700" data-ng-bind="action.title"></p></a>
+	                		<p data-ng-bind-html="action.description | secureHtmlAndReplace"></p>
+	                		<a href="#" data-ng-click="ctrl.imagePop(action.mediaImageLink)" data-ng-if="action.mediaImageLink !== null"><img class="task-image" data-ng-src="{{action.mediaImageLink}}"></a>
+	                		<p class="link-ico" data-ng-repeat="link in action.actionData track by $index">
+	                			<a href="javascript:void(0)" data-ng-click="ctrl.videoPopUp(link.url,link.type,false,tasks.id,action.uid,action.completed)">
+	                				<span class="icon-icon_{{link.type}} sp-icon-color ico-adj"></span>
+	                				<span data-ng-bind="link.linkText | replacePlaceholder"></span>
+	                			</a>
+	                		</p>
+                		</div>
+                	</div>
+                </div>            
+            </div>
+        </section>
+        <!-- Toggle Block Ends -->        
+    </div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,114 @@
+ .col-container {
+    min-height: inherit;
+ }
+.col-container.floatLeft {
+    float: left;
+    width: 25%;
+}
+.col-container.floatRight  {
+       right: -20px;
+        float: left;
+        width: 30%;
+}
+.match-report-section {
+      margin: 35px 0 !important;
+      padding: 0 0 12px !important;
+      height: 50px;
+      border-bottom: 1px solid #ccc;
+      display: table;
+      width: 100%;
+} 
+.match-report-section.last {
+   border-bottom: none;
+   margin-bottom: 0px !important;  
+   }
+.pa-details {
+   margin-top: 25px;
+   border-top: 1px solid #ccc;
+}
+.pa-description-new {
+   font-size: 14px; 
+}
+.new-separator {
+  width: 125%;
+  margin-left: -20px;  
+}
+.bottom-text {
+    font-size: 16px;
+    line-height: 18px;
+    margin-bottom: 10px!important;
+    font-weight: 300;
+    width: 65%;  
+}
+.report-section-close {
+   float: right;
+    position: absolute;
+    font-size: 22px;
+    right: -6px;
+    top: -5px;
+    cursor: pointer; 
+}
+.portrait-report-ext .report-section-close {
+	position: relative;
+}
+.role-detail-report .report-section-close {
+	position: relative;
+	right: -46px;
+}
+.report-data{
+  padding: 5px !important;
+  display: block;   
+}
+.highlight {
+   background: #f9b858;
+}
+.highlight {
+   background: #f9b858;
+    padding: 5px !important;
+    display: flex; 
+}
+.noMatchF {
+    text-align: center;
+    border-top: 1px solid #ccc;
+    padding: 35px 0 20px;
+    font-weight: 300;
+    margin: 0;
+    font-size: 16px;
+}
+.add-right-margin {
+   right: 20px !important; 
+}
+.match-label {
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: 700;  
+}
+.added-top {
+  top: -50px;  
+}
+.title-with-bg {
+    font-size: 16px;
+    line-height: 16px;
+    margin-bottom: 10px !important;
+}
+.title-with-bg.left-font {
+    font-weight: 500;
+    color: #000;
+ }
+.title-with-bg.right-font {
+    font-weight: 300;
+    color: #666;
+ }
+ .title-with-bg .desc-left {
+    color: #000;
+    font-size: 24px;
+    font-weight: 300;
+ }
+.header-title-font {
+  font-size: 20px;  
+}
+.percentage-val {
+  font-size: 24px;
+  font-weight: 700;
+  position: relative;  
+}

@@ -1,0 +1,18 @@
+<nav class="related-article-tools" data-ng-if="trendingList.length">
+    <section class="related-article-links">
+        <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('kcContent.trend')"></h2>
+        <ul class="spotlight-related-links event-trending-articles" id="event_sidebar-trending">
+            <li data-ng-repeat="t in trendingList">
+                <span class="kc-icons-themed sp-icon-color" data-ng-class="{'icon-icon_audio':t.articleType=='PODCAST','icon-icon_slideshow':t.articleType=='SLIDESHARE','icon-icon_video':t.articleType=='VIDEO','icon-icon_article':t.articleType=='TEXT'}"></span>
+                <h3>
+                    <a class="border-link" href="/sp/trainingLibrary/article?{{t.articleLinkUrl}}" id=event_type_{{t.articleType}}_{{$index}}>
+                        <span class="mock-link" data-ng-bind="::t.articleLinkLabel"></span>
+                    </a>
+                </h3>
+                <p class="training-tool-info" data-ng-if="t.author[0]"><span class="author"><span>{{::pullInterNationalization('dashboard.by')}}</span> <span data-ng-bind="::t.author[0]"></span></span>
+                </p>
+            </li>
+        </ul>
+        <!--a class="view-all-link" href="javascript:void(0)"><span>View All</span></a-->
+    </section>
+</nav>

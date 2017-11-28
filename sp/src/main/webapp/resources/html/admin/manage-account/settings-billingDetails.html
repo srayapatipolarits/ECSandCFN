@@ -1,0 +1,191 @@
+<div class="col-content-wrapper mh700 posRel" data-ng-init="ctrl.seeTransactionsView=false;">
+    <div class="members-content-wrapper">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('manageAccountContent.linkBilling')"></h2>
+        </div>
+    </div>
+    <div class="billing-wrapper">
+        <div class="billing-account-info table-layout">
+            <div class="infoDesc-box">
+                <p class="box-title" data-ng-bind="::pullInterNationalization('manageAccountContent.billingHeading1')"></p>
+                <p class="box-desc">
+                    <span class="main-text sp-header-title-color" data-ng-bind="::pullInterNationalization('manageAccountContent.billingTypeBusiness')"></span>
+                    <span class="sub-text" data-ng-bind="ctrl.accountDetails.spPlans.Primary.planInfo.planBillingCycleType+' '+pullInterNationalization('manageAccountContent.billingPayPlan')"></span>
+                </p>
+            </div>
+            <div class="infoDesc-box spacer">
+                <p class="box-title" data-ng-bind="::pullInterNationalization('manageAccountContent.billingHeading2')"></p>
+                <p class="box-desc">
+                    <span class="main-text sp-header-title-color" data-ng-bind="(12*(ctrl.accountDetails.spPlans.Primary.agreementTerm||1))+' '+pullInterNationalization('manageAccountContent.billingMonths')"></span>
+                    <span class="sub-text" data-ng-bind="pullInterNationalization('manageAccountContent.billingExpiresOn')+' '+ctrl.accountDetails.spPlans.Primary.aggreementEndDate"></span>
+                </p>
+            </div>
+            <div class="infoDesc-box">
+                <p class="box-title" data-ng-bind="::pullInterNationalization('manageAccountContent.billingHeading3')"></p>
+                <p class="box-desc">
+                    <span class="main-text sp-header-title-color" data-ng-bind="ctrl.accountDetails.accountNumber"></span>
+                    <span class="sub-text" data-ng-bind="'Partner ID: '+ctrl.accountDetails.partnerId"></span>
+                </p>
+            </div>
+        </div>
+        <div class="accounts-availability-wrapper table-layout">
+            <div class="account-box" data-ng-if="ctrl.isPrimaryPlanActive">
+                <div class="account-box-details">
+                    <p class="title-with-bg f500 sp-background-color">
+                        <span class="desc-left wAdj" data-ng-bind="::pullInterNationalization('manageAccountContent.billingMemAcc')"></span>
+                        <span class="count-detail" data-ng-bind="(ctrl.memberCounts.Primary.availalbeMemberSubscriptions+ctrl.memberCounts.Primary.numActive+ctrl.memberCounts.Primary.numDeleted) || 0"></span>
+                    </p>
+                    <p>
+                        <span class="desc-left" data-ng-bind="::pullInterNationalization('manageAccountContent.billingAccActive')"></span>
+                        <span class="count-detail" data-ng-bind="ctrl.memberCounts.Primary.numActive || 0"></span>
+                    </p>
+                    <p class="f500">
+                        <span class="desc-left" data-ng-bind="::pullInterNationalization('manageAccountContent.billingAccAvailable')"></span>
+                        <a href="javascript:void(0)" class="border-link" data-ng-click="ctrl.requestForAccounts('members')">
+                            <span class="mock-link" data-ng-bind="::pullInterNationalization('manageAccountContent.billingLinkAddMemAcc')"></span>
+                        </a>
+                        <span class="count-detail" data-ng-bind="ctrl.memberCounts.Primary.availalbeMemberSubscriptions|| 0"></span>
+                    </p>
+                    <p>
+                        <span class="desc-left" data-ng-bind="::pullInterNationalization('manageAccountContent.billingAccDeleted')"></span>
+                        <span class="count-detail" data-ng-bind="ctrl.memberCounts.Primary.numDeleted || 0"></span>
+                    </p>
+                </div>
+            </div>
+            <div class="account-box noMargin" data-ng-if="ctrl.isPrimaryPlanActive">
+                <div class="account-box-details">
+                    <p class="title-with-bg f500 sp-background-color">
+                        <span class="desc-left wAdj" data-ng-bind="::pullInterNationalization('manageAccountContent.billingAdminAcc')"></span>
+                        <span class="count-detail" data-ng-bind="(ctrl.existingAdmins.Primary.length+ctrl.memberCounts.Primary.availalbeAdminSubscriptions) || 0"></span>
+                    </p>
+                    <p>
+                        <span class="desc-left" data-ng-bind="::pullInterNationalization('manageAccountContent.billingAccActive')"></span>
+                        <span class="count-detail" data-ng-bind="ctrl.existingAdmins.Primary.length || 0"></span>
+                    </p>
+                    <p class="f500">
+                        <span class="desc-left" data-ng-bind="::pullInterNationalization('manageAccountContent.billingAccAvailable')"></span>
+                        <a href="javascript:void(0)" class="border-link" data-ng-click="ctrl.requestForAccounts('admins')">
+                            <span class="mock-link" data-ng-bind="::pullInterNationalization('manageAccountContent.billingLinkAddAdminAcc')"></span>
+                        </a>
+                        <span class="count-detail" data-ng-bind="ctrl.memberCounts.Primary.availalbeAdminSubscriptions || 0"></span>
+                    </p>
+                    <p>
+                        <span class="desc-left">&#160;</span>
+                        <span class="count-detail">&#160;</span>
+                    </p>
+                </div>
+            </div>
+            <div class="account-box" data-ng-if="ctrl.isHiringPlanActive">
+                <div class="account-box-details">
+                    <p class="title-with-bg f500 sp-background-color">
+                        <span class="desc-left wAdj" data-ng-bind="::pullInterNationalization('manageAccountContent.billingCandAcc')"></span>
+                        <span class="count-detail" data-ng-bind="(ctrl.memberCounts.IntelligentHiring.availalbeMemberSubscriptions+ctrl.memberCounts.IntelligentHiring.numActive) || 0"></span>
+                    </p>
+                    <!--p>
+                        <span class="desc-left" data-ng-bind="::pullInterNationalization('manageAccountContent.billingAccActive')"></span>
+                        <span class="count-detail" data-ng-bind="ctrl.memberCounts.IntelligentHiring.numActive || 0"></span>
+                    </p-->
+                    <p class="f500">
+                        <span class="desc-left" data-ng-bind="::pullInterNationalization('manageAccountContent.billingAccAvailable')"></span>
+                        <a href="javascript:void(0)" class="border-link" data-ng-click="ctrl.requestForAccounts('candidates')">
+                            <span class="mock-link" data-ng-bind="::pullInterNationalization('manageAccountContent.billingLinkAddCandAcc')"></span>
+                        </a>
+                        <span class="count-detail" data-ng-bind="ctrl.memberCounts.IntelligentHiring.availalbeMemberSubscriptions || 0"></span>
+                    </p>
+                    <!--p>
+                        <span class="desc-left" data-ng-bind="::pullInterNationalization('manageAccountContent.billingAccDeleted')"></span>
+                        <span class="count-detail" data-ng-bind="ctrl.memberCounts.IntelligentHiring.numDeleted || 0"></span>
+                    </p-->
+                </div>
+            </div>
+            <div class="account-box noMargin" data-ng-if="ctrl.isHiringPlanActive">
+                <div class="account-box-details">
+                    <p class="title-with-bg f500 sp-background-color">
+                        <span class="desc-left wAdj" data-ng-bind="::pullInterNationalization('manageAccountContent.billingHadminAcc')"></span>
+                        <span class="count-detail" data-ng-bind="(ctrl.existingAdmins.IntelligentHiring.length+ctrl.memberCounts.IntelligentHiring.availalbeAdminSubscriptions) || 0"></span>
+                    </p>
+                    <!--p>
+                        <span class="desc-left" data-ng-bind="::pullInterNationalization('manageAccountContent.billingAccActive')"></span>
+                        <span class="count-detail" data-ng-bind="ctrl.existingAdmins.IntelligentHiring.length || 0"></span>
+                    </p-->
+                    <p class="f500">
+                        <span class="desc-left" data-ng-bind="::pullInterNationalization('manageAccountContent.billingAccAvailable')"></span>
+                        <a href="javascript:void(0)" class="border-link" data-ng-click="ctrl.requestForAccounts('hiring')">
+                            <span class="mock-link" data-ng-bind="::pullInterNationalization('manageAccountContent.billingLinkAddAdminAcc')"></span>
+                        </a>
+                        <span class="count-detail" data-ng-bind="ctrl.memberCounts.IntelligentHiring.availalbeAdminSubscriptions || 0"></span>
+                    </p>
+                    <!--p>
+                        <span class="desc-left">&#160;</span>
+                        <span class="count-detail">&#160;</span>
+                    </p-->
+                </div>
+            </div>
+        </div>
+        <div class="payment-info-wrapper table-layout">
+            <div class="payment-details-box">
+                <p class="pay-box-header">
+                    <span class="floatLeft ttUpperCase" data-ng-bind="::pullInterNationalization('manageAccountContent.billingHeading5')"></span>
+                    <a href="javascript:void(0)" class="border-link floatRight" data-ng-click="ctrl.seeTransactionsView=true;">
+                        <span class="mock-link" data-ng-bind="::pullInterNationalization('manageAccountContent.billingLinkTrans')"></span>
+                    </a>
+                </p>
+                <div class="pay-details">
+                    <div>
+                        <p data-ng-bind="::pullInterNationalization('manageAccountContent.billingLastPay')"></p>
+                        <p class="main-text" data-ng-bind="ctrl.accountDetails.spPlans.Primary.lastPayment.amount | currency"></p>
+                        <p data-ng-bind="ctrl.accountDetails.spPlans.Primary.lastPayment.createdOnFormatted"></p>
+                    </div>
+                    <div>
+                        <p data-ng-bind="::pullInterNationalization('manageAccountContent.billingPayType')"></p>
+                        <p class="main-text" data-ng-bind="ctrl.accountDetails.spPlans.Primary.paymentType"></p>
+                    </div>
+                    <div>
+                        <p data-ng-bind="::pullInterNationalization('manageAccountContent.billingCreditBal')"></p>
+                        <p class="main-text" data-ng-bind="ctrl.accountDetails.spPlans.Primary.creditBalance | currency"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="infoDesc-box tall">
+                <p class="box-title" data-ng-bind="::pullInterNationalization('manageAccountContent.billingHeading4')"></p>
+                <p class="box-desc">
+                    <span class="main-text sp-header-title-color" data-ng-bind="ctrl.accountDetails.spPlans.Primary.planInfo.renewalTotal | currency"></span>
+                    <span class="sub-text" data-ng-bind="ctrl.accountDetails.spPlans.Primary.planInfo.renewalDate"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="members-content-wrapper mtop90">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('manageAccountContent.autoRenewal')"></h2>
+        </div>
+    </div>
+    
+    <div class="all-content-wrapper options-permissions mt20">
+        <div class="options-wrapper">
+            <div class="option-controls">
+                <form novalidate>
+                    <p class="option-btn">
+                        <input type="checkbox" id="autoRenewalCheck" data-ng-model="ctrl.autoRenewalStatus" data-ng-click="ctrl.updateRenewalStatus(ctrl.autoRenewalStatus,'PRIMARY')" />
+                        <label for="autoRenewalCheck" data-ng-class="ctrl.autoRenewalStatus?'sp-background-color':'default-bg'">
+                            <span class="on" data-ng-show="ctrl.autoRenewalStatus">{{pullInterNationalization('admin.account.member.details.onbtn')}} <span class="rnd-switch icon-icon_switch-dot sp-icon-color pos-r"></span></span>
+                            <span class="off" data-ng-show="!ctrl.autoRenewalStatus"><span class="rnd-switch icon-icon_switch-dot sp-icon-color pos-l"></span> <span class="tiHide" data-ng-bind="::pullInterNationalization('admin.account.member.details.offbtn')"></span></span>
+                        </label>
+                    </p>
+                </form>
+            </div>
+            <div class="option-description">
+                <p data-ng-if="ctrl.autoRenewalStatus" class="heading" data-ng-bind="::pullInterNationalization('manageAccountContent.autoRenewalIs')+' '+pullInterNationalization('admin.account.member.details.onbtn')"></p>
+                <p data-ng-if="!ctrl.autoRenewalStatus" class="heading" data-ng-bind="::pullInterNationalization('manageAccountContent.autoRenewalIs')+' '+pullInterNationalization('admin.account.member.details.offbtn')"></p>
+            </div>
+        </div>         
+        <p data-ng-if="ctrl.autoRenewalStatus" class="expire-text" data-ng-bind="::pullInterNationalization('manageAccountContent.autoRenewalDesc')+' '+ctrl.accountDetails.spPlans.Primary.aggreementEndDate"></p>
+        <p data-ng-if="!ctrl.autoRenewalStatus" class="expire-text" data-ng-bind="::pullInterNationalization('admin.account.business.subscribecancel')+' '+ctrl.accountDetails.spPlans.Primary.aggreementEndDate"></p>   
+    </div>
+    
+    <!-- Add Members Overlay Starts  -->
+    <div class="custom-overlay-template" data-ng-if="ctrl.seeTransactionsView">
+        <ng-include src="'/sp/resources/html/admin/manage-account/settings-transactions.html'"></ng-include>
+    </div>
+    <!-- Add Members OVerlay Ends  -->
+</div>

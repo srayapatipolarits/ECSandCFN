@@ -1,0 +1,243 @@
+<div class="x-container">
+    <div class="container">
+        <section class="left-section">
+            <!-- Welcome People Analytics Starts-->
+            <section class="welcome-people-analytics" data-ng-if="!pageRelatedData.visited">
+                <!-- <a href="javascript:void(0)" class="close-custom-overlay icon-icon_remove sp-icon-color" data-ng-click="visitedDashboard()"></a>-->
+                <h1 class="welcome-title" data-ng-bind="::pullInterNationalization('paDashboard.welecometitle1')"></h1>
+                <h1 class="welcome-title" data-ng-bind="::pullInterNationalization('paDashboard.welecometitle2')"></h1>
+                <!--<p class="welcome-description" data-ng-bind="::pullInterNationalization('paDashboard.welecomedescription')"></p>-->
+            </section>
+            <!-- Welcome People Analytics Ends-->
+            <section class="employee-candidate-roles sp-panel-accent">
+                <div class="employee-candidate">
+                    <a data-ng-click="redirectToPage('/sp/pa/tools#/employees')" href="javascript:void(0)" class="ecrTitle border-link ecr-icon icon-icon_accounts_all-members sp-icon-color">
+                        <span class="mock-link ecrTitleSpace ecrTitleText" data-ng-bind="pullInterNationalization('navigation.pa.employee')"></span>
+                    </a>
+                    <div class="ec-section-details">
+                        <div class="description weight-300" data-ng-bind="pullInterNationalization('paDashboard.employeeDescription')"></div>
+                        <div class="redirect-button">
+                            <a data-ng-click="redirectToPage('/sp/pa/tools#/employees?add=true')" href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('pa.employees.add.title')"></a>
+                        </div>
+                    </div>
+                    <div class="ec-number-section">
+                        <a class="total-count sp-link-color default_{{!(!!pageRelatedData.employeeCandidateStats.employee.totalUsers)}}" href="javascript:void(0)" data-ng-click="pageRelatedData.employeeCandidateStats.employee.totalUsers && redirectToPage('/sp/pa/tools#/employees')" data-ng-bind="pageRelatedData.employeeCandidateStats.employee.totalUsers | thousandSuffix"></a>
+                        <div class="prism-status">
+                           <!-- <div class="head" data-ng-bind="::pullInterNationalization('paDashboard.prismStatus')"></div>-->
+                            <div class="block-content employee">
+                                <div class="ec-cppp">
+                                    <a class="number sp-link-color default_{{!(!!pageRelatedData.employeeCandidateStats.employee.prismCompleted)}}" href="javascript:void(0)" data-ng-click="pageRelatedData.employeeCandidateStats.employee.prismCompleted && redirectToPage('/sp/pa/tools#/employees?userStatus=VALID')" data-ng-bind="pageRelatedData.employeeCandidateStats.employee.prismCompleted | thousandSuffix"></a>
+                                    <div class="status" data-ng-bind="::pullInterNationalization('paDashboard.completed')"></div>
+                                </div>
+                                <div class="ec-cppp">
+                                    <a class="number sp-link-color default_{{!(!!pageRelatedData.employeeCandidateStats.employee.prismInProgress)}}" href="javascript:void(0)" data-ng-click="pageRelatedData.employeeCandidateStats.employee.prismInProgress && redirectToPage('/sp/pa/tools#/employees?userStatus=ASSESSMENT_PROGRESS')" data-ng-bind="pageRelatedData.employeeCandidateStats.employee.prismInProgress | thousandSuffix"></a>
+                                    <div class="status" data-ng-bind="::pullInterNationalization('paDashboard.prismInProgress')"></div>
+                                </div>
+                                <div class="ec-cppp">
+                                    <a class="number sp-link-color default_{{!(!!pageRelatedData.employeeCandidateStats.employee.prismPending)}}" href="javascript:void(0)" data-ng-click="pageRelatedData.employeeCandidateStats.employee.prismPending && redirectToPage('/sp/pa/tools#/employees?userStatus=ASSESSMENT_PENDING')" data-ng-bind="pageRelatedData.employeeCandidateStats.employee.prismPending | thousandSuffix"></a>
+                                    <div class="status" data-ng-bind="::pullInterNationalization('paDashboard.prismPending')"></div>
+                                </div>
+                                <div class="ec-cppp">
+                                    <a class="number sp-link-color default_{{!(!!pageRelatedData.employeeCandidateStats.employee.profileIncomplete)}}" href="javascript:void(0)" data-ng-click="pageRelatedData.employeeCandidateStats.employee.profileIncomplete && redirectToPage('/sp/pa/tools#/employees?userStatus=INVITATION_SENT')" data-ng-bind="pageRelatedData.employeeCandidateStats.employee.profileIncomplete | thousandSuffix"></a>
+                                    <div class="status" data-ng-bind="::pullInterNationalization('paDashboard.profileIncomplete')"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="employee-candidate">
+                    <a data-ng-click="redirectToPage('/sp/pa/tools#/candidates')" href="javascript:void(0)" class="ecrTitle border-link ecr-icon icon-candidates sp-icon-color">
+                        <span class="mock-link ecrTitleSpace ecrTitleText" data-ng-bind="pullInterNationalization('navigation.pa.candidates')"></span>
+                    </a>
+                    <div class="ec-section-details">
+                        <div class="description weight-300" data-ng-bind="pullInterNationalization('paDashboard.candidateDescription')"></div>
+                        <div class="redirect-button">
+                            <a data-ng-click="redirectToPage('/sp/pa/tools#/candidates?add=true')" href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('candidates.addCandidates')"></a>
+                        </div>
+                    </div>
+                    <div class="ec-number-section">
+                        <a class="total-count sp-link-color default_{{!(!!pageRelatedData.employeeCandidateStats.candidate.totalUsers)}}" href="javascript:void(0)" data-ng-click="pageRelatedData.employeeCandidateStats.employee.totalUsers && redirectToPage('/sp/pa/tools#/candidates')" data-ng-bind="pageRelatedData.employeeCandidateStats.candidate.totalUsers | thousandSuffix"></a>
+                        <div class="prism-status">
+                            <!-- <div class="head" data-ng-bind="::pullInterNationalization('paDashboard.prismStatus')"></div> -->
+                            <div class="block-content candidate">
+                                <div class="ec-cppp">
+                                    <a class="number sp-link-color default_{{!(!!pageRelatedData.employeeCandidateStats.candidate.prismCompleted)}}" href="javascript:void(0)" data-ng-click="pageRelatedData.employeeCandidateStats.candidate.prismCompleted && redirectToPage('/sp/pa/tools#/candidates?userStatus=VALID')" data-ng-bind="pageRelatedData.employeeCandidateStats.candidate.prismCompleted | thousandSuffix"></a>
+                                    <div class="status" data-ng-bind="::pullInterNationalization('paDashboard.completed')"></div>
+                                </div>
+                                <div class="ec-cppp">
+                                    <a class="number sp-link-color default_{{!(!!pageRelatedData.employeeCandidateStats.candidate.prismInProgress)}}" href="javascript:void(0)" data-ng-click="pageRelatedData.employeeCandidateStats.candidate.prismInProgress && redirectToPage('/sp/pa/tools#/candidates?userStatus=ASSESSMENT_PROGRESS')" data-ng-bind="pageRelatedData.employeeCandidateStats.candidate.prismInProgress | thousandSuffix"></a>
+                                    <div class="status" data-ng-bind="::pullInterNationalization('paDashboard.prismInProgress')"></div>
+                                </div>
+                                <div class="ec-cppp">
+                                    <a class="number sp-link-color default_{{!(!!pageRelatedData.employeeCandidateStats.candidate.referencesPending)}}" href="javascript:void(0)" data-ng-click="pageRelatedData.employeeCandidateStats.candidate.referencesPending && redirectToPage('/sp/pa/tools#/candidates?userStatus=ADD_REFERENCES')" data-ng-bind="pageRelatedData.employeeCandidateStats.candidate.referencesPending | thousandSuffix"></a>
+                                    <div class="status" data-ng-bind="::pullInterNationalization('paDashboard.referencesPending')"></div>
+                                </div>
+                                <div class="ec-cppp">
+                                    <a class="number sp-link-color default_{{!(!!pageRelatedData.employeeCandidateStats.candidate.prismPending)}}" href="javascript:void(0)" data-ng-click="pageRelatedData.employeeCandidateStats.candidate.prismPending && redirectToPage('/sp/pa/tools#/candidates?userStatus=ASSESSMENT_PENDING')" data-ng-bind="pageRelatedData.employeeCandidateStats.candidate.prismPending | thousandSuffix"></a>
+                                    <div class="status" data-ng-bind="::pullInterNationalization('paDashboard.prismPending')"></div>
+                                </div>
+                                <div class="ec-cppp">
+                                    <a class="number sp-link-color default_{{!(!!pageRelatedData.employeeCandidateStats.candidate.profileIncomplete)}}" href="javascript:void(0)" data-ng-click="pageRelatedData.employeeCandidateStats.candidate.profileIncomplete && redirectToPage('/sp/pa/tools#/candidates?userStatus=INVITATION_SENT')" data-ng-bind="pageRelatedData.employeeCandidateStats.candidate.profileIncomplete | thousandSuffix"></a>
+                                    <div class="status" data-ng-bind="::pullInterNationalization('paDashboard.profileIncomplete')"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="employee-candidate">
+                    <a data-ng-click="redirectToPage('/sp/pa/tools#/rolesPA')" href="javascript:void(0)" class="ecrTitle border-link ecr-icon icon-Roles sp-icon-color">
+                        <span class="mock-link ecrTitleSpace_style1 ecrTitleText" data-ng-bind="pullInterNationalization('shareportrait.roles')"></span>
+                    </a>
+                    <div class="ec-section-details" data-ng-if="!pageRelatedData.employeeCandidateStats.roles.length">
+                        <div class="ec-section-list">
+                            <article class="clearfix">
+                                <div class="description weight-300" data-ng-bind="pullInterNationalization('paDashboard.rolesDescriptionEmpty')"></div>
+                            </article>
+                            <div class="redirect-button left">
+                                <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('candidate.createRole.create')" data-ng-click="showNewRoleView();"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ec-section-details" data-ng-if="pageRelatedData.employeeCandidateStats.roles.length">
+                    	<div class="clearfix">
+	                        <div class="description weight-300" data-ng-bind="pullInterNationalization('paDashboard.rolesDescription')"></div>
+	                        <div class="redirect-button">
+	                            <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('candidate.createRole.create')" data-ng-click="showNewRoleView();"></a>
+	                        </div>
+                        </div>
+                        <div class="ec-section-list">
+                            <div class="search-filter sp-search-button">
+                                <input type="text" maxlength="28" data-ng-model="pageSetting.textSearching" placeholder="{{pullInterNationalization('paDashboard.searchRoles')}}" data-ng-model-options="{ debounce: { 'default': 100, 'blur': 0 } }" data-ng-minlength="2" data-ng-change="updateSearchVal(pageSetting.textSearching)">
+                                <button data-ng-class="{'icon-icon_remove':pageSetting.textSearching.length, 'icon-icon_search': !pageSetting.textSearching.length}" class="sp-icon-color" data-ng-click="pageSetting.textSearching='';resetUpdatedSearchVal();"></button>
+                            </div>
+                            <div class="detail-listing">
+                                <div class="listing" data-ng-repeat="rolesList in record = (pageRelatedData.employeeCandidateStats.roles | filter:pageSetting.updateSearchText | limitTo:3) track by rolesList.id">
+                                    <div class="roles-name">
+                                        <a data-ng-click="redirectToPage('/sp/pa/tools#/roleDetails?id='+rolesList.id)" href="javascript:void(0)" class="border-link">
+                                            <span class="mock-link" data-ng-bind="rolesList.name | unescapeText"></span>
+                                        </a>
+                                    </div>
+                                    <div class="description" data-ng-bind="rolesList.description | addEllipsis:150"></div>
+                                </div>
+                                <div class="custom-row-5" data-ng-if="!record.length">
+                                    <div class="custom-new-cols s100">
+                                        <p class="no-data-msgs" data-ng-bind="::pullInterNationalization('manageAccountContent.noUserAvailable')"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view-all">
+                            <a data-ng-click="redirectToPage('/sp/pa/tools#/rolesPA')" href="javascript:void(0)" class="weight-300 border-link" data-ng-bind="::pullInterNationalization('feedback.filters.status.viewAll.label')"></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="employee-candidate-roles sp-panel-accent" data-ng-if="pageRelatedData.dashboardSettingsDetail[0].articles.length">
+                <div class="learning-articles-wrapper">
+                    <span class="ecrTitleText grey-color" data-ng-bind="pullInterNationalization('practiceArea.resources') + ' ('+pageRelatedData.dashboardSettingsDetail[0].articles.length+')'"></span>
+                   
+                    <div class="ec-section-details">
+                        <article class="clearfix">
+                            <div class="description weight-300" data-ng-bind="pullInterNationalization('paDashboard.resourcesDescription')"></div>
+                        </article>
+                        <div class="search-filter sp-search-button extraPaddingBottom">
+                            <input type="text" maxlength="28" data-ng-model="pageSetting.articleSearching" placeholder="{{::pullInterNationalization('paDashboard.searchArticles')}}" data-ng-model-options="{ debounce: { 'default': 100, 'blur': 0 } }" data-ng-minlength="2">
+                            <button data-ng-class="{'icon-icon_remove':pageSetting.articleSearching.length, 'icon-icon_search': !pageSetting.articleSearching.length}" class="sp-icon-color" data-ng-click="pageSetting.articleSearching='';"></button>
+                        </div>
+                        <div class="resources-height">
+	                        <div class="new-article-content" data-ng-repeat="articles in recordField = (pageRelatedData.dashboardSettingsDetail[0].articles | filter : pageSetting.articleSearching) track by articles.id">
+	                            <div class="new-article-details">
+	                                <span class="new-article-icon sp-icon-color" data-ng-class="{'icon-icon_audio':articles.articleType=='PODCAST','icon-icon_slideshow':articles.articleType=='SLIDESHARE','icon-icon_video':articles.articleType=='VIDEO','icon-icon_article':articles.articleType=='TEXT'}"></span>
+	                                <div class="event-practice-article">
+	                                    <div class="article-name">
+	                                        <a href="javascript:void(0)" data-ng-click="openArticle(articles.articleLinkUrl)" class="border-link" id="event_type_{{articles.articleType}}_{{$index}}"> <span class="mock-link article-font" data-ng-bind="articles.articleLinkLabel"></span>
+	                                        </a>
+	                                    </div>
+	                                    <div class="new-articles-info"> <span data-ng-class="{'add-pipe-right' : articles.articleSource || articles.mandatoryArticle || articles.userArticleStatus==='COMPLETED'}" data-ng-if="articles.author" data-ng-bind="pullInterNationalization('practice.by')+' '+articles.author[0]"></span>
+	                                        <span data-ng-class="{'add-pipe-right' : articles.mandatoryArticle || articles.userArticleStatus==='COMPLETED'}" data-ng-if="articles.articleSource" data-ng-bind="articles.articleSource"></span>
+	                                        <span class="editors-choice" data-ng-if="articles.mandatoryArticle"><em
+	                                        data-ng-bind="pullInterNationalization('practiceArea.Filter3')"></em></span>
+	                                    </div>
+	                                    <div class="new-articles-info" data-ng-if="articles.userArticleStatus==='COMPLETED'">
+	                                        <span class="completed-icon adj"> 
+	                                            <span class="article-done-icon icon-icon_dev_strategy_check sp-icon-color adj1"></span>
+	                                        <span class="article-done-text" data-ng-bind="pullInterNationalization('practiceArea.Filter6')"></span>
+	                                        </span>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+                        </div>
+                        <div class="list-err-msgs" data-ng-if="!recordField.length">
+                            <p data-ng-bind="pullInterNationalization('practiceArea.noMatch')"></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+        <section class="right-section">
+            <member-redirect></member-redirect>
+            <!-- Relation Ship Advisor  -->
+            <article class="relationShipAdvisor-message space-col" data-ng-style="{'background-image':'url(' +(pageRelatedData.dashboardSettingsDetail[0].images.RelationShipAdvisor||image.relationShip)+')'}">
+                <div class="center">
+                    <h3 class="ra-title">
+                    <span class="ra-setting-icon icon-icon_RelationsAdvisor"></span>
+                    <span class="textual" data-ng-bind="::pullInterNationalization('dashboardAdmin.option3')"></span>
+                </h3>
+                    <div class="right">
+                        <span class="content" data-ng-bind="::pullInterNationalization('paDashboard.relationShipAdvisor')"></span>
+                        <div class="ra-go">
+                            <a data-ng-click="redirectToPage('/sp/pa/relationship-advisor')" href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="pullInterNationalization('dashboard.ra.go')"></a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <!-- Relation Ship Advisor  -->
+            <!-- Spectrum  -->
+            <article class="relationShipAdvisor-message spectrum-analytics" data-ng-style="{'background-image':'url(' +(pageRelatedData.dashboardSettingsDetail[0].images.Spectrum||image.spectrum)+')'}">
+                <div class="center">
+                    <h3 class="ra-title">
+                    <span class="textual" data-ng-bind="::pullInterNationalization('paDashboard.prismAnalytics')"></span>
+                </h3>
+                    <div class="right">
+                        <span class="content" data-ng-bind="::pullInterNationalization('paDashboard.prismAnalyticsContent')"></span>
+                    </div>
+                </div>
+            </article>
+            <ul class="pa-accords space-col">
+                <li>
+                    <a data-ng-click="redirectToPage('/sp/pa/spectrum?type=profile')" href="javascript:void(0)" class="list-item icon-icon_spectrum-personality-balance link-icons sp-icon-color">
+                        <span data-ng-bind="pullInterNationalization('paDashboard.personalityBalance')" class="hover-animate"></span>
+                    </a>
+                </li>
+                <li>
+                    <a data-ng-click="redirectToPage('/sp/pa/spectrum?type=analytics')" href="javascript:void(0)" class="list-item icon-icon_spectrum-ert-i-analytics link-icons sp-icon-color">
+                        <span data-ng-bind="pullInterNationalization('paDashboard.prismTraits')" class="hover-animate"></span>
+                    </a>
+                </li>
+                <li>
+                    <a data-ng-click="redirectToPage('/sp/pa/spectrum?type=insights')" href="javascript:void(0)" class="list-item icon-icon_spectrum-ert-i-insights link-icons sp-icon-color">
+                        <span data-ng-bind="pullInterNationalization('paDashboard.prismInsights')" class="hover-animate"></span>
+                    </a>
+                </li>
+            </ul>
+            <!-- Spectrum  -->
+            <!-- Ideal Portrait  -->
+            <article class="relationShipAdvisor-message space-col" data-ng-style="{'background-image':'url('+(pageRelatedData.dashboardSettingsDetail[0].images.Hiring||image.idealPortrait)+')'}">
+                <div class="center">
+                    <h3 class="ra-title">
+                    <span class="ra-setting-icon icon-idealPortrait"></span>
+                    <span class="textual" data-ng-bind="::pullInterNationalization('paDashboard.idealportrait')"></span>
+                </h3>
+                    <div class="right">
+                        <span class="content" data-ng-bind="::pullInterNationalization('paDashboard.idealportraitContent')"></span>
+                        <div class="ra-go">
+                            <a data-ng-click="redirectToPage('/sp/pa/ideal-portrait#/home')" href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="pullInterNationalization('dashboard.ra.go')"></a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <!-- Ideal Portrait  -->
+        </section>
+    </div>
+</div>

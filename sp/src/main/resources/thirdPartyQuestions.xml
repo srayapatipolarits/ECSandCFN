@@ -1,0 +1,1063 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- smartling.translate_paths = Questions/Category.Directions, Questions/Category/Question/Variant/Text, Questions/Category/Question/Variant/MultipleChoiceResponses/MultipleChoiceResponse/Text, Questions/Category/Question/Variant/RatingResponses/RatingResponse/Text  -->
+<!-- smartling.source_key_paths = Questions/{Category.Name},Questions/Category/Question/{Variant.Id},Questions/Category/Question/Variant/MultipleChoiceResponses/{MultipleChoiceResponse.Id}, Questions/Category/Question/Variant/RatingResponses/{RatingResponse.Id} -->
+<Questions Version="1.0">
+  <!--
+    Section 3A: Personality
+    Questions 152 - 179
+  -->
+  <Category Name="Personality" Number="7" Type="MostLeast" Directions="Select the word that most Describes [Name] and Drag it to the &quot;MOST&quot; Category.
+            Select the word that least Describes [Name] and Drag it to the &quot;LEAST&quot; Category. Then, click Next to continue.">
+    <Question Number="152" Category="Personality">
+      <Variant Id="3x0z1bcv" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="gl6d8bjv" DisplayValue="a" key="Kind">
+            <Text>Kind</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="9zpm1f8d" DisplayValue="b" key="Stimulating">
+            <Text>Stimulating</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="npw08fff" DisplayValue="c" key="Independent">
+            <Text>Independent</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="h2c71j4y" DisplayValue="d" key="Perceptive">
+            <Text>Perceptive</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="153" Category="Personality">
+      <Variant Id="wsjn8h9z" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="7hq1hhh0" DisplayValue="a" key="Neighborly">
+            <Text>Neighborly</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="2w688l6j" DisplayValue="b" key="Restless">
+            <Text>Restless</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="fldphlck" DisplayValue="c" key="Inspiring">
+            <Text>Inspiring</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="8zww8p32" DisplayValue="d" key="Careful">
+            <Text>Careful</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="154" Category="Personality">
+      <Variant Id="mn29hp83" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="zc7ppnf4" DisplayValue="a" key="Cheerful">
+            <Text>Cheerful</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="trqxgr4n" DisplayValue="b" key="Helpful">
+            <Text>Helpful</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="5gxbprbp" DisplayValue="c" key="Determined">
+            <Text>Determined</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="0vdjgv16" DisplayValue="d" key="Reserved">
+            <Text>Reserved</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="155" Category="Personality">
+      <Variant Id="cklypv67" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="q8rcxtc8" DisplayValue="a" key="Demanding">
+            <Text>Demanding</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="kn7kpx3s" DisplayValue="b" key="Charming">
+            <Text>Charming</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="xbfzxx8t" DisplayValue="c" key="Compliant">
+            <Text>Compliant</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="rrx5p0zb" DisplayValue="d" key="Contented">
+            <Text>Contented</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="156" Category="Personality">
+      <Variant Id="3f3lx05c" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="g4904zbd" DisplayValue="a" key="Accurate">
+            <Text>Accurate</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="9js6x31x" DisplayValue="b" key="Friendly">
+            <Text>Friendly</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="n7ym426y" DisplayValue="c" key="Calm">
+            <Text>Calm</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="hmftx5yg" DisplayValue="d" key="Outspoken">
+            <Text>Outspoken</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="157" Category="Personality">
+      <Variant Id="vbm7453h" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="70tnc48j" DisplayValue="a" key="Outgoing">
+            <Text>Outgoing</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="1f9v3801" DisplayValue="b" key="Reasonable">
+            <Text>Reasonable</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="f3g8b752" DisplayValue="c" key="Adventurous">
+            <Text>Adventurous</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="8jyg3bwl" DisplayValue="d" key="Insightful">
+            <Text>Insightful</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="158" Category="Personality">
+      <Variant Id="m64wbb1m" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="zxb9k97n" DisplayValue="a" key="Conventional">
+            <Text>Conventional</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="t9thbfy5" DisplayValue="b" key="Decisive">
+            <Text>Decisive</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="500xkd36" DisplayValue="c" key="Talkative">
+            <Text>Talkative</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="0dh3bjvq" DisplayValue="d" key="Controlled">
+            <Text>Controlled</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="159" Category="Personality">
+      <Variant Id="c3njkh0r" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="qsvysg5s" DisplayValue="a" key="Poised">
+            <Text>Poised</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="k6b4klw9" DisplayValue="b" key="Impatient">
+            <Text>Impatient</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="xwjksk2b" DisplayValue="c" key="Observant">
+            <Text>Observant</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="r90rkpsv" DisplayValue="d" key="Restrained">
+            <Text>Restrained</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="160" Category="Personality">
+      <Variant Id="3z55snyw" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="gpcl0n3x" DisplayValue="a" key="Cooperative">
+            <Text>Cooperative</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="92vssrvf" DisplayValue="b" key="Argumentative">
+            <Text>Argumentative</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="ns160q0g" DisplayValue="c" key="Orderly">
+            <Text>Orderly</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="h5jdrvqz" DisplayValue="d" key="Lighthearted">
+            <Text>Lighthearted</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="161" Category="Personality">
+      <Variant Id="vwqtztx0" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="6kw76t21" DisplayValue="a" key="Gentle">
+            <Text>Gentle</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="1zcfzxsk" DisplayValue="b" key="Original">
+            <Text>Original</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="fnkv6wyl" DisplayValue="c" key="Persuasive">
+            <Text>Persuasive</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="7212z0p3" DisplayValue="d" key="Humble">
+            <Text>Humble</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="162" Category="Personality">
+      <Variant Id="mr7g6zv4" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="zgdwfz05" DisplayValue="a" key="Determined">
+            <Text>Determined</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="tvw362rp" DisplayValue="b" key="Cautious">
+            <Text>Cautious</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="5k2hf1xq" DisplayValue="c" key="Convincing">
+            <Text>Convincing</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="0ykq65m8" DisplayValue="d" key="GoodNatured">
+            <Text>Good Natured</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="163" Category="Personality">
+      <Variant Id="cnr4f4s8" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="qbyjn4z9" DisplayValue="a" key="Responsive">
+            <Text>Responsive</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="krfrf7pv" DisplayValue="b" key="Expressive">
+            <Text>Expressive</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="xfl5n7vv" DisplayValue="c" key="Conscientious">
+            <Text>Conscientious</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="rv2cfbld" DisplayValue="d" key="Dominant">
+            <Text>Dominant</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="164" Category="Personality">
+      <Variant Id="3j8sm9rd" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="g7g6v9xf" DisplayValue="a" key="Daring">
+            <Text>Daring</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="9mydmdmz" DisplayValue="b" key="Enthusiastic">
+            <Text>Enthusiastic</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="nb3tvdtz" DisplayValue="c" key="Tactful">
+            <Text>Tactful</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="hql0mhjj" DisplayValue="d" key="Satisfied">
+            <Text>Satisfied</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="165" Category="Personality">
+      <Variant Id="vfsfvgpk" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="63zv2gvk" DisplayValue="a" key="Social">
+            <Text>Social</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="1jg1vkl3" DisplayValue="b" key="Introspective">
+            <Text>Introspective</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="d6ng2kr3" DisplayValue="c" key="StrongWilled">
+            <Text>Strong Willed</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="7m4nvngn" DisplayValue="d" key="Predictable">
+            <Text>Predictable</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="166" Category="Personality">
+      <Variant Id="l9922nnp" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="z0hh9mtp" DisplayValue="a" key="Competitive">
+            <Text>Competitive</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="sdzp2qj7" DisplayValue="b" key="Considerate">
+            <Text>Considerate</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="53539qp8" DisplayValue="c" key="Funloving">
+            <Text>Fun Loving</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="0hn92tfs" DisplayValue="d" key="Private">
+            <Text>Private</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="167" Category="Personality">
+      <Variant Id="c6tq9tlt" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="qw04hsrv" DisplayValue="a" key="Tactful">
+            <Text>Tactful</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="k9hb8whc" DisplayValue="b" key="Insistent">
+            <Text>Insistent</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="xzprhwnd" DisplayValue="c" key="Agreeable">
+            <Text>Agreeable</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="rd5y8zcx" DisplayValue="d" key="Persuasive">
+            <Text>Persuasive</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="168" Category="Personality">
+      <Variant Id="32cchzjy" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="gsjsqyqz" DisplayValue="a" key="Courageous">
+            <Text>Courageous</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="950zh2fh" DisplayValue="b" key="Inspiring">
+            <Text>Inspiring</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="nw6dq1lj" DisplayValue="c" key="Submissive">
+            <Text>Submissive</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="h8plh4b1" DisplayValue="d" key="Timid">
+            <Text>Timid</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="169" Category="Personality">
+      <Variant Id="vzw0q4h2" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="6n1fy3n3" DisplayValue="a" key="Perfectionist">
+            <Text>Perfectionist</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="12kmq7cm" DisplayValue="b" key="Obedient">
+            <Text>Obedient</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="drq1y6kn" DisplayValue="c" key="Firm">
+            <Text>Firm</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="7567q985" DisplayValue="d" key="Playful">
+            <Text>Playful</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="170" Category="Personality">
+      <Variant Id="lvdny9f6" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="ykl258l7" DisplayValue="a" key="Lovable">
+            <Text>Lovable</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="sy28xdbr" DisplayValue="b" key="Charming">
+            <Text>Charming</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="5n7p4chs" DisplayValue="c" key="Logical">
+            <Text>Logical</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="z1qxxh69" DisplayValue="d" key="Bold">
+            <Text>Bold</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="171" Category="Personality">
+      <Variant Id="crx94gdb" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="qf3qcfkc" DisplayValue="a" key="Impartial">
+            <Text>Impartial</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="kvly4k8w" DisplayValue="b" key="Assertive">
+            <Text>Assertive</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="xjsbcjfx" DisplayValue="c" key="Confident">
+            <Text>Confident</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="ry8k4n5f" DisplayValue="d" key="Sympathetic">
+            <Text>Sympathetic</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="172" Category="Personality">
+      <Variant Id="3mfzcmbg" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="gbmclmhh" DisplayValue="a" key="Respectful">
+            <Text>Respectful</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="9q3lcq70" DisplayValue="b" key="Helpful">
+            <Text>Helpful</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="nf9zlpd1" DisplayValue="c" key="Pioneering">
+            <Text>Pioneering</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="hts6ct3k" DisplayValue="d" key="Optimistic">
+            <Text>Optimistic</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="173" Category="Personality">
+      <Variant Id="vjymls8l" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="6640tsgm" DisplayValue="a" key="Thorough">
+            <Text>Thorough</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="1mm7lw54" DisplayValue="b" key="Willing">
+            <Text>Willing</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="d9tntvb5" DisplayValue="c" key="Eager">
+            <Text>Eager</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="7q9vkz2p" DisplayValue="d" key="Highspirited">
+            <Text>High Spirited</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="174" Category="Personality">
+      <Variant Id="ldh8sy7q" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="y3np0ydr" DisplayValue="a" key="Spontaneous">
+            <Text>Spontaneous</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="sh4ws138" DisplayValue="b" key="Reserved">
+            <Text>Reserved</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="46b90199" DisplayValue="c" key="Forceful">
+            <Text>Forceful</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="zlths40t" DisplayValue="d" key="Easygoing">
+            <Text>Easygoing</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="175" Category="Personality">
+      <Variant Id="b90x035v" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="qz5b73cw" DisplayValue="a" key="Patient">
+            <Text>Patient</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="kdnj062d" DisplayValue="b" key="Selfreliant">
+            <Text>Self-reliant</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="x2vy767f" DisplayValue="c" key="Sociable">
+            <Text>Sociable</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="rhb409yz" DisplayValue="d" key="Softspoken">
+            <Text>Soft-spoken</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="176" Category="Personality">
+      <Variant Id="35jk784z" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="gwqzg890" DisplayValue="a" key="Aggressive">
+            <Text>Aggressive</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="98657c0j" DisplayValue="b" key="Outgoing">
+            <Text>Outgoing</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="nzclgc5k" DisplayValue="c" key="Friendly">
+            <Text>Friendly</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="hcvs7gx3" DisplayValue="d" key="Cautious">
+            <Text>Cautious</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="177" Category="Personality">
+      <Variant Id="v216fg23" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="6r7mnf74" DisplayValue="a" key="Disciplined">
+            <Text>Disciplined</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="15qtfjzp" DisplayValue="b" key="Persistent">
+            <Text>Persistent</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="dvw7nj4p" DisplayValue="c" key="Generous">
+            <Text>Generous</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="78cffmv7" DisplayValue="d" key="Animated">
+            <Text>Animated</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="178" Category="Personality">
+      <Variant Id="lykvnm07" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="ynr8wl68" DisplayValue="a" key="Sociable">
+            <Text>Sociable</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="s17gnpxt" DisplayValue="b" key="Refined">
+            <Text>Refined</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="4rfwwp2t" DisplayValue="c" key="Lenient">
+            <Text>Lenient</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="z4x2nstc" DisplayValue="d" key="Vigorous">
+            <Text>Vigorous</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+    <Question Number="179" Category="Personality">
+      <Variant Id="bv2hwszd" Type="Rating">
+        <Ratings>
+          <Rating Name="Most" Factor="1"/>
+          <Rating Name="Least" Factor="1"/>
+        </Ratings>
+        <RatingResponses>
+          <RatingResponse Id="pj8x3r4d" DisplayValue="a" key="Entertaining">
+            <Text>Entertaining</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Inducement_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Inducement_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="jyr3wvvy" DisplayValue="b" key="Precise">
+            <Text>Precise</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Compliance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Compliance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="xmyj3v1z" DisplayValue="c" key="Eventempered">
+            <Text>Even-tempered</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Submission_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Submission_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+          <RatingResponse Id="q1fqwyrh" DisplayValue="d" key="Direct">
+            <Text>Direct</Text>
+            <TraitTransforms>
+              <TraitTransform Category="Personality" Trait="Dominance_Most" RequiredRating="Most" Amount="1"/>
+              <TraitTransform Category="Personality" Trait="Dominance_Least" RequiredRating="Least" Amount="1"/>
+            </TraitTransforms>
+          </RatingResponse>
+        </RatingResponses>
+      </Variant>
+    </Question>
+  </Category>
+</Questions>

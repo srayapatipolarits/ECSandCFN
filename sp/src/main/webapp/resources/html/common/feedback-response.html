@@ -1,0 +1,17 @@
+<article class="feedback-response-widget">
+	<h3 class="feedback-heading top-margin1" data-ng-bind="::pullInterNationalization('practiceCtrl.type.FEEDBACK')"></h3>
+	<p class="feedback-description" data-ng-bind-html="::pullInterNationalization('feedback.response.description')"></p>
+	<ul class="feedback-list">
+		<li data-ng-class="{'pipe-right':masterList.length}">
+           <a href="javascript:void(0)" class="border-link" data-ng-click="openFeedback(0)">
+           	  <span class="icon-icon_feedback2 icon-placement sp-icon-color"></span>
+               <span class="mock-link ml4" data-ng-bind="::pullInterNationalization('feedback.sidePanel.newRequest.subHead2')"></span>
+           </a>
+       </li>
+       <li data-ng-if="masterList.length">
+           <a href="javascript:void(0)" class="border-link" data-ng-click="openFeedback(1)">
+               <span class="mock-link" data-ng-bind="pullInterNationalization('feedback.response')+' ('+masterList.length+')'"></span>
+           </a>
+       </li>
+	</ul>
+</article>

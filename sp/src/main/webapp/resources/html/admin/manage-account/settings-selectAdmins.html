@@ -1,0 +1,59 @@
+<div class="container" id="declineGrowthScreen" data-ng-style="ctrl.winWidth<768 && {'height':ctrl.winHeight}">
+    <div class="row" data-ng-class="ctrl.winWidth<768?'row-full-w':''">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8" data-ng-class="ctrl.winWidth<768?'col-full-w':''">
+            <div>
+                <section class="wrapper">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar" data-ng-bind="::pullInterNationalization('manageAccountContent.addHiringAdmin')"></div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                            </div>
+                        </div>
+                        <div class="contentArea clearfix">
+                            <div class="messageBlock">
+                            	<div class="angucomplete-wrapper">
+                            		<p class="custom-search-wrapper">
+                            			<input type="text" data-ng-model="ctrl.memberListSearch" class="custom-search" placeholder="{{::pullInterNationalization('manageAccountContent.searchGroupHead')}}"/>
+                            			<button data-ng-class="{'icon-icon_remove':ctrl.memberListSearch.length, 'icon-icon_search': !ctrl.memberListSearch.length}" class="sp-icon-color noLabel" data-ng-click="ctrl.memberListSearch.length?ctrl.memberListSearch='':''"></button>
+                            		</p>
+                            	</div>
+                            </div>
+                            
+                            <div class="messageBlock" style="padding-top:5px">
+                                <div class="selected-group-List-wrapper moreH">
+                                    <div class="group-row" data-ng-repeat="member in ctrl.selectMemberList | filter:ctrl.memberListSearch">
+                                    	<div class="group-col w80">
+			                                <div class="member-details-pic-wrapper">
+			                                    <div class="mem-pic-thumb regPic">
+			                                        <img data-ng-src="{{member.smallProfileImage}}" alt="{{member.userInitials}}" data-ng-if="member.smallProfileImage">
+			                                        <div class="imgReplacement spcTop" data-ng-if="!member.smallProfileImage" data-ng-bind="member.userInitials"></div>
+			                                    </div>
+			                                    <div class="mem-details-info ml">
+			                                        <p class="memNameOne" data-ng-if="member.name" >
+			                                        	<span class="sp-link-color" data-ng-bind="member.name+', '"></span> 
+			                                        	<span data-ng-bind="member.title"></span>
+			                                        </p>
+			                                        <p class="memEmail lh16" data-ng-bind="member.email"></p>
+			                                    </div>
+			                                </div>                                    	
+                                    	</div>
+                                    	<div class="group-col-custom">
+                                    		<p>
+                                    			<a href="javascript:void(0)" data-ng-if="ctrl.selectedAdminsList.indexOf(member.email) === -1" class="btn-square-12px sp-background-color" data-ng-click="ctrl.addSelectedAdmin(member)" data-ng-bind="::pullInterNationalization('manageAccountContent.select')"></a>
+                                    			<span class="org-selected" data-ng-if="ctrl.selectedAdminsList.indexOf(member.email) !== -1" style="font-size:11px;font-weight:700;" data-ng-bind="::pullInterNationalization('manageAccountContent.recordSelected')"></span>
+                                    		</p>                                    		
+                                    	</div>
+                                    </div>
+                                </div>                            
+                            </div>
+                            <div class="btns-wrapper-popup">
+                            	<input type="button" value="{{pullInterNationalization('manageAccountContent.done')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="closeThisDialog()">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

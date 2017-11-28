@@ -1,0 +1,20 @@
+<div class="action-container image-detail-part">
+	<div class="member-pic channel">
+	    <img data-ng-src="{{user.smallProfileImage}}" alt="{{user.userInitials}}" data-ng-if="user.smallProfileImage"></img>
+		<div class="imgReplacement" data-ng-if="!user.smallProfileImage" data-ng-bind="user.userInitials"></div>
+	</div>
+	<div class="member-details">
+		<a href="javascript:void(0)" class="border-link display-block">
+			<span class="mock-text weight-700" data-ng-bind="user.name||user.fullNameOrEmail"></span>
+		</a>
+		<a href="javascript:void(0)" class="border-link display-block m10">
+			<span class="mock-text weight-300" data-ng-bind="user.title"></span>
+		</a>
+		<a href="javascript:void(0)" class="border-link display-block">
+			<span class="mock-text weight-300" data-ng-bind="user.email"></span>
+		</a>
+		<div class="view-profile">
+			<a class="btn-square-12px sp-viewprofile-color" data-ng-href="{{self? '/sp/dashboard/profile?userId='+user.id :'/sp/dashboard/profile'}}" data-ng-bind="::pullInterNationalization('dashboard.viewProfile')"></a>
+		</div>
+	</div>
+</div>

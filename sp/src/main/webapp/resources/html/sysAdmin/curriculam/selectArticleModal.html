@@ -1,0 +1,102 @@
+
+
+<div class="container" id="editGroup">
+    <div class="row">
+        <div class="col-xs-offset-1 col-xs-10 members affiliate-listing library-home">
+            <div>
+                <section class="wrapper">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar">Select Article {{position+1}}</div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                            </div>
+                        </div>
+                       <div class="contentArea article-select">
+                            <div class="pulse pulse-admin" >
+                            
+                               <div class="select-article-modal clearfix">
+                <div class="toolbar clearfix">
+                   
+                    <div class="controls clearfix">
+                    <li class="select-content">
+                <select name="themeTopicValue" ng-model="themeTopicValue" ng-change="getArticlesList(themeTopicValue)">
+                <option value="">Select Practice Area</option>
+                    <option value="{{key}}" ng-repeat="(key,value) in fetchedTopics">{{value}}</option>
+                </select>
+            </li>
+                    
+                        
+                        <div class="controlwrap search">
+                            <input type="text" class="form-control ng-pristine ng-valid" maxlength="28" ng-model="searchText" placeholder="Search" ng-keyup="searchTextFilter(searchText)">
+                            <button class="sp-icon-color" ng-class="enableCancel(searchText)? 'icon-icon_remove':'icon-icon_search'" ng-click="clearSearch();searchText=''"></button>
+                        </div>
+                    </div>
+                </div>
+               <div class="filters">
+                   
+                </div>
+              
+                <article class="memberHolder">
+                    <div class="heading row">
+                       
+                        <div class="col-md-4 col-sm-4 tog activeFilter" ng-click="reverse=!reverse;order('articleLinkLabel', reverse);active($event)" data-predicate='name'>
+                            <h4 class="on code" data-ng-bind="'Article Name'"></h4>
+                        </div>
+                         <div class="col-md-4 col-sm-4 t-name tog" ng-click="reverse=!reverse;order('articleSource', reverse);active($event)" data-predicate='title'>
+                            <h4>Source</h4>
+                        </div>
+                       
+                        <div class="col-md-1 col-sm-1"></div>
+                    </div>
+                    <!--<div class="complete-profile" ng-class="{active:show}" ng-repeat="pulseList in filtered=(pulseList | filter:filterByCategory)">-->
+                     <div infinite-scroll="returnMemberList(pageSize+pageSize)" infinite-scroll-immediate-check="false" infinite-scroll-disabled="disabledInfinite">
+                     <div class="complete-profile animation_1" ng-class="{active:show}" id='{{$index}}' ng-repeat="selectArticlesList in recordField = ((selectArticlesList | filter:textSearching).slice(0,pageSize))" 
+                     ng-if="selectArticlesList.articleLinkUrl!==newLibraryHome.articleId0 && selectArticlesList.articleLinkUrl!==newLibraryHome.articleId1 && selectArticlesList.articleLinkUrl!==newLibraryHome.articleId2
+                            && selectArticlesList.articleLinkUrl!==newLibraryHome.articleId3">
+                            <div class="table-row clearfix">
+                               
+                                <div class="col-md-4 col-sm-4">
+                                    <p class="code">
+                                        
+                                            <span class="mock-link" data-ng-bind="selectArticlesList.articleLinkLabel"></span>
+                                        
+                                    </p>
+                                </div>
+                                
+                               <div class="col-md-4 col-sm-4">
+								<div style="padding:2px 0px;"> <span data-ng-bind="selectArticlesList.articleSource"></span> </div>
+							</div>
+							
+                               
+                                <div class="col-md-4 col-sm-4" >
+                                <!-- Added inline style for testing. Will be removed or moved to proper Less files -->
+                                    <a href="#" style="line-height:22px;" class="select-btn btn-square-12px sp-background-color" ng-click="selectArticleViaModal(selectArticlesList.articleLinkUrl,selectArticlesList.articleLinkLabel,position,selectArticlesList.imageUrl);$event.preventDefault();">
+                                            Select Article
+                                        </a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <p ng-show="!recordField.length" class="noMatchFound ng-hide" data-ng-bind="'No Records Found'"></p>
+                    
+                </article>
+                <div class="sp-btn-wrapper sp-red btn-small floatLeft spacing">
+				                                   	<div class="sp-btn">
+				                                       	<input type="button" value="DONE" class="btnStyle1 " ng-click="closeThisDialog()">
+				                                   	</div>
+				                               	</div>  
+            </div>
+                            </div>                          
+                        </div>   
+
+                    </div>
+            </div>
+        </div>
+        </section>
+        
+    </div>
+</div>
+</div>
+</div>

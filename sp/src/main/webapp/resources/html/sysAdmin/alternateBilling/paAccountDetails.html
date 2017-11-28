@@ -1,0 +1,112 @@
+<div class="billing-cols-wrap" data-ng-if="!planDetails.IntelligentHiring">
+    <div class="billing-cols-tab">
+        <div class="billing-col ful lef">
+            <div class="bill-box">
+            	<p>This tool is not added.</p> 
+            	<a data-ng-if="!accountDetails.deactivated" href="/sp/sysAdmin/alternateBilling/editAccount?accountId={{accountDetails.id}}&showTab=IntelligentHiring#mode=edit&planList={{getPlanList(accountDetails.spPlans).toString()}}" class="btn-square-12px sp-background-color" data-ng-bind-html="'Add Tool'"></a>
+            </div>
+        </div>
+	</div>
+</div>	
+<div class="billing-cols-wrap" data-ng-if="planDetails.IntelligentHiring">
+    <div class="billing-cols-tab">
+        <div class="billing-col lef">
+            <div class="bill-box">
+                <a data-ng-if="!accountDetails.deactivated && planDetails.IntelligentHiring.active" href="/sp/sysAdmin/alternateBilling/editAccount?accountId={{accountDetails.id}}&showTab=IntelligentHiring#mode=edit&planList={{getPlanList(accountDetails.spPlans).toString()}}" class="btn-square-12px sp-background-color rightTop" data-ng-bind-html="::pullInterNationalization('admin.account.business.btn.edit')"></a>
+                <h3 data-ng-bind-html="pullInterNationalization('admin.account.business.billing.title')"></h3>
+                <p data-ng-bind-html="(12*planDetails.IntelligentHiring.agreementTerm)+' '+pullInterNationalization('admin.account.business.billing.expiress')+' '+'<span class=fw700>'+planDetails.IntelligentHiring.agreementEndDate+'</span>'"></p>
+                <p data-ng-if="planDetails.IntelligentHiring.planStatus === 'ACTIVE'" class="fw700" data-ng-bind-html="pullInterNationalization('viewAccountDetails.sRen')+planDetails.IntelligentHiring.agreementEndDate"> </p>
+                <h4 data-ng-bind-html="pullInterNationalization('viewAccountDetails.accs')"></h4>
+                <p data-ng-bind-html="pullInterNationalization('admin.account.business.billing.availableAdmin')+': '+'<span class=fw700>'+planDetails.IntelligentHiring.availalbeAdminSubscriptions+'</span>'"></p>
+                <p>
+                    <span data-ng-bind-html="pullInterNationalization('admin.account.business.billing.candidate')+': '+'<span class=fw700>'+planDetails.IntelligentHiring.availalbeMemberSubscriptions+'</span>'"></span>
+                    <a data-ng-if="!accountDetails.deactivated" href="javascript:void(0)" class="border-link af12 pl8 hide" data-ng-click="showDetailsDialog('candidates')">
+                        <span class="mock-link" data-ng-bind-html="pullInterNationalization('viewAccountDetails.details')"></span>
+                    </a>
+                </p>
+                <ol class="tLinks" data-ng-if="!accountDetails.deactivated" >
+                    <li>
+                        <a href="/sp/sysAdmin/alternateBilling/account/add/candidatealternativeaccounts?accountId={{accountDetails.id}}" class="border-link af12">
+                            <span class="mock-link" data-ng-bind-html="pullInterNationalization('admin.account.business.btn.purchaseacc')"></span>
+                        </a>
+                    </li>
+                </ol>
+                <hr />
+                <h3 data-ng-bind-html="pullInterNationalization('viewAccountDetails.payDetails')"></h3>
+                <p data-ng-bind-html="pullInterNationalization('admin.account.business.billing.lasttrans') +': '+'<span class=fw700>'+(planDetails.IntelligentHiring.lastPayment.amount | currency)+'</span>'+' on '+'<span class=fw700>'+planDetails.IntelligentHiring.lastPayment.createdOnFormatted+'</span>'"></p>
+                <p data-ng-bind-html="pullInterNationalization('admin.account.business.billing.nextpay') +': '+'<span class=fw700>'+(planDetails.IntelligentHiring.planInfo.renewalTotal | currency)+'</span>'+' on '+'<span class=fw700>'+planDetails.IntelligentHiring.planInfo.renewalDate+'</span>'"></p>
+                <p>
+                	{{pullInterNationalization('viewAccountDetails.pType')}}
+                	<span class="fw700" pay-tool-tip data-desc="{{planDetails.IntelligentHiring.paymentInstrument.comment}}" data-ng-bind="planDetails.IntelligentHiring.paymentType"></span>
+                </p>
+                <p data-ng-bind-html="pullInterNationalization('pricing.create.label16') +': '+'<span class=fw700>'+planDetails.IntelligentHiring.billingCycle.billingCycleType+'</span>'"></p>
+                <p data-ng-bind-html="pullInterNationalization('viewAccountDetails.cBal')+'<span class=fw700>'+(planDetails.IntelligentHiring.creditBalance | currency)+'</span>'"></p>
+                <ol class="tLinks">
+                    <li>
+                        <a href="/sp/sysAdmin/alternateBilling/alternateAccount/payment/historybusiness?mode=b&accountId={{accountDetails.id}}&plan=IntelligentHiring" class="border-link af12">
+                            <span class="mock-link" data-ng-bind-html="pullInterNationalization('viewAccountDetails.history')"></span>
+                        </a>
+                    </li>
+                    <li class="pipe-ln"></li>
+                    <li>
+                        <a href="javascript:void(0)" class="border-link af12" data-ng-click="showAddCredit('IntelligentHiring')">
+                            <span class="mock-link" data-ng-bind-html="pullInterNationalization('viewAccountDetails.credit')"></span>
+                        </a>
+                    </li>
+                </ol>
+            </div>
+            <div class="bill-box mt20" data-ng-if="planDetails.IntelligentHiring.tagsKeywords.length">
+                <h3 data-ng-bind-html="pullInterNationalization('pricing.create.desc14')"></h3>
+                <ol class="form-list-billing">
+                    <li class="ele-left w100 clearb">
+                        <p class="tagPillStyle" data-ng-repeat="tagList in planDetails.IntelligentHiring.tagsKeywords">
+                            <span data-ng-bind-html="tagList"></span>
+                        </p>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="billing-col right">
+            <div class="bill-box">
+                <h3 data-ng-bind-html="'Administrators'"></h3>
+                <p class="emsg" data-ng-if="!hiringAdminsList.length">
+                    <span class="validate-error" data-ng-bind-html="pullInterNationalization('pricing.desc5')"></span>
+                </p>
+                <div class="billing-admins-wrap" data-ng-if="hiringAdminsList.length">
+                    <div class="bill-admin" data-ng-repeat="memberList in hiringAdminsList track by $index">
+                        <div class="admin-info-wrap">
+                            <a data-ng-if="!accountDetails.deactivated" href="javascript:void(0)" class="icon-icon_remove delIco" data-ng-click="hiringAdminsList.length>1?removeAdminAccess('IntelligentHiring', memberList):''"  data-ng-class="hiringAdminsList.length<2?'greyIco':'sp-icon-color'"></a>
+                            <div class="admin-pic">
+                                <img data-ng-src="{{memberList.smallProfileImage}}" data-ng-if="memberList.smallProfileImage" />
+                                <div class="imgReplacement" data-ng-if="!memberList.smallProfileImage" data-ng-bind-html="memberList.userInitials"></div>
+                            </div>
+                            <div class="admin-name">
+                                <p class="baName" data-ng-bind-html="memberList.name"></p>
+                                <p class="baTitle" data-ng-bind-html="memberList.title"></p>
+                            </div>
+                            <div class="admin-email">
+                                <p class="baEmail" data-ng-bind-html="memberList.email"></p>
+                                <p class="baPh" data-ng-bind-html="memberList.phoneName"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a data-ng-class="!accountDetails.deactivated?'sp-background-color':'btn-darker-grey'" href="javascript:void(0)" class="btn-square-12px" data-ng-bind-html="pullInterNationalization('pricing.desc4')" data-ng-click="!accountDetails.deactivated?addAdminAccess('IntelligentHiring'):''"></a>
+            </div>
+            <div class="bill-box mt20">
+                <h3 data-ng-bind-html="pullInterNationalization('pricing.create.desc9')"></h3>
+                <p data-ng-if="planDetails.IntelligentHiring.planStatus === 'ACTIVE'" data-ng-bind-html="pullInterNationalization('pricing.create.desc13')+' '+'<span class=fw700>'+planDetails.IntelligentHiring.agreementEndDate+'</span>'"> </p>
+                <p data-ng-if="planDetails.IntelligentHiring.planStatus !== 'ACTIVE'" data-ng-bind-html="(12*planDetails.IntelligentHiring.agreementTerm)+' '+pullInterNationalization('admin.account.business.billing.expiress')+' '+'<span class=fw700>'+planDetails.IntelligentHiring.agreementEndDate+'</span>'"></p>
+                <a data-ng-class="!accountDetails.deactivated?'sp-background-color':'btn-darker-grey'" data-ng-if="planDetails.IntelligentHiring.planStatus === 'ACTIVE'" href="javascript:void(0)" class="btn-square-12px" data-ng-bind-html="pullInterNationalization('pricing.create.desc10')" data-ng-click="!accountDetails.deactivated?showCancelAccountDialog('IntelligentHiring'):''"></a>
+                <a data-ng-class="!accountDetails.deactivated?'sp-background-color':'btn-darker-grey'" data-ng-if="planDetails.IntelligentHiring.planStatus !== 'ACTIVE'" href="javascript:void(0)" class="btn-square-12px" data-ng-bind-html="pullInterNationalization('pricing.create.desc11')" data-ng-click="!accountDetails.deactivated?showReactivateAccount('IntelligentHiring'):''"></a>
+            </div>
+            <div class="bill-box mt20">
+                <h3 data-ng-bind-html="'People Analytics Account status'"></h3>
+                <p data-ng-if="planDetails.IntelligentHiring.active" data-ng-bind-html="pullInterNationalization('pricing.create.desc13a')"> </p>
+                <p data-ng-if="!planDetails.IntelligentHiring.active" data-ng-bind-html="pullInterNationalization('pricing.create.desc13b')"> </p>
+                <a data-ng-class="!accountDetails.deactivated?'sp-background-color':'btn-darker-grey'" data-ng-if="planDetails.IntelligentHiring.active" href="javascript:void(0)" class="btn-square-12px" data-ng-bind-html="::pullInterNationalization('pricing.create.desc16')" data-ng-click="!accountDetails.deactivated?updatePlanStatusPop(accountDetails.id, 'IntelligentHiring', 'DEACTIVE'):''"></a>
+                <a data-ng-class="!accountDetails.deactivated?'sp-background-color':'btn-darker-grey'" data-ng-if="!planDetails.IntelligentHiring.active" href="javascript:void(0)" class="btn-square-12px" data-ng-bind-html="::pullInterNationalization('pricing.create.desc15')" data-ng-click="!accountDetails.deactivated?updatePlanStatus(accountDetails.id, 'IntelligentHiring', 'ACTIVE'):''"></a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+<section class="x-container org-admin" data-ng-if="inviteReady && profileReady" class="hide" data-ng-class="inviteReady?'show':'hide'">
+	<div class="container minimumHeight">
+		<div class="table-flex-cols">
+			<div class="flex-cols-caption">
+			    <!-- Title,Description,Tags *Mandatary Title-Description -->
+			    <article class="portrait-naming-block lnd-full-box sp-panel-accent lnd-spacer20">
+			        <div class="left-section">
+			            <form name="portraitPlanSetting" class="actionPlanForm clearfix w500">
+			                <ol class="form-list-c form-list-d">
+			                    <li>
+			                        <input autoFocus type="text" data-ng-minlength="3" maxlength="60" class="themeName bolder_input" data-ng-pattern="/^[a-zA-Z0-9-,' ]+$/" name="portraitName" maxlength="200" placeholder="{{::pullInterNationalization('idealPortrait.portrait.title')}}" data-ng-model="portraitMatch.name" required/>
+			                        <span class="validate-error" data-ng-if="error.portraitSubmitted && portraitPlanSetting.portraitName.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+			                        <span class="validate-error" data-ng-if="error.portraitSubmitted && portraitPlanSetting.portraitName.$error.pattern" data-ng-bind="::pullInterNationalization('home.invalid.email')"></span>
+                                    <span class="validate-error" data-ng-if="error.portraitSubmitted && portraitPlanSetting.portraitName.$error.minlength" data-ng-bind="::pullInterNationalization('signup.minimum3')"></span>
+                                    <span class="validate-error" data-ng-if="error.portraitSubmitted && portraitPlanSetting.portraitName.$error.maxlength" data-ng-bind="::pullInterNationalization('signup.maximum60')"></span>
+			                    </li>
+			                    <li>
+			                        <textarea class="themeName h60" name="portraitDescription" data-ng-model="portraitMatch.description" data-ng-attr-placeholder="{{::pullInterNationalization('idealPortrait.portrait.description')}}" required></textarea>
+			                        <span class="validate-error" data-ng-if="error.portraitSubmitted && portraitPlanSetting.portraitDescription.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+			                    </li>
+			                    <li class="tagsEmailInput brdr0">
+			                        <tags-input min-length="1" data-type="tags" data-ng-model="portraitTags" replace-spaces-with-dashes="false" placeholder="{{::pullInterNationalization('candidates.addCandidates.step3Place')}}" on-tag-removed="tagRemoved($tag)" on-tag-added="tagAdded($tag)">
+			                            <auto-complete min-length="1" load-on-focus="false" source="loadSource($query)" debounce-delay="100" load-on-empty="false" max-results-to-show="5" class="ng-tags-pos-fix"></auto-complete>
+			                        </tags-input>
+			                    </li>
+			                </ol>
+			            </form>
+			        </div>
+			        <div class="right-section">
+			            <a href="/sp/sysAdmin/idealPortrait" class="border-link returnAnchor" data-ng-bind="::pullInterNationalization('idealPortrait.portrait.returnToIdealPortrait')"></a>
+			            <div class="submit-section">
+			                <ul class="form-list-c form-list-d noMarBottom">
+			                	<li>
+			                		<div class="editted-by">
+			                			<div class="date-by" data-ng-if="portraitMatch.updatedOn"><span data-ng-bind="::pullInterNationalization('idealPortrait.portrait.lastEditedOn')"></span> <span data-ng-bind="portraitMatch.updatedOn | spDateFormat"></span></div>
+			                			<div class="author-by" data-ng-if="portraitMatch.updatedBy"><span data-ng-bind="::pullInterNationalization('practice.by')"></span> <span data-ng-bind="portraitMatch.updatedBy.name"></span></div>
+			                		</div>
+			                		<div class="traits-selected">
+			                			<!-- <span data-ng-bind="totalSelected +' / ' + totalTraits +' '+pullInterNationalization('idealPortrait.portrait.traitSelected')"></span>-->
+			                			<a href="javascript:void(0)" class="icon-icon_preview disabled_{{totalSelected}} sp-icon-color" title="{{::pullInterNationalization('idealPortrait.portrait.Preview')}}" data-ng-click="previewDetail()"></a>
+			                		</div>
+			                	</li>
+			                    <li>
+			                        <ul class="submit-cancel-list">
+			                            <li class="submit-charge">
+			                                <a href="javascript:void(0)" class="btn-block btn-15px sp-btn-color" data-ng-click="createUpdatePortraitMatch(portraitPlanSetting)">
+			                            		<span class="mock-link" data-ng-bind="::pullInterNationalization('practiceArea.save')"></span>
+			                            	</a>
+			                            </li>
+			                            <li class="cancel-charge">
+			                            	<a href="/sp/sysAdmin/idealPortrait" class="btn-block btn-15px btn-grey-dark">
+			                            		<span class="mock-link" data-ng-bind="::pullInterNationalization('practiceArea.cancel')"></span>
+			                            	</a>
+			                            </li>
+			                        </ul>
+			                    </li>
+			                </ul>
+		                	<div class="error-block" data-ng-if="error.portraitSubmitted">
+		                     	<span class="validate-error" data-ng-bind="::pullInterNationalization('sysAdmin.organization.errch')"></span>
+		                    </div>
+			            </div>
+			        </div>
+			    </article>
+			    
+			    
+			    <article class="portrait-tab-wrapper">
+			    	<!-- Portrait Tabs Starts-->
+			        <ul>
+			            <li data-ng-click="updateTab($index,tabs)" class="active_{{activeTabs===tabs}}" data-ng-repeat="tabs in protraitTabs track by $index">
+			                <a href="javascript:void(0)" class="border-link anchor-name-holder">
+			                	<span class="icon-style-position-error validate-error" data-ng-if="tabs==='Personality' && error.portraitSubmitted && filterSelected[tabs].indexOf('Primary')===-1"></span>
+			                	<span class="mock-link" data-ng-bind-html="pullInterNationalization('spectrum.trait.'+tabs)"></span>
+			                	<span data-ng-class="filterSelected[tabs].length?'sp-icon-color':''" class="check-box-style icon-icon_dev_strategy_check"></span>
+			                </a>
+			                
+			            </li>
+			        </ul>
+			        <!-- Portrait Tabs Ends -->
+			    </article>
+			    
+			     <!-- Portrait Tabs View -->
+		        	<article class="tabs-view" ui-view></article>
+		         <!-- Portrait Tabs View -->
+		    </div>
+	    </div>
+    </div>
+</section>

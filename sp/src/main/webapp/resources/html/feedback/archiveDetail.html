@@ -1,0 +1,157 @@
+<section ng-controller="feedbackArchiveDetailController"  ng-init="getArchivedMemberDetail()" ng-if="inviteReady" class="hide" ng-class="inviteReady?'show':'hide'">
+	 <div class="x-container requestmodular requestDetail">
+		<div class="container resetPad">
+			<div class="requestwrap bgWhiteBord clearfix sp-panel-accent">
+				<article class="headerSection borderBot">
+					<div class="posAdjust clearfix">
+						<div class="headingDetail sp-header-title-color" data-ng-bind-html="pullInterNationalization('feedback.archiveDetail.headTitle')"></div>
+						<div class="returnToRequest sp-link-color" ng-click="goBack()" data-ng-bind="pullInterNationalization('feedback.archiveDetail.returntorequest')"></div>
+					</div>
+					<div class="date"><span data-ng-bind="memberList.feedbackUser.archivedOnFormatted|date"></span></div>
+					<div class="posAdjust clearfix">
+						<div class="memName clearfix">
+							<img ng-src="{{memberList.feedbackUser.smallProfileImage}}" ng-if="memberList.feedbackUser.smallProfileImage" alt="{{memberList.feedbackUser.userInitials}}">
+							<div class="imgReplacementOther" ng-if="!memberList.feedbackUser.smallProfileImage" ng-bind="memberList.feedbackUser.userInitials"></div>
+						
+							<div class="club">
+								<div class="fname"><span class="senderFrom">FROM:</span><span data-ng-bind="memberList.feedbackUser.name"></span></div>
+								<div class="memTitle" data-ng-bind="memberList.feedbackUser.title"></div>
+							</div>
+						</div>
+					</div>
+				</article>
+			</div>
+		</div>
+	</div>
+	<div class="x-container requestmodular marg30" data-ng-if="requestDetailsLoaded">
+	<!-- when length ===0 starts and no archives-->
+		<div class="container requestSet clearfix"  ng-if="memberList.feedbackGoals.length == 0">
+			<div class="locatedSubNavRelative bgWhiteBord clearfix">
+				
+			</div>
+			<div class="bgWhite col-sm-12 col-md-12 clearfix nogoals" data-ng-bind="pullInterNationalization('feedback.nomatch')">
+			</div>
+		</div>
+		<!-- when length ==0 ends and no archives -->
+		
+		<!-- when length > 0 and no self -->
+		<div class="container requestSet clearfix">
+			<div class="requestwrap bgWhite clearfix" ng-if="memberList['notablechar.text']" style="margin-bottom:0px;padding-bottom:0px;">
+				<div class="feedback_Additional_comments">
+					<div class="feedbackCommentSection">
+						<div class="title" data-ng-bind-html="pullInterNationalization('feedback.archiveDetail.additional.title')"></div>
+						<div class="description" data-ng-bind-html="memberList.profileStatment"></div>
+					</div>
+					<div class="feedbackCommentSection">
+						<div class="title" data-ng-bind-html="memberList['notablechar.text']"></div>
+						<div class="description" data-ng-bind-html="memberList['notablechar.desc']"></div>
+					</div>
+					<div class="feedbackCommentSection">
+						<div class="title" data-ng-bind-html="memberList['workEnviornment.text']"></div>
+						<div class="description" data-ng-bind-html="memberList['workEnviornment.desc']"></div>
+					</div>
+				</div>
+			</div>
+			<div class="requestwrap bgWhite noborder clearfix">
+				<div class="swot-analysis-wrapper archives-wrapper">
+						<h2 data-ng-bind="pullInterNationalization('personality.swotAnalysis')"></h2>
+						<p class="lens-desc" data-ng-bind-html="pullInterNationalization('personality.swotAnalysisDesc')"></p>
+						
+						<div class="swot-details">
+							<div class="swot-top">
+								<p>&#160;</p><!--p data-ng-bind="pullInterNationalization('personality.internal')"></p-->
+							</div>
+							
+							<div class="swot-mid">
+							
+								<table class="swot-data archive-table">
+									<tr class="top-swot">
+										<td class="swot-left-label in-archives" rowspan="2"><!--p class="nowrap-text arc" label-adjust swot-mid="{{swotMemId}}" data-ng-bind="pullInterNationalization('personality.helpful')"></p--></td>									
+										<td class="b-r b-b">
+											<h3 data-ng-bind="pullInterNationalization('personality.opportunities')"></h3>
+											<p class="swot-labelDesc" data-ng-bind="pullInterNationalization('prismLens.swotDD3')"></p>
+											<ul>
+												<li data-ng-repeat="strength in swotanalysis.Opportunities" data-ng-bind="strength"></li>										
+											</ul>
+										</td>
+										<td class="b-b b-r-w">
+											<h3  data-ng-bind="pullInterNationalization('personality.threats')"></h3>
+											<p class="swot-labelDesc" data-ng-bind="pullInterNationalization('prismLens.swotDD4')"></p>
+											<ul>
+												<li data-ng-repeat="weakness in swotanalysis.Threats" data-ng-bind="weakness"></li>												
+											</ul>
+										</td>	
+										<td class="swot-right-label in-archives" rowspan="2"><!--p class="nowrap-text arc" label-adjust swot-mid="{{swotMemId}}" data-ng-bind="pullInterNationalization('persoanlity.harmful')"></p--></td>									
+									</tr>
+									<tr class="bottom-swot">
+										<td class="b-r">
+											<h3 data-ng-bind="pullInterNationalization('personality.weakness')"></h3>
+											<p class="swot-labelDesc" data-ng-bind="pullInterNationalization('prismLens.swotDD2')"></p>
+											<ul class="more-space">
+												<li data-ng-repeat="oppurtunity in swotanalysis.Weakness" data-ng-bind="oppurtunity"></li>										
+											</ul>
+										</td>
+										<td class="b-r-w">
+											<h3 data-ng-bind="pullInterNationalization('personality.strengths')"></h3>
+											<p class="swot-labelDesc" data-ng-bind="pullInterNationalization('prismLens.swotDD1')"></p>
+											<ul class="more-space">
+												<li data-ng-repeat="threats in swotanalysis.Strengths" data-ng-bind="threats"></li>																						
+											</ul>
+										</td>										
+									</tr>									
+								</table>
+							</div>
+							
+							<div class="swot-bottom">
+								<p>&#160;</p><!-- data-ng-bind="pullInterNationalization('personality.external')" -->
+							</div>
+						</div>
+						
+						<!--div class="swot-defs">
+							<ul class="sDefs">
+								<li>
+									<span class="swotDT" data-ng-bind="pullInterNationalization('personality.opportunities')"></span>
+									<span class="swotDD" data-ng-bind="pullInterNationalization('prismLens.swotDD3')"></span>
+								</li>					
+								<li>
+									<span class="swotDT" data-ng-bind="pullInterNationalization('personality.threats')"></span>
+									<span class="swotDD" data-ng-bind="pullInterNationalization('prismLens.swotDD4')"></span>
+								</li>																																					
+							</ul>
+							<ul class="sDefs">
+								<li>
+									<span class="swotDT" data-ng-bind="pullInterNationalization('personality.weakness')"></span>
+									<span class="swotDD" data-ng-bind="pullInterNationalization('prismLens.swotDD2')"></span>
+								</li>										
+								<li>
+									<span class="swotDT" data-ng-bind="pullInterNationalization('personality.strengths')"></span>
+									<span class="swotDD" data-ng-bind="pullInterNationalization('prismLens.swotDD1')"></span>
+								</li>				
+								<li>
+									<span class="swotDT" data-ng-bind="pullInterNationalization('personality.internal')"></span>
+									<span class="swotDD" data-ng-bind="pullInterNationalization('prismLens.swotDD5')"></span>
+								</li>
+								<li>
+									<span class="swotDT" data-ng-bind="pullInterNationalization('personality.external')"></span>
+									<span class="swotDD" data-ng-bind="pullInterNationalization('prismLens.swotDD6')"></span>
+								</li>
+								<li>
+									<span class="swotDT" data-ng-bind="pullInterNationalization('personality.helpful')"></span>
+									<span class="swotDD" data-ng-bind="pullInterNationalization('prismLens.swotDD7')"></span>
+								</li>
+								<li>
+									<span class="swotDT" data-ng-bind="pullInterNationalization('persoanlity.harmful')"></span>
+									<span class="swotDD" data-ng-bind="pullInterNationalization('prismLens.swotDD8')"></span>
+								</li>																												
+							</ul>							
+						</div-->
+					</div>
+			</div>
+		</div>
+		<!-- when length > 0  -->
+	</div>
+</section>
+
+
+
+

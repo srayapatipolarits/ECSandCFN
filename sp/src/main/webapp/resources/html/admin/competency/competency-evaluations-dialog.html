@@ -1,0 +1,164 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                    <h2 class="hide">Peer Evaluations</h2>
+                    <ol>
+                        <li data-ng-if="ctrl.peerEvaluations.length">
+                            <a href="javascript:void(0)" data-ng-class="{'on' : ctrl.peerViewState === 'ratings'}" data-ng-click="ctrl.togglePeerModalState('ratings')" data-ng-bind="::pullInterNationalization('competency.admin.peer.evaluations')"></a>
+                        </li>
+                    	<li data-ng-if="ctrl.competencyEvaluationInProgress">
+                            <a href="javascript:void(0)" data-ng-class="{'on' : ctrl.peerViewState === 'requests'}" data-ng-click="ctrl.togglePeerModalState('requests')" data-ng-bind="::pullInterNationalization('competency.admin.peer.request')"></a>
+                        </li>
+                    </ol>
+                </div>
+                <div class="new-modals-wrapper competency-fixed-height plr0" style="height:{{(ctrl.winWidth1 < 768?ctrl.winHeight1:'auto')}}" data-ng-class="{'addScroll':(ctrl.winWidth1 < 768)}">
+                    <!-- Top User Details Starts -->
+                    <div class="cp-user-info">
+                        <p class="ev-member-details">
+                            <span class="pop-competency-info">
+                            <span class="cp-nm" data-ng-bind="ctrl.competencyProfileMap[ctrl.userToProcess.competencyProfileId].name"></span>
+                            <span class="cp-dt" data-ng-bind="ctrl.competencyEvaluation.startDate"></span>
+                            </span>
+                            <span class="ev-mem-pic-holder">
+                                <span class="imgReplacement" data-ng-if="ctrl.userToProcess.smallProfileImage === null" data-ng-bind="ctrl.userToProcess.userInitials"></span>
+                            <span data-ng-if="ctrl.userToProcess.smallProfileImage !== null">
+                                    <img data-ng-src="{{ctrl.userToProcess.smallProfileImage}}">
+                                </span>
+                            </span>
+                            <span class="ev-mem-info removeLM f14">
+                                <span class="ev-name sp-link-color" data-ng-bind="ctrl.userToProcess.fullNameOrEmail"></span>
+                            <span class="ev-title" data-ng-bind="ctrl.userToProcess.title"></span>
+                            </span>
+                        </p>
+                    </div>
+                    <!-- Top User Details Ends -->
+                    <!-- REQUEST FORM Starts -->
+                    <div class="cp-wrap-hfix" data-ng-if="ctrl.peerViewState === 'requests'" data-ng-class="{'hShrink': !ctrl.peerEvaluations.length}" style="height:{{(ctrl.winWidth1 < 768?ctrl.winHeight2:'342px')}}">
+                        <div class="plr20">
+                            <h3 data-ng-bind="::pullInterNationalization('competency.actions.requestPeer')"></h3>
+                            <p data-ng-bind="::pullInterNationalization('competency.actions.peerInitiate.desc')"></p>
+                            <form name="ctrl.initiateEvaluationForm">
+                                <div class="messageBlock" data-ng-if="ctrl.showPeerRating" style="padding-top:0!important;">
+                                    <div class="tagsPeerInput" style="padding-bottom:0px;">
+                                        <tags-input ng-model="tags1" display-name="email" display-property="name" key-property="email" placeholder="{{::pullInterNationalization('competency.actions.error.peeremailname')}}" allowed-tags-pattern="^[A-Za-z0-9._-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$" replace-spaces-with-dashes="false" on-tag-removed="ctrl.tagRemovedPeer($tag)" on-tag-added="ctrl.tagAddedPeer($tag)">
+                                            <auto-complete min-length="1" load-on-focus="false" load-on-empty="false" max-results-to-show="10" source="ctrl.loadTags($query)" class="ng-tags-pos-fix"></auto-complete>
+                                        </tags-input>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+					</div>
+                   <div class="messageBlock" data-ng-if="ctrl.existingReviewer || ctrl.assignToSelf">
+                       <span data-ng-if="ctrl.existingReviewer" class="validate-error" data-ng-bind="::pullInterNationalization('competency.actions.error.reviewAlreadySent')"></span>
+                       <span data-ng-if="ctrl.assignToSelf" class="validate-error" data-ng-bind="::pullInterNationalization('competency.actions.error.selfReviewer')"></span>
+                   </div>
+                   <!-- Buttons Starts -->
+                   <div class="dialog-btns-wrapper plr20 adjust-top" data-ng-if="ctrl.peerViewState === 'requests'">
+                       <input type="button" value="{{::pullInterNationalization('manageAccountContent.submit')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="ctrl.initiatePeerEvaluation()" data-ng-disabled="!ctrl.searchTagPeer.length" />
+                       <input type="button" value="{{::pullInterNationalization('manageAccountContent.cancel')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="closeThisDialog();" />
+                   </div>
+                   <!-- Buttons Ends -->
+                    <!-- REQUEST FORM Ends -->
+                    <!-- Ratings Table Starts -->
+                    <div class="cp-wrap-hfix" data-ng-if="ctrl.peerViewState === 'ratings'" style="height:{{(ctrl.winWidth1 < 768?ctrl.winHeight2:'342px')}}">
+                        <div class="cp-user-ratings-wrap">
+                            <!-- Left Listing Starts -->
+                            <div class="cp-user-ratings-left">
+                                <div class="cp-ratings-list" data-ng-repeat="peerList in ctrl.peerEvaluations" data-ng-click="(ctrl.selectedLeftIndex!==$index && ctrl.winWidth1 > 767)?ctrl.viewPeerRatingDetails($index):''" data-ng-class="{'active':ctrl.selectedLeftIndex===$index}">
+                                    <span class="active-arrow icon-icon_focus-arrow sp-icon-color" data-ng-class="(ctrl.selectedLeftIndex===$index && ctrl.winWidth1 > 767)?'show':'hide'"></span>
+                                    <p class="ev-member-details">
+                                        <span class="ev-mem-pic-holder">
+                                            <span class="imgReplacement" data-ng-if="peerList.reviewer.name !== '' && peerList.reviewer.smallProfileImage === null" data-ng-bind="peerList.reviewer.userInitials"></span>
+                                        <span data-ng-if="peerList.reviewer.smallProfileImage !== null && peerList.reviewer.name !== ''">
+                                            <img data-ng-src="{{peerList.reviewer.smallProfileImage}}">
+                                        </span>
+                                        <span data-ng-if="peerList.reviewer.smallProfileImage !== null && peerList.reviewer.name === ''">
+                                            <img data-ng-src="{{peerList.reviewer.smallProfileImage}}">
+                                        </span>
+                                        </span>
+                                        <span class="ev-mem-info wAdj">
+                                                <span class="ev-name sp-link-color" data-ng-bind="peerList.reviewer.fullNameOrEmail"></span>
+                                        <span class="ev-title" data-ng-bind="peerList.reviewer.title"></span>
+                                        </span>
+                                    </p>
+                                    <div class="ev-rating-box">
+                                        <p class="rating-val sp-link-color" data-ng-if="peerList.score !== 0" data-ng-bind="peerList.score"></p>
+                                        <p class="rating-val" data-ng-if="peerList.score === 0 && ctrl.competencyEvaluationInProgress" data-ng-bind="::pullInterNationalization('manageAccountContent.pending')"></p>
+                                        <p class="rating-val" data-ng-if="peerList.score === 0 && !ctrl.competencyEvaluationInProgress" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                        <a data-ng-click="ctrl.sendReminder({'userId':ctrl.userToProcess.id,'isInitiate':false,'isSelf':false,'reviewUserId':peerList.reviewer.id})" data-ng-if="ctrl.competencyEvaluationInProgress && peerList.score === 0" href="javascript:void(0)" class="clbt status-ico-link icon-icon_send-message sp-icon-color"></a>
+                                        <div class="ratings-hex" data-ng-if="peerList.score !== null && peerList.score !== 0">
+                                            <div class="empty-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(ctrl.competencyProfileMap[ctrl.userToProcess.competencyProfileId].ratingConfiguration.size)}}"></div>
+                                            <div class="full-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(ctrl.competencyProfileMap[ctrl.userToProcess.competencyProfileId].ratingConfiguration.size)}}" data-ng-style="{width:(peerList.score/((ctrl.competencyProfileMap[ctrl.userToProcess.competencyProfileId].ratingConfiguration.size)/10))*10+ '%'}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Left Listing Ends -->
+                            <!-- Right Details Starts -->
+                            <div class="cp-user-ratings-right">
+                                <div class="cp-ratings-details">
+                                    <div class="cp-user-info info-side">
+                                        <p class="ev-member-details popAdj">
+                                            <span class="ev-mem-pic-holder">
+                                            <span class="imgReplacement" data-ng-if="ctrl.peerRatingInfo.reviewer.name !== '' && ctrl.peerRatingInfo.reviewer.smallProfileImage === null" data-ng-bind="ctrl.peerRatingInfo.reviewer.userInitials"></span>
+                                            <span data-ng-if="ctrl.peerRatingInfo.reviewer.smallProfileImage !== null && ctrl.peerRatingInfo.reviewer.name !== ''">
+                                            <img data-ng-src="{{ctrl.peerRatingInfo.reviewer.smallProfileImage}}">
+                                        </span>
+                                            <span data-ng-if="ctrl.peerRatingInfo.reviewer.smallProfileImage !== null && ctrl.peerRatingInfo.reviewer.name === ''">
+                                            <img data-ng-src="{{ctrl.peerRatingInfo.reviewer.smallProfileImage}}">
+                                        </span>
+                                            </span>
+                                            <span class="ev-mem-info wadj">
+                                            <span class="ev-name sp-link-color" data-ng-bind="ctrl.peerRatingInfo.reviewer.fullNameOrEmail"></span>
+                                            <span class="ev-title" data-ng-bind="ctrl.peerRatingInfo.reviewer.title"></span>
+                                            </span>
+                                        </p>                                    
+                                        <div class="ev-rating-box no-margin posAbs">
+                                            <p class="rating-val sp-link-color" data-ng-if="ctrl.peerRatingInfo.scoreArray !== null" data-ng-bind="ctrl.peerRatingInfo.score"></p>
+                                            <p class="rating-val" data-ng-if="ctrl.peerRatingInfo.scoreArray === null && !ctrl.competencyEvaluationInProgress" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                            <p class="rating-val" data-ng-if="ctrl.peerRatingInfo.scoreArray === null && ctrl.competencyEvaluationInProgress" data-ng-bind="::pullInterNationalization('manageAccountContent.pending')"></p>
+                                            <div class="ratings-hex" data-ng-if="ctrl.peerRatingInfo.scoreArray !== null">
+                                                <div class="empty-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(ctrl.competencyProfileMap[ctrl.userToProcess.competencyProfileId].ratingConfiguration.size)}}"></div>
+                                                <div class="full-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(ctrl.competencyProfileMap[ctrl.userToProcess.competencyProfileId].ratingConfiguration.size)}}" data-ng-style="{width:(ctrl.peerRatingInfo.score/((ctrl.competencyProfileMap[ctrl.userToProcess.competencyProfileId].ratingConfiguration.size)/10))*10+ '%'}"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pop-ratings-wrap">
+                                        <div class="pop-ratings-table">
+                                            <div class="prt-header">
+                                            </div>
+                                            <div class="prt-row" data-ng-repeat="competency in ctrl.competencyProfileMap[ctrl.userToProcess.competencyProfileId].competencyList track by $index" data-ng-init="loopIndex=$index">
+                                                <div class="prt-col left">
+                                                    <p class="cp-txt" data-ng-bind="competency.name"></p>
+                                                </div>
+                                                <div class="prt-col right">
+                                                    <div class="ev-rating-box no-margin">
+                                                        <p class="rating-val sp-link-color" data-ng-if="ctrl.peerRatingInfo.scoreArray !== null" data-ng-bind="ctrl.peerRatingInfo.scoreArray[loopIndex]"></p>
+                                                        <p class="rating-val" data-ng-if="ctrl.peerRatingInfo.scoreArray === null && !ctrl.competencyEvaluationInProgress" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                            <p class="rating-val" data-ng-if="ctrl.peerRatingInfo.scoreArray === null && ctrl.competencyEvaluationInProgress" data-ng-bind="::pullInterNationalization('manageAccountContent.pending')"></p>
+                                                        <div class="ratings-hex" data-ng-if="ctrl.peerRatingInfo.scoreArray !== null">
+                                                            <div class="empty-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(ctrl.competencyProfileMap[ctrl.userToProcess.competencyProfileId].ratingConfiguration.size)}}"></div>
+                                                            <div class="full-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(ctrl.competencyProfileMap[ctrl.userToProcess.competencyProfileId].ratingConfiguration.size)}}" data-ng-style="{width:(ctrl.peerRatingInfo.scoreArray[loopIndex]/((ctrl.competencyProfileMap[ctrl.userToProcess.competencyProfileId].ratingConfiguration.size)/10))*10+ '%'}"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Right Details Ends -->
+                        </div>
+                    </div>
+                    <!-- Ratings Table Ends -->
+                    <div class="clearfix plr20 mtop20 hide" data-ng-if="ctrl.peerViewState === 'ratings'">
+                        <a href="javascript:void(0)" class="btn-block btn-15px sp-btn-color" data-ng-click="closeThisDialog()" data-ng-bind="::pullInterNationalization('competency.manager.managerEvaluation.done')"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

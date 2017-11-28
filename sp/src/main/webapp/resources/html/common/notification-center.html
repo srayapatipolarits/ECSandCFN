@@ -1,0 +1,30 @@
+<style type="text/css">
+.modal-open {
+ overflow-y: visible;
+}
+.modal-backdrop {
+ background: rgba(255,255,255,.7);
+}
+</style>
+<div class="modal right fade" id="notifyModal" role="dialog" data-ng-init="notifyCtrl.init();">
+    <div class="modal-dialog" role="document">
+<div class="notes-section">
+	<div class="notes-tabs grey-bg">
+	    <div class="notes-header-title p20 notes-header-margin"> 
+	     <div class="top-header-title" data-ng-bind="::pullInterNationalization('dashboard.notification.notification')"></div>
+	   </div> 
+	   <span class="notify-close-icon icon-icon_remove sp-icon-color" data-dismiss="modal" data-ng-click="notifyCtrl.closeModal();"></span>
+	   </div>
+	
+	<div class="notes-list panel-fadeIn max-height" data-ng-if="notifyCtrl.notifications.length">
+            <div class="private-notes-list notify-section org-section notify-box" data-ng-class="{'no-border-bottom':$last,'unread': !list.read}" data-ng-repeat="list in notifyCtrl.notifications" data-ng-click="notifyCtrl.markAsRead(list)">
+               <span class="hinfo-icons {{list.icon}} sp-icon-color" data-ng-if="list.showIcon"></span>
+               <span class="imgReplacement initials" data-ng-if="!list.user.smallProfileImage && !list.showIcon" data-ng-bind="list.user.userInitials"></span>
+               <span class="imgReplacement" data-ng-if="list.user.smallProfileImage && !list.showIcon"><img width="45" height="45" title="" alt="" data-ng-src="{{list.user.smallProfileImage}}"></span>
+               <div class="note-list-header notify-msg" data-ng-bind-html="list.message | replaceSpanClass"></div>
+               <div class="message-date" data-ng-bind="list.createdOn | spDateFormat"></div> 
+            </div>
+        </div>      
+</div>
+    </div>
+</div>

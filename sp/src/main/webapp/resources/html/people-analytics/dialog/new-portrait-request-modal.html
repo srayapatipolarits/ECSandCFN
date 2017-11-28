@@ -1,0 +1,36 @@
+<div class="new-modals-wrapper feedback-modal-wrapper" style="height:{{(winWidth < 768?winHeight:'auto')}}" data-ng-class="{'addScroll':(winWidth < 768)}">
+                    <!-- Request Feedback Starts -->
+                    <div class="note-entry-content clearfix">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="note-entry-content tags-email-list">
+                                <form id="requestPortraitFormModal" name="requestPortraitForm" novalidate autocomplete="off" method="POST" action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" data-ng-submit="requestNewPortrait($event)">
+                                   <input type="hidden" name="orgid" value="00Dj0000001oNf3" />
+                                    <input type="hidden" id="retURL" name="retURL" value="{{currentPageUrl}}" />
+                                    <input type="hidden" id="name" maxlength="80" name="name" size="20" type="text" value="{{userInfo.company.name}}" />
+                                    <input type="hidden"  name="00N0a00000BZppH" value="{{userInfo.company.name}}" />
+                                    <input type="hidden" id="email" maxlength="80" name="email" size="20" type="text" value="{{userInfo.member.email}}" />
+                                    <input type="hidden" id="subject" name="subject" value="{{pullInterNationalization('portrait.requestNew.label')}}">
+                                  <p class="desc" data-ng-bind="::pullInterNationalization('portrait.newRequest.description.label')"></p>
+                                    <div class="note-entry-form clearfix">
+                                        <p class="mbot0">
+                                            <textarea  data-ng-attr-placeholder="{{::pullInterNationalization('portrait.requestNew.comments.placeholder')}}" class="notes-ta" data-ng-model="portraitComment"></textarea>
+                                        </p>
+                                    </div>
+                                    <input type="hidden" id="description" name="description" value="Attachment: {{attachmentObj.url}} | Comments: {{portraitComment}}">
+                                    <span data-ng-if="attachmentObj.type === null" class="file-attach sp-link-color" data-ng-click="openFileStack()" data-ng-bind="::pullInterNationalization('portrait.newRequest.upload')"></span>
+                                    <div class="file-attachment" data-ng-if="attachmentObj.type !== null">
+				                    <a class="file-link" data-ng-href="{{attachmentObj.url}}" target="_blank">
+				                    <span  data-ng-bind="attachmentObj.name"></span></a>
+					                <a class="icon-icon_remove close-view" href="javascript:void(0)" data-ng-click="removeAttachment()"></a>
+                                    </div>
+                                    <div class="ta-options comment-edit-btns">
+		                                <input type="submit" value="{{pullInterNationalization('admin.member.submit')}}" data-ng-class="{'disabled-state':attachmentObj.url === null || portraitComment === '' }" class="btn-square-30px sp-background-color save-comment" data-ng-bind="::pullInterNationalization('admin.member.submit')">
+		                                <a href="javascript:void(0)" data-ng-if="portraitMatchListing.length" data-ng-click="closeThisDialog();" class="btn-square-30px sp-background-color cancel-comment" data-ng-bind="::pullInterNationalization('notes.privateNotes.actions.cancel')"></a>
+		                            </div>
+		                            </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>

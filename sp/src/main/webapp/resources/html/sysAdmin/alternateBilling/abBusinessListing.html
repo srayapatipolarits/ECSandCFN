@@ -1,0 +1,191 @@
+<section data-ng-controller="alternateBilling" data-ng-init="getResponse('Business',false)" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'" class="hide">
+    <div class="x-container members hiring-candidates affiliate-listing pulse-listing oVisible">
+        <div class="container minimumHeight">
+            <div class="bgWhiteBord clearfix">
+                <div class="toolbar clearfix">
+                    <div class="title">
+                        <a href="javascript:void(0)" role="button" data-ng-click="resetfilter()">All Accounts<span class="blackcolor">({{abMasterList.length}})</span></a>
+                    </div>
+                    <div class="controls clearfix">
+                        <div class="hiring-list-wrapper">
+                            <p class='iea'>
+                                <a href="/sp/sysAdmin/alternateBilling/businessStep1Form">Create Account</a>
+                            </p>
+                        </div>
+                        <div class="hiring-list-wrapper">
+                            <p class='iea'>
+                                <a href="/sp/sysAdmin/alternateBilling/importContacts">Import Account</a>
+                            </p>
+                        </div>
+                        <div class="hiring-list-wrapper">
+                            <p class='iea'>
+                                <a href="/sp/sysAdmin/alternateBilling/archivedBusinessContacts?type=Business">Archives</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="extras adj oVisible">
+                    <div class="controls clearfix hide">
+                        <a href="javascript:void(0)" role="button" data-ng-class="{enabled:userEmail.email.length}" class="icon delete" data-ng-click="userEmail.email.length && certainDelete()" title="Delete"></a>
+                    </div>
+                    <div class="controlwrap-search">
+                        <input type="text" class="form-control" maxlength="28" data-ng-model="searchText" placeholder="Search" data-ng-keyup="searchTextFilter(searchText)">
+                        <button class="sp-icon-color" data-ng-class="enableCancel(searchText)? 'icon-icon_remove':'icon-icon_search'" data-ng-click="clearSearch()"></button>
+                    </div>                    
+                    <article class="memberHolder">
+                        <div class="heading row override-fixes">
+                            <div class="col-md-2 col-sm-2 tog activeFilter" data-ng-click="reverse=!reverse;order('companyName', reverse);active($event)" data-predicate='companyName'>
+                                <h4 class="on reset-spc" data-ng-bind="'Company Name'"></h4>
+                            </div>
+                            <div class="col-md-2 col-sm-2 tog">
+                                <h4 class="no-arrow reset-spc" data-ng-bind="'City & Country'"></h4>
+                            </div>
+                            <div class="col-md-2 col-sm-2 tog" data-ng-click="reverse=!reverse;order('accountNumber', reverse);active($event)" data-predicate='accountNumber'>
+                                <h4 class="reset-spc" data-ng-bind="'Account #'"></h4>
+                            </div>
+                            <div class="col-md-2 col-sm-2 tog">
+                                <h4 class="reset-spc" data-ng-bind="'ERT-i'"></h4>
+                            </div>
+                            <div class="col-md-2 col-sm-2" data-ng-click="reverse=!reverse;order('endDate', reverse);active($event)" data-predicate='endDate'>
+                                <h4 class="reset-spc" data-ng-bind="'People Analytics'"></h4>
+                            </div>
+                            <div class="col-md-1 col-sm-1" data-ng-click="reverse=!reverse;order('accountStatus', reverse);active($event)" data-predicate='status'>
+                                <h4 class="reset-spc" data-ng-bind="'Status'"></h4>
+                            </div>
+                            <div class="col-md-1 col-sm-1"></div>
+                        </div>
+                        <div infinite-scroll="returnMemberList(pageSize+pageSize)" infinite-scroll-immediate-check="false" infinite-scroll-disabled="disabledInfinite">
+                            <div class="complete-profile animation_1" id='{{$index}}' data-ng-repeat="abList in recordField = ((abList | filter:textSearching).slice(0,pageSize)) track by abList.id">
+                                <div class="table-row clearfix override-fixes">
+                                    <div class="col-md-2 col-sm-2">
+                                        <p class="reset-spc fw300">
+                                            <a href="/sp/sysAdmin/alternateBilling/viewDetailAccount?accountId={{abList.id}}" class="border-link">
+                                                <span class="mock-link wordWrap" data-ng-bind="abList.companyName"></span>
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 ">
+                                        <p class="reset-spc"><span data-ng-bind="abList.city"></span></p>
+                                        <p class="reset-spc"><span data-ng-bind="abList.country"></span></p>
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 ">
+                                        <p class="reset-spc" data-ng-bind="abList.accountNumber"></p>
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 ">
+                                        <p class="terms-info" data-ng-if="getPlanList(abList.spPlanMap).indexOf('Primary') !== -1 && abList.spPlanMap.Primary.active">
+                                            <span>Term: <span data-ng-bind="abList.spPlanMap.Primary.agreementTerm+' Year(s)'"></span></span>
+                                            <span>Billing Cycle: <span data-ng-bind="abList.spPlanMap.Primary.billingCycle.billingCycleType"></span></span>
+                                            <span>End Date: <span data-ng-bind="formatMonth(abList.spPlanMap.Primary.agreementEndDate)"></span></span>
+                                        </p>
+                                        <p class="add-tool-link" data-ng-if="!abList.deactivated && getPlanList(abList.spPlanMap).indexOf('Primary') === -1">
+                                            <a href=/sp/sysAdmin/alternateBilling/editAccount?accountId={{abList.id}}&showTab=Primary#mode=edit&planList={{getPlanList(abList.spPlanMap).toString()}}" class="border-link">
+                                                <span class="mock-link">+ Add Tool</span>
+                                            </a>
+                                        </p>
+                                        <p class="terms-info" data-ng-if="getPlanList(abList.spPlanMap).indexOf('Primary') !== -1 && !abList.spPlanMap.Primary.active">
+                                        	Deactivated
+                                        </p>
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 ">
+                                        <p class="terms-info" data-ng-if="getPlanList(abList.spPlanMap).indexOf('IntelligentHiring') !== -1 && abList.spPlanMap.IntelligentHiring.active">
+                                            <span>Term: <span data-ng-bind="abList.spPlanMap.IntelligentHiring.agreementTerm+' Year(s)'"></span></span>
+                                            <span>Billing Cycle: <span data-ng-bind="abList.spPlanMap.IntelligentHiring.billingCycle.billingCycleType"></span></span>
+                                            <span>End Date: <span data-ng-bind="formatMonth(abList.spPlanMap.IntelligentHiring.agreementEndDate)"></span></span>
+                                        </p>
+                                        <p class="add-tool-link" data-ng-if="!abList.deactivated && getPlanList(abList.spPlanMap).indexOf('IntelligentHiring') === -1">
+                                            <a href="/sp/sysAdmin/alternateBilling/editAccount?accountId={{abList.id}}&showTab=IntelligentHiring#mode=edit&planList={{getPlanList(abList.spPlanMap).toString()}}" class="border-link">
+                                                <span class="mock-link">+ Add Tool</span>
+                                            </a>
+                                        </p>
+                                        <p class="terms-info" data-ng-if="getPlanList(abList.spPlanMap).indexOf('IntelligentHiring') !== -1 && !abList.spPlanMap.IntelligentHiring.active">
+                                            Deactivated
+                                        </p>                                        
+                                    </div>
+                                    <div class="col-md-1 col-sm-1  col-fix-3">
+                                        <p class="reset-spc" data-ng-bind="abList.deactivated?'Inactive':'Active'"></p>
+                                    </div>
+                                    <div class="col-md-1 col-sm-1">
+                                        <div class="member-actions-col">
+                                            <div class="actions-filter">
+                                                <p class="actions-dropdown-filter smallFilter">
+                                                    <a href="javascript:void(0)" sp-condition="true" sp-click-outside="show">{{pullInterNationalization('manageAccountContent.actions')}}
+                                                    <span class="actions-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                                                </a>
+                                                </p>
+                                            </div>
+				                            <div class="actions-callout-wrappper pos2Ha" data-ng-if="show" data-ng-class="{'posTop1':(abList.length-($index+1) < 2)}">
+				                                <ul class="action-links">
+				                                    <li>
+				                                        <a href="/sp/sysAdmin/alternateBilling/viewDetailAccount?accountId={{abList.id}}">
+				                                            <span class="action-icon icon-icon_move sp-icon-color"></span>
+				                                            <span class="action-text">View Details</span>
+				                                        </a>
+				                                    </li>                                    
+				                                    <li class="sep"><hr/></li>
+				                                    <li data-ng-if="abList.deactivated">
+				                                        <a href="javascript:void(0)" data-ng-click="archiveAccount({'id':abList.id});">
+				                                            <span class="action-icon icon-icon_archive sp-icon-color"></span>
+				                                            <span class="action-text">Archive</span>
+				                                        </a>
+				                                    </li>   
+				                                    <li data-ng-if="!abList.deactivated">
+				                                        <a href="javascript:void(0)" data-ng-click="deleteConfirm(abList.id);">
+				                                            <span class="action-icon icon-icon_move sp-icon-color"></span>
+				                                            <span class="action-text">Deactivate</span>
+				                                        </a>
+				                                    </li>
+				                                    <li data-ng-if="abList.deactivated">
+				                                        <a href="javascript:void(0)" data-ng-click="activateAccount(abList.id,'ACTIVE')">
+				                                            <span class="action-icon icon-icon_hire sp-icon-color"></span>
+				                                            <span class="action-text">Activate</span>
+				                                        </a>
+				                                    </li>				                                       				                                                                                                             
+				                                </ul>
+				                            </div>                                            
+                                        </div>
+                                        <!--                                
+                                    <button class="fullView btn-plus icon-icon_expand sp-icon-color noSpace" type="button"></button><button class="fullView btn-minus icon-icon_collapse-fill sp-icon-color noSpace" type="button"></button>
+                                    -->
+                                    </div>
+                                </div>
+                                <!--
+                            <div class="editable-section clearfix" data-ng-class="{hidden:!show}">
+                                <div class="col-md-1 col-sm-1 custom_1"></div>
+                                <div class="col-md-11 col-sm-11 custom_2">
+                                    <ul class="clearfix" data-ng-show="!advance">
+                                        <li>
+                                            <a href="/sp/sysAdmin/alternateBilling/viewDetailAccount?accountId={{abList.id}}" role="button" class="buttoncss">View Details</a>
+                                        </li>
+                                        <li data-ng-if="!abList.deactivated">
+                                            <a href="/sp/sysAdmin/alternateBilling/account/add/memberalternativeaccounts?accountId={{abList.id}}" role="button" class="buttoncss">Add Member Account</a>
+                                        </li>
+                                        <li data-ng-if="!abList.deactivated">
+                                            <a href="/sp/sysAdmin/alternateBilling/account/add/candidatealternativeaccounts??accountId={{abList.id}}" role="button" class="buttoncss">Add Hiring Account</a>
+                                        </li>
+                                        <li class='deletePos' data-ng-if="!abList.deactivated">
+                                            <a href="javascript:void(0)" role="button" class="buttoncss" data-ng-click="deleteConfirm(abList.id);">Deactivate</a>
+                                        </li>
+                                        <li class='deletePos' data-ng-if="abList.deactivated">
+                                            <a href="javascript:void(0)" role="button" class="buttoncss" data-ng-click="activateAccount(abList.id,'ACTIVE')">Activate</a>
+                                        </li>
+                                        <li class='deletePos'>
+                                            <a href="javascript:void(0)" role="button" class="buttoncss" data-ng-class="{grey:!abList.deactivated}" data-ng-click="abList.deactivated && archiveAccount({'id':abList.id});">Archive</a>
+                                        </li>
+                                    </ul>
+                                    <div class="advanceSelection" data-ng-show="moreadvance">
+                                        <span data-ng-bind="pullInterNationalization('tools.hiring.delmsg')"></span>
+                                        <button class="ctaBtn1" data-ng-click='confirmDelete($event)' data-ng-bind="pullInterNationalization('tools.hiring.delyes')"></button>
+                                        <button class="ctaBtn1" data-ng-click='moreadvance=!moreadvance;advance=!advance' data-ng-bind="pullInterNationalization('tools.hiring.delno')"></button>
+                                    </div>
+                                </div>
+                            </div>
+                            -->
+                            </div>
+                        </div>
+                        <p data-ng-show="!recordField.length" class="noMatchFound data-ng-hide" data-ng-bind="'No Record Found'"></p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

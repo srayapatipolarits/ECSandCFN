@@ -1,0 +1,46 @@
+        <!-- External User Login Form Starts -->
+        <div class="x-container form-wrapper extlogin" ng-controller="externalUserFlow"  ng-if="inviteReady" class="hide" ng-class="inviteReady?'show':'hide'">
+            <div class="container minimumHeight" >
+                <div class="row">
+                    <div class="col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-6">
+                        <form name="spExtLogin" ng-submit="initExternalLogin(spExtLogin)" novalidate>
+                        	<p ng-bind-html="pullInterNationalization('feedback.external.title')" class="indi_head">
+							</p>
+							<p ng-bind-html="pullInterNationalization('growth.external.description')" class="description_head">
+							</p>
+                        	<p>
+                        	<input name="firstName" type="text" placeholder="{{pullInterNationalization('growth.external.firstname')}}" ng-model="ext.firstName" required ng-pattern="emailRegex" /> 
+                        	 <span ng-show="spExtLogin.submitted  && spExtLogin.firstName.$error.required"><span class="icon">!</span> {{pullInterNationalization('growth.external.required')}}</span>
+                              <span ng-show="spExtLogin.submitted && spExtLogin.firstName.$error.pattern"><span class="icon">!</span> {{pullInterNationalization('growth.external.notvalid')}}</span>
+                        	</p>
+                        	<p>
+                        	<input name="lastName" type="text" placeholder="{{pullInterNationalization('growth.external.lastname')}}" ng-model="ext.lastName" required ng-pattern="emailRegex" /> 
+                        	 <span ng-show="spExtLogin.submitted  && spExtLogin.lastName.$error.required"><span class="icon">!</span> {{pullInterNationalization('growth.external.required')}}</span>
+                              <span ng-show="spExtLogin.submitted && spExtLogin.lastName.$error.pattern"><span class="icon">!</span> {{pullInterNationalization('growth.external.notvalid')}}</span>
+                        	</p>
+                            <p>
+                                <input type="email" name="email" placeholder="{{pullInterNationalization('growth.external.email')}}" ng-model="ext.email" required ng-pattern="emailRegex"  ng-disabled=true/>
+                                <span ng-show="(spExtLogin.submitted || spExtLogin.email.$dirty) && spExtLogin.email.$error.required"><span class="icon">!</span> {{pullInterNationalization('growth.external.required')}}</span>
+                                <span ng-show="(spExtLogin.submitted || spExtLogin.email.$dirty) && spExtLogin.email.$error.pattern"><span class="icon">!</span> {{pullInterNationalization('signup.invalid.email.msg')}}</span>
+                            </p>
+                            <p>
+                               <input type="text" name="linkedin" placeholder="{{pullInterNationalization('growth.external.linkedin')}}" ng-model="ext.linkedin"/>
+                                <span ng-show="(spExtLogin.submitted || spExtLogin.password.$dirty)"><span class="icon">!</span> {{pullInterNationalization('growth.external.url')}}</span>
+                            </p>
+                            <p class="tnc" >
+							<input type="checkbox" name="tnc" value="yes" ng-model="tnc" required/>
+							<span class="tnccondition" ng-bind-html="pullInterNationalization('growth.external.iagree')"></span>
+							 <span class="err-msg" ng-show="spExtLogin.submitted && spExtLogin.tnc.$error.required"><span class="icon">!</span> {{pullInterNationalization('growth.external.tnc.error')}}</span>
+							</p>
+							<span class="err-msg" ng-show="sfailure" ng-repeat="(key, value) in failure"><span class="icon">!</span> {{key}} {{value}}</span>
+                             <div class="sp-btn-wrapper sp-red">
+                                <div class="sp-btn">
+                                    <input type="submit" value="submit" class="loginBtn" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Login Form Ends --> 

@@ -1,0 +1,51 @@
+
+
+    <div class="container" id="declineGrowthScreen">
+        <div class="row">
+            <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+<div>
+    	<section class="wrapper">
+	<div class="contentBody">
+		<div class="head">
+			<div class="wrap">
+				<div class="headerBar" data-ng-bind="pullInterNationalization('growthListing.sendreminder.title')"></div>
+				<div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+			</div>
+		</div>
+		<div class="contentArea clearfix">
+		<form name="sendReminder" class="sendReminder">
+			<div class="messageBlock borderarea">
+				<div class="message clearfix" style="padding-bottom:0px;">
+				<div class='to'>{{pullInterNationalization('growthListing.sendreminder.message')}}:</div> 
+				<div class="nameBlock clearfix">
+					<div class="left"><span class="name" data-ng-bind="reminderDetails.user.name"></span><span class="title" data-ng-bind="reminderDetails.user.title"></span></div>
+					<div class="right"><span class="reminderEmail" data-ng-bind="reminderDetails.user.email"></span></div>
+				</div>
+				</div>
+			</div>
+			<div class="messageBlock">
+			<div class="textarea">
+						<input type="text" id="subBlock" name="subject" value="{{pullInterNationalization('growthListing.sendreminder.subject')}}" />
+					</div>
+				<div class="textarea" style="padding-bottom:0px;">
+					<textarea id="commentBlock" name="comment" data-ng-bind="pullInterNationalization('growthListing.sendreminder.text')"></textarea>
+				</div> 
+			</div>
+			<div class="sp-btn-wrapper sp-red btn-esmall floatLeft inviteBtn">
+				<div class="sp-btn">
+					<input type="button" value="{{pullInterNationalization('growthListing.sendreminder.send')}}" class="btnStyle1" ng-click="sendReminderMailed(reminderDetails)">
+				</div>
+			</div>
+			<div class="sp-btn-wrapper sp-grey btn-esmall floatLeft">
+				<div class="sp-btn">
+					<input type="button" value="{{pullInterNationalization('growthListing.sendreminder.cancel')}}" class="btnStyle1" ng-click="closeThisDialog()">
+				</div>
+			</div>
+			</form>
+		 	</div>
+	</div>
+
+	</section>
+</div></div>
+</div></div>
+

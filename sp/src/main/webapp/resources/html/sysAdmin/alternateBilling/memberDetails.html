@@ -1,0 +1,79 @@
+<div class="container" id="editGroup">
+    <div class="row">
+        <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+            <div>
+                <section class="wrapper">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar" data-ng-bind="ctrl.companyDetails.name"></div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                            </div>
+                        </div>
+                        <div class="contentArea">
+                            <div class="account-purchases" data-ng-if="ctrl.getDetailsPlanType==='Primary'">
+                                <h3 data-ng-if="ctrl.getDetailsType === 'Members'">Member account purchase details</h3>
+                                <h3 data-ng-if="ctrl.getDetailsType === 'Admins'">Admin account purchase details</h3>
+                                <table class="account-details-table">
+                                    <thead>
+                                        <tr class="no-borders">
+                                            <th>Date</th>
+                                            <th># of Accounts</th>
+                                            <th>Unit Price</th>
+                                            <th>Override</th>
+                                            <th>Per Month</th>
+                                        </tr>
+                                    </thead>
+                                    <tr data-ng-repeat="p in ctrl.planDetailsPrimary.updateDetails" data-ng-if="ctrl.getDetailsType === 'Members' ? p.accountUpdateType==='PlanMember' : p.accountUpdateType==='PlanAdmin'">
+                                        <td data-ng-bind="p.createdOn | spDateFormat"></td>
+                                        <td data-ng-if="ctrl.planDetailsPrimary.updateDetails.length===1 && ctrl.getDetailsType === 'Members'" data-ng-bind="ctrl.planDetailsPrimary.availalbeMemberSubscriptions"></td>
+                                        <td data-ng-if="ctrl.planDetailsPrimary.updateDetails.length > 1 && ctrl.getDetailsType === 'Members'" data-ng-bind="p.noOfAccounts"></td>
+                                        <td data-ng-if="ctrl.planDetailsPrimary.updateDetails.length===1 && ctrl.getDetailsType === 'Admins'" data-ng-bind="ctrl.planDetailsPrimary.availalbeAdminSubscriptions"></td>
+                                        <td data-ng-if="ctrl.planDetailsPrimary.updateDetails.length > 1 && ctrl.getDetailsType === 'Admins'" data-ng-bind="p.noOfAccounts"></td>
+                                        <td data-ng-bind="p.overridePrice?0:(p.unitPrice | currency)"></td>
+                                        <td data-ng-bind="p.overridePrice===0?'N/A':(p.overridePrice | currency)"></td>
+                                        <td data-ng-bind="p.overridePrice?(p.overridePrice | currency):(ctrl.getTotalPrice(p) | currency)"></td>
+                                    </tr>
+                                </table>
+                                <p class="extrabold" data-ng-if="ctrl.getDetailsType === 'Members'">Total member accounts: <span class="showInLine" data-ng-bind="ctrl.planDetailsPrimary.availalbeMemberSubscriptions"></span></p>
+                                <p class="extrabold" data-ng-if="ctrl.getDetailsType === 'Admins'">Total Admin accounts: <span class="showInLine" data-ng-bind="ctrl.planDetailsPrimary.availalbeAdminSubscriptions"></span></p>
+                                <p class="extrabold">Total charges per month: <span class="showInLine" data-ng-bind="ctrl.getPrimaryDetails(ctrl.getDetailsType, 'Primary') | currency"></span></p>
+                                <p class="cBtn"><a href="javascript:void(0)" data-ng-click="closeThisDialog()" class="btn-block btn-14px">OK</a></p>
+                            </div>
+                            <div class="account-purchases" data-ng-if="ctrl.getDetailsPlanType==='IntelligentHiring'">
+                                <h3 data-ng-if="ctrl.getDetailsType === 'Members'">Portrait account purchase details</h3>
+                                <h3 data-ng-if="ctrl.getDetailsType === 'Admins'">Admin account purchase details</h3>
+                                <table class="account-details-table">
+                                    <thead>
+                                        <tr class="no-borders">
+                                            <th>Date</th>
+                                            <th># of Accounts</th>
+                                            <th>Unit Price</th>
+                                            <th>Override</th>
+                                            <th data-ng-show="ctrl.getDetailsType === 'Admins'">Per Month</th>
+                                        </tr>
+                                    </thead>
+                                    <tr data-ng-repeat="p in ctrl.planDetailsHiring.updateDetails" data-ng-if="ctrl.getDetailsType === 'Members' ? p.accountUpdateType==='PlanMember' : p.accountUpdateType==='PlanAdmin'">
+                                        <td data-ng-bind="p.createdOn | spDateFormat"></td>
+                                        <td data-ng-if="ctrl.planDetailsHiring.updateDetails.length===1 && ctrl.getDetailsType === 'Members'" data-ng-bind="ctrl.planDetailsHiring.availalbeMemberSubscriptions"></td>
+                                        <td data-ng-if="ctrl.planDetailsHiring.updateDetails.length > 1 && ctrl.getDetailsType === 'Members'" data-ng-bind="p.noOfAccounts"></td>
+                                        <td data-ng-if="ctrl.planDetailsHiring.updateDetails.length===1 && ctrl.getDetailsType === 'Admins'" data-ng-bind="ctrl.planDetailsHiring.availalbeAdminSubscriptions"></td>
+                                        <td data-ng-if="ctrl.planDetailsHiring.updateDetails.length > 1 && ctrl.getDetailsType === 'Admins'" data-ng-bind="p.noOfAccounts"></td>
+                                        <td data-ng-bind="p.overridePrice?0:(p.unitPrice | currency)"></td>
+                                        <td data-ng-bind="p.overridePrice===0?'N/A':(p.overridePrice | currency)"></td>
+                                        <td data-ng-bind="p.overridePrice?(p.overridePrice | currency):(ctrl.getTotalPrice(p) | currency)"></td>
+                                    </tr>
+                                </table>
+                                <p class="extrabold" data-ng-if="ctrl.getDetailsType === 'Members'">Total Portrait accounts: <span class="showInLine" data-ng-bind="ctrl.planDetailsHiring.availalbeMemberSubscriptions"></span></p>
+                                <p class="extrabold" data-ng-if="ctrl.getDetailsType === 'Admins'">Total Admin accounts: <span class="showInLine" data-ng-bind="ctrl.planDetailsHiring.availalbeAdminSubscriptions"></span></p>
+                                <p class="extrabold" data-ng-if="ctrl.getDetailsType === 'Admins'">Total charges per month: <span class="showInLine" data-ng-bind="ctrl.getPrimaryDetails(ctrl.getDetailsType, 'IntelligentHiring') | currency"></span></p>
+                                <p class="extrabold"  data-ng-if="ctrl.getDetailsType === 'Members'">Total charges: <span class="showInLine" data-ng-bind="ctrl.getPrimaryDetails(ctrl.getDetailsType, 'IntelligentHiring') | currency"></span></p>
+                                <p class="cBtn"><a href="javascript:void(0)" data-ng-click="closeThisDialog()" class="btn-block btn-14px">OK</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

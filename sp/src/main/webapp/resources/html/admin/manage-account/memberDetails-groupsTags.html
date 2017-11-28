@@ -1,0 +1,126 @@
+<div class="col-content-wrapper mh700" data-ng-init="ctrl.getGroups()">
+    <div class="members-content-wrapper">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('admin.account.member.details.title3')"></h2>
+        </div>
+    </div>
+    <div class="all-content-wrapper">
+        <div class="angucomplete-wrapper s500" data-ng-if="!ctrl.showCreateGroupSection">
+            <angucomplete id="gl2" placeholder="{{::pullInterNationalization('manageAccountContent.addToGroup')}}" pause="100" selectedobject="selectedObj" localdata="ctrl.groupsSearchList" searchfields="name" titlefield="name" minlength="1" inputclass="form-control form-control-small" templatetype="default" update-fn="ctrl.groupActions.add(callback,false)" />
+        </div>
+        <p class="create-new-group-link profilePageFix posAbLink" data-ng-if="!ctrl.showCreateGroupSection">
+            <a href="javascript:void(0)" data-ng-click="ctrl.showCreateGroupSection=true;ctrl.addGroupSubmitDisabled=true;ctrl.createGroupName='';ctrl.errornewEmptyGroup=false;ctrl.errornewGroup=false;" class="border-link">
+                <span class="mock-link" data-ng-bind="::pullInterNationalization('manageAccountContent.createNewGroup')"></span>
+            </a>
+        </p>
+        <div class="create-group-wrapper newStyle w500 m15 animation_1" data-ng-if="ctrl.showCreateGroupSection">
+            <p>
+                <input type="text" data-ng-model="ctrl.createGroupName" placeholder="{{::pullInterNationalization('admin.group.createstatus')}}" />
+                <span class="validate-error" data-ng-bind="::pullInterNationalization('admin.group.noname')" data-ng-if="ctrl.errornewEmptyGroup"></span>
+                <span class="validate-error" data-ng-bind="::pullInterNationalization('admin.group.samename')" data-ng-if="ctrl.errornewGroup"></span>
+            </p>
+            <p class="btns-wrapper">
+                <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('manageAccountContent.create')" data-ng-click="ctrl.saveNewGroup(ctrl.createGroupName)"></a>
+                <a href="javascript:void(0)" class="btn-square-12px btn-darker-grey" data-ng-bind="::pullInterNationalization('manageAccountContent.cancel')" data-ng-click="ctrl.showCreateGroupSection=false;ctrl.createGroupName='';ctrl.errornewEmptyGroup=false;ctrl.errornewGroup=false;"></a>
+            </p>
+        </div>
+        <div class="selected-group-List-wrapper">
+            <p class="group-default-message" data-ng-if="!ctrl.mergedGroupsList.length" data-ng-bind="::pullInterNationalization('manageAccountContent.noGroups')"></p>
+            <div class="group-row" data-ng-repeat="group in ctrl.mergedGroupsList track by group.id">
+                <p class="group-col selected-group-name">
+                    <a href="javascript:void(0)" class="border-link" data-ng-click="ctrl.redirectToGroup(group.name)">
+                        <span class="mock-link" data-ng-bind="group.name"></span>
+                    </a>
+                </p>
+                <p class="group-col pCheckBox" data-ng-if="ctrl.groupActions.check(group)">
+                    <input type="checkbox" name="grouplead_{{$index}}" id="grouplead_{{$index}}" class="iCheckBox" data-ng-checked="true" data-ng-disabled="true" />
+                    <!-- <input type="checkbox" name="grouplead_{{$index}}" id="grouplead_{{$index}}" class="iCheckBox" data-ng-click="!ctrl.groupActions.disabled(group)?ctrl.groupActions.update(group, !ctrl.groupActions.check(group)):''" data-ng-checked="ctrl.groupActions.check(group)" data-ng-disabled="ctrl.groupActions.disabled(group)" /> -->
+                    <label for="grouplead_{{$index}}" class="lCheckBox noCursor">
+                        <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color noBg" data-ng-class="{'disabled': ctrl.groupActions.disabled(group)}"></span>
+                        <span class="lCheckBoxText" data-ng-bind="::pullInterNationalization('admin.member.teamlead')"></span>
+                    </label>
+                </p>
+                <p class="group-col group-remove-selection">
+                    <a href="javascript:void(0)" class="icon-icon_remove grey-color" data-ng-class="{'light-grey':ctrl.showCreateGroupSection}" data-ng-click="!ctrl.showCreateGroupSection?ctrl.showRemoveBox(group):''"></a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="members-content-wrapper mtop90">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('admin.account.member.details.title4')"></h2>
+        </div>
+    </div>
+    <div class="all-content-wrapper">
+        <ol class="form-list-c">
+            <li class="tagsEmailInput brdr0">
+                <tags-input min-length="1" data-type="tags" data-ng-model="ctrl.memberTags" replace-spaces-with-dashes="false" placeholder="{{::pullInterNationalization('admin.account.member.details.tagTitle')}}" on-tag-removed="ctrl.removeProfileTag($tag)" on-tag-added="ctrl.addProfileTag($tag)"></tags-input>
+            </li>
+            <li>
+                <ol class="tagPills w500 mtop20">
+                    <li data-ng-repeat="uTags in ctrl.userTagList track by $index">
+                        <a href="javascript:void(0)">
+                            <span data-ng-bind="uTags"></span>
+                            <span data-ng-click="ctrl.removeProfileTag(uTags,true)">X</span>
+                        </a>
+                    <li>
+                </ol>
+			</li>
+        </ol>
+    </div>
+    <div class="members-content-wrapper mtop90">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('admin.account.member.details.title6')"></h2>
+        </div>
+    </div>
+    <div class="all-content-wrapper options-permissions">
+        <div class="options-wrapper" data-ng-if="ctrl.showPulsePermission">
+            <div class="option-controls">
+                <form novalidate>
+                    <p class="option-btn">
+                        <input type="checkbox" id="workspacePulsePermissions" data-ng-disabled="ctrl.accountPermissionOptions.adminAccess===false" data-ng-model="ctrl.userPermissions.isWorkspacePulseAllowed" data-ng-click="ctrl.accountPermissionOptions.adminAccess?ctrl.updatePermissions(ctrl.userPermissions.isWorkspacePulseAllowed, 'pulse'):''" />
+                        <label for="workspacePulsePermissions" data-ng-class="ctrl.userPermissions.isWorkspacePulseAllowed?'sp-background-color':'default-bg'">
+                            <span class="on" data-ng-class="!ctrl.accountPermissionOptions.adminAccess?'disabled':''" data-ng-show="ctrl.userPermissions.isWorkspacePulseAllowed===true"><span class="rnd-switch icon-icon_switch-dot sp-icon-color pos-r"></span> {{pullInterNationalization('admin.account.member.details.onbtn')}}</span>
+                            <span class="off" data-ng-class="!ctrl.accountPermissionOptions.adminAccess?'disabled':''" data-ng-show="ctrl.userPermissions.isWorkspacePulseAllowed===false"><span class="tiHide" data-ng-bind="::pullInterNationalization('admin.account.member.details.offbtn')"></span> <span class="rnd-switch icon-icon_switch-dot sp-icon-color pos-l"></span></span>
+                        </label>
+                    </p>
+                </form>
+            </div>
+            <div class="option-description">
+                <p class="heading" data-ng-bind="::pullInterNationalization('admin.account.member.details.option3')"></p>
+            </div>
+        </div>
+        <div class="options-wrapper" data-ng-if="ctrl.showSpectrumPermission">
+            <div class="option-controls">
+                <form novalidate>
+                    <p class="option-btn">
+                        <input type="checkbox" id="spectrumPermission" data-ng-disabled="ctrl.accountPermissionOptions.adminAccess===false" data-ng-model="ctrl.userPermissions.isSpectrumAllowed" data-ng-click="ctrl.accountPermissionOptions.adminAccess?ctrl.updatePermissions(ctrl.userPermissions.isSpectrumAllowed, 'spectrum'):''" />
+                        <label for="spectrumPermission" data-ng-class="ctrl.userPermissions.isSpectrumAllowed?'sp-background-color':'default-bg'">
+                            <span class="on" data-ng-class="!ctrl.accountPermissionOptions.adminAccess?'disabled':''" data-ng-show="ctrl.userPermissions.isSpectrumAllowed===true">{{pullInterNationalization('admin.account.member.details.onbtn')}} <span class="rnd-switch icon-icon_switch-dot sp-icon-color pos-r"></span></span>
+                            <span class="off" data-ng-class="!ctrl.accountPermissionOptions.adminAccess?'disabled':''" data-ng-show="ctrl.userPermissions.isSpectrumAllowed===false"><span class="rnd-switch icon-icon_switch-dot sp-icon-color pos-l"></span> <span class="tiHide" data-ng-bind="::pullInterNationalization('admin.account.member.details.offbtn')"></span></span>
+                        </label>
+                    </p>
+                </form>
+            </div>
+            <div class="option-description">
+                <p class="heading" data-ng-bind="::pullInterNationalization('admin.account.member.details.option4')"></p>
+            </div>
+        </div>
+        <div class="options-wrapper" data-ng-if="ctrl.showCompetencyPermission">
+            <div class="option-controls">
+                <form novalidate>
+                    <p class="option-btn">
+                        <input type="checkbox" id="competencyPermission" data-ng-disabled="ctrl.accountPermissionOptions.adminAccess===false" data-ng-model="ctrl.userPermissions.isCompetencyAllowed" data-ng-click="ctrl.accountPermissionOptions.adminAccess?ctrl.updatePermissions(ctrl.userPermissions.isCompetencyAllowed, 'competency'):''" />
+                        <label for="competencyPermission" data-ng-class="ctrl.userPermissions.isCompetencyAllowed?'sp-background-color':'default-bg'">
+                            <span class="on" data-ng-class="!ctrl.accountPermissionOptions.adminAccess?'disabled':''" data-ng-show="ctrl.userPermissions.isCompetencyAllowed===true">{{pullInterNationalization('admin.account.member.details.onbtn')}} <span class="rnd-switch icon-icon_switch-dot sp-icon-color pos-r"></span></span>
+                            <span class="off" data-ng-class="!ctrl.accountPermissionOptions.adminAccess?'disabled':''" data-ng-show="ctrl.userPermissions.isCompetencyAllowed===false"><span class="rnd-switch icon-icon_switch-dot sp-icon-color pos-l"></span> <span class="tiHide" data-ng-bind="::pullInterNationalization('admin.account.member.details.offbtn')"></span></span>
+                        </label>
+                    </p>
+                </form>
+            </div>
+            <div class="option-description">
+                <p class="heading" data-ng-bind="::pullInterNationalization('competency.permissions.adminAccess')"></p>`
+            </div>
+        </div>
+    </div>
+</div>

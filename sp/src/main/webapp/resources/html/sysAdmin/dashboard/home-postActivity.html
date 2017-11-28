@@ -1,0 +1,122 @@
+<div class="activity-posts-wrapper">
+    <div class="activity-posts-list sp-panel-accent">
+        <p class="search-box padj">
+            <input type="text" data-ng-model="ctrl.searchList" placeholder="{{::pullInterNationalization('manageAccountContent.search')}}" data-ng-model-options="{ debounce: { 'default': 100, 'blur': 0 } }">
+            <button data-ng-class="{'icon-icon_remove':ctrl.searchList.length, 'icon-icon_search': !ctrl.searchList.length}" class="sp-icon-color" data-ng-click="ctrl.searchList.length?ctrl.searchList='':''"></button>
+        </p>
+        <ul>
+            <li data-ng-repeat="post in ctrl.postActivityDetails | filter:ctrl.searchList" data-ng-click="ctrl.displayPostData(post, $index)" data-ng-class="{'on':ctrl.selectedTab===$index}">
+                <span class="active-icon icon-icon_focus-arrow sp-icon-color hide" data-ng-class="{'show':ctrl.selectedTab===$index}"></span>
+                <span class="c-name" data-ng-bind="post.company.name"></span>
+                <span class="c-loc" data-ng-bind="post.company.address.state+', '+post.company.address.country"></span>
+                <ul class="likes-comments">
+                    <li>
+                        <span class="post-icons icon-dashboard_like sp-icon-color"></span>
+                        <span class="link-count" data-ng-bind="post.dashboardMessage.likeCount||0"></span>
+                    </li>
+                    <li class="ml20">
+                        <span class="post-icons icon-dashboard_comment sp-icon-color"></span>
+                        <span class="link-count" data-ng-bind="post.dashboardMessage.comments.length||0"></span>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="activity-posts-desc sp-panel-accent">
+        <div class="activity-header">
+            <p>
+                <span class="cnam" data-ng-bind="ctrl.selectedPostCompany.name"></span>
+                <span class="cloc" data-ng-bind="ctrl.selectedPostCompany.address.city+', '+ctrl.selectedPostCompany.address.country"></span>
+            </p>
+        </div>
+        <div class="comment-area hideArea{{!ctrl.selectedPostData.likeCount&&!ctrl.selectedPostData.commentCount&&!ctrl.selectedPostData.commentCount}}">
+            <div class="count-media" data-ng-if="ctrl.selectedPostData.likeCount||ctrl.selectedPostData.commentCount">
+                <a href="javascript:void(0)" data-ng-if="ctrl.selectedPostData.likeCount" data-ng-click="ctrl.likedUserName(ctrl.selectedPostData.id,$event)">
+                    <span class="action-icon icon-dashboard_like sp-icon-color" data-ng-class="ctrl.selectedPostData.likedByUser?'liked':''"></span>
+                    <span class="action-text" data-ng-bind="ctrl.selectedPostData.likeCount"></span>
+                </a>
+                <a href="javascript:void(0)" class="cursor-default border-link" data-ng-if="ctrl.selectedPostData.commentCount">
+                    <span class="action-icon icon-dashboard_comment sp-icon-color"></span>
+                    <span class="action-text" data-ng-bind="ctrl.selectedPostData.commentCount"></span>
+                </a>
+            </div>
+            <footer class="comments-count clearfix" data-ng-if="ctrl.selectedPostData.commentCount !== 0 && !ctrl.mobile">
+                <div class="pull-left counts" data-ng-bind="record.length+' '+pullInterNationalization('dashboard.of') +' '+ctrl.selectedPostData.commentCount+ ' ' + pullInterNationalization('dashboard.comments')"></div>
+                <a href="javascript:void(0)" class="pull-left">
+            <span class="mock-link showMore" data-ng-if="ctrl.selectedPostData.commentCount > record.length" data-ng-click="ctrl.selectedPostData.type==='PublicChannel'?ctrl.previousCommentPublic({'pcRefId':ctrl.selectedPostData.pcRefId},ctrl.selectedPostData):ctrl.previousComment({'messageId':ctrl.selectedPostData.id,'commentsOnly':true},ctrl.selectedPostData)" data-ng-bind="::pullInterNationalization('dashboard.showpreviouscomment')"></span>
+        </a>
+            </footer>
+            <article class="previous-comment-container" data-ng-class="{'scroll_true':record.length>3}">
+                <div class="profile-style previous-comment" data-ng-repeat="comment in record = (ctrl.selectedPostData.comments.slice(0,ctrl.selectedPostData.number).reverse()) track by comment.cid" set-focus-last="$last">
+                    <div class="col-container action-container image-detail-part">
+                        <div class="member-pic smallest">
+                            <img data-ng-src="{{::comment.user.smallProfileImage}}" alt="{{::comment.user.userInitials}}" data-ng-if="comment.user.smallProfileImage">
+                            <div class="imgReplacementSmall" data-ng-if="!comment.user.smallProfileImage" data-ng-bind="::comment.user.userInitials"></div>
+                        </div>
+                        <div class="comment-info">
+                            <a href="javascript:void(0)" title="{{::comment.user.name}}">
+                                <span class="name mock-link" data-ng-bind="::comment.user.name" drop-tool-tip data-desc='{{comment.user}}'></span>
+                            </a>
+                            <input type="checkbox" class="read-more-state" id="readMoreToggle_{{comment.cid}}" />
+                            <div class="read-more-wrap-horizontal" data-ng-init="show = comment.text.substr(0, 500);btn=true">
+                                <span class="text" data-ng-bind-html="(btn?show:comment.text) | htmlLinky" data-ng-class="{'moreellipses':comment.text.length>500&&btn,'inline-block':!ctrl.whiteSpace(comment.text)}"></span>
+                            </div>
+                            <label for="readMoreToggle_{{comment.cid}}" data-readMore="{{::pullInterNationalization('spectrum.more')}}" data-readLess="{{::pullInterNationalization('label.readless')}}" data-ng-click="$parent.btn=!$parent.btn" class="read-more-trigger-horizontal sp-link-color" data-ng-if="comment.text.length>500"></label>
+                            <div class="og-content clearfix" data-ng-if="comment.contentReference.title">
+                                <div class="left-reference" data-ng-if="comment.contentReference.imageUrl" data-ng-init="ctrl.imageLoop = ctrl.imageUrl(comment.contentReference)">
+                                    <div class="image-video" data-ng-repeat="media in ctrl.imageLoop">
+                                        <a href="javascript:void(0)" class="{{media.mediaType}}" data-ng-click="ctrl.videoPopUp(media.url,media.mediaType,comment.contentReference.newTab)">
+                                            <img data-ng-src="{{comment.contentReference.imageUrl}}">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="right-reference web{{comment.contentReference.imageUrl}}">
+                                    <a data-ng-href="{{comment.contentReference.url}}" class="title href_{{comment.contentReference.url}}" data-ng-attr-target="{{comment.contentReference.newTab ? '_blank' : '_self'}}" data-ng-bind-html="comment.contentReference.title"></a>
+                                    <div class="article" data-ng-if="comment.contentReference.authorSource" data-ng-bind-html="pullInterNationalization('manageAccountContent.by')+' '+comment.contentReference.authorSource"></div>
+                                    <div class="description" data-ng-bind-html="comment.contentReference.description | addEllipsis:140"></div>
+                                    <div class="media-links">
+                                        <a href="javascript:void(0)" class="link-action" data-ng-click="ctrl.videoPopUp(media.url,media.mediaType)" data-ng-repeat="media in comment.contentReference.media track by $index">
+                                            <span class="icon-icon_{{media.mediaType|lowercase}} sp-icon-color"></span>
+                                            <span class="mock-link" data-ng-bind="::media.linkText"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="duration">
+                            <span data-ng-bind="comment.createdOn | spTimeUpdate"></span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <div class="profile-style user-comment" data-ng-if="!ctrl.mobile">
+                <div class="image-detail-part">
+                    <div class="member-pic smallest">
+                        <img data-ng-src="{{ctrl.userInfo.member.smallProfileImage}}" alt="{{ctrl.userInfo.member.userInitials}}" data-ng-if="ctrl.userInfo.member.smallProfileImage">
+                        <div class="imgReplacementSmall" data-ng-if="!ctrl.userInfo.member.smallProfileImage" data-ng-bind="ctrl.userInfo.member.userInitials"></div>
+                    </div>
+                    <div class="comment-text-area" data-ng-init="ctrl.selectedPostData.tempcomment = ctrl.createCommentObject()">
+                        <article class="closed-textarea disabled_{{ctrl.selectedPostData.edit}}">
+                            <textarea data-ng-disabled="ctrl.selectedPostData.edit" focus-if="focus" height="21" data-ng-blur="$parent.$parent.focus=false" og-directive reference="ctrl.selectedPostData.tempcomment.comment.contentReference" clear-url="ctrl.selectedPostData.tempcomment.comment.comment" data-ng-model="ctrl.selectedPostData.tempcomment.comment.comment" name="provideComment" data-ng-enter="ctrl.addComment(ctrl.selectedPostData,$event)" placeholder="{{::pullInterNationalization('dashboard.addcomment')}}"></textarea>
+                            <div class="contentReference clearfix" data-ng-if="ctrl.selectedPostData.tempcomment.comment.contentReference.title">
+                                <div class="left-reference" data-ng-if="ctrl.selectedPostData.tempcomment.comment.contentReference.imageUrl">
+                                    <div class="image-video">
+                                        <a href="javascript:void(0)" class="{{ctrl.selectedPostData.tempcomment.comment.contentReference.media[0].mediaType}}" data-ng-click="notesCtrl.videoPopUp(ctrl.selectedPostData.tempcomment.comment.contentReference.media[0].url||ctrl.selectedPostData.tempcomment.comment.contentReference.url,ctrl.selectedPostData.tempcomment.comment.contentReference.media[0].mediaType,ctrl.selectedPostData.tempcomment.comment.contentReference.newTab)">
+                                            <img data-ng-src="{{ctrl.selectedPostData.tempcomment.comment.contentReference.imageUrl}}">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="right-reference web{{ctrl.selectedPostData.tempcomment.comment.contentReference.imageUrl}}">
+                                    <a data-ng-href="{{ctrl.selectedPostData.tempcomment.comment.contentReference.url}}" class="title href_{{ctrl.selectedPostData.tempcomment.comment.contentReference.url}}" data-ng-attr-target="{{ctrl.selectedPostData.tempcomment.comment.contentReference.newTab ? '_blank' : '_self'}}" data-ng-bind-html="ctrl.selectedPostData.tempcomment.comment.contentReference.title"></a>
+                                    <div class="article" data-ng-if="ctrl.selectedPostData.tempcomment.comment.contentReference.authorSource" data-ng-bind-html="pullInterNationalization('manageAccountContent.by')+' '+ctrl.selectedPostData.tempcomment.comment.contentReference.authorSource"></div>
+                                    <div class="description" data-ng-bind-html="ctrl.selectedPostData.tempcomment.comment.contentReference.description | addEllipsis:140"></div>
+                                </div>
+                                <a class="icon-icon_remove close-view" href="javqscript:void(0)" data-ng-click="ctrl.removeReference(ctrl.selectedPostData.tempcomment.comment.contentReference)"></a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

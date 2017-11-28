@@ -1,0 +1,347 @@
+<div class="cm-listing-wrap cm-listing-cols">
+    <div class="ev-listing-header evaluation-cols noMin">
+        <!-- Header 2 Starts -->
+        <div class="evaluation-right-header">
+            <div class="evaluation-info">
+                <a href="javascript:void(0)" data-ng-click="ctrl.genericPrint();" class="ev-print-link">
+                    <span class="icon-icon-print-prism sp-icon-color"></span>
+                    <span class="print-report-text" data-ng-bind="::pullInterNationalization('prism.relationship-advisor.btn3')"></span>
+                </a>
+                <h2 class="sp-header-title-color print-show" data-ng-bind="::pullInterNationalization('competency.manager.evaluation.title')"></h2>
+                <h2 class="sp-header-title-color shrink" data-ng-bind="::pullInterNationalization('competency.admin.viewby.members.header')"></h2>                
+            </div>
+        </div>
+        <!-- Header 2 Ends -->
+    </div>
+    <div class="ev-listing-cols-wrap mtop30" data-ng-if="ctrl.viewByMembersType === 'evaluations'">
+        <span class="close-view icon-icon_remove sp-icon-color" data-ng-click="ctrl.closeViewBy4Section()"></span>
+        <div class="ev-list-mem-info ev-list-cols clear-float print-col-adj1">
+            <p class="ev-member-details spectrum no-border">
+                <span class="ev-mem-pic-holder showThisPic">
+                    <span class="imgReplacement" data-ng-if="ctrl.selectedUser.smallProfileImage === null" data-ng-bind="ctrl.selectedUser.userInitials"></span>
+                <span data-ng-if="ctrl.selectedUser.smallProfileImage !== null">
+                    <img data-ng-src="{{ctrl.selectedUser.smallProfileImage}}">
+                </span>
+                </span>
+                <span class="ev-mem-info">
+                    <span class="ev-name sp-link-color" data-ng-bind="ctrl.selectedUser.name"></span>
+                    <span class="ev-title" data-ng-bind="ctrl.selectedUser.title"></span>
+                    <span class="ev-email" data-ng-bind="ctrl.selectedUser.email" data-ng-class="{'top0': !ctrl.selectedUser.name}"></span>
+                </span>
+            </p>
+        </div>
+        <div class="ev-listing-cols-header competency-trait-block">
+            <div class="ev-listing-row mb0">
+                <div class="ev-list-mem-info ev-list-cols extd">
+                    <h4 class="sort-filter on" data-ng-init="reverse=true" data-ng-click="ctrl.sortViewByData4($event,{'predicate':'startDateTime', 'reverse':reverse=!reverse})" data-predicate="startDateTime">
+                    <span class="sort-text" data-ng-bind="pullInterNationalization('spectrum.evaluation')+' ('+ctrl.userCompetencyEvaluations.length+')'"></span>
+                    <span class="sort-icon icon-icon_sort sp-icon-color sort-down"></span>
+                    <span class="sort-icon icon-icon_sort default-color sort-down"></span>
+                    <span class="sort-icon icon-icon_sort-up sp-icon-color sort-up"></span>
+                   </h4>
+                </div>
+                <div class="ev-list-rating-self ev-list-cols">
+                    <h4 class="sort-filter on" data-ng-init="reverse=true" data-ng-click="ctrl.sortViewByData4($event,{'predicate':'selfScore', 'reverse':reverse=!reverse})" data-predicate="Self">
+                    <span class="sort-text" data-ng-bind="::pullInterNationalization('spectrum.self')"></span>
+                    <span class="sort-icon icon-icon_sort sp-icon-color sort-down"></span>
+                    <span class="sort-icon icon-icon_sort default-color sort-down"></span>
+                    <span class="sort-icon icon-icon_sort-up sp-icon-color sort-up"></span>
+                   </h4>
+                </div>
+                <div class="ev-list-rating-manager ev-list-cols">
+                    <h4 class="sort-filter on" data-ng-init="reverse=true" data-ng-click="ctrl.sortViewByData4($event,{'predicate':'managerScore', 'reverse':reverse=!reverse})" data-predicate="Manager">
+                    <span class="sort-text" data-ng-bind="::pullInterNationalization('spectrum.manager')"></span>
+                    <span class="sort-icon icon-icon_sort sp-icon-color sort-down"></span>
+                    <span class="sort-icon icon-icon_sort default-color sort-down"></span>
+                    <span class="sort-icon icon-icon_sort-up sp-icon-color sort-up"></span>
+                   </h4>
+                </div>
+                <div class="ev-list-rating-peer ev-list-cols">
+                    <h4 class="sort-filter on" data-ng-init="reverse=true" data-ng-click="ctrl.sortViewByData4($event,{'predicate':'peerScore', 'reverse':reverse=!reverse})" data-predicate="Peers">
+                    <span class="sort-text" data-ng-bind="::pullInterNationalization('competency.admin.peer')"></span>
+                    <span class="sort-icon icon-icon_sort sp-icon-color sort-down"></span>
+                    <span class="sort-icon icon-icon_sort default-color sort-down"></span>
+                    <span class="sort-icon icon-icon_sort-up sp-icon-color sort-up"></span>
+                   </h4>
+                </div>
+            </div>
+        </div>
+        <div infinite-scroll="ctrl.viewByInfiniteScroll(ctrl.viewByPageSize4.count+ctrl.viewByPageSize4.count, ctrl.userCompetencyEvaluations, 'view4')" infinite-scroll-immediate-check="false">
+        <div class="ev-listing-cols" data-ng-repeat="list in record=(ctrl.userCompetencyEvaluations.slice(0,ctrl.viewByPageSize4.count)) track by $index">
+                <div class="ev-listing-row">
+                    <div class="ev-list-mem-info ev-list-cols extd mem-view-print-adj1">
+                        <p class="ev-member-details spectrum">
+                            <span class="ev-mem-info">
+                                        <span class="ev-name sp-link-color" data-ng-bind="list.startDate | spLocaleDate"></span>
+                            <span class="ev-title" data-ng-bind="list.competencyProfile.name"></span>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="ev-list-rating-self ev-list-cols rating-cols">
+                        <div class="ev-rating-cont mem-view-print-adj1">
+                            <div class="ev-rating-cont-top" data-ng-if="list.requiredEvaluationList.indexOf('Self') !== -1">
+                                <p class="rating-val sp-link-color mb2" data-ng-if="list.self !==null && list.self.score !== 0" data-ng-bind="list.self.score"></p>
+                                <p class="rating-val" data-ng-if="list.self !==null && list.self.score === 0" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                <p class="rating-val" data-ng-if="list.self === null" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                <div class="ratings-hex" data-ng-if="list.self !==null && list.self.score !== 0">
+                                    <div class="empty-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(list.competencyProfile.ratingConfiguration.size)}}"></div>
+                                    <div class="full-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(list.competencyProfile.ratingConfiguration.size)}}" data-ng-style="{width:(list.self.score/((list.competencyProfile.ratingConfiguration.size)/10))*10+ '%'}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ev-list-rating-manager ev-list-cols rating-cols">
+                        <div class="ev-rating-cont mem-view-print-adj1">
+                            <div class="ev-rating-cont-top" data-ng-if="list.requiredEvaluationList.indexOf('Manager') !== -1">
+                                <p class="rating-val sp-link-color mb2" data-ng-if="list.manager !==null && list.manager.score !== 0" data-ng-bind="list.manager.score"></p>
+                                <p class="rating-val" data-ng-if="list.manager !==null && list.manager.score === 0" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                <p class="rating-val" data-ng-if="list.manager === null" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                <div class="ratings-hex" data-ng-if="list.manager !==null && list.manager.score !== 0">
+                                    <div class="empty-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(list.competencyProfile.ratingConfiguration.size)}}"></div>
+                                    <div class="full-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(list.competencyProfile.ratingConfiguration.size)}}" data-ng-style="{width:(list.manager.score/((list.competencyProfile.ratingConfiguration.size)/10))*10+ '%'}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ev-list-rating-peer ev-list-cols rating-cols lastCol">
+                        <div class="ev-rating-cont mem-view-print-adj1">
+                            <div class="ev-rating-cont-top" data-ng-if="list.requiredEvaluationList.indexOf('Peer') !== -1">
+                                 <p class="rating-val sp-link-color mb2" data-ng-if="list.peers !==null && list.peers.score !== 0" data-ng-bind="list.peers.score"></p>
+                                <p class="rating-val" data-ng-if="list.peers !==null && list.peers.score === 0" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                <p class="rating-val" data-ng-if="list.peers === null" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                <div class="ratings-hex" data-ng-if="list.peers !==null && list.peers.score !== 0">
+                                    <div class="empty-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(list.competencyProfile.ratingConfiguration.size)}}"></div>
+                                    <div class="full-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(list.competencyProfile.ratingConfiguration.size)}}" data-ng-style="{width:(list.peers.score/((list.competencyProfile.ratingConfiguration.size)/10))*10+ '%'}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ev-list-close-btn ev-list-cols vMid">
+                        <a data-ng-if="ctrl.competencyEvaluationInProgress" href="javascript:void(0)" class="icon-icon_remove" data-ng-click="ctrl.removeUserFromEvaluationModal(list.id)"></a>
+                    </div>
+                </div>
+                <section class="competency-trait-section extd" data-ng-if="list.competencyProfile !==null">
+                    <header class="ct-header-wrap">
+                        <ol>
+                            <li>
+                                <a href="javascript:void(0)" data-ng-click="list.enableSlider ? ctrl.toggleSection(('#section_cont_'+$index), $index) : ''">
+                                    <span data-ng-class="{'disabled-slider':!list.enableSlider}" data-ng-bind="::pullInterNationalization('competency.score.average')"></span>
+                                    <span class="evp-icon icon-icon_sort sp-icon-color" data-ng-class="ctrl.activeToggleId===$index?'icon-icon_sort-up':'icon-icon_sort'"></span>
+                                </a>
+                            </li>
+                        </ol>
+                    </header>
+                    <div class="ct-content" id="section_cont_{{$index}}">
+                        <div class="competency-trait-block">
+                            <div class='header-related-content'>
+                                <div class="content-section clearfix">
+                                    <div class="competencyProfile company-average" data-ng-repeat="competency in list.competencyProfile.competencyList track by $index" data-ng-init="loopIndex=$index">
+                                        <div class="ev-listing-row">
+                                            <div class="ev-list-mem-info ev-list-cols extd">
+                                                <p class="ev-member-details company-average">
+                                                    <span class="ev-mem-info pl0 w100">
+                     									<span class="ev-name f500" data-ng-bind="competency.name" data-ng-if="ctrl.winWidth>1025"></span>
+                                                    	<span class="ev-name f500" data-ng-bind="competency.name | addEllipsis:50" data-ng-if="ctrl.winWidth<1025"></span>
+                                                    </span>
+                                                </p>
+                                            </div>
+                                            <div class="ev-list-rating-self ev-list-cols rating-cols" data-ng-repeat="listed in ['self','manager','peers']">
+                                                <div class="ev-rating-cont company-average">
+                                                    <div class="ev-rating-cont-top" data-ng-if="list[listed]">
+                                                        <p class="rating-val" data-ng-if="list[listed].scoreArray !== null" data-ng-bind="list[listed].scoreArray[loopIndex]"></p>
+                                                        <p class="rating-val" data-ng-if="list[listed].scoreArray === null" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                                        <div class="ratings-hex" data-ng-if="list[listed].scoreArray !== null">
+                                                            <div class="empty-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(list.competencyProfile.ratingConfiguration.size)}}"></div>
+                                                            <div class="full-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(list.competencyProfile.ratingConfiguration.size)}}" data-ng-style="{width:(list[listed].scoreArray[loopIndex]/((list.competencyProfile.ratingConfiguration.size)/10))*10+ '%'}"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ev-rating-cont-top" data-ng-if="list[listed] === null && listed === 'self' && list.requiredEvaluationList.indexOf('Self') !== -1">
+                                                        <p class="rating-val" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                                    </div>
+                                                    <div class="ev-rating-cont-top" data-ng-if="list[listed] === null && listed === 'manager' && list.requiredEvaluationList.indexOf('Manager') !== -1">
+                                                        <p class="rating-val" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                                    </div>
+                                                    <div class="ev-rating-cont-top" data-ng-if="list[listed] === null && listed === 'peers' && list.requiredEvaluationList.indexOf('Peer') !== -1">
+                                                        <p class="rating-val" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            </div>
+        
+    </div>
+    <div class="ev-listing-cols-wrap" data-ng-if="ctrl.viewByMembersType === 'users'">
+        <div class="ev-listing-row viewBy-search">
+            <div class="ev-list-mem-info ev-list-cols">
+                <p class="ev-mem-search">
+                    <input class="ipShow" maxlength="28" data-ng-model="ctrl.pageVariables.searchText" type="text" placeholder="{{::pullInterNationalization('dashboard.search')}}" />
+                    <input class="ipHide" maxlength="28" data-ng-model="ctrl.pageVariables.searchText" type="text" placeholder="{{::pullInterNationalization('admin.member.search')}}" />
+                    <button data-ng-class="{'icon-icon_remove':ctrl.pageVariables.searchText.length, 'icon-icon_search': !ctrl.pageVariables.searchText.length}" class="sp-icon-color icon-icon_search" data-ng-click="ctrl.pageVariables.searchText='';"></button>
+                </p>
+            </div>
+        </div>
+        <div class="ev-listing-cols-header competency-trait-block">
+            <div class="ev-listing-row mb0" data-ng-if="record.length">
+                <div class="ev-list-mem-info ev-list-cols extd">
+                    <h4 class="sort-filter on" data-ng-click="ctrl.sortViewByData3($event,{'predicate':'lastName', 'reverse':reverse=!reverse})" data-predicate="lastName">
+                    <span class="sort-text" data-ng-if="ctrl.pageVariables.searchText === ''" data-ng-bind="pullInterNationalization('manageAccountContent.members')+' ('+ctrl.userEvaluationDetails.length+')'"></span>
+                    <span class="sort-text" data-ng-if="ctrl.pageVariables.searchText !== ''" data-ng-bind="pullInterNationalization('manageAccountContent.members')+' ('+record.length+')'"></span>
+                    <span class="sort-icon icon-icon_sort sp-icon-color sort-down"></span>
+                    <span class="sort-icon icon-icon_sort default-color sort-down"></span>
+                    <span class="sort-icon icon-icon_sort-up sp-icon-color sort-up"></span>
+                   </h4>
+                </div>
+                <div class="ev-list-rating-self ev-list-cols">
+                    <h4 class="sort-filter on" data-ng-init="reverse=true" data-ng-click="ctrl.sortViewByData3($event,{'predicate':'selfScore', 'reverse':reverse=!reverse})" data-predicate="Self">
+                    <span class="sort-text" data-ng-bind="::pullInterNationalization('spectrum.self')"></span>
+                    <span class="sort-icon icon-icon_sort sp-icon-color sort-down"></span>
+                    <span class="sort-icon icon-icon_sort default-color sort-down"></span>
+                    <span class="sort-icon icon-icon_sort-up sp-icon-color sort-up"></span>
+                   </h4>
+                </div>
+                <div class="ev-list-rating-manager ev-list-cols">
+                    <h4 class="sort-filter on" data-ng-init="reverse=true" data-ng-click="ctrl.sortViewByData3($event,{'predicate':'managerScore', 'reverse':reverse=!reverse})" data-predicate="Manager">
+                    <span class="sort-text" data-ng-bind="::pullInterNationalization('spectrum.manager')"></span>
+                    <span class="sort-icon icon-icon_sort sp-icon-color sort-down"></span>
+                    <span class="sort-icon icon-icon_sort default-color sort-down"></span>
+                    <span class="sort-icon icon-icon_sort-up sp-icon-color sort-up"></span>
+                   </h4>
+                </div>
+                <div class="ev-list-rating-peer ev-list-cols">
+                    <h4 class="sort-filter on" data-ng-init="reverse=true" data-ng-click="ctrl.sortViewByData3($event,{'predicate':'peerScore', 'reverse':reverse=!reverse})" data-predicate="Peer">
+                    <span class="sort-text" data-ng-bind="::pullInterNationalization('competency.admin.peer')"></span>
+                    <span class="sort-icon icon-icon_sort sp-icon-color sort-down"></span>
+                    <span class="sort-icon icon-icon_sort default-color sort-down"></span>
+                    <span class="sort-icon icon-icon_sort-up sp-icon-color sort-up"></span>
+                   </h4>
+                </div>
+            </div>
+        </div>
+        <div infinite-scroll="ctrl.viewByInfiniteScroll(ctrl.viewByPageSize3.count+ctrl.viewByPageSize3.count, ctrl.userEvaluationDetails, 'view3')" infinite-scroll-immediate-check="false">
+        <div class="ev-listing-cols" data-ng-repeat="list in record=(ctrl.userEvaluationDetails.slice(0,ctrl.viewByPageSize3.count)|filter:ctrl.memberSearchFilter) track by $index">
+                <div class="ev-listing-row">
+                    <div class="ev-list-mem-info ev-list-cols extd mem-view-print-adj">
+                        <p class="ev-member-details spectrum">
+                            <span class="ev-mem-pic-holder">
+                                <span class="imgReplacement" data-ng-if="list.smallProfileImage === null" data-ng-bind="list.userInitials"></span>
+                            <span data-ng-if="list.smallProfileImage !== null">
+                                <img data-ng-src="{{list.smallProfileImage}}">
+                            </span>
+                            </span>
+                            <span class="ev-mem-info">
+                            <a href="javascript:void(0)" data-ng-click="ctrl.getUserCompetencyEvaluations(list)">
+                                <span class="ev-name sp-link-color" data-ng-bind="list.fullNameOrEmail"></span>
+                            </a>
+                            <span class="ev-title" data-ng-bind="list.title"></span>
+                            <span class="ev-email" data-ng-bind="list.competencyName"></span>
+                            <span class="ev-email" data-ng-bind="ctrl.userCompetencyEvaluationMap[list.competencyEvaluationId].startDate+ ' Evaluation'"></span>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="ev-list-rating-self ev-list-cols rating-cols">
+                        <div class="ev-rating-cont">
+                            <div class="ev-rating-cont-top" data-ng-if="ctrl.userCompetencyEvaluationMap[list.competencyEvaluationId].requiredEvaluationList.indexOf('Self') !== -1">
+                                <p class="rating-val sp-link-color mb2" data-ng-if="list.self !==null && list.self.score !== 0" data-ng-bind="list.self.score"></p>
+                                <p class="rating-val" data-ng-if="list.self === null" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                <div class="ratings-hex" data-ng-if="list.self !==null && list.self.score !== 0">
+                                    <div class="empty-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(ctrl.userCompetencyProfileMap[list.competencyEvaluationId + list.competencyProfileId].ratingConfiguration.size)}}"></div>
+                                    <div class="full-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(ctrl.userCompetencyProfileMap[list.competencyEvaluationId + list.competencyProfileId].ratingConfiguration.size)}}" data-ng-style="{width:(list.self.score/((ctrl.userCompetencyProfileMap[list.competencyEvaluationId + list.competencyProfileId].ratingConfiguration.size)/10))*10+ '%'}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ev-list-rating-manager ev-list-cols rating-cols">
+                        <div class="ev-rating-cont">
+                            <div class="ev-rating-cont-top" data-ng-if="ctrl.userCompetencyEvaluationMap[list.competencyEvaluationId].requiredEvaluationList.indexOf('Manager') !== -1">
+                                <p class="rating-val sp-link-color mb2" data-ng-if="list.manager !==null && list.manager.score !== 0" data-ng-bind="list.manager.score"></p>
+                                <p class="rating-val" data-ng-if="list.manager !==null && list.manager.score === 0" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                <p class="rating-val" data-ng-if="list.manager === null" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                <div class="ratings-hex" data-ng-if="list.manager !==null && list.manager.score !== 0">
+                                    <div class="empty-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(ctrl.userCompetencyProfileMap[list.competencyEvaluationId + list.competencyProfileId].ratingConfiguration.size)}}"></div>
+                                    <div class="full-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(ctrl.userCompetencyProfileMap[list.competencyEvaluationId + list.competencyProfileId].ratingConfiguration.size)}}" data-ng-style="{width:(list.manager.score/((ctrl.userCompetencyProfileMap[list.competencyEvaluationId + list.competencyProfileId].ratingConfiguration.size)/10))*10+ '%'}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ev-list-rating-peer ev-list-cols rating-cols lastCol">
+                        <div class="ev-rating-cont">
+                            <div class="ev-rating-cont-top" data-ng-if="ctrl.userCompetencyEvaluationMap[list.competencyEvaluationId].requiredEvaluationList.indexOf('Peer') !== -1">
+                                <p class="rating-val sp-link-color mb2" data-ng-if="list.peers !==null && list.peers.score !== 0" data-ng-bind="list.peers.score"></p>
+                                <p class="rating-val" data-ng-if="list.peers !==null && list.peers.score === 0" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                <p class="rating-val" data-ng-if="list.peers === null" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                <div class="ratings-hex" data-ng-if="list.peers !==null && list.peers.score !== 0">
+                                    <div class="empty-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(ctrl.userCompetencyProfileMap[list.competencyEvaluationId + list.competencyProfileId].ratingConfiguration.size)}}"></div>
+                                    <div class="full-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(ctrl.userCompetencyProfileMap[list.competencyEvaluationId + list.competencyProfileId].ratingConfiguration.size)}}" data-ng-style="{width:(list.peers.score/((ctrl.userCompetencyProfileMap[list.competencyEvaluationId + list.competencyProfileId].ratingConfiguration.size)/10))*10+ '%'}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Competency Accordian Starts -->
+                <section class="competency-trait-section extd">
+                    <header class="ct-header-wrap">
+                        <ol>
+                            <li>
+                                <a href="javascript:void(0)" data-ng-click="list.enableSlider ? ctrl.toggleSection(('#section_cont_'+list.id), list.id) : ''">
+                                    <span data-ng-class="{'disabled-slider':!list.enableSlider}" data-ng-bind="::pullInterNationalization('competency.score.average')"></span>
+                                    <span class="evp-icon icon-icon_sort sp-icon-color" data-ng-class="ctrl.activeToggleId===list.id?'icon-icon_sort-up':'icon-icon_sort'"></span>
+                                </a>
+                            </li>
+                        </ol>
+                    </header>
+                    <div class="ct-content" id="section_cont_{{list.id}}">
+                        <div class="competency-trait-block">
+                            <div class='header-related-content'>
+                                <div class="content-section clearfix">
+                                    <div class="competencyProfile company-average" data-ng-repeat="competency in ctrl.userCompetencyProfileMap[list.competencyEvaluationId + list.competencyProfileId].competencyList track by $index" data-ng-init="loopIndex=$index">
+                                        <div class="ev-listing-row">
+                                            <div class="ev-list-mem-info ev-list-cols extd">
+                                                <p class="ev-member-details company-average">
+                                                    <span class="ev-mem-info pl0 w100">
+														<span class="ev-name f500" data-ng-bind="competency.name" data-ng-if="ctrl.winWidth>1025"></span>
+                                                    	<span class="ev-name f500" data-ng-bind="competency.name | addEllipsis:50" data-ng-if="ctrl.winWidth<1025"></span>
+                                                    </span>
+                                                </p>
+                                            </div>
+                                            <div class="ev-list-rating-self ev-list-cols rating-cols" data-ng-repeat="listed in ['self','manager','peers']">
+                                                <div class="ev-rating-cont company-average">
+                                                    <div class="ev-rating-cont-top" data-ng-if="list[listed]">
+                                                        <p class="rating-val" data-ng-if="list[listed].scoreArray !== null" data-ng-bind="list[listed].scoreArray[loopIndex]"></p>
+                                                        <p class="rating-val" data-ng-if="list[listed].scoreArray === null" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                                        <div class="ratings-hex" data-ng-if="list[listed].scoreArray !== null">
+                                                            <div class="empty-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(ctrl.userCompetencyProfileMap[list.competencyEvaluationId + list.competencyProfileId].ratingConfiguration.size)}}"></div>
+                                                            <div class="full-hex lh25" data-rating="{{ctrl.sharedProperties.processRatingHex(ctrl.userCompetencyProfileMap[list.competencyEvaluationId + list.competencyProfileId].ratingConfiguration.size)}}" data-ng-style="{width:(list[listed].scoreArray[loopIndex]/((ctrl.userCompetencyProfileMap[list.competencyEvaluationId + list.competencyProfileId].ratingConfiguration.size)/10))*10+ '%'}"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ev-rating-cont-top" data-ng-if="list[listed] === null && listed === 'self' && ctrl.userCompetencyEvaluationMap[list.competencyEvaluationId].requiredEvaluationList.indexOf('Self') !== -1">
+                                                        <p class="rating-val" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                                    </div>
+                                                    <div class="ev-rating-cont-top" data-ng-if="list[listed] === null && listed === 'manager' && ctrl.userCompetencyEvaluationMap[list.competencyEvaluationId].requiredEvaluationList.indexOf('Manager') !== -1">
+                                                        <p class="rating-val" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                                    </div>
+                                                    <div class="ev-rating-cont-top" data-ng-if="list[listed] === null && listed === 'peers' && ctrl.userCompetencyEvaluationMap[list.competencyEvaluationId].requiredEvaluationList.indexOf('Peer') !== -1">
+                                                        <p class="rating-val" data-ng-bind="::pullInterNationalization('competency.admin.notRated')"></p>
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Competency Accordian Ends -->
+            </div>
+            </div>
+        <h5 align="center" data-ng-if="ctrl.userEvaluationDetails.length && !record.length" data-ng-bind="::pullInterNationalization('manageAccountContent.noUserAvailable')"></h5>
+        <h5 align="center" data-ng-if="!ctrl.userEvaluationDetails.length" data-ng-bind="::pullInterNationalization('competency.admin.viewBy.members.dec')"></h5>
+    </div>
+</div>

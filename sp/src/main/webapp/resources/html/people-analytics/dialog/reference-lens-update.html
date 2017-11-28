@@ -1,0 +1,63 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                    <h2 data-ng-bind="::pullInterNationalization('manageHiringContent.refText')"></h2>
+                </div>
+                <div class="new-modals-wrapper">
+                    <form novalidate name="updateMemberList" class="form-styles-override">
+                        <div class="description-style" data-ng-bind="::pullInterNationalization('candidate.inviteReference.desc')"> </div>
+                        <ul class="form-list-c form-list-d">
+                        	<li class="select-wrapper borderccc">
+                                <select data-ng-model="ctrl.deleteInfo.referenceType" name="referenceType" data-ng-required="true">
+                                    <option value="" data-ng-bind="::pullInterNationalization('hiring.reference.label12')"></option>
+                                    <option value="{{reference}}" data-ng-repeat="reference in ctrl.candidateRef track by $index" data-ng-bind="pullInterNationalization('hiring.reference.'+reference)"></option>
+                                </select>
+                            </li>
+                            <li>
+                            	 <span data-ng-show="ctrl.updateMemberListError && updateMemberList.referenceType.$error.required" class="validate-error ng-hide" data-ng-bind-html="::pullInterNationalization('tools.hiring.profile.details.error.required')"></span>
+                            </li>
+                        	<li class="input">
+                                <label for="firstName" class="iconLabel" data-ng-bind="::pullInterNationalization('hiring.reference.label1')"></label>
+                                <input type="text" data-ng-required="true" data-ng-model="ctrl.deleteInfo.firstName" name="firstName" placeholder="{{::pullInterNationalization('hiring.reference.label1')}}" data-ng-pattern="/^[a-zA-Z0-9-,’ ]+$/" />
+                                <span data-ng-show="ctrl.updateMemberListError && updateMemberList.firstName.$error.required" class="validate-error ng-hide" data-ng-bind-html="::pullInterNationalization('tools.hiring.profile.details.error.required')"></span>
+                                <span data-ng-show="ctrl.updateMemberListError && updateMemberList.firstName.$error.pattern" class="validate-error ng-hide" data-ng-bind-html="::pullInterNationalization('tools.hiring.add.candidate.emailerr')"></span>
+                            </li>
+                            <li class="input m-top">
+                                <label for="lastName" class="iconLabel" data-ng-bind="::pullInterNationalization('hiring.reference.label2')"></label>
+                                <input type="text" data-ng-required="true" data-ng-model="ctrl.deleteInfo.lastName" name="lastName" placeholder="{{::pullInterNationalization('hiring.reference.label2')}}" data-ng-pattern="/^[a-zA-Z0-9-,’ ]+$/" />
+                                <span data-ng-show="ctrl.updateMemberListError && updateMemberList.lastName.$error.required" class="validate-error ng-hide" data-ng-bind-html="::pullInterNationalization('tools.hiring.profile.details.error.required')"></span>
+                                <span data-ng-show="ctrl.updateMemberListError && updateMemberList.lastName.$error.pattern" class="validate-error ng-hide" data-ng-bind-html="::pullInterNationalization('tools.hiring.add.candidate.emailerr')"></span>
+                            </li>
+                            <li class="input m-top">
+                                <label for="email" class="iconLabel" data-ng-bind="::pullInterNationalization('hiring.reference.label3')"></label>
+                                <input type="text" disabled="disabled" data-ng-required="true" data-ng-model="ctrl.deleteInfo.email" name="email" placeholder="{{::pullInterNationalization('hiring.reference.label3')}}" data-ng-pattern="emailRegex" />
+                                <span data-ng-show="ctrl.updateMemberListError && updateMemberList.email.$error.required" class="validate-error ng-hide" data-ng-bind-html="::pullInterNationalization('tools.hiring.profile.details.error.required')"></span>
+                                <span data-ng-show="ctrl.updateMemberListError && updateMemberList.email.$error.pattern" class="validate-error ng-hide" data-ng-bind-html="::pullInterNationalization('signup.invalid.email.msg')"></span>
+                            </li>
+                            <li class="input m-top form-elements-margin">
+                                <label for="phoneNumber" class="iconLabel" data-ng-bind="::pullInterNationalization('hiring.reference.label4')"></label>
+                                <input type="text" data-ng-required="true" data-ng-model="ctrl.deleteInfo.phoneNumber" name="phoneNumber" placeholder="{{::pullInterNationalization('hiring.reference.label4')}}" data-ng-pattern="/^\+?([-.\s\d]){10,16}$/" />
+                                <span data-ng-show="ctrl.updateMemberListError && updateMemberList.phoneNumber.$error.required" class="validate-error ng-hide" data-ng-bind-html="::pullInterNationalization('tools.hiring.profile.details.error.required')"></span>
+                                <span data-ng-show="ctrl.updateMemberListError && updateMemberList.phoneNumber.$error.pattern" class="validate-error ng-hide" data-ng-bind-html="::pullInterNationalization('tools.hiring.add.candidate.emailerr')"></span>
+                            </li>
+                            <li data-ng-show="ctrl.selfEmailAdded" class="validate-error ng-hide" data-ng-bind-html="::pullInterNationalization('candidate.reference.err4')"></li>
+                       		<li class="submit-cancel-btns">
+                                <ul class="submit-cancel-list">
+                                    <li>
+                                        <input type="button" value="{{::pullInterNationalization('feedback.feedbackReply.button.submit')}}" class="btn-block btn-15px sp-btn-color" data-ng-click="ctrl.updateRefList(updateMemberList)">
+                                    </li>
+                                    <li>
+                                        <input type="button" value="{{::pullInterNationalization('feedback.feedbackReply.button.cancel')}}" class="btn-block btn-grey-dark btn-15px" data-ng-click="closeThisDialog();">
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

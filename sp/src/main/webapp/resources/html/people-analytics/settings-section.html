@@ -1,0 +1,39 @@
+<div class="table-col-layout">
+    <div class="new-cols filters-col full-spanned">
+        <div class="col-content-wrapper mh700 noTopSpace sp-panel-accent">
+            <div class="internal-nav-links-wrapper noMTop">
+                <ul>
+                    <li class="nobTop">
+                        <a href="javascript:void(0)" class="profile-links" data-ng-bind="::pullInterNationalization('manageAccountContent.linkAdmins')" data-ng-click="setSettingsView('admins')" data-ng-class="settingsNav==='admins'?'on':''"></a>
+                        <span data-ng-class="settingsNav==='admins'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="profile-links" data-ng-bind="::pullInterNationalization('manageAccountContent.linkCompany')" data-ng-click="setSettingsView('companyDetails')" data-ng-class="settingsNav==='companyDetails'?'on':''"></a>
+                        <span data-ng-class="settingsNav==='companyDetails'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="profile-links" data-ng-bind="::pullInterNationalization('manageAccountContent.linkBilling')" data-ng-click="setSettingsView('billingDetails')" data-ng-class="settingsNav==='billingDetails'?'on':''"></a>
+                        <span class="toLines" data-ng-class="settingsNav==='billingDetails'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="profile-links" data-ng-bind="::pullInterNationalization('manageAccountContent.linkPermissions')" data-ng-click="setSettingsView('permissions')" data-ng-class="settingsNav==='permissions'?'on':''"></a>
+                        <span data-ng-class="settingsNav==='permissions'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="filter-col-sham posBot0 full-spanned"></div>
+    </div>
+    <div class="new-cols content-col sp-panel-accent" data-ng-if="settingsNav==='admins'">
+        <ng-include src="'/sp/resources/html/people-analytics/view/settings-admins.html'"></ng-include>
+    </div>
+    <div class="new-cols content-col sp-panel-accent" data-ng-if="settingsNav==='companyDetails'">
+        <ng-include src="'/sp/resources/html/people-analytics/view/settings-companyDetails.html'"></ng-include>
+    </div>
+    <div class="new-cols content-col sp-panel-accent" data-ng-if="settingsNav==='billingDetails'">
+        <ng-include src="'/sp/resources/html/people-analytics/view/settings-billingDetails.html'"></ng-include>
+    </div>
+    <div class="new-cols content-col sp-panel-accent" data-ng-if="settingsNav==='permissions'">
+        <ng-include src="'/sp/resources/html/people-analytics/view/settings-permissions.html'"></ng-include>
+    </div>
+</div>

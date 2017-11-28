@@ -1,0 +1,24 @@
+<!-- Inline style added for z-index issue -->
+<style type="text/css">
+.sticky-bottom {
+ display: none !important;
+}
+</style>
+<div class="lnd-content-dialog dashboard-feed">
+<!-- style="height:{{ctrl.winHeight}}"-->
+    <div class="x-container eaeaea" data-ng-init="ctrl.specficTheme(ctrl.page)">
+        <div data-ng-class="ctrl.currentNews.hide||ctrl.currentNews.delete?'':'bgWhite'">
+            <div class="dialog-header-closeBtn">
+                <h2 class="dialog-heading" data-ng-bind="ctrl.currentNews.edit?pullInterNationalization('dashboard.editpost'):pullInterNationalization('dashboard.post')"></h2>
+                <div class="close-btn-icon icon-icon_remove grey-color" data-ng-click="ctrl.clearOverlayVar()"></div>
+            </div>
+            <div class="color-{{ctrl.currentNews.type}}">
+            	<div class="news-feed-holder overlayDesign">
+            	<div class="newsFeed">
+                <div data-ng-include="'/sp/resources/html/dashboard/'+ctrl.pageType+'Responsive.html'"></div>
+                </div>
+                </div>
+                </div>
+        </div>
+    </div>
+</div>

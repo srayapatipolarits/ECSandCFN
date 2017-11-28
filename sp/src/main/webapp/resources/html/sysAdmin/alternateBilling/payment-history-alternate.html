@@ -1,0 +1,57 @@
+<div class="x-container payment-history hide" data-ng-controller="paymentHistoryAlternateController" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'">
+    <div class="container" >
+        <div class="bg-wrapper">
+            <h2 class="sp-header-title-color">{{pullInterNationalization('admin.account.payment.history.title')}}</h2>
+			<p  data-ng-if="!paymentDetails.length">No Records Found.</p>
+            <div class="payment-details-list"  data-ng-if="paymentDetails.length">
+                <div class="tData">
+                    <div class="tRow tHeader">
+                        <div class="tCol">
+                            <p>{{pullInterNationalization('admin.account.payment.history.date')}}</p>
+                        </div>
+                        <div class="tCol">
+                            <p>{{pullInterNationalization('admin.account.payment.history.order')}}</p>
+                        </div>
+                        <div class="tCol desc">
+                            <p>{{pullInterNationalization('admin.account.payment.history.orderdetails')}}</p>
+                        </div>                      
+                        <div class="tCol last">
+                            <p>{{pullInterNationalization('admin.account.payment.history.price')}}</p>
+                        </div>
+                        <div class="tCol pdf">
+                            <!--p>{{pullInterNationalization('admin.account.payment.history.pdf')}}</p-->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tData">
+                    <div class="tRow" data-ng-repeat="r in paymentDetails">
+                        <div class="tCol">
+                            <p  data-ng-bind-html="r.createdOnFormatted"></p>
+                        </div>
+                        <div class="tCol">
+                            <p class="txnFix"  data-ng-bind-html="r.txnId"></p>
+                        </div>
+                        <div class="tCol desc">
+                            <p  data-ng-bind-html="r.reason"></p>
+                        </div>               
+                        <div class="tCol last">
+                            <p data-ng-bind-html="r.amount | currency"></p>
+                        </div>
+                        <div class="tCol pdf">
+                            <p><a target="_blank" href="/sp/sysAdmin/alternateBilling/account/paymentHistory/invoice/{{r.id}}/{{accountId}}" class="icon-icon_pdf sp-icon-color" title="PDF Download"></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="sp-btn-wrapper sp-red">
+                <div class="sp-btn">
+                    <a href="javascript:void(0)" data-ng-click="cancelRedirect();$event.preventDefault()">{{pullInterNationalization('admin.account.payment.history.donebtn')}}</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

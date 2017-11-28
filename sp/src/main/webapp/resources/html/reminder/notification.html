@@ -1,0 +1,125 @@
+<div class="container" id="declineGrowthScreen">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+            <div>
+                <section class="wrapper">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar" data-ng-if="disabledName==null || disabledName=='learningProgram'" data-ng-bind="pullInterNationalization('admin.group.notification.title')"></div>
+                                <div class="headerBar" data-ng-if="disabledName!=null && disabledName!='learningProgram'" data-ng-bind="pullInterNationalization('admin.group.notification.rtitle')"></div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                            </div>
+                        </div>
+                        <div class="contentArea clearfix enableScroll">
+                            <form name="formSendNotification" class="sendReminder getNotificationForm">
+                                <div class="messageBlock borderarea" style="padding-top:0;padding-bottom:0;border:0;">
+                                    <!-- Email List Starts  -->
+                                    <div class="multiple-emails-block" data-ng-if="notificationList.length > 1">
+                                        <div class="table-content">
+                                            <div class="left-cont">
+                                                <p data-ng-bind="::pullInterNationalization('manageAccountContent.selectedMembers')"></p>
+                                            </div>
+                                            <div class="right-cont">
+                                                <p class="email-list">
+                                                    <span data-ng-repeat="notification in notificationList">
+				                                    <span data-ng-bind="notification.email+($last?'':',')"></span>
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Email List Ends  -->
+                                    <input type="hidden" id="headerName" name="brandHeader" />
+                                    <input type="hidden" id="ctaLabel" name="ctaLabel" />
+                                    <input type="hidden" id="ctaUrl" name="ctaUrl" />
+                                    <!-- Email List Starts  -->
+                                    <div class="multiple-emails-block" data-ng-if="notificationList.length === 1">
+                                        <div class="table-content">
+                                            <div class="left-cont">
+                                                <p data-ng-bind="::pullInterNationalization('manageAccountContent.selectedMembers')"></p>
+                                            </div>
+                                            <div class="right-cont">
+                                                <p class="email-list">
+                                                    <span data-ng-repeat="notification in notificationList">
+				                                    <span data-ng-if="notificationList[0].name" data-ng-bind="notificationList[0].name"></span>
+                                                    <span data-ng-if="!notificationList[0].name" data-ng-bind="notificationList[0].email"></span>
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Email List Ends  -->
+                                </div>
+                                <div class="messageBlock">
+                                    <div class="notificationInformationalBlock">
+                                        <!-- Notification Select Log Type Starts-->
+                                        <div class="messageTitle" data-ng-if="disabledName==null || disabledName!='learningProgram'" data-ng-bind="pullInterNationalization('admin.group.notification.messageType')"></div>
+                                        <div class="messageType clearfix" data-ng-if="disabledName==null || disabledName!='learningProgram'">
+                                            <div class="rolesSelectWrapper">
+                                                <span class="msg-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                                                <select data-ng-false-value="default" class="form-control rolesSelect" name="logType" data-ng-model="selectedNotification" data-ng-change="notificatationListName(selectedNotification)" required>
+                                                    <option value="default">-- {{pullInterNationalization('admin.group.pleaseSelect')}} --</option>
+                                                    <option data-ng-repeat="notificationList in notify" value="{{notificationList}}" data-ng-bind-html="pullInterNationalization('admin.group.'+notificationList+'.select')"></option>
+                                                </select>
+                                            </div>
+                                            <span class="err-msg" style="padding-top: 5px;" data-ng-show="formSendNotificationError"><span
+												class="icon">!</span> {{pullInterNationalization('required.error')}}</span>
+                                        </div>
+                                        <div class="messageType clearfix hide" data-ng-if="disabledName!=null">
+                                            <div class="rolesSelectWrapper">
+                                                <input type="text" style="border: none;" readonly data-ng-if="disabledName!=null" name="logType" value="{{disabledName}}">
+                                            </div>
+                                        </div>
+                                        <!-- Notification Select Log Type Ends -->
+                                        <div data-ng-if="userTypeName=='GenericMessage' && disabledName!='learningProgram'" class="hide" data-ng-class="disabledName==null?'show':'hide'">
+                                            <div class="messageSubject" data-ng-bind="pullInterNationalization('admin.group.notification.messageTitle')"></div>
+                                            <div class="textarea">
+                                                <input type="text" id="subBlock" readonly name="subject" />
+                                            </div>
+                                            <div class="messageTextArea" data-ng-bind-html="pullInterNationalization('admin.group.notification.messageArea')"></div>
+                                            <div class="textarea" style="padding-bottom: 0px;">
+                                                <textarea id="commentBlock" name="message"></textarea>
+                                                <span class="err-msg" style="padding-top: 5px;" data-ng-show="messageAreaEmpty">
+                                                <span class="icon">!</span> {{pullInterNationalization('required.error')}}</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Manage Account > Learning Programs Specific Message Starts -->
+                                        <div data-ng-if="userTypeName=='GenericMessage' && disabledName=='learningProgram'" data-ng-init="notificatationListName('learningProgram', extra)">
+                                            <div class="messageSubject" data-ng-bind="pullInterNationalization('admin.group.notification.messageTitle')"></div>
+                                            <div class="textarea">
+                                                <input type="text" id="subBlock" readonly name="subject" />
+                                            </div>
+                                            <div class="messageTextArea" data-ng-bind-html="pullInterNationalization('admin.group.notification.messageArea')"></div>
+                                            <div class="textarea" style="padding-bottom: 0px;">
+                                                <textarea id="commentBlock" name="message"></textarea>
+                                                <span class="err-msg" style="padding-top: 5px;" data-ng-show="messageAreaEmpty">
+                                                <span class="icon">!</span> {{pullInterNationalization('required.error')}}</span>
+                                            </div>
+                                        </div>                                        
+                                        <!-- Manage Account > Learning Programs Specific Message Ends -->
+
+                                        <div class="style_Reminder_1" data-ng-if="disabledName!=null && disabledName!='learningProgram'" data-ng-bind="pullInterNationalization('admin.group.notification.captionTitle')"></div>
+                                    </div>
+                                </div>
+                                <div class="sp-btn-wrapper sp-red btn-esmall floatLeft inviteBtn">
+                                    <div class="sp-btn">
+                                        <input data-ng-if="disabledName==null || disabledName=='learningProgram'" type="button" value="{{pullInterNationalization('admin.group.notification.send')}}" class="btnStyle1" data-ng-click="sendNotification(formSendNotification,notificationList,userTypeName)">
+                                        <input data-ng-if="disabledName!=null && disabledName!='learningProgram'" type="button" value="{{pullInterNationalization('admin.group.notification.yes')}}" class="btnStyle1" data-ng-click="sendNotification(formSendNotification,notificationList,userTypeName,'yes')" id="event_popup-reminder_add-data_yes">
+                                    </div>
+                                </div>
+                                <div class="sp-btn-wrapper sp-grey btn-esmall floatLeft">
+                                    <div class="sp-btn">
+                                        <input data-ng-if="disabledName==null || disabledName=='learningProgram'" type="button" value="{{pullInterNationalization('admin.group.notification.cancel')}}" class="btnStyle1" data-ng-click="closeThisDialog()">
+                                        <input data-ng-if="disabledName!=null && disabledName!='learningProgram'" type="button" value="{{pullInterNationalization('admin.group.notification.no')}}" class="btnStyle1" data-ng-click="closeThisDialog()" id="event_popup-reminder_cancel_no">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

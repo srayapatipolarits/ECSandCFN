@@ -1,0 +1,281 @@
+<div id="content-container">
+  <div class="x-container sign-up-wrapper subscribe-wrapper"
+    ng-controller="signUpController" ng-init="getAnnualMonthlyEmpData()" ng-if="inviteReady" class="hide" ng-class="inviteReady?'show':'hide'">
+    <div class="container minimumHeight" >
+      <div class="row">
+        <div class="payment-page sign-up-product payment-page-individual">
+            
+
+            <h2 class="sign-in-title">{{pullInterNationalization('signup.business.step2.heading')}}</h2>
+
+            <form name="spSubscribe" novalidate autocomplete="off">
+              <!-- 
+              <section class="call-out-plan">
+                <h3 class="plan-title">{{contractPlan}}</h3>
+                <p class="plan-time" ng-bind-html="{{'contractTerm'}}" />
+              </section>
+              -->
+
+
+
+
+              <section class="" ng-repeat="product in products" ng-if="product.status = 'Active' && product.active && product.validityType == 'YEARLY'">
+                
+                <h3 class="util-move">Subscription Total</h3>
+
+                <div ng-class="{'activeBlock': checkStatus(activeIndex,$index)}" data-index-item="index_{{product.id}}">
+
+                  <div class="calc-titles">
+                    <p>
+                      <span
+                        ng-click="updateSelectedBox($event,'index_'+product.id,product.minEmployee,product.maxEmployee,product.unitPrice,$index,product.validityType)"
+                        ng-class="{'active': checkStatus(activeIndex,$index)}"
+                        class="blankBox"></span> <span class="annualTitle"
+                        ng-bind-html='product.titleKey'></span>
+                    </p>
+                  </div>
+                  <div class="calc-form">
+                    <div class="syncCheckbox">
+                      <input name="price" type="hidden"
+                        class='index_{{product.id}}' value="{{product.unitPrice}}"
+                        ng-disabled="true" /> <span
+                        class="annualPrice index_{{product.id}}_item"
+                        ng-show="!getExceeded"
+                        ng-class="{'applied' : highlighter($index)}">{{signup.total | currency}}</span> 
+						
+                        <span class="annualPrice contact disabled index_{{product.id}}_item"
+                        ng-show="getExceeded">n/a</span>
+						<p class="plan-detail">{{pullInterNationalization('signup.business.step2.individualmsg')}} <strong>{{contractTerm}}</strong></p><!--  -->
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="priority-spacing">
+                <h3 class="util-move">Promo Code</h3>
+                <!-- Priority Code -->
+                <div class="priority-code call-out-plan">
+
+                  <div class="overlaySuccessMsg" ng-show="getResult && overlayClose">
+                    <div class="wrapper">
+                      <div class="title">{{pullInterNationalization('signup.business.step2.priorityCodeApplied')}}</div>
+                      <div class="content" ng-bind-html="getContent"></div>
+                      <div class="closeOverlaySuccessMsg"
+                        ng-click="closeOverlaySuccessMsg($event)">
+                        Deactivate Discount<span class="crossImg"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="overlayExceeded" ng-show="getExceeded">
+
+                    <div class="exceeded_wrapper"
+                      compile="pullInterNationalization('signup.business.step2.enterpriseExceedMessage')">
+                    </div>
+
+                  </div>
+                  
+
+                  <div class="coupon-container">
+                    <div class="priorityTitle">
+                      <p class="title">
+                        {{pullInterNationalization('signup.business.step2.priorityCode')}}
+                      </p>
+                    </div>
+                    
+                    <div class="couponInput">
+                      <p class="title">
+                        <label for="coupon">{{pullInterNationalization('signup.business.step2.coupon')}}</label>
+                        <input name="coupon" maxlength="8" class="customStyle"
+                          type="text" autocomplete="off" ng-model="signup.coupon"
+                          ng-class="{'notValid' : getResult==false  && !overlayClose}"
+                          ng-Enter="priorityCode(coupon,activateCheck)" />
+                      </p>
+                    </div>
+                   
+                    
+                      <p class="apply-coupon-link">
+                        <a href="javascript:void(0)" class="btn-square-12px sp-background-color" id="apply_individual" 
+                          data-ng-click="priorityCode(coupon,activateCheck)">{{pullInterNationalization('signup.business.step2.apply')}}
+                        </a>
+                      </p>
+                  </div>
+                </div>
+              
+              
+
+                <div class="promoCodeError">
+                  <span class="err-msg validate-error" ng-show="getResult==false && !overlayClose">{{PromotionsValidationException}}</span> 
+                    <span class="err-msg validate-error" ng-show="!validCoupoun && !overlayClose">{{pullInterNationalization('signup.business.step2.notValidCode')}} </span>
+                </div>
+
+              </section>
+
+
+
+
+
+
+              <div class="total hide" ng-show="!getExceeded">
+                  <p class="title">
+                    <strong>{{pullInterNationalization('signup.business.step2.total')}}</strong>
+                    <span class="totalPrice">{{signup.total | currency}}</span>
+                  </p>
+                  <input name="totalPrice" type="hidden" ng-model="signup.total"
+                    value="{{signup.total}}" />
+
+                  <!--<p class="input">
+                $1,444.00
+              </p>-->
+              </div>
+
+
+
+              <hr />
+              
+<!-- The Form -->
+<section class="credit-card-inputs cc-info" ng-show="!getExceeded">
+  
+  <h3>{{pullInterNationalization('signup.business.step2.enterCardInfo')}}</h3>
+
+      <ul class="credit-card-logos">
+        <li class="cc-logo-amex">American Express</li>
+        <li class="cc-logo-master-card">Master Card</li>
+        <li class="cc-logo-visa">Visa</li>
+        <li class="cc-logo-discover">Discover</li>
+      </ul>
+  <ol class="form-list-c">
+    <li class="name-on-card">
+      <label for="ccname">{{pullInterNationalization('signup.business.step2.nameOnCard')}}</label>
+      
+      <input 
+        type="text" autocomplete="off" 
+        name="ccname" 
+        ng-model="signup.ccname"
+        placeholder="{{pullInterNationalization('signup.business.step2.nameOnCard')}}"
+        required 
+      /> 
+
+      <span class="err-msg validate-error" ng-show="spSubscribe.submitted && spSubscribe.ccname.$error.required && !shownoError" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+    </li>
+
+    <li class="credit-card-number">
+
+
+      <label for="ccno">{{pullInterNationalization('signup.business.step2.creditCardNo')}}</label>
+      <input 
+        type="text" autocomplete="off" 
+        name="ccno" 
+        ng-model="signup.ccno"
+        placeholder="{{pullInterNationalization('signup.business.step2.creditCardNo')}}"
+        required cno-validate 
+      /> 
+      <span class="err-msg validate-error" ng-show="spSubscribe.submitted && spSubscribe.ccno.$error.required && !shownoError" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+      <span class="err-msg validate-error" ng-show="spSubscribe.submitted && spSubscribe.ccno.$error.invalidCCNo && !shownoError" data-ng-bind="pullInterNationalization('signup.emperr')"></span>
+    </li>
+
+    <li class="expiration-date">
+      
+      <ul class="cols-3-exp">
+        <li class="exp-month">
+          <div class="select-wrapper"> 
+            <label for="month">{{pullInterNationalization('signup.month')}}</label>
+            <select name="month" ng-model="signup.month" ng-init="signup.month = 'default'" required>
+              <option value="default">Month</option>
+              <option value="01">Jan</option>
+              <option value="02">Feb</option>
+              <option value="03">Mar</option>
+              <option value="04">Apr</option>
+              <option value="05">May</option>
+              <option value="06">Jun</option>
+              <option value="07">Jul</option>
+              <option value="08">Aug</option>
+              <option value="09">Sep</option>
+              <option value="10">Oct</option>
+              <option value="11">Nov</option>
+              <option value="12">Dec</option>
+            </select>
+          </div> 
+          <span class="err-msg validate-error" ng-show="spSubscribe.submitted && (spSubscribe.month.$modelValue == 'default') && !shownoError" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+        </li>
+
+        <li class="exp-year">
+          <div class="select-wrapper"> <label for="year">{{pullInterNationalization('signup.year')}}</label>
+            <select name="year" ng-model="signup.year" ng-init="signup.year = 'default'" required>
+              <option value="default">Year</option>
+              <option value="{{y.toString().substr(2,2)}}" ng-repeat="y in ccYears">{{y}}</option>
+            </select>
+          </div> 
+          <span class="err-msg validate-error" ng-show="spSubscribe.submitted && (spSubscribe.year.$modelValue == 'default') && !shownoError" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+        </li>
+
+        <li class="security-cvv">
+          <label for="cvv">CVV</label> 
+          <input type="password" autocomplete="off" name="ccv" ng-model="signup.ccv" placeholder="CVV" required ng-pattern="/^[0-9\b]{3,4}$/" />
+          <span class="err-msg validate-error" ng-show="spSubscribe.submitted && spSubscribe.ccv.$error.required && !shownoError" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+          <span class="err-msg validate-error" ng-show="spSubscribe.submitted && spSubscribe.ccv.$error.pattern && !shownoError" data-ng-bind="pullInterNationalization('signup.emperr')"></span>
+        </li>
+      </ul>
+    </li>
+
+    <li class="country">
+      <div class="select-wrapper">
+        <label for="country">{{pullInterNationalization('signup.country')}}</label>
+        <select name="country" ng-model="signup.country" ng-init="signup.country = 'default'" ng-change="stateCheck.forSelectedCountry=signup.country" required>
+						<option value="default" data-ng-bind="::pullInterNationalization('home.selectCountry')"></option>
+                        <option value="{{cList.code}}" data-ng-if="cList.code === 'US'" data-ng-repeat="cList in countries" data-ng-bind="cList.name"></option>
+                        <option value="{{cList.code}}" data-ng-if="cList.code === 'CA'" data-ng-repeat="cList in countries" data-ng-bind="cList.name"></option>
+                        <option value="default1">--------------------------------------------------</option>
+                        <option value="{{cList.code}}" data-ng-if="cList.code !== 'US' && cList.code !== 'CA'" data-ng-repeat="cList in countries" data-ng-bind="cList.name"></option>                                
+        </select>
+      </div>
+
+      <span class="err-msg validate-error" ng-show="spSubscribe.submitted && (signup.country == 'default' || signup.country == 'default1') && !shownoError" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+    </li>
+
+    <li class="postal-code">
+      <label for="zip">{{pullInterNationalization('signup.zipcode')}}</label>
+      
+      <input type="text" autocomplete="off" name="zip" ng-model="signup.zip" placeholder="{{pullInterNationalization('signup.zipcode')}}" required ng-pattern="/(^\d{5}$)|(^\d{5}-\d{4}$)/" ng-if="stateCheck.forSelectedCountry=='United States'"/>              
+      <input type="text" autocomplete="off" name="zip" ng-model="signup.zip" placeholder="{{pullInterNationalization('signup.postalcode')}}" required ng-if="stateCheck.forSelectedCountry!='United States'" />                     
+      
+      <span class="err-msg validate-error" ng-show="spSubscribe.submitted && spSubscribe.zip.$error.required && !shownoError" data-ng-bind="pullInterNationalization('signup.required.error')"></span> 
+      <span class="err-msg validate-error" ng-show="spSubscribe.submitted && spSubscribe.zip.$error.pattern && !shownoError && spSubscribe.zip.$error.required===false" data-ng-bind="pullInterNationalization('signup.emperr')"></span>
+    </li>
+
+    <li class="accept-terms limitUser" ng-show="!getExceeded">
+      <div class="tnc">
+        <div class="terms-check-input">
+          <input type="checkbox" name="tnc" value="yes" ng-model="singup.tnc" required /> 
+          <span class="terms-txt" ng-bind-html="pullInterNationalization('signup.business.step2.iaggree')"></span>
+        </div>
+        <span class="err-msg validate-error" ng-show="spSubscribe.submitted && spSubscribe.tnc.$error.required && !shownoError">Please accept SurePeople terms and conditions to proceed</span>
+      
+        <span class="err-msg validate-error" ng-show="subErrorMessage" data-ng-bind-html="errorMessage"></span>
+      </div>
+    </li>
+
+    <li class="charge-total-message charge">
+      {{pullInterNationalization('signup.business.step2.yourcharge')}} <span>{{signup.total | currency}}</span>
+    </li>
+
+    <li class="submit-cancel-btns">
+      <ul class="submit-cancel-list">
+        <li class="submit-charge">
+          <input type="submit" id="subscribe_individual" value="subscribe" ng-click="processSubscribe('subscribe')" class="subscribeBtn btn-block btn-15px" />
+        </li>
+        <li class="cancel-charge">
+          <input type="button" id="cancel_individual" value="cancel" ng-click="processSubscribe('cancel')" class="cancelBtn btn-block btn-15px btn-grey-dark" />
+        </li>
+      </ul>
+    </li>
+
+  </ol>
+</section>
+ 
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,496 @@
+<article class="accordian-filter">
+	<ul>
+		<li data-ng-if="ctrl.analytics.spectrumFilter.filters.groups.length">
+			<input type="checkbox" class="accordian-checkbox" checked data-ng-click="ctrl.closeRest($event)"/>
+			<span class="clearButon sp-spectrum-color" data-ng-if="ctrl.pageSetting.groupSelected.length" data-ng-click="ctrl.clear('.groupCheckBox','groupSelected','groupSearch')" data-ng-bind="::pullInterNationalization('spectrum.clear')"></span>
+			<span class='expand-collapse'></span>
+			<h3 data-ng-bind="::pullInterNationalization('spectrum.profile.groups')"></h3>
+			<div class='header-related-content' id="group">
+				<div class="controlwrap sp-search-button">
+                    <input type="text" class="form-control" maxlength="28" ng-model="ctrl.pageSetting.groupSearch" placeholder="{{::pullInterNationalization('spectrum.search.group')}}" data-ng-model-options="{ debounce: { 'default': 500, 'blur': 0 } }">
+                    <button ng-class="{'icon-icon_remove':ctrl.pageSetting.groupSearch.length, 'icon-icon_search': !ctrl.pageSetting.groupSearch.length}" class="sp-icon-color" data-ng-click="ctrl.pageSetting.groupSearch=''"></button>
+                </div>
+				<div class="tick-selection clearfix" repeat-done="ctrl.calculateHeight('group')" data-ng-repeat="spectrumFilter in recordField = (ctrl.analytics.spectrumFilter.filters.groups | filter:ctrl.pageSetting.groupSearch) track by spectrumFilter">
+					<input type="checkbox" data-ng-checked="ctrl.pageSetting.groupSelected.indexOf(spectrumFilter)!==-1" class="filterCheckBox groupCheckBox" id="group_{{$index}}" data-ng-click="ctrl.includeCheck(spectrumFilter,ctrl.pageSetting.groupSelected)">
+	                <label for="group_{{$index}}" class="filterCheckBox-label pull-left">
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+	                <label for="group_{{$index}}">
+	                	<span class="floLeft font_14_300 sp-spectrum-color right-adjust" data-ng-bind="spectrumFilter"></span>
+	                </label>
+                </div>
+                <p data-ng-if="!recordField.length" class="noMatchFound" data-ng-bind="::pullInterNationalization('spectrum.nouser')"></p>
+            </div>
+		</li>
+		<li>
+			<input type="checkbox" class="accordian-checkbox disabled-{{ctrl.userType!=='Employees'}}" checked data-ng-click="ctrl.closeRest($event)"/>
+			<span class="clearButon sp-spectrum-color" data-ng-if="ctrl.pageSetting.ageSelected.length" data-ng-click="ctrl.clear('.ageCheckbox','ageSelected')" data-ng-bind="::pullInterNationalization('spectrum.clear')"></span>
+			<span class="expand-collapse disabled-{{ctrl.userType!=='Employees'}}"></span>
+			<h3 class="disabled-{{ctrl.userType!=='Employees'}}" data-ng-bind="::pullInterNationalization('spectrum.profile.age')"></h3>
+			<div class='header-related-content'>
+			    <div class="tick-selection" data-ng-repeat="spectrumFilter in ctrl.analytics.spectrumFilter.filters.age track by $index">
+					<input type="checkbox" class="filterCheckBox ageCheckbox" id="age_{{$index}}" data-ng-click="ctrl.includeCheck(pullInterNationalization('spectrum.ageRange.'+spectrumFilter),ctrl.pageSetting.ageSelected)">
+	                <label for="age_{{$index}}" class="filterCheckBox-label">
+	                	<span class="floLeft font_14_300 sp-spectrum-color" data-ng-bind="pullInterNationalization('spectrum.piechart.'+spectrumFilter)"></span>
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+                </div>
+            </div>
+		</li>
+		<li>
+			<input type="checkbox" class="accordian-checkbox" checked data-ng-click="ctrl.closeRest($event)"/>
+			<span class="clearButon sp-spectrum-color" data-ng-if="ctrl.pageSetting.genderSelected.length" data-ng-click="ctrl.clear('.genderCheckbox','genderSelected')" data-ng-bind="::pullInterNationalization('spectrum.clear')"></span>
+			<span class='expand-collapse'></span>
+			<h3 data-ng-bind="::pullInterNationalization('spectrum.profile.gender')"></h3>
+			<div class='header-related-content'>
+				 <div class="tick-selection">
+					<input type="checkbox" class="filterCheckBox genderCheckbox" id="gender_male" data-ng-click="ctrl.includeCheck('M',ctrl.pageSetting.genderSelected)">
+	                <label for="gender_male" class="filterCheckBox-label">
+	                	<span class="floLeft font_14_300 sp-spectrum-color" data-ng-bind="::pullInterNationalization('spectrum.gender.male')"></span>
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+                </div>
+                <div class="tick-selection">
+					<input type="checkbox" class="filterCheckBox genderCheckbox" id="gender_female" data-ng-click="ctrl.includeCheck('F',ctrl.pageSetting.genderSelected)">
+	                <label for="gender_female" class="filterCheckBox-label">
+	                	<span class="floLeft font_14_300 sp-spectrum-color" data-ng-bind="::pullInterNationalization('spectrum.gender.female')"></span>
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+                </div>
+			</div>
+		</li>
+		<li data-ng-if="ctrl.analytics.spectrumFilter.filters.tags.length">
+			<input type="checkbox" class="accordian-checkbox" checked data-ng-click="ctrl.closeRest($event)"/>
+			<span class="clearButon sp-spectrum-color" data-ng-if="ctrl.pageSetting.tagSelected.length" data-ng-click="ctrl.clear('.tagCheckBox','tagSelected','tagSearch')" data-ng-bind="::pullInterNationalization('spectrum.clear')"></span>
+			<span class='expand-collapse'></span>
+			<h3 data-ng-bind="::pullInterNationalization('spectrum.profile.tags')"></h3>
+			<div class='header-related-content' id="tag">
+				<div class="controlwrap sp-search-button">
+                    <input type="text" class="form-control" maxlength="28" ng-model="ctrl.pageSetting.tagSearch" placeholder="{{::pullInterNationalization('spectrum.search.tags')}}" data-ng-model-options="{ debounce: { 'default': 500, 'blur': 0 } }">
+                    <button ng-class="{'icon-icon_remove':ctrl.pageSetting.tagSearch.length, 'icon-icon_search': !ctrl.pageSetting.tagSearch.length}" class="sp-icon-color" data-ng-click="ctrl.pageSetting.tagSearch=''"></button>
+                </div>
+				<div class="tick-selection" repeat-done="ctrl.calculateHeight('tag')" data-ng-repeat="spectrumFilter in recordField = (ctrl.analytics.spectrumFilter.filters.tags | filter:ctrl.pageSetting.tagSearch) track by spectrumFilter">
+					<input type="checkbox" data-ng-checked="ctrl.pageSetting.tagSelected.indexOf(spectrumFilter)!==-1" class="filterCheckBox tagCheckBox" id="tag_{{$index}}" data-ng-click="ctrl.includeCheck(spectrumFilter,ctrl.pageSetting.tagSelected)">
+	                <label for="tag_{{$index}}" class="filterCheckBox-label pull-left">
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+	                <label for="tag_{{$index}}">
+	                	<span class="floLeft font_14_300 sp-spectrum-color right-adjust" data-ng-bind="spectrumFilter"></span>
+	                </label>
+                </div>
+                <p data-ng-if="!recordField.length" class="noMatchFound" data-ng-bind="::pullInterNationalization('spectrum.nouser')"></p>
+            </div>
+		</li>
+		<li class='trait-heading'>
+			<div class="Heading">
+				<h3 class='personlityTraitHeading' data-ng-bind="::pullInterNationalization('spectrum.alltrait')"></h3>
+			</div>
+		</li>
+		<li data-ng-if="category.categoryType === 'Personality'" data-ng-repeat="category in ctrl.analytics.spectrumFilter.filters.categoryType track by $index" data-ng-init="parent = $index">
+			<input type="checkbox" class="accordian-checkbox" data-ng-click="ctrl.closeRest($event,'no')"/>
+			<span class="clearButon sp-spectrum-color" data-ng-if="ctrl.pageSetting.traitSelectedOrder.indexOf(category.categoryType)!==-1" data-ng-click="ctrl.traitClear(ctrl.pageSetting.allTrait[category.categoryType],'personalityTraitSelected',category.categoryType)" data-ng-bind="::pullInterNationalization('spectrum.clear')"></span>
+			<span class='expand-collapse'></span>
+			<h3 data-ng-bind="pullInterNationalization('spectrum.trait.'+category.categoryType)"></h3>
+			<div class='header-related-content filter-related-content'>
+				<div class="analytic-dropDown personality">
+                	<div class="filter-dropdown">
+	                	<span class="naf-theme-icon_style1 icon-icon_dropdown-arrow sp-icon-color"></span>
+	                     <select data-ng-model="ctrl.pageSetting.personalityMode" data-ng-change="ctrl.ertAnalyticFilterLogic()" data-ng-options="value as pullInterNationalization('spectrum.personalitymode.'+value) for value in ['navigator','underpresure']">
+	                     </select>
+	                </div>
+                </div>
+				<div class="tick-selection" data-ng-repeat="spectrumFilter in recordField = category.traitTypes track by $index" data-ng-init="ctrl.mapToTriat(category.categoryType,spectrumFilter)">
+					<input type="checkbox" data-ng-model="ctrl.pageSetting.allTrait[category.categoryType][spectrumFilter].checked" data-ng-true-value="true" data-ng-false-value="false" class="filterCheckBox" id="{{spectrumFilter}}" data-ng-click="ctrl.traitCheck(category.categoryType,spectrumFilter,ctrl.pageSetting.personalityTraitSelected);">
+	                <label for="{{spectrumFilter}}" class="filterCheckBox-label">
+	                	<span class="floLeft font_14_300 sp-spectrum-label-color" data-ng-bind="pullInterNationalization('spectrum.trait.type.'+spectrumFilter)"></span>
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+	              <!-- <single-range update-fn="ctrl.calucalteTiltGraph()" checkbox-fn="ctrl.traitCheck(category.categoryType,spectrumFilter,ctrl.pageSetting.personalityTraitSelected)" range-data="ctrl.pageSetting.allTrait[category.categoryType][spectrumFilter]" editable="ctrl.pageSetting.allTrait[category.categoryType][spectrumFilter].checked"></single-range>-->
+	            </div>
+	            <div class="big-picture-graph">
+	            	<div class="nonEditableTwoWay clearfix">
+	            		<div class="labels">
+				          	 <span class="minRange" data-ng-bind="::pullInterNationalization('spectrum.trait.type.BigPicture')"></span>
+				          	 <span class="midRange">|</span>
+				          	 <span class="maxRange" data-ng-bind="::pullInterNationalization('spectrum.trait.type.DetailOriented')"></span>
+				        </div>
+	                    <div class="leftBar">
+	                        <div class="color_code_2 childNonEditableLeft" data-ng-style="{ 'width': ctrl.tilt.big + '%' }"></div>
+	                        <span class="w5 dot"></span><span class="w10 dot"></span><span class="w15 dot"></span><span class="w20 dot"></span><span class="w25 dot"></span><span class="w30 dot"></span><span class="w35 dot"></span><span class="w40 dot"></span><span class="w45 dot"></span><span class="w50 dot"></span><span class="w55 dot"></span><span class="w60 dot"></span><span class="w65 dot"></span><span class="w70 dot"></span><span class="w75 dot"></span><span class="w80 dot"></span><span class="w85 dot"></span><span class="w90 dot"></span><span class="w95 dot"></span><span class="w100 dot"></span>
+	                    </div>
+	                    <div class="rightBar">
+	                        <div class="color_code_1 childNonEditableRight" data-ng-style="{ 'width': ctrl.tilt.detail + '%' }"></div>
+	                        <span class="w5 dot"></span><span class="w10 dot"></span><span class="w15 dot"></span><span class="w20 dot"></span><span class="w25 dot"></span><span class="w30 dot"></span><span class="w35 dot"></span><span class="w40 dot"></span><span class="w45 dot"></span><span class="w50 dot"></span><span class="w55 dot"></span><span class="w60 dot"></span><span class="w65 dot"></span><span class="w70 dot"></span><span class="w75 dot"></span><span class="w80 dot"></span><span class="w85 dot"></span><span class="w90 dot"></span><span class="w95 dot"></span><span class="w100 dot"></span>
+	                    </div>
+                	</div>
+                	<div class="nonEditableTwoWay clearfix">
+                		<div class="labels">
+				          	 <span class="minRange" data-ng-bind="::pullInterNationalization('spectrum.trait.type.MissionOriented')"></span>
+				          	 <span class="midRange">|</span>
+				          	 <span class="maxRange" data-ng-bind="::pullInterNationalization('spectrum.trait.type.RelationOriented')"></span>
+				        </div>
+	                    <div class="leftBar">
+	                        <div class="color_code_2 childNonEditableLeft" data-ng-style="{ 'width': ctrl.tilt.mission + '%' }"></div>
+	                        <span class="w5 dot"></span><span class="w10 dot"></span><span class="w15 dot"></span><span class="w20 dot"></span><span class="w25 dot"></span><span class="w30 dot"></span><span class="w35 dot"></span><span class="w40 dot"></span><span class="w45 dot"></span><span class="w50 dot"></span><span class="w55 dot"></span><span class="w60 dot"></span><span class="w65 dot"></span><span class="w70 dot"></span><span class="w75 dot"></span><span class="w80 dot"></span><span class="w85 dot"></span><span class="w90 dot"></span><span class="w95 dot"></span><span class="w100 dot"></span>
+	                    </div>
+	                    <div class="rightBar">
+	                        <div class="color_code_1 childNonEditableRight" data-ng-style="{ 'width': ctrl.tilt.relational + '%' }"></div>
+	                        <span class="w5 dot"></span><span class="w10 dot"></span><span class="w15 dot"></span><span class="w20 dot"></span><span class="w25 dot"></span><span class="w30 dot"></span><span class="w35 dot"></span><span class="w40 dot"></span><span class="w45 dot"></span><span class="w50 dot"></span><span class="w55 dot"></span><span class="w60 dot"></span><span class="w65 dot"></span><span class="w70 dot"></span><span class="w75 dot"></span><span class="w80 dot"></span><span class="w85 dot"></span><span class="w90 dot"></span><span class="w95 dot"></span><span class="w100 dot"></span>
+	                    </div>
+                	</div>
+	            </div>
+            </div>
+   		</li>
+   		
+   		<!-- Processing Blueprint -->
+   		
+   		<li data-ng-if="category.categoryType === 'Processing'" data-ng-repeat="category in ctrl.analytics.spectrumFilter.filters.categoryType track by $index" data-ng-init="parent = $index">
+			<input type="checkbox" class="accordian-checkbox" checked data-ng-click="ctrl.closeRest($event,'no')"/>
+			<span class="clearButon sp-spectrum-color" data-ng-if="ctrl.pageSetting.traitSelectedOrder.indexOf(category.categoryType)!==-1" data-ng-click="ctrl.traitClear(ctrl.pageSetting.allTrait[category.categoryType],'personalityTraitSelected',category.categoryType)" data-ng-bind="::pullInterNationalization('spectrum.clear')"></span>
+			<span class='expand-collapse'></span>
+			<h3 data-ng-bind="pullInterNationalization('spectrum.trait.'+category.categoryType)"></h3>
+			
+			
+			<div class='header-related-content two-way filter-related-content'>
+				<!-- Internal And External -->
+				<div class="tick-selection" data-ng-init="ctrl.mapToTriat(category.categoryType,'Internal','External')">
+					<input type="checkbox" class="filterCheckBox" id="Internal" data-ng-model="ctrl.pageSetting.allTrait[category.categoryType]['Internal'].checked" data-ng-true-value="true" data-ng-false-value="false" data-ng-click="ctrl.traitCheckTwo(category.categoryType,'Internal','External',ctrl.pageSetting.personalityTraitSelected);">
+	                <label for="Internal" class="filterCheckBox-label">
+	                    <span class="visiblity" data-ng-bind="::pullInterNationalization('spectrum.checkbox')"></span>
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+	                <range-drag drag-range="0.5" drag-range="0.5" update-fn="ctrl.ertAnalyticFilterLogic()" checkbox-fn="ctrl.traitCheckTwo(category.categoryType,'Internal','External',ctrl.pageSetting.personalityTraitSelected)" range-data1="ctrl.pageSetting.allTrait[category.categoryType]['Internal']" range-data2="ctrl.pageSetting.allTrait[category.categoryType]['External']" editable="ctrl.pageSetting.allTrait[category.categoryType]['Internal'].checked"></range-drag>
+	                
+	                <!-- <range-drag drag-range="0.5" drag-range="0.5" update-fn="ctrl.ertAnalyticFilterLogic()" checkbox-fn="ctrl.traitCheckTwo(category.categoryType,'Internal','External',ctrl.pageSetting.personalityTraitSelected)" range-data1="ctrl.pageSetting.allTrait[category.categoryType]['Internal']" range-data2="ctrl.pageSetting.allTrait[category.categoryType]['External']" editable="ctrl.pageSetting.allTrait[category.categoryType]['Internal'].checked"></range-drag>-->
+	                <div class="labels clearfix">
+	                	<span class="floLeft font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Internal')"></span>
+	                	<span class="floRight font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.External')"></span>
+	                </div>
+	            </div>
+	            
+	            <!-- Concrete and Intuitive -->
+            	<div class="tick-selection" data-ng-init="ctrl.mapToTriat(category.categoryType,'Concrete','Intuitive')">
+					<input type="checkbox" class="filterCheckBox" id="Concrete" data-ng-model="ctrl.pageSetting.allTrait[category.categoryType]['Concrete'].checked" data-ng-true-value="true" data-ng-false-value="false" data-ng-click="ctrl.traitCheckTwo(category.categoryType,'Concrete','Intuitive',ctrl.pageSetting.personalityTraitSelected);">
+	                <label for="Concrete" class="filterCheckBox-label">
+	                	<span class="visiblity" data-ng-bind="::pullInterNationalization('spectrum.checkbox')"></span>
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+	                <range-drag drag-range="0.5" drag-range="0.5" update-fn="ctrl.ertAnalyticFilterLogic()" checkbox-fn="ctrl.traitCheckTwo(category.categoryType,'Concrete','Intuitive',ctrl.pageSetting.personalityTraitSelected)" range-data1="ctrl.pageSetting.allTrait[category.categoryType]['Concrete']" range-data2="ctrl.pageSetting.allTrait[category.categoryType]['Intuitive']" editable="ctrl.pageSetting.allTrait[category.categoryType]['Concrete'].checked"></range-drag>
+	                <div class="labels clearfix">
+	                	<span class="floLeft font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Concrete')"></span>
+	                	<span class="floRight font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Intuitive')"></span>
+	                </div>
+	            </div>
+	            
+	            <!-- Cognitive and Affective -->
+           		<div class="tick-selection" data-ng-init="ctrl.mapToTriat(category.categoryType,'Cognitive','Affective')">
+					<input type="checkbox" class="filterCheckBox" id="Cognitive" data-ng-model="ctrl.pageSetting.allTrait[category.categoryType]['Cognitive'].checked" data-ng-true-value="true" data-ng-false-value="false" data-ng-click="ctrl.traitCheckTwo(category.categoryType,'Cognitive','Affective',ctrl.pageSetting.personalityTraitSelected);">
+	                <label for="Cognitive" class="filterCheckBox-label">
+	                	<span class="visiblity" data-ng-bind="::pullInterNationalization('spectrum.checkbox')"></span>
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+	                <range-drag drag-range="0.5" drag-range="0.5" update-fn="ctrl.ertAnalyticFilterLogic()" checkbox-fn="ctrl.traitCheckTwo(category.categoryType,'Cognitive','Affective',ctrl.pageSetting.personalityTraitSelected)" range-data1="ctrl.pageSetting.allTrait[category.categoryType]['Cognitive']" range-data2="ctrl.pageSetting.allTrait[category.categoryType]['Affective']" editable="ctrl.pageSetting.allTrait[category.categoryType]['Cognitive'].checked"></range-drag>
+	                <div class="labels clearfix">
+	               		<span class="floLeft font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Cognitive')"></span> 	
+	                	<span class="floRight font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Affective')"></span>
+	                </div>
+	            </div>
+	            
+	            <!-- Orderly and Spontaneous -->
+            	<div class="tick-selection" data-ng-init="ctrl.mapToTriat(category.categoryType,'Orderly','Spontaneous')">
+					<input type="checkbox" class="filterCheckBox" id="Orderly" data-ng-model="ctrl.pageSetting.allTrait[category.categoryType]['Orderly'].checked" data-ng-true-value="true" data-ng-false-value="false" data-ng-click="ctrl.traitCheckTwo(category.categoryType,'Orderly','Spontaneous',ctrl.pageSetting.personalityTraitSelected);">
+	                <label for="Orderly" class="filterCheckBox-label">
+	                    <span class="visiblity" data-ng-bind="::pullInterNationalization('spectrum.checkbox')"></span>
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+	                <range-drag drag-range="0.5" update-fn="ctrl.ertAnalyticFilterLogic()" checkbox-fn="ctrl.traitCheckTwo(category.categoryType,'Orderly','Spontaneous',ctrl.pageSetting.personalityTraitSelected)" range-data1="ctrl.pageSetting.allTrait[category.categoryType]['Orderly']" range-data2="ctrl.pageSetting.allTrait[category.categoryType]['Spontaneous']" editable="ctrl.pageSetting.allTrait[category.categoryType]['Orderly'].checked"></range-drag>
+	                <div class="labels clearfix">
+	                	<span class="floLeft font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Orderly')"></span>
+	                	<span class="floRight font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Spontaneous')"></span>
+	                </div>
+	            </div>
+            </div>
+        </li>
+   		
+   		<!-- Motivation -->
+   		<li data-ng-if="category.categoryType === 'Motivation'" data-ng-repeat="category in ctrl.analytics.spectrumFilter.filters.categoryType track by $index" data-ng-init="parent = $index">
+   			<input type="checkbox" class="accordian-checkbox" checked data-ng-click="ctrl.closeRest($event,'no')"/>
+			<span class="clearButon sp-spectrum-color" data-ng-if="ctrl.pageSetting.traitSelectedOrder.indexOf(category.categoryType)!==-1" data-ng-click="ctrl.traitClear(ctrl.pageSetting.allTrait[category.categoryType],'personalityTraitSelected',category.categoryType)" data-ng-bind="::pullInterNationalization('spectrum.clear')"></span>
+			<span class='expand-collapse'></span>
+			<h3 data-ng-bind="pullInterNationalization('spectrum.trait.'+category.categoryType)"></h3>
+			
+			<!-- AttainmentOfGoals And RecognitionForEffort -->
+			
+			<div class='header-related-content two-way filter-related-content'>
+				<h4 class="header-motivation" data-ng-bind="::pullInterNationalization('spectrum.trait.Motivation.why')"></h4>
+				<div class="tick-selection" data-ng-init="ctrl.mapToTriat(category.categoryType,'AttainmentOfGoals','RecognitionForEffort')">
+					<input type="checkbox" class="filterCheckBox" id="AttainmentOfGoals" data-ng-model="ctrl.pageSetting.allTrait[category.categoryType]['AttainmentOfGoals'].checked" data-ng-true-value="true" data-ng-false-value="false" data-ng-click="ctrl.traitCheckTwo(category.categoryType,'AttainmentOfGoals','RecognitionForEffort',ctrl.pageSetting.personalityTraitSelected);">
+	                <label for="AttainmentOfGoals" class="filterCheckBox-label">
+	                    <span class="visiblity" data-ng-bind="::pullInterNationalization('spectrum.checkbox')"></span>
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+	                <range-drag drag-range="0.5" update-fn="ctrl.ertAnalyticFilterLogic()" checkbox-fn="ctrl.traitCheckTwo(category.categoryType,'AttainmentOfGoals','RecognitionForEffort',ctrl.pageSetting.personalityTraitSelected)" range-data1="ctrl.pageSetting.allTrait[category.categoryType]['AttainmentOfGoals']" range-data2="ctrl.pageSetting.allTrait[category.categoryType]['RecognitionForEffort']" editable="ctrl.pageSetting.allTrait[category.categoryType]['AttainmentOfGoals'].checked"></range-drag>
+	                <div class="labels clearfix">
+	                	<span class="floLeft font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.AttainmentOfGoals')"></span>
+	                	<span class="floRight font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.RecognitionForEffort')"></span>
+	                </div>
+	            </div>
+	            
+	            <!-- Power And Compliance -->
+            
+           	<div class="tick-selection" data-ng-init="ctrl.mapToTriat(category.categoryType,'Power','Compliance')">
+					<input type="checkbox" class="filterCheckBox" id="Power" data-ng-model="ctrl.pageSetting.allTrait[category.categoryType]['Power'].checked" data-ng-true-value="true" data-ng-false-value="false" data-ng-click="ctrl.traitCheckTwo(category.categoryType,'Power','Compliance',ctrl.pageSetting.personalityTraitSelected);">
+	                <label for="Power" class="filterCheckBox-label">
+	                    <span class="visiblity" data-ng-bind="::pullInterNationalization('spectrum.checkbox')"></span>
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+	                <range-drag drag-range="0.5" update-fn="ctrl.ertAnalyticFilterLogic()" checkbox-fn="ctrl.traitCheckTwo(category.categoryType,'Power','Compliance',ctrl.pageSetting.personalityTraitSelected)" range-data1="ctrl.pageSetting.allTrait[category.categoryType]['Power']" range-data2="ctrl.pageSetting.allTrait[category.categoryType]['Compliance']" editable="ctrl.pageSetting.allTrait[category.categoryType]['Power'].checked"></range-drag>
+	                <div class="labels clearfix">
+	                	<span class="floLeft font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Power')"></span>
+	                	<span class="floRight font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Compliance')"></span>
+	                </div>
+	            </div>
+            
+             <!-- Activity And Affiliation -->
+            
+            	<div class="tick-selection" data-ng-init="ctrl.mapToTriat(category.categoryType,'Activity','Affiliation')">
+					<input type="checkbox" class="filterCheckBox" id="Activity" data-ng-model="ctrl.pageSetting.allTrait[category.categoryType]['Activity'].checked" data-ng-true-value="true" data-ng-false-value="false" data-ng-click="ctrl.traitCheckTwo(category.categoryType,'Activity','Affiliation',ctrl.pageSetting.personalityTraitSelected);">
+	                <label for="Activity" class="filterCheckBox-label">
+	                	<span class="visiblity" data-ng-bind="::pullInterNationalization('spectrum.checkbox')"></span>
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+	                <range-drag drag-range="0.5" update-fn="ctrl.ertAnalyticFilterLogic()" checkbox-fn="ctrl.traitCheckTwo(category.categoryType,'Activity','Affiliation',ctrl.pageSetting.personalityTraitSelected)" range-data1="ctrl.pageSetting.allTrait[category.categoryType]['Activity']" range-data2="ctrl.pageSetting.allTrait[category.categoryType]['Affiliation']" editable="ctrl.pageSetting.allTrait[category.categoryType]['Activity'].checked"></range-drag>
+	                <div class="labels clearfix">
+	                	<span class="floLeft font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Activity')"></span>
+	                	<span class="floRight font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Affiliation')"></span>
+	                </div>
+	            </div>
+            
+            <!-- SelfAffirmed And AffirmedByOthers -->
+            
+            	<h4 class="header-motivation" data-ng-bind="::pullInterNationalization('spectrum.trait.Motivation.how')"></h4>
+				<div class="tick-selection" data-ng-init="ctrl.mapToTriat(category.categoryType,'SelfAffirmed','AffirmedByOthers')">
+					<input type="checkbox" class="filterCheckBox" id="SelfAffirmed" data-ng-model="ctrl.pageSetting.allTrait[category.categoryType]['SelfAffirmed'].checked" data-ng-true-value="true" data-ng-false-value="false" data-ng-click="ctrl.traitCheckTwo(category.categoryType,'SelfAffirmed','AffirmedByOthers',ctrl.pageSetting.personalityTraitSelected);">
+	                <label for="SelfAffirmed" class="filterCheckBox-label">
+	                	<span class="visiblity" data-ng-bind="::pullInterNationalization('spectrum.checkbox')"></span>
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+	                <range-drag drag-range="0.5" update-fn="ctrl.ertAnalyticFilterLogic()" checkbox-fn="ctrl.traitCheckTwo(category.categoryType,'SelfAffirmed','AffirmedByOthers',ctrl.pageSetting.personalityTraitSelected)" range-data1="ctrl.pageSetting.allTrait[category.categoryType]['SelfAffirmed']" range-data2="ctrl.pageSetting.allTrait[category.categoryType]['AffirmedByOthers']" editable="ctrl.pageSetting.allTrait[category.categoryType]['SelfAffirmed'].checked"></range-drag>
+	            	<div class="labels clearfix">
+	                	<span class="floLeft font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.SelfAffirmed')"></span>
+	                	<span class="floRight font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.AffirmedByOthers')"></span>
+	                </div>
+	            </div>
+            
+            <!-- ExchangeOfIdeas And ReceiveDirection -->
+            
+            	<div class="tick-selection" data-ng-init="ctrl.mapToTriat(category.categoryType,'ExchangeOfIdeas','ReceiveDirection')">
+					<input type="checkbox" class="filterCheckBox" id="ExchangeOfIdeas" data-ng-model="ctrl.pageSetting.allTrait[category.categoryType]['ExchangeOfIdeas'].checked" data-ng-true-value="true" data-ng-false-value="false" data-ng-click="ctrl.traitCheckTwo(category.categoryType,'ExchangeOfIdeas','ReceiveDirection',ctrl.pageSetting.personalityTraitSelected);">
+	                <label for="ExchangeOfIdeas" class="filterCheckBox-label">
+	                	<span class="visiblity" data-ng-bind="::pullInterNationalization('spectrum.checkbox')"></span>
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+	                <range-drag drag-range="0.5" update-fn="ctrl.ertAnalyticFilterLogic()" checkbox-fn="ctrl.traitCheckTwo(category.categoryType,'ExchangeOfIdeas','ReceiveDirection',ctrl.pageSetting.personalityTraitSelected)" range-data1="ctrl.pageSetting.allTrait[category.categoryType]['ExchangeOfIdeas']" range-data2="ctrl.pageSetting.allTrait[category.categoryType]['ReceiveDirection']" editable="ctrl.pageSetting.allTrait[category.categoryType]['ExchangeOfIdeas'].checked"></range-drag>
+	           		<div class="labels clearfix">
+	                	<span class="floLeft font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.ExchangeOfIdeas')"></span>
+	                	<span class="floRight font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.ReceiveDirection')"></span>
+	                </div>
+	            </div>
+            
+             <!-- Freedom And Consistency -->
+            
+           	<div class="tick-selection" data-ng-init="ctrl.mapToTriat(category.categoryType,'Freedom','Consistency')">
+					<input type="checkbox" class="filterCheckBox" id="Freedom" data-ng-model="ctrl.pageSetting.allTrait[category.categoryType]['Freedom'].checked" data-ng-true-value="true" data-ng-false-value="false" data-ng-click="ctrl.traitCheckTwo(category.categoryType,'Freedom','Consistency',ctrl.pageSetting.personalityTraitSelected);">
+	                <label for="Freedom" class="filterCheckBox-label">
+	                	<span class="visiblity" data-ng-bind="::pullInterNationalization('spectrum.checkbox')"></span>
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+	                <range-drag drag-range="0.5" update-fn="ctrl.ertAnalyticFilterLogic()" checkbox-fn="ctrl.traitCheckTwo(category.categoryType,'Freedom','Consistency',ctrl.pageSetting.personalityTraitSelected)" range-data1="ctrl.pageSetting.allTrait[category.categoryType]['Freedom']" range-data2="ctrl.pageSetting.allTrait[category.categoryType]['Consistency']" editable="ctrl.pageSetting.allTrait[category.categoryType]['Freedom'].checked"></range-drag>
+	            	<div class="labels clearfix">
+	                	<span class="floLeft font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Freedom')"></span>
+	                	<span class="floRight font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Consistency')"></span>
+	                </div>
+	            </div>
+            
+            <!-- TaskCompletion And PrefersProcess -->
+            
+           		<div class="tick-selection" data-ng-init="ctrl.mapToTriat(category.categoryType,'TaskCompletion','PrefersProcess')">
+					<input type="checkbox" class="filterCheckBox" id="TaskCompletion" data-ng-model="ctrl.pageSetting.allTrait[category.categoryType]['TaskCompletion'].checked" data-ng-true-value="true" data-ng-false-value="false" data-ng-click="ctrl.traitCheckTwo(category.categoryType,'TaskCompletion','PrefersProcess',ctrl.pageSetting.personalityTraitSelected);">
+	                <label for="TaskCompletion" class="filterCheckBox-label">
+	                	<span class="visiblity" data-ng-bind="::pullInterNationalization('spectrum.checkbox')"></span>
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+	                <range-drag drag-range="0.5" update-fn="ctrl.ertAnalyticFilterLogic()" checkbox-fn="ctrl.traitCheckTwo(category.categoryType,'TaskCompletion','PrefersProcess',ctrl.pageSetting.personalityTraitSelected)" range-data1="ctrl.pageSetting.allTrait[category.categoryType]['TaskCompletion']" range-data2="ctrl.pageSetting.allTrait[category.categoryType]['PrefersProcess']" editable="ctrl.pageSetting.allTrait[category.categoryType]['TaskCompletion'].checked"></range-drag>
+	            	<div class="labels clearfix">
+	                	<span class="floLeft font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.TaskCompletion')"></span>
+	                	<span class="floRight font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.PrefersProcess')"></span>
+	                </div>
+	            </div>
+            
+             <!-- Hygiene And Accomplishment -->
+             	<h4 class="header-motivation" data-ng-bind="::pullInterNationalization('spectrum.trait.Motivation.what')"></h4>
+				<div class="tick-selection" data-ng-init="ctrl.mapToTriat(category.categoryType,'Hygiene','Accomplishment')">
+					<input type="checkbox" class="filterCheckBox" id="Hygiene" data-ng-model="ctrl.pageSetting.allTrait[category.categoryType]['Hygiene'].checked" data-ng-true-value="true" data-ng-false-value="false" data-ng-click="ctrl.traitCheckTwo(category.categoryType,'Hygiene','Accomplishment',ctrl.pageSetting.personalityTraitSelected);">
+	                <label for="Hygiene" class="filterCheckBox-label">
+	                	<span class="visiblity" data-ng-bind="::pullInterNationalization('spectrum.checkbox')"></span>
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+	                <range-drag drag-range="0.5" update-fn="ctrl.ertAnalyticFilterLogic()" checkbox-fn="ctrl.traitCheckTwo(category.categoryType,'Hygiene','Accomplishment',ctrl.pageSetting.personalityTraitSelected)" range-data1="ctrl.pageSetting.allTrait[category.categoryType]['Hygiene']" range-data2="ctrl.pageSetting.allTrait[category.categoryType]['Accomplishment']" editable="ctrl.pageSetting.allTrait[category.categoryType]['Hygiene'].checked"></range-drag>
+	            	<div class="labels clearfix">
+	                	<span class="floLeft font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Hygiene')"></span>
+	                	<span class="floRight font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Accomplishment')"></span>
+	                </div>
+	            </div>
+            </div>
+            
+            
+   		</li>
+   		
+   		<!-- Conflict Management -->
+   		<li data-ng-if="category.categoryType === 'ConflictManagement'" data-ng-repeat="category in ctrl.analytics.spectrumFilter.filters.categoryType track by $index" data-ng-init="parent = $index;ctrl.pageSetting.conflictTraitAvailable = category.traitTypes">
+   			<input type="checkbox" class="accordian-checkbox" checked data-ng-click="ctrl.closeRest($event,'no')"/>
+   			<span class="clearButon sp-spectrum-color" data-ng-if="ctrl.pageSetting.traitSelectedOrder.indexOf(category.categoryType)!==-1" data-ng-click="ctrl.conflictManagementclear(category.categoryType,'Primary','Secondary',ctrl.pageSetting.personalityTraitSelected)" data-ng-bind="::pullInterNationalization('spectrum.clear')"></span>
+			<span class='expand-collapse'></span>
+			<h3 data-ng-bind="pullInterNationalization('spectrum.trait.'+category.categoryType)"></h3>
+			<!-- Primary And Secondary -->
+			<div class='header-related-content two-way filter-related-content'>
+				<div class="analytic-dropDown" data-ng-init="ctrl.mapToTriat(category.categoryType,'Primary')">
+					<div class="tick-selection">
+						<input type="checkbox" class="filterCheckBox" id="primaryConflict" data-ng-true-value="true" data-ng-false-value="false" data-ng-model="ctrl.pageSetting.allTrait[category.categoryType]['Primary'].checked" data-ng-change="ctrl.conflictManagerChecked(category.categoryType,'Primary','Secondary',ctrl.pageSetting.personalityTraitSelected)">
+		                <label for="primaryConflict" class="filterCheckBox-label">
+		                	<span class="floLeft font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.primary')"></span>
+		                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+		                </label>
+		            </div>
+		            <div class="filter-dropdown">
+		           	<span class="naf-theme-icon_style1 icon-icon_dropdown-arrow sp-icon-color"></span>
+	        	 		<select data-ng-disabled="!ctrl.pageSetting.allTrait[category.categoryType]['Primary'].checked" data-ng-model="ctrl.pageSetting.allTrait[category.categoryType]['Primary'].currentValue" data-ng-options="o as pullInterNationalization('spectrum.trait.type.'+o) for o in category.traitTypes" data-ng-change="ctrl.conflictManagerChecked(category.categoryType,'Primary','Secondary',ctrl.pageSetting.personalityTraitSelected)">
+	                       <option value="" data-ng-bind="::pullInterNationalization('spectrum.select')"></option>
+	                     </select>
+	                </div>
+                </div>
+                        
+                <div class="analytic-dropDown withMar" data-ng-init="ctrl.mapToTriat(category.categoryType,'Secondary')">
+                	<label class="label">
+		               <span class="floLeft font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.secondary')"></span>
+		            </label>
+		            <div class="filter-dropdown">
+	                	<span class="naf-theme-icon_style1 icon-icon_dropdown-arrow sp-icon-color"></span>
+	                     <select data-ng-disabled="(!(!!ctrl.pageSetting.allTrait[category.categoryType]['Primary'].currentValue)) || !ctrl.pageSetting.allTrait[category.categoryType]['Primary'].checked" data-ng-model="ctrl.pageSetting.allTrait[category.categoryType]['Secondary'].currentValue" data-ng-options="o as pullInterNationalization('spectrum.trait.type.'+o) for o in (category.traitTypes | filter: ctrl.secondaryDrop:o)" data-ng-change="ctrl.conflictManagerChecked(category.categoryType,'Primary','Secondary',ctrl.pageSetting.personalityTraitSelected)">
+	                        <option value="" data-ng-bind="::pullInterNationalization('spectrum.select')"></option>
+	                     </select>
+	                </div>
+                </div>
+            </div>
+   		</li>
+   		
+   		<!-- Fundamental Needs -->
+   		
+   		<li data-ng-if="category.categoryType === 'FundamentalNeeds'" data-ng-repeat="category in ctrl.analytics.spectrumFilter.filters.categoryType track by $index" data-ng-init="parent = $index;ctrl.mapToTriat(category.categoryType,'fundamental')">
+   			<input type="checkbox" class="accordian-checkbox" checked data-ng-click="ctrl.closeRest($event,'no')"/>
+			<span class='expand-collapse'></span>
+			<h3 data-ng-bind="pullInterNationalization('spectrum.trait.'+category.categoryType)"></h3>
+			<span class="clearButon sp-spectrum-color lang-special" data-ng-if="ctrl.pageSetting.traitSelectedOrder.indexOf(category.categoryType)!==-1" data-ng-bind="::pullInterNationalization('spectrum.clear')" data-ng-click="ctrl.fundamentalNeedClear(category.categoryType,'fundamental',ctrl.pageSetting.personalityTraitSelected)"></span>
+			<!-- Global And Analytical -->
+			<div class='header-related-content two-way filter-related-content'>
+				<ul class="style_radioList style_1">
+					<li class="sp-radio"><input id="none" value="none" data-ng-init="ctrl.pageSetting.allTrait[category.categoryType]['fundamental'].currentValue='none'"
+						data-ng-model="ctrl.pageSetting.allTrait[category.categoryType]['fundamental'].currentValue"
+						type="radio" data-ng-change="ctrl.fundamentalNeedChecked(category.categoryType,'fundamental',ctrl.pageSetting.personalityTraitSelected)"/> <label for="none"> <span
+							class="title"
+							data-ng-bind="::pullInterNationalization('spectrum.trait.type.None')"></span>
+					</label></li>
+					<li class="sp-radio"><input id="Control"
+						value="Control"
+						data-ng-model="ctrl.pageSetting.allTrait[category.categoryType]['fundamental'].currentValue"
+						type="radio" data-ng-change="ctrl.fundamentalNeedChecked(category.categoryType,'fundamental',ctrl.pageSetting.personalityTraitSelected)"/> <label for="Control"> <span
+							class="title"
+							data-ng-bind="::pullInterNationalization('spectrum.trait.type.Control')"></span>
+					</label></li>
+					<li class="sp-radio"><input id="Significance" value="Significance"
+						data-ng-model="ctrl.pageSetting.allTrait[category.categoryType]['fundamental'].currentValue"
+						type="radio" data-ng-change="ctrl.fundamentalNeedChecked(category.categoryType,'fundamental',ctrl.pageSetting.personalityTraitSelected)"/> <label for="Significance"> <span
+							class="title"
+							data-ng-bind="::pullInterNationalization('spectrum.trait.type.Significance')"></span>
+					</label></li>
+					<li class="sp-radio"><input id="Security" value="Security"
+						data-ng-model="ctrl.pageSetting.allTrait[category.categoryType]['fundamental'].currentValue"
+						type="radio" data-ng-change="ctrl.fundamentalNeedChecked(category.categoryType,'fundamental',ctrl.pageSetting.personalityTraitSelected)"/> <label for="Security"> <span
+							class="title"
+							data-ng-bind="::pullInterNationalization('spectrum.trait.type.Security')"></span>
+					</label></li>
+					<li class="sp-radio"><input id="Balanced" value="Balanced"
+						data-ng-model="ctrl.pageSetting.allTrait[category.categoryType]['fundamental'].currentValue"
+						type="radio" data-ng-change="ctrl.fundamentalNeedChecked(category.categoryType,'fundamental',ctrl.pageSetting.personalityTraitSelected)"/> <label for="Balanced"> <span
+							class="title"
+							data-ng-bind="::pullInterNationalization('spectrum.trait.type.Balanced')"></span>
+					</label></li>
+				</ul>
+		    </div>
+   		</li>
+   		
+   		<!-- Discussion Making -->
+   		<li data-ng-if="category.categoryType === 'DecisionMaking'" data-ng-repeat="category in ctrl.analytics.spectrumFilter.filters.categoryType track by $index" data-ng-init="parent = $index">
+   			<input type="checkbox" class="accordian-checkbox" checked data-ng-click="ctrl.closeRest($event,'no')"/>
+			<span class="clearButon sp-spectrum-color" data-ng-if="ctrl.pageSetting.traitSelectedOrder.indexOf(category.categoryType)!==-1" data-ng-click="ctrl.traitClear(ctrl.pageSetting.allTrait[category.categoryType],'personalityTraitSelected',category.categoryType)" data-ng-bind="::pullInterNationalization('spectrum.clear')"></span>
+			<span class='expand-collapse'></span>
+			<h3 data-ng-bind="pullInterNationalization('spectrum.trait.'+category.categoryType)"></h3>
+			<!-- Inward And Outward -->
+			<div class='header-related-content two-way filter-related-content'>
+				<div class="tick-selection" data-ng-init="ctrl.mapToTriat(category.categoryType,'Inward','Outward')">
+					<input type="checkbox" class="filterCheckBox" id="Inward" data-ng-model="ctrl.pageSetting.allTrait[category.categoryType]['Inward'].checked" data-ng-true-value="true" data-ng-false-value="false" data-ng-click="ctrl.traitCheckTwo(category.categoryType,'Inward','Outward',ctrl.pageSetting.personalityTraitSelected);">
+	                <label for="Inward" class="filterCheckBox-label">
+	                	<span class="visiblity" data-ng-bind="::pullInterNationalization('spectrum.checkbox')"></span>
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+	                <range-drag drag-range="0.5" update-fn="ctrl.ertAnalyticFilterLogic()" checkbox-fn="ctrl.traitCheckTwo(category.categoryType,'Inward','Outward',ctrl.pageSetting.personalityTraitSelected)" range-data1="ctrl.pageSetting.allTrait[category.categoryType]['Inward']" range-data2="ctrl.pageSetting.allTrait[category.categoryType]['Outward']" editable="ctrl.pageSetting.allTrait[category.categoryType]['Inward'].checked"></range-drag>
+	           		<div class="labels clearfix">
+	                	<span class="floLeft font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Inward')"></span>
+	                	<span class="floRight font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Outward')"></span>
+	                </div>
+	            </div>
+	            <!-- Rapid And Careful -->
+				<div class="tick-selection" data-ng-init="ctrl.mapToTriat(category.categoryType,'Rapid','Careful')">
+					<input type="checkbox" class="filterCheckBox" id="Rapid" data-ng-model="ctrl.pageSetting.allTrait[category.categoryType]['Rapid'].checked" data-ng-click="ctrl.traitCheckTwo(category.categoryType,'Rapid','Careful',ctrl.pageSetting.personalityTraitSelected);">
+	                <label for="Rapid" class="filterCheckBox-label">
+	                	<span class="visiblity" data-ng-bind="::pullInterNationalization('spectrum.checkbox')"></span>
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+	                <range-drag drag-range="0.5" update-fn="ctrl.ertAnalyticFilterLogic()" checkbox-fn="ctrl.traitCheckTwo(category.categoryType,'Rapid','Careful',ctrl.pageSetting.personalityTraitSelected)" range-data1="ctrl.pageSetting.allTrait[category.categoryType]['Rapid']" range-data2="ctrl.pageSetting.allTrait[category.categoryType]['Careful']" editable="ctrl.pageSetting.allTrait[category.categoryType]['Rapid'].checked"></range-drag>
+	          		<div class="labels clearfix">
+	                	<span class="floLeft font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Rapid')"></span>
+	                	<span class="floRight font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Careful')"></span>
+	                </div>
+	            </div>
+            </div>
+            
+        </li>
+   		
+   		<!-- Learning Style -->
+   		
+   		<li data-ng-if="category.categoryType === 'LearningStyle'" data-ng-repeat="category in ctrl.analytics.spectrumFilter.filters.categoryType track by $index" data-ng-init="parent = $index">
+   			<input type="checkbox" class="accordian-checkbox" checked data-ng-click="ctrl.closeRest($event,'no')"/>
+			<span class="clearButon sp-spectrum-color" data-ng-if="ctrl.pageSetting.traitSelectedOrder.indexOf(category.categoryType)!==-1" data-ng-click="ctrl.traitClear(ctrl.pageSetting.allTrait[category.categoryType],'personalityTraitSelected',category.categoryType)" data-ng-bind="::pullInterNationalization('spectrum.clear')"></span>
+			<span class='expand-collapse'></span>
+			<h3 data-ng-bind="pullInterNationalization('spectrum.trait.'+category.categoryType)"></h3>
+			<!-- Global And Analytical -->
+			<div class='header-related-content two-way filter-related-content'>
+				<div class="tick-selection" data-ng-init="ctrl.mapToTriat(category.categoryType,'Global','Analytical')">
+					<input type="checkbox" class="filterCheckBox" id="Global" data-ng-model="ctrl.pageSetting.allTrait[category.categoryType]['Global'].checked" data-ng-true-value="true" data-ng-false-value="false" data-ng-click="ctrl.traitCheckTwo(category.categoryType,'Global','Analytical',ctrl.pageSetting.personalityTraitSelected);">
+	                <label for="Global" class="filterCheckBox-label">
+	                	<span class="visiblity" data-ng-bind="::pullInterNationalization('spectrum.checkbox')"></span>
+	                	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                </label>
+	                <range-drag drag-range="0.5" update-fn="ctrl.ertAnalyticFilterLogic()" checkbox-fn="ctrl.traitCheckTwo(category.categoryType,'Global','Analytical',ctrl.pageSetting.personalityTraitSelected)" range-data1="ctrl.pageSetting.allTrait[category.categoryType]['Global']" range-data2="ctrl.pageSetting.allTrait[category.categoryType]['Analytical']" editable="ctrl.pageSetting.allTrait[category.categoryType]['Global'].checked"></range-drag>
+	            	<div class="labels clearfix">
+	                	<span class="floLeft font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Global')"></span>
+	                	<span class="floRight font_14_300 sp-spectrum-label-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Analytical')"></span>
+	                	
+	                </div>
+	            </div>
+            </div>
+   		</li>
+  
+  </ul>
+	
+</article>

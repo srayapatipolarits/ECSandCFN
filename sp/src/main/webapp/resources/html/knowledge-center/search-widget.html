@@ -1,0 +1,7 @@
+<div class="header-content-wrap kc-searc-adj p15">
+    <p class="header-search-box-wrap">
+        <label for="kc_search" data-ng-bind="::pullInterNationalization('kcContent.keyword')"></label>
+        <input type="text" name="kc_search" id="kc_search" data-ng-model="kcKeywordSearh" value="" placeholder="{{::pullInterNationalization('kcContent.keyword')}}" data-ng-keypress="($event.which === 13)?keySearch(kcKeywordSearh):''" />
+        <button class="icon-icon_search sp-icon-color" id="kc_search_btn" data-ng-click="keySearch(kcKeywordSearh)"></button>
+    </p>
+</div>

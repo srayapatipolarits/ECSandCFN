@@ -1,0 +1,48 @@
+<div ng-controller="profileMainController as ctrl" ng-init="ctrl.setOptions('publicProfile')" ng-if="inviteReady" class="hide" ng-class="inviteReady?'show':'hide'">
+    <!-- Standard / Chart Options Starts -->
+    <div class="x-container view-switch" ng-init="$parent.switchView = 'standard'" ng-if="noSelf==''">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12  col-md-12">
+                    <div class="user-details">
+                        <div>
+                            <img ng-src="{{ctrl.userDetails.smallProfileImage}}" alt="{{ctrl.userDetails.userInitials}}" ng-if="ctrl.userDetails.smallProfileImage" class="individual-pic" />
+                            <div class="imgReplacementBig individual-pic" ng-if="!ctrl.userDetails.smallProfileImage" ng-bind="ctrl.userDetails.userInitials"></div>
+                        </div>
+                        <div class="content">
+                            <div class="details">
+                                <h2 data-ng-bind="ctrl.userDetails.name"></h2>
+                                <p class="email" data-ng-bind="ctrl.userDetails.email"></p>
+                                <p class="desc" data-ng-bind="ctrl.userDetails.title"></p>
+                            </div>
+                            <div class="links">
+                                <p class="help-link" ng-class="ctrl.selectedTab !== 8?'show':'hide'"><a href="#" ng-click="$parent.switchView = 'standard';ctrl.updateTab(8, '')" class="border-link"><span class="mock-link" data-ng-bind-html="ctrl.prismContent['profileKeys.intro.btnLearn']"></span></a></p>
+                                <p class="view-btns" ng-class="ctrl.selectedTab !== 8?'':'extra-margin-top'">
+                                    <a href="#" title="Standard View" class="standard-view icon-icon_advisor sp-icon-color" ng-class="($parent.switchView == 'standard' && ctrl.selectedTab !== 8)?'on':''" ng-click="$parent.switchView = 'standard';ctrl.selectedTab = 0;$event.preventDefault();ctrl.activeProfileSummary=0;"></a>
+                                    <a href="#" title="Graph View" class="chart-view icon-icon_compare sp-icon-color" ng-class="($parent.switchView == 'chart')?'on':''" ng-click="$parent.switchView = 'chart';$event.preventDefault()"></a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mobile-links">
+                            <p class="help-link" ng-class="ctrl.selectedTab!==8?'show':'hide'"><a href="#" ng-click="ctrl.updateTab(8, '', '', false, true, false);$event.preventDefault();" class="border-link"><span class="mock-link" data-ng-bind-html="ctrl.prismContent['profileKeys.intro.btnLearn']"></span></a></p>
+                            <p class="help-link" ng-class="ctrl.selectedTab===8?'show':'hide'"><a href="#" ng-click="ctrl.updateTab(0, 'Personality Profile', 0, false, true, true);$event.preventDefault();" class="border-link"><span class="mock-link">View Profile</span></a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Standard / Chart Options Starts -->
+    <div ng-switch on="switchView">
+        <div ng-switch-when="standard">
+            <ng-include src="'/sp/resources/html/profile/public-standard.html'"></ng-include>
+        </div>
+        <div ng-switch-when="chart">
+            <ng-include src="'/sp/resources/html/profile/public-charts.html'"></ng-include>
+        </div>
+        <div ng-switch-default>
+            <ng-include src="'/sp/resources/html/profile/public-standard.html'"></ng-include>
+        </div>
+    </div>
+</div>
+

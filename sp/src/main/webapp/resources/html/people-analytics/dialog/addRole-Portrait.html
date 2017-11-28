@@ -1,0 +1,161 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent pa-list-dialog" data-ng-class="{'style-2':addRolesCollector.active!=='viewAll'}">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                    <ul class="list-dialog" data-ng-if="!viewAllFlag">
+                        <li>
+                            <a href="javascript:void(0)" data-ng-click="switchType('add')" class="border-link default_{{addRolesCollector.types.length===1}} active_{{addRolesCollector.active==='add'}}_{{addRolesCollector.types.length===1}}">
+	                    		<span data-ng-bind="::pullInterNationalization('candidates.addCandidates.addRole')"></span>
+	                    	</a>
+                        </li>
+                        <li data-ng-if="addRolesCollector.types.length>1">
+                            <a href="javascript:void(0)" data-ng-click="switchType('create')" class="border-link active_{{addRolesCollector.active==='create'}}_{{addRolesCollector.types.length===1}}">
+                    			<span data-ng-bind="::pullInterNationalization('candidate.createRole.create')"></span>
+                    		</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="new-modals-wrapper pa-wrapper-dialog" data-ng-if="addRolesCollector.active==='add'">
+                    <!-- Top Message Starts -->
+                    <p class="dialog-message-16px" data-ng-bind="::pullInterNationalization('peopleAnalytics.roles.addRoleDesc')"></p>
+                    <!-- Top Message Ends -->
+                    <!-- Form Elements -->
+                    <div class="form-elements">
+                        <div class="angucomplete-wrapper">
+                            <p class="custom-search-wrapper">
+                                <input type="text" data-ng-model="addRolesCollector.roleSearch" class="custom-search" placeholder="{{::pullInterNationalization('candidate.searchRoles')}}" data-ng-model-options="{ debounce: { 'default': 500, 'blur': 0 } }" data-ng-change="updateSearchVal(addRolesCollector.roleSearch)" />
+                                <button data-ng-class="{'icon-icon_remove':addRolesCollector.roleSearch.length, 'icon-icon_search': !addRolesCollector.roleSearch.length}" class="sp-icon-color noLabel" data-ng-click="addRolesCollector.roleSearch='';resetUpdatedSearchVal()"></button>
+                            </p>
+                            <!-- div class="totalRecord">
+                                <span data-ng-if="addRolesCollector.existing.length">
+                                    <span class="number" data-ng-bind="addRolesCollector.existing.length"></span><span class="text" data-ng-bind="::pullInterNationalization('candidates.recordRoles')"></span> <span class="text" data-ng-bind="::pullInterNationalization('manageAccountContent.recordSelected')"></span>
+                                </span>
+                            </div>  -->
+                        </div>
+                    </div>
+                    <!-- Form Elements Ends -->
+                    <!-- Selected Items List Start -->
+                    <div class="selected-group-List-wrapper moreH">
+                        <div class="group-row" data-ng-repeat="roles in record = (addRolesCollector.roleLeft | filter : contentSetting.updateSearchText) track by roles.id">
+                            <div class="group-col w80">
+                                <div class="member-details-pic-wrapper">
+                                    <div class="mem-details-info ml">
+                                        <p class="memNameOne memCenter">
+                                            <span class="sp-link-color v-align" data-ng-bind="roles.name | unescapeText"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="group-col-custom">
+                                <p data-ng-if="addRolesCollector.existing.indexOf(roles.id) === -1">
+                                    <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-click="addRoleCall(roles)" data-ng-bind="::pullInterNationalization('manageAccountContent.select')"></a>
+                                </p>
+                                <p class="added-msg" data-ng-if="addRolesCollector.existing.indexOf(roles.id) !== -1">
+                                    <a href="javascript:void(0)" class="border-link font-10 mock-black reset">
+                                    	<span class="icon-icon_dev_strategy_check"></span>
+                                    	<span class="mock-link" data-ng-bind="::pullInterNationalization('manageAccountContent.selected')"></span>
+                                    </a>
+                                    <a href="javascript:void(0)" class="border-link reset font-10 display-block" data-ng-click="removeRoleCall(roles)">
+                                    	<span class="mock-link" data-ng-bind="::pullInterNationalization('practiceArea.remove')"></span>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="custom-row-5 col-container" data-ng-if="!record.length">
+                            <div class="custom-new-cols s100">
+                                <p class="no-data-msgs" data-ng-bind="::pullInterNationalization('candidate.noRoleAvailable')"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Selected Items List End -->
+                    <!-- Buttons Starts -->
+                    <div class="dialog-btns-wrapper">
+                        <input type="button" value="{{::pullInterNationalization('sysadmin.organization.done')}}" class="btn-block btn-14px sp-btn-color" class="btn-block btn-14px sp-btn-color" data-ng-click="closeThisDialog();">
+                    </div>
+                    <!-- Buttons Ends -->
+                </div>
+                <div class="new-modals-wrapper" data-ng-if="addRolesCollector.active==='create'&&addRolesCollector.types.length>1">
+                    <div class="custom-overlay-wrapper posRel" data-ng-init="initAddRole()">
+                        <div class="members-content-wrapper">
+                            <form name="newRole.form" novalidate class="form-styles-override peopleAnalyticsOverrides" data-ng-submit="createNewRole(isUpdate,'isAdded')" autocomplete="off" id="newRoleForm">
+                                <ol class="form-list-c">
+                                    <li>
+                                        <label for="name" data-ng-bind="::pullInterNationalization('peopleAnalytics.roles.enterRole')"></label>
+                                        <input type="text" data-ng-minlength="3" maxlength="50" name="name" data-ng-model="newRole.details.name" placeholder="{{::pullInterNationalization('peopleAnalytics.roles.rolePh')}}" data-ng-required="true" />
+                                        <span class="validate-error" data-ng-if="formSubmit && newRole.form.name.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                                        <span class="validate-error" data-ng-if="formSubmit && newRole.form.name.$error.pattern" data-ng-bind="::pullInterNationalization('home.invalid.email')"></span>
+                                        <span class="validate-error" data-ng-if="formSubmit && newRole.form.name.$error.minlength" data-ng-bind="::pullInterNationalization('signup.minimum3')"></span>
+                                    </li>
+                                    <li class="mar10">
+                                        <label for="description" data-ng-bind="::pullInterNationalization('peopleAnalytics.roles.enterRole')" class="hide"></label>
+                                        <textarea rows=7 cols=50 placeholder="{{::pullInterNationalization('peopleAnalytics.roles.roleDescPh')}}" data-ng-model="newRole.details.description" name="description"></textarea>
+                                    </li>
+                                    <li data-ng-if="submitError">
+                                        <span class="validate-error" data-ng-bind="submitError"></span>
+                                    </li>
+                                    <!-- Form Button Starts -->
+                                    <li class="submit-cancel-btns">
+                                        <ul class="submit-cancel-list">
+                                            <li>
+                                                <input type="submit" value="{{::pullInterNationalization('admin.member.submit')}}" class="btn-block btn-15px sp-btn-color" />
+                                            </li>
+                                            <li>
+                                                <input type="button" value="{{::pullInterNationalization('admin.member.cancel')}}" class="btn-block btn-grey-dark btn-15px" data-ng-click="closeThisDialog();" />
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- Form Button Ends -->
+                                </ol>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="new-modals-wrapper" data-ng-if="addRolesCollector.active==='viewAll'">
+                <div class="form-elements">
+                        <div class="angucomplete-wrapper">
+                            <div class="totalRecord">
+                                <span data-ng-if="addRolesCollector.existing.length">
+                                    <span class="number" data-ng-bind="addRolesCollector.existing.length"></span><span class="text" data-ng-bind="::pullInterNationalization('candidates.recordRoles')"></span> <span class="text" data-ng-bind="::pullInterNationalization('manageAccountContent.recordSelected')"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Selected Items List Start -->
+                    <div class="selected-group-List-wrapper moreH viewAll">
+                        <div class="group-row" data-ng-repeat="roles in record = (addRolesCollector.existing | filter : addRolesCollector.roleSearch) track by roles.id">
+                            <div class="group-col w80">
+                                <div class="member-details-pic-wrapper">
+                                    <div class="mem-details-info ml">
+                                        <p class="memNameOne">
+                                            <span class="sp-link-color" data-ng-bind="roles.name | unescapeText"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="group-col-custom">
+                                <p class="added-msg">
+                                    <a href="javascript:void(0)" class="border-link reset font-10 display-block" data-ng-click="removeRoleModal(selectedPortraitId, roles)">
+                                    	<span class="mock-link" data-ng-bind="::pullInterNationalization('practiceArea.remove')"></span>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="custom-row-5 col-container" data-ng-if="!record.length">
+                            <div class="custom-new-cols s100">
+                                <p class="no-data-msgs" data-ng-bind="::pullInterNationalization('candidate.noRoleAvailable')"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Selected Items List End -->
+                    <!-- Buttons Starts -->
+                    <div class="dialog-btns-wrapper">
+                        <input type="button" value="{{::pullInterNationalization('sysadmin.organization.done')}}" class="btn-block btn-14px sp-btn-color" class="btn-block btn-14px sp-btn-color" data-ng-click="closeThisDialog();">
+                    </div>
+                    <!-- Buttons Ends -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

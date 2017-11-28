@@ -1,0 +1,31 @@
+<link type="text/css" rel="stylesheet" href="/sp/resources/css/css-min/drop-theme-arrows.min.css" />
+<div class="container" id="declineGrowthScreen">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+            <div>
+                <section class="wrapper">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar" data-ng-bind="ctrl.selectedTopPA.name"></div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                            </div>
+                        </div>
+                        <div class="contentArea clearfix">
+                        	<p class="devDesc" data-ng-bind="ctrl.selectedTopPA.description"></p>                     	
+                            <ul class="viewDevelopmentStrategy">
+                                <li class="title">
+                                    <div data-ng-bind="pullInterNationalization('practiceArea.devStartegy')"></div>
+                                </li>
+                                <li class="tl" data-ng-repeat="goals in ctrl.selectedTopPA.developmentStrategyList track by $index">
+                                	<span class="number" data-ng-bind="($index+1)+'. '"></span>
+                                    <span class="text" data-ng-bind="goals.dsDescription"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

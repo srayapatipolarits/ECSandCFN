@@ -1,0 +1,45 @@
+<div class="col-content-wrapper mh700">    
+    <div class="members-content-wrapper" data-ng-if="isHiringPlanActive">
+        <div class="members-header w100p">
+            <h2 class="sp-header-title-color fl" data-ng-bind="::pullInterNationalization('pricing.desc3')"></h2>
+            <p class="group-add-btn fl">
+                <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-class="(adminSubscriptions <= 0)?'btn-darker-grey':''" data-ng-bind="::pullInterNationalization('manageAccountContent.addHiringAdmin')" data-ng-click="(adminSubscriptions > 0)?addAdminAccess('IntelligentHiring'):''"></a>
+            </p>                        
+        </div>
+       <div class="settings-admin-desc"> 
+       		<p data-ng-bind="pullInterNationalization('peopleAnalytics.adminAvailableDesc')"></p>
+       		<p>
+       			<strong data-ng-bind-html="adminSubscriptions+' '+pullInterNationalization('manageAccountContent.linkAdmins')+' '"></strong><span data-ng-bind="pullInterNationalization('peopleAnalytics.adminAvailable')"></span>
+       			<a href="javascript:void(0)" class="border-link" data-ng-click="requestForAccounts('admins')"><span class="mock-link" data-ng-bind="pullInterNationalization('peopleAnalytics.linkReqMore')"></span></a>
+       		</p>
+       </div>        
+    </div>
+	<hr class="roles-sep-line ext" />    
+    <div class="admins-accounts-listing w100 adj" data-ng-if="isHiringPlanActive">
+        <div class="admin-list boxed" data-ng-repeat="memberList in existingAdmins.IntelligentHiring" data-ng-if="existingAdmins.IntelligentHiring.length">
+            <div class="member-info posRel">
+                <div class="member-pic">
+                    <img data-ng-src="{{memberList.smallProfileImage}}" alt="{{memberList.userInitials}}" data-ng-if="memberList.smallProfileImage">
+                    <div class="imgReplacement" data-ng-if="!memberList.smallProfileImage" data-ng-bind="memberList.userInitials"></div>
+                </div>
+                <div class="member-details" data-ng-class="memberList.firstName?'addSpace':''">
+                    <a href="javascript:void(0)" class="member-name border-link" data-ng-if="memberList.firstName">
+                        <span class="mock-link" data-ng-bind-html="memberList.firstName+' '+memberList.lastName+displayRole(memberList)"></span>
+                    </a>
+                    <span class="member-title" data-ng-bind="memberList.title" data-ng-if="memberList.title"></span>
+                    <a href="mailto:{{memberList.email}}" class="member-email border-link">
+                        <span class="mock-link" data-ng-bind-html="!memberList.firstName?(memberList.email+displayRole(memberList)):memberList.email"></span>
+                    </a>
+                </div>
+                <p class="admin-remove-icon tAdj">
+                    <a href="javascript:void(0)" class="icon-icon_remove" data-ng-click="selfEmail!==memberList.email?removeAdminAccess('IntelligentHiring', memberList):''" data-ng-class="{'disabled': selfEmail===memberList.email,'grey-color':selfEmail!==memberList.email}"></a>
+                </p>                
+            </div>
+        </div>
+        <div class="admin-list noLine" data-ng-if="!existingAdmins.IntelligentHiring.length">
+        	<div class="member-info posRel">
+        		<span class="validate-error" data-ng-bind="::pullInterNationalization('pricing.desc5')"></span>
+        	</div>
+        </div>
+    </div>    
+</div>

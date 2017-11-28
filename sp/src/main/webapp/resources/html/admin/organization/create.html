@@ -1,0 +1,90 @@
+<section data-ng-controller="orgAdminCreatePlanController as ctrl" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'" class="hide" data-ng-init="ctrl.startPoint('create')">
+    <div class="x-container learning-development pm-admin org-admin">
+        <div class="container minimumHeight" >
+            <div class="table-flex-cols">
+                   <!-- Left Box Starts -->
+                   <div class="flex-cols-caption">
+                   <div class="lnd-full-box sp-panel-accent lnd-spacer20" data-ng-if="ctrl.actionPlan">
+                   		<div class="actionPlanHeader">
+		           			<h3 class="companyName sp-header-title-color" data-ng-bind="ctrl.actionPlan.name||pullInterNationalization('sysadmin.organization.newOrganizationPlan')"></h3>
+		           			<a href="javascript:void(0)" class="mock-link returnLink" data-ng-bind="::pullInterNationalization('sysadmin.organization.backtoorg')" data-ng-click="ctrl.redirectToListing()"></a>
+		           			
+		           			<div class="custom_column custom_column_space">
+			           			   <ol class="form-list-c form-list-d noMarBottom">
+	                          	 
+	                          	   <li class="submit-cancel-btns space-box planAction">
+				                        <ul class="submit-cancel-list">
+				                            <li class="submit-charge">
+				                                <input type="submit" value="{{::pullInterNationalization('practiceArea.save')}}" class="subscribeBtn btn-block btn-15px sp-btn-color" data-ng-disabled="ctrl.disabled" data-ng-click="ctrl.submitObject()" />
+				                            </li>
+				                            <li class="cancel-charge">
+				                                <input type="button" value="{{::pullInterNationalization('admin.member.cancel')}}" class="cancelBtn btn-block btn-15px btn-grey-dark" data-ng-click="ctrl.redirectToListing()" />
+				                            </li>
+				                        </ul>
+				                        <ul class="clear submit-cancel-error">
+				                        	<li data-ng-if="ctrl.submitted || (ctrl.errorCat && (!ctrl.result.length || ctrl.emptyCheck)) || (!ctrl.atleastOneCheck.length)">
+				                         			<span class="validate-error" data-ng-bind="::pullInterNationalization('sysAdmin.organization.errch')"></span>
+				                         		</li>
+				                        </ul>
+				                    </li> 
+	                          	</ol>
+                          	</div>
+                        </div>
+                   </div>
+                   </div>
+                   <div class="lnd-left-sec">
+                   	   
+                   	   <div class="lnd-left-box lnd-top-border lnd-spacer sp-panel-accent">
+                   	       <h2 class="icon-style-realtive">
+                   	       		<span class="sans" data-ng-bind="::pullInterNationalization('sysadmin.organization.program')"></span>
+                           </h2>
+                           <ul>
+                           	   <li class="word-wrap" data-ng-class="ctrl.viewMode.setting?'on':''"  data-ng-click="ctrl.changeActionPlan(-1)">
+                           	   		<span class="icon-style-position icon-icon_accounts_settings sp-icon-color"></span>
+                           	   		<span class="mock-link sp-link-color" data-ng-bind="::pullInterNationalization('sysadmin.organization.programSettings')"></span>
+                           	   		<span class="icon-style-position-error validate-error sp-icon-color" data-ng-if="ctrl.errorSetting.setting"></span>
+                           	   		<span class="lnd-focus-arrow icon-icon_focus-arrow sp-icon-color" data-ng-class="ctrl.viewMode.setting?'icon-icon_focus-arrow':'hide'"></span>
+                           	   </li>
+                           </ul>
+                       </div>
+                       
+                       <div class="lnd-left-box lnd-top-border lnd-spacer sp-panel-accent">
+                           <h2 class="icon-style-realtive">
+                           		<span class="sans" data-ng-bind="::pullInterNationalization('sysadmin.organization.actionPlan')"></span>
+                           </h2>
+                           <ul>
+                           	   <li data-ng-click="ctrl.changeActionPlan($index)" class="word-wrap count_{{ctrl.actionPlan.practiceAreaList.length}}" data-ng-repeat="section in ctrl.actionPlan.practiceAreaList track by $index" data-ng-class="ctrl.currentActionPlan===$index&&ctrl.viewMode.editCreate?'on':''">
+                           	   		<span class="mock-link sp-link-color" data-ng-bind="section.name||pullInterNationalization('sysadmin.organization.stepPlan')"></span>
+                           	   		<span class="icon-style-position-error validate-error sp-icon-color" data-ng-if="ctrl.errorSetting.step && ctrl.currentActionPlan===$index"></span>
+                           	   		<span class="lnd-focus-arrow icon-icon_focus-arrow sp-icon-color" data-ng-class="ctrl.currentActionPlan===$index&&ctrl.viewMode.editCreate?'icon-icon_focus-arrow':'hide'"></span>
+                           	   </li>
+                           </ul>
+                           <ul class="top-border">
+                           	   <li class="border-link create-action-plan" data-ng-click="ctrl.createNewSection(ctrl.actionPlan.practiceAreaList.length)">
+                               		<a href="javascript:void(0)" data-ng-bind="::pullInterNationalization('sysadmin.organization.createactionPlan')"></a>
+                               </li>
+                                <li class="border-link create-action-plan" data-ng-class="{'on':ctrl.viewMode.step,'inactive':ctrl.actionPlan.practiceAreaList[0].name===null}" data-ng-click="ctrl.actionPlan.practiceAreaList[0].name && ctrl.changeActionPlan(-2)">
+                                	<span class="icon-style-position icon-icon_accounts_settings sp-icon-color"></span>
+                           	    	<a href="javascript:void(0)" class="mock-link_1" data-ng-bind="::pullInterNationalization('sysadmin.organization.stepSetting')"></a>
+                           	    	<span class="icon-style-position-error validate-error sp-icon-color" data-ng-if="ctrl.errorSetting.stepSetting"></span>
+                                	<span class="lnd-focus-arrow icon-icon_focus-arrow sp-icon-color" data-ng-class="ctrl.viewMode.step?'icon-icon_focus-arrow':'hide'"></span>
+                               </li>
+                           </ul>
+                       </div>
+                    </div>
+                   <!-- Left Box Ends -->
+                   <!-- Right Box Starts -->
+                   <div class="lnd-right-sec">
+                       <div class="holder">
+                       		<div class="view-editCreate">
+                       			<div ui-view="setting" data-ng-class="{'show':ctrl.viewMode.setting}" class="hide"></div>
+                       			<div ui-view="step" data-ng-class="{'show':ctrl.viewMode.step}" class="hide"></div>
+                       			<div ui-view="create" data-ng-class="{'show':ctrl.viewMode.editCreate}" class="hide"></div>
+                       			<div ui-view="preview" data-ng-if="ctrl.viewMode.preview"></div>
+                       		</div>
+                       </div>
+                   </div>
+               </div>
+        </div>
+    </div>
+</section>

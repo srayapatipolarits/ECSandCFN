@@ -1,0 +1,111 @@
+<section ng-controller="spectrumController as ctrl" ng-if="inviteReady && profileReady" data-ng-init="ctrl.checkPermission()" class="hide spectrum" ng-class="inviteReady?'show':'hide'">
+    <!-- Spectrum Header Starts -->
+    <div class="x-container">
+        <div class="container">
+            <div class="header-info-container">
+                <div class="header-info-content">
+                    <div class="header-icon-wrap adj0">
+                        <p class="hinfo-wrap">
+                            <span class="hinfo-icons icon-logo-badge sp-icon-color"></span>
+                        </p>
+                    </div>
+                    <div class="header-content-wrap mobAdj">
+                        <p class="hinfo-wrap">
+                            <span class="info-txt ml0 mb8" data-ng-bind="::pullInterNationalization('spectrum.analytics')"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Spectrum Header Ends -->
+    <div class="x-container">
+        <div class="minimumHeight" >
+            <section class="spectrum-col clearfix">
+                <div class="spectrum-col-icons">
+                    <div class="spectrum-filter-grid">
+                        <div class="grid-1 spectrum-filter-icon-panel sp-panel-accent">
+                            <ul>
+                                <li data-ng-if="ctrl.permissionLevel.prism" data-ng-click="ctrl.filterOpen('profile');" class="sp-icon-color icon-icon_spectrum-personality-balance spectrum-icons sp-active-{{ctrl.viewBox.profile}}">
+                                    <span data-ng-bind="::pullInterNationalization('spectrum.label.pb')" class="hover-animate"></span>
+                                </li>
+                                <li data-ng-if="ctrl.permissionLevel.analytics" data-ng-click="ctrl.filterOpen('analytics')" class="sp-icon-color icon-icon_spectrum-ert-i-analytics spectrum-icons sp-active-{{ctrl.viewBox.analytics}}">
+                                    <span data-ng-bind="::pullInterNationalization('spectrum.label.ea')" class="hover-animate"></span>
+                                </li>
+                                <li data-ng-if="ctrl.permissionLevel.insights" data-ng-click="ctrl.filterOpen('insights')" class="sp-icon-color icon-icon_spectrum-ert-i-insights spectrum-icons sp-active-{{ctrl.viewBox.insights}}">
+                                    <span data-ng-bind="::pullInterNationalization('spectrum.label.ei')" class="hover-animate"></span>
+                                </li>
+                                <li data-ng-if="ctrl.permissionLevel.org" data-ng-click="ctrl.filterOpen('org')" class="sp-icon-color icon-LearningProgram_new spectrum-icons icon-class-2 sp-active-{{ctrl.viewBox.org}}">
+                                    <span data-ng-bind="::pullInterNationalization('spectrum.label.oa')" class="hover-animate"></span>
+                                </li>
+                                <li data-ng-if="ctrl.permissionLevel.blueprint" data-ng-click="ctrl.filterOpen('blueprint')" class="sp-icon-color icon-icon_spectrum-blueprint-analytics spectrum-icons sp-active-{{ctrl.viewBox.blueprint}}">
+                                    <span data-ng-bind="::pullInterNationalization('spectrum.label.ba')" class="hover-animate"></span>
+                                </li>
+                                <li data-ng-if="ctrl.permissionLevel.competency" data-ng-click="ctrl.filterOpen('competency')" class="sp-icon-color icon-icon_spectrum_competency icon-class-3 spectrum-icons sp-active-{{ctrl.viewBox.competency}}">
+                                    <span data-ng-bind="::pullInterNationalization('spectrum.label.ca')" class="hover-animate"></span>
+                                </li>
+                                <li  data-ng-click="ctrl.filterOpen('engagement')" class="sp-icon-color icon-icon_engagement-matrix icon-class-3 spectrum-icons sp-active-{{ctrl.viewBox.engagement}}">
+                                    <span data-ng-bind="pullInterNationalization('spectrum.label.em')" class="hover-animate"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="spectrum-col-wrap">
+                    <div class="spectrum-col-table">
+                        <div class="spectrum-col-filters">
+                            <div class="grid-2 sp-panel-accent">
+                                <article class="spectrum-filter-toggle">
+                                    <div class="filters-header-wrapper">
+                                        <span class="icon-icon_spectrum-filter filters-icon"></span>
+                                        <span class="filters-header-text" data-ng-bind="::pullInterNationalization('manageAccountContent.filter')"></span>
+                                    </div>
+                                </article>
+                                <article class="spectrum-filter-items">
+                                    <div ui-view="personality-balance-filter" data-ng-if="ctrl.viewBox.profile"></div>
+                                    <div ui-view="ert-analytics-filter" data-ng-if="ctrl.viewBox.analytics"></div>
+                                    <div ui-view="org-plan-filter" data-ng-if="ctrl.viewBox.org"></div>
+                                    <div ui-view="ert-insights-filter" data-ng-if="ctrl.viewBox.insights"></div>
+                                    <div ui-view="blueprint-analytics-filter" data-ng-if="ctrl.viewBox.blueprint"></div>
+                                    <div ui-view="competency-filter" data-ng-if="ctrl.viewBox.competency"></div>
+                                    <div data-ng-if="ctrl.viewBox.engagement">
+                                    <ng-include src="'/sp/resources/html/spectrum/engagement-filter.html'"></ng-include>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                        <div class="spectrum-col-content">
+                            <section class="sp-panel-accent sp-spectrum-col-margin">
+                                <!-- Bar Graph -->
+                                <div ui-view="personality-balance" class="slide-right" data-ng-if="ctrl.viewBox.profile"></div>
+                                <!-- Bar Graph -->
+                                <!-- Radial Graph -->
+                                <div ui-view="blueprint-analytics" class="slide-right" data-ng-if="ctrl.viewBox.blueprint"></div>
+                                <!-- Radial Graph -->
+                                <!-- Match Graph -->
+                                <div ui-view="ert-analytics" class="slide-right" data-ng-if="ctrl.viewBox.analytics"></div>
+                                <!-- Match Graph -->
+                                <!-- ERT Graph -->
+                                <div ui-view="ert-insights" class="slide-right" data-ng-if="ctrl.viewBox.insights"></div>
+                                <!-- ERT Graph -->
+                                <!-- Organization Plan Graph -->
+                                <div ui-view="org-plan" class="slide-right" data-ng-if="ctrl.viewBox.org"></div>
+                                <!-- Organization Plan Graph -->
+                                <!-- Competency Graph -->
+                                <div ui-view="competency" class="slide-right" data-ng-if="ctrl.viewBox.competency"></div>
+                                <!-- Organization Plan Graph -->
+                                <!-- Engagement Matrix -->
+                                <div data-ng-if="ctrl.viewBox.engagement">
+                                    <ng-include src="'/sp/resources/html/spectrum/engagement.html'"></ng-include>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<!-- Google Charts Loader. Better to serve it directly from Google CDN. -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

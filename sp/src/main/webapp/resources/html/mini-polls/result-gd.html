@@ -1,0 +1,114 @@
+<div class="miniPolls-gd-results" data-ng-init="notesCtrl.hexHoverIndex[record.cid]=-1;notesCtrl.hexSelectedIndex[record.cid]=-1;notesCtrl.pollVotingError[record.cid]=false;notesCtrl.pollHasCompleted[record.cid]=notesCtrl.hasCompletedPoll(record.cid,notesCtrl.gdObj.hasCompletedPolls);notesCtrl.pollHideResult[record.cid]=record.miniPoll.hideResults">
+    <div class="miniPolls-results-section">
+        <!-- Polls HTML Starts -->
+        <div class="poll-questions-wrapper miniPollsPCheck mtop30" id="miniPoll_{{$index}}_{{record.cid}}">
+            <h3 data-ng-bind="record.miniPoll.question"></h3>
+            <p class="instruction-txt" data-ng-bind="record.miniPoll.instructionStr" data-ng-if="record.miniPoll.instructionStr"></p>
+            <!-- Polls Question HTML Starts -->
+            <ol class="multiPollList" data-ng-if="(!notesCtrl.pollHasCompleted[record.cid] || (notesCtrl.pollHasCompleted[record.cid] && record.miniPoll.hideResults)) && record.miniPoll.type === 'MultipleOptions' && record.miniPoll.selectionType === 'MultipleSelect'">
+                <li data-ng-repeat="opts in record.miniPoll.options track by $index" class="miniPollsOptsInput brdr-grey">
+                    <p class="pCheckBox removeAbs cNone">
+                        <input type="checkbox" data-ng-model="notesCtrl.pollVotingDetails[record.cid][$index]" name="pollOptionsListingMulti_{{record.cid}}[]" id="pollOptsMulti_{{$parent.$index}}_{{record.cid}}_{{$index}}" class="iCheckBox" value="{{$index}}" />
+                        <label for="pollOptsMulti_{{$parent.$index}}_{{record.cid}}_{{$index}}" class="lCheckBox" data-ng-class="{'disabledCheck':notesCtrl.pollHasCompleted[record.cid] && record.miniPoll.hideResults}">
+                            <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                            <span class="lCheckBoxText addBrdr"><span class="addElps" data-ng-bind="opts" title="{{opts}}"></span></span>
+                        </label>
+                    </p>
+                </li>
+                <li class="poll-vote-err" data-ng-if="notesCtrl.pollVotingError[record.cid]">
+                    <span class="validate-error" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                </li>
+                <li class="poll-vote-btn" data-ng-if="!notesCtrl.pollHasCompleted[record.cid]">
+                    <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-click="notesCtrl.processVote(record.cid, notesCtrl.gdObj.id,notesCtrl.gdObj.hasCompletedPolls)" data-ng-bind="pullInterNationalization('createPollsCont.btnVote')"></a>
+                </li>
+            </ol>
+            <ol class="multiPollList" data-ng-if="(!notesCtrl.pollHasCompleted[record.cid] || (notesCtrl.pollHasCompleted[record.cid] && record.miniPoll.hideResults)) && record.miniPoll.type === 'MultipleOptions' && record.miniPoll.selectionType === 'SingleSelect'">
+                <li data-ng-repeat="opts in record.miniPoll.options track by $index" class="miniPollsOptsInput brdr-grey">
+                    <p class="pCheckBox removeAbs cNone posAdj01">
+                        <input data-ng-model="notesCtrl.pollVotingDetails[record.cid]" type="radio" id="pollOpts_{{$parent.$index}}_{{record.cid}}_{{$index}}" class="iCheckBox" value="{{$index}}" />
+                        <label for="pollOpts_{{$parent.$index}}_{{record.cid}}_{{$index}}" class="lCheckBox" data-ng-class="{'disabledCheck':notesCtrl.pollHasCompleted[record.cid] && record.miniPoll.hideResults}">
+                            <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color radioStyle"></span>
+                            <span class="lCheckBoxText addBrdr"><span class="addElps" data-ng-bind="opts" title="{{opts}}"></span></span>
+                        </label>
+                    </p>
+                </li>
+                <li class="poll-vote-err" data-ng-if="notesCtrl.pollVotingError[record.cid]">
+                    <span class="validate-error" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                </li>
+                <li class="poll-vote-btn" data-ng-if="!notesCtrl.pollHasCompleted[record.cid]">
+                    <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-click="notesCtrl.processVote(record.cid, notesCtrl.gdObj.id,notesCtrl.gdObj.hasCompletedPolls)" data-ng-bind="pullInterNationalization('createPollsCont.btnVote')"></a>
+                </li>
+            </ol>
+            <ol class="multiPollScale" data-ng-if="(!notesCtrl.pollHasCompleted[record.cid] || (notesCtrl.pollHasCompleted[record.cid] && record.miniPoll.hideResults)) && record.miniPoll.type === 'Scale'" id="pollOptsScaleOl_{{$parent.$index}}_{{record.cid}}">
+                <li data-ng-repeat="opts in record.miniPoll.options track by $index" class="rBtns-box miniPollsOptsInput" data-ng-class="{'bl1':$index===0}">
+                    <p class="pCheckBox removeAbs cNone">
+                        <input data-ng-model="notesCtrl.pollVotingDetails[record.cid]" type="radio" id="pollOptsScale_{{$parent.$index}}_{{record.cid}}_{{$index}}" class="iCheckBox" value="{{$index}}" />
+                        <label for="pollOptsScale_{{$parent.$index}}_{{record.cid}}_{{$index}}" class="lCheckBox" data-ng-class="{'disabledCheck':notesCtrl.pollHasCompleted[record.cid] && record.miniPoll.hideResults}" data-ng-click="notesCtrl.miniPollHexOps(record.cid, $index, $parent.$index, false)" data-ng-mouseover="notesCtrl.miniPollHexOps(record.cid, $index, $parent.$index, true)" data-ng-mouseout="notesCtrl.miniPollHexOps(record.cid, -1, $parent.$index, true)">
+                            <span class="empty-hex miniPollsAdj" data-rating="{{notesCtrl.hexChar}}" data-ng-class="{'hex-default-grey': ((notesCtrl.hexHoverIndex[record.cid]===-1 || $index>notesCtrl.hexHoverIndex[record.cid]) && (notesCtrl.hexSelectedIndex[record.cid] === -1 || $index>notesCtrl.hexSelectedIndex[record.cid])), 'sp-icon-color': $index<=notesCtrl.hexSelectedIndex[record.cid] || $index<=notesCtrl.hexHoverIndex[record.cid], 'disabledCheck':notesCtrl.pollHasCompleted[record.cid] && record.miniPoll.hideResults}"></span>
+                        </label>
+                    </p>
+                </li>
+                <li class="poll-vote-err" data-ng-if="notesCtrl.pollVotingError[record.cid]">
+                    <span class="validate-error" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                </li>
+                <li class="poll-vote-btn" data-ng-if="!notesCtrl.pollHasCompleted[record.cid]">
+                    <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-click="notesCtrl.processVote(record.cid, notesCtrl.gdObj.id,notesCtrl.gdObj.hasCompletedPolls)" data-ng-bind="pullInterNationalization('createPollsCont.btnVote')"></a>
+                </li>
+            </ol>
+            <p class="poll-msg-txt" data-ng-if="notesCtrl.pollHasCompleted[record.cid] && record.miniPoll.hideResults" data-ng-bind="pullInterNationalization('createPollsCont.pollMsg')"></p>
+            <!-- Polls Questions HTML Ends -->
+            <!-- Polls Results HTML Starts -->
+            <div class="polls-results-options" data-ng-if="notesCtrl.pollHasCompleted[record.cid] && record.miniPoll.result && !record.miniPoll.hideResults">
+                <ol class="pollsResults-list" data-ng-if="record.miniPoll.type === 'MultipleOptions'">
+                    <li data-ng-repeat="opts1 in record.miniPoll.options track by $index">
+						<span class="poll-result-input-wrap hide">
+				            <span class="pCheckBox removeAbs cNone darkBg" data-ng-if="record.miniPoll.selectionType !=='SingleSelect'">
+				                <input type="checkbox" data-ng-model="notesCtrl.pollVotingDetailsResult_gd[record.cid][$index]" id="pollOptsMultiResult_gd_{{record.cid}}_{{$index}}" class="iCheckBox" value="{{$index}}" data-ng-disabled="true" />
+				                <label for="pollOptsMultiResult_gd_{{record.cid}}_{{$index}}" class="lCheckBox">
+				                    <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+				                </label>
+				            </span>											
+				            <span class="pCheckBox removeAbs cNone darkBg" data-ng-if="record.miniPoll.selectionType==='SingleSelect'">
+				                <input type="radio" data-ng-model="notesCtrl.pollVotingDetailsResult_gd[record.cid][$index]" id="pollOptsMultiResult_gd_{{record.cid}}_{{$index}}" class="iCheckBox" value="{{$index}}" data-ng-disabled="true" />
+				                <label for="pollOptsMultiResult_gd_{{record.cid}}_{{$index}}" class="lCheckBox">
+				                    <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color radioStyle"></span>
+				                </label>
+				            </span>		
+			            </span>	                    
+                        <span class="results-bar-num">
+							<span class="results-grey-bar">
+                            	<span class="results-theme-bar sp-background-color" data-ng-style="{'width':(record.miniPoll.result.results[$index]>0?((((record.miniPoll.result.results[$index])/(notesCtrl.getPollTotal(record.miniPoll.result.results)))*100)+'%'):'0%')}"></span>
+                        		<span class="result-label" data-ng-bind="opts1" title="{{opts1}}"></span>
+                        	</span>
+                        </span>
+                        <span class="result-num sp-icon-color" data-ng-bind="record.miniPoll.result.results[$index]"></span>
+                    </li>
+                </ol>
+                <ol class="pollsResults-list" data-ng-if="record.miniPoll.type !== 'MultipleOptions'">
+                    <li data-ng-repeat="opts1 in record.miniPoll.options track by $index">
+                    	<span class="result-num spcFix" data-ng-bind="$index+1"></span>
+                        <span class="results-bar-num">
+                            <span class="results-grey-bar">
+                                <span class="results-theme-bar sp-background-color" data-ng-style="{'width':(record.miniPoll.result.results[$index]>0?((((record.miniPoll.result.results[$index])/(notesCtrl.getPollTotal(record.miniPoll.result.results)))*100)+'%'):'0%')}"></span>
+                        	</span>
+                        </span>
+                        <span class="result-num sp-icon-color" data-ng-bind="record.miniPoll.result.results[$index]"></span>
+                    </li>
+                </ol>
+                <p class="poll-msg-txt" data-ng-if="record.miniPoll.type === 'MultipleOptions'" data-ng-bind="pullInterNationalization('createPollsCont.pollMsg')"></p>
+                <h4 data-ng-if="record.miniPoll.type !== 'MultipleOptions'">
+                    <span data-ng-bind="pullInterNationalization('createPollsCont.txtAvg')"></span>
+                    <span class="avg-score-numb sp-link-color" data-ng-bind="record.miniPoll.result.averageScore"></span>                
+                </h4>
+                <div data-ng-if="record.miniPoll.type !== 'MultipleOptions'" class="miniPolls-avg-wrapper">
+                    <p class="hex-width">
+                        <span class="empty-hex miniPollsAdj hex-avg empty-fill default-grey" data-rating="{{notesCtrl.hexAvg}}"></span>
+                        <span class="empty-hex miniPollsAdj hex-avg sp-icon-color" data-rating="{{notesCtrl.hexAvg}}" data-ng-style="{'width':(((record.miniPoll.result.averageScore?record.miniPoll.result.averageScore:0)/5)*100)+'%'}"></span>
+                    </p>
+                </div>
+            </div>
+            <!-- Polls Results HTML Ends -->
+        </div>
+        <!-- Polls HTML Ends -->
+    </div>
+</div>

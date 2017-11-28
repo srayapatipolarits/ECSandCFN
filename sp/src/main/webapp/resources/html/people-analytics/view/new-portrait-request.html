@@ -1,0 +1,53 @@
+<div class="new-modals-wrapper feedback-modal-wrapper reduce-margin" style="height:{{(winWidth < 768?winHeight:'auto')}}" data-ng-class="{'addScroll':(winWidth < 768)}">
+                    <!-- Request Feedback Starts -->
+                    <div class="note-entry-content clearfix">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                            	<h3 class="req-idh" data-ng-bind="::pullInterNationalization('idealPortrait.default.heading1')"></h3>
+                                <div class="note-entry-content tags-email-list">
+                                <form id="requestPortraitFormModal" name="requestPortraitForm" novalidate autocomplete="off" method="POST" action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" data-ng-submit="requestNewPortrait($event)">
+                                   <input type="hidden" name="orgid" value="00Dj0000001oNf3" />
+                                    <input type="hidden" id="retURL" name="retURL" value="{{currentPageUrl}}" />
+                                    <input type="hidden" id="name" maxlength="80" name="name" size="20" type="text" value="{{userInfo.company.name}}" />
+                                    <input type="hidden"  name="00N0a00000BZppH" value="{{userInfo.company.name}}" />
+                                    <input type="hidden" id="email" maxlength="80" name="email" size="20" type="text" value="{{userInfo.member.email}}" />
+                                    <input type="hidden" id="subject" name="subject" value="{{pullInterNationalization('portrait.requestNew.label')}}">
+                                  <p class="desc" data-ng-bind="::pullInterNationalization('portrait.newRequest.description.label')"></p>
+                                    <div class="note-entry-form clearfix">
+                                        <p class="mbot0">
+                                            <textarea  data-ng-attr-placeholder="{{::pullInterNationalization('portrait.requestNew.comments.placeholder')}}" class="notes-ta" data-ng-model="portraitComment"></textarea>
+                                        </p>
+                                    </div>
+                                    <input type="hidden" id="description" name="description" value="Attachment: {{attachmentObj.url}} | Comments: {{portraitComment}}">
+                                    <span data-ng-if="attachmentObj.type === null" class="file-attach sp-link-color" data-ng-click="openFileStack()" data-ng-bind="::pullInterNationalization('portrait.newRequest.upload')"></span>
+                                    <div class="file-attachment" data-ng-if="attachmentObj.type !== null">
+				                    <a class="file-link" data-ng-href="{{attachmentObj.url}}" target="_blank">
+				                    <span  data-ng-bind="attachmentObj.name"></span></a>
+					                <a class="icon-icon_remove close-view" href="javascript:void(0)" data-ng-click="removeAttachment()"></a>
+                                    </div>
+                                    <div class="ta-options comment-edit-btns default-btn">
+		                                <input type="submit" value="{{pullInterNationalization('admin.member.submit')}}" data-ng-class="{'disabled-state':attachmentObj.url === null || portraitComment === '' }" class="btn-square-30px sp-background-color save-comment" data-ng-bind="::pullInterNationalization('admin.member.submit')">
+		                            </div>
+		                            </form>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="feedback-info">
+                                    <p class="desc" data-ng-bind="::pullInterNationalization('idealPortrait.default.text1')"></p>
+                                    <p class="desc" data-ng-bind="::pullInterNationalization('idealPortrait.default.text2')"></p>
+                                    <p class="desc" data-ng-bind="::pullInterNationalization('idealPortrait.default.text3')"></p>
+                                    <p class="desc" data-ng-bind="::pullInterNationalization('idealPortrait.default.text4')"></p>
+                                    <ul class="listing">
+                                        <li>- {{pullInterNationalization('idealPortrait.default.bullet1')}}</li>
+                                        <li>- {{pullInterNationalization('idealPortrait.default.bullet2')}}</li>
+                                        <li>- {{pullInterNationalization('idealPortrait.default.bullet3')}}</li>
+                                        <li>- {{pullInterNationalization('idealPortrait.default.bullet4')}}</li>
+                                        <li>- {{pullInterNationalization('idealPortrait.default.bullet5')}}</li>
+                                        <li>- {{pullInterNationalization('idealPortrait.default.bullet6')}}</li>
+                                    </ul>
+                                    <p class="desc" data-ng-bind="::pullInterNationalization('idealPortrait.default.text5')"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>

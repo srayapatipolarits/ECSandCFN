@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Payment Receipt</title>
+  <style>
+  
+  html {
+    font-size: 16px;
+  }
+  
+  body {
+
+    margin: 0;
+    padding: 20px;
+    background-color: #fff;
+    font-family: 'museo-sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 100%;
+
+  }
+  h1,h2,h3,h4,h5,h6,p,ul,ol,li,a,div,table,tr,th,td,dl,dt,dd {
+    font-size: 1em;
+    font-weight: 300;
+    line-height: 1.25em;
+
+    margin: 0;
+    padding: 0;
+  }
+
+  em,strong {
+    font-weight: inherit
+  }
+
+  .font-serif {
+    font-family: TimesNewRoman, 'Times New Roman', Times, Baskerville, Georgia, serif;
+  }
+  .font-sans {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  } 
+
+.x-container {
+  width: 100%;
+}
+
+.container  {
+  width: 650px;
+  margin: 0 auto;
+}
+.td-logo {
+  width: 100%;
+}
+.logo {
+  height: 27px;
+  overflow: hidden;
+}
+.logo h1 {
+  width: 100%;
+}
+.logo a, .logo img {
+  display: block;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+
+
+
+.col-1 {
+  width: 25.916666666666666%; /* 220 / 960 */
+}
+.col-2 {
+  width: 6.25%; /* 60 / 960 */
+}
+.col-3 {
+  width:  44.91666666666667%; /* 460 / 960 */
+}
+.col-4 {
+  width:  6.25%; /* 60 / 960 */
+}
+.col-5 {
+  width: 16.666666666666666%; /* 160 / 960 */
+}
+
+.customer-col-1 {
+  width: 36.587188612099646%; /* 100 / 281 */
+}
+.customer-col-2 {
+  width: 63.05693950177936%; /* 180 / 281 */
+}
+
+.company-info span {
+  display: block;
+}
+
+.company-info td {
+  border-bottom: 1px solid #cccccc;
+  padding: 10px 0 30px 0;
+}
+
+h3.product-date,.product-description-date {
+
+  font-weight: 300;
+}
+
+
+
+
+
+.customer-info-row > td {
+  padding: 20px 0 80px 0;
+}
+
+.customer-info-row thead th {
+  padding-bottom: 10px;
+}
+.customer-info-row tbody th,
+.customer-info-row thead th {
+  text-align: left;
+  font-weight: 300;
+}
+
+
+
+.customer-info-row tbody td,
+.customer-info-row tbody th  {
+  padding: 10px 0;
+  font-size: 14px;
+  border-top: 1px solid #cccccc;
+}
+
+
+.customer-info-row .payment-info table tr:first-child th, 
+.customer-info-row .payment-info table tr:first-child td {
+  
+  padding-top: 0;
+  
+  border: none;
+}
+
+.customer-info-row .payment-info th {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.customer-info-row .payment-info table tr:first-child td {
+  padding-top: 2px;
+}
+
+.customer-info-row .payment-info table tr td {
+  padding-top:12px;
+  text-align: right;
+}
+
+th, td {
+  text-align: left;
+  vertical-align: top;
+}
+
+.td-tax-id {
+  text-align: right;
+}
+.client-address span {
+  display: block;
+}
+
+
+
+
+
+
+.itemization-table {
+  
+}
+
+.col-itemization-1 {
+  width: 7.8125%; /* 75 / 960 */
+}
+.col-itemization-2 {
+  width: 5.2083333333333336%; /* 50 / 960 */
+}
+.col-itemization-3 {
+  width: 52.60416666666666%; /* 505 / 960 */
+}
+.col-itemization-4 {
+  width: 5.2083333333333336%; /* 50 / 960 */
+}
+.col-itemization-5 {
+  width: 29.16666666666667%; /* 280 / 960 */
+}
+
+
+.itemization-table thead th {
+  border-top: 1px solid #cccccc;
+  
+  font-size: 18px;
+  line-height: 1.25em;
+  padding: 20px 0;
+  font-weight: 500;
+}
+
+.itemization-table thead th:last-child,
+.itemization-table tbody td:last-child
+ {
+  text-align: right;
+}
+
+.itemization-table tbody td {
+  padding: 20px 0;
+
+  border-top: 1px solid #cccccc;
+  font-weight: 300;
+}
+
+.itemization-table tbody td:last-child {
+  font-weight: 500;
+}
+
+
+.itemization-table .totals-table th,
+.itemization-table .totals-table td  {
+  border-top: 1px solid #cccccc;
+  padding: 10px 0;
+}
+
+.itemization-table .totals-table th {
+  font-weight: 500;
+}
+
+.itemization-table .totals-table .balance-due th,
+.itemization-table .totals-table .balance-due td {
+  font-weight: 700;
+}
+
+.itemization-table .totals-table tr:first-child th,
+.itemization-table .totals-table tr:first-child td {
+  border-top: none;
+}
+
+.itemization-table .empty-spacer th,
+.itemization-table .empty-spacer td {
+  border-top: none;
+}
+
+.account-payment tbody th,
+.account-payment tbody td,
+.billing-address tbody th,
+.billing-address tbody td {
+
+  padding: 8px 0;
+  border-top: 1px solid #ccc;
+}
+
+
+.account-payment tbody tr td:first-child {
+  border: none;
+}
+
+.account-payment tbody tr:last-child td {
+  padding-bottom: 30px;
+}
+
+.account-payment th,
+.billing-address th,
+.billing-address td{
+  text-align: left;
+}
+
+.account-payment thead th,
+.billing-address thead th {
+  font-size: 16px;
+  font-weight: 500;
+
+  padding: 30px 0 15px 0;
+}
+
+.billing-address tbody th,
+.billing-address tbody td {
+  text-align: left;
+}
+
+
+.account-payment tbody th,
+.billing-address tbody th {
+  font-weight: 500;
+}
+
+.account-payment tbody td,
+.billing-address tbody td {
+  font-weight: 300;
+}
+.account-payment tbody td {
+  text-align: right;
+}
+span.region, span.postal-code {
+  display: inline;
+}
+
+
+  </style>
+
+
+  
+  
+</head>
+<body>
+
+<div class="x-container">
+  <div  >
+    <table class="table-outer">
+
+    <col class="col-1" />
+    <col class="col-2" />
+    <col class="col-3" />
+    <col class="col-4" />
+    <col class="col-5" />
+
+      <thead>
+        <tr class="company-info">
+          
+          <td class="td-logo">
+            <h1 class="logo">
+              <a href="/"><img src="http://localhost:8080/sp/resources/images/logo-sp-215-27.jpg" alt="SurePeople" /></a>
+            </h1>
+          </td>
+          <td> </td>
+          <td class="td-address">
+            <span>Contact us</span>
+            <span>billing@surepeople.com</span> <span>1-855-755-SURE (7873)</span>
+          </td>
+          <td> </td>
+          <td class="td-tax-id">
+            <span>Federal Tax ID</span>
+            <span>$fedralTaxId$</span>
+          </td>
+
+        </tr>
+
+
+
+
+
+
+<tr class="new-customer-info">
+  <td colspan="5">
+    <table>
+      <tr>
+      <!-- billing address -->
+        <td class="billing-address">
+            <table>
+
+            <col style="width: 70px;" />
+            <col style="width: 50px;"/>
+            <col style="width: 190px;"/>
+
+              <thead>
+                <tr>
+                  <th colspan="3">Billed to:</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th  class="th-client-name">Name:</th>
+                  <td> </td>
+                  <td class="td-client-name"><![CDATA[$name$]]></td>
+                </tr>
+		$if(isBuisness)$
+				
+                <tr class="client-address">
+                  <th>Address:</th>
+                  <td style="width: 20px;"> </td>
+                  <td>
+                    <span class="street-address"><![CDATA[$address.addressLine1$ $address.addressLine2$,]]></span>
+                    <span class="region"><![CDATA[$address.city$ $address.state$]]></span> <span class="postal-code"><![CDATA[$address.zipCode$]]></span>
+                    <span class="country"><![CDATA[$address.country$]]></span>
+                  </td>
+                </tr>
+                $endif$
+              </tbody>
+            </table>
+          </td>
+        
+        <td style="width:30px;"> </td>
+
+        <!-- Payment info -->
+        <td class="account-payment">
+          <table>
+            <col style="width: 40px;"/>
+            <col style="width: 100px;" />
+            <col style="width: 20px;"/>
+            <col style="width: 150px;"/>
+            <thead>
+              <tr>
+                <td> </td>
+                <th colspan="3">Payment:</th>
+              </tr>
+            </thead>
+            <tbody>
+            
+
+            <tr>
+              <td> </td>
+              <th>Date:</th>
+              <td> </td>
+                <td>$paymentRecord.createdOn;format="MMMM dd, yyyy"$</td>
+            </tr>
+            <tr><td> </td>
+              <th>Transx Id #:</th>
+              <td> </td>
+                <td>$paymentRecord.txnId$</td>
+            </tr>
+            <tr>
+              <td> </td>
+              <th>Method:</th>
+              <td></td>
+                <td>$paymentType$  $if(paymentRecord.paymentInstrument.creditCard)$($paymentRecord.paymentInstrument.maskedCardNumber$) $endif$</td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>   
+    </table>
+  </td>
+</tr>
+      </thead>
+      <tbody class="itemization">
+        <tr>
+          <td colspan="5">
+            <table class="itemization-table" >
+              <col class="col-itemization-1" />
+              <col class="col-itemization-2" />
+              <col class="col-itemization-3" />
+              <col class="col-itemization-4" />
+              <col class="col-itemization-5" />
+              
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th> </th>
+                  <th>Description</th>
+                  <th> </th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td> </td>
+                  <td>
+                                        <h3 class="product-date">$paymentRecord.reason$</h3>
+                  </td>
+                  <td> </td>
+                  <td><span class="currency">U.S.</span> <span class="currency-symbol">\$</span><span class="amount">$formattedAmount$</span></td>
+                </tr>
+                <tr class="empty-spacer">
+                  <td colspan="5"> </td>
+                </tr>
+                
+                <tr class="total-rows">
+                  <td colspan="3"> </td>
+                  <td colspan="2">
+                    <table class="totals-table">
+                      <col/>
+                      <col/>
+                      <tr class="sub-total">
+                        <th>SubTotal:</th>
+                        <td><span class="currency">U.S.</span> <span class="currency-symbol">\$</span><span class="amount">$formattedAmount$</span></td>
+                      </tr>
+                      <tr class="sales-tax">
+                        <th>Sales Tax: <span class="tax-rate">0.00%</span></th>
+                        <td><span class="currency">U.S.</span> <span class="currency-symbol">\$</span><span class="amount">0.00</span></td>
+                      </tr>
+                      <tr>
+                        <th class="payment-received">Payment</th>
+                        <td><span class="currency">U.S.</span> <span class="currency-symbol">\$</span><span class="amount">$formattedAmount$</span></td>
+                      </tr>
+                      <tr class="balance-due">
+                        <th>Balance Due:</th>
+                        <td><span class="currency">U.S.</span> <span class="currency-symbol">\$</span><span class="amount">0.00</span></td>
+                      </tr>
+                    </table>
+
+
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </td>
+        </tr>
+      </tbody>
+    </table> <!--//table-outer-->
+  </div>
+</div>
+  
+</body>
+</html>

@@ -1,0 +1,25 @@
+<div class="col-content-wrapper mh700 pa-view">
+    <div class="members-content-wrapper">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('shareportrait.roles')"></h2>
+        </div>
+    </div>
+    <div class="roles-view">
+    	<div class="roles-available" data-ng-repeat="roles in profileDetail.hiringRoles track by roles.id">
+	   		  <div class="role-name">
+	   		 	<span class="role-match-name" data-ng-bind="roles.name | unescapeText"></span>
+	   			<span data-ng-if="!archivedUser" class="icon-close icon-icon_remove sp-icon-color" data-ng-click="removeRoleDialog(roles)"></span>
+              </div>
+	   		  <div class="roles-details" data-ng-if="!archivedUser && roles.matchResult">
+             	<span class="role-match-percent sp-icon-color" data-ng-bind="roles.matchResult.matchPercent+'%'" data-ng-click="viewMatchReport(roles)"></span>
+             	<div class="role-match-portrait-list">
+             	    <span class="icon-idealPortrait sp-icon-color"></span>
+	   		 		<span class="role-match-portrait" data-ng-bind="roles.portrait? roles.portrait.name : pullInterNationalization('portrait.notAssigned')"></span>
+             		<!-- <br/>
+       		      	<span class="role-view-link sp-link-color" data-ng-if="roles.portrait && !archivedUser"  data-ng-bind="::pullInterNationalization('portrait.viewReport')" data-ng-click="viewMatchReport(roles)"></span>-->
+       		 	</div>
+             </div>
+        </div>
+        <a data-ng-if="!archivedUser" href="javascript:void(0)" class="add-role-button" data-ng-bind="::pullInterNationalization('candidates.addCandidates.addRole')" data-ng-click="addRole()"></a>
+    </div>
+</div>

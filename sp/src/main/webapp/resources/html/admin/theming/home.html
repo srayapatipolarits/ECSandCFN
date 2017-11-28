@@ -1,0 +1,599 @@
+<link type="text/css" rel="stylesheet" href="/sp/resources/css/css-min/color-picker/color-picker.min.css" />
+<div class="row x-container">
+  <div class="wrap-outer container" data-ng-controller="companyThemingController as ctrl"  data-ng-init="ctrl.getThemeData('accountAdmin')" data-ng-cloak>
+
+    <div class="wrap-inner theme-normal" data-ng-if="inviteReady && profileReady" data-ng-class="inviteReady?'':'hide'">
+   
+       <div class="lnd-full-box business-account-details sp-panel-accent lnd-spacer theming-section">
+                   		<div class="actionPlanHeader">
+                   		    <h3 class="companyName sp-header-title-color">SETTINGS</h3>
+                   		    <p class="contact-option-summary" data-ng-bind="pullInterNationalization('admin.theming.customization.desc')"></p>
+		           			<div class="returnLink clearfix">
+		           				<a href="javascript:void(0)" class="mock-link cloneLink pull-left" data-ng-click="ctrl.resetThemeModal('accountAdmin',ctrl.themeData.id)">Reset to System Defaults</a>
+		           				<a href="/sp/admin/account/business" class="mock-link cloneLink pull-left" data-ng-bind="pullInterNationalization('admin.account.business.returnLink')"></a>
+		           			</div>
+		           			<div class="custom_column">
+			           			<ol class="form-list-c form-list-d noMarBottom">
+			           			<li class="submit-cancel-btns space-box planAction">
+				                        <ul class="submit-cancel-list">
+				                            <li class="submit-charge">
+				                                <input type="submit" value="Full Page Preview" class="subscribeBtn btn-block btn-15px sp-btn-color" data-ng-click="ctrl.switchThemeView('preview')" /> 
+				                            </li>
+				                        </ul>
+				                    </li> 
+	                          	   
+	                          	  
+	                          	   <li class="type-and-number planTitle noMarBottom">
+	                          	   	  <div class="img-wrapper">
+	                     <div class="imgReplacementBigPreview individual-pic" data-ng-if="ctrl.selectedCompanyLogo">
+	                     <img data-ng-src="{{ctrl.selectedCompanyLogo}}" alt="" data-ng-if="ctrl.selectedCompanyLogo" class="logo-preview-pic"/>
+	                     </div>
+					    <div class="imgReplacementBig individual-pic logo-text" data-ng-if="!ctrl.selectedCompanyLogo">Upload Logo</div>
+					    <span class="upload-icon icon-icon_camera sp-icon-color" data-ng-click="ctrl.showImageEdit()"></span>
+					</div>
+					<div class="image-edit-box">
+					    <ul data-ng-if="ctrl.imageEditBox">
+					        <li data-ng-click="ctrl.uploadCompanyLogo()">
+					            <a href="#" class="border-link"><span class="mock-link" data-ng-bind="pullInterNationalization('image.edit.update')"></span></a>
+					        </li>
+					        <li data-ng-if="ctrl.selectedCompanyLogo" data-ng-click="ctrl.deleteImageModal()">
+					            <a href="#" class="border-link"><span class="mock-link" data-ng-bind="pullInterNationalization('image.edit.delete')"></span></a>
+					        </li>
+					    </ul>
+					</div>
+				                   </li>
+	                          	   
+	                          	</ol>
+                          	</div>
+                          	
+		           		</div>
+                   </div>
+
+      <div class="admin-theming-section sp-panel-accent">
+        <nav class="nav-support-content">
+
+            <ul class="nav-support-link-list">
+        
+                <li class="nav-technical"><a class="active"  href="javascript:void(0)" data-list="1"><span class="nav-sidebar-text">Top Navigation Style</span></a>
+                </li>
+                <li class="nav-account"><a href="javascript:void(0)"  data-list="2"><span class="nav-sidebar-text">Link/Button/Icon Style</span></a>
+                </li>
+                <li class="nav-training"><a href="javascript:void(0)"  data-list="3"><span class="nav-sidebar-text">Accent Bar Style</span></a>
+                </li>
+                <li class="nav-training"><a href="javascript:void(0)" data-list="5"><span class="nav-sidebar-text">Footer Style</span></a>
+                </li>
+            </ul>
+        </nav>
+
+
+    <div class="main-support-content">
+    
+<div class="support-article support-customer local-hide local-show" data-tab = "1">
+
+        <header class="support-article-header">
+            <h1 class="support-article-title sp-header-title-color">TOP NAVIGATION STYLE</h1>
+        </header>
+       <hr/>
+       <div class="section-colors">
+       <ul class="colors-list">
+            <li class="cb-custom">
+               <input type='text' name='showMainNavBgColor' id='showMainNavBgColor' value="" />
+                <label class="color-label">Main navigation Background color</label>
+            </li>
+            <li  class="cb-custom">
+                <input type='text' name='showSubNavBgColor' id='showSubNavBgColor' value="" />
+                <label class="color-label">Sub navigation background color</label>
+            </li>
+            <li class="cb-custom">
+               <input type='text' name='showMainNavHoverColor' id='showMainNavHoverColor' value="" />
+                <label class="color-label">Main navigation link hover color</label>
+            </li>
+            <li  class="cb-custom">
+                <input type='text' name='showSubNavLinkColor' id='showSubNavLinkColor' value="" />
+                <label class="color-label">Sub navigation link color</label>
+            </li>
+        </ul>
+       </div>
+       <hr/>
+       <div class="section-preview-content">
+       <hr/>
+       <h4 class="preview-text">PREVIEW</h4>
+          <nav class="nav-main-app x-container">
+      <div class="container">
+     
+            <div class="reposition-nav defaultPos">
+
+                <div class="nav-main-app-toc">
+                 	<section id="header-section-2" class="admin-pages-bc ng-scope">
+                        <ul class="active">
+                            <li class="nav-sub-member active">
+                            <a href="#"><span>Account Details</span></a>
+                            </li>
+                            <li class="nav-sub-member">
+                            <a href="#"><span>Settings</span></a>
+                            </li>
+                         </ul>
+                    </section>  
+                    <section class="nav-dashboard section_home">
+                        <h2 class="active">
+                        <span class="preview-header">Home</span>
+                        </h2>
+                    </section> 
+                    <section  class="nav-dashboard section_prism" >
+                        <h2 data-slide="6">
+                        <span class="preview-header">PRISM</span>
+                        </h2>
+                    </section>
+                     <section  class="nav-dashboard section_prism" >
+                        <h2 data-slide="6">
+                        <span class="preview-header">Learning & Development</span>
+                        </h2>
+                    </section> 
+               </div>
+            </div>
+      </div>
+      <div class="bg-sub-nav"></div>
+    </nav>            
+   </div> 
+</div>
+
+<article class="support-article support-customer local-hide" data-tab = "2">
+
+   <header class="support-article-header">
+            <h1 class="support-article-title sp-header-title-color">LINK/ BUTTON/ ICON STYLE</h1>
+        </header>
+       <hr/>
+
+            <div class="section-colors">
+       <ul class="colors-list">
+            <li class="cb-custom">
+               <input type='text' name='showButtonColor' id='showButtonColor' value='' />
+                <label class="color-label">Button Color</label>
+            </li>
+            <li  class="cb-custom">
+                <input type='text' name='showLinkColor' id='showLinkColor' value='' />
+                <label class="color-label">Link Color</label>
+            </li>
+            <li  class="cb-custom">
+                <input type='text' name='showIconColor' id='showIconColor' value='' />
+                <label class="color-label">Icon Color</label>
+            </li>
+            <li  class="cb-custom">
+                <input type='text' name='showLinkHoverColor' id='showLinkHoverColor' value='' />
+                <label class="color-label">Link Hover Color</label>
+            </li>
+        </ul>
+       </div>
+       <hr/>
+       <div class="section-preview-content" style="margin-bottom:70px;">
+       <hr/>
+       <h4 class="preview-text">PREVIEW</h4>
+        <ul class="colors-list">
+            <li class="cb-custom align-horizontal">
+                 <input type="submit" value="Preview" class="subscribeBtn btn-block btn-15px sp-btn-color section-preview-button" style="margin-top: 0;">
+            </li>
+            <li  class="cb-custom align-horizontal">
+                <span class="pdf-view icon-icon_print sp-icon-color" style="font-size:36px;"></span>
+            </li>
+            <li  class="cb-custom align-horizontal" style="margin-left:-60px;margin-top:27px;">
+                <a href="#" class="border-link"><span class="mock-link" style="font-size:1.3em;" data-ng-bind="::pullInterNationalization('kcContent.playVid')"></span></a>
+            </li>
+            
+        </ul>    
+       </div>
+</article>
+
+<article class="support-article support-customer local-hide" data-tab = "3">
+    
+    <header class="support-article-header">
+            <h1 class="support-article-title sp-header-title-color">ACCENT BAR STYLE</h1>
+        </header>
+       <hr/>
+
+            <div class="section-colors">
+       <ul class="colors-list">
+            <li class="cb-custom">
+               <input type='text' name='showPanelAccent' id='showPanelAccent' value='' />
+                <label class="color-label">Panel accent bar</label>
+            </li>
+            <li  class="cb-custom">
+                <input type='text' name='showSignInAccent' id='showSignInAccent' value='' />
+                <label class="color-label">Sign in accent bar</label>
+            </li>
+            <li class="cb-custom">
+               <input type='text' name='showHeaderTitleColor' id='showHeaderTitleColor' value='' />
+                <label class="color-label">Header title color</label>
+            </li>
+            <li  class="cb-custom">
+                <input type='text' name='showHeaderAccent' id='showHeaderAccent' value='' />
+                <label class="color-label">Header accent bar</label>
+            </li>
+           
+        </ul>
+       </div>
+       <hr/>
+       <div class="section-preview-content">
+       <hr/>
+      <h4 class="preview-text">PREVIEW</h4>
+     <div class="x-container view-switch" style="margin-top:-14px;margin-bottom: 39px;">
+         <div class="container">
+        <div class="row sp-panel-accent header-title-preview" style="margin-left: -14px;">
+            <div class="col-xs-12 col-md-12">
+                            
+                <h2  class="sp-header-title-color">PRISM Portrait</h2>
+                <p class="desc" style="width:100%">The PRISM Portrait reveals comprehensive insights into nearly every aspect of your Emotional, Relational and Team Intelligence<sup>™</sup> (ERT-i<sup>™</sup>). This highly relevant and transformative data will provide you with critical information to impact your personal and professional performance, productivity and success.</p>
+            </div>
+        </div>
+    </div>
+  </div>  
+     <div id="header" class="signInBorder">
+	 <header class="site-header-app ng-scope">
+     <!-- <div class="x-container site-logo-row non-logged-header">
+        <div class="container">
+            <h1 id="site-logo-app">
+        <a href="/">
+          <img src="/resources/images/sp-logo.svg" alt="SurePeople™">
+        </a>
+      </h1>
+        </div>
+    </div> -->
+   </header>
+<!-- //site-header -->
+
+		</div>
+		<div id="content-container" style="width: 97%;margin-left:0;">
+			<div id="content">
+			
+<div class="x-container form-wrapper login-wrapper ng-scope" style="height:40px;">
+	<div class="container">
+		<div class="row">
+			<div class="sign-in-default">
+				
+					<div class="error-msgs no-error" >
+						<h2 class="sign-in-title sp-header-title-color">Sign in to your account</h2>
+            			
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Login Form Ends -->
+			</div>
+		</div>
+                  
+       </div><br/>
+       <br/>
+       <article class="article-teaser-panel two-col" style="margin-left:0;margin-top: -6px;">
+
+        <div class="book-mark-share">
+            <div class="book-mark-share-title sp-header-accent">Awareness of Others' Needs</div>
+           
+        </div>
+    </article>
+</div>
+  </article> <!-- //.support-article -->
+  <article class="support-article support-customer local-hide" data-tab = "5">
+    <header class="support-article-header">
+            <h1 class="support-article-title sp-header-title-color">FOOTER STYLE</h1>
+        </header>
+       <hr/>
+
+         <div class="section-colors">
+       <ul class="colors-list">
+            <li class="cb-custom">
+               <input type='text' name='showFooterBackgroundColor' id='showFooterBackgroundColor' value='' />
+                <label class="color-label">Footer Background Color</label>
+            </li>
+            <li  class="cb-custom">
+                <input type='text' name='showFooterNavTextColor' id='showFooterNavTextColor' value='' />
+                <label class="color-label">Footer Nav Text Color</label>
+            </li>
+            <li  class="cb-custom">
+                <input type='text' name='showFooterNavHoverColor' id='showFooterNavHoverColor' value='' />
+                <label class="color-label">Footer Nav Hover Color</label>
+            </li>
+        </ul>
+       </div>
+       <hr/>
+       <div class="section-preview-content">
+       <hr/>
+      <h4 class="preview-text">PREVIEW</h4>
+           <div class="x-container footer-wrapper">
+	<footer class="container" style="width: 836px;">
+		<div class="row">
+			<div class="leftSec">
+				<ul>
+					<li>
+					<span class="footerMessage sp-footer-text-color">
+					Powered by
+					</span> <br/>
+					<img src="/resources/images/SP_logo_white.svg" alt="SurePeople&trade;">
+					</li>
+				</ul>
+			</div>
+			<div class="rightSec" style="float:right;height:auto;">
+				<div class="lists sp-footer-text-color">
+					<a class="sp-footer-text-color" href="#">+1 855-755-SURE (7873)</a>
+					<span class="spacerTop"></span>			
+					<a class="sp-footer-text-color disp-inline" href="#">Privacy</a>
+					<a class="sp-footer-text-color disp-inline" href="#">User Agreement</a>
+					<span class="copy-text">Copyright &copy; 2016 SurePeople, LLC. All rights reserved.</span>
+					<!-- <a href="/cookies/" ng-click="footerLinks('cookies', $event)">Cookies</a>-->
+					  <!-- Commented as this is not a transactional module 
+					  <div class="secureBadges clearfix">
+						  <div class="site-footer-badges clearfix">
+							<!-- (c) 2005, 2016. Authorize.Net is a registered trademark of CyberSource Corporation --> 
+							<!--  
+							<script language="JavaScript" type="text/javascript"> SiteSeal("/resources/images/ns_icon_05_03.gif", "NETEV", "none");</script>
+							<div class="AuthorizeNetSeal"> 
+								<script type="text/javascript" language="javascript">var ANS_customer_id="7b5f06a5-def5-456e-a61a-68b399705e8c";</script>
+								  <a href="https://verify.authorize.net/anetseal/?pid=7b5f06a5-def5-456e-a61a-68b399705e8c&amp;rurl=http://surepeople.com','AuthorizeNetVerification','width=600,height=430,dependent=yes,resizable=yes,scrollbars=yes,menubar=no,toolbar=no,status=no,directories=no,location=yes"><img src="/resources/images/authorize_05.gif" border="0" alt="Authorize.Net Merchant">
+								  </a> 
+							</div>
+						  </div>
+					  </div> -->
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>   
+                  
+       </div>
+  </article>
+</div>
+
+        <div class="faux-col-shim"></div>
+      </div>
+    </div>
+    
+              <div class="wrap-inner row theme-preview" data-ng-if="inviteReady && profileReady" data-ng-class="inviteReady?'':'hide'">
+                <div class="col-xs-12">
+                <div class="lnd-full-box sp-panel-accent lnd-spacer">
+                   		<div class="actionPlanHeader">
+                   		    <h3 class="companyName sp-header-title-color">PREVIEW</h3>
+		           			<div class="returnLink clearfix">
+		           				 <input type="submit" value="Apply" class="subscribeBtn btn-block btn-15px sp-btn-color"  data-ng-click="ctrl.updateThemeData('accountAdmin')" />
+		           				<input type="button" value="Cancel" class="cancelBtn btn-block btn-15px btn-grey-dark" data-ng-click="ctrl.switchThemeView('normal')" />
+		           			</div>
+		           		</div>
+                   </div>
+                   <div class="section-preview-content">
+                    <nav class="nav-main-app x-container">
+      <div class="container">
+     
+            <div class="reposition-nav defaultPos">
+
+                <div class="nav-main-app-toc">
+                 	<section id="header-section-2" class="admin-pages-bc ng-scope">
+                        <ul class="active">
+                            <li class="nav-sub-member active">
+                            <a href="#"><span>Account Details</span></a>
+                            </li>
+                            <li class="nav-sub-member">
+                            <a href="#"><span>Settings</span></a>
+                            </li>
+                         </ul>
+                    </section>  
+                    <section class="nav-dashboard section_home">
+                        <h2 class="active">
+                        <span class="preview-header">Home</span>
+                        </h2>
+                    </section> 
+                    <section  class="nav-dashboard section_prism" >
+                        <h2 data-slide="6">
+                        <span class="preview-header">PRISM</span>
+                        </h2>
+                    </section>
+                     <section  class="nav-dashboard section_prism" >
+                        <h2 data-slide="6">
+                        <span class="preview-header">Learning & Development</span>
+                        </h2>
+                    </section>  
+               </div>
+            </div>
+      </div>
+      <div class="bg-sub-nav"></div>
+    </nav></div> <br/> 
+                    <!-- Left Box Starts -->
+                    <div class="lnd-left-sec section-preview-content">
+                        <!-- Box Starts -->
+                        <div class="lnd-left-box bgBord sp-panel-accent">
+                            <h2>PRACTICE AREAS</h2>
+                            <ul>
+                                <li class="border-link on sp-link-color"><span class="mock-link ng-binding">Active Listening</span></li>
+                                <li class="border-link sp-link-color"><span class="mock-link ng-binding">Compromise</span></li>
+                                <li class="border-link sp-link-color"><span class="mock-link ng-binding">Seeking Feedback</span></li>
+                             </ul>
+                            <p class="manage-pas">
+                                <span class="link-desc ng-binding" data-ng-bind="pullInterNationalization('practiceArea.addRemove')">Add/Remove Practice Areas</span>
+                                <a href="#" class="border-link">
+                                    <span class="mock-link ng-binding" data-ng-bind="pullInterNationalization('practiceCtrl.customizeyourplan')">Customize your Individual Plan</span>
+                                </a>
+                            </p>
+                        </div>
+                        <br/>
+                        <nav class="related-article-tools" style="background:#fff;">
+    <section class="related-article-links">
+        <h2 class="sp-header-title-color">Trending</h2>
+        <ul class="spotlight-related-links">
+            <li class="media-text">
+            <span class="kc-icons-themed sp-icon-color icon-icon_pdf"></span>
+                <h3>
+                    <a class="border-link" href="#">
+                        <span class="mock-link">How To Achieve Success By Admitting You Suck</span>
+                    </a>
+                </h3>
+               <p class="training-tool-info"><span class="author"><span>By</span> <span>Mike Templeman</span></span></p>
+            </li>
+            <li class="media-video">
+            <span class="kc-icons-themed sp-icon-color icon-icon_video"></span>
+                <h3>
+                    <a class="border-link" href="#">
+                        <span class="mock-link">Active Listening: The Speaking and Listening Balance</span>
+                    </a>
+                </h3>
+               <p class="training-tool-info"><span class="author"><span>By</span> <span>James Brooks Ph.D.</span></span></p>
+            </li>
+            <li class="media-audio">
+            <span class="kc-icons-themed sp-icon-color icon-icon_audio"></span>
+                <h3>
+                    <a class="border-link" href="#">
+                        <span class="mock-link">Ditching Our Distractions: The Importance of Active Listening</span>
+                    </a>
+                </h3>
+                <p class="training-tool-info ng-scope"><span class="author"><span>By</span> <span>SunGardAS Contributor, SunGardAS</span></span></p>
+            </li>
+        </ul>
+    </section>
+   </nav>
+                    </div>
+                    <!-- Left Box Ends -->
+                    <!-- Right Box Starts -->
+                    <div class="lnd-right-sec section-preview-content">
+                        <div class="practice-area-detail lnd-right-box bgBord sp-panel-accent">
+                            <div class="title-with-icons">
+                                <h2 class="sp-header-title-color">Compromise</h2>
+                                <ul>
+                                   <li class="iNote icon-icon_editnote sp-icon-color" title="Post a Note"></li>
+                                    <li class="iFeedback icon-icon_feedback sp-icon-color" title="Request Feedback"></li>
+                                </ul>
+                            </div>
+                            <article class="slide-right clearfix ng-scope"><div class="practive-area-view">
+    <p class="pa-description"><span>Enhance your relational intelligence and learn to build trust and an authentic accord with others.</span> 
+    <div class="pa-details">
+        <h3 class="pa-subhead top-margin">Development Strategies</h3>
+        <div class="development-strategy">
+            
+            <div class="ds-list">
+                <p class="list-no sp-link-color">1</p>
+                <div class="list-content">
+                    <p>Think through the options that may be acceptable, even if they are not ideal.</p>
+	                <ul class="goal-topic-panel-tools">
+                        <li>
+                            <a href="#" class="border-link post-note" >
+                               <span class="theme-ico icon-icon_editnote sp-icon-color"></span>
+                                <span class="mock-link ng-binding">Post a Note</span></a>
+                        </li>
+                       <li>
+                            <a href="#" class="border-link request-feedback">
+                            <span class="theme-ico icon-icon_feedback sp-icon-color"></span>
+                            <span class="mock-link">Request Feedback</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+           </div>
+      <article class="slide-right clearfix">
+       <div class="col-md-12 col-xs-12 add-note ng-scope">
+	<div class="closeIcon icon-icon_remove"></div>
+	<div class="padLeft">
+		<div class="pa-details pa-extra-spacing-nolr" style="min-height:0;height:350px;">
+			 <h3 class="pa-headTitle top-margin ng-binding" data-ng-bind="pullInterNationalization('practiceArea.postNote')">Post a Note</h3>
+			 <div class="copy-suggestion">
+			 <span>Posting a note is your opportunity to record your thoughts and actions as you work through practice areas.</span>
+			 </div>
+			 <div class="description_holder top-margin">
+			 	<form name="practiceCtrl.postANoteForm" novalidate="">
+				 	<!-- ngIf: practiceCtrl.devStrategy.desc -->
+				 	<div class="description comments-content updated-margin"></div>
+				 	<textarea id="comment"  class="textArea" name="content" data-ng-attr-placeholder="Post a Note"></textarea>
+				 	<!-- ngIf: practiceCtrl.postANote.submitted && practiceCtrl.postANoteForm.content.$error.required -->
+				 	<div class="clearfix spacer">
+	                    <input type="submit" value="{{::pullInterNationalization('practiceArea.save')}}" class="btn-block btn-14px disabled sp-btn-color">
+	                    <input type="button" value="{{::pullInterNationalization('practiceArea.cancel')}}" class="btn-block btn-14px btn-grey-dark">
+					</div>
+			 	</form>
+			 </div>
+		</div>	
+	</div>
+</div></article><br/>
+        <article class="article-teaser-panel two-col">
+
+        <div class="book-mark-share">
+            <div class="book-mark-share-title sp-header-accent">Awareness of Others' Needs</div>
+        </div>
+
+       <div class="article-media">
+            <img ng-src="http://images1.newscred.com/cD05NDVlMjIyMjkxZWFlZjNmNTZlMzg4N2YyM2Y2YWE1YyZnPTg2NTM5Nzg2YTM3ZGMxMTlkMzkxOGM4YjE0NGZhNGE0?width=764">
+        </div>
+
+        <div class="article-synopsis">
+            <h2 class="synopsis-lede">
+           <div>
+            <a class="border-link" href="#">
+            <span class="mock-link black-link">10 Things I've Learned From Workplace Politics</span>
+            </a>
+            </div>
+            </h2>
+           <p class="article-publisher-info">
+                <span class="article-title"><span class="article-author">Jasmin Nazarian</span></span>
+            </p>
+
+            <p class="article-summary"><span >Multitasking seems like such a great way to get so much done in so little time. Who wouldn't want to knock out some emails, have lunch, and listen in on a phone conference all at the same time?</span>
+            </p>
+            <div>
+            <a class="border-link" href="#">
+            <span class="mock-link bold12-link">READ ARTICLE</span>
+            </a>
+            </div>
+            <p></p>
+        </div>
+    </article>
+    </div>
+</div>
+</article>
+                        </div>
+                    </div>
+                    <br/>
+                  <div id="footer" class="section-preview-content">
+			
+
+
+
+<!-- Footer Starts -->
+<div class="x-container footer-wrapper">
+	<footer class="container">
+		<div class="row">
+			<div class="leftSec">
+				<ul>
+					<li>
+					<span class="footerMessage sp-footer-text-color">
+					Powered by
+					</span> <br/>
+					<img src="/resources/images/SP_logo_white.svg" alt="SurePeople&trade;">
+					</li>
+				</ul>
+			</div>
+			<div class="rightSec" style="float:right;height:auto;">
+				<div class="lists sp-footer-text-color">
+					<a class="sp-footer-text-color" href="#">+1 855-755-SURE (7873)</a>
+					<span class="spacerTop"></span>			
+					<a class="sp-footer-text-color disp-inline" href="#">Privacy</a>
+					<a class="sp-footer-text-color disp-inline" href="#">User Agreement</a>
+					<span class="copy-text">Copyright &copy; 2016 SurePeople, LLC. All rights reserved.</span>
+					<!-- <a href="/cookies/" ng-click="footerLinks('cookies', $event)">Cookies</a>-->
+					  <!-- Commented as this is not a transactional module 
+					  <div class="secureBadges clearfix">
+						  <div class="site-footer-badges clearfix">
+							<!-- (c) 2005, 2016. Authorize.Net is a registered trademark of CyberSource Corporation --> 
+							<!--  
+							<script language="JavaScript" type="text/javascript"> SiteSeal("/resources/images/ns_icon_05_03.gif", "NETEV", "none");</script>
+							<div class="AuthorizeNetSeal"> 
+								<script type="text/javascript" language="javascript">var ANS_customer_id="7b5f06a5-def5-456e-a61a-68b399705e8c";</script>
+								  <a href="https://verify.authorize.net/anetseal/?pid=7b5f06a5-def5-456e-a61a-68b399705e8c&amp;rurl=http://surepeople.com','AuthorizeNetVerification','width=600,height=430,dependent=yes,resizable=yes,scrollbars=yes,menubar=no,toolbar=no,status=no,directories=no,location=yes"><img src="/resources/images/authorize_05.gif" border="0" alt="Authorize.Net Merchant">
+								  </a> 
+							</div>
+						  </div>
+					  </div> -->
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>
+<!-- Footer Ends -->
+
+		</div>
+                </div>
+            </div>
+  </div>
+  
+</div>

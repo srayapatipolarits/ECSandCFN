@@ -1,0 +1,450 @@
+<link rel="stylesheet" href="/resources/css/css-min/filestack.css">
+<style type="text/css">
+.modal-open {
+ overflow-y: hidden;
+}
+.modal-backdrop {
+    position: fixed;
+    background: rgba(0, 0, 0, .6);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 300;
+}
+.new-media-manager .media-manager-dialog {
+ z-index: 1000 !important;
+}
+</style>
+<div class="modal right fade new-media-manager" id="mediaModal"  role="dialog" data-ng-init="mediaCtrl.init();">
+  <div class="modal-dialog" role="document" data-ng-class="{'media-manager-admin-dialog':mediaCtrl.parentPage === 'spAdminView','media-manager-dialog':mediaCtrl.parentPage === 'dialogView' && !mediaCtrl.ieMode,'ie-media-manager-dialog':mediaCtrl.parentPage === 'dialogView' && mediaCtrl.ieMode}">
+     
+     <div class="fp__wrapper">
+       <div class="fp__header">
+        
+        <div class="desktop">
+          <span class=""></span>
+            <p class="fp__header__title " data-ng-bind="::pullInterNationalization('mediaManager.upload.select.label')"></p>
+            <div  data-ng-click="mediaCtrl.closeModal();" data-ng-if="mediaCtrl.parentPage === 'dialogView'">
+            <a class="close-media-modal">X</a>
+            </div>
+        </div>
+        </div>
+        
+		<div class="fp__sidebar js__sidebar" data-ng-class="{'active':mediaCtrl.showMobMenu, 'ie-sidebar':mediaCtrl.ieMode}">
+		<nav class="js__sidebar">
+		<ul class="sidebar__group">
+            <li data-ng-class="{'active':mediaCtrl.mediaView === 'listing'}" data-ng-click="mediaCtrl.changeMediaView('listing');showFilter=false;"><a><i class="sidebar-icon sbicon-instagram"></i>{{::pullInterNationalization('mediaManager.option1')}}</a></li>
+            <li data-ng-class="{'active': mediaCtrl.mediaView === 'upload' || mediaCtrl.mediaView === 'uploadSubmit'}" data-ng-click="mediaCtrl.changeMediaView('upload');"><a><i class="sidebar-icon sbicon-home"></i>{{::pullInterNationalization('mediaManager.option2')}}</a></li>
+            <li data-ng-if="mediaCtrl.parentPage === 'dialogView'" data-ng-click="mediaCtrl.openFilePicker()"><a><i class="sidebar-icon sbicon-skydrive"></i>{{::pullInterNationalization('mediaManager.option3')}}</a></li>
+		</ul>
+		</nav>
+		</div>
+		<div class="mobile-navigation">
+		<span class="toggle-sidenav" data-ng-click="mediaCtrl.showMobMenu=!mediaCtrl.showMobMenu">
+            <i class="fa fa-bars media-hamburger"></i>
+         </span>
+        </div>
+     
+      <div class="fp__content"> 
+      
+                   
+       <section class="fp__drag-and-drop text--center" data-ng-class="{'media-fadeIn':mediaCtrl.mediaView === 'upload','media-fadeout':mediaCtrl.mediaView !== 'upload'}">
+         <header class="content__header">
+            <div class="content__header__title">
+                <h2>
+                <span data-ng-bind="::pullInterNationalization('mediaManager.upload.label')">
+                </span>
+                </h2>
+            </div>
+            
+        </header>
+          <div class="label">
+          <div class="hide-this" data-ng-class="{'ie-adjust-padding':mediaCtrl.ieMode}">
+          <label class="fileContainer">
+          {{::pullInterNationalization('mediaManager.upload.select.label')}}
+          <input data-ng-model="mediaCtrl.media.file" type="file">
+          </label><br/>
+          <span class="info-txt" data-ng-class="{'ie-info-text':mediaCtrl.ieMode}">{{::pullInterNationalization('mediaManager.upload.maxSize')}}: 10{{::pullInterNationalization('mediaManager.upload.sizeUnit')}}</span>
+          </div>
+          </div>
+        </section> 
+       <section class="content__box action-bar--open" data-ng-class="{'media-fadeIn':mediaCtrl.mediaView === 'uploadSubmit','media-fadeout':mediaCtrl.mediaView !== 'uploadSubmit'}"> 
+       <header class="content__header">
+            <div class="content__header__title">
+                <h2>
+                <span data-ng-bind="::pullInterNationalization('mediaManager.upload.label')">
+                </span>
+                </h2>
+            </div>
+            
+        </header>
+                <form enctype="multipart/form-data" class="uploadMediaForm" id="mediaForm" name="mediaCtrl.uploadMediaForm" novalidate>
+					<ol class="form-list-c">
+					 <li>
+					 <div class="list__thumbnail">
+                <div class="thumbnail">
+                    <img class="image-preview" alt="" data-ng-src="{{mediaCtrl.previewImage}}" data-ng-if="mediaCtrl.media.mediaType === 'IMAGE'">
+                    <img class="image-preview" data-ng-src="/resources/images/doc.jpeg" data-ng-if="mediaCtrl.media.mediaType === 'MSDOC'"/>
+					<img class="image-preview" data-ng-src="/resources/images/ppt.jpeg" data-ng-if="mediaCtrl.media.mediaType === 'PPT'"/>
+					<img class="image-preview" data-ng-src="/resources/images/pdf.jpeg" data-ng-if="mediaCtrl.media.mediaType === 'PDF'"/>
+					<img class="image-preview" data-ng-src="/resources/images/excel-icon.png" data-ng-if="mediaCtrl.media.mediaType === 'MSEXCEL'"/>
+					<img class="image-preview" data-ng-src="/resources/images/file-icon.png" data-ng-if="mediaCtrl.media.mediaType === 'Web' "/>
+					<img class="image-preview" data-ng-src="/resources/images/video-thum-icon.png" data-ng-if="mediaCtrl.media.mediaType === 'Video' "/> 
+                    <!-- <span data-ng-class="{'pdf-icon-thumb':mediaCtrl.media.mediaType === 'PDF','media-icon-thumb':mediaCtrl.media.mediaType !== 'PDF'}" data-ng-if="mediaCtrl.media.mediaType !== 'IMAGE'" class="icon-icon_{{mediaCtrl.media.mediaType | lowercase}} preview-icon sp-icon-color"></span> -->
+                    </div>
+                    <div class="list__box">
+                        <div class="file__meta">
+                            <p class="file__title title-placeholder" data-ng-bind="mediaCtrl.media.file.name"></p>
+                            <div class="file__details">
+                                
+                    <div data-ng-click="mediaCtrl.clearMedia();mediaCtrl.mediaView = 'upload'">
+                       <a class="close-media-modal">X</a>
+                     </div>
+    
+       
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </li>
+					
+						<li class="type-and-number extended-input reduce-margin">
+							 <input type="text" name="name" placeholder="{{::pullInterNationalization('mediaManager.upload.placeholder1')}}"
+							data-ng-model="mediaCtrl.media.name" data-ng-required="true" data-ng-class="mediaCtrl.uploadFormSubmitted===true && mediaCtrl.uploadMediaForm.name.$error.required? 'error-border':''"/> 
+							<!-- <span class="validate-error" data-ng-if="mediaCtrl.uploadFormSubmitted===true && mediaCtrl.uploadMediaForm.name.$error.required">Name is required.</span> -->
+						</li>
+						<li class="type-and-number alt-text-position extended-input reduce-margin">
+							 <input type="text" name="altText" placeholder="{{::pullInterNationalization('mediaManager.upload.placeholder2')}}"
+							data-ng-model="mediaCtrl.media.altText" data-ng-required="true" data-ng-class="mediaCtrl.uploadFormSubmitted===true && mediaCtrl.uploadMediaForm.altText.$error.required? 'error-border':''"/> 
+							
+						</li>
+						<li class="type-and-number allTags reduce-margin tagsEmailInput">
+						 <tags-input data-ng-model="mediaCtrl.media.tags" display-property="name" placeholder="{{::pullInterNationalization('mediaManager.upload.placeholder3')}}" replace-spaces-with-dashes="false" on-tag-removed="mediaCtrl.tagRemoved($tag)" on-tag-added="mediaCtrl.tagAdded($tag)">    
+			             </tags-input>
+			            </li>
+						<li class="margin-bottom-25" data-ng-if="mediaCtrl.parentPage === 'spAdminView'">
+							<p class="label">Status</p>
+							<ul class="radio-group-list">
+								<li class="radio-btn"><input id="status1" type="radio"
+									name="status" data-ng-model="mediaCtrl.media.status" value="Active"
+									data-ng-required="!mediaCtrl.media.status" /> <label for="status1">Active</label></li>
+								<li class="radio-btn"><input id="status2" type="radio"
+									name="status" data-ng-model="mediaCtrl.media.status"
+									value="Inactive" data-ng-required="!mediaCtrl.media.status" /> <label
+									for="status2">Inactive</label></li>
+							</ul> <span class="validate-error"
+							data-ng-if="mediaCtrl.uploadFormSubmitted===true && mediaCtrl.uploadMediaForm.status.$error.required">Status
+								is required.</span> <span class="validate-error"
+							data-ng-if="createMediaError===true"
+							data-ng-bind="createMediaErrorMsg"></span>
+						</li>
+						<li class="submit-cancel-btns">
+							<ul class="submit-cancel-list">
+								<li class="submit-charge">
+								<input type="submit"
+									value="{{::pullInterNationalization('mediaManager.action.upload')}}" data-ng-disabled="!mediaCtrl.uploadMediaForm.$valid || mediaCtrl.media.file.name === undefined"  class="subscribeBtn btn-block btn-15px sp-btn-color"
+									data-ng-click="mediaCtrl.uploadMediaFile()" /></li>
+								<li class="cancel-charge"><input type="button"
+									value="{{::pullInterNationalization('mediaManager.action.cancel')}}"
+									class="cancelBtn btn-block btn-15px btn-grey-dark"
+									data-ng-click="mediaCtrl.clearMedia();mediaCtrl.mediaView = 'upload'" /></li>
+							</ul>
+						</li>
+					</ol>
+				</form>
+       </section>
+       <section class="content__box action-bar--open" data-ng-class="{'media-fadeIn':mediaCtrl.mediaView === 'editMedia','media-fadeout':mediaCtrl.mediaView !== 'editMedia'}"> 
+       <header class="content__header">
+            <div class="content__header__title">
+                <h2>
+                <span>
+                    Edit File
+                </span>
+                </h2>
+            </div>
+            
+        </header>
+                <form enctype="multipart/form-data" class="uploadMediaForm" id="mediaForm" name="mediaCtrl.uploadMediaForm" novalidate>
+					<ol class="form-list-c">
+					 <li>
+					 <div class="list__thumbnail">
+                <div class="thumbnail">
+                    <img class="image-preview" alt="" data-ng-src="{{mediaCtrl.previewImage}}" data-ng-if="mediaCtrl.media.mediaType === 'IMAGE'">
+                    <img class="image-preview" data-ng-src="/resources/images/doc.jpeg" data-ng-if="mediaCtrl.media.mediaType === 'MSDOC'"/>
+					<img class="image-preview" data-ng-src="/resources/images/ppt.jpeg" data-ng-if="mediaCtrl.media.mediaType === 'PPT'"/>
+					<img class="image-preview" data-ng-src="/resources/images/pdf.jpeg" data-ng-if="mediaCtrl.media.mediaType === 'PDF'"/>
+					<img class="image-preview" data-ng-src="/resources/images/excel-icon.png" data-ng-if="mediaCtrl.media.mediaType === 'MSEXCEL'"/>
+					<img class="image-preview" data-ng-src="/resources/images/file-icon.png" data-ng-if="mediaCtrl.media.mediaType === 'Web' "/>
+					<img class="image-preview" data-ng-src="/resources/images/video-thum-icon.png" data-ng-if="mediaCtrl.media.mediaType === 'Video' "/> 
+                    <!-- <span data-ng-class="{'pdf-icon-thumb':mediaCtrl.media.mediaType === 'PDF','media-icon-thumb':mediaCtrl.media.mediaType !== 'PDF'}" data-ng-if="mediaCtrl.media.mediaType !== 'IMAGE'" class="icon-icon_{{mediaCtrl.media.mediaType | lowercase}} preview-icon sp-icon-color"></span> -->
+                    </div>
+                    <div class="list__box">
+                        <div class="file__meta">
+                            <p class="file__title title-placeholder" data-ng-bind="mediaCtrl.media.file.name"></p>
+                        </div>
+                    </div>
+                </div>
+                </li>
+					
+						<li class="type-and-number extended-input reduce-margin">
+							 <input type="text" name="name" placeholder="Enter File Name"
+							data-ng-model="mediaCtrl.media.name" data-ng-required="true" data-ng-class="mediaCtrl.uploadFormSubmitted===true && mediaCtrl.uploadMediaForm.name.$error.required? 'error-border':''"/> 
+							<!-- <span class="validate-error" data-ng-if="mediaCtrl.uploadFormSubmitted===true && mediaCtrl.uploadMediaForm.name.$error.required">Name is required.</span> -->
+						</li>
+						<li class="type-and-number alt-text-position extended-input reduce-margin">
+							 <input type="text" name="altText" placeholder="Enter Alt Text"
+							data-ng-model="mediaCtrl.media.altText" data-ng-required="true" data-ng-class="mediaCtrl.uploadFormSubmitted===true && mediaCtrl.uploadMediaForm.altText.$error.required? 'error-border':''"/> 
+							
+						</li>
+						<li class="type-and-number allTags reduce-margin tagsEmailInput">
+						 <tags-input data-ng-model="mediaCtrl.media.tags" display-property="name" placeholder="Enter Tags (Optional)" replace-spaces-with-dashes="false"  on-tag-removed="mediaCtrl.tagRemoved($tag)" on-tag-added="mediaCtrl.tagAdded($tag)">    
+			             </tags-input>
+			            </li>
+		
+						<li class="margin-bottom-25" data-ng-if="mediaCtrl.parentPage === 'spAdminView'">
+							<p class="label">Status</p>
+							<ul class="radio-group-list">
+								<li class="radio-btn"><input id="status1" type="radio"
+									name="status" data-ng-model="mediaCtrl.media.status" value="Active"
+									data-ng-required="!mediaCtrl.media.status" /> <label for="status1">Active</label></li>
+								<li class="radio-btn"><input id="status2" type="radio"
+									name="status" data-ng-model="mediaCtrl.media.status"
+									value="Inactive" data-ng-required="!mediaCtrl.media.status" /> <label
+									for="status2">Inactive</label></li>
+							</ul> <span class="validate-error"
+							data-ng-if="mediaCtrl.uploadFormSubmitted===true && mediaCtrl.uploadMediaForm.status.$error.required">Status
+								is required.</span> <span class="validate-error"
+							data-ng-if="createMediaError===true"
+							data-ng-bind="createMediaErrorMsg"></span>
+						</li>
+						<li class="submit-cancel-btns">
+							<ul class="submit-cancel-list">
+								<li class="submit-charge">
+								<input type="submit"
+									value="Update" data-ng-disabled="!mediaCtrl.uploadMediaForm.$valid" class="subscribeBtn btn-block btn-15px sp-btn-color"
+									data-ng-click="mediaCtrl.updateImage(mediaCtrl.media)" /></li>
+								<li class="cancel-charge"><input type="button"
+									value="cancel"
+									class="cancelBtn btn-block btn-15px btn-grey-dark"
+									data-ng-click="mediaCtrl.clearMedia();mediaCtrl.mediaView = 'listing'" /></li>
+							</ul>
+						</li>
+					</ol>
+				</form>
+       </section>
+       <header class="content__header  media-fadeIn" data-ng-class="{'media-fadeIn':mediaCtrl.mediaView === 'listing','media-fadeout':mediaCtrl.mediaView !== 'listing','ie-margin-left':mediaCtrl.ieMode}">
+            <div class="content__header__title">
+                <h2>
+                <span data-ng-bind="::pullInterNationalization('mediaManager.option1')">
+                   
+                </span>
+                </h2>
+            </div>
+            <div class="content__header__authentication"> 
+			    <span data-ng-click="mediaCtrl.filterView=mediaCtrl.filterView ==='Grid'?'List':'Grid';showFilter=false" class="btn_sprite-icon" data-ng-class="{'sprite--grid':mediaCtrl.filterView ==='Grid','sprite--list':mediaCtrl.filterView ==='List'}"></span> 
+			    <span class="drop-down-pane-wrapper ng-isolate-scope">
+			        <span class="visually_hidden ">Grid view</span> 
+			          <span data-ng-mouseenter="showFilter=true" data-ng-mouseleave="showFilter=false"> 
+			          <!-- <span> --> 
+			            <span class="btn_sprite-icon sprite--filter" data-ng-class="{active: isActive()}" data-ng-click="showFilter=!showFilter"></span>
+			            <div class="drop-down-pane pane__filters" data-ng-class="{active: showFilter}">
+			                <form data-ng-submit="showFilter=false" class="ng-pristine ng-valid">
+			                    <input type="text" class="form__control fp--reset-field ng-pristine ng-untouched ng-valid ng-isolate-scope" id="search_input" data-ng-model="mediaCtrl.searchText" placeholder="{{::pullInterNationalization('dashboard.search')}}" data-ng-change="mediaCtrl.filterResults()">
+			                    <i data-ng-show="mediaCtrl.showClearSearchIcon" data-ng-click="mediaCtrl.clearSearch()" class="search-reset fa fa-times-circle  ng-hide"></i>
+			                </form>
+			                <div class="media-upload image-select-modal">
+			                <div class="filters">
+			                <ul>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="images" name="imageFilter" data-ng-true-value="true" data-ng-false-value="false" data-ng-model="mediaCtrl.mediaTypes.image" data-ng-click="mediaCtrl.filterResults()" data-ng-disabled="mediaCtrl.masterMediaList.length === 0">
+                                    <label for="images">
+                                      {{::pullInterNationalization('mediaManager.filter.image')}}
+                                      
+                                      <span class="checkedTick checkedTickImage icon-icon_dev_strategy_check sp-icon-color spAdmnMedia"></span>
+                                    </label>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="pdfs" name="pdfFilter" data-ng-true-value="true" data-ng-false-value="false" data-ng-model="mediaCtrl.mediaTypes.pdf" data-ng-click="mediaCtrl.filterResults()" data-ng-disabled="mediaCtrl.masterMediaList.length === 0">
+                                    <label for="pdfs">
+                                     {{::pullInterNationalization('mediaManager.filter.pdf')}}
+                                    
+                                    <span class="checkedTick checkedTickPdf icon-icon_dev_strategy_check sp-icon-color spAdmnMedia"></span>
+                                    </label>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="ppts" name="pptFilter" data-ng-true-value="true" data-ng-false-value="false" data-ng-model="mediaCtrl.mediaTypes.ppt" data-ng-click="mediaCtrl.filterResults()" data-ng-disabled="mediaCtrl.masterMediaList.length === 0">
+                                    <label for="ppts">
+                                     {{::pullInterNationalization('mediaManager.filter.ppt')}}
+                                    
+                                    <span class="checkedTick checkedTickPpt icon-icon_dev_strategy_check sp-icon-color spAdmnMedia"></span>
+                                    </label>
+                                </li> 
+                                <li class="filter-option">
+                                    <input type="checkbox" id="docs" name="docFilter" data-ng-true-value="true" data-ng-false-value="false" data-ng-model="mediaCtrl.mediaTypes.msdoc" data-ng-click="mediaCtrl.filterResults()" data-ng-disabled="mediaCtrl.masterMediaList.length === 0">
+                                    <label for="docs">
+                                     {{::pullInterNationalization('mediaManager.filter.msdoc')}}
+                                    
+                                    <span class="checkedTick checkedTickDoc icon-icon_dev_strategy_check sp-icon-color spAdmnMedia"></span>
+                                    </label>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="videos" name="videoFilter" data-ng-true-value="true" data-ng-false-value="false" data-ng-model="mediaCtrl.mediaTypes.video" data-ng-click="mediaCtrl.filterResults()" data-ng-disabled="mediaCtrl.masterMediaList.length === 0">
+                                    <label for="videos">
+                                     {{::pullInterNationalization('mediaManager.filter.video')}}
+                                    
+                                    <span class="checkedTick checkedTickVideo icon-icon_dev_strategy_check sp-icon-color spAdmnMedia"></span>
+                                    </label>
+                                </li>
+                                <li class="filter-option">
+                                    <input type="checkbox" id="webFiles" name="webFilter" data-ng-true-value="true" data-ng-false-value="false" data-ng-model="mediaCtrl.mediaTypes.web" data-ng-click="mediaCtrl.filterResults()" data-ng-disabled="mediaCtrl.masterMediaList.length === 0">
+                                    <label for="webFiles">
+                                     {{::pullInterNationalization('mediaManager.filter.other')}}
+                                    
+                                    <span class="checkedTick checkedTickWeb icon-icon_dev_strategy_check sp-icon-color spAdmnMedia"></span>
+                                    </label>
+                                </li> 
+                                <li class="filter-option">
+                                    <input type="checkbox" id="excel" name="excelFilter" data-ng-true-value="true" data-ng-false-value="false" data-ng-model="mediaCtrl.mediaTypes.excel" data-ng-click="mediaCtrl.filterResults()" data-ng-disabled="mediaCtrl.masterMediaList.length === 0">
+                                    <label for="excel">
+                                     {{::pullInterNationalization('mediaManager.filter.excel')}}
+                                    
+                                    <span class="checkedTick checkedTickExcel icon-icon_dev_strategy_check sp-icon-color spAdmnMedia"></span>
+                                    </label>
+                                </li>
+			                </ul>
+			                </div>
+			                </div>
+			            </div>
+			        </span>
+			    </span>
+			</div> 
+        </header>
+       <section class="content__box action-bar--open media-fadeIn" data-ng-class="{'media-fadeIn':mediaCtrl.mediaView === 'listing','media-fadeout':mediaCtrl.mediaView !== 'listing'}">
+              <!-- List View -->
+                <div data-ng-if="mediaCtrl.parentPage === 'dialogView'">
+                <div class="list__thumbnail" data-ng-repeat="list in recordField = (mediaCtrl.mediaList) track by list.id" data-ng-if="mediaCtrl.filterView === 'List' && list.status === 'Active'">
+                <div class="thumbnail">
+                    <img class="image-preview" alt="{{list.altText}}" data-ng-src="{{list.url}}" data-ng-if="list.mediaType === 'IMAGE'">
+                    <!-- <span data-ng-class="{'pdf-icon-thumb':list.mediaType === 'PDF','media-icon-thumb':list.mediaType !== 'PDF'}" data-ng-if="list.mediaType !== 'IMAGE'" class="icon-icon_{{list.mediaType | lowercase}} preview-icon sp-icon-color"></span> -->
+                    <img class="image-preview" data-ng-src="/resources/images/doc.jpeg" data-ng-if="list.mediaType === 'MSDOC'"/>
+					<img class="image-preview" data-ng-src="/resources/images/ppt.jpeg" data-ng-if="list.mediaType === 'PPT'"/>
+					<img class="image-preview" data-ng-src="/resources/images/pdf.jpeg" data-ng-if="list.mediaType === 'PDF'"/>
+					<img class="image-preview" data-ng-src="/resources/images/excel-icon.png" data-ng-if="list.mediaType === 'MSEXCEL'"/>
+					<img class="image-preview" data-ng-src="/resources/images/file-icon.png" data-ng-if="list.mediaType === 'Web'"/>
+					<img class="image-preview" data-ng-src="/resources/images/video-thum-icon.png" data-ng-if="list.mediaType === 'Video' "/> 
+                    </div>
+                    <div class="list__box">
+                        <div class="file__meta">
+                            <p class="file__title title-listing" data-ng-bind="list.name"></p>
+                            <div class="file__details">
+                                <div class="file__details__modified">
+                                    <a href="javascript:void(0)" data-ng-click="mediaCtrl.previewMedia(list.url,list.mediaType)"><span> {{::pullInterNationalization('mediaManager.file.preview')}}</span></a>
+                                </div>
+                   
+						        <div class="action-bar__buttons adjust-top">
+						            <div class="media-add-button-dialog sp-background-color" data-ng-click="mediaCtrl.selectMedia(list)">+</div>
+						        </div>
+    
+       
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                <!-- Grid View -->
+			<div class="media-upload image-select-modal" data-ng-if="mediaCtrl.filterView === 'Grid'">
+			<div class="three-columns-media complete-profile animation_1">
+			   <ul class="rig columns-3">
+				<li class="zoom-container" id='{{$index}}' data-ng-repeat="list in recordField = (mediaCtrl.mediaList) track by list.id" data-ng-if="list.status === 'Active'">
+				<div class="image-wrap">
+					
+					<img data-ng-src="{{list.url}}" data-ng-if="list.mediaType === 'IMAGE'"/>
+					<img class="media-placement" data-ng-src="/resources/images/doc.jpeg" data-ng-if="list.mediaType === 'MSDOC'"/>
+					<img class="media-placement" data-ng-src="/resources/images/ppt.jpeg" data-ng-if="list.mediaType === 'PPT'"/>
+					<img class="media-placement" data-ng-src="/resources/images/pdf.jpeg" data-ng-if="list.mediaType === 'PDF'"/>
+					<img class="media-placement" data-ng-src="/resources/images/excel-icon.png" data-ng-if="list.mediaType === 'MSEXCEL'"/>
+					<img class="media-placement" data-ng-src="/resources/images/file-icon.png" data-ng-if="list.mediaType === 'Web'"/>
+					<img class="media-placement" data-ng-src="/resources/images/video-thum-icon.png" data-ng-if="list.mediaType === 'Video' "/>
+					
+					</div>
+					<h3 data-ng-bind="list.name"></h3>
+					
+					<a class="file-view" href="javascript:void()" data-ng-click="mediaCtrl.previewMedia(list.url,list.mediaType)" class="border-link"> {{::pullInterNationalization('mediaManager.file.preview')}}</a>
+					
+                    <div class="media-add-button sp-background-color" data-ng-click="mediaCtrl.selectMedia(list)">+</div>              
+				</li>
+			</ul>
+		  </div>
+		  </div>
+		  </div>
+		  <!-- List View -->
+		  <div data-ng-if="mediaCtrl.parentPage === 'spAdminView'">
+                <div class="list__thumbnail" data-ng-repeat="list in recordField = (mediaCtrl.mediaList) track by list.id" data-ng-if="mediaCtrl.filterView === 'List'">
+                <div class="thumbnail">
+                    <img class="image-preview" alt="{{list.altText}}" data-ng-src="{{list.url}}" data-ng-if="list.mediaType === 'IMAGE'">
+                    <!-- <span data-ng-class="{'pdf-icon-thumb':list.mediaType === 'PDF','media-icon-thumb':list.mediaType !== 'PDF'}" data-ng-if="list.mediaType !== 'IMAGE'" class="icon-icon_{{list.mediaType | lowercase}} preview-icon sp-icon-color"></span> -->
+                    <img class="image-preview" data-ng-src="/resources/images/doc.jpeg" data-ng-if="list.mediaType === 'MSDOC'"/>
+					<img class="image-preview" data-ng-src="/resources/images/ppt.jpeg" data-ng-if="list.mediaType === 'PPT'"/>
+					<img class="image-preview" data-ng-src="/resources/images/pdf.jpeg" data-ng-if="list.mediaType === 'PDF'"/>
+					<img class="image-preview" data-ng-src="/resources/images/excel-icon.png" data-ng-if="list.mediaType === 'MSEXCEL'"/>
+					<img class="image-preview" data-ng-src="/resources/images/file-icon.png" data-ng-if="list.mediaType === 'Web'"/>
+					<img class="image-preview" data-ng-src="/resources/images/video-thum-icon.png" data-ng-if="list.mediaType === 'Video' "/> 
+                    </div>
+                    <div class="list__box">
+                        <div class="file__meta">
+                            <a href="javascript:void(0)" data-ng-click="mediaCtrl.displayMedia(list.id);"><span class="file__title title-listing" data-ng-bind="list.name"></span></a>
+                            <div class="file__details">
+                                <div class="file__details__modified">
+                                    <a href="javascript:void(0)" data-ng-click="mediaCtrl.previewMedia(list.url,list.mediaType)"><span> {{::pullInterNationalization('mediaManager.file.preview')}}</span></a>
+                                </div>
+                   
+						        <div class="action-bar__buttons adjust-top">
+						            <span class="icon-close icon-icon_remove sp-icon-color icon-delete-media" data-ng-click="mediaCtrl.deleteImageModal(list.id,list.url)"></span> 
+						        </div>
+    
+       
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                <!-- Grid View -->
+			<div class="media-upload image-select-modal" data-ng-if="mediaCtrl.filterView === 'Grid'">
+			<div class="three-columns-media complete-profile animation_1">
+			   <ul class="rig columns-3">
+				<li class="zoom-container" id='{{$index}}' data-ng-repeat="list in recordField = (mediaCtrl.mediaList) track by list.id">
+				<div class="image-wrap">
+					
+					<img data-ng-src="{{list.url}}" data-ng-if="list.mediaType === 'IMAGE'"/>
+					<img class="media-placement" data-ng-src="/resources/images/doc.jpeg" data-ng-if="list.mediaType === 'MSDOC'"/>
+					<img class="media-placement" data-ng-src="/resources/images/ppt.jpeg" data-ng-if="list.mediaType === 'PPT'"/>
+					<img class="media-placement" data-ng-src="/resources/images/pdf.jpeg" data-ng-if="list.mediaType === 'PDF'"/>
+					<img class="media-placement" data-ng-src="/resources/images/excel-icon.png" data-ng-if="list.mediaType === 'MSEXCEL'"/>
+					<img class="media-placement" data-ng-src="/resources/images/file-icon.png" data-ng-if="list.mediaType === 'Web'"/>
+					<img class="media-placement" data-ng-src="/resources/images/video-thum-icon.png" data-ng-if="list.mediaType === 'Video' "/>
+					
+					</div>
+					<a href="javascript:void(0)" data-ng-click="mediaCtrl.displayMedia(list.id);"><h3 data-ng-bind="list.name"></h3></a>
+					<!-- <p data-ng-if="list.mediaType === 'IMAGE'">Image Dimensions: {{list.width}}px X {{list.height}}px</p>  -->
+					<a class="file-view" href="javascript:void()" data-ng-click="mediaCtrl.previewMedia(list.url,list.mediaType)" class="border-link">{{::pullInterNationalization('mediaManager.file.preview')}}</a>
+					
+                    <span  class="icon-close icon-icon_remove sp-icon-color" data-ng-click="mediaCtrl.deleteImageModal(list.id,list.url)"></span>              
+				</li>
+			</ul>
+		  </div>
+		  </div>
+		  </div>
+				<div data-ng-if="!mediaCtrl.mediaList.length && mediaCtrl.responseAvailable">
+                   <h3 class="text--tall color-fill " data-ng-class="{'ie-no-results':mediaCtrl.ieMode}" data-ng-bind="::pullInterNationalization('admin.theming.noRecord')"> </h3>
+                </div>
+                <div data-ng-if="!mediaCtrl.mediaList.length && !mediaCtrl.responseAvailable">
+                   <h3 class="text--tall color-fill" data-ng-bind="::pullInterNationalization('practiceArea.informationLoading')"> </h3>
+                </div>
+       </section>
+     </div>
+      
+      <div class="fp__action-bar"></div>
+    </div>
+  
+	
+</div>
+</div>

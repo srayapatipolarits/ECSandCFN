@@ -1,0 +1,393 @@
+<div id="content-container">
+  <div class="x-container registration-login sign-up-wrapper" ng-controller="signUpController" ng-if="inviteReady" class="hide" ng-class="inviteReady?'show':'hide'">
+    <div class="container minimumHeight" >
+      <div class="row">
+        <div class="sign-up-product">
+          <h2 class="sign-in-title">Create New Account  <span class="subsection">Step 1/2</span> </h2>
+         
+          <div class="error hide">Unable to sign up. Please fix the errors below and resubmit.</div>
+          
+          <form name="spSignUp" ng-submit="processAlternateIndividualSignUp(signup)" novalidate autocomplete="off">
+                        
+            <ol class="form-list-c form-register-account">
+			  <li class="sectionLabels">
+                <h3 for="accountDetails">Member Details</h3>
+              </li>
+                           
+              <li>
+                <label for="first_name">First Name</label>
+                <input type="text" autocomplete="off" autoFocus name="firstName" ng-pattern="/^[a-zA-Z0-9-,' ]+$/" placeholder="{{pullInterNationalization('signup.firstName')}}" ng-model="signup.firstName" required/>
+                <span class="err-msg validate-error" ng-show="spSignUp.submitted && spSignUp.firstName.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                <span class="err-msg validate-error" ng-show="spSignUp.submitted && spSignUp.firstName.$error.pattern" data-ng-bind="pullInterNationalization('signup.emperr')"></span>
+              </li>
+
+              <li>
+                <label for="last_name">Last Name</label>
+                <input type="text" autocomplete="off" name="lastName" ng-pattern="/^[a-zA-Z0-9-,' ]+$/" placeholder="{{pullInterNationalization('signup.lastName')}}" ng-model="signup.lastName" required/>
+                <span class="err-msg validate-error" ng-show="spSignUp.submitted && spSignUp.lastName.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                <span class="err-msg validate-error" ng-show="spSignUp.submitted && spSignUp.lastName.$error.pattern" data-ng-bind="pullInterNationalization('signup.emperr')"></span>
+              </li>
+              
+              <li>
+                <label for="title">Title</label>
+                <input type="text" autocomplete="off" name="title" required placeholder="{{pullInterNationalization('signup.Title')}}" ng-model="signup.title"/>
+                <span class="err-msg validate-error" ng-show="spSignUp.submitted && spSignUp.title.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+              </li>
+
+              <li>
+                <label for="email">E-mail</label>
+                <input type="email" name="email" placeholder="{{pullInterNationalization('signup.email')}}" ng-model="signup.email" required ng-pattern="emailRegex" />
+                <span class="err-msg validate-error" ng-show="spSignUp.submitted && spSignUp.email.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                <span class="err-msg validate-error" ng-show="spSignUp.submitted && spSignUp.email.$error.pattern">{{pullInterNationalization('signup.invalid.email.msg')}}</span>
+              </li>
+              <li class="type-and-number">
+                <label for="email">Confirm E-mail</label>
+                <input type="email" name="confirmEmail" placeholder="{{pullInterNationalization('signup.cemail')}}" ng-model="signup.confirmEmail" required same-as="signup.email" />
+                <span class="err-msg validate-error" ng-show="spSignUp.submitted && spSignUp.confirmEmail.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                <span class="err-msg validate-error" ng-show="spSignUp.submitted && (spSignUp.confirmEmail.$error.required===false) && spSignUp.confirmEmail.$invalid" data-ng-bind="pullInterNationalization('signup.emperr')"></span>
+              </li>                
+			  
+			  <li class="sectionLabels">
+                <h3 for="companyDetails" class="sectionLabels">Personal Details</h3>
+              </li>
+              
+              <li>              
+                  <h3 class="label">Date of birth</h3>
+                  <ul class="dob-cols-3">
+                    <li class="month">
+                      <div class="select-wrapper">
+      									<label for="month" data-ng-bind="pullInterNationalization('signup.month')"></label>
+      									<select name="month" ng-model="signup.month" ng-init="signup.month = 'default'" required ng-class="(spSignUp.month.$modelValue == 'default') ? 'default' : ''">
+      										<option value="default">Month</option>
+      										<option value="01">Jan</option>
+      										<option value="02">Feb</option>
+      										<option value="03">Mar</option>
+      										<option value="04">Apr</option>
+      										<option value="05">May</option>
+      										<option value="06">Jun</option>
+      										<option value="07">Jul</option>
+      										<option value="08">Aug</option>
+      										<option value="09">Sep</option>
+      										<option value="10">Oct</option>
+      										<option value="11">Nov</option>
+      										<option value="12">Dec</option>
+      								  </select>
+      								</div>
+                      <span class="err-msg validate-error" ng-show="spSignUp.submitted && (spSignUp.month.$modelValue == 'default')" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                    </li>
+
+                    <li class="day">
+                      <div class="select-wrapper">
+                        <label for="day">{{pullInterNationalization('signup.day')}}</label> 
+                        <select name="day" ng-model="signup.day" ng-init="signup.day = 'default'" required ng-class="(spSignUp.day.$modelValue == 'default') ? 'default' : ''">
+                      		<option value="default">Day</option>
+                      		<option value="01">1</option>
+                      		<option value="02">2</option>
+                      		<option value="03">3</option>
+                      		<option value="04">4</option>
+                      		<option value="05">5</option>
+                      		<option value="06">6</option>
+                      		<option value="07">7</option>
+                      		<option value="08">8</option>
+                      		<option value="09">9</option>
+                      		<option value="10">10</option>
+                      		<option value="11">11</option>
+                      		<option value="12">12</option>
+                      		<option value="13">13</option>
+                      		<option value="14">14</option>
+                      		<option value="15">15</option>
+                      		<option value="16">16</option>
+                      		<option value="17">17</option>
+                      		<option value="18">18</option>
+                      		<option value="19">19</option>
+                      		<option value="20">20</option>
+                      		<option value="21">21</option>
+                      		<option value="22">22</option>
+                      		<option value="23">23</option>
+                      		<option value="24">24</option>
+                      		<option value="25">25</option>
+                      		<option value="26">26</option>
+                      		<option value="27">27</option>
+                      		<option value="28">28</option>
+                      		<option value="29">29</option>
+                      		<option value="30">30</option>
+                      		<option value="31">31</option>
+                        </select>
+                    	</div> 
+                      <span class="err-msg validate-error" ng-show="spSignUp.submitted && (spSignUp.day.$modelValue == 'default')" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                    </li>
+
+                    <li class="year">
+                      <div class="select-wrapper">
+                        <label for="year" data-ng-bind="pullInterNationalization('signup.year')"></label>
+                        <select name="year" ng-model="signup.year" ng-init="signup.year = 'default'" required ng-class="(spSignUp.year.$modelValue == 'default') ? 'default' : ''">
+                          <option value="default">Year</option>
+                          <option value="1998">1998</option>
+                          <option value="1997">1997</option>
+                          <option value="1996">1996</option>
+                          <option value="1995">1995</option>
+                          <option value="1994">1994</option>
+                          <option value="1993">1993</option>
+                          <option value="1992">1992</option>
+                          <option value="1991">1991</option>
+                          <option value="1990">1990</option>
+                          <option value="1989">1989</option>
+                          <option value="1988">1988</option>
+                          <option value="1987">1987</option>
+                          <option value="1986">1986</option>
+                          <option value="1985">1985</option>
+                          <option value="1984">1984</option>
+                          <option value="1983">1983</option>
+                          <option value="1982">1982</option>
+                          <option value="1981">1981</option>
+                          <option value="1980">1980</option>
+                          <option value="1979">1979</option>
+                          <option value="1978">1978</option>
+                          <option value="1977">1977</option>
+                          <option value="1976">1976</option>
+                          <option value="1975">1975</option>
+                          <option value="1974">1974</option>
+                          <option value="1973">1973</option>
+                          <option value="1972">1972</option>
+                          <option value="1971">1971</option>
+                          <option value="1970">1970</option>
+                          <option value="1969">1969</option>
+                          <option value="1968">1968</option>
+                          <option value="1967">1967</option>
+                          <option value="1966">1966</option>
+                          <option value="1965">1965</option>
+                          <option value="1964">1964</option>
+                          <option value="1963">1963</option>
+                          <option value="1962">1962</option>
+                          <option value="1961">1961</option>
+                          <option value="1960">1960</option>
+                          <option value="1959">1959</option>
+                          <option value="1958">1958</option>
+                          <option value="1957">1957</option>
+                          <option value="1956">1956</option>
+                          <option value="1955">1955</option>
+                          <option value="1954">1954</option>
+                          <option value="1953">1953</option>
+                          <option value="1952">1952</option>
+                          <option value="1951">1951</option>
+                          <option value="1950">1950</option>
+                          <option value="1949">1949</option>
+                          <option value="1948">1948</option>
+                          <option value="1947">1947</option>
+                          <option value="1946">1946</option>
+                          <option value="1945">1945</option>
+                          <option value="1944">1944</option>
+                          <option value="1943">1943</option>
+                          <option value="1942">1942</option>
+                          <option value="1941">1941</option>
+                          <option value="1940">1940</option>
+                          <option value="1939">1939</option>
+                          <option value="1938">1938</option>
+                          <option value="1937">1937</option>
+                          <option value="1936">1936</option>
+                          <option value="1935">1935</option>
+                          <option value="1934">1934</option>
+                          <option value="1933">1933</option>
+                          <option value="1932">1932</option>
+                          <option value="1931">1931</option>
+                          <option value="1930">1930</option>
+                          <option value="1929">1929</option>
+                          <option value="1928">1928</option>
+                          <option value="1927">1927</option>
+                          <option value="1926">1926</option>
+                          <option value="1925">1925</option>
+                          <option value="1924">1924</option>
+                          <option value="1923">1923</option>
+                          <option value="1922">1922</option>
+                          <option value="1921">1921</option>
+                          <option value="1920">1920</option>
+                          <option value="1919">1919</option>
+                          <option value="1918">1918</option>
+                          <option value="1917">1917</option>
+                          <option value="1916">1916</option>
+                          <option value="1915">1915</option>
+                          <option value="1914">1914</option>
+                          <option value="1913">1913</option>
+                          <option value="1912">1912</option>
+                          <option value="1911">1911</option>
+                          <option value="1910">1910</option>
+                          <option value="1909">1909</option>
+                          <option value="1908">1908</option>
+                          <option value="1907">1907</option>
+                          <option value="1906">1906</option>
+                          <option value="1905">1905</option>
+                        </select>
+                      </div>
+                      <span class="err-msg validate-error" ng-show="spSignUp.submitted && (spSignUp.year.$modelValue == 'default')" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                      <span class="err-msg validate-error" ng-show="spSignUp.submitted && ageError">Age Should Be Greater Than or Equal to 18</span>
+                    </li>
+                  </ul>
+                </li>
+                
+                <li class="radio-group-gender"> 
+
+                  <h3 class="label">Gender</h3>
+                  <ul class="radio-group-list">
+                    <li class="radio-btn">
+                      <input id="gender-male" type="radio" name="gender" ng-model="signup.gender" value="M" required /> 
+                      <label for="gender-male" data-ng-bind="pullInterNationalization('signup.male')"></label>
+                    </li>
+                    <li class="radio-btn">
+                      <input id="gender-female" type="radio" name="gender" ng-model="signup.gender" value="F"required />
+                      <label for="gender-female" data-ng-bind="pullInterNationalization('home.female')"></label>
+                    </li>
+                  </ul>
+                  <p class="radio-group-error-msg">
+                    <span class="err-msg validate-error" ng-show="spSignUp.submitted && spSignUp.gender.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                  </p>
+                </li>
+              
+              <li class="sectionLabels">
+                <h3 for="companyDetails" class="sectionLabels">Address</h3>
+              </li>
+
+              <li>
+                <div class="select-wrapper"> 
+                  <label for="country" data-ng-bind="pullInterNationalization('signup.country')"></label>
+                  <select name="country" ng-model="signup.country" ng-init="signup.country = 'default'" required ng-class="(spSignUp.country.$modelValue == 'default') ? 'default' : ''" ng-change="stateCheck.forSelectedCountry=signup.country">
+						<option value="default" data-ng-bind="::pullInterNationalization('home.selectCountry')"></option>
+                        <option value="{{cList.code}}" data-ng-if="cList.code === 'US'" data-ng-repeat="cList in countries" data-ng-bind="cList.name"></option>
+                        <option value="{{cList.code}}" data-ng-if="cList.code === 'CA'" data-ng-repeat="cList in countries" data-ng-bind="cList.name"></option>
+                        <option value="default1">--------------------------------------------------</option>
+                        <option value="{{cList.code}}" data-ng-if="cList.code !== 'US' && cList.code !== 'CA'" data-ng-repeat="cList in countries" data-ng-bind="cList.name"></option>                                               
+                  </select>
+                </div>
+                <span class="err-msg validate-error" ng-show="spSignUp.submitted && (signup.country == 'default' || signup.country == 'default1')" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+              </li>
+
+              <li>
+                <label for="address1" data-ng-bind="pullInterNationalization('signup.address1')"></label>
+                <input type="text" autocomplete="off" name="address1" placeholder="Address 1" ng-model="signup.address1" required/>
+                <span class="err-msg validate-error" ng-show="spSignUp.submitted && spSignUp.address1.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+              </li>
+              <li>
+                <label for="address2" data-ng-bind="pullInterNationalization('signup.address2')"></label>
+                <input type="text" autocomplete="off" name="address2" placeholder="Address 2 (Optional)" ng-model="signup.address2" />
+                <!--span class="err-msg validate-error" ng-show="spSignUp.submitted && spSignUp.address2.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span-->
+              </li>
+
+              <li>
+                <ul class="local-region-cols-3">
+
+                  <li class="city">
+                    <label for="city" data-ng-bind="pullInterNationalization('signup.city')"></label>
+                    <input type="text" autocomplete="off" name="city" placeholder="City" ng-model="signup.city" required/>
+                    <span class="err-msg validate-error" ng-show="spSignUp.submitted && spSignUp.city.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                  </li>
+
+                  <li class="state">
+                    <div class="state-if-condition select short" ng-if="stateCheck.forSelectedCountry!='US' && stateCheck.forSelectedCountry!='CA'" ng-init="signup.state=''">
+                      <input type="text" autocomplete="off" name="state" ng-model="signup.state" placeholder="Region" />
+                      <!--span class="err-msg validate-error" ng-show="spSignUp.submitted && spSignUp.state.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span -->
+                    </div>
+                    
+                    <div class="state-if-condition select short" ng-if="stateCheck.forSelectedCountry!='US' && stateCheck.forSelectedCountry=='CA'" ng-init="signup.state=''">
+                      <input type="text" autocomplete="off" name="state" ng-model="signup.state" required placeholder="Province" />
+                      <span class="err-msg validate-error" ng-show="spSignUp.submitted && spSignUp.state.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                    </div>
+
+                    <div class="state-if-condition select short" ng-if="stateCheck.forSelectedCountry=='US'">
+                      <div class="select-wrapper"> 
+                        <label for="state" data-ng-bind="pullInterNationalization('signup.state')"></label>
+                        <select name="state" ng-model="signup.state" ng-init="signup.state = 'default'" required ng-class="(spSignUpIndividual.state.$modelValue == 'default') ? 'default' : ''">
+                          <option value="default" label="Please Select">Please Select</option>
+                          <option value="AL" label="Alabama">Alabama</option>
+                          <option value="AK" label="Alaska">Alaska</option>
+                          <option value="AS" label="American Samoa">American Samoa</option>
+                          <option value="AZ" label="Arizona">Arizona</option>
+                          <option value="AR" label="Arkansas">Arkansas</option>
+                          <option value="AE" label="Armed Forces Middle East">Armed Forces Middle East</option>
+                          <option value="AA" label="Armed Forces Americas (not Canada)">Armed Forces Americas (not Canada)</option>
+                          <option value="AP" label="Armed Forces Pacific">Armed Forces Pacific</option>
+                          <option value="CA" label="California">California</option>
+                          <option value="CO" label="Colorado">Colorado</option>
+                          <option value="CT" label="Connecticut">Connecticut</option>
+                          <option value="DE" label="Delaware">Delaware</option>
+                          <option value="DC" label="District of Columbia">District of Columbia</option>
+                          <option value="FL" label="Florida">Florida</option>
+                          <option value="GA" label="Georgia">Georgia</option>
+                          <option value="GU" label="Guam">Guam</option>
+                          <option value="HI" label="Hawaii">Hawaii</option>
+                          <option value="ID" label="Idaho">Idaho</option>
+                          <option value="IL" label="Illinois">Illinois</option>
+                          <option value="IN" label="Indiana">Indiana</option>
+                          <option value="IA" label="Iowa">Iowa</option>
+                          <option value="KS" label="Kansas">Kansas</option>
+                          <option value="KY" label="Kentucky">Kentucky</option>
+                          <option value="LA" label="Louisiana">Louisiana</option>
+                          <option value="ME" label="Maine">Maine</option>
+                          <option value="MD" label="Maryland">Maryland</option>
+                          <option value="MA" label="Massachusetts">Massachusetts</option>
+                          <option value="MI" label="Michigan">Michigan</option>
+                          <option value="MN" label="Minnesota">Minnesota</option>
+                          <option value="MS" label="Mississippi">Mississippi</option>
+                          <option value="MO" label="Missouri">Missouri</option>
+                          <option value="MT" label="Montana">Montana</option>
+                          <option value="NE" label="Nebraska">Nebraska</option>
+                          <option value="NV" label="Nevada">Nevada</option>
+                          <option value="NH" label="New Hampshire">New Hampshire</option>
+                          <option value="NJ" label="New Jersey">New Jersey</option>
+                          <option value="NM" label="New Mexico">New Mexico</option>
+                          <option value="NY" label="New York">New York</option>
+                          <option value="NC" label="North Carolina">North Carolina</option>
+                          <option value="ND" label="North Dakota">North Dakota</option>
+                          <option value="MP" label="Northern Mariana Islands">Northern Mariana Islands</option>
+                          <option value="OH" label="Ohio">Ohio</option>
+                          <option value="OK" label="Oklahoma">Oklahoma</option>
+                          <option value="OR" label="Oregon">Oregon</option>
+                          <option value="PA" label="Pennsylvania">Pennsylvania</option>
+                          <option value="PR" label="Puerto Rico">Puerto Rico</option>
+                          <option value="RI" label="Rhode Island">Rhode Island</option>
+                          <option value="SC" label="South Carolina">South Carolina</option>
+                          <option value="SD" label="South Dakota">South Dakota</option>
+                          <option value="TN" label="Tennessee">Tennessee</option>
+                          <option value="TX" label="Texas">Texas</option>
+                          <option value="UT" label="Utah">Utah</option>
+                          <option value="VT" label="Vermont">Vermont</option>
+                          <option value="VI" label="Virgin Islands">Virgin Islands</option>
+                          <option value="VA" label="Virginia">Virginia</option>
+                          <option value="WA" label="Washington">Washington</option>
+                          <option value="WV" label="West Virginia">West Virginia</option>
+                          <option value="WI" label="Wisconsin">Wisconsin</option>
+                          <option value="WY" label="Wyoming">Wyoming</option>
+                        </select>
+                      </div>
+                      <span class="err-msg validate-error" ng-show="spSignUp.submitted && (spSignUp.state.$modelValue == 'default')" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                    </div>
+                  </li>
+
+                  <li class="postal-code">
+                    <label for="zip">Zip Code</label>
+                    <input type="text" autocomplete="off" name="zip" placeholder="{{pullInterNationalization('signup.zipcode')}}" ng-model="signup.zip" required ng-pattern="/(^\d{5}$)|(^\d{5}-\d{4}$)/" ng-if="stateCheck.forSelectedCountry=='US'" />
+                    <input type="text" autocomplete="off" name="zip" placeholder="{{pullInterNationalization('signup.postalcode')}}" ng-model="signup.zip" required ng-if="stateCheck.forSelectedCountry!='US'" />
+                    <span class="err-msg validate-error" ng-show="spSignUp.submitted && spSignUp.zip.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                    <span class="err-msg validate-error" ng-show="spSignUp.submitted && spSignUp.zip.$error.pattern && spSignUp.zip.$error.required===false" data-ng-bind="pullInterNationalization('signup.emperr')"></span>
+                  </li>
+                </ul>
+              </li>
+              <li class="type-and-number">
+                <label for="phone">Phone Number</label>
+                <input type="text" autocomplete="off" ng-pattern="/^\+?([-.\s\d]){10,16}$/" name="phone" placeholder="{{pullInterNationalization('signup.phoneNumber')}}" ng-model="signup.phone" required/>
+                <span class="err-msg validate-error" ng-show="spSignUp.submitted && spSignUp.phone.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                <span class="err-msg validate-error" ng-show="spSignUp.submitted && spSignUp.phone.$error.pattern" data-ng-bind="pullInterNationalization('signup.emperr')"></span>
+              </li>
+              <li ng-show="sfailure">
+					<span class="err-msg validate-error" ng-repeat="(key, value) in failure">{{key}} {{value}}</span>
+				</li>
+              <li class="sign-up-product-continue">
+                <div class="pull-left marginRight30"><input type="submit" value="continue" class="continueBtn btn-block btn-15px sp-btn-color" /></div>
+                <div class="pull-left"><input type="button" value="cancel" ng-click="historyGoBack('individual')" class="continueBtn btn-block btn-grey-dark  btn-15px" /></div>
+              </li>
+
+            </ol>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

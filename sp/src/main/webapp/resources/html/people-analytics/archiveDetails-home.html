@@ -1,0 +1,129 @@
+<section>
+<div class="member-profile-wrapper employee-detail">
+	<a href="javascript:void(0)" class="icon-icon_remove close-view" data-ng-click="closeMemberSection();"></a>
+    <div class="member-details-wrap sp-panel-accent padB0">
+       	    <div class="mem-profile-pic">
+                <img data-ng-src="{{profileDetail.smallProfileImage}}" alt="{{profileDetail.userInitials}}" data-ng-if="profileDetail.smallProfileImage && profileDetail.type!=='HiringCandidate'">
+                <div class="imgReplacementBig icon-candidates bg-large" data-ng-if="profileDetail.type==='HiringCandidate'"></div>
+                <div class="imgReplacementBig topSpace" data-ng-if="!profileDetail.smallProfileImage && profileDetail.type!=='HiringCandidate'" data-ng-bind="profileDetail.userInitials"></div>
+            </div>
+    	<div class="mem-personal-details header-profile-detail">
+    		<p class="mem-name">
+    			<span data-ng-bind="profileDetail.firstName +' '+profileDetail.lastName" data-ng-if="profileDetail.firstName"></span>
+    			<span data-ng-if="userPermissions.isAccountAdministrator">
+    				<span class="thin mt4" data-ng-bind="::pullInterNationalization('dashboard.groups.admin')"></span>
+    			</span>
+    			<span data-ng-if="userPermissions.isHiringToolAllowed">
+    				<span class="thin mt4" data-ng-bind="::pullInterNationalization('dashboard.groups.hiring')"></span>
+    			</span>
+    		</p>
+    		<p class="mem-title" data-ng-bind="profileDetail.title" data-ng-if="profileDetail.title"></p>
+    		<p class="mem-email">
+    			<a href="mailto:{{profileDetail.email}}" class="border-link">
+    				<span class="mock-link" data-ng-bind="profileDetail.email"></span>
+    			</a>
+    		</p>
+    		<p class="mem-phone mode2" data-ng-bind="profileDetail.phoneNumber" data-ng-if="profileDetail.phoneNumber"></p>
+    	</div>
+    	 <div class="roles-sections">
+	    	<div class="mem-role-label-section" data-ng-if="profileDetail.hiringRoles !==null && profileDetail.hiringRoles !== undefined && profileDetail.hiringRoles.length" data-ng-bind="::pullInterNationalization('roles.displayLabel')"></div>
+	    	<div class="read-more-wrap-tag" data-ng-repeat="roles in profileDetail.hiringRoles | limitTo:5">
+	        	<span class="mem-role-section"><span data-ng-bind="((roles.name | unescapeText).length>20?(roles.name | unescapeText).substr(0, 20):(roles.name | unescapeText))" data-ng-class="{'moreellipses':roles.name.length>20}"></span><span data-ng-show="!$last && profileDetail.hiringRoles.length > 1">,&nbsp;&nbsp;</span></span>
+	         </div>
+	         <span data-ng-if="profileDetail.hiringRoles.length > 5" data-ng-click="setActiveView('roles')" class="mem-role-section more-role-link sp-link-color">+ {{profileDetail.hiringRoles.length - 5}}</span>
+    	 </div>
+    	<div class="custom-new-cols s20 posRel member-actions-col member-options-dropdown">
+                            <div class="actions-filter s165OnlyWidth h30m0">
+                                <p class="actions-dropdown-filter smallFilter">
+                                    <a href="javascript:void(0)" sp-condition="true" sp-click-outside="show">{{pullInterNationalization('manageAccountContent.actions')}}
+                                        <span class="actions-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                                    </a>
+                                </p>
+                            </div>
+                            <div class="actions-callout-wrappper pos2-candidate posTop1" data-ng-if="show">
+                                <ul class="action-links">
+                                    <li data-ng-if="profileDetail.type ==='HiringCandidate' && !profileDetail.hired">
+                                            <a href="javascript:void(0)" data-ng-click="putBackPop(profileDetail)">
+                                                <span class="action-icon icon-candidates sp-icon-color"></span>
+                                                <span class="action-text" data-ng-bind="::pullInterNationalization('moveToCandidates')"></span>
+                                            </a>
+                                        </li>
+                                        <li data-ng-if="profileDetail.type ==='Member'">
+                                            <a href="javascript:void(0)" data-ng-click="putBackPop(profileDetail)">
+                                                <span class="action-icon icon-icon_accounts_all-members sp-icon-color"></span>
+                                                <span class="action-text" data-ng-bind="::pullInterNationalization('moveToEmployees')"></span>
+                                            </a>
+                                        </li>
+                                    <li class="sep" data-ng-if="(profileDetail.type ==='HiringCandidate' && !profileDetail.hired) || profileDetail.type ==='Member'"><hr/></li>
+                                    <li>
+                                        <a href="javascript:void(0)" data-ng-click="deleteModalSingle(profileDetail)">
+                                            <span class="action-icon icon-icon_trashbin sp-icon-color"></span>
+                                            <span class="action-text" data-ng-bind="::pullInterNationalization('tools.hiring.btn0')"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+    </div>
+</div>
+<div class="new-cols filters-col full-spanned col-shrink-mob">
+	<div class="sp-panel-accent">
+    <div class="col-content-wrapper mh700 noTopSpace">
+        <div class="internal-nav-links-wrapper noMTop">
+            <ul>
+                <li class="nobTop" data-ng-if="profileDetail.userStatus === 'VALID'">
+                    <a href="javascript:void(0)" class="profile-links" data-ng-bind-html="::pullInterNationalization('manageAccountContent.linksPrism')" data-ng-click="setActiveView('prismPortrait')" data-ng-class="memberNav==='prismPortrait'?'on':''"></a>
+                    <span data-ng-class="memberNav==='prismPortrait'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                </li>
+                <li data-ng-if="profileDetail.type === 'Member' && profileDetail.userStatus === 'VALID'">
+                    <a href="javascript:void(0)" class="profile-links" data-ng-bind-html="::pullInterNationalization('navigation.prism.360')" data-ng-click="setActiveView('prismLens')" data-ng-class="memberNav==='prismLens'?'on':''"></a>
+                    <span data-ng-class="memberNav==='prismLens'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                </li> 
+                <li data-ng-if="profileDetail.type === 'HiringCandidate' && profileDetail.userStatus === 'VALID'">
+                    <a href="javascript:void(0)" class="profile-links" data-ng-bind-html="::pullInterNationalization('manageHiringContent.refText')" data-ng-click="setActiveView('references')" data-ng-class="memberNav==='references'?'on':''"></a>
+                    <span data-ng-class="memberNav==='references'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                </li>
+                <li data-ng-if="profileDetail.type === 'HiringCandidate'" data-ng-class="{'nobTop': profileDetail.userStatus !== 'VALID'}">
+                    <a href="javascript:void(0)" class="profile-links" data-ng-bind-html="::pullInterNationalization('shareportrait.roles')" data-ng-click="setActiveView('roles')" data-ng-class="memberNav==='roles'?'on':''"></a>
+                    <span data-ng-class="memberNav==='roles'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                </li>              
+                <li data-ng-class="{'nobTop': profileDetail.userStatus !== 'VALID'}">
+                    <a href="javascript:void(0)" class="profile-links" data-ng-bind-html="::pullInterNationalization('admin.account.member.details.title4')" data-ng-click="setActiveView('groupsAndTags')" data-ng-class="memberNav==='groupsAndTags'?'on':''"></a>
+                    <span data-ng-class="memberNav==='groupsAndTags'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                </li>                                
+                <li>
+                    <a href="javascript:void(0)" class="profile-links" data-ng-bind-html="profileDetail.type === 'HiringCandidate'?pullInterNationalization('candidate.details'):pullInterNationalization('pa.employee.modules.details')" data-ng-click="setActiveView('profileDetails')" data-ng-class="memberNav==='profileDetails'?'on':''"></a>
+                    <span data-ng-class="memberNav==='profileDetails'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" class="profile-links" data-ng-click="setActiveView('notes')" data-ng-class="memberNav==='notes'?'on':''">{{::pullInterNationalization('spectrum.notes')}} ({{profileDetail.comments.length}})</a>
+                    <span data-ng-class="memberNav==='notes'?'active-icon icon-icon_focus-arrow':'hide'"></span>
+                </li>                                                
+            </ul>
+        </div>
+    </div>
+    </div>
+    <div class="filter-col-sham"></div>
+</div>
+<div class="new-cols content-col sp-panel-accent noSpace" data-ng-if="memberNav==='prismPortrait'">
+ <ng-include src="'/sp/resources/html/people-analytics/view/employee-portrait.html'"></ng-include>
+</div>
+<div class="new-cols content-col sp-panel-accent pixel-width"  data-ng-if="memberNav==='prismLens'">
+<prism-lens-employee url-src='employee-prismLens.html'></prism-lens-employee>
+</div>
+<div class="new-cols content-col sp-panel-accent pixel-width"  data-ng-if="memberNav==='references'">
+	<prism-lens-employee url-src='employee-referenceLens.html'></prism-lens-employee>
+</div>
+<div class="new-cols content-col sp-panel-accent pixel-width"  data-ng-if="memberNav==='roles'">
+	<ng-include src="'/sp/resources/html/people-analytics/view/roles-addremove.html'"></ng-include>
+</div>
+<div class="new-cols content-col sp-panel-accent pixel-width" data-ng-if="memberNav==='groupsAndTags'">
+ 	<ng-include src="'/sp/resources/html/people-analytics/view/employee-groupsTags.html'"></ng-include>
+</div>
+<div class="new-cols content-col sp-panel-accent pixel-width"  data-ng-if="memberNav==='profileDetails'">
+ 	<ng-include src="'/sp/resources/html/people-analytics/view/employee-profileDetails.html'"></ng-include>
+</div>
+<div class="new-cols content-col sp-panel-accent pixel-width"  data-ng-if="memberNav==='notes'">
+ 	<ng-include src="'/sp/resources/html/people-analytics/view/employee-notes.html'"></ng-include>
+</div>
+</section>

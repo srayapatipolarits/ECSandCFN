@@ -1,0 +1,79 @@
+<section data-ng-controller="practiceAdminController as ctrl" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'" class="hide" data-ng-init="ctrl.getPracticeGoal()">
+    <div class="x-container members hiring-candidates affiliate-listing pulse-listing">
+        <div class="container minimumHeight" >
+            <div class="bgWhiteBord clearfix">
+                <div class="toolbar clearfix">
+                    <div class="title">
+                        <a href="javascript:void(0)" role="button" data-ng-click="ctrl.resetfilter()">{{pullInterNationalization('practiceAreaAdmin.allaccount')}}<span class="blackcolor" data-ng-bind="'('+(ctrl.practiceAreaAvailable.length||0)+')'"></span></a>
+                    </div>
+                    <div class="controls clearfix">
+                        <div class="hiring-list-wrapper">
+                            <p class='iea'>
+                                <a href="/sp/sysAdmin/practiceArea/createPracticeAreaViewDetail" data-ng-bind="pullInterNationalization('practiceAreaAdmin.createNewAccount')"></a>
+                            </p>
+                        </div>
+                        
+                        <div class="controlwrap search">
+                            <input type="text" class="form-control" maxlength="28" data-ng-model-options="{ debounce: { 'default': 500, 'blur': 0 } }" data-ng-model="ctrl.pageSetting.searchText" placeholder="Search" data-ng-change="ctrl.searchTextFilter(ctrl.pageSetting.searchText)">
+                            <button class="sp-icon-color" data-ng-class="ctrl.pageSetting.searchText.length>1? 'icon-icon_remove':'icon-icon_search'" data-ng-click="ctrl.clearSearch()"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="filters"></div>
+                <article class="memberHolder">
+                    <div class="heading row">
+                        <div class="col-md-6 col-sm-6 tog activeFilter" data-ng-click="ctrl.active($event,{'predicate':'name', 'reverse':reverse=!reverse})" data-predicate='name'>
+                            <h4 class="on code" data-ng-bind="pullInterNationalization('practiceAreaAdmin.pan')"></h4>
+                        </div>
+                        <div class="col-md-3 col-sm-3 tog col-fix-1" data-ng-click="ctrl.active($event,{'predicate':'developmentStrategyList', 'reverse':reverse=!reverse})" data-predicate='developmentStrategyList'>
+                            <h4 data-ng-bind="pullInterNationalization('practiceAreaAdmin.startegy')"></h4>
+                        </div>
+                        <div class="col-md-2 col-sm-2 tog col-fix-2" data-ng-click="ctrl.active($event,{'predicate':'status', 'reverse':reverse=!reverse})" data-predicate='status'>
+                            <h4 data-ng-bind="pullInterNationalization('practiceAreaAdmin.status')"></h4>
+                        </div>
+                        <div class="col-md-1 col-sm-1"></div>
+                    </div>
+                    <div infinite-scroll="ctrl.returnMemberList(ctrl.pageSetting.pageSize+ctrl.pageSetting.pageSize)" infinite-scroll-immediate-check="false">
+                        <div class="complete-profile animation_1" ng-class="{active:show}" id='{{$index}}' data-ng-repeat="list in recordField = (ctrl.practiceAreaAvailable.slice(0,ctrl.pageSetting.pageSize)) track by list.id">
+                            <div class="table-row clearfix">
+                                <div class="col-md-6 col-sm-6">
+                                <p class="code">
+                                    <a href="javascript:void(0)" class="border-link" data-ng-click="ctrl.localStore(list)">
+                                         <span class="mock-link wordWrap" data-ng-bind="list.name"></span>
+                                     </a>
+                                     </p>
+                                </div>
+                                <div class="col-md-3 col-sm-3 row_title">
+                                    <p class="role_title"><span data-ng-bind="list.developmentStrategyList.length"></span></p>
+                                </div>
+                                <div class="col-md-2 col-sm-2 row_title">
+                                    <p class="role_title" data-ng-bind="list.status"></p>
+                                </div>
+                                <div class="col-md-1 col-sm-1 btnGroupSp" data-ng-click="show=!show">
+                                    <button class="fullView adj btn-plus icon-icon_expand sp-icon-color" type="button"></button><button class="fullView adj btn-minus icon-icon_collapse-fill sp-icon-color" type="button"></button>
+                                </div>
+                            </div>
+                            <div class="editable-section clearfix" data-ng-class="{hidden:!show}">
+                                <div class="col-md-1 col-sm-1 custom_1"></div>
+                                <div class="col-md-11 col-sm-11 custom_2">
+                                    <ul class="clearfix" data-ng-show="!advance">
+                                        <li>
+                                            <a href="javascript:void(0)" role="button" class="buttoncss" data-ng-bind="pullInterNationalization('practiceAreaAdmin.viewDetail')" data-ng-click="ctrl.localStore(list)"></a>
+                                        </li>
+                                        <li class='deletePos' data-ng-if="list.status=='ACTIVE'">
+                                            <a href="javascript:void(0)" role="button" class="buttoncss" data-ng-click="ctrl.deleteConfirm(list.id)" data-ng-bind="pullInterNationalization('practiceAreaAdmin.deactivate')"></a>
+                                        </li>
+                                        <li class='deletePos' data-ng-if="list.status=='INACTIVE'">
+                                            <a href="javascript:void(0)" role="button" class="buttoncss" data-ng-click="ctrl.accountStatus(list.id,'ACTIVE')" data-ng-bind="pullInterNationalization('practiceAreaAdmin.activate')"></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p data-ng-show="!recordField.length" class="noMatchFound ng-hide" data-ng-bind="'No Record Found'"></p>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>

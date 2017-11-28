@@ -1,0 +1,32 @@
+<div class="col-content-wrapper mh700">
+    <div class="members-content-wrapper" data-ng-if="ctrl.isPrimaryPlanActive">
+        <div class="members-header w600">
+            <h2 class="sp-header-title-color fl" data-ng-bind="::pullInterNationalization('pricing.desc3')"></h2>
+            <p class="group-add-btn fl">
+                <a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('manageAccountContent.add')" data-ng-click="ctrl.addAdminAccess('Primary')"></a>
+            </p>            
+        </div>
+    </div>
+    <div class="admins-accounts-listing" data-ng-if="ctrl.isPrimaryPlanActive">
+        <div class="admin-list" data-ng-repeat="memberList in ctrl.existingAdmins.Primary">
+            <div class="member-info posRel">
+                <div class="member-pic">
+                    <img data-ng-src="{{memberList.smallProfileImage}}" alt="{{memberList.userInitials}}" data-ng-if="memberList.smallProfileImage">
+                    <div class="imgReplacement" data-ng-if="!memberList.smallProfileImage" data-ng-bind="memberList.userInitials"></div>
+                </div>
+                <div class="member-details" data-ng-class="memberList.name?'addSpace':''">
+                    <a href="javascript:void(0)" data-ng-click="ctrl.viewMemberDetails(memberList.email)" class="member-name border-link" data-ng-if="memberList.name">
+                        <span class="mock-link" data-ng-bind-html="memberList.name+ctrl.displayRole(memberList)"></span>
+                    </a>
+                    <span class="member-title" data-ng-bind="memberList.title" data-ng-if="memberList.title"></span>
+                    <a href="mailto:{{memberList.email}}" class="member-email border-link">
+                        <span class="mock-link sp-inline-block-f" data-ng-bind-html="!memberList.name?(memberList.email+ctrl.displayRole(memberList)):memberList.email"></span>
+                    </a>
+                </div>
+                <p class="admin-remove-icon">
+                    <a href="javascript:void(0)" class="icon-icon_remove" data-ng-click="ctrl.selfEmail!==memberList.email?ctrl.removeAdminAccess('Primary', memberList):''" data-ng-class="{'disabled': ctrl.selfEmail===memberList.email,'grey-color':ctrl.selfEmail!==memberList.email}"></a>
+                </p>                
+            </div>
+        </div>
+    </div>
+</div>

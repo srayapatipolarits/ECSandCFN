@@ -1,0 +1,130 @@
+<div class="learning-development blueprint hide" data-ng-controller="bluePrintController as ctrl" ng-if="inviteReady && profileReady" ng-class="inviteReady?'show':'hide'" data-ng-init="ctrl.getBluePrint('admin')">
+	<div class="x-container oVisible">
+		<div class="container" >
+			<div class="table-flex-cols">
+					<!-- Left Box Starts -->
+					<div class="lnd-left-sec" ng-if="!ctrl.switchToMobile">
+						<!-- Box Starts -->
+						<div class="lnd-left-box posRelative sp-panel-accent header-set">
+							<article class="lnd-request-approval bp-left-rail-approval">
+								<ul>
+									<li class="fixfont18 on sp-link-color">
+										<span class="mock-link" data-ng-bind="::pullInterNationalization('blueprint.blueprint')"></span>
+										<span class="lnd-focus-arrow icon-icon_focus-arrow"></span>
+									</li>
+								</ul>
+							</article>
+						</div>	
+						<div class="lnd-left-box posRelative">
+							
+							<article class="lnd-request-approval bp-left-rail-approval bg-yellow botSpace" data-ng-if="!ctrl.blueprint.status">
+								<h3 data-ng-bind="::pullInterNationalization('blueprint.status')"></h3>
+								<p data-ng-bind="::pullInterNationalization('blueprint.status.edit')"></p>
+							</article>
+							
+							<article class="lnd-request-approval bp-left-rail-approval bg-yellow botSpace" data-ng-if="ctrl.blueprint.status=='EDIT'">
+								<h3 data-ng-bind="::pullInterNationalization('blueprint.status')"></h3>
+								<p data-ng-bind="::pullInterNationalization('blueprint.status.inprogress')"></p>
+							</article>
+							
+							
+							<article class="lnd-cancel-approval bp-left-rail-approval bg-yellow botSpace" data-ng-if="ctrl.blueprint.status=='UNDER_APPROVAL'">
+									<h3 data-ng-bind="::pullInterNationalization('blueprint.status')"></h3>
+									<p data-ng-bind="::pullInterNationalization('blueprint.blueprintsendforapproval')"></p>
+									<p class="bp-date-details">
+										<span class="m-txt" data-ng-bind="::pullInterNationalization('blueprint.requestsendTo')"></span>
+										<span class="m-name" data-ng-bind="ctrl.blueprint.approver.firstName+' '+ctrl.blueprint.approver.lastName"></span>
+										<span class="m-date" data-ng-bind="ctrl.blueprint.approver.createdOnFormatted"></span>
+									</p>
+							</article>
+							
+							<article class="lnd-approved bp-left-rail-approval bg-yellow botSpace" data-ng-if="ctrl.blueprint.status=='APPROVED'">
+								<h3 data-ng-bind="::pullInterNationalization('blueprint.status')"></h3>
+								<p data-ng-bind="::pullInterNationalization('blueprint.blueprintApprovedDesc1')"></p>
+								<p class="bp-date-details">
+									<span class="m-txt" data-ng-bind="::pullInterNationalization('blueprint.approvedby')"></span>
+									<span class="m-name" data-ng-bind="ctrl.blueprint.approver.firstName+' '+ctrl.blueprint.approver.lastName"></span>
+									<span class="m-date" data-ng-bind="ctrl.blueprint.approver.createdOnFormatted"></span>
+								</p>
+							</article>
+							
+							<article class="lnd-approved bp-left-rail-approval bg-yellow botSpace" data-ng-if="ctrl.blueprint.status=='PUBLISHED'">
+									<h3 data-ng-bind="::pullInterNationalization('blueprint.status')"></h3>
+									<p data-ng-bind="::pullInterNationalization('blueprint.status.published')"></p>
+							</article>
+							
+						</div>
+					</div>
+					<!-- Left Box Ends -->
+					
+					<!-- Right Box Starts -->
+					<div class="lnd-right-sec minHeightAdded">
+						<div class="practice-area-detail lnd-right-box lnd-top-border sp-panel-accent">
+							<div class="title-with-icons">
+								<h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('blueprint.blueprint')"></h2>
+								<ul data-ng-if="ctrl.blueprint.status!=='PUBLISHED'">
+									<li class="icon-comment">
+										<span class="bp-comment-btn icon-icon_blueprint-comment esFix" title="{{::pullInterNationalization('dashboard.feedback')}}" data-ng-class="{'sp-icon-color hover-style' : !!ctrl.blueprint.feedbackReceivedList.length, 'default-color' : !ctrl.blueprint.feedbackReceivedList.length}" data-ng-click="requestFeedback = !requestFeedback"></span>
+					                    <div class="bp-comments-wrap spaceAdj4" data-ng-if="requestFeedback && ctrl.blueprint.feedbackReceivedList.length">
+					                    	<div class="bp-comments-details" data-ng-repeat="comments in ctrl.blueprint.feedbackReceivedList track by $index">
+					                    	    <a class="deleteComment icon-icon_trashbin sp-icon-color border-link default-color"><span class="mock-link"></span></a>
+					                    		<p class="name fb-500" data-ng-bind="comments.feedbackUser.name"></p>
+					                    		<p class="date" data-ng-bind="comments.createdOnFormatted"></p>
+					                    		<p class="content preserve-line-break" data-ng-bind="comments.comment"></p>
+					                    	</div>
+					                    </div>
+					          		</li>
+								</ul>
+							</div>
+							<article class="slide-right" ui-view></article>
+						</div>
+					</div>
+					<!-- Right Box Ends -->
+					
+						<!-- Left Box Starts -->
+					<div class="lnd-left-sec switchMobOn" ng-if="ctrl.switchToMobile">
+						<!-- Box Starts -->
+						<div class="lnd-left-box posRelative">
+							<article class="lnd-request-approval bp-left-rail-approval bg-yellow botSpace" data-ng-if="!ctrl.blueprint.status">
+								<h3 data-ng-bind="::pullInterNationalization('blueprint.status')"></h3>
+								<p data-ng-bind="::pullInterNationalization('blueprint.status.edit')"></p>
+							</article>
+							
+							<article class="lnd-request-approval bp-left-rail-approval bg-yellow botSpace" data-ng-if="ctrl.blueprint.status=='EDIT'">
+								<h3 data-ng-bind="::pullInterNationalization('blueprint.status')"></h3>
+								<p data-ng-bind="::pullInterNationalization('blueprint.status.inprogress')"></p>
+							</article>
+							
+							
+							<article class="lnd-cancel-approval bp-left-rail-approval bg-yellow botSpace" data-ng-if="ctrl.blueprint.status=='UNDER_APPROVAL'">
+									<h3 data-ng-bind="::pullInterNationalization('blueprint.status')"></h3>
+									<p class="bp-date-details">
+										<span class="m-txt" data-ng-bind="::pullInterNationalization('blueprint.requestsendTo')"></span>
+										<span class="m-name" data-ng-bind="ctrl.blueprint.approver.firstName+' '+ctrl.blueprint.approver.lastName"></span>
+										<span class="m-date" data-ng-bind="ctrl.blueprint.approver.createdOnFormatted"></span>
+									</p>
+							</article>
+							
+							<article class="lnd-approved bp-left-rail-approval bg-yellow botSpace" data-ng-if="ctrl.blueprint.status=='APPROVED'">
+								<h3 data-ng-bind="::pullInterNationalization('blueprint.status')"></h3>
+								<p data-ng-bind="::pullInterNationalization('blueprint.blueprintApprovedDesc1')"></p>
+								<p class="bp-date-details">
+									<span class="m-txt" data-ng-bind="::pullInterNationalization('blueprint.approvedby')"></span>
+									<span class="m-name" data-ng-bind="ctrl.blueprint.approver.firstName+' '+ctrl.blueprint.approver.lastName"></span>
+									<span class="m-date" data-ng-bind="ctrl.blueprint.approver.createdOnFormatted"></span>
+								</p>
+							</article>
+							
+							<article class="lnd-approved bp-left-rail-approval bg-yellow botSpace" data-ng-if="ctrl.blueprint.status=='PUBLISHED'">
+									<h3 data-ng-bind="::pullInterNationalization('blueprint.status')"></h3>
+									<p data-ng-bind="::pullInterNationalization('blueprint.status.published')"></p>
+							</article>
+							
+							
+						</div>
+					</div>
+					<!-- Left Box Ends -->	
+				</div>
+		</div>
+	</div>
+</div>

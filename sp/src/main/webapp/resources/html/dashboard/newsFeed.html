@@ -1,0 +1,135 @@
+<section class="news-feed-holder clearfix ng-hide" data-ng-if="ctrl.responseRecieved" data-ng-show="!ctrl.dialog">
+    <nav role="navigation" aria-labelledby="secondLabel" class="link-to-home margin-bottom-20 sp-tab">
+        <a class="home-class border-link tablinks active first-class" href="javascript:void(0)">
+            <span class="icon-icon_home-arrow back-icon sp-background-color icon-flip" data-ng-click="ctrl.openTab($event, 'tab1')"></span>
+            <span class="action-text" data-ng-bind="::pullInterNationalization('navigation.dashboard')" data-ng-click="ctrl.openTab($event, 'tab1')"></span>
+        </a>
+        <a class="home-class border-link tablinks second-class" href="javascript:void(0)">
+            <span class="action-text flip-text" data-ng-click="ctrl.openTab($event, 'tab2')" data-ng-bind="::pullInterNationalization('dashboardAdmin.spNewsFeeds')"></span>
+            <span class="icon-icon_home-arrow back-icon sp-background-color" data-ng-click="ctrl.openTab($event, 'tab2')"></span>
+        </a>
+    </nav>
+    <section class="left-section tabcontent show-tab" id="tab1" data-ng-class="ctrl.mobile?'':'stick-me-in'">
+    	<div class="goal-profile-information" data-ng-if="ctrl.userInfo.member">
+            <div class="profile-information user-information profile-style dashboard-accent">
+                <article class="clearfix">
+                    <div class="wrapper-left-portion">
+                        <div class="image-detail-part">
+                            <div class="member-pic">
+                                <img data-ng-src="{{ctrl.userInfo.member.smallProfileImage}}" alt="{{ctrl.userInfo.member.userInitials}}" data-ng-if="ctrl.userInfo.member.smallProfileImage">
+                                <div class="imgReplacementMedium" data-ng-if="!ctrl.userInfo.member.smallProfileImage" data-ng-bind="ctrl.userInfo.member.userInitials"></div>
+                            </div>
+                            <div class="member-details">
+                                <div class="role-labels" display-role="ctrl.userInfo.member" add-class="h25"></div>
+                                <a href="/sp/dashboard/profile" class="border-link">
+                                    <span class="weight-700 font-18 sp-link-color lh-14" data-ng-bind="::ctrl.userInfo.member.name"></span>
+                                </a>
+                                <a href="javascript:void(0)" class="border-link display-block cursor-default">
+                                    <span class="mock-text weight-300" data-ng-bind="::ctrl.userInfo.member.title"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrapper-right-portion">
+                        <div class="setting-holder" data-ng-if="ctrl.profilePage===null">
+                            <div class='peronsality-design anchor-link'>
+                                <a href="javascript:void(0)" data-ng-click="ctrl.editProfileFn()"><span class="mock-link weight-300 font-12" data-ng-bind="::pullInterNationalization('dashboard.edit.profile')"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <div class="group-lead primary-prism">
+                    <div class="personality-activity">
+                        <div class='peronsality-design'>
+                            <label class="weight-300" data-ng-bind="::pullInterNationalization('dashboard.primaryPersonality')"></label>
+                            <a href="/sp/profile?type=PP"><span class="mock-link weight-500" data-ng-bind="::ctrl.userInfo.member.personalityMap.Primary"></span></a>
+                        </div>
+                        <div class='peronsality-design'>
+                            <label class="weight-300" data-ng-bind="::pullInterNationalization('dashboard.personalityUnderPressure')"></label>
+                            <a href="/sp/profile?type=PU"><span class="mock-link weight-500" data-ng-bind="::ctrl.userInfo.member.personalityMap.UnderPressure"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-footer clearfix">
+                    <div class='peronsality-design spacing anchor-link pull-left'>
+                        <a href="/sp/profile"><span class="mock-link weight-300 font-12" data-ng-bind="::pullInterNationalization('dashboard.reviewFullPrismPrtrait')"></span></a>
+                    </div>
+                </div>
+            </div>
+            <goal-progress></goal-progress>
+        </div>
+        <tutorial-widget parent-page="dashboard"></tutorial-widget>
+        <learning-program url-src="dashboard/learning-program.html"></learning-program>
+        <knowledge-center></knowledge-center>
+        <relation-ship-advisor data-ng-if="ctrl.checkPermission.relationshipadvisor"></relation-ship-advisor>
+        <footer-stick></footer-stick>
+        <div data-ng-init="ctrl.callSticky()"></div>
+    </section>
+    <section class="right-section tabcontent hide-tab" id="tab2">
+        <!-- All Post ng-hide data-ng-if="ctrl.getAll"-->
+        <section class="fade-element-in" data-ng-if="ctrl.getAll && ctrl.viewName!=='individual'">
+            <!-- News Feed Update -->
+            <share-note data-filter="ctrl.filterOptionsSelected"></share-note>
+            <!-- News Feed Update -->
+            <div class="list-feed-options">
+                <div class="sp-mobile-dashboard selected-option-mock" sp-condition="true" sp-click-outside="ulactive">
+                    <span data-ng-bind="pullInterNationalization('dashboard.'+ctrl.pageSetting.filterName)"></span>
+                    <span class="action-selected-option-mock icon-icon_dropdown-arrow sp-icon-color"></span>
+                </div>
+                <ul class="active-{{ulactive}} poll_style">
+                    <li data-ng-click="ctrl.changeNewsFeed(action);" data-ng-repeat="action in ctrl.filterOptions track by action.name">
+                        <a href="javascript:void(0)" class="action-filters sp-link-color" data-ng-class="{'active':action.value==ctrl.pageSetting.filter}" data-ng-bind="::pullInterNationalization('dashboard.'+action.name)"></a>
+                    </li>
+                </ul>
+                <div class="update sp-background-color" data-ng-if="ctrl.update.update">
+                    <a href="javascript:void(0)" class="bigbuttoncss" data-ng-click="ctrl.sseFeedUpdate()" data-ng-bind="ctrl.update.count+' '+pullInterNationalization('dashboard.updates')"></a>
+                </div>
+            </div>
+            <section class="newsFeed" data-ng-if="ctrl.currentNews===null" >
+                <div infinite-scroll="ctrl.infinteScroll()" infinite-scroll-distance="1" infinite-scroll-immediate-check="false" infinite-scroll-disabled="ctrl.noScroll">
+                    <article class='{{news.type}} separator' id="{{news.id||$index}}" data-ng-repeat="news in recordField = ctrl.news.newsFeed track by news.id||$index" data-ng-init="user = news.message.user||news.user;news.edit=false;news.hide=false;" data-ng-include="ctrl.getAppropiateTemplate(news.type)" repeat-done="ctrl.emitLazy()">
+                    </article>
+                </div>
+                <div class="custom-row custom-new-center" data-ng-if="!recordField.length">
+                    <div class="custom-new-cols s100">
+                        <!-- <p class="no-data-msgs-align" data-ng-if="ctrl.pageSetting.filter==='announcement'" data-ng-bind="::pullInterNationalization('dashboard.noPost')"></p>-->
+                        <!-- <p class="no-data-msgs-align" data-ng-if="ctrl.pageSetting.filter==='announcement'" data-ng-bind="::pullInterNationalization('dashboard.noTagPost')"></p>-->
+                        <div class="no-data-msgs-align" data-ng-if="ctrl.profilePage!==null && ctrl.pageSetting.filter!=='activity'">
+                            <span data-ng-bind="::pullInterNationalization('dashboard.noPostavailablethere')"></span>
+                        </div>
+                        <div class="no-data-msgs-align" data-ng-if="ctrl.profilePage===null && ctrl.pageSetting.filter!=='activity'" data-ng-bind="::pullInterNationalization('dashboard.noPost')">
+                            <span data-ng-bind="::pullInterNationalization('dashboard.noPostAvailable')"></span>
+                            <span class="mock-link weight-500" data-ng-bind="::pullInterNationalization('dashboard.noPostShare')"></span>
+                        </div>
+                        <div class="no-data-msgs-align" data-ng-if="ctrl.pageSetting.filter==='activity'">
+                            <span data-ng-bind="::pullInterNationalization('dashboard.noArticles')"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+        <!-- All Post -->
+        <!-- Individual Post -->
+        <section class="newsFeed fade-element-in" data-ng-if="ctrl.viewName==='individual'">
+            <div class="link-to-home margin-bottom-20">
+                <a class="home-class border-link" href="javascript:void(0)" data-ng-click="ctrl.showAll('default',ctrl.currentNews)">
+                    <span class="icon-icon_home-arrow back-icon sp-background-color icon-flip"></span>
+                    <span class="action-text" data-ng-bind="::pullInterNationalization('goals.showall')"></span>
+                </a>
+            </div>
+            <article class='{{news.type}} separator' data-ng-if="ctrl.currentNews" id="{{news.id}}" data-ng-init="news = ctrl.currentNews;user = news.message.user;" data-ng-include="ctrl.getAppropiateTemplate(news.type)"></article>
+            <div class="custom-row custom-new-center" data-ng-if="ctrl.currentNews===null">
+                <div class="custom-new-cols s100">
+                    <div class="no-data-msgs-align">
+                        <span data-ng-bind="::pullInterNationalization('dashboard.noPostavailablethere')"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Individual Post -->
+        <div class="sp-loading-bar">
+        	<div class="loading-bar-style"></div>
+        </div>
+        <div class="sp-mobile spacing-shim-bottom"></div>
+    </section>
+</section>

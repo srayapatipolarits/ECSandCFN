@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="homeNotSignedIn" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/WEB-INF/views/home/contentNotSignedIn.jsp" />
+		<put-attribute name="javascripts"
+			value="resources/js-min/loginFormController.min.js" cascade="true" />
+	</definition>
+	
+	<definition name="expireChangePassword" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/WEB-INF/views/home/expireChangePassword.jsp" />
+		<put-attribute name="javascripts"
+			value="resources/js-min/loginFormController.min.js" cascade="true" />
+	</definition>
+
+	<definition name="companyBlockedError" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/WEB-INF/views/home/companyBlockedError.jsp" />
+		<put-attribute name="javascripts"
+			value="resources/js-min/loginFormController.min.js" cascade="true" />
+	</definition>
+
+	<definition name="companyMembersBlockedError" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/WEB-INF/views/home/companyMembersBlockedError.jsp" />
+		<put-attribute name="javascripts"
+			value="resources/js-min/loginFormController.min.js" cascade="true" />
+	</definition>
+
+	<definition name="individualBlockedError" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/WEB-INF/views/home/individualBlockedError.jsp" />
+		<put-attribute name="javascripts"
+			value="resources/js-min/loginFormController.min.js" cascade="true" />
+	</definition>
+
+	<definition name="homeSignedIn" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/resources/html/welcome/new-welcome.html" />
+		<put-attribute name="styles" value="resources/css/css-min/assessment-new.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js-min/loginFormController.min.js" />
+			<add-attribute value="resources/js-min/assessment.min.js" />
+		</put-list-attribute>
+	</definition>
+
+	<definition name="assessmentPending" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/resources/html/welcome/new-welcome.html" />
+		<put-attribute name="styles" value="resources/css/css-min/assessment-new.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js-min/loginFormController.min.js" />
+			<add-attribute value="resources/js-min/assessment.min.js" />
+		</put-list-attribute>
+
+	</definition>
+
+	<definition name="assessmentInProgress" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/resources/html/assessment/return-visitor.html" />
+		<put-attribute name="styles" value="resources/css/css-min/assessment-new.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+		<add-attribute value="resources/js-min/loginFormController.min.js" />
+		<add-attribute value="resources/js-min/assessment.min.js" />
+		</put-list-attribute>
+	</definition>
+
+	<definition name="incompleteProfile" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/resources/html/register/incompleteProfile.html" />
+		<put-attribute name="javascripts"
+			value="resources/js-min/signUpController.min.js" cascade="true" />
+	</definition>
+
+	<definition name="accessDenied" extends="pageNotLoggedIn">
+		<put-attribute name="content" value="/resources/html/error/403.html" />
+	</definition>
+
+	<definition name="linkExpiredProfileIncomplete" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/WEB-INF/views/home/linkExpiredIncompleteProfie.jsp" />
+		<put-attribute name="javascripts"
+			value="resources/js-min/loginFormController.min.js" cascade="true" />
+	</definition>
+
+	<definition name="expireChangePassword" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/WEB-INF/views/home/expireChangePassword.jsp" />
+		<put-attribute name="javascripts"
+			value="resources/js-min/loginFormController.min.js" cascade="true" />
+	</definition>
+
+</tiles-definitions>

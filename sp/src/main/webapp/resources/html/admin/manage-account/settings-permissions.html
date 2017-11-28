@@ -1,0 +1,42 @@
+<div class="col-content-wrapper mh700 mh500">
+    <div class="members-content-wrapper">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('manageAccountContent.linkPermissions')"></h2>
+        </div>
+    </div>
+    <div class="all-content-wrapper options-permissions">
+        <div class="options-wrapper" data-ng-if="ctrl.showRelationshipAdvisor">
+            <div class="option-controls">
+                <form>
+                    <p class="option-btn">
+                        <input type="checkbox" id="restrictPermissions" data-ng-model="ctrl.restrictRelationShipAdvisor" data-ng-click="ctrl.restrictAdvisor(ctrl.restrictRelationShipAdvisor)" />
+                        <label for="restrictPermissions" data-ng-class="ctrl.restrictRelationShipAdvisor?'sp-background-color':'default-bg'">
+                            <span class="on" data-ng-if="ctrl.restrictRelationShipAdvisor===true">{{pullInterNationalization('admin.account.member.details.onbtn')}} <span class="rnd-switch icon-icon_switch-dot sp-icon-color pos-r"></span></span>
+                            <span class="off" data-ng-if="ctrl.restrictRelationShipAdvisor===false"><span class="rnd-switch icon-icon_switch-dot sp-icon-color pos-l"></span> <span class="tiHide" data-ng-bind="::pullInterNationalization('admin.account.member.details.offbtn')"></span></span>
+                        </label>
+                    </p>
+                </form>
+            </div>
+            <div class="option-description">
+                <p class="heading" data-ng-bind="pullInterNationalization('admin.account.business.permissions.advisor.title')"></p>
+            </div>
+        </div>
+        <div class="options-wrapper">
+            <div class="option-controls">
+                <form>
+                    <p class="option-btn">
+                        <input type="checkbox" id="memberPermissions" data-ng-model="ctrl.blockAllMembers" data-ng-click="ctrl.blockMembers(ctrl.blockAllMembers)" />
+                        <label for="memberPermissions" data-ng-class="ctrl.blockAllMembers?'sp-background-color':'default-bg'">
+                            <span class="on" data-ng-if="ctrl.blockAllMembers===true">{{pullInterNationalization('admin.account.business.permissions.btn.on')}} <span class="rnd-switch icon-icon_switch-dot sp-icon-color pos-r"></span></span>
+                            <span class="off" data-ng-if="ctrl.blockAllMembers===false"><span class="rnd-switch icon-icon_switch-dot sp-icon-color pos-l"></span> <span class="tiHide" data-ng-bind="::pullInterNationalization('admin.account.member.details.offbtn')"></span></span>
+                        </label>
+                    </p>
+                </form>
+            </div>
+            <div class="option-description">
+                <p class="heading" data-ng-bind-html="'<strong>'+pullInterNationalization('admin.account.business.permissions.opts.title')+'</strong>'"></p>
+                <p class="heading-desc" data-ng-bind="pullInterNationalization('admin.account.business.permissions.opts.desc')"></p>
+            </div>
+        </div>
+    </div>
+</div>

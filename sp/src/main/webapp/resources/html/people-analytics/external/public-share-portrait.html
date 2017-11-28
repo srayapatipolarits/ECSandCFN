@@ -1,0 +1,48 @@
+<div data-ng-controller="profileMainController as ctrl" data-ng-init="ctrl.setOptions('sharePortrait')" data-ng-if="inviteReady" class="hide" data-ng-class="inviteReady?'show':'hide'">
+    <!-- Standard / Chart Options Starts -->
+    <div class="x-container view-switch" data-ng-init="$parent.switchView = 'standard'" data-ng-if="noSelf==''">
+        <div class="container">
+            <div class="user-information">
+                <div class="full-section-holder clearfix">
+                    <div class="users-section">
+                        <div class="member-pic">
+                        	 <img data-ng-src="{{ctrl.userDetails.smallProfileImage}}" alt="{{ctrl.userDetails.userInitials}}" data-ng-if="ctrl.userDetails.smallProfileImage && ctrl.userDetails.userType==='Member'">
+						     <div class="imgReplacementMedium icon-candidates bg-medium" data-ng-if="ctrl.userDetails.userType!=='Member'"></div>
+						     <div class="imgReplacementMedium topSpace" data-ng-if="!ctrl.userDetails.smallProfileImage && ctrl.userDetails.userType==='Member'" data-ng-bind="ctrl.userDetails.userInitials"></div>
+					    </div>
+                        <div class="member-details">
+                            <a href="javascript:void(0)" class="border-link cursor-default">
+                                <span class="mock-text weight-700 font-18" data-ng-bind="::ctrl.userDetails.name"></span>
+                            </a>
+                            <a href="javascript:void(0)" class="border-link display-block cursor-default">
+                                <span class="mock-text weight-300 util-word-wrap inline-block" data-ng-bind="::ctrl.userDetails.title"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="links">
+                        <div class="address-information clearfix">
+                            <!-- <div class="view-btns">
+                            	<a  href="javascript:void(0)" class="border-link pdf-download" data-ng-click="openPdfView('/sp/resources/html/profile/sp-profile-pdf.html',this,ctrl.userDetails.name);generatingPdf=true;">
+                            		<span class="space5 sp-icon-color font-12 icon-icon_print sp-icon-color"></span>
+					                <span class="mock-link weight-300" data-ng-bind="::pullInterNationalization('prismBtns.print')"></span>
+					            </a>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Standard / Chart Options Starts -->
+    <div data-ng-switch on="switchView">
+        <div data-ng-switch-when="standard">
+            <ng-include src="'/sp/resources/html/profile/public-standard.html'"></ng-include>
+        </div>
+        <div data-ng-switch-when="chart">
+            <ng-include src="'/sp/resources/html/profile/public-charts.html'"></ng-include>
+        </div>
+        <div data-ng-switch-default>
+            <ng-include src="'/sp/resources/html/profile/public-standard.html'"></ng-include>
+        </div>
+    </div>
+</div>

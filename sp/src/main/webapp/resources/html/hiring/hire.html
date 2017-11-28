@@ -1,0 +1,83 @@
+<div class="container new-modals" data-ng-init="ctrl.emailCheckHire(ctrl.deleteMemberInfo.email);ctrl.spEmailCheck(ctrl.deleteMemberInfo.email)">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                    <h2 data-ng-bind="::pullInterNationalization('manageHiringContent.hirec')"></h2>
+                </div>
+                <div class="selected-user-obj">
+                    <div class="m-pic">
+                        <img data-ng-src="{{ctrl.deleteMemberInfo.smallProfileImage}}" alt="{{ctrl.deleteMemberInfo.userInitials}}" data-ng-if="ctrl.deleteMemberInfo.smallProfileImage">
+                        <div class="imgReplacement" data-ng-if="!ctrl.deleteMemberInfo.smallProfileImage" data-ng-bind="ctrl.deleteMemberInfo.userInitials"></div>
+                    </div>
+                    <div class="m-info1">
+                        <p class="f500" data-ng-bind="ctrl.deleteMemberInfo.name"></p>
+                        <p class="nm" data-ng-bind="ctrl.deleteMemberInfo.title"></p>
+                    </div>
+                    <div class="m-info2">
+                        <p data-ng-bind="ctrl.deleteMemberInfo.email"></p>
+                        <p data-ng-bind="ctrl.deleteMemberInfo.phoneNumber"></p>
+                    </div>
+                </div>
+                <div class="new-modals-wrapper">
+                    <p class="hire-desc-msg mt30" data-ng-bind="::pullInterNationalization('manageHiringContent.hireDesc1')"></p>
+                    <form name="ctrl.hireCandidateForm" novalidate class="form-styles-override" data-ng-submit="ctrl.hireCandidate(ctrl.deleteMemberInfo.email,ctrl.hireCandidateForm)" autocomplete="off">
+                        <ol class="form-list-c">
+                            <li>
+                                <ul class="cols-2">
+                                    <li>
+                                        <label for="firstName" data-ng-bind="::pullInterNationalization('signup.firstName')"></label>
+                                        <input type="text" data-ng-model="ctrl.candidateDetails.firstName" name="firstName" placeholder="{{pullInterNationalization('signup.firstName')}}" data-ng-required="true" data-ng-pattern="/^[a-zA-Z0-9-,' ]+$/" />
+                                        <!-- Error Messages -->
+                                        <span class="validate-error" data-ng-if="ctrl.hireSubmitted && ctrl.hireCandidateForm.firstName.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                                        <span class="validate-error" data-ng-if="ctrl.hireSubmitted && ctrl.hireCandidateForm.firstName.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+                                    </li>
+                                    <li>
+                                        <label for="lastName" data-ng-bind="::pullInterNationalization('signup.lastName')"></label>
+                                        <input type="text" data-ng-model="ctrl.candidateDetails.lastName" name="lastName" placeholder="{{pullInterNationalization('signup.lastName')}}" data-ng-required="true" data-ng-pattern="/^[a-zA-Z0-9-,' ]+$/" />
+                                        <!-- Error Messages -->
+                                        <span class="validate-error" data-ng-if="ctrl.hireSubmitted && ctrl.hireCandidateForm.lastName.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                                        <span class="validate-error" data-ng-if="ctrl.hireSubmitted && ctrl.hireCandidateForm.lastName.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <label for="title" data-ng-bind="::pullInterNationalization('signup.Title')"></label>
+                                <input type="text" data-ng-model="ctrl.candidateDetails.title" name="title" placeholder="{{pullInterNationalization('signup.Title')}}" data-ng-required="true" />
+                                <!-- Error Messages -->
+                                <span class="validate-error" data-ng-if="ctrl.hireSubmitted && ctrl.hireCandidateForm.title.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                            </li>
+                            <li>
+                                <label for="email" data-ng-bind="::pullInterNationalization('signup.email')"></label>
+                                <input type="text" data-ng-model="ctrl.candidateDetails.email" name="email" placeholder="{{pullInterNationalization('signup.email')}}" data-ng-required="true" data-ng-pattern="emailRegex" data-ng-paste="ctrl.emailCheckHire(ctrl.candidateDetails.email);ctrl.spEmailCheck(ctrl.candidateDetails.email)" data-ng-keyup="ctrl.emailCheckHire(ctrl.candidateDetails.email);ctrl.spEmailCheck(ctrl.candidateDetails.email)" data-ng-keydown="ctrl.emailCheckHire(ctrl.candidateDetails.email);ctrl.spEmailCheck(ctrl.candidateDetails.email)" data-ng-keypress="ctrl.emailCheckHire(ctrl.candidateDetails.email);ctrl.spEmailCheck(ctrl.candidateDetails.email)" />
+                                <span class="validate-error" data-ng-if="ctrl.hireSubmitted && ctrl.hireCandidateForm.email.$error.required" data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+                                <span class="validate-error" data-ng-if="ctrl.hireSubmitted && ctrl.hireCandidateForm.email.$error.pattern" data-ng-bind="::pullInterNationalization('signup.invalid.email')"></span>
+                                <span class="validate-error" data-ng-if="ctrl.hireSubmitted && ctrl.existingCandidateHire && ctrl.msgKeyHire==='company'" data-ng-bind="::pullInterNationalization('manageHiringContent.empExist')"></span>
+	                            <span class="validate-error" data-ng-if="ctrl.hireSubmitted && !ctrl.existingCandidateHire && ctrl.existingSPemail" data-ng-bind="::pullInterNationalization('manageHiringContent.candEx1')"></span>                                
+                            </li>
+                            <li class="tagsEmailInput brdr0">
+                                <label for="tags" class="l-hide" data-ng-bind="::pullInterNationalization('tools.hiring.add.candidate.labeltags')"></label>
+                                <tags-input name="tags" data-ng-model="ctrl.candidateDetails.tags" replace-spaces-with-dashes="false" placeholder="{{::pullInterNationalization('tools.hiring.add.candidate.labeltags')}}" data-ng-required="false"></tags-input>
+                            </li>
+                            <li class="hire-desc-msg mt15" data-ng-bind="::pullInterNationalization('manageHiringContent.hireDesc2')">
+                            </li>
+                            <!-- Form Button Starts -->
+                            <li class="submit-cancel-btns">
+                                <ul class="submit-cancel-list">
+                                    <li>
+                                        <input type="submit" value="{{::pullInterNationalization('admin.member.submit')}}" class="btn-block btn-15px sp-btn-color" />
+                                    </li>
+                                    <li>
+                                        <input type="button" value="{{::pullInterNationalization('admin.member.cancel')}}" class="btn-block btn-grey-dark btn-15px" data-ng-click="closeThisDialog();"/>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Form Button Ends -->
+                        </ol>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

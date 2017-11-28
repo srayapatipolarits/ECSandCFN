@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-offset-1 col-xs-6 col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+            <div>
+                <section class="wrapper createGroup">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar" data-ng-bind="pullInterNationalization('pricing.request.addon.heading1')"></div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                            </div>
+                        </div>
+                        <div class="contentArea">
+                            <div class="add-accounts-modal member-accs">
+                                <h2 data-ng-bind="pullInterNationalization('pricing.request.addon.desc1')"></h2>
+                                <p data-ng-bind="pullInterNationalization('pricing.request.addon.desc2')" class="acc-desc"></p>
+                                <form id="addAccountsFormModal" name="addAccountsForm" novalidate autocomplete="off" method="POST" action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8">
+
+                                	<input type=hidden name="orgid" value="00Dj0000001oNf3">
+                                    <input type="hidden" id="retURL" name="retURL" value="{{currentPageUrl}}">
+                                    
+                                    <input type="hidden" id="name" maxlength="80" name="name" size="20" type="text" value="{{companyDetail.name}}" />
+									<input type="hidden" id="email" maxlength="80" name="email" size="20" type="text" value="{{storedEmail}}" />
+									<input type="hidden" id="phone" maxlength="40" name="phone" size="20" type="text" value="{{companyDetail.phoneNumber}}" />
+									                                    
+                                    <input type="hidden" id="subject" name="subject" value="Intelligent Hiring Addon">
+                                    <input type="hidden" id="description" name="description" value="This Request is for the Intelligent Hiring Addon.">
+                                    
+									<select type="hidden" id="00Nj000000AEzMJ" name="00Nj000000AEzMJ" title="Message Type" class="hide-this">
+										<option value="">--None--</option>
+										<option selected="selected" value="Request for Member/Admin Licenses">Request for Member/Admin Licenses</option>
+									</select>                                    
+
+                                    <ol class="form-list-c">
+                                        <li class="submit-cancel-btns">
+                                            <ul class="submit-cancel-list">
+                                                <li class="submit-charge">
+                                                    <input type="submit" value="{{::pullInterNationalization('admin.group.ok')}}" class="subscribeBtn btn-block btn-15px" data-ng-click="addonSubmitted(true);"/>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ol>
+                                </form>
+                            </div>
+                        </div>
+                </section>
+                </div>
+            </div>
+        </div>
+    </div>

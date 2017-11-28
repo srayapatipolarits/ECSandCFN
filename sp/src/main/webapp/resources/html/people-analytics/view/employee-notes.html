@@ -1,0 +1,90 @@
+<link type="text/css" rel="stylesheet" href="/resources/css/css-min/training-library.min.css?fetch=true" />
+<div class="col-content-wrapper mh700">
+    <div class="members-content-wrapper">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('spectrum.notes')"></h2>
+        </div>
+    </div>
+	<div class="comments-wrapper">
+		<div class="comment-box" data-ng-if="!archivedUser">
+			<div class="user-pic">
+				<img data-ng-src="{{loggedInUser.member.smallProfileImage}}"
+					alt="{{loggedInUser.member.userInitials}}"
+					data-ng-if="loggedInUser.member.smallProfileImage">
+				<div class="imgReplacementMedium"
+					data-ng-if="!loggedInUser.member.smallProfileImage"
+					data-ng-bind="loggedInUser.member.userInitials"></div>
+			</div>
+			<div class="box">
+				<p class="details">
+					<span class="user-name sp-link-color">{{loggedInUser.member.firstName}}
+						{{loggedInUser.member.lastName}}</span> <span class="current-date">{{todayDate}}</span>
+				</p>
+				<form novalidate>
+					<p class="text-box">
+						<label for="newComment"
+							data-ng-bind="::pullInterNationalization('kcContent.comment')"></label>
+						<textarea class="decline-feedback" data-ng-attr-placeholder="{{::pullInterNationalization('notes.privateNotes.addNote.placeholder')}}" data-ng-model="noteObj.comment"></textarea>
+					</p>
+					<a href="javascript:void(0)" 
+						class="btn-square-12px sp-background-color post-btn"
+						data-ng-click="saveNote()"
+						data-ng-bind="::pullInterNationalization('kcContent.post')"></a>
+						 <span class="validate-error notes-error" data-ng-if="(noteObj.comment === null || noteObj.comment === '') && noteSubmitted" data-ng-bind="::pullInterNationalization('practiceArea.required.error')"></span>
+				</form>
+			</div>
+		</div>
+		<div class="comment-content-wrapper"
+			data-ng-if="profileDetail.comments.length">
+			<div class="comment-box" data-ng-repeat="c in profileDetail.comments">
+				<div class="user-pic">
+					<img data-ng-src="{{c.by.smallProfileImage}}"
+						alt="{{c.by.userInitials}}" data-ng-if="c.by.smallProfileImage">
+					<div class="imgReplacementMedium"
+						data-ng-if="!c.by.smallProfileImage"
+						data-ng-bind="c.by.userInitials"></div>
+				</div>
+				<div class="box">
+					<p class="details">
+						<span class="user-name sp-link-color">{{c.by.firstName}}
+							{{c.by.lastName}}</span> <span class="current-date">{{c.createdOn | spLocaleDate}}</span>
+					</p>
+					<form novalidate name="commentBoxForm" id="commentEdit_{{$index}}" class="commentBoxForm">
+						<p class="text-box">
+							<label for="commentBox_{{$index}}"
+								data-ng-bind="::pullInterNationalization('kcContent.comment')"></label>
+							<textarea data-ng-model="editedComment.comment" required></textarea>
+							<a href="javascript:void(0)" class="comment-btns fLeft"
+								data-ng-click="defaultModeNotes($index)"
+								data-ng-bind="::pullInterNationalization('kcContent.cancel')"></a>
+							<a href="javascript:void(0)"
+								class="pill orange fRight comment-btn buttoncss"
+								data-ng-click="updateNote($index)"
+								data-ng-bind="::pullInterNationalization('kcContent.update')"></a>
+							<span class="validate-error notes-error-listing" data-ng-if="(editedComment.comment === undefined || editedComment.comment === null || editedComment.comment === '') && noteUpdated" data-ng-bind="::pullInterNationalization('practiceArea.required.error')"></span>
+						</p>
+					</form>
+					<div id="commentView_{{$index}}" class="commentBoxView">
+					<p class="matchList-desc user-comment">
+		                            <input type="checkbox" class="read-more-state" id="matchListDesc_{{$index}}" />
+		                            <span class="read-more-wrap-horizontal read-more-wrap-tag" data-ng-init="btn=true;">
+										<span class="text" data-ng-bind-html="(btn?c.comment.substr(0, 125):c.comment) | htmlLinky" data-ng-class="{'moreellipses':c.comment.length>125&&btn,'inline-block':!ctrl.whiteSpace(c.comment)}"></span>
+		                            </span>
+		                            <label style="position:static;" for="matchListDesc_{{$index}}" data-readMore="{{::pullInterNationalization('spectrum.more')}}" data-readLess="{{::pullInterNationalization('label.readless')}}" data-ng-click="btn=!btn" class="read-more-trigger-horizontal sp-link-color" data-ng-class="{'sp-label-option':!(c.comment.length>125)}"></label>
+		                        </p>
+					<p class="comment-btns" data-ng-if="!archivedUser">
+						<a href="javascript:void(0)" data-ng-if="c.by.id === loggedInUser.member.id" 
+							data-ng-click="editModeNotes(c.comment, c.cid, $index)"
+							data-ng-bind="::pullInterNationalization('kcContent.edit')"></a>
+						<a href="javascript:void(0)" data-ng-if="c.by.id === loggedInUser.member.id"  
+							data-ng-click="deleteNotePop(c.cid)"
+							data-ng-bind="::pullInterNationalization('kcContent.del')"></a>
+					</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<p data-ng-if="!profileDetail.comments.length && archivedUser" data-ng-bind="::pullInterNationalization('admin.emails.noRecord')"></p>
+	</div>
+</div>

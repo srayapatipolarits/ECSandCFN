@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="assessment" extends="pageAssessment">
+		<put-attribute name="content"
+			value="/WEB-INF/views/assessment/assessment.jsp" />
+		<put-attribute name="styles" value="resources/css/css-min/assessment-new.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js-min/loginFormController.min.js" />
+			<add-attribute value="resources/js-min/assessment.min.js" />
+		</put-list-attribute>
+	</definition>
+
+	<definition name="confirmDetails360" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/WEB-INF/views/confirmProfile/confirmProfile.jsp" />
+		<put-attribute name="styles" value="resources/css/css-min/page-assessment.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/loginFormController.min.js" />
+	    	<add-attribute value="resources/js-min/externalFeedbackController.min.js" />
+	    </put-list-attribute>
+	</definition>
+
+	<definition name="360Assessment" extends="pageAssessment">
+		<put-attribute name="content"
+			value="/WEB-INF/views/assessment/assessment.jsp" />
+		<put-attribute name="styles" value="resources/css/css-min/assessment-new.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js-min/loginFormController.min.js" />
+			<add-attribute value="resources/js-min/assessment.min.js" />
+		</put-list-attribute>
+	</definition>
+
+	<definition name="assessmentCompleted" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/resources/html/assessment/assessment-completed-video.html" />
+		<put-attribute name="styles" value="resources/css/css-min/page-assessment.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js-min/loginFormController.min.js" />
+			<add-attribute value="resources/js-min/assessmentCompleted.min.js" />
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="assessmentCompletedPA" extends="pageNotLoggedIn">
+		<put-attribute name="content"
+			value="/resources/html/assessment/assessment-completed-video-pa.html" />
+		<put-attribute name="styles" value="resources/css/css-min/page-assessment.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js-min/loginFormController.min.js" />
+			<add-attribute value="resources/js-min/assessmentCompleted.min.js" />
+		</put-list-attribute>
+	</definition>
+
+</tiles-definitions>

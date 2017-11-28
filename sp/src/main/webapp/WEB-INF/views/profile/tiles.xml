@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="profile" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/profile/index.html" />
+		<put-attribute name="adminHeader" value="/WEB-INF/layouts/standard/profileNavigationLinks.jsp" cascade="true" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-profile.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/profileMainControllerCharts.min.js" cascade="true" />		
+	</definition>
+
+	<definition name="publicProfile" extends="pageNotLoggedIn">
+		<put-attribute name="content" value="/resources/html/profile/public-profile.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-profile.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/profileMainControllerCharts.min.js" cascade="true" />		
+	</definition>
+
+	<definition name="spCertificate" extends="pageNotLoggedIn">
+		<put-attribute name="content" value="/resources/html/profile/sp-certificate.html" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-profile.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/profileMainControllerCharts.min.js" cascade="true" />		
+	</definition>
+	
+</tiles-definitions>

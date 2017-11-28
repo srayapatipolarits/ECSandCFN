@@ -1,0 +1,205 @@
+<div class="pulse hide"  data-ng-controller="pulseController as pulseCtrl" data-ng-init="pulseCtrl.getPulseRequest()" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'">
+
+    <!-- Header Starts -->
+    <div class="x-container" data-ng-if="!ctrl.competencyAdminDefaultView">
+        <div class="container">
+            <div class="header-info-container">
+                <div class="header-info-content">
+                    <div class="header-icon-wrap">
+                        <p class="hinfo-wrap">
+                            <span class="hinfo-icons icon-logo-badge sp-icon-color"></span>
+                        </p>
+                    </div>
+                    <div class="header-content-wrap">
+                        <p class="hinfo-wrap">
+                            <span class="info-txt ml0 mb8 mt6" data-ng-bind-html="::pullInterNationalization('pulse.survey')"></span>
+                        </p>
+                        <p class="header-info-def" data-ng-bind="::pullInterNationalization('pulse.pageDesc')"></p>
+                        <div class="fs-btns-wrap" data-ng-if="pulseCtrl.showDefault && !pulseCtrl.inProgressObject.length">
+                            <a href="javascript:void(0)" data-ng-click="pulseCtrl.preChangeMode()" class="btn-block btn-14px sp-btn-color" data-ng-bind="::pullInterNationalization('pulse.startPulse')"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header Ends -->
+    
+    <div class="x-container">
+        <!-- Extended Container -->
+        <div class="container">
+            <!-- Bootstrap Container -->
+            	<!--  
+                <article class="pulse-survey-message pulse-section-margin">
+                    <div class="title-pulse">
+                        <h2 data-ng-bind="::pullInterNationalization('pulse.survey')"></h2>
+                     
+                    </div>
+                    <div class="description" data-ng-bind="::pullInterNationalization('pulse.pageDesc')"></div>
+                    <div data-ng-if="pulseCtrl.showDefault && !pulseCtrl.inProgressObject.length" class="new-pulse">
+                        <div class="pull-left border-link sp-btn-wrapper sp-red btn-esmall">
+                            <div class="sp-btn">
+                                <input type="button" id="event_top_open-page_start-a-new-sp-pulse" value="{{::pullInterNationalization('pulse.startPulse')}}" class="btnStyle1" data-ng-click="pulseCtrl.preChangeMode()">
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                -->
+                <article class="pulse-survey-cancel-message pulse-section-margin" data-ng-if="pulseCtrl.showDefault && pulseCtrl.inProgressObject.length">
+                	   <span class="weight-500 font-14" data-ng-bind-html="pulseCtrl.inProgressObject[0]" data-ng-click="pulseCtrl.resetToInProgress()"></span>
+                       <span class="weight-500 font-14" data-ng-bind="::pullInterNationalization('pulse.inprogress')"></span>
+                       <a href="javascript:void(0)" class="border-link" id="event_top_open-popup-cancel-pulse" data-ng-click="pulseCtrl.cancelPop(pulseCtrl.inProgressObject[1])">
+                       	<span class="mock-link weight-500 font-14" data-ng-bind="::pullInterNationalization('pulse.cancel.pulse')" ></span>
+                       </a>
+                </article>
+                <section data-ng-if="pulseCtrl.showDefault" class="clearfix">
+                    <div class="col-md-12 pulse-feedback sp-panel-accent pulse-content pulse-padding">
+                        <h2 class="pulse-title-2 sp-header-title-color" data-ng-bind="::pullInterNationalization('pulse.pageTitle')"></h2>
+                        <div class="pulse-parameters">
+                            <form name="pulseForm" class="feedback-sort-filter filter-form clearfix">
+                                <ol class="form-list">
+                                    <li class="select-content brdr h38">
+                                        <span class="dd-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                                        <label for="pulse_category_questionsSet"></label>
+                                        <select name="pulse_category_questionsSet" id="pulse_category_questionsSet" data-ng-model="pulseCtrl.questionSetStackquestionSetStack" ng-change="pulseCtrl.questionSetChanged()" ng-options="value for value in pulseCtrl.executingPulseDropDown">
+                                        </select>
+                                    </li>
+                                    <li class="select-content brdr h38">
+                                        <span class="dd-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                                        <label for="pulse-date-range"></label>
+                                        <select name="pulse-date-range" id="pulse-date-range" data-ng-model="pulseCtrl.selectedDate" ng-change="pulseCtrl.dateChanged(this)" ng-options="value.id as value.endDateFormatted for (key,value) in pulseCtrl.dateList">
+                                        </select>
+                                    </li>
+                                    <li class="select-content brdr h38">
+                                        <span class="dd-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                                        <label for="pulse-group"></label>
+                                        <select name="pulse-group" id="pulse-group" ng-model="pulseCtrl.groupCollector" ng-change="pulseCtrl.groupChanged(this)" ng-options="pulseCtrl.groupName.indexOf(selectedGroupIndex) as selectedGroupIndex for selectedGroupIndex in pulseCtrl.groupName">
+                                        </select>
+                                    </li>
+                                </ol>
+                            </form>
+                            <div class="participant-dates">
+                                <h2 class="participant-info pulse-title-3">
+                <span class="static-1" data-ng-bind="::pullInterNationalization('pulse.totalParticipant')"></span> <span class="participant-count static-1-c" data-ng-bind="pulseCtrl.pulseRequestResponse[pulseCtrl.objectIndex][pulseCtrl.dateIndex].numberOfRespondents"></span> <span class="static-1-c" data-ng-bind="::pullInterNationalization('pulse.of')"></span> <span class="total-count static-1-c" data-ng-bind="pulseCtrl.pulseRequestResponse[pulseCtrl.objectIndex][pulseCtrl.dateIndex].numberOfMembers"></span> <span class="static-1">(</span><span class="total-count static-1" data-ng-bind-html="(((pulseCtrl.pulseRequestResponse[pulseCtrl.objectIndex][pulseCtrl.dateIndex].numberOfRespondents/pulseCtrl.pulseRequestResponse[pulseCtrl.objectIndex][pulseCtrl.dateIndex].numberOfMembers)*100) |number :0)||0"></span><span class="total-count static-1" data-ng-bind="::pullInterNationalization('pulse.participation')"></span></h2>
+                                <p class="in-progress">
+                                    <span class="static-1-c" data-ng-if="pulseCtrl.pulseRequestResponse[pulseCtrl.objectIndex][pulseCtrl.dateIndex].inProgress" data-ng-bind="::pullInterNationalization('pulse.currentlyProgress')"></span> <span ng-class="!pulseCtrl.pulseRequestResponse[pulseCtrl.objectIndex][pulseCtrl.dateIndex].inProgress?'static-1-c':''"><span class="date-from" data-ng-bind-html="pulseCtrl.pulseRequestResponse[pulseCtrl.objectIndex][pulseCtrl.dateIndex].startDateFormatted"></span> <span class="static">-</span> <span class="date-to" data-ng-bind-html="pulseCtrl.pulseRequestResponse[pulseCtrl.objectIndex][pulseCtrl.dateIndex].endDateFormatted"></span></span>
+                                </p>
+                                <p class="sendReminder" data-ng-if="pulseCtrl.pulseRequestResponse[pulseCtrl.objectIndex][pulseCtrl.dateIndex].inProgress">
+                                    <a href="javascript:void(0)" id="event_top_open-popup-send-reminder_send-reminder" class="buttoncss" data-ng-bind="::pullInterNationalization('blueprint.sendreminder.title')" ng-click="pulseCtrl.sendReminderPop(pulseCtrl.pulseRequestResponse[pulseCtrl.objectIndex][pulseCtrl.dateIndex].id)"></a>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- //.pulse-parameters -->
+                        <div class="feedback-results">
+                            <div class="overall-scores">
+                                <h2 class="overall-feedback-title" data-ng-bind-html="::pullInterNationalization('pulse.overallscore')"></h2>
+                                <ul class="overall-score-list">
+                                    <li ng-class="{'active':$index==0}" data-ng-click="pulseCtrl.mapResponse(key,$index);" data-ng-repeat="key in pulseCtrl.questionList.categoryKeys track by $index">
+                                        <div class="content-placement">
+                                            <span class="score-total-percent" data-ng-bind-html="pulseCtrl.pulseRequestResponse[pulseCtrl.objectIndex][pulseCtrl.dateIndex].pulseScore[key].score | number:1"></span>
+                                            <span class="score-category" data-ng-bind-html="key"></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- //overall-scores -->
+                            <div class="result-metrics">
+                                <ul class="metric-keys-list">
+                                   	<!-- <li class="strongly-agree" data-ng-bind="::pullInterNationalization('pulse.stronglyAgree')"></li>
+                                   	<li class="agree" data-ng-bind="::pullInterNationalization('pulse.agree')"></li>
+                                    <li class="neutral" data-ng-bind="::pullInterNationalization('pulse.neutral')"></li>
+                                    <li class="disagree" data-ng-bind="::pullInterNationalization('pulse.disagree')"></li>
+                                    <li class="strongly-disagree" data-ng-bind="::pullInterNationalization('pulse.stronglyDisagree')"></li>-->
+                                    <li class="header-name_{{$index}}" data-ng-repeat="optionList in pulseCtrl.mapQuestionObject[0].optionsList track by optionList.text" data-ng-bind-html="optionList.text"></li>
+                                </ul>
+                                <div class="question-result-metrics">
+                                    <ul class="result-score-list">
+                                        <li ng-repeat="list in pulseCtrl.mapResponseObject.summationList track by $index" ng-class="{'empty-fields':pulseCtrl.mapResponseObject.score==0}">
+                                            <h3 class="response-topic-title" data-ng-bind-html="pulseCtrl.mapQuestionObject[$index].description"></h3>
+                                            <ul class="result-ratings-list">
+                                                <li ng-if="pulseCtrl.mapResponseObject.score!=0" ng-style="{ 'width': area.percentResponded + '%' }" ng-repeat="area in list track by $index" class="optionList_{{$index}}"><span class="percent">{{area.percentResponded | number:0}}%</span></li>
+                                                <li ng-style="{ 'width': '100%' }" ng-if="pulseCtrl.mapResponseObject.score==0" class="strongly-disagree"><span class="percent">0%</span></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- //.result-metrics -->
+                      </div>
+                      </div>
+                </section>
+                <section ng-if="!pulseCtrl.showDefault" class="clearfix">
+                    <header class="col-md-12 pulse-header pulse-section-margin sp-panel-accent pulse-content">
+                        <h2 class="pulse-title-2 sp-header-title-color" data-ng-bind-html="::pullInterNationalization('pulse.defaultTitle')"></h2>
+                        <p data-ng-bind-html="::pullInterNationalization('pulse.defaultdesc')"></p>
+                        <form name="startpulse" class="startPulsePreRequisite">
+                            <div class="growthAssessment clearfix noborde">
+                                <ol class="form-list alignLeft">
+                                    <div class="start-pulse-label" data-ng-bind="::pullInterNationalization('pulse.select.question.set')"></div>
+                                    <li class="select-content brdr">
+                                        <span class="dd-theme-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                                        <select name="pulse_category_questionsSet" ng-if="pulseCtrl.questionSetStack.length" data-ng-model="pulseCtrl.questionSetStackquestionSetStack" data-ng-change="pulseCtrl.defaultQuestionSetSelected(pulseCtrl.questionSetStackquestionSetStack,'getindex');" id="pulse_category_questionsSet" data-ng-options="value as value.name for (key,value) in pulseCtrl.questionSetStack">
+                                        </select>
+                                    </li>
+                                </ol>
+                                <div class="form-list date-width alignLeft calendarStyle">
+                                    <div class="start-pulse-label" data-ng-bind="::pullInterNationalization('pulse.select.question.dateLabel')"></div>
+                                    <div class="posRelative">
+                                       <input type="text" id="endDateId" name="endDate" class="form-control endInput cursorPointer pulse-date-picker" readonly data-ng-model="pulseCtrl.endDate" required>
+                                       <label for="endDateId" class="calImg icon-icon_calendar sp-icon-color"></label>
+                                    </div>
+                                    <div class="start-pulse-label-bottom" data-ng-bind="::pullInterNationalization('pulse.select.question.descLabel')"></div>
+                                    <div class="err-msg blockGroup" ng-show="pulseCtrl.inviteError && startpulse.endDate.$error.required"><span class="icon">!</span> {{::pullInterNationalization('required.error')}}</div>
+                                </div>
+                                <div class="sp-btn-wrapper sp-red btn-esmall alignLeft inviteBtn">
+                                    <div class="sp-btn">
+                                        <input type="button" id="event_page-new-pulse_add-data_start" value="{{::pullInterNationalization('pulse.startNewPulse.start')}}" class="btnStyle1" ng-click="pulseCtrl.startPulseFormSubmit(startpulse)">
+                                    </div>
+                                </div>
+                                <div class="sp-btn-wrapper sp-grey btn-esmall pull-left inviteBtn" ng-if="pulseCtrl.getPulseRequestResponse.length">
+                                    <div class="sp-btn">
+                                        <input type="button" id="event_page-new-pulse_add-data_start" value="{{::pullInterNationalization('pulse.startNewPulse.cancel')}}" class="btnStyle1" ng-click="pulseCtrl.resultMode()">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!--    <a class="new-pulse btn-block btn-18px" href="javascript:void(0)" ng-click="startNewPulsePop()" data-ng-bind="::pullInterNationalization('pulse.startPulse')"></a>-->
+                    </header>
+                    <div class="col-md-12 pulse-questions sp-panel-accent pulse-content">
+                        <div class="pulse-question-group">
+                            <div class="clearfix">
+                                <h3 class="dropDownSelected" data-ng-bind-html="pulseCtrl.questionSetStack[pulseCtrl.defaultDropIndex].name"></h3>
+                                <div class="iconRotation"><span class="arrow-icon" data-ng-class="pulseCtrl.defaultPulseName!=0?'icon-triangle-left sp-icon-color':'icon-triangle-left'" data-ng-click="pulseCtrl.defaultPulseName > 0 &&  pulseCtrl.decrement() && pulseCtrl.defaultPulse(pulseCtrl.defaultPulseName)"></span><span class="count weight-500" data-ng-bind-html="(pulseCtrl.defaultPulseName+1) +' '+ pullInterNationalization('pulse.of') +' ' + (pulseCtrl.pulseDrop.length)"></span><span class="arrow-icon" ng-class="pulseCtrl.defaultPulseName!=pulseCtrl.pulseDrop.length-1?'icon-triangle-right sp-icon-color':'icon-triangle-right'" data-ng-click="pulseCtrl.defaultPulseName < pulseCtrl.pulseDrop.length-1 && pulseCtrl.increment() && pulseCtrl.defaultPulse(pulseCtrl.defaultPulseName)"></span></div>
+                            </div>
+                             
+                            <ul class="pulse-question-list-checkbox">
+                                <li class="form-container">
+                                    <h3 class="heading-h3">
+				                        <span class="label-question-key" >
+				                          <span data-ng-bind-html="pulseCtrl.pulseDrop[pulseCtrl.defaultPulseName]" class="label"></span>
+				                        </span>
+                  					  </h3>
+                                </li>
+                                <li class="mb35" data-ng-repeat="mapObject in pulseCtrl.mapQuestionObject">
+                                    <h3><span data-ng-bind-html="mapObject.description" class="weight-100"></span></h3>
+                                    <ul>
+                                        <li data-ng-repeat="mapObjects in mapObject.optionsList" class="messageBlock">
+                                            <p class="pCheckBox top7">
+                                                <input type="checkbox" name="toggleAll" value="false" data-ng-disabled="true" id="disabled" class="iCheckBox">
+                                                <label for="disabled" class="lCheckBox disabled">
+                                                    <span class="checkedTick disabled top3 icon-icon_dev_strategy_check sp-icon-color"></span>
+                                                </label>
+                                                <span class="label-name-25 weight-300" data-ng-bind-html="mapObjects.text"></span>
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- //pulse-questions -->
+                </section>
+                <!-- //pulse-feedback -->
+                </div>
+            </div>
+        </div>

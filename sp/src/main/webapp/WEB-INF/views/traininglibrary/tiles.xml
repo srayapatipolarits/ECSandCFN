@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="trainingHome" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/WEB-INF/views/traininglibrary/home.jsp" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/curriculumNavigationLinks.jsp" cascade="true" />
+			<put-attribute name="styles" value="resources/css/css-min/training-library.min.css" cascade="true" />
+			<put-attribute name="javascripts" value="resources/js-min/knowledgeCenter.min.js" cascade="true" />
+	</definition>
+	
+	<definition name="search" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/WEB-INF/views/traininglibrary/search.jsp" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/curriculumNavigationLinks.jsp" cascade="true" />
+			<put-attribute name="styles" value="resources/css/css-min/training-library.min.css" cascade="true" />
+			<put-attribute name="javascripts" value="resources/js-min/knowledgeCenter.min.js" cascade="true" />
+	</definition>	
+	
+	<definition name="articleResults" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/WEB-INF/views/traininglibrary/results.jsp" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/curriculumNavigationLinks.jsp" cascade="true" />
+			<put-attribute name="styles" value="resources/css/css-min/training-library.min.css" cascade="true" />
+			<put-attribute name="javascripts" value="resources/js-min/knowledgeCenter.min.js" cascade="true" />
+	</definition>
+	
+	<definition name="trainingLibraryArticle" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/WEB-INF/views/traininglibrary/article-template.jsp" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/curriculumNavigationLinks.jsp" cascade="true" />
+			<put-attribute name="styles" value="resources/css/css-min/training-library.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js/ReadSpeaker2.5/ReadSpeaker.js?pids=embhl" />
+	    	<add-attribute value="resources/js-min/knowledgeCenter.min.js" />
+	    </put-list-attribute>
+	</definition>	
+	
+	<definition name="allBookmarks" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/WEB-INF/views/traininglibrary/bookmarks.jsp" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/curriculumNavigationLinks.jsp" cascade="true" />
+			<put-attribute name="styles" value="resources/css/css-min/training-library.min.css" cascade="true" />
+			<put-attribute name="javascripts" value="resources/js-min/knowledgeCenter.min.js" cascade="true" />
+	</definition>		
+	
+	<definition name="shareArticle" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/library/shareArticle.html" />
+	</definition>
+
+</tiles-definitions>

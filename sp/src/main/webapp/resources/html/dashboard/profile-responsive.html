@@ -1,0 +1,101 @@
+<div class="lnd-content-dialog dashboard-feed">
+    <div class="x-container eaeaea" style="height:{{ctrl.winHeight}}">
+            <div class="dialog-header-closeBtn">
+                <h2 class="dialog-heading" data-ng-bind="::pullInterNationalization('dashboard.prismPortrait')"></h2>
+                <div class="close-btn-icon icon-icon_remove grey-color" data-ng-click="ctrl.clearOverlayVar()"></div>
+            </div>
+           <aside class="prism_portrait" data-ng-if="ctrl.profilePageDetail && ctrl.dialog">
+                        <!-- Prism Portrait Graph Starts -->
+                        <article class="head-details">
+                        <div class="holder">
+                        <div class="image">
+                        	<span class="hinfo-icons icon-logo-badge sp-icon-color"></span>
+                        </div>
+                        <h4 class="header weight-500" data-ng-bind="::pullInterNationalization('dashboard.prismPortrait')"></h4>
+                        </div>
+                       
+                        <p class="description weight-300" data-ng-bind-html="::ctrl.profilePageDetail['profile.user.personality.subheading']"></p>
+                        </article>
+                        <div class="personality-graph-wrapper">
+                            <div class="outer-labels">
+                                <p class="left" prism-label-desc data-lno="1" data-label="prismPersonality.powerful" data-ng-bind-html="::pullInterNationalization('prismPersonality.powerful')"></p>
+                                <p class="right" prism-label-desc data-lno="2" data-label="prismPersonality.versatile" data-ng-bind-html="::pullInterNationalization('prismPersonality.versatile')"></p>
+                            </div>
+                            <div class="graph-outer">
+                                <div class="graph" personality-info-graph id="personalityChartDashboard1" personality-score="ctrl.profilePageDetail.Analysis"></div>
+                                <div class="graph-labels">
+                                    <div class="label-descriptions sp-background-color slide-right" data-ng-if="ctrl.prismLabelContent">
+                                        <div class="label-desc-wrapper">
+                                            <p class="label-desc-title" data-ng-if="ctrl.label === 1" data-ng-bind-html="::pullInterNationalization('prismPersonality.powerful')"></p>
+                                            <p class="label-desc-text" data-ng-if="ctrl.label === 1" data-ng-bind-html="::pullInterNationalization('prismPersonality.powerfulDesc')"></p>
+                                            <p class="label-desc-title" data-ng-if="ctrl.label === 2" data-ng-bind-html="::pullInterNationalization('prismPersonality.versatile')"></p>
+                                            <p class="label-desc-text" data-ng-if="ctrl.label === 2" data-ng-bind-html="::pullInterNationalization('prismPersonality.versatileDesc')"></p>
+                                            <p class="label-desc-title" data-ng-if="ctrl.label === 3" data-ng-bind-html="::pullInterNationalization('prismPersonality.precise')"></p>
+                                            <p class="label-desc-text" data-ng-if="ctrl.label === 3" data-ng-bind-html="::pullInterNationalization('prismPersonality.preciseDesc')"></p>
+                                            <p class="label-desc-title" data-ng-if="ctrl.label === 4" data-ng-bind-html="::pullInterNationalization('prismPersonality.adaptable')"></p>
+                                            <p class="label-desc-text" data-ng-if="ctrl.label === 4" data-ng-bind-html="::pullInterNationalization('prismPersonality.adaptableDesc')"></p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="top">
+                                            <span data-ng-bind-html="::pullInterNationalization('prismPersonality.bigpic')"></span>
+                                        </p>
+                                        <div>
+                                            <p class="left">
+                                                <span data-ng-bind-html="::pullInterNationalization('prismPersonality.mission')"></span>
+                                            </p>
+                                            <p class="right">
+                                                <span data-ng-bind-html="::pullInterNationalization('prismPersonality.relationo')"></span>
+                                            </p>
+                                        </div>
+                                        <p class="bottom">
+                                            <span data-ng-bind-html="::pullInterNationalization('prismPersonality.detailo')"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="outer-labels">
+                                <p class="left" prism-label-desc data-lno="3" data-label="prismPersonality.precise" data-ng-bind-html="::pullInterNationalization('prismPersonality.precise')"></p>
+                                <p class="right" prism-label-desc data-lno="4" data-label="prismPersonality.adaptable" data-ng-bind-html="::pullInterNationalization('prismPersonality.adaptable')"></p>
+                            </div>
+                            <!--
+                            <div class="graph-legends">
+                                <p data-ng-bind-html="::pullInterNationalization('prismPersonality.legend1')"></p>
+                                <p data-ng-bind-html="::pullInterNationalization('prismPersonality.legend2')"></p>
+                            </div>
+                            -->
+                        </div>
+                        <!-- Prism Portrait Graph Ends -->
+                        <div class="prismPortraitBtns">
+                            <ul>
+                                <li class="primaryTab" data-ng-class="(ctrl.activeProfileSummary === 1)?'off':''" data-ng-click="ctrl.typeSelect(0,'#personalityChartDashboard1')">
+                                    <a href="javascript:void(0)" data-ng-bind-html="::ctrl.profilePageDetail['profile.personality.primary.heading']"></a>
+                                </li>
+                                <li class="secondaryTab" data-ng-class="(ctrl.activeProfileSummary === 0)?'off':''" data-ng-click="ctrl.typeSelect(1,'#personalityChartDashboard1')">
+                                    <a href="javascript:void(0)" data-ng-bind-html="::ctrl.profilePageDetail['profile.personality.underPressure.heading']"></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="prism_content" data-ng-if="ctrl.activeProfileContent === 0">
+                            <h3 data-ng-bind-html="::ctrl.profilePageDetail['profile.analysis.mapped.Primary.personalityType']"></h3>
+                             <p class="description" data-ng-bind-html="::ctrl.profilePageDetail['profile.spectrum.primary.description']"></p>
+                             <p class="personality-video">
+                                  <a href="javascript:void(0)" id="event_profile_overview-ctrl.personalityVideo2" ng-click="ctrl.videoPopUp(ctrl.profilePageDetail['profile.video.primary'],'Video', false)" class="border-link">
+                                      <span class="icon-icon_video sp-icon-color"></span>
+                                      <span class="mock-link" data-ng-bind="::pullInterNationalization('dashboard.overviewPersonity')"></span>
+                                  </a>
+                              </p>
+                        </div>
+                        <div class="prism_content" data-ng-if="ctrl.activeProfileContent === 1">
+                            <h3 data-ng-bind-html="::ctrl.profilePageDetail['profile.analysis.mapped.UnderPressure.personalityType']"></h3>
+                             <p class="description" data-ng-bind-html="::ctrl.profilePageDetail['profile.spectrum.underPressure.description']"></p>
+                             <p class="personality-video">
+                                  <a href="javascript:void(0)" id="event_profile_overview-ctrl.personalityVideo2" ng-click="ctrl.videoPopUp(ctrl.profilePageDetail['profile.video.underPressure'],'Video', false)" class="border-link">
+                                      <span class="icon-icon_video sp-icon-color"></span>
+                                      <span class="mock-link" data-ng-bind="::pullInterNationalization('dashboard.overviewPersonity')"></span>
+                                  </a>
+                              </p>
+                        </div>
+                    </aside>
+    </div>
+</div>

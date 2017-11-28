@@ -1,0 +1,89 @@
+<div class="share-update">
+  <!--<h4 class="share-update-box-name" data-ng-bind="::notesCtrl.rootScope('dashboard.shareUpdateBoxName')"></h4>-->
+  <div class="share-update-theme sp-secondary-bg-color" data-ng-if="!notesCtrl.miniPollsView">
+	  <form name="notesCtrl.postMessageForm" data-ng-init="processing=false">
+	  		<article class="closed-textarea normal_{{notesCtrl.moreOptions}}">
+	  			<textarea name="comment" og-directive reference="notesCtrl.postMessageObject.comment.contentReference" clear-url="notesCtrl.postMessageObject.comment.comment" og-processing="processing" height="{{notesCtrl.moreOptions?78:109}}" id="shareUpdateText" data-ng-model="notesCtrl.postMessageObject.comment.comment" data-ng-attr-placeholder="{{::notesCtrl.rootScope('dashboard.whatonmind')}}" data-ng-required="!notesCtrl.postMessageObject.comment.contentReference.title" file-stack-modal fs-pos=".attach-files" override-style="file-stack-dashboard-pos sp-secondary-color"></textarea>
+				<div class="contentReference clearfix noR" data-ng-if="notesCtrl.postMessageObject.comment.contentReference.title">
+					<div data-ng-include="'/sp/resources/html/dashboard/ogContentShare.html'" class="preview" data-ng-init="comment = notesCtrl.postMessageObject.comment.contentReference"></div>
+					<a class="icon-icon_remove close-view" href="javascript:void(0)" data-ng-click="notesCtrl.removeReference(notesCtrl.postMessageObject.comment.contentReference)"></a>
+				</div>
+				<span class="validate-error validate-error-proto" data-ng-if="notesCtrl.postMessageForm.submitted && notesCtrl.postMessageForm.comment.$error.required" data-ng-bind="::notesCtrl.rootScope('signup.required.error')"></span>
+				<div class="tag-member animation_1" data-ng-if="notesCtrl.tagMembers">
+					<div class="text" data-ng-bind="::notesCtrl.rootScope('dashboard.tagMember')"></div>
+					<div class="tagsEmailInput">
+						 <tags-input add-from-autocomplete-only="true" data-ng-model="notesCtrl.tagsAdded" display-property="name" replace-spaces-with-dashes="false" display-name="email" placeholder="{{notesCtrl.mobile?notesCtrl.rootScope('dashboard.tagmembername'):notesCtrl.rootScope('dashboard.addTagmember')}}" on-tag-removed="notesCtrl.tagRemoved($tag)" on-tag-added="notesCtrl.tagAdded($tag)">
+			                 <auto-complete min-length="1" highlight-matched-text="true" load-on-focus="false" debounce-delay="100" load-on-empty="false" source="notesCtrl.loadEmail($query)" class="ng-tags-pos-fix"></auto-complete>
+			             </tags-input>
+					</div>
+				</div>
+			</article>
+			<div class="send-notification pCheckBox" data-ng-if="notesCtrl.moreOptions">
+		        <input type="checkbox" name="sendNotificationEmail" aria-label="{{::notesCtrl.rootScope('dashboard.sendEmailNotification')}}" data-ng-model="notesCtrl.postMessageObject.sendEmail" id="sendNotificationEmail" class="iCheckBox">
+		        <label for="sendNotificationEmail" class="lCheckBox">
+		            <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+		        </label>
+		        <span class="lCheckBoxText white-color" data-ng-bind="::notesCtrl.rootScope('dashboard.sendEmailNotification')"></span>
+	    	</div>
+			<div class="col-container action-container share-with-post">
+	            <ul class="share-action-icons">
+	                <li class="attach-files"></li>    
+	                <li class="width-files tag-members">
+	                    <!--<a href="javascript:void(0)" class="icon-icon_accounts_all-members sp-icon-color" data-ng-click="notesCtrl.tagMembers=!notesCtrl.tagMembers;notesCtrl.tagsAdded = [];"></a>-->
+	                    <span class="icon-icon_accounts_all-members icon-tab-member sp-secondary-color" data-ng-click="notesCtrl.tagMembers=!notesCtrl.tagMembers;notesCtrl.tagsAdded = [];"></span>
+	                </li>                            
+	                <li class="width-files create-poll" data-ng-click="notesCtrl.pollsView('openPollsView')">
+	                    <span class="icon-icon_poll icon-mini-poll sp-secondary-color" title="::notesCtrl.rootScope('createPollsCont.pollTip1')"> </span>
+	                </li>
+	            </ul>
+	                <div class="post floatRight desktop-visible-post">
+					<input type="button" value="POST" class="dashPost-btn btn-square-30px sp-background-color" data-ng-click="!processing && notesCtrl.postMessage(notesCtrl.postMessageObject)">
+				 </div>            		
+				 <div class="actions-filter w150ipad fr h32" data-ng-init="notesCtrl.actionSelected=notesCtrl.rootScope('dashboard.sharewithall')" data-ng-if="notesCtrl.moreOptions">
+	                 <p class="actions-dropdown-filter leftFilter h32">
+	                     <a href="javascript:void(0)" sp-condition="true" sp-click-outside="show">
+	                     	 <span data-ng-bind="notesCtrl.actionSelected" class="actionSelection util-ellipsiss"></span>
+	                         <span class="actions-icon icon-icon_dropdown-arrow sp-icon-color h32"></span>
+	                     </a>
+	                 </p>
+	                 <div class="actions-callout-wrappper pos4" data-ng-if="show">
+	                      <ul class="action-links dashboard-menu-links">
+		                      <li class="p10">
+		                      	<span class="action-text-desc" data-ng-bind="::notesCtrl.rootScope('dashboard.ddDesc')"></span>
+		                      </li>
+	                          <li data-ng-if="notesCtrl.moreOptions">
+	                              <a href="javascript:void(0)" data-ng-click="notesCtrl.shareSelection('All',notesCtrl.rootScope('dashboard.sharewithall'))">
+	                                  <span class="action-text-head" data-ng-bind="::notesCtrl.rootScope('dashboard.sharewithall')"></span>
+	                                  <span class="action-text-desc" data-ng-bind="::notesCtrl.rootScope('dashboard.sharewithallDesc')"></span>
+	                              </a>
+	                          </li>
+	                          <li data-ng-if="notesCtrl.moreOptions">
+	                              <a href="javascript:void(0)" data-ng-click="notesCtrl.shareSelection('Group',notesCtrl.rootScope('dashboard.sharewithgroup'))">
+									  <span class="action-text-head" data-ng-bind="::notesCtrl.rootScope('dashboard.sharewithgroup')"></span>                              
+	                                  <span class="action-text-desc" data-ng-bind="::notesCtrl.rootScope('dashboard.sharewithgroupDesc')"></span>
+	                              </a>
+	                          </li>
+	                          <li data-ng-if="notesCtrl.permission.iamaccountadmin">
+	                              <a href="javascript:void(0)" data-ng-click="notesCtrl.shareSelection('Announcement',notesCtrl.rootScope('dashboard.announcement'))">
+	                              	  <span class="action-text-head" data-ng-bind="::notesCtrl.rootScope('dashboard.announcement')"></span>
+	                                  <span class="action-text-desc" data-ng-bind="::notesCtrl.rootScope('dashboard.announcementDesc')"></span>
+	                              </a>
+	                          </li>                             
+	                          <li data-ng-if="notesCtrl.permission.iamaccountadmin">
+	                              <a href="javascript:void(0)" data-ng-click="notesCtrl.shareSelection('Customize',notesCtrl.rootScope('dashboard.customize'))">
+	                              	  <span class="action-text-head" data-ng-bind="::notesCtrl.rootScope('dashboard.customize')"></span>
+	                                  <span class="action-text-desc" data-ng-bind="::notesCtrl.rootScope('dashboard.customizeDesc')"></span>
+	                              </a>
+	                          </li>   
+	                      </ul>
+	                  </div>
+	             </div>
+	             <div class="post ipad-visible-post">
+					<input type="button" value="POST" class="dashPost-btn btn-square-30px sp-background-color" data-ng-click="!processing && notesCtrl.postMessage(notesCtrl.postMessageObject)">
+				 </div> 
+			</div>
+		</form>
+	</div>
+		<mini-polls url-src="mini-polls/create.html" data-ng-if="notesCtrl.miniPollsView" parent-directive="shareNote" unique-id="shareNote1"></mini-polls>
+</div>
+

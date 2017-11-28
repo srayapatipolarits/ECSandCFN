@@ -1,0 +1,60 @@
+<section class="keyMatch">
+	<article class="match-holder">
+	    <div class="form-elements">
+	        <div class="clearfix tick-selection display-inline-block margin-right-inline disabled_checkbox_{{!portraitMatch.categoryDataMap.ConflictManagement.Primary.matchCriterias.length}}">
+	            <input type="checkbox" class="filterCheckBox groupCheckBox" id="ConflictManagement" data-ng-disabled="!portraitMatch.categoryDataMap.ConflictManagement.Primary.matchCriterias.length" data-ng-true-value="true" data-ng-false-value="false" data-ng-model="portraitMatch.categoryDataMap.ConflictManagement.Primary.enabled" data-ng-change="includeCheckConditional(portraitMatch.categoryDataMap.ConflictManagement.Primary,portraitMatch.categoryDataMap.ConflictManagement.Secondary,filterSelected.ConflictManagement);">
+	            <label for="ConflictManagement" class="filterCheckBox-label">
+	           	    <span class="checkedTick pull-left bpPopFix icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+	                <span class="font_14_300 pull-left label-text-style" data-ng-bind="::pullInterNationalization('spectrum.trait.ConflictManagement')"></span>
+	            </label>
+	        </div>
+	    </div>
+	    <div class="selected-item">
+		    <ol class="sortable-pa-list new-style" data-ng-if="portraitMatch.categoryDataMap.ConflictManagement.Primary.matchCriterias.length">
+	            <li class="single">
+	                <div class="new-pawrap">
+	                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.'+portraitMatch.categoryDataMap.ConflictManagement.Primary.matchCriterias[0].key)"></span>
+	              	    <span class="icon-close icon-icon_remove sp-icon-color" data-ng-click="removeConflict(portraitMatch.categoryDataMap.ConflictManagement,ConflictManagement,'Primary');"></span>
+	                </div>
+	            </li>
+	        </ol>
+	        <ol class="sortable-pa-list new-style" data-ng-if="!portraitMatch.categoryDataMap.ConflictManagement.Primary.matchCriterias.length">
+	            <li class="normal">
+	                <div class="new-pawrap empties">
+	                    <span class="empty-msg" data-ng-bind="::pullInterNationalization('idealPortrait.portrait.chooseStyle')"></span>
+	                </div>
+	            </li>
+	        </ol> 
+	        <ol class="sortable-pa-list new-style notop" data-ng-if="portraitMatch.categoryDataMap.ConflictManagement.Secondary.matchCriterias.length">
+	            <li class="single">
+	                <div class="new-pawrap">
+	                    <span data-ng-bind="pullInterNationalization('spectrum.trait.type.'+portraitMatch.categoryDataMap.ConflictManagement.Secondary.matchCriterias[0].key)"></span>
+	              	    <span class="icon-close icon-icon_remove sp-icon-color" data-ng-click="removeConflict(portraitMatch.categoryDataMap.ConflictManagement,ConflictManagement,'Secondary');"></span>
+	                </div>
+	            </li>
+	        </ol>
+	        <ol class="sortable-pa-list new-style notop" data-ng-if="!portraitMatch.categoryDataMap.ConflictManagement.Secondary.matchCriterias.length">
+	            <li class="normal">
+	                <div class="new-pawrap" data-ng-class="!portraitMatch.categoryDataMap.ConflictManagement.Primary.matchCriterias.length?'':'empties'">
+	                    <span class="empty-msg" data-ng-bind="::pullInterNationalization('idealPortrait.portrait.chooseStyle')"></span>
+	                </div>
+	            </li>
+	        </ol> 
+	    </div>
+	    <div class="selection-list row clearfix">
+	    	<ul class="mpa-pills col-md-12">
+	    		<li class="inactive-{{!!portraitMatch.categoryDataMap.ConflictManagement.Secondary.matchCriterias.length}}" data-ng-repeat="traits in record = ConflictManagement.list track by $index">
+	    		    <span class="mpa-name sp-link-color" data-ng-bind="::pullInterNationalization('spectrum.trait.type.'+traits.name)"></span>
+	                <span class="mpa-icon icon-erti_plus sp-icon-color" data-ng-if="traits[active.ConflictManagement] && ConflictManagement.addedList.indexOf(traits.name)===-1 && !(!!portraitMatch.categoryDataMap.ConflictManagement.Secondary.matchCriterias.length)" data-ng-click="addConflict(portraitMatch.categoryDataMap.ConflictManagement,traits,active.ConflictManagement,ConflictManagement)"></span>
+	                <span class="mpa-icon icon-erti_plus inactive sp-icon-color" data-ng-if="!(!!portraitMatch.categoryDataMap.ConflictManagement.Secondary.matchCriterias.length) && (!traits[active.ConflictManagement] || ConflictManagement.addedList.indexOf(traits.name)!==-1)" ></span>
+	            </li>
+	        </ul>
+	    </div>
+	    
+	    <div class="trait-list-description">
+	    		<div class="trait-listing">
+	    			<p data-ng-bind="::pullInterNationalization('idealPortrait.portrait.conflict.primary')"></p>
+	    		</div>
+	    </div>
+    </article>
+ </section>

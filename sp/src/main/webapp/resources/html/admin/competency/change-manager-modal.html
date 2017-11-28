@@ -1,0 +1,75 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-7 col-sm-offset-1 col-sm-10">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                    <h2 data-ng-bind="::pullInterNationalization('competency.admin.changemanager')"></h2>
+                </div>
+                <div class="new-modals-wrapper">
+                    <!-- Top User Details Starts -->
+                    <div class="cp-user-info padAdj">
+                        <p class="ev-member-details">
+                            <span class="pop-competency-info">
+                            <span class="cp-nm" data-ng-bind="ctrl.competencyProfileMap[ctrl.userToProcess.competencyProfileId].name"></span>
+                            <span class="cp-dt" data-ng-bind="ctrl.competencyEvaluation.startDate"></span>
+                            </span>
+                            <span class="ev-mem-pic-holder">
+                                <span class="imgReplacement" data-ng-if="ctrl.userToProcess.smallProfileImage === null" data-ng-bind="ctrl.userToProcess.userInitials"></span>
+                            <span data-ng-if="ctrl.userToProcess.smallProfileImage !== null">
+                                    <img data-ng-src="{{ctrl.userToProcess.smallProfileImage}}">
+                                </span>
+                            </span>
+                            <span class="ev-mem-info removeLM f14">
+                                <span class="ev-name sp-link-color" data-ng-bind="ctrl.userToProcess.fullNameOrEmail"></span>
+                            <span class="ev-title" data-ng-bind="ctrl.userToProcess.title"></span>
+                            </span>
+                        </p>
+                    </div>
+                    <!-- Top User Details Ends -->
+                    <!-- Manager Details / Form Starts -->
+                    <div class="cp-edit-manager-wrapper">
+                        <div class="cmr-mem-details clearfix">
+                            <div class="cmm-details">
+                                <p class="uCase"><strong data-ng-bind="::pullInterNationalization('competency.admin.manager')+':'"></strong></p>
+                                <p class="f500 mTop" data-ng-bind="ctrl.currentManager.name"></p>
+                                <p class="f12" data-ng-bind="ctrl.currentManager.title"></p>
+                            </div>
+                        </div>
+                        <div class="edit-mgr-form">
+                            <form name="ctrl.initiateEvaluationForm" class="sendReminder">
+                                <p data-ng-bind="::pullInterNationalization('competency.admin.changemanagerto')"></p>
+                                <div class="tagsManagerInput">
+                                    <tags-input ng-model="tags" max-tags="1" placeholder="{{::pullInterNationalization('dashboard.enteremail')}}" display-name="email" display-property="name" key-property="email" allowed-tags-pattern="^[A-Za-z0-9._-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$" replace-spaces-with-dashes="false" on-tag-removed="ctrl.tagRemovedManager($tag)" on-tag-added="ctrl.tagAddedManager($tag)">
+                                        <auto-complete min-length="1" load-on-focus="false" load-on-empty="false" max-results-to-show="10" source="ctrl.loadTags($query)" class="ng-tags-pos-fix"></auto-complete>
+                                    </tags-input>
+                                </div>
+                                <span class="validate-error" data-ng-if="ctrl.inputRequired" data-ng-bind="pullInterNationalization('trainingLibrary.required.error')"></span>
+                                <span data-ng-if="ctrl.existingReviewer" class="validate-error" data-ng-bind="pullInterNationalization('competency.actions.error.repeatedManagerRequest')"></span>
+                                <span data-ng-if="ctrl.assignToSelf" class="validate-error" data-ng-bind="pullInterNationalization('competency.actions.error.selfReviewer')"></span>
+                                <div class="external-member clearfix animation_1" data-ng-if="ctrl.searchTagEmail.length && !(!!(ctrl.searchTagEmail[0].id))">
+                                    <div class="textarea">
+                                        <input id="firstName" type="text" focus-if class="style_1" data-ng-model="ctrl.managerFirstName" placeholder="{{pullInterNationalization('blueprint.firstName')}}" name="firstName" required></input>
+                                        <span class="validate-error" data-ng-if="ctrl.initiateEvaluation.submitted && ctrl.initiateEvaluationForm.firstName.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                                    </div>
+                                    <div class="textarea mLeft">
+                                        <input id="lastName" type="text" class="style_1" data-ng-model="ctrl.managerLastName" placeholder="{{pullInterNationalization('blueprint.lastName')}}" name="lastName" required></input>
+                                        <span class="validate-error" data-ng-if="ctrl.initiateEvaluation.submitted && ctrl.initiateEvaluationForm.lastName.$error.required" data-ng-bind="pullInterNationalization('signup.required.error')"></span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Manager Details / Form Ends -->
+                    <!-- Buttons Starts -->
+                    <hr />
+                    <div class="dialog-btns-wrapper">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.submit')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="ctrl.changeManager()" />
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.cancel')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="closeThisDialog();" />
+                    </div>
+                    <!-- Buttons Ends -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

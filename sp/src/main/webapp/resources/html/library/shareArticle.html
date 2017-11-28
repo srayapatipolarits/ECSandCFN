@@ -1,0 +1,68 @@
+<div class="container" id="declineGrowthScreen" data-ng-style="winWidth<768 && {'height':winHeight}">
+    <div class="row" data-ng-class="winWidth<768?'row-full-w':''">
+        <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10" data-ng-class="winWidth<768?'col-full-w':''">
+            <section class="wrapper">
+                <div class="contentBody">
+                    <div class="head">
+                        <div class="wrap">
+                            <div class="headerBar" data-ng-bind="pullInterNationalization('trainingLibrary.share.title')"></div>
+                            <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color" ng-click="closeThis()"></div>
+                        </div>
+                    </div>
+                    <div class="contentArea clearfix share-article-newsfeed">
+                        <form name="sendReminder" class="sendReminder">
+                            <div class="messageBlock paddingBottom0" data-ng-if="shareType === 'share'">
+                                <!--<div class='message sp-capitalize' data-ng-bind="::pullInterNationalization('competency.members.to')"></div>-->
+                                <div class="tagsEmailInput" style="padding-bottom:0px;">
+                                    <tags-input ng-model="tags" display-name="email" display-property="name" placeholder="{{::pullInterNationalization('dashboard.entermemname')}}" add-from-autocomplete-only="true" replace-spaces-with-dashes="false" on-tag-removed="tagRemoved($tag)" on-tag-added="tagAdded($tag)">
+                                        <auto-complete min-length="1" load-on-focus="true" load-on-empty="true" max-results-to-show="10" source="loadTags($query)" class="ng-tags-pos-fix"></auto-complete>
+                                    </tags-input>
+                                </div>
+                                <span class="err-msg" ng-show="inputRequired" data-ng-bind="pullInterNationalization('trainingLibrary.required.error')"></span>
+                            </div>
+                            <div class="messageBlock">
+                                <div class="textarea" style="padding-bottom:0px;">
+                                    <textarea id="commentBlock" class="style_1" ng-model='comment' rows="3" maxlength="300" data-ng-attr-placeholder="{{placeholderMessage}}" name="comment"></textarea>
+                                </div>
+                            </div>
+                            <div class="share-update reduce-margin-bottom" data-ng-if="shareType === 'newsfeed'">
+                                <div class="tag-member">
+                                    <div class="text" data-ng-bind="::pullInterNationalization('dashboard.tagMember')"></div>
+                                    <div class="tagsEmailInput">
+                                        <tags-input add-from-autocomplete-only="true" data-ng-model="notesCtrl.tagsAdded" display-property="name" display-name="email" placeholder="{{tagPlaceholder}}" on-tag-removed="tagRemovedFeed($tag)" on-tag-added="tagAddedFeed($tag)">
+                                            <auto-complete min-length="1" load-on-focus="true" debounce-delay="100" load-on-empty="true" source="loadTags($query)" class="ng-tags-pos-fix"></auto-complete>
+                                        </tags-input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="messageBlock shortDescription">
+                                <div class="shortDesciption">
+                                    <h2 class="synopsis-lede" data-ng-bind="articlePageDetails.articleLinkLabel"></h2>
+                                    <div class="article-publisher-info">
+                                        <span class="article-author" data-ng-bind="articlePageDetailsAuthors"></span> <span class="article-source" data-ng-bind="articlePageDetails.newsCredSource"></span> &ndash; <span class="article-date" data-ng-bind="articlePageDetails.articleSource"></span>
+                                    </div>
+                                    <div class='article_descprition' data-ng-bind-html="shortDescription"></div>
+                                </div>
+                            </div>
+                            <div class="sp-btn-wrapper sp-red btn-esmall floatLeft inviteBtn" data-ng-if="shareType === 'share'">
+                                <div class="sp-btn">
+                                    <input type="button" value="{{pullInterNationalization('trainingLibrary.share.send')}}" class="btnStyle1" ng-click="articleShared({'articleId':shareArticleId,'comment':comment,'email':searchTag})">
+                                </div>
+                            </div>
+                            <div class="sp-btn-wrapper sp-red btn-esmall floatLeft inviteBtn" data-ng-if="shareType === 'newsfeed'">
+                                <div class="sp-btn">
+                                    <input type="button" value="{{pullInterNationalization('trainingLibrary.share.send')}}" class="btnStyle1" ng-click="postToNewsFeed({'comment':comment})">
+                                </div>
+                            </div>
+                            <div class="sp-btn-wrapper sp-grey btn-esmall floatLeft">
+                                <div class="sp-btn">
+                                    <input type="button" value="{{pullInterNationalization('trainingLibrary.share.cancel')}}" class="btnStyle1" ng-click="closeThis()">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

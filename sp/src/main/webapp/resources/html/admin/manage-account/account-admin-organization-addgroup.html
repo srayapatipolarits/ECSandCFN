@@ -1,0 +1,57 @@
+<div class="contentArea nobrr clearfix">
+    <div class="messageBlock bb0">
+    	<div class="angucomplete-wrapper">
+    		<p class="custom-search-wrapper">
+    			<input type="text" placeholder="{{::pullInterNationalization('manageAccountContent.searchGroup')}}" data-ng-model="ctrl.groupListSearch" class="custom-search" />
+    			<button data-ng-class="{'icon-icon_remove':ctrl.groupListSearch.length, 'icon-icon_search': !ctrl.groupListSearch.length}" class="sp-icon-color noLabel" data-ng-click="ctrl.groupListSearch='';ctrl.pageSetting.overlayScroll=ctrl.originalpageSetting.overlayScroll"></button>
+    		</p>
+    	</div>
+    	<div class="totalRecord">
+	      	<span data-ng-if="ctrl.groupPermissionsList.length">
+	      		<span class="number" data-ng-bind="ctrl.groupPermissionsList.length"></span><span class="text" data-ng-bind="::pullInterNationalization('manageAccountContent.recordGroups')"></span> <span class="text" data-ng-bind="::pullInterNationalization('manageAccountContent.recordSelected')"></span>
+	      	</span>
+	  	</div>
+    </div>
+    
+    <div class="messageBlock" style="padding-top:0;margin-bottom:15px">
+        <div class="selected-group-List-wrapper">
+         <div infinite-scroll="ctrl.infinteScrollOverlay(ctrl.pageSetting.overlayScroll+ctrl.pageSetting.overlayScroll,ctrl.groupList)" infinite-scroll-distance="1" infinite-scroll-immediateCheck="false" infinite-scroll-parent="true" infinite-scroll-container="'.sp-overlay-scroll-event'">
+            <div class="group-row" data-ng-repeat="group in record = (ctrl.groupList | filter:ctrl.groupListSearch | limitTo: ctrl.pageSetting.overlayScroll)" data-ng-if="group.numOfMembers">
+            	<div class="group-col w80">
+           <div class="member-details-pic-wrapper">
+               <div class="mem-group-name">
+                   <div class="groupName" data-ng-bind="::group.name+' ( '+group.numOfMembers+' )'"></div>
+               </div>
+               <div class="mem-group-lead">
+                   <p class="pCheckBox top7" data-ng-init="val=false">
+				        <input type="checkbox" name="toggleAll" data-ng-model="val" id="{{group.id}}" class="iCheckBox">
+				        <label for="{{group.id}}" class="lCheckBox">
+				            <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+				        </label>
+				        <span class="label-name" data-ng-bind="::pullInterNationalization('manageAccountContent.includeGroupLead')"></span>
+    				</p>
+    	       </div>
+           </div>                                    	
+            	</div>
+            	<div class="group-col-custom">
+            		<p data-ng-if="ctrl.groupPermissionsList.indexOf(group.id) === -1">
+            			<a href="javascript:void(0)" class="btn-square-12px sp-background-color" data-ng-click="ctrl.assignActionPlan(null,[{groupId:group.id,excludeGroupLead:!val}])" data-ng-bind="::pullInterNationalization('manageAccountContent.select')"></a>
+            		</p>
+            		<p class="added-msg" data-ng-if="ctrl.groupPermissionsList.indexOf(group.id) !== -1" data-ng-bind="::pullInterNationalization('manageAccountContent.selected')"></p>                                    		
+            	</div>
+            </div>
+            </div>
+            <div class="custom-row-5 col-container" data-ng-if="!record.length">
+	                   <div class="custom-new-cols s100">
+	                      <p class="no-data-msgs" data-ng-bind="::pullInterNationalization('manageAccountContent.noGroupAvailable')"></p>
+	                  </div>
+	           </div>
+        </div>                            
+    </div>
+     <div class="btns-wrapper-popup">
+    	<input type="button" value="{{pullInterNationalization('manageAccountContent.add')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="ctrl.callAssignActionPlan(ctrl.assignActionPlanList)">
+    	 	<input type="button" value="{{::pullInterNationalization('manageAccountContent.cancel')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="closeThisDialog();">
+     
+    </div>
+</div>
+                     

@@ -1,0 +1,39 @@
+<link type="text/css" rel="stylesheet" href="/resources/css/css-min/training-library.min.css?fetch=true" />
+<div class="col-content-wrapper mh700">
+    <div class="members-content-wrapper">
+        <div class="members-header">
+            <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('spectrum.notes')"></h2>
+        </div>
+    </div>
+	<div class="comments-wrapper">
+		<div class="comment-content-wrapper"
+			data-ng-if="profileDetail.comments.length">
+			<div class="comment-box" data-ng-repeat="c in profileDetail.comments">
+				<div class="user-pic">
+					<img data-ng-src="{{c.by.smallProfileImage}}"
+						alt="{{c.by.userInitials}}" data-ng-if="c.by.smallProfileImage">
+					<div class="imgReplacementMedium lh60"
+						data-ng-if="!c.by.smallProfileImage"
+						data-ng-bind="c.by.userInitials"></div>
+				</div>
+				<div class="box">
+					<p class="details">
+						<span class="user-name sp-link-color">{{c.by.firstName}}
+							{{c.by.lastName}}</span> <span class="current-date">{{c.createdOn | spLocaleDate}}</span>
+					</p>
+					<div id="commentView_{{$index}}" class="commentBoxView">
+					<p class="matchList-desc user-comment">
+                          <input type="checkbox" class="read-more-state" id="matchListDesc_{{$index}}" />
+                          <span class="read-more-wrap-horizontal read-more-wrap-tag" data-ng-init="btn=true;">
+						<span class="text" data-ng-bind-html="(btn?c.comment.substr(0, 125):c.comment) | htmlLinky" data-ng-class="{'moreellipses':c.comment.length>125&&btn,'inline-block':!ctrl.whiteSpace(c.comment)}"></span>
+                          </span>
+                          <label style="position:static;" for="matchListDesc_{{$index}}" data-readMore="{{::pullInterNationalization('spectrum.more')}}" data-readLess="{{::pullInterNationalization('label.readless')}}" data-ng-click="btn=!btn" class="read-more-trigger-horizontal sp-link-color" data-ng-class="{'sp-label-option':!(c.comment.length>125)}"></label>
+                      </p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<p data-ng-if="!profileDetail.comments.length" data-ng-bind="::pullInterNationalization('admin.emails.noRecord')"></p>
+	</div>
+</div>

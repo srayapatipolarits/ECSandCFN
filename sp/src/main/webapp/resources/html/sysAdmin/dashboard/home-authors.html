@@ -1,0 +1,124 @@
+<div class="dash-activityFeed dash-authors" data-ng-controller="authorsListCtrl as ctrl" data-ng-init="ctrl.getAuthors()">
+    <form name="ctrl.newAuthorForm" novalidate autocomplete="off" data-ng-submit="ctrl.addAuthor()">
+        <ol class="form-list-c all-floats mx800">
+            <li class="pic icon-icon_camera sp-icon-color" data-ng-click="ctrl.uploadImg()">
+                <img data-ng-src="{{ctrl.authorImage}}" data-ng-if="ctrl.authorImage" />
+            </li>
+            <li class="txt">
+                <span class="label-text" data-ng-bind="::pullInterNationalization('admin.member.name')"></span>
+                <input type="text" name="name" data-ng-model="ctrl.author.name" data-ng-required="true" data-ng-pattern="/^[a-zA-Z0-9-,' ]+$/" />
+                <span class="validate-error" data-ng-bind="::pullInterNationalization('signup.required.error')" data-ng-if="ctrl.authorFormSubmit && ctrl.newAuthorForm.name.$error.required"></span>
+                <span class="validate-error" data-ng-bind="::pullInterNationalization('signup.invalid.email')" data-ng-if="ctrl.authorFormSubmit && ctrl.newAuthorForm.name.$error.pattern"></span>
+            </li>
+            <li class="txt">
+                <span class="label-text" data-ng-bind="::pullInterNationalization('signup.Title')"></span>
+                <input type="text" name="title" data-ng-model="ctrl.author.title" data-ng-required="true" />
+                <span class="validate-error" data-ng-bind="::pullInterNationalization('signup.required.error')" data-ng-if="ctrl.authorFormSubmit && ctrl.newAuthorForm.title.$error.required"></span>
+            </li>
+            <li class="fbtn">
+                <input type="submit" class="btn-square-12px sp-background-color" value="{{::pullInterNationalization('manageAccountContent.save')}}" />
+            </li>
+        </ol>
+    </form>
+    <hr class="list-sep" data-ng-if="ctrl.responseReceived && ctrl.authorsList.length" />
+    <div class="members-filters hide">
+        <div class="actions-filter fl">
+            <p class="pCheckBox top7">
+                <input type="checkbox" data-ng-disabled="!ctrl.authorsList.length" name="toggleAll" id="alltoggle" class="iCheckBox" data-ng-true-value="true" data-ng-false-value="false" data-ng-model="ctrl.negative" />
+                <label for="alltoggle" class="lCheckBox" data-ng-click="ctrl.checkAll()">
+                    <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                </label>
+            </p>
+            <p class="actions-dropdown-filter">
+                <a href="javascript:void(0)" data-ng-class="{'default-color':!ctrl.selectedAuthors.length}" sp-condition="ctrl.selectedAuthors.length" sp-click-outside="ctrl.allUsersMenu">{{::pullInterNationalization('manageAccountContent.actions')}}
+                    <span class="actions-icon icon-icon_dropdown-arrow sp-icon-color" data-ng-class="ctrl.selectedAuthors.length?'sp-icon-color':'default-color'"></span>
+                </a>
+            </p>
+        </div>
+        <div class="actions-callout-wrappper activity-feeds pos1" data-ng-if="ctrl.allUsersMenu">
+            <ul class="action-links">
+                <li>
+                    <a href="javascript:void(0)" data-ng-click="ctrl.deleteConfirm(list,true)">
+                        <span class="action-icon icon-icon_trashbin sp-icon-color"></span>
+                        <span class="action-text" data-ng-bind="::pullInterNationalization('dashboardAdmin.btnDelete')"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="activityfeeds-listing-wrapper custom-col-table" data-ng-if="ctrl.responseReceived && ctrl.authorsList.length" >
+        <div class="custom-col-row head-row">
+            <div class="cc-col cc-col-chkbox hide">
+            </div>
+            <div class="cc-col cc-col-img">
+            </div>
+            <div class="cc-col cc-col-name">
+                <p class="filter-col-head" data-ng-bind="::pullInterNationalization('admin.member.name')" data-ng-click="ctrl.order('firstName', !ctrl.nameReverse);"></p>
+                <span class="sort-filter" data-ng-class="{'on':ctrl.activeFilter === 'firstName', 'reverseon':ctrl.activeFilter === 'firstName' && !ctrl.nameReverse}" data-ng-click="ctrl.order('firstName', !ctrl.nameReverse);">
+                   <span class="sort-icon icon-icon_sort sp-icon-color sort-down"></span>
+                   <span class="sort-icon icon-icon_sort default-color sort-down"></span>
+                   <span class="sort-icon icon-icon_sort-up sp-icon-color sort-up"></span>                
+                </span>      
+            </div>
+            <div class="cc-col cc-col-title">
+                <p class="filter-col-head" data-ng-bind="::pullInterNationalization('signup.Title')" data-ng-click="ctrl.order('title', !ctrl.titleReverse);"></p>
+                <span class="sort-filter" data-ng-class="{'on':ctrl.activeFilter === 'title', 'reverseon':ctrl.activeFilter === 'title' && !ctrl.titleReverse}" data-ng-click="ctrl.order('title', !ctrl.titleReverse);">
+                   <span class="sort-icon icon-icon_sort sp-icon-color sort-down"></span>
+                   <span class="sort-icon icon-icon_sort default-color sort-down"></span>
+                   <span class="sort-icon icon-icon_sort-up sp-icon-color sort-up"></span>                
+                </span>                
+            </div>
+            <div class="cc-col cc-col-actions">
+            </div>
+            <p class="search-bx">
+                <input type="text" data-ng-model="ctrl.searchAuthors" placeholder="{{::pullInterNationalization('manageAccountContent.search')}}" data-ng-model-options="{ debounce: { 'default': 100, 'blur': 0 } }">
+                <button data-ng-class="{'icon-icon_remove':ctrl.searchAuthors.length, 'icon-icon_search': !ctrl.searchAuthors.length}" class="sp-icon-color" data-ng-click="ctrl.searchAuthors.length?ctrl.searchAuthors='':''"></button>
+            </p>
+        </div>
+        <div class="custom-col-row" data-ng-repeat="list in recordField = (ctrl.authorsList | filter:ctrl.searchAuthors) track by list.id">
+            <div class="cc-col cc-col-chkbox hide">
+                <p class="pCheckBox">
+                    <input type="checkbox" name="selectUser" id="selectUser_{{$index}}" class="iCheckBox" data-ng-change="ctrl.checkCount(checked)" checklist-model="ctrl.selectedAuthors" checklist-value="{'id':list.id,'name':list.firstName}">
+                    <label for="selectUser_{{$index}}" class="lCheckBox">
+                        <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+                    </label>
+                </p>
+            </div>
+            <div class="cc-col cc-col-img">
+                <img data-ng-src="{{list.smallProfileImage}}" />
+            </div>
+            <div class="cc-col cc-col-name" data-ng-bind-html="list.firstName"></div>
+            <div class="cc-col cc-col-title" data-ng-bind-html="list.title"></div>
+            <div class="cc-col cc-col-actions">
+                <div class="actions-filter s165">
+                    <p class="actions-dropdown-filter smallFilter">
+                        <a href="javascript:void(0)" sp-condition="true" sp-click-outside="show">{{::pullInterNationalization('manageAccountContent.actions')}}
+                            <span class="actions-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                        </a>
+                    </p>
+                </div>
+                <div class="actions-callout-wrappper activity-feeds" data-ng-if="show">
+                    <ul class="action-links notes-links">
+                        <li>
+                            <a href="javascript:void(0)" data-ng-click="ctrl.editAuthor(list)">
+                                <span class="action-icon icon-icon_send-message sp-icon-color"></span>
+                                <span class="action-text" data-ng-bind="::pullInterNationalization('dashboardAdmin.btnEdit')"></span>
+                            </a>
+                        </li>
+                        <li class="sep">
+                            <hr class="note-space" />
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" data-ng-click="ctrl.deleteConfirm(list,false)">
+                                <span class="action-icon icon-icon_trashbin sp-icon-color"></span>
+                                <span class="action-text" data-ng-bind="::pullInterNationalization('dashboardAdmin.btnDelete')"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <p class="no-matches" data-ng-if="ctrl.searchAuthors.length && !recordField.length" data-ng-bind="::pullInterNationalization('practiceArea.noMatch0')"></p>
+    </div>
+</div>

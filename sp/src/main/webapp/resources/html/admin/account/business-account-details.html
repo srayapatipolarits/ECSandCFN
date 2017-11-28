@@ -1,0 +1,534 @@
+<div class="x-container account-pages hide business-account-details" data-ng-controller="accountDashboardController" ng-init="setOptions('company')" ng-if="inviteReady" ng-class="inviteReady?'show':'hide'">
+    <div class="container" >
+        <!-- Left Col Starts -->
+        <div class="custom-cols left">
+            <div class="col-wrapper sp-panel-accent">
+                <div class="col-header">
+					 <h2 class="sp-header-title-color fLeft" data-ng-bind="pullInterNationalization('admin.account.business.title')"></h2>             
+                    <input type="button" value="{{pullInterNationalization('admin.account.business.btn.edit')}}" ng-hide="disableCompanyEditing===false" class="btn-block btn-14px sp-btn-color fRight" ng-click="enableEdit('company')">
+                </div>
+                
+                <form name="companyDetails" novalidate>
+                    <p class="input fLeft w-half-plus m-top-normal company" ng-class="(disableCompanyEditing === false)?'enabled':''">
+                        <label for="name" data-ng-bind="pullInterNationalization('admin.account.business.label.name')"></label>
+                        <input type="text" name="name" ng-model="companyDetail.name" required ng-disabled="disableCompanyEditing" />
+                        <span class="err-msg" ng-show="formStatus.sumbit && companyDetails.name.$error.required"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.required')"></span></span>
+                    </p>
+                    <div class="clear"></div>
+					<p class="select fLeft w-half-plus m-top-normal" ng-class="(disableCompanyEditing === false)?'enabled':''">
+					<label for="industry" data-ng-bind="pullInterNationalization('home.industry')"></label>
+                    <span class="select-wrapper" ng-class="(disableCompanyEditing === false)?'sp-icon-color':'default-bg'">
+                    <span class="acc-dd-theme-icon icon-icon_dropdown-arrow" ng-class="(disableCompanyEditing === false)?'sp-icon-color':'default-color'"></span>
+                    <select name="industry" ng-model="companyDetail.industry" required ng-disabled="disableCompanyEditing">
+                        <option value="default" data-ng-bind="pullInterNationalization('home.industry')"></option>
+						<option value="accounting">Accounting</option>
+						<option value="airlines_aviation">Airlines/Aviation</option>
+						<option value="alternative_dispute_resolution">Alternative Dispute Resolution</option>
+						<option value="alternative_medicine">Alternative Medicine</option>
+						<option value="animation">Animation</option>
+						<option value="apparel_fashion">Apparel & Fashion</option>
+						<option value="architecture_planning">Architecture & Planning</option>
+						<option value="arts_and_crafts">Arts and Crafts</option>
+						<option value="automotive">Automotive</option>
+						<option value="aviation_aerospace">Aviation & Aerospace</option>
+						<option value="banking">Banking</option>
+						<option value="biotechnology">Biotechnology</option>
+						<option value="broadcast_media">Broadcast Media</option>
+						<option value="building_materials">Building Materials</option>
+						<option value="business_supplies_and_equipment">Business Supplies and Equipment</option>
+						<option value="capital_markets">Capital Markets</option>
+						<option value="chemicals">Chemicals</option>
+						<option value="civic_social_organization">Civic & Social Organization</option>
+						<option value="civil_engineering">Civil Engineering</option>
+						<option value="commercial_real_estate">Commercial Real Estate</option>
+						<option value="computer_network_security">Computer & Network Security</option>
+						<option value="computer_games">Computer Games</option>
+						<option value="computer_hardware">Computer Hardware</option>
+						<option value="computer_networking">Computer Networking</option>
+						<option value="computer_software">Computer Software</option>
+						<option value="construction">Construction</option>
+						<option value="consumer_electronics">Consumer Electronics</option>
+						<option value="consumer_goods">Consumer Goods</option>
+						<option value="consumer_services">Consumer Services</option>
+						<option value="cosmetics">Cosmetics</option>
+						<option value="dairy">Dairy</option>
+						<option value="defense_space">Defense & Space</option>
+						<option value="design">Design</option>
+						<option value="education_management">Education Management</option>
+						<option value="e_learning">E-Learning</option>
+						<option value="electrical_electronic_manufacturing">Electrical/Electronic Manufacturing</option>
+						<option value="entertainment">Entertainment</option>
+						<option value="environment_services">Environment Services</option>
+						<option value="events_services">Events Services</option>
+						<option value="executive_office">Executive Office</option>
+						<option value="facilities_services">Facilities Services</option>
+						<option value="farming">Farming</option>
+						<option value="financial_services">Financial Services</option>
+						<option value="fine_arts">Fine Arts</option>
+						<option value="fishery">Fishery</option>
+						<option value="food_beverages">Food & Beverages</option>
+						<option value="food_production">Food Production</option>
+						<option value="fund-raising">Fund-Raising</option>
+						<option value="furniture">Furniture</option>
+						<option value="gambling_casinos">Gambling & Casinos</option>
+						<option value="glass_ceramics_concrete">Glass, Ceramics & Concrete</option>
+						<option value="government_administration">Government Administration</option>
+						<option value="government_relations">Government Relations</option>
+						<option value="graphic_design">Graphic Design</option>
+						<option value="health_wellness_and_fitness">Health, Wellness and Fitness</option>
+						<option value="higher_education">Higher Education</option>
+						<option value="hospital_health_care">Hospital & Health Care</option>
+						<option value="hospitality">Hospitality</option>
+						<option value="human_resources">Human Resources</option>
+						<option value="import_and_export">Import and Export</option>
+						<option value="individual_family_services">Individual & Family Services</option>
+						<option value="industrial_automation">Industrial Automation</option>
+						<option value="information_services">Information Services</option>
+						<option value="information_technology_and_services">Information Technology and Services</option>
+						<option value="insurance">Insurance</option>
+						<option value="international_affairs">International Affairs</option>
+						<option value="international_trade_and_development">International Trade and Development</option>
+						<option value="internet">Internet</option>
+						<option value="investment_banking">Investment Banking</option>
+						<option value="investment_management">Investment Management</option>
+						<option value="judiciary">Judiciary </option>
+						<option value="law_enforcement">Law Enforcement</option>
+						<option value="law_practice">Law Practice</option>
+						<option value="legal_services">Legal Services</option>
+						<option value="legislative_office">Legislative Office</option>
+						<option value="leisure_travel_tourism">Leisure, Travel & Tourism</option>
+						<option value="libraries">Libraries</option>
+						<option value="logistics_and_supply_chain">Logistics and Supply Chain</option>
+						<option value="luxury_goods_jewelry">Luxury Goods & Jewelry</option>
+						<option value="machinery">Machinery</option>
+						<option value="management_consulting">Management Consulting</option>
+						<option value="maritime">Maritime</option>
+						<option value="marketing_and_advertising">Marketing and Advertising</option>
+						<option value="market_research">Market Research</option>
+						<option value="mechanical_or_industrial_engineering">Mechanical or Industrial Engineering</option>
+						<option value="media_production">Media Production</option>
+						<option value="medical_devices">Medical Devices</option>
+						<option value="medical_practice">Medical Practice</option>
+						<option value="mental_health_care">Mental Health Care</option>
+						<option value="military">Military</option>
+						<option value="mining_metals">Mining & Metals</option>
+						<option value="motion_pictures_and_film">Motion Pictures and Film</option>
+						<option value="museums_and_institutions">Museums and Institutions</option>
+						<option value="music">Music </option>
+						<option value="nanotechnology">Nanotechnology </option>
+						<option value="newspaper">Newspaper</option>
+						<option value="nonprofit_organization_management">Nonprofit Organization Management</option>
+						<option value="oil_energy">Oil & Energy</option>
+						<option value="online_media">Online Media</option>
+						<option value="outsourcing_offshoring">Outsourcing/Offshoring</option>
+						<option value="package_freight_delivery">Package/Freight Delivery</option>
+						<option value="packaging_and_containers">Packaging and Containers</option>
+						<option value="paper_forest_products">Paper & Forest Products</option>
+						<option value="performing_arts">Performing Arts</option>
+						<option value="pharmaceuticals">Pharmaceuticals</option>
+						<option value="philanthropy">Philanthropy</option>
+						<option value="photography">Photography</option>
+						<option value="plastics">Plastics</option>
+						<option value="political_organization">Political Organization</option>
+						<option value="primary_secondary_education">Primary/Secondary Education</option>
+						<option value="printing">Printing</option>
+						<option value="professional_training_coaching">Professional Training & Coaching</option>
+						<option value="program_development">Program Development</option>
+						<option value="public_policy">Public Policy</option>
+						<option value="public_relations_and_communications">Public Relations and Communications</option>
+						<option value="public_safety">Public Safety</option>
+						<option value="publishing">Publishing</option>
+						<option value="railroad_manufacture">Railroad Manufacture</option>
+						<option value="ranching">Ranching</option>
+						<option value="real_estate">Real Estate</option>
+						<option value="recreational_facilities_and_services">Recreational Facilities and Services</option>
+						<option value="religious_institutions">Religious Institutions</option>
+						<option value="renewables_environment">Renewables & Environment</option>
+						<option value="research">Research</option>
+						<option value="restaurants">Restaurants</option>
+						<option value="retail">Retail</option>
+						<option value="security_and_investigations">Security and Investigations</option>
+						<option value="semiconductors">Semiconductors </option>
+						<option value="shipbuilding">Shipbuilding </option>
+						<option value="sporting_goods">Sporting Goods</option>
+						<option value="sports">Sports</option>
+						<option value="staffing_and_recruiting">Staffing and Recruiting</option>
+						<option value="supermarkets">Supermarkets</option>
+						<option value="telecommunications">Telecommunications</option>
+						<option value="textiles">Textiles</option>
+						<option value="think_tanks">Think Tanks</option>
+						<option value="tobacco">Tobacco </option>
+						<option value="translation_and_localization">Translation and Localization</option>
+						<option value="transportation_trucking_railroad">Transportation/Trucking/Railroad</option>
+						<option value="utilities">Utilities </option>
+						<option value="venture_capital_private_equity">Venture Capital & Private Equityxt</option>
+						<option value="veterinary">Veterinary </option>
+						<option value="warehousing">Warehousing </option>
+						<option value="wholesale">Wholesale </option>
+						<option value="wine_and_spirits">Wine and Spirits</option>
+						<option value="wireless">Wireless </option>
+						<option value="writing_and_editing">Writing and Editing</option>
+                    </select>
+                    </span>
+                        <span class="err-msg" ng-show="formStatus.sumbit && companyDetails.industry.$modelValue == 'default'"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.required')"></span></span>
+                    </p>
+                    <p class="input fLeft w-small-plus m-top-normal emp" ng-class="(disableCompanyEditing === false)?'enabled':''">
+                        <label for="numberOfEmployees" data-ng-bind="pullInterNationalization('admin.account.business.label.emp')"></label>
+                        <input type="text" name="numberOfEmployees" ng-model="companyDetail.numberOfEmployees" required ng-disabled="disableCompanyEditing" maxlength="6" ng-pattern="/^[0-9\b]{1,6}$/" />
+                        <span class="err-msg" ng-show="formStatus.sumbit && (companyDetails.numberOfEmployees.$error.required || companyDetail.numberOfEmployees < 1)"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.required')"></span></span>
+                        <span class="err-msg" ng-show="formStatus.sumbit && companyDetails.numberOfEmployees.$error.pattern"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.number')"></span></span>
+                    </p>
+                    <div class="clear"></div>
+                    <p class="select fLeft w-half m-top-extra" ng-class="(disableCompanyEditing === false)?'enabled':''">
+                        <label for="country" data-ng-bind="pullInterNationalization('admin.account.business.label.country')"></label>
+                    <span class="select-wrapper" ng-class="(disableCompanyEditing === false)?'sp-icon-color':'default-bg'">
+                    <span class="acc-dd-theme-icon icon-icon_dropdown-arrow" ng-class="(disableCompanyEditing === false)?'sp-icon-color':'default-color'"></span>
+                    <select name="country" ng-model="companyDetail.address.country" required ng-disabled="disableCompanyEditing" ng-change="stateCheck.forSelectedCountry=companyDetail.address.country;addressFormReset('business')" ng-init="stateCheck.forSelectedCountry=companyDetail.address.country">
+
+						<option value="default" data-ng-bind="::pullInterNationalization('home.selectCountry')"></option>
+                        <option value="{{cList.code}}" data-ng-if="cList.code === 'US'" data-ng-repeat="cList in countries" data-ng-bind="cList.name"></option>
+                        <option value="{{cList.code}}" data-ng-if="cList.code === 'CA'" data-ng-repeat="cList in countries" data-ng-bind="cList.name"></option>
+                        <option value="default1">--------------------------------------------------</option>
+                        <option value="{{cList.code}}" data-ng-if="cList.code !== 'US' && cList.code !== 'CA'" data-ng-repeat="cList in countries" data-ng-bind="cList.name"></option>                                
+
+                    </select>
+                    </span>
+                        <span class="err-msg" ng-show="formStatus.sumbit && (companyDetail.address.country == 'default' || companyDetail.address.country == 'default1')"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.required')"></span></span>
+                    </p>
+                    <div class="clear"></div>
+                    <p class="input fLeft w-half m-top-normal" ng-class="(disableCompanyEditing === false)?'enabled':''">
+                        <label for="address1" data-ng-bind="pullInterNationalization('admin.account.business.label.addressl1')"></label>
+                        <input type="text" name="address1" ng-model="companyDetail.address1" required ng-disabled="disableCompanyEditing" />
+                        <span class="err-msg" ng-show="formStatus.sumbit && companyDetails.address1.$error.required"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.required')"></span></span>
+                    </p>
+                    <p class="input fRight w-half m-top-normal" ng-class="(disableCompanyEditing === false)?'enabled':''">
+                        <label for="address2" data-ng-bind="pullInterNationalization('admin.account.business.label.addressl2')"></label>
+                        <input type="text" name="address2" ng-model="companyDetail.address2" ng-disabled="disableCompanyEditing" />
+                    </p>
+                    <div class="clear"></div>
+                    <p class="input fLeft w-half m-top-normal" ng-class="(disableCompanyEditing === false)?'enabled':''">
+                        <label for="city" data-ng-bind="pullInterNationalization('admin.account.business.label.city')"></label>
+                        <input type="text" name="city" ng-model="companyDetail.address.city" required ng-disabled="disableCompanyEditing" />
+                        <span class="err-msg" ng-show="formStatus.sumbit && companyDetails.city.$error.required"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.required')"></span></span>
+                    </p>
+                    <p class="select fLeft w-small m-top-normal state" ng-class="(disableCompanyEditing === false)?'enabled':''" ng-if="stateCheck.forSelectedCountry!='US'  && stateCheck.forSelectedCountry!='CA'">
+                        <label for="state" data-ng-bind="pullInterNationalization('admin.account.business.label.region')"></label>
+                        <input name="state" ng-model="companyDetail.address.state" ng-disabled="disableCompanyEditing" />
+                        <!--span class="err-msg" ng-show="formStatus.sumbit && companyDetails.state.$error.required"><span class="icon">!</span>  <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.required')"></span></span-->
+                    </p>
+                    <p class="select fLeft w-small m-top-normal state" ng-class="(disableCompanyEditing === false)?'enabled':''" ng-if="stateCheck.forSelectedCountry!='US'  && stateCheck.forSelectedCountry=='CA'">
+                        <label for="state" data-ng-bind="pullInterNationalization('admin.account.business.label.province')"></label>
+                        <input name="state" ng-model="companyDetail.address.state" required ng-disabled="disableCompanyEditing" />
+                        <span class="err-msg" ng-show="formStatus.sumbit && companyDetails.state.$error.required"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.req')"></span></span>
+                    </p>
+                    <p class="select fLeft w-small m-top-normal state" ng-class="(disableCompanyEditing === false)?'enabled':''" ng-if="stateCheck.forSelectedCountry=='US'">
+                        <label for="state" data-ng-bind="pullInterNationalization('admin.account.business.label.state')"></label>
+                        <span class="select-wrapper" ng-class="(disableCompanyEditing === false)?'sp-icon-color':'default-bg'">
+                        <span class="acc-dd-theme-icon icon-icon_dropdown-arrow" ng-class="(disableCompanyEditing === false)?'sp-icon-color':'default-color'"></span>
+                    <select name="state" ng-model="companyDetail.address.state" required ng-disabled="disableCompanyEditing">
+                        <option value="default" label="Please Select" data-ng-bind="pullInterNationalization('admin.account.business.label.state')"></option>
+                        <option value="AL" label="Alabama">Alabama</option>
+                        <option value="AK" label="Alaska">Alaska</option>
+                        <option value="AS" label="American Samoa">American Samoa</option>
+                        <option value="AZ" label="Arizona">Arizona</option>
+                        <option value="AR" label="Arkansas">Arkansas</option>
+                        <option value="AE" label="Armed Forces Middle East">Armed Forces Middle East</option>
+                        <option value="AA" label="Armed Forces Americas (not Canada)">Armed Forces Americas (not Canada)</option>
+                        <option value="AP" label="Armed Forces Pacific">Armed Forces Pacific</option>
+                        <option value="CA" label="California">California</option>
+                        <option value="CO" label="Colorado">Colorado</option>
+                        <option value="CT" label="Connecticut">Connecticut</option>
+                        <option value="DE" label="Delaware">Delaware</option>
+                        <option value="DC" label="District of Columbia">District of Columbia</option>
+                        <option value="FL" label="Florida">Florida</option>
+                        <option value="GA" label="Georgia">Georgia</option>
+                        <option value="GU" label="Guam">Guam</option>
+                        <option value="HI" label="Hawaii">Hawaii</option>
+                        <option value="ID" label="Idaho">Idaho</option>
+                        <option value="IL" label="Illinois">Illinois</option>
+                        <option value="IN" label="Indiana">Indiana</option>
+                        <option value="IA" label="Iowa">Iowa</option>
+                        <option value="KS" label="Kansas">Kansas</option>
+                        <option value="KY" label="Kentucky">Kentucky</option>
+                        <option value="LA" label="Louisiana">Louisiana</option>
+                        <option value="ME" label="Maine">Maine</option>
+                        <option value="MD" label="Maryland">Maryland</option>
+                        <option value="MA" label="Massachusetts">Massachusetts</option>
+                        <option value="MI" label="Michigan">Michigan</option>
+                        <option value="MN" label="Minnesota">Minnesota</option>
+                        <option value="MS" label="Mississippi">Mississippi</option>
+                        <option value="MO" label="Missouri">Missouri</option>
+                        <option value="MT" label="Montana">Montana</option>
+                        <option value="NE" label="Nebraska">Nebraska</option>
+                        <option value="NV" label="Nevada">Nevada</option>
+                        <option value="NH" label="New Hampshire">New Hampshire</option>
+                        <option value="NJ" label="New Jersey">New Jersey</option>
+                        <option value="NM" label="New Mexico">New Mexico</option>
+                        <option value="NY" label="New York">New York</option>
+                        <option value="NC" label="North Carolina">North Carolina</option>
+                        <option value="ND" label="North Dakota">North Dakota</option>
+                        <option value="MP" label="Northern Mariana Islands">Northern Mariana Islands</option>
+                        <option value="OH" label="Ohio">Ohio</option>
+                        <option value="OK" label="Oklahoma">Oklahoma</option>
+                        <option value="OR" label="Oregon">Oregon</option>
+                        <option value="PA" label="Pennsylvania">Pennsylvania</option>
+                        <option value="PR" label="Puerto Rico">Puerto Rico</option>
+                        <option value="RI" label="Rhode Island">Rhode Island</option>
+                        <option value="SC" label="South Carolina">South Carolina</option>
+                        <option value="SD" label="South Dakota">South Dakota</option>
+                        <option value="TN" label="Tennessee">Tennessee</option>
+                        <option value="TX" label="Texas">Texas</option>
+                        <option value="UT" label="Utah">Utah</option>
+                        <option value="VT" label="Vermont">Vermont</option>
+                        <option value="VI" label="Virgin Islands">Virgin Islands</option>
+                        <option value="VA" label="Virginia">Virginia</option>
+                        <option value="WA" label="Washington">Washington</option>
+                        <option value="WV" label="West Virginia">West Virginia</option>
+                        <option value="WI" label="Wisconsin">Wisconsin</option>
+                        <option value="WY" label="Wyoming">Wyoming</option>
+                    </select>
+                    </span>
+                        <span class="err-msg" ng-show="formStatus.sumbit && companyDetail.address.state == 'default'"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.req')"></span></span>
+                    </p>
+                    <p class="input fLeft w-small-plus m-top-normal zip" ng-class="(disableCompanyEditing === false)?'enabled':''">
+                        <label for="zip" data-ng-bind="pullInterNationalization('admin.account.business.label.zip')" ng-if="stateCheck.forSelectedCountry=='US'"></label>
+                        <label for="zip" data-ng-bind="pullInterNationalization('admin.account.business.label.postal')" ng-if="stateCheck.forSelectedCountry!='US'"></label>
+                        <input type="text" name="zip" ng-model="companyDetail.zip" required ng-disabled="disableCompanyEditing" ng-pattern="/(^\d{5}$)|(^\d{5}-\d{4}$)/" ng-if="stateCheck.forSelectedCountry=='US'" />
+                        <input type="text" name="zip" ng-model="companyDetail.zip" required ng-disabled="disableCompanyEditing" ng-if="stateCheck.forSelectedCountry!='US'" />
+                        <span class="err-msg" ng-show="formStatus.sumbit && companyDetails.zip.$error.required"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.req')"></span></span>
+                        <span class="err-msg" ng-show="formStatus.sumbit && companyDetails.zip.$error.pattern && companyDetails.zip.$error.required===false"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.inv')"></span></span>
+                    </p>
+                    <div class="clear"></div>
+                    <p class="input fLeft w-half m-top-normal" ng-class="(disableCompanyEditing === false)?'enabled':''">
+                        <label for="phoneNumber" data-ng-bind="pullInterNationalization('admin.account.business.label.ph')"></label>
+                        <input type="text" name="phoneNumber" ng-model="companyDetail.phoneNumber" required ng-disabled="disableCompanyEditing" ng-pattern="/^\+?([-.\s\d]){10,16}$/" />
+                        <span class="err-msg" ng-show="formStatus.sumbit && companyDetails.phoneNumber.$error.required"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.required')"></span></span>
+                        <span class="err-msg" ng-show="formStatus.sumbit && companyDetails.phoneNumber.$error.pattern"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.error.zip')"></span></span>
+                    </p>
+                    <div class="clear"></div>
+                    <div class="form-btns" ng-class="(disableCompanyEditing === true)?'hide':''">
+                        <div class="sp-btn-wrapper sp-red fLeft">
+                            <div class="sp-btn">
+                                <input type="submit" value="{{pullInterNationalization('admin.account.business.btn.save')}}" class="saveBtn" ng-click="saveAndUpdate(companyDetail, 'companyDetails')" />
+                            </div>
+                        </div>
+                        <div class="sp-btn-wrapper sp-grey fLeft">
+                            <div class="sp-btn">
+                                <input type="button" value="{{pullInterNationalization('admin.account.business.btn.cancel')}}" class="cancelBtn" ng-click="disableEdit('company')" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </form>
+            </div>
+            <div class="col-wrapper m-top-regular sp-panel-accent">
+                <div class="col-header">
+                    <h2 class="sp-header-title-color fLeft" data-ng-bind="pullInterNationalization('pricing.desc1')"></h2>
+                </div>
+                <div class="col-admin-detail">
+               		<div data-ng-repeat="memberList in adminsList track by $index">
+               			<div class="col-md-6 col-sm-6" style="padding-left: 0;">
+           				 	<img class="imgReplacement" style="margin-right:12px;" data-ng-src="{{memberList.smallProfileImage}}" alt="{{memberList.userInitials}}" data-ng-if="memberList.smallProfileImage">
+                            <div class="imgReplacement" style="padding-top:10px;margin-right:12px;" data-ng-if="!memberList.smallProfileImage" data-ng-bind="memberList.userInitials"></div>
+                            <p>
+                                <a href="javascript:void(0)" class="fname nodecoration" data-ng-bind="memberList.name"></a>
+                                <span class="email admin-title" data-ng-bind="memberList.title"></span>
+                            </p>
+                       </div>
+               			<div class="col-md-6 col-sm-6 admin-contacts-wrap" style="padding-right: 0;">
+               				<p class="admin-contacts">
+                               <a href="mailto:{{memberList.email}}" class="email" data-ng-bind="memberList.email"></a>
+                               <span class="email" data-ng-bind="memberList.phoneNumber"></span>
+                               <a href="#" class="closeIcon icon-icon_remove" data-ng-class="{'disabled':(selfEmail === memberList.email), 'sp-icon-color': (selfEmail !== memberList.email)}" data-ng-click="(selfEmail === memberList.email)?'':removeAdminAccess('Primary', memberList)"></a>
+                            </p>
+               			</div>
+               		</div>
+               		<p ng-if="!adminsList.length">
+               			<span class="validate-error" data-ng-bind="pullInterNationalization('pricing.desc5')"></span>
+               		</p>
+               		<hr ng-if="!adminsList.length"/>
+               		<a data-ng-hide="accountDetails.deactivated" href="#" class="pill orange fLeft admin-btn" data-ng-click="addAdminAccess('Primary')" data-ng-bind="pullInterNationalization('pricing.desc2')"></a>   
+                </div>
+	        </div>
+	        
+	        <div class="col-wrapper m-top-regular sp-panel-accent" ng-if="accountInfo.account.spPlans.IntelligentHiring">
+                <div class="col-header">
+                    <h2 class="sp-header-title-color fLeft" data-ng-bind="pullInterNationalization('pricing.desc3')"></h2>
+                </div>
+                <div class="col-admin-detail">
+               		<div data-ng-repeat="memberList in hiringAdminsList track by $index">
+               			<div class="col-md-6 col-sm-6" style="padding-left: 0;">
+           				 	<img class="imgReplacement" style="margin-right:12px;" data-ng-src="{{memberList.smallProfileImage}}" alt="{{memberList.userInitials}}" data-ng-if="memberList.smallProfileImage">
+                            <div class="imgReplacement" style="padding-top:10px;margin-right:12px;" data-ng-if="!memberList.smallProfileImage" data-ng-bind="memberList.userInitials"></div>
+                            <p>
+                                <a href="javascript:void(0)" class="fname nodecoration" data-ng-bind="memberList.name"></a>
+                                <span class="email admin-title" data-ng-bind="memberList.title"></span>
+                            </p>
+                       </div>
+               			<div class="col-md-6 col-sm-6 admin-contacts-wrap" style="padding-right: 0;">
+               				<p class="admin-contacts">
+                               <a href="mailto:{{memberList.email}}" class="email" data-ng-bind="memberList.email"></a>
+                               <span class="email" data-ng-bind="memberList.phoneNumber"></span>
+                               <a href="#" class="closeIcon icon-icon_remove" data-ng-class="{'disabled':(selfEmail === memberList.email), 'sp-icon-color': (selfEmail !== memberList.email)}"  data-ng-click="removeAdminAccess('IntelligentHiring', memberList)"></a>
+                            </p>
+               			</div>
+               		</div>
+               		<p ng-if="!hiringAdminsList.length">
+               			<span class="validate-error"  data-ng-bind="pullInterNationalization('pricing.desc5')"></span>
+               		</p>
+               		<hr ng-if="!hiringAdminsList.length"/>               		
+               		<a data-ng-hide="accountDetails.deactivated" href="#" class="pill orange fLeft admin-btn" data-ng-click="addAdminAccess('IntelligentHiring')" data-ng-bind="pullInterNationalization('pricing.desc4')"></a>   
+                </div>
+	        </div>     
+        </div>
+        <!-- Left Col Ends -->
+        <!-- Right Col Starts -->
+        <div class="custom-cols right">
+            <div class="col-wrapper sp-panel-accent">
+                <h2 class="sp-header-title-color" data-ng-bind="pullInterNationalization('admin.account.business.billing.title')"></h2>
+                <!--h3 class="fc-dgrey b-plan">{{accountInfo.account.account.name}}</h3-->
+                <p class="title-top m-top-regular" ng-if="accountInfo.account.account.validityType == 'YEARLY'">SurePeople Business - Annual Payment Plan</p>
+                <p class="title-top m-top-regular" ng-if="accountInfo.account.account.validityType != 'YEARLY'">SurePeople Business - Monthly Payment Plan</p>
+                <p><span class="b-500">Account number:</span> <span class="b-300" data-ng-bind="accountInfo.account.accountNumber"></span></p>
+                <p><span data-ng-bind="(12*(accountInfo.account.agreementTerm||1))+' '+pullInterNationalization('admin.account.business.billing.expiress')+' '"></span><span class="b-300" data-ng-bind="accountInfo.account.aggreementEndDate"></span>
+                </p>
+                <!--p class="change-annual" ng-show="accountInfo.account.account.validityType != 'YEARLY' && accountDetailsServerException === false">
+                    <a href="/sp/admin/account/changeSubscription" ng-bind-html="pullInterNationalization('admin.account.business.offer')"></a>
+                </p-->
+                <!--p data-ng-bind="pullInterNationalization('admin.account.business.billing.purchase')}}: <span class="b-300">{{accountInfo.account.account.numberOfMembers+accountInfo.account.account.availalbeMemberSubscriptions}}</span>
+                </p-->
+                <div class="clear"></div>
+                <p class="title-top m-top-regular" data-ng-bind="pullInterNationalization('admin.account.business.billing.memAcc')"></p>
+                <p>{{pullInterNationalization('admin.account.business.billing.available')}}: <span class="b-300">{{accountInfo.account.spPlans.Primary.availalbeMemberSubscriptions}}</span>
+                    <a href="#" class="border-link details" ng-click="showDetailsDialog('members')">
+                        <span class="mock-link" data-ng-bind="pullInterNationalization('admin.account.business.details')"></span>
+                    </a>
+                </p>
+                <p>{{pullInterNationalization('admin.account.business.billing.availableAdmin')}}: <span class="b-300">{{accountInfo.account.spPlans.Primary.availalbeAdminSubscriptions}}</span></p>
+                <a href="#" data-ng-click="addAccountsModal('members')" class="border-link small fLeft" ng-if="(accountInfo.account.status != 'RENEWAL_PAYMENT_FAILED' && accountInfo.account.status != 'EXPIRED' && accountDetailsServerException === false)">
+                    <span class="mock-link" data-ng-bind="pullInterNationalization('admin.account.business.btn.addmembers')"></span>
+                </a>
+                <a href="#" class="small fLeft disabled" ng-if="(accountInfo.account.status == 'RENEWAL_PAYMENT_FAILED' || accountInfo.account.status == 'EXPIRED' || accountDetailsServerException === true)" data-ng-bind="pullInterNationalization('admin.account.business.btn.addmembers')"></a>
+                <div class="clear"></div>
+                <div  ng-if="accountInfo.account.spPlans.IntelligentHiring">
+                <p class="title-top m-top-regular" data-ng-bind="pullInterNationalization('admin.account.business.billing.hiring')"></p>
+                <p>{{pullInterNationalization('admin.account.business.billing.candidate')}}: <span class="b-300">{{accountInfo.account.spPlans.IntelligentHiring.availalbeMemberSubscriptions}}</span>
+                    <!--a href="#" class="details" ng-click="showDetailsDialog('candidates')">Details</a-->
+                </p>
+                <p>{{pullInterNationalization('admin.account.business.billing.candidateAdmin')}}: <span class="b-300">{{accountInfo.account.spPlans.IntelligentHiring.availalbeAdminSubscriptions}}</span>
+                </p>                
+                <a href="#" data-ng-click="addAccountsModal('candidates')" class="border-link small fLeft" ng-if="(accountInfo.account.status != 'RENEWAL_PAYMENT_FAILED' && accountInfo.account.status != 'EXPIRED' && accountDetailsServerException === false)">
+                    <span class="mock-link" data-ng-bind="pullInterNationalization('admin.account.business.btn.purchaseacc')"></span>
+                </a>
+                <a href="#" class="small fLeft disabled" ng-if="(accountInfo.account.status == 'RENEWAL_PAYMENT_FAILED' || accountInfo.account.status == 'EXPIRED' || accountDetailsServerException === true)" data-ng-bind="pullInterNationalization('admin.account.business.btn.purchaseacc')"></a>
+                </div>
+                
+                <div class="clear"></div>
+                <div ng-if="!accountInfo.account.spPlans.IntelligentHiring">
+                <p class="title-top m-top-regular" data-ng-bind="pullInterNationalization('admin.account.business.billing.hiring')"></p>
+                <a href="#" data-ng-click="requestAddon('Hiring')" class="border-link small fleft" ng-if="(accountInfo.account.status != 'RENEWAL_PAYMENT_FAILED' && accountInfo.account.status != 'EXPIRED' && accountDetailsServerException === false)">
+                    <span class="mock-link" data-ng-bind="pullInterNationalization('admin.account.business.btn.purchaseaddon')"></span>
+                </a>
+                <a href="#" class="small fLeft disabled" ng-if="(accountInfo.account.status == 'RENEWAL_PAYMENT_FAILED' || accountInfo.account.status == 'EXPIRED' || accountDetailsServerException === true)" data-ng-bind="pullInterNationalization('admin.account.business.btn.purchaseacc')"></a>
+				</div> 
+                <div class="clear"></div>
+                <div>
+                    <p class="title-top m-top-regular">Payment & Credit Details</p>
+                    <p><span class="b-300">{{pullInterNationalization('admin.account.business.billing.lastpay')}}:</span> {{accountInfo.account.lastPayment.amount | currency}} on {{accountInfo.account.lastPayment.createdOnFormatted}}</p>
+                    <p ng-hide="accountInfo.account.status == 'RENEWAL_PAYMENT_FAILED'"><span class="b-300">{{pullInterNationalization('admin.account.business.billing.nextpay')}}:</span> {{accountInfo.account.accountInfo.renewalTotal | currency}} on {{accountInfo.account.accountInfo.renewalDate}}</p>
+                    <p class="error" ng-show="accountInfo.account.status == 'RENEWAL_PAYMENT_FAILED'">
+                        <span class="err-msg"><span class="icon">!</span> <span class="err-text" data-ng-bind="pullInterNationalization('admin.account.business.billing.payfailederror')"></span></span>
+                    </p>
+                    <p><span class="b-300">Payment Type:</span> <span data-ng-if="accountInfo.account.paymentType" data-ng-bind="pullInterNationalization('admin.account.'+accountInfo.account.paymentType)"></span><span data-ng-if="accountInfo.account.paymentType==null" data-ng-bind="'Credit Card'"></span></p>
+                    <p ng-if="accountInfo.account.paymentType!=null&&accountInfo.account.paymentType!='CREDIT_CARD'"><span class="b-300">Credit Balance:</span>{{accountInfo.account.paymentInstrument.creditBalance|currency}}</p>
+                    <p ng-if="accountInfo.account.paymentType==null||accountInfo.account.paymentType=='CREDIT_CARD'"><span class="b-300">{{accountInfo.account.paymentInstrument.cardType}} - {{pullInterNationalization('admin.account.business.billing.ending')}} {{accountInfo.account.paymentInstrument.cardNumberLastFour}}</span>
+                        <ul class="paymentHistoryUL clearfix">
+                            <li>
+                                <a href="/sp/admin/account/payment/history" class="border-link small">
+                                    <span class="mock-link" data-ng-bind="pullInterNationalization('admin.account.business.btn.history')"></span>
+                                </a>
+                            </li>
+                            <li ng-if="accountInfo.account.paymentType==null||accountInfo.account.previousPaymentInstrumentPresent==true">|</li>
+                            <li ng-if="accountInfo.account.paymentType==null||accountInfo.account.previousPaymentInstrumentPresent==true">
+                                <a href="/sp/admin/account/edit/creditcard" class="small fLeft" data-ng-bind="pullInterNationalization('admin.account.business.btn.editcc')"></a>
+                            </li>
+                        </ul>
+                </div>
+                <div class="clear"></div>
+                <!--  
+                <p class="error m-top-regular" ng-show="accountInfo.account.status == 'CANCEL'"><span class="er-color" ng-bind-html="pullInterNationalization('admin.account.business.subscribecancel')"></span>  <span>{{accountInfo.account.account.expiresTime}}</span>
+                </p>
+                -->
+                <!-- <div class="clear"></div>
+                <a href="/sp/admin/account/renew" class="pill orange fLeft renew-btn" ng-show="accountInfo.account.status == 'EXPIRED'" data-ng-bind="pullInterNationalization('admin.account.business.btn.renew')"></a> -->
+                <div class="clear"></div>
+                <p class="error" ng-show="accountDetailsServerException">
+                    <span class="err-msg"><span class="icon">!</span>{{accountDetailsExceptionMessage}}</span>
+                </p>
+                <div class="clear"></div>
+
+                <p class="cancelTnC" ng-if="accountInfo.account.spPlans.Primary.planStatus !== 'ACTIVE'">{{pullInterNationalization('admin.account.business.subscribecancel')}} {{accountInfo.account.aggreementEndDate}}</p>
+                <a href="#" ng-if="accountInfo.account.spPlans.Primary.planStatus !== 'ACTIVE'" class="pill orange fLeft mTop1" ng-click="showReactivateDialog()">{{pullInterNationalization('admin.account.business.btnre')}}</a>
+                
+                <p ng-if="accountInfo.account.spPlans.Primary.planStatus === 'ACTIVE' || accountDetailsServerException === true" class="cancelTnC">{{pullInterNationalization('admin.account.business.subscriberenew')}} {{accountInfo.account.aggreementEndDate}}</p>
+                <a ng-if="accountInfo.account.spPlans.Primary.planStatus === 'ACTIVE' || accountDetailsServerException === true" href="#" class="pill orange fLeft mTop1" ng-click="showCancelDialog()" data-ng-bind="pullInterNationalization('admin.account.business.btn.cancelsubscription')"></a>
+            </div>
+            <div class="col-wrapper m-top-regular options-permissions sp-panel-accent" data-ng-if="showRelationshipAdvisor">
+                <h2 class="sp-header-title-color" data-ng-bind="pullInterNationalization('manageAccountContent.linkPermissions')"></h2>
+                <!--p data-ng-bind="pullInterNationalization('admin.account.business.permissions.desc')"></p-->
+                <div class="options-wrapper hide">
+                    <div class="option-controls">
+                        <form>
+                            <p class="option-btn">
+                                <input type="checkbox" id="memberPermissions" data-ng-model="companyDetail.blockAllMembers" data-ng-click="blockAllMembers(companyDetail.blockAllMembers, $event)" />
+                                <label for="memberPermissions">
+                                    <span class="on" data-ng-if="companyDetail.blockAllMembers===true" data-ng-bind="pullInterNationalization('admin.account.business.permissions.btn.on')"></span>
+                                    <span class="off" data-ng-if="companyDetail.blockAllMembers===false" data-ng-bind="pullInterNationalization('admin.account.business.permissions.btn.off')"></span>
+                                </label>
+                            </p>
+                        </form>
+                    </div>
+                    <div class="option-description">
+                        <p class="heading" data-ng-bind="pullInterNationalization('admin.account.business.permissions.opts.title')"></p>
+                        <p data-ng-bind="pullInterNationalization('admin.account.business.permissions.opts.desc')"></p>
+                    </div>
+                </div>
+                <div class="options-wrapper">
+                    <div class="option-controls">
+                        <form>
+                            <p class="option-btn">
+                                <input type="checkbox" id="restrictPermissions" data-ng-model="companyDetail.restrictRelationShipAdvisor" data-ng-click="restrictAdvisor(companyDetail.restrictRelationShipAdvisor, $event)" />
+                                <label for="restrictPermissions">
+                                    <span class="on" data-ng-if="companyDetail.restrictRelationShipAdvisor===true">{{pullInterNationalization('admin.account.member.details.onbtn')}} <span class="rnd-switch icon-icon_switch-dot sp-icon-color pos-r"></span></span>
+                                    <span class="off" data-ng-if="companyDetail.restrictRelationShipAdvisor===false"><span class="rnd-switch icon-icon_switch-dot sp-icon-color pos-l"></span> <span class="tiHide" data-ng-bind="::pullInterNationalization('admin.account.member.details.offbtn')"></span></span>
+                                </label>
+                            </p>
+                        </form>
+                    </div>
+                    <div class="option-description">
+                        <p class="heading" data-ng-bind="pullInterNationalization('admin.account.business.permissions.advisor.title')"></p>
+                    </div>
+                </div>
+                <!-- Right Col Ends -->
+            </div>
+            <!-- Settings -->
+            <div class="col-wrapper m-top-regular options-permissions sp-panel-accent" data-ng-if="showThemeManager || showEmailManager">
+                <h2 class="sp-header-title-color" data-ng-bind="pullInterNationalization('admin.account.business.settings.title')"></h2>
+                <div class="options-wrapper" data-ng-if="showThemeManager">
+                    <div class="option-description full-width">
+                        <p class="heading" data-ng-bind="pullInterNationalization('admin.account.business.themeManager.desc')"></p>
+                    </div>
+                    <a href="/sp/admin/company/theming/home" class="pill orange fLeft mTop1 ng-binding" data-ng-bind="pullInterNationalization('admin.account.business.themeManager.cta')"></a>
+                </div>
+                <hr data-ng-if="showThemeManager && showEmailManager"/>
+                <div class="options-wrapper" data-ng-if="showEmailManager">
+                    <div class="option-description full-width">
+                        <p class="heading" data-ng-bind="pullInterNationalization('admin.account.business.emailManager.desc')"></p>
+                    </div>
+                    <a href="/sp/admin/company/emails/home" class="pill orange fLeft mTop1 ng-binding" data-ng-bind="pullInterNationalization('admin.account.business.emailManager.cta')"></a>
+                </div>
+                <!-- Right Col Ends -->
+            </div>
+        </div>
+    </div>
+</div>

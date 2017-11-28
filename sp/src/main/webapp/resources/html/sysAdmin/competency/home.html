@@ -1,0 +1,71 @@
+<section data-ng-controller="competencyListingController as ctrl" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'" class="hide" data-ng-init="ctrl.getAllCompetencyProfiles();">
+    <div class="x-container members hiring-candidates affiliate-listing pulse-listing competency-admin">
+        <div class="container minimumHeight" >
+            <div class="bgWhiteBord clearfix">
+                <div class="toolbar clearfix">
+                    <div class="title">
+                        <a href="javascript:void(0)" role="button" data-ng-click="ctrl.resetfilter()">All Accounts<span class="blackcolor" data-ng-bind="'('+(ctrl.competenciesList.length||0)+')'"></span></a>
+                    </div>
+                    <div class="controls clearfix">
+                        <div class="hiring-list-wrapper">
+                            <p class='iea'>
+                                <a href="javascript:void(0)" data-ng-click="ctrl.selectCompany()">Create New Competency Profile</a>
+                            </p>
+                        </div>
+                        
+                        <div class="controlwrap search">
+                            <input type="text" class="form-control" maxlength="28" data-ng-model-options="{debounce:{'default':500,'blur':0}}" data-ng-model="ctrl.pageVariables.searchText" placeholder="{{pullInterNationalization('sysAdmin.organization.search')}}">
+                            <button class="sp-icon-color" data-ng-class="ctrl.pageVariables.searchText.length>1? 'icon-icon_remove':'icon-icon_search'" data-ng-click="ctrl.pageVariables.searchText=''"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="filters"></div>
+                <article class="memberHolder">
+                    <div class="heading row">
+                        <div class="col-md-5 col-sm-5 tog activeFilter" data-ng-click="ctrl.active($event,{'predicate':'company.name', 'reverse':reverse=!reverse})" data-predicate='company.name'>
+                            <h4 class="on code" data-ng-bind="pullInterNationalization('sysAdmin.organization.companyName')"></h4>
+                        </div>
+                        <div class="col-md-3 col-sm-3 tog col-fix-1" data-ng-click="ctrl.active($event,{'predicate':'company.address.country', 'reverse':reverse=!reverse})" data-predicate='company.address.country'>
+                            <h4 data-ng-bind="pullInterNationalization('sysAdmin.organization.citycountry')"></h4>
+                        </div>
+                        <div class="col-md-3 col-sm-3 tog col-fix-2">
+                            <h4 class="hideHandIcon">Competency Profiles</h4>
+                        </div>
+                        <div class="col-md-1 col-sm-1"></div>
+                    </div>
+                    <div infinite-scroll="ctrl.returnMemberList()" infinite-scroll-immediate-check="false" infinite-scroll-disabled="ctrl.pageVariables.disabledInfinite">
+                        <div class="complete-profile animation_1" data-ng-class="{active:show}" id='{{$index}}' data-ng-repeat="list in recordField = (ctrl.competenciesList | filter:ctrl.pageVariables.searchText) track by $index">
+                            <div class="table-row clearfix">
+                                <div class="col-md-5 col-sm-5">
+                                <p class="code">
+                                    <span class="mock-link wordWrap" data-ng-bind="list.company.name"></span>
+                                     </p>
+                                </div>
+                                <div class="col-md-3 col-sm-3 row_title">
+                                    <p class="role_title"><span data-ng-bind="list.company.address.country"></span><span data-ng-bind="list.company.address.city"></span></p>
+                                </div>
+                                <div class="col-md-3 col-sm-3 row_title">
+                                <input type="checkbox" class="read-more-state" id="readMoreToggle_{{$index}}" />
+                                 <div class="read-more-wrap">
+                                    <p class="role_title" data-ng-repeat="competency in list.competencyProfileList" data-ng-class="$index>4? 'read-more-target':''">
+                                      <a href="javascript:void(0)" class="mock-link" data-ng-bind="competency.name" 
+                                           data-ng-click="ctrl.updateCompetency({'id':list.company.id,'name':list.company.name,'competencyProfileId':competency.id})">  
+                                      </a>
+                                    </p>   
+                                 </div>
+                                 <label for="readMoreToggle_{{$index}}" data-readMore="{{::pullInterNationalization('spectrum.more')}}.." data-readLess="{{::pullInterNationalization('label.readless')}}.." class="read-more-trigger" data-ng-if="list.competencyProfileList.length>5"></label>
+                                    <p class="role_title add-new-competency">
+                                     <a href="javascript:void(0)" class="mock-link" data-ng-click="ctrl.createCompetency({'id':list.company.id,'name':list.company.name,'competencyProfileId':null})">Create Profile..</a>
+                                    </p>
+                               
+                                <div class="col-md-1 col-sm-1"></div>
+                       		</div>
+                        </div>
+                    </div>
+                    <p data-ng-show="!recordField.length && ctrl.responseAvailable" class="noMatchFound ng-hide" data-ng-bind="pullInterNationalization('admin.blueprint.noRecord')"></p>
+			        <p data-ng-show="!recordField.length && !ctrl.responseAvailable" class="noMatchFound ng-hide" data-ng-bind="pullInterNationalization('practiceArea.loading')"></p>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>

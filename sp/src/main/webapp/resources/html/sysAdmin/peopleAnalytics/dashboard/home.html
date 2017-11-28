@@ -1,0 +1,73 @@
+<section data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'" class="hide">
+    <div class="x-container learning-development pm-admin org-admin pa-dashboard competency-admin">
+        <div class="container minimumHeight" >
+            <div class="table-flex-cols">
+                    <!-- Left Box Starts -->
+                    <div class="flex-cols-caption">
+                    <div class="lnd-full-box sp-panel-accent lnd-spacer20">
+                        <div class="actionPlanHeader">
+                        	<div class="company-and-return">
+                        		<h3 class="companyName sp-header-title-color" data-ng-bind="::pullInterNationalization('pa.admin.dashboard.title')"></h3>
+                        		
+                        	</div>
+                        	<div class="published-created-save">
+	                        	<div class="published-created" data-ng-if="activeId !== null">
+		                            <div class="lastUpdatedOn" data-ng-class="activeId !== null?'extraMargin':'noMargin'">
+		                                <span class="label" data-ng-bind="::pullInterNationalization('sysadmin.organization.lastUpdatedon')"></span> <span class="detail" data-ng-bind="::pullInterNationalization('sysadmin.organization.on')"></span> <span class="detail" data-ng-bind="updatedOn | spDateFormat"></span><span class="detail" data-ng-bind="', '+pullInterNationalization('sysadmin.organization.by') + ' ' + updatedBy.name"></span>
+		                            </div>
+	                            </div>
+	                            <div class="custom_column custom_column_space">
+	                                <ol class="form-list-c form-list-d noMarBottom">
+		                          	 
+	                                    <li class="submit-cancel-btns space-box planAction">
+	                                        <ul class="submit-cancel-list">
+	                                            <li class="submit-charge">
+	                                                <input type="submit" value="{{::pullInterNationalization('practiceArea.save')}}" class="subscribeBtn btn-block btn-15px sp-btn-color"  data-ng-if="activeId === null" data-ng-click="saveSettings()" />
+	                                                <input type="submit" value="{{::pullInterNationalization('practiceArea.save')}}" class="subscribeBtn btn-block btn-15px sp-btn-color" data-ng-if="activeId !== null" data-ng-click="updateSettings()" />
+	                                            </li>
+	                                            <li class="cancel-charge">
+	                                                <input type="button" value="{{::pullInterNationalization('admin.member.cancel')}}" class="cancelBtn btn-block btn-15px btn-grey-dark" data-ng-click="cancelSave()" />
+	                                            </li>
+	                                        </ul>
+					                    </li> 
+	                                </ol>
+	                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+                    <div class="lnd-left-sec">
+                   	   
+                        <div class="lnd-left-box lnd-top-border lnd-spacer sp-panel-accent">
+                   	       <h2 class="icon-style-realtive">
+                   	       		<span class="sans" data-ng-bind="::pullInterNationalization('pa.admin.settings.label')"></span>
+                           </h2>
+                            <ul>
+                                <li class="word-wrap" data-ng-class="viewMode.articles?'on':''" data-ng-click="toggleView()">
+                                    <span class="mock-link sp-link-color" data-ng-bind="::pullInterNationalization('pa.admin.articles.label')"></span>
+                                    <span class="icon-style-position-error validate-error sp-icon-color" data-ng-if="errorSetting.setting"></span>
+                           	   		<span class="lnd-focus-arrow icon-icon_focus-arrow sp-icon-color" data-ng-class="viewMode.articles?'icon-icon_focus-arrow':'hide'"></span>
+                                </li>
+                                <li class="word-wrap" data-ng-class="viewMode.images?'on':''" data-ng-click="toggleView()">
+                                    <span class="mock-link sp-link-color" data-ng-bind="::pullInterNationalization('pa.admin.images.label')"></span>
+                                    <span class="icon-style-position-error validate-error sp-icon-color" data-ng-if="errorSetting.setting"></span>
+                           	   		<span class="lnd-focus-arrow icon-icon_focus-arrow sp-icon-color" data-ng-class="viewMode.images?'icon-icon_focus-arrow':'hide'"></span>
+                                </li>
+                            </ul>
+                        </div>
+                        </div>
+                    <!-- Left Box Ends -->
+                    <!-- Right Box Starts -->
+                    <div class="lnd-right-sec">
+                        <div class="holder">
+                            <div class="view-editCreate">
+                                <div ui-view="articles" data-ng-class="{'show':viewMode.articles}" class="hide"></div>
+                                <div ui-view="images" data-ng-class="{'show':viewMode.images}" class="hide"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</section>

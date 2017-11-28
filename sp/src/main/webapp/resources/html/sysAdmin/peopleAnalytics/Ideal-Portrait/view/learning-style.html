@@ -1,0 +1,27 @@
+<section class="keyMatch">
+    <article class="match-holder">
+        <h3 class="match-holder-heading weight-500" data-ng-bind="::pullInterNationalization('spectrum.trait.LearningStyle')"></h3>
+        <article class="range-data-section">
+            <div class='data-content-two-way'>
+               <!-- Global And Analytical -->
+			    <div class="tick-selection clearfix">
+                    <input type="checkbox" class="filterCheckBox" id="Global" data-ng-model="portraitMatch.categoryDataMap.LearningStyle.Global.enabled" data-ng-true-value="true" data-ng-false-value="false" data-ng-change="includeCheck('Global',filterSelected.LearningStyle)">
+                    <label for="Global" class="filterCheckBox-label">
+                        <span class="checkedTick pull-left bpPopFix icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                        <span class="font_14_300 pull-left" data-ng-bind="::pullInterNationalization('spectrum.trait.type.Global')+' '+pullInterNationalization('idealPortrait.portrait.processing.vs')+' '+pullInterNationalization('spectrum.trait.type.Analytical')"></span>
+                    </label>
+                    <range-drag data-steps="21" data-label1="pullInterNationalization('spectrum.trait.type.Global')" data-label2="pullInterNationalization('spectrum.trait.type.Analytical')" drag-range="portraitMatch.categoryDataMap.LearningStyle.Global.matchCriterias[0].matchPercent" checkbox-fn="includeCheck('Global',filterSelected.LearningStyle)" range-data1="portraitMatch.categoryDataMap.LearningStyle.Global.matchCriterias[0].matchPercent" editable="portraitMatch.categoryDataMap.LearningStyle.Global.enabled"></range-drag>
+                    <!-- <div class="labels clearfix">
+                        <span class="pull-left font_14_300 sp-spectrum-label-color" data-ng-bind="portraitMatch.categoryDataMap.LearningStyle.Global.matchCriterias[0].matchPercent+'% '+pullInterNationalization('spectrum.trait.type.Global')"></span>
+                        <span class="pull-right font_14_300 sp-spectrum-label-color" data-ng-bind="(100 - portraitMatch.categoryDataMap.LearningStyle.Global.matchCriterias[0].matchPercent)+'% '+pullInterNationalization('spectrum.trait.type.Analytical')"></span>
+                    </div>-->
+                </div>
+            </div>
+        </article>
+        <div class="trait-list-description">
+            <div class="trait-listing">
+                <p data-ng-bind="::pullInterNationalization('idealPortrait.portrait.learning.global')"></p>
+            </div>
+        </div>
+    </article>
+</section>

@@ -1,0 +1,40 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color"></div>
+                    <h2 data-ng-bind="::pullInterNationalization('idealPortrait.portrait.setWeightFactor')"></h2>
+                </div>
+                <div class="new-modals-wrapper pa-ideal-portrait pa-ideal-portrait-weight">
+                    <p class="dialog-message-16px" data-ng-bind="::pullInterNationalization('idealPortrait.portrait.setWeightFactor.description')"></p>
+                    <section class="keyMatch">
+                        <article class="match-holder">
+                            <article class="range-data-section">
+                                <div class='data-content-two-way'>
+                                    <!-- Global And Analytical -->
+                                    <div class="tick-selection clearfix">
+                                        <label class="filterCheckBox-label">
+                                            <span class="checkedTick icon-icon_dev_strategy_check sp-icon-color membersFiltersChecks"></span>
+                                        </label>
+                                        <range-drag data-steps="11" drag-range="lastcategoryPriorityWeightMap.Essential" range-data1="lastcategoryPriorityWeightMap.Essential" editable="true"></range-drag>
+                                        <div class="labels weight-name clearfix">
+                                            <span class="pull-left font_14_300 sp-spectrum-label-color" data-ng-bind-html="::pullInterNationalization('prismProfile.label47')+' <br/>'+pullInterNationalization('prismProfile.label48')"></span>
+                                            <span class="pull-right font_14_300 sp-spectrum-label-color" data-ng-bind-html="::pullInterNationalization('prismProfile.label49')+' <br/>'+pullInterNationalization('prismProfile.label54')+' <br/>'+pullInterNationalization('prismProfile.label50')+' <br/>'+pullInterNationalization('prismProfile.label53')+' <br/>'+pullInterNationalization('prismProfile.label51')+' <br/>'+pullInterNationalization('prismProfile.label52')"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </article>
+                 		<!-- Buttons Starts -->
+	                    <div class="dialog-btns-wrapper">
+							<input type="button" value="{{::pullInterNationalization('manageAccountContent.yes')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="saveWeight();">
+	                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.no')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="closeThisDialog();">
+	                    </div>
+	                    <!-- Buttons Ends -->       
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

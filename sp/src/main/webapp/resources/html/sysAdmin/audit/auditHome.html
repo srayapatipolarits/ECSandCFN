@@ -1,0 +1,145 @@
+<section data-ng-controller="auditLogListController as audit" ng-init="audit.getAuditHomeData()">
+    <div class="x-container members">
+        <div class="container minimumHeight" >
+            <div class="bgWhiteBord clearfix">
+                <div class="toolbar clearfix portraitMember">
+                    <div class="title">
+                        <a href="javascript:void(0)" role="button" ng-click="audit.resetfilter()">{{pullInterNationalization('audit.users')}}<span class="blackcolor">({{audit.masterAuditList.length || 0}})</span></a>
+                    </div>
+                    <div class="controls clearfix">
+                        <div class="controlwrap search">
+                            <input type="text" class="form-control" maxlength="28" ng-model="audit.searchText" placeholder="{{pullInterNationalization('audit.search.log')}}" ng-keyup="audit.searchTextFilter(audit.searchText)">
+                            <button class="sp-icon-color" ng-class="audit.enableCancel(audit.searchText)? 'icon-icon_remove':'icon-icon_search'" ng-click="audit.clearSearch()"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filters">
+                    <ul class="box clearfix">
+                        <li class="first w15">
+                            <p class="title resetPad">{{pullInterNationalization('sysAdmin.audit.member.filter')}}:</p>
+                            
+                            <a href="javascript:void(0)" class="resetAnchor" data-ng-bind="pullInterNationalization('sysAdmin.audit.member.reset')" ng-click="audit.resetfilter()"></a>
+                        </li>
+                        <li class="w15">
+                            <p class="title" data-ng-bind="pullInterNationalization('sysAdmin.audit.memberStatus')"></p>
+                            <p class="remember-me">
+							<input type="checkbox" ng-model="audit.pageSetting.onlineC" class="filterCheckBox" id="adminC" ng-checked="audit.pageSetting.onlineC" ng-change="audit.includeCheck('online')"> 
+							<label for="adminC">
+							<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+							<span data-ng-bind="::pullInterNationalization('sysAdmin.audit.bymemberstatus.online')"></span>
+							</label> 	
+						    </p>
+						    <p class="remember-me">
+							<input type="checkbox" ng-model="audit.pageSetting.offlineC" class="filterCheckBox" id="leadC" ng-checked="audit.pageSetting.offlineC" ng-change="audit.includeCheck('offline')"> 
+							<label for="leadC">
+							<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color"></span>
+							<span data-ng-bind="::pullInterNationalization('sysAdmin.audit.bymemberstatus.offline')"></span>
+							</label> 	
+						    </p>
+                            
+                        </li>
+                        <li class="w25 days-week" >
+                            <ul class="filter-time-radio clearfix resetPad" >
+                            	<li class="w25">
+	                            	<input id="Days" type="radio" ng-model="audit.pageSetting.time" ng-change="audit.includeCheck('days')" value="DAY" name="base_audit_radio">
+	                            	<label for="Days">Days</label>
+                            	</li>
+                                <li class="w25">
+	                            	<input id="Week" type="radio" ng-model="audit.pageSetting.time"  ng-change="audit.includeCheck('Week')" value="WEEK" name="base_audit_radio">
+	                            	<label for="Week" class="ng-binding">Week</label>
+                            	</li>
+                            	<li class="w25">
+	                            	<input id="Month" type="radio" ng-model="audit.pageSetting.time" ng-change="audit.includeCheck('Month')" value="MONTH" name="base_audit_radio">
+	                            	<label for="Month">Month</label>
+                            	</li>
+                            	<li class="w25">
+	                            	<input id="Year" type="radio" ng-model="audit.pageSetting.time" ng-change="audit.includeCheck('Years')" value="YEAR" name="base_audit_radio">
+	                            	<label for="Year">Year</label>
+                            	</li>
+                            </ul>
+                            <ul class="filter-time-radio clearfix">
+                            	<li><a href="javascript:void(0)" class="resetAnchor" data-ng-bind="pullInterNationalization('sysAdmin.audit.member.advancedfilter')" ng-click="audit.advancedFilterDialog()"></a></li>
+                            </ul>
+                            
+                            
+                        	
+                        <li class="w15">
+                            <p class="title" data-ng-bind="pullInterNationalization('sysAdmin.audit.byservice')"></p>
+                            <div class="rolesSelectWrapper">
+                                <select class="form-control rolesSelect" ng-init="audit.getAllServices()" ng-model="audit.pageSetting.userServiceSelected" ng-change="audit.includeCheck(audit.pageSetting.userServiceSelected)">
+                                    <option value="">{{pullInterNationalization('sysAdmin.audit.byservice.placestatus')}}</option>
+                                    <option ng-repeat="service in audit.allServices" value="{{service}}" data-ng-bind="service"></option>
+                                </select>
+                            </div>
+                        </li>
+                        <li class="w15">
+                            <p class="title" data-ng-bind="pullInterNationalization('sysAdmin.audit.byType')"></p>
+                            <div class="rolesSelectWrapper">
+                                <select class="form-control rolesSelect" ng-model="audit.pageSetting.userTypeSelected" ng-change="audit.includeCheck(audit.pageSetting.userTypeSelected)">
+                                    <option value="">{{pullInterNationalization('sysAdmin.audit.all.placestatus')}}</option>
+                                    <option value="Individual">Individual</option>
+                                    <option value="Business">Business</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li class="w15">
+                            <p class="title" data-ng-bind="pullInterNationalization('sysAdmin.audit.byActivity')"></p>
+                            <div class="rolesSelectWrapper">
+                                <select class="form-control rolesSelect" ng-model="audit.pageSetting.selectedActivity" ng-change="audit.includeCheck(audit.pageSetting.selectedActivity)">
+                                    <option value="">{{pullInterNationalization('sysAdmin.audit.all.placestatus')}}</option>
+                                    <option value="Low">Low</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="High">High</option>
+                                </select>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <article class="memberHolder">
+                    <div class="heading row">
+
+                        <div class="col-md-3 col-sm-3 m-name tog activeFilter check">
+                            <h4 class="name on" data-ng-bind="pullInterNationalization('sysAdmin.audit.user')"></h4>
+                        </div>
+                        <div class="col-md-2 col-sm-2 t-name tog">
+                            <h4 data-ng-bind="pullInterNationalization('admin.member.title')"></h4>
+                        </div>
+                        <div class="col-md-3 col-sm-3 g-name tog">
+                            <h4 data-ng-bind="pullInterNationalization('sysAdmin.audit.company')"></h4>
+                        </div>
+                        <div class="col-md-2 col-sm-2 s-name tog">
+                            <h4 data-ng-bind="pullInterNationalization('sysAdmin.audit.activity')"></h4>
+                        </div>
+                    </div>
+                   <div class="complete-profile animation_1" ng-repeat="memberList in recordField = (audit.auditFilteredList | filter: audit.pageSetting.textSearching)">
+                        <div class="table-row clearfix check">
+                            <div class="col-md-3 col-sm-3 name">
+                                <img ng-src="{{memberList.smallProfileImage}}" alt="{{memberList.userInitials}}" ng-if="memberList.smallProfileImage">
+                                <div class="imgReplacement" ng-if="!memberList.smallProfileImage" ng-bind="memberList.userInitials"></div>
+                                <p>
+                                    <a href="/sp/sysAdmin/audit/detail?email={{memberList.email}}"  class="fname" data-ng-bind="memberList.name"></a>
+                                    <a href="mailto:{{memberList.email}}" class="email" data-ng-bind="memberList.email"></a>
+                                </p>
+                            </div>
+                            <div class="col-md-2 col-sm-2 row_title" data-ng-bind="memberList.title"></div>
+
+                            <div class="col-md-3 col-sm-3 addModal" data-ng-bind="memberList.companyName">
+                            </div>
+
+                            <div class="col-md-2 col-sm-2 activityMessage">
+											<span data-ng-bind="memberList.activityType"></span>
+					        </div>
+                        </div>
+                    </div>
+                     <p ng-show="!recordField.length" class="noMatchFound ng-hide" data-ng-bind="pullInterNationalization('admin.member.nomatch')"></p>
+                   <!--  <div class="more">
+                    <a href="javascript:void(0)" class="ng-hide" role="button" ng-click="loadBtnCLicked=true; returnMemberList(pageSize+pageSize)" ng-hide="alldisplay || recordField.length < intialPageSize" data-ng-bind="pullInterNationalization('admin.member.showmore')"></a>
+               		 </div>-->
+                </article>
+               
+            </div>
+        </div>
+    </div>
+</section>

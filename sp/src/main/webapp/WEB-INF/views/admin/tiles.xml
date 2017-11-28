@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="getCurrentIndividualProductInfo" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/admin/account/renew-individual.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/adminHeader.jsp" cascade="true" />			
+		<put-attribute name="javascripts" value="resources/js-min/renewIndividualController.min.js" cascade="true" />	
+	</definition>
+
+	<definition name="changeSubscription" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/admin/account/change-subscription.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/adminHeader.jsp" cascade="true" />			
+		<put-attribute name="javascripts" value="resources/js-min/changeSubscriptionController.min.js" cascade="true" />	
+	</definition>	
+	
+
+	<definition name="renewAccount" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/admin/account/renew-business.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/adminHeader.jsp" cascade="true" />			
+		<put-attribute name="javascripts" value="resources/js-min/renewBusinessController.min.js" cascade="true" />			
+	</definition>		
+
+	<definition name="getHiringProductInfo" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/admin/account/add-candidate-accounts.html" />
+<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />			
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/adminHeader.jsp" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/candidateAccountsController.min.js" cascade="true" />			
+	</definition>
+	<definition name="getAlternateHiringProductInfo" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/sysAdmin/alternateBilling/add-candidate-Alternativeaccounts.html" />
+			<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/adminHeader.jsp" cascade="true" />		
+		<put-attribute name="javascripts" value="resources/js-min/candidateAccountsController.min.js" cascade="true" />		
+	</definition>
+
+	<definition name="addHiringCandidates" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/admin/account/add-member-accounts.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/adminHeader.jsp" cascade="true" />		
+			<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/memberAccountsController.min.js" cascade="true" />		
+	</definition>
+	
+	<definition name="addAlternativeHiringCandidates" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/sysAdmin/alternateBilling/add-member-Alternativeaccounts.html" />
+			<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/adminHeader.jsp" cascade="true" />		
+		<put-attribute name="javascripts" value="resources/js-min/memberAccountsController.min.js" cascade="true" />	
+	</definition>
+	<definition name="addCredit" extends="dashboardAngular-noroute">
+	<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="content"
+			value="/resources/html/sysAdmin/alternateBilling/add-credit-Alternativeaccounts.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/adminHeader.jsp" cascade="true" />	
+		<put-attribute name="javascripts" value="resources/js-min/memberAccountsController.min.js" cascade="true" />		
+	</definition>
+	<definition name="addCreditIndividual" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/sysAdmin/alternateBilling/add-credit-AlternativeaccountsIndividual.html" />
+			<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/adminHeader.jsp" cascade="true" />		
+		<put-attribute name="javascripts" value="resources/js-min/memberAccountsController.min.js" cascade="true" />	
+	</definition>
+	<definition name="updatePaymentInstrument" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/admin/account/update-credit-card.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/adminHeader.jsp" cascade="true" />			
+		<put-attribute name="javascripts" value="resources/js-min/ccUpdateController.min.js" cascade="true" />
+	</definition>
+
+	<definition name="getPaymentHistory" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/admin/account/payment-history.html" />
+			<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/adminHeader.jsp" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/paymentHistoryController.min.js" cascade="true" />			
+	</definition>
+	<definition name="getPaymentHistoryalternate" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/sysAdmin/alternateBilling/payment-history-alternate.html" />
+			<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/adminHeader.jsp" cascade="true" />		
+		<put-attribute name="javascripts" value="resources/js-min/paymentHistoryController.min.js" cascade="true" />	
+	</definition>
+	<definition name="processPayment" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/admin/account/make-payment.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/adminHeader.jsp" cascade="true" />	
+		<put-attribute name="javascripts" value="resources/js-min/processPaymentController.min.js" cascade="true" />		
+	</definition>
+
+		<definition name="getBusinessAccountDetails" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/admin/account/business-account-details.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/adminHeader.jsp" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/accountDashboardController.min.js" cascade="true" />
+	</definition>
+	
+	<definition name="newManageAccount" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/admin/manage-account/home-manageAccount.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/adminHeader.jsp" cascade="true" />
+		<put-attribute name="styles" value="resources/css/css-min/manageAccountAdmin.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+			<add-attribute value="resources/js-min/adminSharedControllers.min.js" />
+			<add-attribute value="resources/js/color-picker/color-picker.min.js" /> 
+			<add-attribute value="resources/js/date-range-picker/date-range-picker.min.js" /> 	
+			<add-attribute value="resources/js-min/teamAdvisor.min.js" /> 	
+	    </put-list-attribute>
+	</definition>	
+
+	<definition name="getIndividualAccountDetails" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/admin/account/individual-account-details.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/adminHeader.jsp" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/accountDashboardController.min.js" cascade="true" />
+	</definition>
+
+	<definition name="updateProfile" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/admin/account/user-assessment.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/adminHeader.jsp" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/accountDashboardController.min.js" cascade="true" />
+	</definition>
+
+	<definition name="updateUserProfile" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/admin/account/profile-details.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/personalProfileHeader.jsp" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/accountDashboardController.min.js" cascade="true" />
+	</definition>	
+
+	<!-- Account Admin OrganizationPlan(s) View -->
+	<definition name="getActionPlanHome" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/admin/organization/home.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/adminHeader.jsp" cascade="true" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-attribute name="javascripts" value="resources/js-min/organizationAdminController.min.js" cascade="true" />
+	</definition>
+	<definition name="getActionPlanCreate" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/admin/organization/create.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/adminHeader.jsp" cascade="true" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/organizationAdminController.min.js" />
+	    	<add-attribute value="resources/js-min/adminMediaListingController.min.js" />
+	    	<add-attribute value="resources/js-min/adminMediaController.min.js" />
+	    </put-list-attribute>
+	</definition>
+	<definition name="getActionPlanUpdate" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/admin/organization/update.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/adminHeader.jsp" cascade="true" />
+		<put-attribute name="styles" value="resources/css/css-min/sp-admin.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/organizationAdminController.min.js" />
+	    	<add-attribute value="resources/js-min/adminMediaListingController.min.js" />
+	    	<add-attribute value="resources/js-min/adminMediaController.min.js" />
+	    </put-list-attribute>
+	</definition>
+	
+	<!-- Theming View -->
+	<definition name="themingHome" extends="dashboardAngular-noroute">
+		<put-attribute name="content" value="/resources/html/admin/theming/home.html" />
+		<put-attribute name="adminHeader"
+			value="/WEB-INF/layouts/standard/adminHeader.jsp" cascade="true" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/companyThemingController.min.js" />
+	    	<add-attribute value="resources/js/color-picker/color-picker.min.js" />
+	    </put-list-attribute>
+	</definition>
+	
+	<!-- Competency Manager Dashboard -->
+
+	<definition name="competencyManager" extends="dashboardAngular-noroute">
+		<put-attribute name="content"
+			value="/resources/html/admin/competency/home-competency-manager.html" />
+			<put-attribute name="styles" value="resources/css/css-min/competencies-new.min.css" cascade="true" />
+		<put-list-attribute name="javascripts">
+	    	<add-attribute value="resources/js-min/competencyManager.min.js" />
+	    	<add-attribute value="resources/js/rangeslider.min.js" />
+	    	<add-attribute value="resources/js/date-range-picker/date-range-picker.min.js" />
+	    </put-list-attribute>
+	</definition>
+	
+	<definition name="previewRating" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/admin/competency/rating-preview.html" />
+	</definition>	
+	
+	<definition name="activateEvaluation" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/admin/competency/activate-evaluation.html" />
+	</definition>
+	
+	<definition name="changeManagerModal" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/admin/competency/change-manager-modal.html" />
+	</definition>
+	
+	<definition name="organizationMemberModal" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/admin/manage-account/organization-manager-modal.html" />
+	</definition>	
+	<definition name="competencyMemberModal" extends="popup">
+		<put-attribute name="content"
+			value="/resources/html/admin/manage-account/competency-manager-modal.html" />
+	</definition>		
+
+</tiles-definitions>

@@ -1,0 +1,45 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color adj0"></div>
+                </div>
+                <div class="new-modals-wrapper">
+                
+                    <!-- Top Message Starts -->
+                    <p class="dialog-message-16px" data-ng-if="selectedMemberInfo.type === 'HiringCandidate'" data-ng-bind="::pullInterNationalization('moveToCandidatesConfirm')"></p>
+                    <p class="dialog-message-16px" data-ng-if="selectedMemberInfo.type === 'Member'" data-ng-bind="::pullInterNationalization('moveToEmployeesConfirm')"></p>
+                    <!-- Top Message Ends -->
+
+                    <!-- Email List Starts  -->
+                    <div class="multiple-emails-block">
+                        <div class="table-content">
+                            <div class="left-cont">
+                                <p data-ng-if="selectedMemberInfo.type === 'Member'" data-ng-bind="::pullInterNationalization('pa.selectedEmployees')+':'"></p>
+                                <p data-ng-if="selectedMemberInfo.type === 'HiringCandidate'" data-ng-bind="::pullInterNationalization('pa.selectedCandidates')+':'"></p>
+                            </div>
+                            <div class="right-cont">
+                                <p class="email-list">
+                                    <span>
+                                    <span data-ng-if="selectedMemberInfo.name" data-ng-bind="selectedMemberInfo.name"></span>
+                                    <span data-ng-if="!selectedMemberInfo.name" data-ng-bind="selectedMemberInfo.email"></span>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Email List Ends  -->                     
+                    
+                    <!-- Buttons Starts -->
+                    <div class="dialog-btns-wrapper">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.yes')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="putBack(selectedMemberInfo.id)">
+                        <input type="button" value="{{::pullInterNationalization('manageAccountContent.no')}}" class="btn-block btn-14px btn-grey-dark" data-ng-click="closeThisDialog();">
+                    </div>
+                    <!-- Buttons Ends -->
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

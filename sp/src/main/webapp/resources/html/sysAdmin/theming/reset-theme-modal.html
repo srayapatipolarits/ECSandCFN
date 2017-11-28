@@ -1,0 +1,37 @@
+<div class="container" id="editGroup">
+    <div class="row">
+        <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+            <div>
+                <section class="wrapper">
+                    <div class="contentBody">
+                        <div class="head">
+                            <div class="wrap">
+                                <div class="headerBar" data-ng-if="resetCompanyId !== 'default'">Reset Theme to Default State</div>
+                                <div class="headerBar" data-ng-if="resetCompanyId === 'default'">Reset to Original Theme</div>
+                                <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color" data-ng-click="closeThisDialog()"></div>
+                            </div>
+                        </div>
+                        <div class="contentArea">
+                            <div class="detail clearfix">
+                                <div class="conf_message" data-ng-if="resetCompanyId === 'default'">Are you sure you want to reset the settings to the original SurePeople theme?</div>
+                                <div class="conf_message" data-ng-if="resetCompanyId !== 'default' && resetThemeRequest === 'accountAdmin'">Are you sure you want to reset your company's theme to the default state?</div>
+                                <div class="conf_message" data-ng-if="resetCompanyId !== 'default' && resetThemeRequest === 'superAdmin'">Removing these settings will reset this company's theme to the default state. This will also disable their admin access.</div>
+                                <div class="sp-btn-wrapper sp-red btn-small floatLeft spacing">
+                                    <div class="sp-btn">
+                                        <input data-ng-if="resetCompanyId === 'default'" type="button" value="OK" class="btnStyle1 " data-ng-click="ctrl.resetToOriginalTheme()">
+                                        <input data-ng-if="resetCompanyId !== 'default'" type="button" value="OK" class="btnStyle1 " data-ng-click="ctrl.resetToDefaultTheme(resetThemeRequest,resetCompanyId)">
+                                    </div>
+                                </div>
+                                <div class="sp-btn-wrapper sp-grey btn-small floatLeft spacing">
+                                    <div class="sp-btn">
+                                        <input type="button" value="CANCEL" class="btnStyle1 " data-ng-click="closeThisDialog()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                </section>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,118 @@
+
+
+<div class="x-container create-pulse pulse-details create-library-home" ng-controller="libraryHomeDetailsController" ng-cloak>
+    <div class="container" >
+        <div class="bg-wrapper">
+            <div class="space-box">
+                <p class="return-link">
+                	<a href="/sp/sysAdmin/learning/curriculam/libraryHome" class="border-link">
+                        <span class="mock-link">Return to Home List</span>
+                    </a>
+                </p>            
+                <h2 ng-if="company!==null" data-ng-bind="company.name"></h2>
+                <h2 ng-if="globalName!==null">{{globalName}}</h2>
+				<a class="btn-square-12px sp-background-color f-left" ng-show="libraryHomeEditing.status===false" ng-click="libraryHomeEnableEdit('enable');$event.preventDefault();">EDIT</a>                
+            </div>
+            </div>    
+        <div class="bg-wrapper no-border">
+                <form name="createNewLibraryHome" novalidate>
+                <ol class="form-list-c">
+                  <section class="library-home-section">
+                    <li class="type-and-number f-left space-box">
+                        <img ng-src="{{newLibraryHome.articleImage0}}"/>
+                        </li>
+                    <li class="type-and-number f-left space-box second-column">
+                    <label class="label" for="name">Article 1</label>
+                        <input autoFocus type="text" name="newLibraryHome.articleName0"  ng-model="newLibraryHome.articleName0" required readonly/>
+                        
+                        <label class="label textareaLabel" for="name">Article Description</label>
+                      
+                       <textarea ng-model="newLibraryHome.articleDescription0" ng-required="true" name="message" maxlength="300" class="ng-pristine ng-invalid-required ng-invalid" required="required"></textarea>
+                         
+                    </li>
+                    <li class="select-article f-left space-box>
+                     <p class="fake-input-wrapper">
+                            <a href="#" class="select-btn btn-square-12px sp-background-color select-article-btn" ng-click="selectArticle(0);$event.preventDefault();">Select Article</a>
+                        </p>
+                    </li>
+                   </section>
+                   
+                   <section class="library-home-section">
+                    <li class="type-and-number f-left space-box">
+                        <img ng-src="{{newLibraryHome.articleImage1}}"/>
+                        </li>
+                    <li class="type-and-number f-left space-box second-column">
+                    <label class="label" for="name">Article 2</label>
+                        <input autoFocus type="text" name="newLibraryHome.articleName1"  ng-model="newLibraryHome.articleName1" required readonly/>
+                        
+                        <label class="label textareaLabel" for="name">Article Description</label>
+                      
+                       <textarea ng-model="newLibraryHome.articleDescription1" ng-required="true" name="message" maxlength="300" class="ng-pristine ng-invalid-required ng-invalid" required="required"></textarea>
+                         
+                    </li>
+                    <li class="select-article f-left space-box>
+                     <p class="fake-input-wrapper">
+                            <a href="#" class="select-btn btn-square-12px sp-background-color select-article-btn" ng-click="selectArticle(1);$event.preventDefault();">Select Article</a>
+                        </p>
+                    </li>
+                   </section>
+                   
+                   <section class="library-home-section">
+                    <li class="type-and-number f-left space-box">
+                        <img ng-src="{{newLibraryHome.articleImage2}}"/>
+                        </li>
+                    <li class="type-and-number f-left space-box second-column">
+                    <label class="label" for="name">Article 3</label>
+                        <input autoFocus type="text" name="newLibraryHome.articleName2"  ng-model="newLibraryHome.articleName2" required readonly/>
+                        
+                        <label class="label textareaLabel" for="name">Article Description</label>
+                      
+                       <textarea ng-model="newLibraryHome.articleDescription2" ng-required="true" name="message" maxlength="300" class="ng-pristine ng-invalid-required ng-invalid" required="required"></textarea>
+                         
+                    </li>
+                    <li class="select-article f-left space-box>
+                     <p class="fake-input-wrapper">
+                            <a href="#" class="select-btn btn-square-12px sp-background-color select-article-btn" ng-click="selectArticle(2);$event.preventDefault();">Select Article</a>
+                        </p>
+                    </li>
+                   </section>
+                   
+                   <section class="library-home-section">
+                    <li class="type-and-number f-left space-box">
+                        <img ng-src="{{newLibraryHome.articleImage3}}"/>
+                        </li>
+                    <li class="type-and-number f-left space-box second-column">
+                    <label class="label" for="name">Article 4</label>
+                        <input autoFocus type="text" name="newLibraryHome.articleName3"  ng-model="newLibraryHome.articleName3" required readonly/>
+                        
+                        <label class="label textareaLabel" for="name">Article Description</label>
+                      
+                       <textarea ng-model="newLibraryHome.articleDescription3" ng-required="true" name="message" maxlength="300" class="ng-pristine ng-invalid-required ng-invalid" required="required"></textarea>
+                         
+                    </li>
+                    <li class="select-article f-left space-box>
+                     <p class="fake-input-wrapper">
+                            <a href="#" class="select-btn btn-square-12px sp-background-color select-article-btn" ng-click="selectArticle(3);$event.preventDefault();">Select Article</a>
+                        </p>
+                    </li>
+                   </section>
+                   
+                    <li ng-show="createNewPulseException">
+                    	<span class="validate-error" data-ng-bind="createNewPulseExceptionMsg"></span>
+                    </li>
+                    <li class="submit-cancel-btns space-box" ng-if="libraryHomeEditing.status===true">
+                        <ul class="submit-cancel-list">
+                            <li class="submit-charge">
+                                <input type="submit" value="submit" class="subscribeBtn btn-block btn-15px sp-btn-color" ng-click="updateLibraryHome(newLibraryHome)" />
+                            </li>
+                            <li class="cancel-charge">
+                                <input type="button" value="cancel" class="cancelBtn btn-block btn-15px btn-grey-dark" ng-click="goLibraryHome()" />
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>

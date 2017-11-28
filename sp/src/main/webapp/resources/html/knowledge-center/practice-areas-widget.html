@@ -1,0 +1,16 @@
+<section class="related-article-tools article-filter-tool">
+    <h2 class="sp-header-title-color" data-ng-bind="::pullInterNationalization('kcContent.pa')"></h2>
+    <form class="search-select-tool" id="pa_dd_form">
+        <ol>
+            <li class="select-content">
+                <span class="article-dd-icon icon-icon_dropdown-arrow sp-icon-color"></span>
+                <select data-ng-options="k as k.name for k in searchKeys track by k.id" name="themeTopic" data-ng-model="themeTopic">
+                    <option value="" data-ng-bind="::pullInterNationalization('kcContent.selectPa')"></option>
+                </select>
+            </li>
+            <li class="search-select-submit-narrow">
+                <input type="submit" value="{{::pullInterNationalization('kcContent.browse')}}" class="btn-block btn-14px sp-btn-color" id="pa_dd_search" data-ng-click="startSearch(themeTopic)" />
+            </li>
+        </ol>
+    </form>
+</section>

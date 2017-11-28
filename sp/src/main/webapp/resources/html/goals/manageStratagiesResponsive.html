@@ -1,0 +1,38 @@
+<div class="lnd-content-dialog">
+    <div class="x-container" style="height:{{ctrl.winHeight}}">
+        <div class="add-note">
+            <div class="dialog-header-closeBtn">
+                <h2 class="dialog-heading" data-ng-bind="::pullInterNationalization('practiceArea.mds')"></h2>
+                <div class="ngdialog-close close-btn-icon icon-icon_remove"></div>
+            </div>
+            <div class="pa-details pa-extra-spacing">
+                <div class="copy-suggestion"><span data-ng-bind="::pullInterNationalization('practiceArea.mdsdesc')"></span>
+                </div>
+                <div class="description_holder" data-ng-if="ctrl.manageDevelopmentStartegiesArray.length">
+                    <form name="ctrl.manageStartegyForm" novalidate data-ng-submit="ctrl.updateMDS()">
+		                <p class="custom-checkbox" data-ng-repeat="startegy in ctrl.manageDevelopmentStartegiesArray track by $index">
+		                    <input type="checkbox" id="startegy_{{$index}}" data-ng-model="startegy.selectedByUser" />
+		                    <label for="startegy_{{$index}}">
+		                    	<span class="checkedTick icon-icon_dev_strategy_check sp-icon-color checkPosAbs f_lef"></span>
+		                    	<span class="f_lef" data-ng-bind="startegy.dsDescription"></span>
+		                    </label>
+		                </p>
+                        <span class="err-msg validate-error hide" data-ng-class="ctrl.submitDisabled()?'hide':'show'" data-ng-bind="::pullInterNationalization('practiceArea.mdsdescchoose')"></span>
+                        <div class="clearfix spacer">
+                            <div class="sp-btn-wrapper sp-red btn-esmall floatLeft spacing">
+                                <div class="sp-btn">
+                                    <input type="submit" value="{{::pullInterNationalization('practiceArea.save')}}" class="btnStyle1">
+                                </div>
+                            </div>
+                            <div class="sp-btn-wrapper sp-grey btn-esmall floatLeft spacing">
+                                <div class="sp-btn">
+                                    <input type="button" value="{{::pullInterNationalization('admin.member.cancel')}}" class="btnStyle1" data-ng-click="closeThisDialog()">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

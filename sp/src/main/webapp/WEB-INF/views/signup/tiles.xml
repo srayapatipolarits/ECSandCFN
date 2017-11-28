@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="signup" extends="nonLoggedAngular">
+		<put-attribute name="title" value="Sign up | SurePeople" />
+		<put-attribute name="description" value="The SurePeople signup page." />
+		<put-attribute name="keywords"
+			value="Sign up, SurePeople Sign up, Register" />
+	</definition>
+
+	<definition name="signupIndividual" extends="nonLoggedAngular">
+		<put-attribute name="title" value="Sign up | SurePeople" />
+		<put-attribute name="description" value="The SurePeople signup page." />
+		<put-attribute name="keywords"
+			value="Sign up, SurePeople Sign up, Register" />
+	</definition>
+
+	<definition name="signupMember" extends="pageNotLoggedIn">
+		<put-attribute name="title" value="Sign up Member | SurePeople" />
+		<put-attribute name="description" value="The SurePeople Member signup page." />
+		<put-attribute name="keywords"
+			value="Sign up Member, SurePeople Member Sign up, Register Member" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/signup/registerMember.jsp" />
+		<put-attribute name="javascripts" value="resources/js-min/signUpController.min.js" cascade="true" />
+	</definition>
+
+	<definition name="signupIndividualMember" extends="pageNotLoggedIn">
+		<put-attribute name="title" value="Sign up Member | SurePeople" />
+		<put-attribute name="description" value="The SurePeople Member signup page." />
+		<put-attribute name="keywords"
+			value="Sign up Member, SurePeople Member Sign up, Register Member" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/signup/registerIndividualMember.jsp" />
+		<put-attribute name="javascripts" value="resources/js-min/signUpController.min.js" cascade="true" />
+	</definition>
+	
+	<definition name="payment" extends="pageNotLoggedIn">
+		<put-attribute name="title" value="Sign up Member | SurePeople" />
+		<put-attribute name="description" value="The SurePeople Member signup page." />
+		<put-attribute name="keywords"
+			value="Sign up Member, SurePeople Member Sign up, Register Member" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/payment/paymentForm.jsp" />
+	</definition>
+
+</tiles-definitions>

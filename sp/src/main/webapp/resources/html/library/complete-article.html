@@ -1,0 +1,74 @@
+<div class="container new-modals">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 complete-article-modal">
+            <div class="modal-bg-wrap">
+                <div class="model-heading sp-panel-accent">
+                    <div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color adj0" data-ng-click="closeCompleteModal();"></div>
+                </div>
+                <div class="new-modals-wrapper">
+                    <!-- Top Message Starts -->
+                    <p class="article-label" data-ng-bind="articlePageDetails.articleLinkLabel"></p>
+                    <span class="article-author-label" data-ng-bind="pullInterNationalization('manageAccountContent.by') + ' '+articlePageDetailsAuthors"></span>
+                    <!-- Top Message Ends -->
+                    <div class="dialog-btns-wrapper">
+                        <!-- Article Actions Starts -->
+                        <div class="curriculum-actions-wrapper">
+                            <div class="ca-box box-pop">
+                                <!--  Add to my Goals Starts -->
+                                <ul data-ng-if="showAddToGoalsBtn">
+                                    <li class="icon-checkmark_fat grey-ic adj1"></li>
+                                    <li class="big-btn">
+                                        <a href="javascript:void(0)" data-ng-click="addtoGoals(articlePageDetails.articleLinkUrl)" class="btn-block btn-15px sp-btn-color" data-ng-bind="::pullInterNationalization('kcContent.addplan')"></a>
+                                    </li>
+                                </ul>
+                                <!--  Add to my Goals Ends -->
+                                <!--  Mark as complete Starts -->
+                                <ul data-ng-if="!updateBtnDisabled">
+                                    <li class="icon-checkmark_fat grey-ic adj1"></li>
+                                    <li class="big-btn">
+                                        <a href="javascript:void(0)" autofocus data-ng-click="updateDashboard(articlePageDetails.articleLinkUrl, 'page')" class="btn-block btn-15px sp-btn-color" data-ng-bind="::pullInterNationalization('actionPlan.module.todo.actions.markComplete')"></a>
+                                    </li>
+                                </ul>
+                                <!--  Mark as complete Ends -->
+                                <!--  Article Helpful Starts -->
+                                <ul data-ng-if="articleHelpFul" class="articleHelpFul">
+                                    <li class="icon-checkmark_fat sp-icon-color adj2"></li>
+                                    <li>
+                                        <span class="helpful-text" data-ng-bind="::pullInterNationalization('kcContent.helpful')"></span>
+                                        <span class="helpful-btns">
+                                                        <span id="event_article_helpful_yes" data-ng-click="useful({'articleId':articlePageDetails.articleLinkUrl,'isUseFull':true})" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('kcContent.yes')"></span>
+                                        <span id="event_article_helpful_no" data-ng-click="useful({'articleId':articlePageDetails.articleLinkUrl,'isUseFull':false})" class="btn-square-12px sp-background-color" data-ng-bind="::pullInterNationalization('kcContent.no')"></span>
+                                        </span>
+                                    </li>
+                                </ul>
+                                <!--  Article Helpful Ends -->
+                                <!--  Article Completed Start -->
+                                <ul data-ng-class="{'adj':articleCompletedBtn}">
+                                    <li class="alRight continue-btn">
+                                        <a href="javascript:void(0)" class="btn-block btn-grey-dark btn-15px" data-ng-click="closeCompleteModal();" data-ng-bind="::pullInterNationalization('admin.member.continue')"></a>
+                                    </li>
+                                    <li class="icon-checkmark_fat sp-icon-color adj3" data-ng-if="articleCompletedBtn"></li>
+                                    <li data-ng-if="articleCompletedBtn">
+                                        <span class="helpful-text fw700 m0 mt17" data-ng-bind="::pullInterNationalization('actionPlan.module.todo.actions.markInComplete')"></span>
+                                    </li>
+                                    <li data-ng-init="getBadgeInformation('.lp-progress-modal')" class="lp-progress-modal" data-ng-if="!showBadge && articleCompletedBtn"></li>
+                                    <li data-ng-if="!showBadge && articleCompletedBtn" class="badge-text modal-view">
+                                        <span class="b-title-1" data-ng-bind="badgeObj.contentReference.title"></span>
+                                        <span class="b-title-2" data-ng-bind="badgeObj.completedCount+ ' '+pullInterNationalization('practiceArea.of')+' '+badgeObj.totalCount+' '+pullInterNationalization('spectrum.article.completed')"></span>
+                                    </li>
+                                    <li data-ng-if="showBadge && articleCompletedBtn" class="sp-icon-color badgeIco" data-ng-class="setBadgeClass('icon-badge_ertiLevel',badgeObj.completeLevel)"></li>
+                                    <li data-ng-if="showBadge && articleCompletedBtn" class="badge-text modal-view">
+                                        <span class="b-title-1" data-ng-bind="articlePageDetails.goals[0].name"></span>
+                                        <span class="b-title-2" data-ng-bind="pullInterNationalization('badge.erti.level')+' '+badgeObj.completeLevel+' '+pullInterNationalization('spectrum.assessmentCompleted')"></span>
+                                    </li>
+                                </ul>
+                                <!--  Article Completed Ends -->
+                            </div>
+                        </div>
+                        <!-- Article Actions Ends -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

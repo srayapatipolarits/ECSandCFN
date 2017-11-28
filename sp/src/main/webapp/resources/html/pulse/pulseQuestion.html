@@ -1,0 +1,74 @@
+<div class="pulse pulse-questionaire hide" data-ng-init="pulseCtrl.startQuestion()" data-ng-controller="pulseQuestionController as pulseCtrl" data-ng-if="inviteReady" data-ng-class="inviteReady?'show':'hide'">
+    <div class="x-container">
+        <div class="container" >
+            <article class="pulse-survey-message pulse-section-margin">
+                <div class="title-pulse">
+                    <h2 data-ng-bind="::pullInterNationalization('pulse.survey')"></h2>
+                </div>
+                <div class="description p10" data-ng-bind="::pullInterNationalization('pulse.pageDesc')"></div>
+            </article>
+            <form class="pulse-content sp-panel-accent" data-ng-if="pulseCtrl.startRepeat">
+                <div class="col-md-12 pulse-questions pulse-survey">
+                    <div class="pulse-question-group">
+                        <ul class="pulse-question-list">
+                            <!-- Static Color Key -->
+                            <li class="form-container first-child">
+                                <h2 class="pulse-questionaire-title sp-icon-color"><span data-ng-bind-html="pulseCtrl.keyNameToPrint[pulseCtrl.currentIndex]"></span></h2>
+                            </li>
+                            <!-- Dynamic begins here -->
+                            <!-- <li class="realState" id="{{pulseCtrl.keyNameToPrint[pulseCtrl.currentIndex]}}_0_query_{{$index}}" data-ng-repeat="start in pulseCtrl.startRepeat[pulseCtrl.currentIndex].result">
+                                <h3><span data-ng-bind="start.description"></span></h3>
+                                <ul class="pulse-radio-group">
+                                    <li class="optionList_{{$index}} noPad" data-ng-repeat="list in start.optionsList">
+                                        <input type="checkbox" name="{{pulseCtrl.keyNameToPrint[pulseCtrl.currentIndex]}}_{{$parent.$index}}_query" id="{{pulseCtrl.keyNameToPrint[pulseCtrl.currentIndex]}}_{{$parent.$index}}_query_{{$index+1}}" value="{{$index}}" data-ng-checked="pulseCtrl.startRepeat[pulseCtrl.currentIndex].answer[$parent.$index] === $index">
+                                        <label for="{{pulseCtrl.keyNameToPrint[pulseCtrl.currentIndex]}}_{{$parent.$index}}_query_{{$index+1}}">
+                                           <span data-ng-bind-html="pullInterNationalization('pulseUser.pulseStartAssessment.optionList_'+$index)"></span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </li> -->
+                        </ul>
+                        <ul class="pulse-question-list-checkbox">
+                            <li class="form-container">
+                                <h3 class="heading-h3">
+					                 <span class="label-question-key" >
+					                   <span data-ng-bind-html="pulseCtrl.pulseDrop[pulseCtrl.defaultPulseName]" class="label"></span>
+					                 </span>
+					            </h3>
+                            </li>
+                            <li class="realState" id="{{pulseCtrl.keyNameToPrint[pulseCtrl.currentIndex]}}_0_query_{{$index}}" data-ng-repeat="start in pulseCtrl.startRepeat[pulseCtrl.currentIndex].result">
+                                <h3><span data-ng-bind-html="start.description"></span></h3>
+                                <ul>
+                                    <li data-ng-repeat="list in start.optionsList" class="messageBlock">
+                                        <p class="pCheckBox top7">
+                                        	<input type="checkbox" class="iCheckBox" name="{{pulseCtrl.keyNameToPrint[pulseCtrl.currentIndex]}}_{{$parent.$index}}_query" id="{{pulseCtrl.keyNameToPrint[pulseCtrl.currentIndex]}}_{{$parent.$index}}_query_{{list.factor}}" value="{{list.factor-1}}" data-ng-checked="pulseCtrl.startRepeat[pulseCtrl.currentIndex].answer[$parent.$index] === (list.factor-1)" data-ng-click="pulseCtrl.inputStyleCheck(pulseCtrl.currentIndex,pulseCtrl.startRepeat[pulseCtrl.currentIndex].answer[$parent.$index]===(list.factor-1)?null:(list.factor-1),$parent.$index)">
+                                            <label for="{{pulseCtrl.keyNameToPrint[pulseCtrl.currentIndex]}}_{{$parent.$index}}_query_{{list.factor}}" class="lCheckBox">
+                                                <span class="checkedTick top12 icon-icon_dev_strategy_check sp-icon-color"></span>
+                                                <span class="label-name-25 weight-300" data-ng-bind-html="list.text"></span>
+                                            </label>
+                                        </p>
+                                    </li>
+                                </ul>
+                                <h5 class="show-pulse-error validate-error"><span data-ng-bind="::pullInterNationalization('pulse.requireanswer')"></span></h5>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- //pulse-questions -->
+                <nav class="pulse-survey-pager">
+                	<ul class="clearfix">
+                    	<li><input type="button" value="{{::pullInterNationalization('pulse.startNewPulse.previous')}}" class="btn-block btn-14px sp-grey-color-bg" data-ng-if="pulseCtrl.currentIndex" data-ng-click="pulseCtrl.setIndex(pulseCtrl.currentIndex,pulseCtrl.currentIndex - 1,false)"/></li>
+                        <li data-ng-if="pulseCtrl.currentIndex < (pulseCtrl.startRepeat.length)-1"><input type="button" value="{{::pullInterNationalization('pulse.startNewPulse.next')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="pulseCtrl.setIndex(pulseCtrl.currentIndex,pulseCtrl.currentIndex + 1,true)"/></li>
+                        <li data-ng-if="pulseCtrl.currentIndex == (pulseCtrl.startRepeat.length)-1"><input type="button" value="{{::pullInterNationalization('pulse.startNewPulse.submit')}}" class="btn-block btn-14px sp-btn-color" data-ng-click="pulseCtrl.submitRequest(pulseCtrl.currentIndex)"/></li>
+                    </ul>
+                    <ul class="clearfix" data-ng-if="pulseCtrl.errorScope.length">
+                         <li class="form-container first-child">
+                             <h5 class="show-pulse-error validate-error"><span data-ng-bind="::pullInterNationalization('pulse.moreanswer')"></span></h5>
+                         </li>
+                     </ul>
+                </nav>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- //#content.pulse -->

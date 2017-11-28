@@ -1,0 +1,82 @@
+
+
+<div class="container" id="declineGrowthScreen">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10">
+			<section class="wrapper bp-popups">
+				<div class="contentBody">
+					<div class="head">
+						<div class="wrap">
+							<div class="headerBar"
+								data-ng-bind="ctrl.approvalState?pullInterNationalization('blueprint.approval'):pullInterNationalization('blueprint.share')"></div>
+							<div class="ngdialog-close closeIcon icon-icon_remove sp-icon-color" ng-click="closeThisDialog()"></div>
+						</div>
+					</div>
+					<div class="contentArea clearfix">
+						<form name="ctrl.shareApprovalForm" class="sendReminder">
+							<div class="messageBlock">
+								<div class="approval-content"
+									data-ng-bind="ctrl.approvalState?pullInterNationalization('blueprint.approvalcontent'):pullInterNationalization('blueprint.sharecontent')"></div>
+								<div class='message' data-ng-bind="::pullInterNationalization('blueprint.sendto')"></div>
+								<div class="tagsEmailInput" style="padding-bottom: 0px;">
+									<tags-input ng-model="tags" display-property="name"
+										max-tags="1" hide-input="true"
+										placeholder="{{::pullInterNationalization('dashboard.enteremail')}}" display-name="email"
+										allowed-tags-pattern="^[A-Za-z0-9._-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+										replace-spaces-with-dashes="false"
+										on-tag-removed="ctrl.tagRemoved($tag)"
+										on-tag-added="ctrl.tagAdded($tag)"> <auto-complete
+										min-length="1" load-on-focus="false" load-on-empty="false"
+										max-results-to-show="10" source="ctrl.loadTags($query)"
+										class="ng-tags-pos-fix"></auto-complete> </tags-input>
+								</div>
+								<span class="validate-error" data-ng-if="ctrl.inputRequired"
+									data-ng-bind="::pullInterNationalization('trainingLibrary.required.error')"></span>
+								<div class="external-member clearfix marTop20 animation_1"
+									data-ng-if="ctrl.searchTagEmail.length && !(!!(ctrl.searchTagEmail[0].id))">
+									<div class="name row">
+										<div class="textarea heightBottom min42 col-md-6 col-sm-6">
+											<input id="firstName" focus-if class="style_1"
+												data-ng-model="ctrl.searchTagEmail[0].firstName"
+												placeholder="{{::pullInterNationalization('blueprint.firstName')}}"
+												name="firstName" required></input> <span
+												class="validate-error"
+												data-ng-if="ctrl.shareApproval.submitted && ctrl.shareApprovalForm.firstName.$error.required"
+												data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+										</div>
+										<div class="textarea heightBottom min42 col-md-6 col-sm-6">
+											<input id="lastName" class="style_1"
+												data-ng-model="ctrl.searchTagEmail[0].lastName"
+												placeholder="{{::pullInterNationalization('blueprint.lastName')}}"
+												name="lastName" required></input> <span
+												class="validate-error"
+												data-ng-if="ctrl.shareApproval.submitted && ctrl.shareApprovalForm.lastName.$error.required"
+												data-ng-bind="::pullInterNationalization('signup.required.error')"></span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="messageBlock">
+								<div class="textarea" style="padding-bottom: 0px;">
+									<textarea id="commentBlock" class="style_1"
+										data-ng-model='ctrl.shareApproval.comment' rows="3"
+										maxlength="300" data-ng-attr-placeholder="{{::pullInterNationalization('blueprint.commentoptional')}}"
+										name="comment"></textarea>
+								</div>
+							</div>
+							<div class="floatLeft inviteBtn">
+								<input type="button"
+									value="{{ctrl.approvalState?pullInterNationalization('reset.form.submit'):pullInterNationalization('trainingLibrary.share.send')}}"
+									class="btn-block btn-14px sp-btn-color" ng-click="ctrl.shareApprovalFn()">
+								<input type="button"
+									value="{{::pullInterNationalization('trainingLibrary.share.cancel')}}"
+									class="btn-block btn-14px btn-grey-dark"
+									ng-click="closeThisDialog()">
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

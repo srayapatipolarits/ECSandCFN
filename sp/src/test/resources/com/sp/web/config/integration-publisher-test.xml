@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd 
+		 http://www.springframework.org/schema/integration/jms http://www.springframework.org/schema/integration/jms/spring-integration-jms.xsd"
+
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:int-jms="http://www.springframework.org/schema/integration/jms"
+	xmlns:util="http://www.springframework.org/schema/util">
+
+	<beans profile="Test">
+		<int:channel id="outChannel"></int:channel>
+
+		<int-jms:outbound-channel-adapter
+			channel="outChannel" destination-name="sp.message" auto-startup="true"
+			 jms-template="jmsTemplatePub" /> <!-- 3 -->
+
+		<!-- ConnectionFactory Definition -->
+		<bean id="connectionFactoryPub"
+			class="org.springframework.jms.connection.CachingConnectionFactory">
+			<constructor-arg ref="amqConnectionFactoryPub" />
+		</bean>
+
+		<!-- Activemq connection factory -->
+		<bean id="amqConnectionFactoryPub" class="org.apache.activemq.ActiveMQConnectionFactory">
+			<constructor-arg index="0" value="tcp://localhost:61616" />
+			<property name="redeliveryPolicy">
+				<bean class="org.apache.activemq.RedeliveryPolicy">
+					<property name="maximumRedeliveries" value="3" />
+					<property name="queue" value="*" />
+				</bean>
+			</property>
+		</bean>
+
+		<!-- Destination Topic -->
+		<bean id="destinationTopicPub" class="org.apache.activemq.command.ActiveMQTopic">
+			<constructor-arg index="0" value="sp.message" />
+		</bean>
+
+		<!-- JmsTemplate Definition -->
+		<bean id="jmsTemplatePub" class="org.springframework.jms.core.JmsTemplate">
+			<property name="connectionFactory" ref="connectionFactoryPub" />
+			<property name="defaultDestination" ref="destinationTopicPub" />
+			<property name="pubSubDomain" value="true" />
+		</bean>
+
+	</beans>
+</beans>
