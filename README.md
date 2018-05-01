@@ -1,4 +1,4 @@
-# Provisioning of ECS with Cloudformation
+# Provisioning and CI/CD of containers(ECS) with Cloudformation
 
 You can find the architectue diag with name: hydmed.png. 
 Once you get an idea, You can provision the ECS Cluster with cloudformation using the files provided above. 
