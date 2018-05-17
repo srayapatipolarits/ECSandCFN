@@ -1,0 +1,22 @@
+#-----------------------------
+#buildspec.yml
+
+version: 0.2
+
+phases:
+  build:
+    commands:
+       - aws ecr get-login --region ap-south-1 | sed 's/-e\ none//g' > abc.sh
+       - 'bash abc.sh'
+       - 'docker ps' 
+       - 'time=$(date +"%d%m%Y-%H%M%S")'
+       - 'pip install django-extensions'
+       - 'pip install -r requirement.txt'
+       - 'python manage.py collectstatic'
+       - 'docker build -f Dockerfile -t xyxy.dkr.ecr.ap-south-1.amazonaws.com/dev:${time} .'
+
+  post_build:
+    commands:
+       - 'docker push 364012343859.dkr.ecr.ap-south-1.amazonaws.com/dev:${time}'
+
+#-------------------------
